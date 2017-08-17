@@ -1,0 +1,60 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'config/dependencies.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+}
+
+
+/*加载配置信息*/
+ext {
+
+    //加载版本信息
+    File buildFile = file('config/build.properties')
+    Properties buildProperties = new Properties()
+    buildFile.withInputStream {
+        buildProperties.load(it)
+    }
+    minSdkVersion = buildProperties.getProperty('minSdkVersion').toInteger()
+    targetSdkVersion = buildProperties.getProperty('targetSdkVersion').toInteger()
+    compileSdkVersion = buildProperties.getProperty('compileSdkVersion').toInteger()
+    buildToolsVersion = buildProperties.getProperty('buildToolsVersion')
+
+    versionCode = buildProperties.getProperty('versionCode').toInteger()
+    versionName = buildProperties.getProperty('versionName')
+
+    //加载打包key信息
+    File releaseFile = file('config/release.properties')
+    Properties releaseProperties = new Properties()
+    releaseFile.withInputStream {
+        releaseProperties.load(it)
+    }
+
+    releaseKeyAlias = releaseProperties.getProperty('keyAlias')
+    releaseKeyPassword = releaseProperties.getProperty('keyPassword')
+    releaseStoreFile = new File(releaseProperties.getProperty('storeFile')).getAbsolutePath()
+    releaseStorePassword = releaseProperties.getProperty('storePassword')
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
