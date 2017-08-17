@@ -1,0 +1,3 @@
+[submodule "AndroidBase"]
+	path = AndroidBase
+	url = git@github.com:Ztiany/AndroidBase.git
