@@ -2,6 +2,7 @@
 仓库地址：
                   maven { url "https://jitpack.io" }
                   maven { https://dl.bintray.com/ztiany/maven }
+                  maven { url 'https://dl.google.com/dl/android/maven2/' }
 
 retroLambda：
                  classpath 'me.tatarka:gradle-retrolambda:3.6.0'
@@ -17,12 +18,13 @@ kotlin：
 
 ext {
 
-    androidLibrariesVersion = "25.3.1"
+    androidLibrariesVersion = "26.0.1"
     def android_plugin_version = '2.3.3'// same with android gradle plugin
 
     androidLibraries = [
             //https://developer.android.com/topic/libraries/support-library/features.html
             androidCompat      : "com.android.support:appcompat-v7:${androidLibrariesVersion}",
+            androidCompatV13   : "com.android.support:support-v13:${androidLibrariesVersion}",
             androidDesign      : "com.android.support:design:${androidLibrariesVersion}",
             androidPrecent     : "com.android.support:percent:${androidLibrariesVersion}",
             androidAnnotations : "com.android.support:support-annotations:${androidLibrariesVersion}",
@@ -32,7 +34,7 @@ ext {
             androidExif        : "com.android.support:exifinterface:${androidLibrariesVersion}",
             gridlayout         : "com.android.support:gridlayout-v7:${androidLibrariesVersion}",
             dynamicAnimation   : "com.android.support:support-dynamic-animation:${androidLibrariesVersion}",
-            constraint_layout  : 'com.android.support.constraint:constraint-layout:1.0.2',
+            constraintLayout  : 'com.android.support.constraint:constraint-layout:1.0.2',
             flexbox            : 'com.google.android:flexbox:0.3.0-alpha2',
             multiDex           : "com.android.support:multidex:1.0.1",
             dataBinding        : "com.android.databinding:compiler:${android_plugin_version}"
@@ -196,7 +198,9 @@ ext {
             switchbutton           : 'com.kyleduo.switchbutton:library:1.4.6',//https://github.com/kyleduo/SwitchButton
             cameraKit              : 'com.flurgle:camerakit:0.9.17',//https://github.com/gogopop/CameraKit-Android
             fotoapparat            : 'io.fotoapparat.fotoapparat:library:1.0.3',//https://github.com/Fotoapparat/Fotoapparat
-            wheelPicker            : 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'//https://github.com/AigeStudio/WheelPicker
+            wheelPicker            : 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2',//https://github.com/AigeStudio/WheelPicker
+            timePicker             : 'com.wdullaer:materialdatetimepicker:3.3.0',//https://github.com/wdullaer/MaterialDateTimePicker
+            multiType              : 'me.drakeet.multitype:multitype:3.3.0'//https://github.com/drakeet/MultiType
     ]
 
 
