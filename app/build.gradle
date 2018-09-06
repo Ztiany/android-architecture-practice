@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -10,13 +12,12 @@ android {
         release {
             keyAlias rootProject.releaseKeyAlias
             keyPassword rootProject.releaseKeyPassword
-            storeFile file(rootProject.releaseStoreFile)
+            println "--------------------------------------------------------------------"
+            println "${rootProject.releaseStoreFile}"
+            println "--------------------------------------------------------------------"
+            storeFile new File(rootProject.releaseStoreFile)
             storePassword rootProject.releaseStorePassword
         }
-    }
-
-    dataBinding {
-        enabled = true
     }
 
     compileOptions {
@@ -33,47 +34,55 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         resConfigs "zh", "en"//只需要中文和英文资源
+        ndk {//只打包armeabi架构的so库
+            abiFilters 'armeabi-v7a'
+        }
     }
 
     testOptions { unitTests.returnDefaultValues = true }
 
     buildTypes {
+
         //测试
         debug {
             minifyEnabled false
             shrinkResources false
             signingConfig signingConfigs.release
-            manifestPlaceholders = [screenOrientation: "unspecified"]
-        }
-
-        //正式发布
-        release {
-            zipAlignEnabled true
-            minifyEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            ndk {
-                abiFilters 'armeabi-v7a'
+            ndk {//只打包armeabi架构的so库
+                abiFilters 'armeabi-v7a', 'x86'
             }
         }
 
         dexOptions {
-            javaMaxHeapSize "4g"
+            matchingFallbacks = ['release', 'debug']
         }
+
+        //正式环境
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
     }
 
+    // lint检查的error时不终止
     lintOptions {
         abortOnError false
     }
+
+    sourceSets {
+        main {
+            java.srcDirs += "src/main/base"
+            java.srcDirs += "src/main/data"
+            java.srcDirs += "src/main/presentation"
+        }
+    }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':AppBase')//基础类库
 }
+

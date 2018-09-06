@@ -1,15 +1,19 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: 'config/dependencies.gradle'
-
 buildscript {
+
+    apply from: 'config/dependencies.gradle'
+
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        google()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.60'
     }
 }
 
@@ -20,13 +24,20 @@ allprojects {
         maven {
             url 'https://jitpack.io'
         }
+        google()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
 }
 
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
 
-/*加载配置信息*/
+//加载配置信息
 ext {
-
     //加载版本信息
     File buildFile = file('config/build.properties')
     Properties buildProperties = new Properties()
@@ -50,11 +61,12 @@ ext {
 
     releaseKeyAlias = releaseProperties.getProperty('keyAlias')
     releaseKeyPassword = releaseProperties.getProperty('keyPassword')
-    releaseStoreFile = new File(releaseProperties.getProperty('storeFile')).getAbsolutePath()
+    releaseStoreFile =   file(releaseProperties.getProperty('storeFile')).getAbsolutePath()
     releaseStorePassword = releaseProperties.getProperty('storePassword')
 
-}
+    println("releaseKeyAlias $releaseKeyAlias")
+    println("releaseKeyPassword $releaseKeyPassword")
+    println("releaseStoreFile $releaseStoreFile")
+    println("releaseStorePassword $releaseStorePassword")
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

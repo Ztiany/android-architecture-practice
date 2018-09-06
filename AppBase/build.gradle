@@ -1,0 +1,92 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(":AndroidBase")
+
+    //Android
+    implementation androidLibraries.androidCard
+    implementation androidLibraries.androidExif
+    implementation androidLibraries.multiDex
+    implementation androidLibraries.gridlayout
+
+    //Kotlin
+    implementation kotlinLibraries.ankoCommons
+    implementation kotlinLibraries.ankoCommonsV4
+    implementation kotlinLibraries.ankoCommonsV7
+    implementation kotlinLibraries.ankoLayoutSDK25
+    implementation kotlinLibraries.ankoLayoutCompatV7
+    implementation kotlinLibraries.ankoLayoutCompatV4
+
+    //测试
+    testImplementation testDependencies.junit
+
+    //Third Library(apt放前面)
+    /*Dagger2*/
+    kapt thirdDependencies.dagger2Apt
+    kapt thirdDependencies.dagger2AndroidApt
+
+    //AutoBundle
+    kapt thirdDependencies.glideApt
+
+    /*OkHttp*/
+    implementation thirdDependencies.okHttp
+    implementation thirdDependencies.okHttpLogging
+    /*Gson*/
+    implementation thirdDependencies.gson
+    /*Retrofit*/
+    implementation thirdDependencies.retrofit
+    implementation thirdDependencies.retrofitConverterGson
+    implementation thirdDependencies.retrofitRxJava2CallAdapter
+
+    /*UI*/
+    implementation uiLibrary.roundedImageView
+    implementation uiLibrary.fotoapparat
+
+    //Debug
+    //stetho
+    debugImplementation thirdDependencies.stetho
+    debugImplementation thirdDependencies.stethoOkhttp3
+    //LeakCanary
+    debugImplementation thirdDependencies.debugLeakCanary
+}
