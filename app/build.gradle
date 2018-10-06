@@ -53,10 +53,6 @@ android {
             }
         }
 
-        dexOptions {
-            matchingFallbacks = ['release', 'debug']
-        }
-
         //正式环境
         release {
             minifyEnabled false
