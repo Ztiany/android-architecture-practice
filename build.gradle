@@ -4,16 +4,19 @@ buildscript {
 
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven { url 'https://jitpack.io' }
+        maven { url uri('repo') }
         google()
     }
-
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
+        //kotlin
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.60'
+        // bugly的tinker插件
+        classpath "com.tencent.bugly:tinker-support:1.1.2"
+        //多渠道打包
+        classpath 'com.leon.channel:plugin:1.1.7'
     }
 }
 
@@ -21,23 +24,27 @@ allprojects {
     repositories {
         jcenter()
         maven { url 'https://dl.google.com/dl/android/maven2/' }
-        maven {
-            url 'https://jitpack.io'
-        }
+        maven { url 'https://jitpack.io' }
         google()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
+
+        configurations.all {
+            resolutionStrategy.force(
+                    "android.arch.core:runtime:1.1.1",
+                    "android.arch.lifecycle:livedata:1.1.1",
+                    "android.arch.lifecycle:viewmodel:1.1.1",
+                    "android.arch.lifecycle:extensions:1.1.1",
+                    "android.arch.lifecycle:livedata-core:1.1.1",
+                    "android.arch.lifecycle:runtime:1.1.1"
+            )
         }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
-//加载配置信息
+/*加载配置信息*/
 ext {
+    //isMultiApp=true表示各个模块独立编译成app，isMultiApp=false标识所有模块构建为一个app
+    isMultiApp = isModularization.toBoolean()
+
     //加载版本信息
     File buildFile = file('config/build.properties')
     Properties buildProperties = new Properties()
@@ -61,12 +68,64 @@ ext {
 
     releaseKeyAlias = releaseProperties.getProperty('keyAlias')
     releaseKeyPassword = releaseProperties.getProperty('keyPassword')
-    releaseStoreFile =   file(releaseProperties.getProperty('storeFile')).getAbsolutePath()
+    releaseStoreFile = new File(releaseProperties.getProperty('storeFile')).getAbsolutePath()
     releaseStorePassword = releaseProperties.getProperty('storePassword')
 
-    println("releaseKeyAlias $releaseKeyAlias")
-    println("releaseKeyPassword $releaseKeyPassword")
-    println("releaseStoreFile $releaseStoreFile")
-    println("releaseStorePassword $releaseStorePassword")
+}
 
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    excludeLibs = [
+            'com.android.support',
+            'android.arch',
+            'androidx.core',
+            'org.apache',
+            'org.jetbrains.kotlin',
+            'org.jetbrains.kotlinx',
+            'org.jetbrains.anko',
+            'org.json',
+            'org.aspectj',
+            'me.drakeet.multitype',
+            'de.hdodenhof',
+            'io.reactivex',
+            'io.fotoapparat.fotoapparat',
+            'com.jakewharton',
+            'com.jakewharton.rxrelay',
+            'com.trello:rxlifecycle',
+            'com.tencent.bugly',
+            'com.facebook',
+            'com.squareup',
+            'com.google',
+            'com.github.bumptech.glide',
+            'com.alibaba',
+            'com.ta',
+            'com.ut',
+            'com.mob',
+            'com.xiaomi',
+            'com.unionpay',
+            'com.tencent',
+            'com.umeng',
+            'com.gov',
+            'com.UCMobile',
+            'com.ele',
+            'com.zxy.android',
+            'com.tapadoo',
+            'com.danikula:videocache',
+            'com.makeramen',
+            'com.tmall',
+            'com.yalantis',
+            'com.github.iwgang',
+            'com.romandanylyk:pageindicatorview',
+            'com.roughike:bottom-bar',
+            'com.eftimoff',
+            'com.flurgle:camerakit',
+            'com.otaliastudios',
+            'com.wdullaer',
+            'com.bilibili',
+            'com.paypal',
+            'com.leon'
+    ] as String[]
 }

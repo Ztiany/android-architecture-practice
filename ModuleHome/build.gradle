@@ -1,0 +1,1 @@
+apply from: '../modularization_config.gradle'

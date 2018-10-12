@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+        vectorDrawables.useSupportLibrary = true
+        resConfigs "zh", "en"//只需要中文和英文资源
+    }
+
+    testOptions { unitTests.returnDefaultValues = true }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/library/AndroidManifest.xml'
+            java.srcDirs += 'src/library/java/'
+            res.srcDirs += 'src/library/res'
+        }
+    }
+
+}
+
+dependencies {
+    //基础类库
+    implementation project(':AndroidBase')
+    //测试
+    testImplementation testDependencies.junit
+    /*Dagger2*/
+    kapt thirdDependencies.dagger2Apt
+    kapt thirdDependencies.dagger2AndroidApt
+    /*ARouter*/
+    kapt thirdDependencies.arouterAnnotation
+    /* all jar*/
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}

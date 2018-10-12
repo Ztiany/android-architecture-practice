@@ -3,6 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 android {
 
     compileSdkVersion rootProject.compileSdkVersion
@@ -12,10 +18,7 @@ android {
         release {
             keyAlias rootProject.releaseKeyAlias
             keyPassword rootProject.releaseKeyPassword
-            println "--------------------------------------------------------------------"
-            println "${rootProject.releaseStoreFile}"
-            println "--------------------------------------------------------------------"
-            storeFile new File(rootProject.releaseStoreFile)
+            storeFile file(rootProject.releaseStoreFile)
             storePassword rootProject.releaseStorePassword
         }
     }
@@ -34,51 +37,49 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         resConfigs "zh", "en"//只需要中文和英文资源
-        ndk {//只打包armeabi架构的so库
-            abiFilters 'armeabi-v7a'
-        }
     }
 
     testOptions { unitTests.returnDefaultValues = true }
 
-    buildTypes {
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 
+    buildTypes {
         //测试
         debug {
             minifyEnabled false
             shrinkResources false
             signingConfig signingConfigs.release
-            ndk {//只打包armeabi架构的so库
-                abiFilters 'armeabi-v7a', 'x86'
-            }
+            manifestPlaceholders = [screenOrientation: "unspecified"]
         }
 
-        //正式环境
+        //正式发布
         release {
+            zipAlignEnabled true
             minifyEnabled false
+            shrinkResources false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                abiFilters 'armeabi-v7a'
+            }
         }
-
     }
 
-    // lint检查的error时不终止
     lintOptions {
         abortOnError false
     }
 
-    sourceSets {
-        main {
-            java.srcDirs += "src/main/base"
-            java.srcDirs += "src/main/data"
-            java.srcDirs += "src/main/presentation"
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${project.name}-${variant.versionName}.apk"
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':AppBase')//基础类库
+    testImplementation 'junit:junit:4.12'
+    implementation project(path: ':AppBase')
 }
-

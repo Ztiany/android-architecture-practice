@@ -1,3 +1,19 @@
+//插件
+include ':buildPlugin'
+
+//通用类库
 include ':AndroidBase'
+
+//通用功能组件
+include ':LibMediaSelector'
+include ':LibAppSecurity'
+include ':LibQrCode'
+
+//项目基础类库
 include ':AppBase'
+
+//Home模块
+include ':ModuleHome'
+
+//app壳
 include ':app'

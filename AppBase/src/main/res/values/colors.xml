@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--主色调-->
+    <color name="colorPrimary">#3F51B5</color>
+    <!--主暗色调-->
+    <color name="colorPrimaryDark">#303F9F</color>
+    <!--控件-->
+    <color name="colorAccent">#FF4081</color>
+
+</resources>
