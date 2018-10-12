@@ -231,8 +231,10 @@ ext {
             //https://github.com/jgilfelt/chuck
             chuck                            : 'com.readystatesoftware.chuck:library:1.1.0',
 
-            //https://github.com/eleme/UETool
+            //https://github.com/eleme/UETool ui调试工具
             UETool                           : 'me.ele:uetool:1.0.13',
+            //https://github.com/android-notes/SwissArmyKnife ui调试工具
+            autopilot                        : 'com.wanjian:sak-autopilot:0.3.0',
 
             //http://facebook.github.io/stetho/
             stetho                           : 'com.facebook.stetho:stetho:1.4.2',
