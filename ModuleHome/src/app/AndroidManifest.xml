@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.ztiany.architecture.modulehome"
+<manifest package="me.ztiany.architecture.modulehome"
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
@@ -14,10 +14,11 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:replace="android:theme,android:label,android:allowBackup">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name="me.ztiany.home.main.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

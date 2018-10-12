@@ -139,7 +139,7 @@ ext {
     def rxLifecycle = '1.0'
     def rxLifecycle2 = '2.2.2'
     def retrofitVersion = '2.4.0'
-    def daggerVersion = "2.16"
+    def daggerVersion = "2.17"
 
     thirdDependencies = [
             //============================================================================

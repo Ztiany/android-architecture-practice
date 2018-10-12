@@ -1,1 +1,1 @@
-"# AndroidArchitecture" 
+# Android App Architecture Template

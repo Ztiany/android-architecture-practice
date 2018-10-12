@@ -2,6 +2,7 @@ package me.ztiany.home.main
 
 import android.os.Bundle
 import com.android.base.app.activity.BaseActivity
+import me.ztiany.architecture.home.R
 
 /**
  *
@@ -10,9 +11,7 @@ import com.android.base.app.activity.BaseActivity
  */
 class MainActivity : BaseActivity() {
 
-    override fun layout(): Any {
-        TODO()
-    }
+    override fun layout() = R.layout.main_activity
 
     override fun setupView(savedInstanceState: Bundle?) {
 

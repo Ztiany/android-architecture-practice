@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.ztiany.architecture.${project.name.toLowerCase()}"
+        applicationId "me.ztiany.architecture.${project.name.toLowerCase()}"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode rootProject.versionCode

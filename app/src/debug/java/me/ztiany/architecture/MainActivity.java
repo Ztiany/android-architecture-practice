@@ -1,4 +1,4 @@
-package com.ztiany.architecture;
+package me.ztiany.architecture;
 
 import android.content.pm.Signature;
 import android.os.Bundle;

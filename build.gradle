@@ -10,13 +10,11 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         //kotlin
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.60'
-        // bugly的tinker插件
-        classpath "com.tencent.bugly:tinker-support:1.1.2"
-        //多渠道打包
-        classpath 'com.leon.channel:plugin:1.1.7'
+        //自定义组件化插件
+        classpath 'com.app.plugins:gradleplugin:1.0.0'
     }
 }
 
