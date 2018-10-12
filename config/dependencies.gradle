@@ -249,8 +249,10 @@ ext {
             //============================================================================
             //Utils
             //============================================================================
+            //kv存储
+            mmkv                             : 'com.tencent:mmkv:1.0.11',//https://github.com/tencent/mmkv、https://mp.weixin.qq.com/s/kTr1GVDCAhs5K7Hq3322FA
             //日志
-            timber                           : "com.jakewharton.timber:timber:4.5.1",
+            timber                           : "com.jakewharton.timber:timber:4.5.1",//https://github.com/JakeWharton/timber
             /*image compression*/
             tiny                             : 'com.zxy.android:tiny:0.0.5', //https://github.com/Sunzxyong/Tiny
             luban                            : 'top.zibin:Luban:1.1.5',//https://github.com/Curzibn/Luban
@@ -264,16 +266,8 @@ ext {
             jOOR                             : "org.jooq:joor-java-6:0.9.7",
             //https://github.com/Blankj/AndroidUtilCode
             utilcode                         : 'com.blankj:utilcode:1.19.0',
-            //https://github.com/jaredrummler/HtmlBuilder
-            htmlBuilder                      : 'com.jaredrummler:html-builder:1.0.0',
-            //https://github.com/nntuyen/text-decorator
-            textDecorator                    : 'com.tuyenmonkey:text-decorator:1.0.0',
-            //https://github.com/drakeet/ToastCompat
-            toastCompat                      : 'me.drakeet.support:toastcompat:1.0.2',
             //https://github.com/promeG/TinyPinyin
             tinypinyin                       : 'com.github.promeg:tinypinyin:2.0.3',
-            //https://github.com/DreaminginCodeZH/SystemUiHelper
-            systemUIHelper                   : 'me.zhanghai.android.systemuihelper:library:1.0.0',
             //https://github.com/yanzhenjie/AndPermission
             andPermission                    : 'com.yanzhenjie:permission:2.0.0-rc12'
     ]
@@ -326,6 +320,15 @@ ext {
             rclayout                 : 'com.gcssloop.widget:rclayout:1.6.0',//https://github.com/GcsSloop/rclayout
             LayoutManagerGroup       : 'com.github.DingMouRen:LayoutManagerGroup:f68c9712e5',//https://github.com/DingMouRen/LayoutManagerGroup
             recyclerViewPager        : 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2',//https://github.com/lsjwzh/RecyclerViewPager
+
+            //https://github.com/jaredrummler/HtmlBuilder
+            htmlBuilder              : 'com.jaredrummler:html-builder:1.0.0',
+            //https://github.com/nntuyen/text-decorator
+            textDecorator            : 'com.tuyenmonkey:text-decorator:1.0.0',
+            //https://github.com/drakeet/ToastCompat
+            toastCompat              : 'me.drakeet.support:toastcompat:1.0.2',
+            //https://github.com/DreaminginCodeZH/SystemUiHelper
+            systemUIHelper           : 'me.zhanghai.android.systemuihelper:library:1.0.0',
     ]
 
     thirdPlatform = [
