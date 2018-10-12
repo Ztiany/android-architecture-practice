@@ -9,6 +9,13 @@ kapt {
     }
 }
 
+if (rootProject.openAspectJ.toBoolean()) {
+    apply plugin: 'com.hujiang.android-aspectjx'
+    project.aspectjx {
+        excludeJarFilter project.rootProject.excludeLibs
+    }
+}
+
 android {
 
     compileSdkVersion rootProject.compileSdkVersion
@@ -36,7 +43,19 @@ android {
         versionName rootProject.versionName
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+
         resConfigs "zh", "en"//只需要中文和英文资源
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
+
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
+
     }
 
     testOptions { unitTests.returnDefaultValues = true }
@@ -52,6 +71,16 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             manifestPlaceholders = [screenOrientation: "unspecified"]
+            resValue("string", "app_name", "Android架构模板(测试)")
+        }
+
+        x86 {
+            initWith debug
+            debuggable true
+            ndk {
+                abiFilters 'armeabi-v7a', 'x86'
+            }
+            matchingFallbacks = ['debug']
         }
 
         //正式发布
@@ -59,10 +88,21 @@ android {
             zipAlignEnabled true
             minifyEnabled false
             shrinkResources false
-            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            ndk {
-                abiFilters 'armeabi-v7a'
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [screenOrientation: "portrait"]
+            resValue("string", "app_name", "Android架构模板")
+        }
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.isMultiApp) {
+                manifest.srcFile 'src/app_fake/AndroidManifest.xml'
+            } else {//组合
+                java.srcDirs += "src/app/java"
+                res.srcDirs += "src/app/res"
+                manifest.srcFile 'src/app/AndroidManifest.xml'
             }
         }
     }
@@ -71,15 +111,40 @@ android {
         abortOnError false
     }
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             outputFileName = "${project.name}-${variant.versionName}.apk"
         }
     }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
-    implementation project(path: ':AppBase')
+
+    if (!rootProject.isMultiApp) {
+
+        testImplementation 'junit:junit:4.12'
+
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation project(path: ':AppBase')
+        implementation project(path: ':ModuleHome')
+
+        //第三方库
+        def thirdLibraries = rootProject.thirdDependencies
+
+        /*ARouter*/
+        kapt thirdLibraries.arouterAnnotation
+        /*Dagger2*/
+        kapt thirdLibraries.dagger2Apt
+        kapt thirdLibraries.dagger2AndroidApt
+
+    } else {
+        implementation androidLibraries.androidCompatV7
+        implementation androidLibraries.androidDesign
+    }
+
 }
