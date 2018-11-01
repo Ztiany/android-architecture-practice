@@ -1,4 +1,4 @@
-package com.ztiany.mediaselector;
+package com.android.sdk.mediaselector;
 
 import java.io.Serializable;
 

@@ -9,13 +9,6 @@ kapt {
     }
 }
 
-if (rootProject.openAspectJ.toBoolean()) {
-    apply plugin: 'com.hujiang.android-aspectjx'
-    project.aspectjx {
-        excludeJarFilter project.rootProject.excludeLibs
-    }
-}
-
 android {
 
     compileSdkVersion rootProject.compileSdkVersion
@@ -130,8 +123,8 @@ dependencies {
         testImplementation 'junit:junit:4.12'
 
         implementation fileTree(dir: 'libs', include: ['*.jar'])
-        implementation project(path: ':AppBase')
-        implementation project(path: ':ModuleHome')
+        implementation project(path: ':module_base')
+        implementation project(path: ':module_home')
 
         //第三方库
         def thirdLibraries = rootProject.thirdDependencies

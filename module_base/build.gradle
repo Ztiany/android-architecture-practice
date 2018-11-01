@@ -45,9 +45,9 @@ dependencies {
 
     //基础组件库
     api project(':AndroidBase')//基础类库
-    api project(':LibMediaSelector')//选择器
-    api project(':LibQrCode')//二维码
-    implementation project(':LibAppSecurity')//App安全
+    api project(':lib_media_selector')//选择器
+    api project(':lib_qrcode')//二维码
+    implementation project(':lib_app_security')//App安全
 
     //Android
     api(androidLibraries.androidCompatV13) {

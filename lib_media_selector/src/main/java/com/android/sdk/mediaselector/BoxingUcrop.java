@@ -15,7 +15,7 @@
  *
  */
 
-package com.ztiany.mediaselector;
+package com.android.sdk.mediaselector;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +28,7 @@ import android.support.v4.content.ContextCompat;
 import com.bilibili.boxing.loader.IBoxingCrop;
 import com.bilibili.boxing.model.config.BoxingCropOption;
 import com.yalantis.ucrop.UCrop;
+import com.ztiany.mediaselector.R;
 
 /**
  * use Ucrop(https://github.com/Yalantis/uCrop) as the implement for {@link IBoxingCrop}

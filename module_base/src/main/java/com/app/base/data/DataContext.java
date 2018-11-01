@@ -2,7 +2,7 @@ package com.app.base.data;
 
 import android.app.Application;
 
-import com.android.base.utils.cache.SpCache;
+import com.android.base.utils.android.SpCache;
 import com.app.base.BuildConfig;
 import com.blankj.utilcode.util.NetworkUtils;
 

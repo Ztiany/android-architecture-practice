@@ -15,7 +15,7 @@
  *
  */
 
-package com.ztiany.mediaselector;
+package com.android.sdk.mediaselector;
 
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;

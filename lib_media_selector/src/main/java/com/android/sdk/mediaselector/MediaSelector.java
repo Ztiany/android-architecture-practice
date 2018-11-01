@@ -1,4 +1,4 @@
-package com.ztiany.mediaselector;
+package com.android.sdk.mediaselector;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,7 @@ import com.bilibili.boxing.model.entity.BaseMedia;
 import com.bilibili.boxing.utils.BoxingFileHelper;
 import com.bilibili.boxing.utils.BoxingLog;
 import com.bilibili.boxing_impl.ui.BoxingActivity;
+import com.ztiany.mediaselector.R;
 
 import java.util.ArrayList;
 import java.util.List;

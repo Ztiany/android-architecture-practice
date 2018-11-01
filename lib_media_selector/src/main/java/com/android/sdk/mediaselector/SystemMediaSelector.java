@@ -1,4 +1,4 @@
-package com.ztiany.mediaselector;
+package com.android.sdk.mediaselector;
 
 import android.app.Activity;
 import android.content.Context;
