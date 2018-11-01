@@ -1,10 +1,10 @@
-package com.eclite.library.components.net
+package com.app.base.data.net
 
 import com.android.base.kotlin.otherwise
 import com.android.base.kotlin.yes
 import com.android.base.utils.functional.Optional
+import com.app.base.data.DataContext
 import com.app.base.data.net.exception.NetworkErrorException
-import com.blankj.utilcode.util.NetworkUtils
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 
@@ -29,7 +29,7 @@ import io.reactivex.functions.Consumer
 fun <T> composeMultiSource(remote: Observable<Optional<T>>, local: Observable<Optional<T>>,
                            isNew: (oldT: T, newT: T) -> Boolean,
                            onNewData: Consumer<T>): Observable<Optional<T>> {
-    if (!NetworkUtils.isConnected()) {
+    if (!DataContext.getInstance().isConnected) {
         return local
                 .flatMap {
                     it.isPresent.yes { Observable.just(it) }.otherwise { Observable.error(NetworkErrorException()) }

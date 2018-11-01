@@ -1,4 +1,4 @@
-package com.app.base.data.net.errorhandler;
+package com.app.base.errorhandle;
 
 
 import com.app.base.data.net.exception.ApiErrorException;

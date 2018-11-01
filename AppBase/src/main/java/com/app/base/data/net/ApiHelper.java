@@ -3,6 +3,9 @@ package com.app.base.data.net;
 
 import android.support.annotation.NonNull;
 
+import com.app.base.data.net.exception.ApiErrorException;
+
+
 /**
  * @author Ztiany
  * Date : 2018-08-13
@@ -38,4 +41,7 @@ public class ApiHelper {
         return new HttpResult(DATA_ERROR);
     }
 
+    public static boolean isAuthenticationExpired(Throwable throwable) {
+        return throwable instanceof ApiErrorException && ApiHelper.isKeyInvalid(((ApiErrorException) throwable).getCode());
+    }
 }

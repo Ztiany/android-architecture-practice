@@ -25,10 +25,10 @@ public class RxNetUtils {
     /**
      * 返回一个Transformer，用于统一处理网络请求返回的 Observer 数据。对网络异常和请求结果做了通用处理：
      * <pre>
-     * 1.  网络无连接抛出 {@link com.eclite.library.components.net.exception.NetworkErrorException} 由下游处理
-     * 2. HttpResult==null 抛出 {@link com.eclite.library.components.net.exception.NetworkErrorException} 由下游处理
-     * 3. HttpResult.getCode() != SUCCESS 抛出 {@link com.eclite.library.components.net.exception.ApiErrorException} 由下游处理
-     * 4. 返回的结果不符合约定的数据模型处理或为 null 抛出 {@link com.eclite.library.components.net.exception.ServerErrorException} 由下游处理
+     * 1.  网络无连接抛出 {@link com.app.base.data.net.exception.NetworkErrorException} 由下游处理
+     * 2. HttpResult==null 抛出 {@link com.app.base.data.net.exception.NetworkErrorException} 由下游处理
+     * 3. HttpResult.getCode() != SUCCESS 抛出 {@link com.app.base.data.net.exception.ApiErrorException} 由下游处理
+     * 4. 返回的结果不符合约定的数据模型处理或为 null 抛出 {@link com.app.base.data.net.exception.ServerErrorException} 由下游处理
      * 5. 最后把 HttpResult&lt;T&gt; 中的数据 T 提取到下游
      * </pre>
      */
@@ -53,7 +53,7 @@ public class RxNetUtils {
     public static <Upstream> HttpResultTransformer<Upstream, HttpResult<Upstream>> resultChecker() {
         return (HttpResultTransformer<Upstream, HttpResult<Upstream>>) RESULT_CHECKER;
     }
-    
+
     /**
      * 某些业务调用所产生的异常不是全局通用的，可以传递此接口用于创建特定的异常
      */

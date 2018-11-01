@@ -67,7 +67,7 @@ dependencies {
     api kotlinLibraries.ankoCommonsV4
     api kotlinLibraries.ankoCommonsV7
     api kotlinLibraries.ankoLayoutSDK25
-    api kotlinLibraries.rxKotlin1
+    api kotlinLibraries.rxKotlin2
 
     //Third Library(apt放前面)
     /*Dagger2*/
@@ -88,7 +88,7 @@ dependencies {
     /*image compression*/
     api thirdDependencies.luban
     /*rx binding*/
-    api thirdDependencies.rxBindingCompat
+    api thirdDependencies.rxBindingCompat2
     /*glideAPT*/
     kapt thirdDependencies.glideApt
     /*aop*/
