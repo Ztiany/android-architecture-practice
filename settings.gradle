@@ -8,6 +8,7 @@ include ':AndroidBase'
 include ':lib_media_selector'
 include ':lib_app_security'
 include ':lib_qrcode'
+include ':lib_cache'
 
 //项目基础类库
 include ':module_base'
