@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--transition_animation-->
+    <string name="transition_photo" translatable="false">transition_animation_photos</string>
+
+    <!--common id-->
+    <item name="common_container_id" type="id"/><!--Fragment的容器布局-->
+
+</resources>

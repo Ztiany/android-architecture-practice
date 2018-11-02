@@ -95,7 +95,7 @@ android {
 dependencies {
     dependencies {
         //基础类库
-        implementation project(':AndroidBase')
+        implementation project(':module_base')
         //测试
         testImplementation testDependencies.junit
         /*Dagger2*/

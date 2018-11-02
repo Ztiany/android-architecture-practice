@@ -26,7 +26,7 @@ public class DataContext {
 
     public static DataContext getInstance() {
         if (sDataContext == null) {
-            throw new IllegalStateException("DataContext has not initialize");
+            throw new IllegalStateException("DataContext has not initialized");
         }
         return sDataContext;
     }
@@ -41,26 +41,24 @@ public class DataContext {
     private static final String HOST_KEY = "host_key";
 
     private final SpCache mSpCache;
-
     private int mHostEnvIdentification;
-    private boolean mIsAppPreparedCalled;
 
     /*环境配置*/
-    public static final int BUILD_DEBUG = 0x0110;
-    public static final int BUILD_PRE_RELEASE = 0x0111;
-    public static final int BUILD_RELEASE = 0x01112;
+    public static final int BUILD_DEBUG = 1;
+    public static final int BUILD_PRE_RELEASE = 2;
+    public static final int BUILD_RELEASE = 3;
 
     /*永远不要修改*/
-    private static final String DEBUG = "debug";
-    private static final String PRE = "pre";
-    private static final String RELEASE = "release";
+    static final String DEBUG = "debug";
+    static final String PRE = "pre-release";
+    static final String RELEASE = "release";
 
     /**
      * 获取当前构建的主机地址标识，如：<font color="red">调试、预发布、生产</font>
      *
      * @return Identification
      */
-    public int getHostIdentification() {
+    int getHostIdentification() {
         return mHostEnvIdentification;
     }
 
@@ -69,7 +67,7 @@ public class DataContext {
      *
      * @return Identification
      */
-    public String getHostTag() {
+    private String getHostTag() {
         if (mHostEnvIdentification == BUILD_RELEASE) {
             return RELEASE;
         } else if (mHostEnvIdentification == BUILD_PRE_RELEASE) {
@@ -96,7 +94,7 @@ public class DataContext {
     }
 
     /**
-     * just for debug
+     * 用于调试，切换主机环境。
      */
     public void switchHost(int host) {
         mSpCache.putInt(HOST_KEY, host);

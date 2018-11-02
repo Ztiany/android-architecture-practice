@@ -6,9 +6,9 @@ import android.content.Context;
 import com.android.base.imageloader.ImageLoader;
 import com.android.base.imageloader.ImageLoaderFactory;
 import com.android.base.rx.SchedulerProvider;
-import com.app.base.di.qualifier.ContextType;
 import com.app.base.errorhandle.AppErrorHandler;
 import com.app.base.errorhandle.ErrorHandler;
+import com.app.base.di.qualifier.ContextType;
 import com.app.base.router.AppRouter;
 import com.app.base.router.AppRouterImpl;
 

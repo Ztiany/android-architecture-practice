@@ -34,6 +34,16 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    sourceSets {
+        main {
+            if (openDebug) {
+                java.srcDirs += "src/_debug/java"
+                res.srcDirs += "src/_debug/res"
+            }
+        }
+    }
+
+
 }
 
 dependencies {
@@ -47,8 +57,8 @@ dependencies {
     api project(':AndroidBase')//基础类库
     api project(':lib_media_selector')//选择器
     api project(':lib_qrcode')//二维码
-    api project(':lib_cache')//缓存
-    implementation project(':lib_app_security')//App安全
+    api project(':lib_cache')//二维码
+    //implementation project(':lib_security')//App安全
 
     //Android
     api(androidLibraries.androidCompatV13) {
@@ -92,8 +102,6 @@ dependencies {
     api thirdDependencies.rxBindingCompat2
     /*glideAPT*/
     kapt thirdDependencies.glideApt
-    /*aop*/
-    api thirdDependencies.aspectjrt
 
     /*UI*/
     api androidLibraries.flexbox

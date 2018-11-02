@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 class URLProvider {
 
-    private static final Map<String, HttpURL> mHttpURLMap = new HashMap<>();
+    private static final Map<String, HttpURL> URL_MAP = new HashMap<>();
 
     @Inject
     URLProvider() {
@@ -15,20 +15,18 @@ class URLProvider {
 
     static {
         /*调试环境*/
-//        mHttpURLMap.put(DataContext.buildEnvTag(DataContext.ENVIRONMENT_CN, DataContext.BUILD_DEBUG), new HttpURL("", 8081));
-//        mHttpURLMap.put(DataContext.buildEnvTag(DataContext.ENVIRONMENT_EN, DataContext.BUILD_DEBUG), new HttpURL("120.77.170.52", 8082));
+        URL_MAP.put(DataContext.DEBUG, new HttpURL("debug", 8081));
         /*预发布*/
-//        mHttpURLMap.put(DataContext.buildEnvTag(DataContext.ENVIRONMENT_EN, DataContext.BUILD_PRE_RELEASE), new HttpURL("", 8081));
-//        mHttpURLMap.put(DataContext.buildEnvTag(DataContext.ENVIRONMENT_CN, DataContext.BUILD_PRE_RELEASE), new HttpURL("112.74.112.220", 8081));
+        URL_MAP.put(DataContext.PRE, new HttpURL("pre", 8081));
         /*正式环境*/
-//        mHttpURLMap.put(DataContext.buildEnvTag(DataContext.ENVIRONMENT_EN, DataContext.BUILD_RELEASE), new HttpURL("", false));
-//        mHttpURLMap.put(DataContext.buildEnvTag(DataContext.ENVIRONMENT_CN, DataContext.BUILD_RELEASE), new HttpURL("", false));
+        URL_MAP.put(DataContext.RELEASE, new HttpURL("release", false));
     }
 
     String baseUrl() {
-//        DataContext instance = DataContext.getInstance();
-//        return mHttpURLMap.get(instance.getEnvTag()).url();
-        return "http://www.fake.com/api/";
+        DataContext instance = DataContext.getInstance();
+        HttpURL httpURL = URL_MAP.get(instance.getEnvTag());
+        assert httpURL != null;
+        return httpURL.url();
     }
 
     private static final class HttpURL {

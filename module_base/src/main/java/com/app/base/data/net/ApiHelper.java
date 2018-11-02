@@ -5,14 +5,11 @@ import android.support.annotation.NonNull;
 
 import com.app.base.data.net.exception.ApiErrorException;
 
-
 /**
  * @author Ztiany
  * Date : 2018-08-13
  */
 public class ApiHelper {
-
-    static final int ORIGIN_CODE = -8080;
 
     /*Json解析错误*/
     private static final int DATA_ERROR = -8088;

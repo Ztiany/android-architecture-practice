@@ -1,2 +1,2 @@
-package com.gwchina.sdk.base.kotlin
+package com.app.base.kotlin
 

@@ -2,13 +2,13 @@ package com.app.base.data;
 
 import android.content.Context;
 
+import com.android.sdk.cache.CacheManager;
+import com.android.sdk.cache.MMKVCacheImpl;
 import com.app.base.BuildConfig;
-import com.app.base.data.cache.CacheManager;
-import com.app.base.data.cache.MMKVCache;
-import com.app.base.data.net.AutoGenTypeAdapterFactory;
+import com.app.base.data.cache.CacheFactory;
+import com.app.base.data.cache.CacheFactoryImpl;
+import com.app.base.data.gson.GsonUtils;
 import com.app.base.di.qualifier.ContextType;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,13 +30,12 @@ public class DataModule {
     private static final int CONNECTION_TIME_OUT = 10;
     private static final int IO_TIME_OUT = 20;
 
+    private static final String DEFAULT_CACHE_ID = "gw-parent-default-cache-id";
+
     @Singleton
     @Provides
     ServiceFactory provideServiceFactory(OkHttpClient okHttpClient, URLProvider urlProvider) {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapterFactory(new AutoGenTypeAdapterFactory())
-                .create();
-        return new ServiceFactory(okHttpClient, gson, urlProvider);
+        return new ServiceFactory(okHttpClient, GsonUtils.gson(), urlProvider);
     }
 
     @Provides
@@ -61,10 +60,22 @@ public class DataModule {
         return builder.build();
     }
 
+    /**
+     * 缓存工程
+     */
     @Provides
     @Singleton
-    CacheManager provideCacheManager(MMKVCache mmkvCache) {
-        return mmkvCache;
+    CacheFactory provideCacheFactory() {
+        return new CacheFactoryImpl();
+    }
+
+    /**
+     * 全局默认缓存实现，不支持跨进程。
+     */
+    @Provides
+    @Singleton
+    CacheManager provideDefaultCacheManager(@ContextType Context context) {
+        return new MMKVCacheImpl(context, DEFAULT_CACHE_ID);
     }
 
 

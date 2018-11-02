@@ -16,10 +16,7 @@ public class HttpResult<T> {
         this.code = code;
     }
 
-    /*兼容两种格式：code 或 ret */
-
-    private int code = ApiHelper.ORIGIN_CODE;
-    private int ret = ApiHelper.ORIGIN_CODE;
+    private int code;
     private String msg;
     private T data;
 
@@ -31,16 +28,8 @@ public class HttpResult<T> {
         return code;
     }
 
-    public int getRet() {
-        return ret;
-    }
-
     public String getMsg() {
         return msg;
-    }
-
-    public int getRealCode() {
-        return code == ApiHelper.ORIGIN_CODE ? ret : code;
     }
 
     public boolean hasData() {
@@ -51,7 +40,6 @@ public class HttpResult<T> {
     public String toString() {
         return "HttpResult{" +
                 ", code='" + code + '\'' +
-                ", ret='" + ret + '\'' +
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';

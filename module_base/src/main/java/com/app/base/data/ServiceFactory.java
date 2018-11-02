@@ -2,11 +2,11 @@ package com.app.base.data;
 
 import android.support.annotation.NonNull;
 
-import com.app.base.data.net.ErrorJsonLenientConverterFactory;
-import com.app.base.data.progress.RequestProgressInterceptor;
-import com.app.base.data.progress.ResponseProgressInterceptor;
-import com.app.base.data.progress.UrlProgressListener;
 import com.google.gson.Gson;
+import com.app.base.data.net.ErrorJsonLenientConverterFactory;
+import com.app.base.data.net.progress.RequestProgressInterceptor;
+import com.app.base.data.net.progress.ResponseProgressInterceptor;
+import com.app.base.data.net.progress.UrlProgressListener;
 
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -74,10 +74,6 @@ public class ServiceFactory {
         Retrofit retrofit = getRetrofit().newBuilder().client(okHttpClient).build();
         return retrofit.create(clazz);
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Base uri
-    ///////////////////////////////////////////////////////////////////////////
 
     /**
      * 获取当前App的API接口使用的url

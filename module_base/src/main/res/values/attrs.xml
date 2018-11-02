@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="BannerView">
+        <attr name="bv_scale" format="boolean"/>
+        <attr name="bv_pager_number_id" format="reference"/>
+        <attr name="bv_item_transition_name" format="string|reference"/>
+    </declare-styleable>
+
+
+</resources>

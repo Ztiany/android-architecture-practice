@@ -3,10 +3,10 @@ package com.app.base.data.net;
 import android.support.annotation.NonNull;
 
 import com.android.base.utils.functional.Optional;
+import com.app.base.data.DataContext;
 import com.app.base.data.net.exception.ApiErrorException;
 import com.app.base.data.net.exception.NetworkErrorException;
 import com.app.base.data.net.exception.ServerErrorException;
-import com.blankj.utilcode.util.NetworkUtils;
 
 import org.reactivestreams.Publisher;
 
@@ -61,7 +61,7 @@ public class HttpResultTransformer<Upstream, Downstream> implements ObservableTr
     }
 
     private static boolean isConnected() {
-        return NetworkUtils.isConnected();
+        return DataContext.getInstance().isConnected();
     }
 
     @Override

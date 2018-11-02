@@ -2,10 +2,13 @@
 <resources>
 
     <!--主色调-->
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#4EBFAA</color>
     <!--主暗色调-->
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#4EBFAA</color>
     <!--控件-->
     <color name="colorAccent">#FF4081</color>
+
+
+    <color name="light_gray">#999999</color>
 
 </resources>

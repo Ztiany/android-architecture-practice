@@ -57,52 +57,97 @@ public class MMKVCacheImpl implements CacheManager {
 
     @Override
     public void putString(String key, String value) {
-        mMmkv.encode(key, value);
+        try {
+            mMmkv.encode(key, value);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
     }
 
     @Override
     public String getString(String key, String defaultValue) {
-        return mMmkv.decodeString(key, defaultValue);
+        try {
+            return mMmkv.decodeString(key, defaultValue);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
+        return defaultValue;
     }
 
     @Override
     public String getString(String key) {
-        return mMmkv.decodeString(key);
+        try {
+            return mMmkv.decodeString(key);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public void putLong(String key, long value) {
-        mMmkv.encode(key, value);
+        try {
+            mMmkv.encode(key, value);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
     }
 
     @Override
     public long getLong(String key, long defaultValue) {
-        return mMmkv.decodeLong(key, defaultValue);
+        try {
+            return mMmkv.decodeLong(key, defaultValue);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
+        return defaultValue;
     }
 
     @Override
     public void putInt(String key, int value) {
-        mMmkv.encode(key, value);
+        try {
+            mMmkv.encode(key, value);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
     }
 
     @Override
     public int getInt(String key, int defaultValue) {
-        return mMmkv.decodeInt(key, defaultValue);
+        try {
+            return mMmkv.decodeInt(key, defaultValue);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
+        return defaultValue;
     }
 
     @Override
     public void putBoolean(String key, boolean value) {
-        mMmkv.encode(key, value);
+        try {
+            mMmkv.encode(key, value);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
     }
 
     @Override
     public boolean getBoolean(String key, boolean defaultValue) {
-        return mMmkv.decodeBool(key, defaultValue);
+        try {
+            return mMmkv.decodeBool(key, defaultValue);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
+        return defaultValue;
     }
 
     @Override
     public void remove(String key) {
-        mMmkv.removeValueForKey(key);
+        try {
+            mMmkv.removeValueForKey(key);
+        } catch (Error error) {
+            error.printStackTrace();
+        }
     }
 
     @Override
