@@ -9,6 +9,10 @@ kapt {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 boolean openDebug = isOpenDebug.toBoolean()
 
 android {

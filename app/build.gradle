@@ -9,6 +9,10 @@ kapt {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 android {
 
     compileSdkVersion rootProject.compileSdkVersion
