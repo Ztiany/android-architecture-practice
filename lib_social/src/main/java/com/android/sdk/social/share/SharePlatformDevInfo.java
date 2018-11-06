@@ -1,6 +1,6 @@
-package com.gwchina.sdk.social.share;
+package com.android.sdk.social.share;
 
-import com.gwchina.sdk.social.Platforms;
+import com.android.sdk.social.Platforms;
 
 import java.util.HashMap;
 
@@ -25,7 +25,7 @@ public class SharePlatformDevInfo {
     }
 
     /**
-     * @param platformId {@link com.gwchina.sdk.social.Platforms} 中定义的平台标识。
+     * @param platformId {@link Platforms} 中定义的平台标识。
      */
     public static SharePlatformDevInfo newDevInfo(int platformId) {
         return new SharePlatformDevInfo(platformId);

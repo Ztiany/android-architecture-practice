@@ -1,9 +1,10 @@
-package com.gwchina.sdk.social.share;
+package com.android.sdk.social.share;
 
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 
+import com.android.sdk.social.Platforms;
 import com.mob.MobSDK;
 
 import java.util.List;
@@ -12,9 +13,9 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
-import static com.gwchina.sdk.social.Platforms.MOMENTS;
-import static com.gwchina.sdk.social.Platforms.QQ;
-import static com.gwchina.sdk.social.Platforms.WECHAT;
+import static com.android.sdk.social.Platforms.MOMENTS;
+import static com.android.sdk.social.Platforms.QQ;
+import static com.android.sdk.social.Platforms.WECHAT;
 
 
 /**
@@ -66,7 +67,7 @@ public class SocialShareHelper {
      * 直接处理分享动作。
      *
      * @param activity   当前 Activity。
-     * @param platformId {@link com.gwchina.sdk.social.Platforms} 中定义的平台标识。
+     * @param platformId {@link Platforms} 中定义的平台标识。
      * @param share      分享的内容。
      */
     public static void handleShare(final Activity activity, final int platformId, final Share share) {

@@ -1,4 +1,4 @@
-package com.gwchina.sdk.social.share;
+package com.android.sdk.social.share;
 
 import android.app.Dialog;
 import android.content.Context;

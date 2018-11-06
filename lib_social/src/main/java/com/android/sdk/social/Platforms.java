@@ -1,4 +1,4 @@
-package com.gwchina.sdk.social;
+package com.android.sdk.social;
 
 /**
  * @author Ztiany

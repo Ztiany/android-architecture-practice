@@ -1,4 +1,4 @@
-package com.gwchina.sdk.social.login;
+package com.android.sdk.social.login;
 
 /**
  * @author Ztiany

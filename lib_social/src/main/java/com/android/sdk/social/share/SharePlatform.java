@@ -1,7 +1,9 @@
-package com.gwchina.sdk.social.share;
+package com.android.sdk.social.share;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.android.sdk.social.Platforms;
 
 public class SharePlatform implements Parcelable {
 
@@ -10,7 +12,7 @@ public class SharePlatform implements Parcelable {
     private int mDrawableId;
 
     /**
-     * @param platformId {@link com.gwchina.sdk.social.Platforms} 中定义的平台标识。
+     * @param platformId {@link Platforms} 中定义的平台标识。
      */
     public static SharePlatform newSharePlatform(int platformId) {
         return new SharePlatform(platformId);
