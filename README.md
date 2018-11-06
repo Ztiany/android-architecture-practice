@@ -24,10 +24,15 @@ git submodule update
 - lib_security：虽然是lib，但是是与业务相关的，用于存储敏感信息和提供加密组件。
 - module_base：基于业务封装的基础模块，所有业务组件都需要依赖此模块
 - module_home：首页组件
+- lib_social：第三方分享、登录
 
 todo（待集成）
 
-- lib_social：第三方分享、登录、统计
 - lib_pay：第三方支付
 - lib_push：第三方推送
-- lib_map：高德地图
+- lib_map：地图
+- lib_statistics：统计
+
+## todo
+
+- 抽离网络层，HttpResult 接口化，使用 Gson 动态注册 HttpResult 的解析器。

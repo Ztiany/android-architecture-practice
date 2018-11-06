@@ -1,5 +1,5 @@
 //插件
-include ':buildPlugin'
+//include ':buildPlugin'
 
 //通用类库
 include ':AndroidBase'
@@ -9,6 +9,7 @@ include ':lib_media_selector'
 include ':lib_app_security'
 include ':lib_qrcode'
 include ':lib_cache'
+//include ':lib_social'
 
 //项目基础类库
 include ':module_base'
