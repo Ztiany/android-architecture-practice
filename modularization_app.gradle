@@ -71,10 +71,6 @@ android {
             }
         }
 
-        dexOptions {
-            matchingFallbacks = ['release', 'debug']
-        }
-
     }
 
     lintOptions {
@@ -97,17 +93,15 @@ android {
 }
 
 dependencies {
-    dependencies {
-        //基础类库
-        implementation project(':module_base')
-        //测试
-        testImplementation testDependencies.junit
-        /*Dagger2*/
-        kapt thirdDependencies.dagger2Apt
-        kapt thirdDependencies.dagger2AndroidApt
-        /*ARouter*/
-        kapt thirdDependencies.arouterAnnotation
-        /* all jar*/
-        implementation fileTree(dir: 'libs', include: ['*.jar'])
-    }
+    //基础类库
+    implementation project(':module_base')
+    //测试
+    testImplementation testDependencies.junit
+    /*Dagger2*/
+    kapt thirdDependencies.dagger2Apt
+    kapt thirdDependencies.dagger2AndroidApt
+    /*ARouter*/
+    kapt thirdDependencies.arouterAnnotation
+    /* all jar*/
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

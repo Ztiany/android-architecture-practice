@@ -3,17 +3,17 @@
 
 //通用类库
 include ':AndroidBase'
-
-//通用功能组件
-include ':lib_media_selector'
-include ':lib_app_security'
-include ':lib_qrcode'
+include ':lib_functional'
 include ':lib_cache'
+include ':lib_media_selector'
+include ':lib_qrcode'
+include ':lib_network'
+//include ':lib_security'
 //include ':lib_social'
+//include ':lib_wechat'
 
 //项目基础类库
 include ':module_base'
-
 //Home模块
 include ':module_home'
 

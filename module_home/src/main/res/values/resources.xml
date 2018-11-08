@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--MainTab-->
+    <item name="main_index" type="id"/>
+    <item name="main_middle" type="id"/>
+    <item name="main_mine" type="id"/>
+
+</resources>

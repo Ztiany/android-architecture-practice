@@ -3,15 +3,9 @@ package com.app.base.data;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 class URLProvider {
 
     private static final Map<String, HttpURL> URL_MAP = new HashMap<>();
-
-    @Inject
-    URLProvider() {
-    }
 
     static {
         /*调试环境*/
@@ -22,7 +16,7 @@ class URLProvider {
         URL_MAP.put(DataContext.RELEASE, new HttpURL("release", false));
     }
 
-    String baseUrl() {
+    static String baseUrl() {
         DataContext instance = DataContext.getInstance();
         HttpURL httpURL = URL_MAP.get(instance.getEnvTag());
         assert httpURL != null;
@@ -64,4 +58,5 @@ class URLProvider {
         }
 
     }
+
 }

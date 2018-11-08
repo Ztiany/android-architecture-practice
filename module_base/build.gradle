@@ -59,9 +59,11 @@ dependencies {
 
     //基础组件库
     api project(':AndroidBase')//基础类库
+    api project(':lib_network')//基础网络库
     api project(':lib_media_selector')//选择器
     api project(':lib_qrcode')//二维码
     api project(':lib_cache')//二维码
+    //api project(':lib_social')//第三方登录、分享
     //implementation project(':lib_security')//App安全
 
     //Android

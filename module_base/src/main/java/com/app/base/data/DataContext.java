@@ -3,8 +3,8 @@ package com.app.base.data;
 import android.app.Application;
 
 import com.android.base.utils.android.SpCache;
+import com.android.sdk.net.NetContext;
 import com.app.base.BuildConfig;
-import com.blankj.utilcode.util.NetworkUtils;
 
 /**
  * Data层配置，抽象为DataContext
@@ -33,8 +33,8 @@ public class DataContext {
 
     private DataContext(Application application) {
         mSpCache = new SpCache(application, NAME);
-        //ParamsUtils.init(AppSecurity.getAppToken(), AppSecurity.getRsaPublicKey(), DevicesUtils.getDeviceId(), AppUtils.getAppVersionName());
-        init();
+        initialize();
+        NetContext.get().initialize(new NetProviderImpl());
     }
 
     private static final String NAME = "data_context";
@@ -85,7 +85,7 @@ public class DataContext {
         return getHostTag();
     }
 
-    private void init() {
+    private void initialize() {
         if (BuildConfig.openDebug) {
             mHostEnvIdentification = mSpCache.getInt(HOST_KEY, BUILD_DEBUG);
         } else {
@@ -98,10 +98,6 @@ public class DataContext {
      */
     public void switchHost(int host) {
         mSpCache.putInt(HOST_KEY, host);
-    }
-
-    public boolean isConnected() {
-        return NetworkUtils.isConnected();
     }
 
 }

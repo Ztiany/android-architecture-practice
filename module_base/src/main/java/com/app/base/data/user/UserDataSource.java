@@ -1,6 +1,6 @@
 package com.app.base.data.user;
 
-import com.app.base.data.models.User;
+import com.gwchina.sdk.base.data.models.User;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;

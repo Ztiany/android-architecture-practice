@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="me.ztiany.architecture.home"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest
+    package="me.ztiany.architecture.home"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:name=".HomeAppContext"
@@ -15,12 +16,20 @@
         tools:replace="android:theme,android:label,android:allowBackup">
 
         <activity
-            android:name="me.ztiany.home.main.MainActivity"
+            android:name=".HomeDebugActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="me.ztiany.arch.home.main.MainActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
     </application>

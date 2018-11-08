@@ -298,7 +298,7 @@ ext {
             SuperTextView            : 'com.github.chenBingX:SuperTextView:v1.1',//https://github.com/chenBingX/SuperTextView
             switchbutton             : 'com.kyleduo.switchbutton:library:1.4.6',//https://github.com/kyleduo/SwitchButton
 
-            bottomBar                : 'com.roughike:bottom-bar:2.1.1',//https://github.com/roughike/BottomBar
+            bottomBar                : 'com.roughike:bottom-bar:2.3.0',//https://github.com/roughike/BottomBar
 
             cameraKit                : 'com.flurgle:camerakit:0.9.17',//https://github.com/gogopop/CameraKit-Android
             fotoapparat              : 'io.fotoapparat.fotoapparat:library:1.4.1',//https://github.com/Fotoapparat/Fotoapparat

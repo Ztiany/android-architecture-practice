@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+
+    <tab
+        icon="@drawable/main_icon_tab_index_sel"
+        id="@id/main_index"
+        title="@string/main_tab_index"/>
+
+    <tab
+        icon="@drawable/main_icon_tab_accompany_sel"
+        id="@id/main_middle"
+        title="@string/main_tab_accompany"/>
+
+    <tab
+        icon="@drawable/main_icon_tab_mine_sel"
+        id="@id/main_mine"
+        title="@string/main_tab_mine"/>
+
+</tabs>

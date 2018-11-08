@@ -29,5 +29,7 @@ dependencies {
     /*kv cache*/
     api thirdDependencies.mmkv
     api thirdDependencies.gson
+    compileOnly thirdDependencies.rxJava2
+    compileOnly project(':lib_functional')
 
 }

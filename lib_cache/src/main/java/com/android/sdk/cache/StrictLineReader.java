@@ -43,6 +43,7 @@ import java.nio.charset.Charset;
  * The default charset is US_ASCII.
  */
 class StrictLineReader implements Closeable {
+
     private static final byte CR = (byte) '\r';
     private static final byte LF = (byte) '\n';
 

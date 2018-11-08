@@ -1,1 +1,3 @@
-   [参考](https://github.com/bingoogolapple/BGAQRCode-Android)
+## 说明
+
+修改自   [BGAQRCode-Android](https://github.com/bingoogolapple/BGAQRCode-Android)

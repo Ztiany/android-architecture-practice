@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation project(':lib_functional')
+    implementation androidLibraries.androidAnnotations
+    implementation thirdDependencies.timber
+    implementation thirdDependencies.retrofit
+    implementation thirdDependencies.retrofitConverterGson
+    implementation thirdDependencies.okHttp
+    implementation thirdDependencies.gson
+    implementation thirdDependencies.rxJava2
+    implementation thirdDependencies.retrofitRxJava2CallAdapter
+}

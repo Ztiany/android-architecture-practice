@@ -117,4 +117,5 @@ public class QRCodeEncoder {
         }
         return bitmap;
     }
+
 }

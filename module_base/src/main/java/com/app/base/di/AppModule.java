@@ -3,12 +3,10 @@ package com.app.base.di;
 import android.app.Application;
 import android.content.Context;
 
+import com.android.base.app.dagger.ContextType;
 import com.android.base.imageloader.ImageLoader;
 import com.android.base.imageloader.ImageLoaderFactory;
 import com.android.base.rx.SchedulerProvider;
-import com.app.base.errorhandle.AppErrorHandler;
-import com.app.base.errorhandle.ErrorHandler;
-import com.app.base.di.qualifier.ContextType;
 import com.app.base.router.AppRouter;
 import com.app.base.router.AppRouterImpl;
 
@@ -36,12 +34,6 @@ public class AppModule {
     @ContextType
     Context getAppContext() {
         return mContext;
-    }
-
-    @Provides
-    @Singleton
-    ErrorHandler provideErrorHandler() {
-        return new AppErrorHandler();
     }
 
     @Provides
