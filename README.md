@@ -1,4 +1,4 @@
-Android App Architecture Template
+# Android App Architecture Template
 
 ## 1 download
 
@@ -34,6 +34,6 @@ todo（待集成）
 - lib_map：高德地图。
 - lib_statistics：统计。
 
-## 2 架构说明
+## 3 架构说明
 
 参考 [Android开发总结](https://github.com/Ztiany/Programming-Notes/blob/master/Android/README.md) 架构总结部分。
