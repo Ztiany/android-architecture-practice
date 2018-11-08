@@ -1,6 +1,15 @@
-# 绿网-家长端
+Android App Architecture Template
 
-## 1 模块说明
+## 1 download
+
+```shell
+git clone git@github.com:Ztiany/AndroidArchitecture.git
+cd AndroidArchitecture
+git submodule init
+git submodule update
+```
+
+## 2 模块说明
 
 业务无关基础类库：
 
