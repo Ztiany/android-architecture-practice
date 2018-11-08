@@ -8,7 +8,7 @@
 - lib_media_selector：图片、视频选择器，调用系统相机获取照片。
 - lib_qrcode：二维码扫描与生成。
 - lib_social：微信登录。
-- lib_network：RxJava + Retrofit + OkHttp 完了层封装。
+- lib_network：RxJava + Retrofit + OkHttp 网络封装。
 - lib_functional：Optional、函数式支持。
 
 业务模块
