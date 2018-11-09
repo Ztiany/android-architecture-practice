@@ -29,11 +29,11 @@ android {
 dependencies {
     implementation androidLibraries.lifecycleExtensions
     implementation androidLibraries.androidCompatV4
-    implementation thirdDependencies.retrofit
-    implementation thirdDependencies.retrofitConverterGson
-    implementation thirdDependencies.okHttp
-    implementation thirdDependencies.gson
-    implementation thirdDependencies.rxJava2
-    implementation thirdDependencies.retrofitRxJava2CallAdapter
+    implementation thirdLibraries.retrofit
+    implementation thirdLibraries.retrofitConverterGson
+    implementation thirdLibraries.okHttp
+    implementation thirdLibraries.gson
+    implementation thirdLibraries.rxJava2
+    implementation thirdLibraries.retrofitRxJava2CallAdapter
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.6'
 }

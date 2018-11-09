@@ -34,11 +34,11 @@ android {
 dependencies {
     implementation project(':lib_functional')
     implementation androidLibraries.androidAnnotations
-    implementation thirdDependencies.timber
-    implementation thirdDependencies.retrofit
-    implementation thirdDependencies.retrofitConverterGson
-    implementation thirdDependencies.okHttp
-    implementation thirdDependencies.gson
-    implementation thirdDependencies.rxJava2
-    implementation thirdDependencies.retrofitRxJava2CallAdapter
+    implementation thirdLibraries.timber
+    implementation thirdLibraries.retrofit
+    implementation thirdLibraries.retrofitConverterGson
+    implementation thirdLibraries.okHttp
+    implementation thirdLibraries.gson
+    implementation thirdLibraries.rxJava2
+    implementation thirdLibraries.retrofitRxJava2CallAdapter
 }

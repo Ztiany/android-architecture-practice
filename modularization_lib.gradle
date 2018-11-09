@@ -52,12 +52,12 @@ dependencies {
     //基础类库
     implementation project(':module_base')
     //测试
-    testImplementation testDependencies.junit
+    testImplementation testLibraries.junit
     /*Dagger2*/
-    kapt thirdDependencies.dagger2Apt
-    kapt thirdDependencies.dagger2AndroidApt
+    kapt thirdLibraries.dagger2Apt
+    kapt thirdLibraries.dagger2AndroidApt
     /*ARouter*/
-    kapt thirdDependencies.arouterAnnotation
+    kapt thirdLibraries.arouterAnnotation
     /* all jar*/
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

@@ -30,7 +30,7 @@ dependencies {
     implementation androidLibraries.androidDesign
 
     /*imageLoader*/
-    compileOnly thirdDependencies.glide
+    compileOnly thirdLibraries.glide
 
     //other optional
     //知乎 Matisse：https://github.com/zhihu/Matisse

@@ -3,10 +3,10 @@ package com.app.base.di;
 import android.content.Context;
 
 import com.android.base.app.dagger.ContextType;
-import com.android.sdk.cache.CacheFactory;
-import com.android.sdk.cache.CacheFactoryImpl;
-import com.android.sdk.cache.CacheManager;
-import com.android.sdk.cache.MMKVCacheImpl;
+import com.android.sdk.cache.MMKVStorageFactoryImpl;
+import com.android.sdk.cache.MMKVStorageImpl;
+import com.android.sdk.cache.Storage;
+import com.android.sdk.cache.StorageFactory;
 import com.android.sdk.net.NetContext;
 import com.android.sdk.net.errorhandler.ErrorHandler;
 import com.android.sdk.net.service.ServiceFactory;
@@ -51,8 +51,8 @@ public class DataModule {
      */
     @Provides
     @Singleton
-    CacheFactory provideCacheFactory() {
-        return new CacheFactoryImpl();
+    StorageFactory provideCacheFactory() {
+        return new MMKVStorageFactoryImpl();
     }
 
     /**
@@ -60,8 +60,8 @@ public class DataModule {
      */
     @Provides
     @Singleton
-    CacheManager provideDefaultCacheManager(@ContextType Context context) {
-        return new MMKVCacheImpl(context, DEFAULT_CACHE_ID);
+    Storage provideDefaultCacheManager(@ContextType Context context) {
+        return new MMKVStorageImpl(context, DEFAULT_CACHE_ID);
     }
 
 }

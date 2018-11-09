@@ -55,7 +55,7 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
     //测试
-    testImplementation testDependencies.junit
+    testImplementation testLibraries.junit
 
     //基础组件库
     api project(':AndroidBase')//基础类库
@@ -88,70 +88,51 @@ dependencies {
 
     //Third Library(apt放前面)
     /*Dagger2*/
-    kapt thirdDependencies.dagger2Apt
-    kapt thirdDependencies.dagger2AndroidApt
+    kapt thirdLibraries.dagger2Apt
+    kapt thirdLibraries.dagger2AndroidApt
     /*ARouter*/
-    api thirdDependencies.arouter
-    kapt thirdDependencies.arouterAnnotation
+    api thirdLibraries.arouter
+    kapt thirdLibraries.arouterAnnotation
     /*OkHttp*/
-    implementation thirdDependencies.okHttp
-    implementation thirdDependencies.okHttpLogging
+    implementation thirdLibraries.okHttp
+    implementation thirdLibraries.okHttpLogging
     /*gson*/
-    api thirdDependencies.gson
+    api thirdLibraries.gson
     /*retrofit*/
-    api thirdDependencies.retrofit
-    implementation thirdDependencies.retrofitConverterGson
-    implementation thirdDependencies.retrofitRxJava2CallAdapter
+    api thirdLibraries.retrofit
+    implementation thirdLibraries.retrofitConverterGson
+    implementation thirdLibraries.retrofitRxJava2CallAdapter
     /*image compression*/
-    api thirdDependencies.luban
+    api thirdLibraries.luban
     /*rx binding*/
-    api thirdDependencies.rxBindingCompat2
+    api thirdLibraries.rxBindingCompat2
     /*glideAPT*/
-    kapt thirdDependencies.glideApt
+    kapt thirdLibraries.glideApt
 
     /*UI*/
-    api androidLibraries.flexbox
-    api uiLibrary.bottomBar
-    api uiLibrary.pageIndicatorView
-    api uiLibrary.roundedImageView
-    api uiLibrary.circleImageView
-    api uiLibrary.ultraviewpager
-    api uiLibrary.viewpagerTransformers
-    api uiLibrary.fotoapparat
-    api(uiLibrary.cameraView) {
-        exclude group: 'com.android.support'
-    }
-    api(uiLibrary.timePicker) {
-        exclude group: 'com.android.support'
-    }
-    api 'com.github.chrisbanes:PhotoView:2.1.3'
-    api 'com.github.rubensousa:gravitysnaphelper:1.5'
-
-    //第三方平台
-    // bugly
-    implementation thirdPlatform.buglyCrashreportUpgrade
-    //多渠道打包
-    implementation thirdPlatform.VasDolly
+    api uiLibraries.bottomBar
+    api uiLibraries.circleImageView
+    api uiLibraries.photoView
 
     //Debug
     if (openDebug) {
         //stetho
-        implementation thirdDependencies.stetho
-        implementation thirdDependencies.stethoOkhttp3
+        implementation debugLibraries.stetho
+        implementation debugLibraries.stethoOkhttp3
         //LeakCanary
-        implementation thirdDependencies.debugLeakCanary
+        implementation debugLibraries.debugLeakCanary
         //UETool
-        implementation thirdDependencies.UETool
-        implementation thirdDependencies.chuck
+        implementation debugLibraries.ueTool
+        implementation debugLibraries.chuck
     } else {
         //stetho
-        compileOnly thirdDependencies.stetho
-        compileOnly thirdDependencies.stethoOkhttp3
+        compileOnly debugLibraries.stetho
+        compileOnly debugLibraries.stethoOkhttp3
         //LeakCanary
-        compileOnly thirdDependencies.debugLeakCanary
+        compileOnly debugLibraries.debugLeakCanary
         //UETool
-        compileOnly thirdDependencies.UETool
-        compileOnly thirdDependencies.chuck
+        compileOnly debugLibraries.UETool
+        compileOnly debugLibraries.chuck
     }
 
 }

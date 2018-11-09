@@ -3,29 +3,33 @@ package com.android.sdk.cache;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.sdk.functional.Optional;
 import com.tencent.mmkv.MMKV;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 /**
  * @author Ztiany
  * Email: ztiany3@gmail.com
  * Date : 2018-11-01 11:25
  */
-public class MMKVCacheImpl implements CacheManager {
+public class MMKVStorageImpl implements Storage {
 
-    private static final String TAG = MMKVCacheImpl.class.getSimpleName();
+    private static final String TAG = MMKVStorageImpl.class.getSimpleName();
 
     private static final AtomicBoolean FLAT = new AtomicBoolean(false);
 
     private final MMKV mMmkv;
 
-    public MMKVCacheImpl(Context context, String mmkvId) {
+    public MMKVStorageImpl(Context context, String mmkvId) {
         this(context, mmkvId, false);
     }
 
-    public MMKVCacheImpl(Context context, String mmkvId, boolean multiProcess) {
+    public MMKVStorageImpl(Context context, String mmkvId, boolean multiProcess) {
 
         if (FLAT.compareAndSet(false, true)) {
             String rootDir = MMKV.initialize(context.getApplicationContext());
@@ -34,25 +38,6 @@ public class MMKVCacheImpl implements CacheManager {
 
         int mode = multiProcess ? MMKV.MULTI_PROCESS_MODE : MMKV.SINGLE_PROCESS_MODE;
         mMmkv = MMKV.mmkvWithID(mmkvId, mode);
-    }
-    @Override
-    public void putEntity(String key, Object entity, long cacheTime) {
-        CacheEntityImpl.putEntity(key, entity, cacheTime, this);
-    }
-
-    @Override
-    public void putEntity(String key, Object entity) {
-        CacheEntityImpl.putEntity(key, entity, 0, this);
-    }
-
-    @Override
-    public <T> T getEntity(String key, Class<T> clazz) {
-        return CacheEntityImpl.getEntity(key, clazz, this);
-    }
-
-    @Override
-    public <T> List<T> getEntities(String key, Class<T> clazz) {
-        return CacheEntityImpl.getEntities(key, clazz, this);
     }
 
     @Override
@@ -153,6 +138,66 @@ public class MMKVCacheImpl implements CacheManager {
     @Override
     public void clearAll() {
         mMmkv.clear();
+    }
+
+    @Override
+    public void putEntity(String key, Object entity, long cacheTime) {
+        CommonImpl.putEntity(key, entity, cacheTime, this);
+    }
+
+    @Override
+    public void putEntity(String key, Object entity) {
+        CommonImpl.putEntity(key, entity, 0, this);
+    }
+
+    @Override
+    public <T> T getEntity(String key, Class<T> clazz) {
+        return CommonImpl.getEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> List<T> getEntities(String key, Class<T> clazz) {
+        return CommonImpl.getEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<List<T>> observableEntities(String key, Class<T> clazz) {
+        return CommonImpl.observableEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<List<T>> flowableEntities(String key, Class<T> clazz) {
+        return CommonImpl.flowableEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<T> observableEntity(String key, Class<T> clazz) {
+        return CommonImpl.observableEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<T> flowableEntity(String key, Class<T> clazz) {
+        return CommonImpl.flowableEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<Optional<List<T>>> observableOptionalEntities(String key, Class<T> clazz) {
+        return CommonImpl.observableOptionalEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<Optional<List<T>>> flowableOptionalEntities(String key, Class<T> clazz) {
+        return CommonImpl.flowableOptionalEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<Optional<T>> observableOptionalEntity(String key, Class<T> clazz) {
+        return CommonImpl.observableOptionalEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<Optional<T>> flowableOptionalEntity(String key, Class<T> clazz) {
+        return CommonImpl.flowableOptionalEntity(key, clazz, this);
     }
 
 }

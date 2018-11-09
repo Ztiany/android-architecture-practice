@@ -4,12 +4,17 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.android.sdk.functional.Optional;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
-public class DiskLruCacheImpl implements CacheManager {
+
+public class DiskLruStorageImpl implements Storage {
 
     private DiskLruCacheHelper mDiskLruCacheHelper;
     private static final int CACHE_SIZE = 50 * 1024 * 1024;//50M
@@ -20,7 +25,7 @@ public class DiskLruCacheImpl implements CacheManager {
      * @param context   上下文
      * @param cachePath 缓存文件
      */
-    public DiskLruCacheImpl(@NonNull Context context, @NonNull File cachePath) {
+    public DiskLruStorageImpl(@NonNull Context context, @NonNull String cachePath) {
         this(context, cachePath, CACHE_SIZE);
     }
 
@@ -29,8 +34,8 @@ public class DiskLruCacheImpl implements CacheManager {
      * @param cachePath 缓存文件
      * @param cacheSize 缓存大小，字节数
      */
-    public DiskLruCacheImpl(@NonNull Context context, @NonNull File cachePath, int cacheSize) {
-        mDir = cachePath;
+    public DiskLruStorageImpl(@NonNull Context context, @NonNull String cachePath, int cacheSize) {
+        mDir = context.getDir(cachePath, Context.MODE_PRIVATE);
         mSize = cacheSize;
         @SuppressWarnings("unused")
         boolean mkdirs = mDir.getParentFile().mkdirs();
@@ -110,26 +115,6 @@ public class DiskLruCacheImpl implements CacheManager {
     }
 
     @Override
-    public void putEntity(String key, Object entity, long cacheTime) {
-        CacheEntityImpl.putEntity(key, entity, cacheTime, this);
-    }
-
-    @Override
-    public void putEntity(String key, Object entity) {
-        CacheEntityImpl.putEntity(key, entity, 0, this);
-    }
-
-    @Override
-    public <T> T getEntity(String key, Class<T> clazz) {
-        return CacheEntityImpl.getEntity(key, clazz, this);
-    }
-
-    @Override
-    public <T> List<T> getEntities(String key, Class<T> clazz) {
-        return CacheEntityImpl.getEntities(key, clazz, this);
-    }
-
-    @Override
     public void remove(String key) {
         getDiskLruCacheHelper().remove(buildKey(key));
     }
@@ -146,5 +131,66 @@ public class DiskLruCacheImpl implements CacheManager {
     private String buildKey(String originKey) {
         return originKey;
     }
+
+    @Override
+    public void putEntity(String key, Object entity, long cacheTime) {
+        CommonImpl.putEntity(key, entity, cacheTime, this);
+    }
+
+    @Override
+    public void putEntity(String key, Object entity) {
+        CommonImpl.putEntity(key, entity, 0, this);
+    }
+
+    @Override
+    public <T> T getEntity(String key, Class<T> clazz) {
+        return CommonImpl.getEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> List<T> getEntities(String key, Class<T> clazz) {
+        return CommonImpl.getEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<List<T>> observableEntities(String key, Class<T> clazz) {
+        return CommonImpl.observableEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<List<T>> flowableEntities(String key, Class<T> clazz) {
+        return CommonImpl.flowableEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<T> observableEntity(String key, Class<T> clazz) {
+        return CommonImpl.observableEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<T> flowableEntity(String key, Class<T> clazz) {
+        return CommonImpl.flowableEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<Optional<List<T>>> observableOptionalEntities(String key, Class<T> clazz) {
+        return CommonImpl.observableOptionalEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<Optional<List<T>>> flowableOptionalEntities(String key, Class<T> clazz) {
+        return CommonImpl.flowableOptionalEntities(key, clazz, this);
+    }
+
+    @Override
+    public <T> Observable<Optional<T>> observableOptionalEntity(String key, Class<T> clazz) {
+        return CommonImpl.observableOptionalEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<Optional<T>> flowableOptionalEntity(String key, Class<T> clazz) {
+        return CommonImpl.flowableOptionalEntity(key, clazz, this);
+    }
+
 
 }

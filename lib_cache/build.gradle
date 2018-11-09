@@ -27,9 +27,9 @@ android {
 dependencies {
 
     /*kv cache*/
-    api thirdDependencies.mmkv
-    api thirdDependencies.gson
-    compileOnly thirdDependencies.rxJava2
+    api thirdLibraries.mmkv
+    api thirdLibraries.gson
+    compileOnly thirdLibraries.rxJava2
     compileOnly project(':lib_functional')
 
 }

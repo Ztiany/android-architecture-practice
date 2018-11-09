@@ -115,14 +115,13 @@ dependencies {
 
     if (!rootProject.isMultiApp) {
 
-        testImplementation 'junit:junit:4.12'
+        testImplementation testLibraries.junit
 
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation project(path: ':module_base')
         implementation project(path: ':module_home')
 
         //第三方库
-        def thirdLibraries = rootProject.thirdDependencies
 
         /*ARouter*/
         kapt thirdLibraries.arouterAnnotation

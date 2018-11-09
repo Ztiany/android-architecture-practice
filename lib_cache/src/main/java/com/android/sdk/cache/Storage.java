@@ -1,14 +1,19 @@
 package com.android.sdk.cache;
 
+import com.android.sdk.functional.Optional;
+
 import java.util.List;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+
 /**
- * App缓存实现
+ * 缓存接口
  *
  * @author Ztiany
  * Date : 2016-10-24 21:59
  */
-public interface CacheManager {
+public interface Storage {
 
     void putEntity(String key, Object entity);
 
@@ -42,5 +47,21 @@ public interface CacheManager {
     void remove(String key);
 
     void clearAll();
+
+    <T> Observable<List<T>> observableEntities(String key, Class<T> clazz);
+
+    <T> Flowable<List<T>> flowableEntities(String key, Class<T> clazz);
+
+    <T> Observable<T> observableEntity(String key, Class<T> clazz);
+
+    <T> Flowable<T> flowableEntity(String key, Class<T> clazz);
+
+    <T> Observable<Optional<List<T>>> observableOptionalEntities(String key, Class<T> clazz);
+
+    <T> Flowable<Optional<List<T>>> flowableOptionalEntities(String key, Class<T> clazz);
+
+    <T> Observable<Optional<T>> observableOptionalEntity(String key, Class<T> clazz);
+
+    <T> Flowable<Optional<T>> flowableOptionalEntity(String key, Class<T> clazz);
 
 }
