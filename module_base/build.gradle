@@ -83,7 +83,7 @@ dependencies {
     api kotlinLibraries.ankoCommons
     api kotlinLibraries.ankoCommonsV4
     api kotlinLibraries.ankoCommonsV7
-    api kotlinLibraries.ankoLayoutSDK25
+    api kotlinLibraries.ankoLayoutSDK
     api kotlinLibraries.rxKotlin2
 
     //Third Library(apt放前面)

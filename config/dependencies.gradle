@@ -104,11 +104,7 @@ ext {
             ankoSQLite                 : "org.jetbrains.anko:anko-sqlite:$anko_version",        // Anko SQLite
 
             // Anko Layouts , sdk15, sdk19, sdk21, sdk23 are also available, 只需要依赖一个sdk
-            ankoLayoutSDK15            : "org.jetbrains.anko:anko-sdk15:$anko_version",
-            ankoLayoutSDK19            : "org.jetbrains.anko:anko-sdk19:$anko_version",
-            ankoLayoutSDK21            : "org.jetbrains.anko:anko-sdk21:$anko_version",
-            ankoLayoutSDK23            : "org.jetbrains.anko:anko-sdk23:$anko_version",
-            ankoLayoutSDK25            : "org.jetbrains.anko:anko-sdk25:$anko_version",
+            ankoLayoutSDK           : "org.jetbrains.anko:anko-sdk27:$anko_version",
             ankoLayoutCompatV7         : "org.jetbrains.anko:anko-appcompat-v7:$anko_version",
             ankoLayoutCompatV4         : "org.jetbrains.anko:anko-support-v4:$anko_version",
             ankoLayoutDesign           : "org.jetbrains.anko:anko-design:$anko_version",
@@ -139,7 +135,7 @@ ext {
     def rxLifecycle = '1.0'
     def rxLifecycle2 = '2.2.2'
     def retrofitVersion = '2.4.0'
-    def daggerVersion = "2.17"
+    def daggerVersion = "2.19"
 
     thirdLibraries = [
             //============================================================================
