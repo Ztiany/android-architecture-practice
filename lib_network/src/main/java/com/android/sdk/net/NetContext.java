@@ -35,7 +35,7 @@ public class NetContext {
     private NetProvider mDefaultProvider;
     private ServiceHelper mServiceHelper;
 
-    public void initialize(@NonNull NetProvider netProvider) {
+    public void init(@NonNull NetProvider netProvider) {
         mDefaultProvider = netProvider;
     }
 

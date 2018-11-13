@@ -33,8 +33,8 @@ public class DataContext {
 
     private DataContext(Application application) {
         mSpCache = new SpCache(application, NAME);
-        initialize();
-        NetContext.get().initialize(new NetProviderImpl());
+        initSelf();
+        NetContext.get().init(new NetProviderImpl());
     }
 
     private static final String NAME = "data_context";
@@ -85,7 +85,7 @@ public class DataContext {
         return getHostTag();
     }
 
-    private void initialize() {
+    private void initSelf() {
         if (BuildConfig.openDebug) {
             mHostEnvIdentification = mSpCache.getInt(HOST_KEY, BUILD_DEBUG);
         } else {

@@ -41,4 +41,5 @@ dependencies {
     implementation thirdLibraries.gson
     implementation thirdLibraries.rxJava2
     implementation thirdLibraries.retrofitRxJava2CallAdapter
+    compileOnly kotlinLibraries.kotlinStdlib
 }

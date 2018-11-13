@@ -21,7 +21,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import kotlin.Unit;
 import timber.log.Timber;
+
+import static com.android.sdk.net.gson.JsonDeserializers.*;
 
 /**
  * @author Ztiany
@@ -40,6 +43,8 @@ public class GsonUtils {
             .registerTypeAdapter(float.class, new FloatJsonDeserializer())
             .registerTypeAdapter(Float.class, new FloatJsonDeserializer())
             .registerTypeAdapter(String.class, new StringJsonDeserializer())
+            .registerTypeAdapter(Void.class, new VoidJsonDeserializer())
+            .registerTypeAdapter(Unit.class, new UnitJsonDeserializer())
             /*根据注解反序列化抽象类或接口*/
             .registerTypeAdapterFactory(new AutoGenTypeAdapterFactory())
             .create();
