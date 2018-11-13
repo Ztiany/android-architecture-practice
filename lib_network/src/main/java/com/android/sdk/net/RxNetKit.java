@@ -70,8 +70,12 @@ public class RxNetKit {
      * </pre>
      */
     @SuppressWarnings("unchecked")
-    public static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Upstream, T> resultExtractor() {
+    private static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Upstream, T> _resultExtractor() {
         return (HttpResultTransformer<Upstream, Upstream, T>) DATA_TRANSFORMER;
+    }
+
+    public static <Upstream> HttpResultTransformer<Upstream, Upstream, Result<Upstream>> resultExtractor() {
+        return _resultExtractor();
     }
 
     /**
@@ -79,19 +83,27 @@ public class RxNetKit {
      * 适用于 HttpResult.getData() 可以为 Null 的情况
      */
     @SuppressWarnings("unchecked")
-    public static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Optional<Upstream>, T> optionalExtractor() {
+    private static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Optional<Upstream>, T> _optionalExtractor() {
         return (HttpResultTransformer<Upstream, Optional<Upstream>, T>) OPTIONAL_TRANSFORMER;
+    }
+
+    public static <Upstream> HttpResultTransformer<Upstream, Optional<Upstream>, Result<Upstream>> optionalExtractor() {
+        return _optionalExtractor();
     }
 
     /**
      * 不提取 HttpResult&lt;T&gt; 中的数据 T，只进行网络异常、空数据异常、错误JSON格式异常处理。
      */
     @SuppressWarnings("unchecked")
-    public static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, T, T> resultChecker() {
+    private static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, T, T> _resultChecker() {
         return (HttpResultTransformer<Upstream, T, T>) RESULT_CHECKER;
     }
 
-    public static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Upstream, T> newExtractor(ExceptionFactory exceptionFactory) {
+    public static <Upstream> HttpResultTransformer<Upstream, Result<Upstream>, Result<Upstream>> resultChecker() {
+        return _resultChecker();
+    }
+
+    private static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Upstream, T> _newExtractor(ExceptionFactory exceptionFactory) {
         return new ResultTransformer<Upstream, T>() {
             @Override
             protected Throwable createException(@NonNull Result<Upstream> rResult) {
@@ -103,7 +115,11 @@ public class RxNetKit {
         };
     }
 
-    public static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Optional<Upstream>, T> newOptionalExtractor(ExceptionFactory exceptionFactory) {
+    public static <Upstream> HttpResultTransformer<Upstream, Upstream, Result<Upstream>> newExtractor(ExceptionFactory exceptionFactory) {
+        return _newExtractor(exceptionFactory);
+    }
+
+    private static <Upstream, T extends Result<Upstream>> HttpResultTransformer<Upstream, Optional<Upstream>, T> _newOptionalExtractor(ExceptionFactory exceptionFactory) {
         return new OptionalResultTransformer<Upstream, T>() {
             @Override
             protected Throwable createException(@NonNull Result<Upstream> rResult) {
@@ -113,6 +129,10 @@ public class RxNetKit {
                 return exceptionFactory.create(rResult);
             }
         };
+    }
+
+    public static <Upstream> HttpResultTransformer<Upstream, Optional<Upstream>, Result<Upstream>> newOptionalExtractor(ExceptionFactory exceptionFactory) {
+        return _newOptionalExtractor(exceptionFactory);
     }
 
     /**
