@@ -10,7 +10,7 @@ import com.android.sdk.cache.StorageFactory;
 import com.android.sdk.net.NetContext;
 import com.android.sdk.net.errorhandler.ErrorHandler;
 import com.android.sdk.net.service.ServiceFactory;
-import com.app.base.data.AppErrorHandler;
+import com.app.base.widget.dialog.TipsManager;
 
 import javax.inject.Singleton;
 
@@ -37,7 +37,18 @@ public class DataModule {
     @Provides
     @Singleton
     ErrorHandler provideErrorHandler() {
-        return new AppErrorHandler();
+        return new ErrorHandler() {
+
+            @Override
+            public CharSequence createMessage(Throwable throwable) {
+                return ErrorHandler.createDefaultErrorMessage(throwable);
+            }
+
+            @Override
+            public void handleError(Throwable throwable) {
+                TipsManager.showMessage(createMessage(throwable));
+            }
+        };
     }
 
     @Provides
