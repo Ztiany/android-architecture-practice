@@ -5,13 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:srl_target_id="@id/base_list_view">
+    app:srl_target_id="@id/base_list_layout">
 
     <com.android.base.widget.SimpleMultiStateView
         style="@style/SimpleMultiStateView_Default">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@id/base_list_view"
+            android:id="@id/base_list_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
