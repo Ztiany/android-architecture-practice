@@ -66,17 +66,22 @@
 
     <!--Dialog-->
     <style name="Theme_Dialog_Common" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowAnimationStyle">@style/Style_Anim_Bottom_In</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
         <item name="android:backgroundDimAmount">0.6</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
+    <style name="Theme_Dialog_Common.BottomIn">
+        <item name="android:windowAnimationStyle">@style/Style_Anim_Bottom_In</item>
+    </style>
+
     <style name="Theme_Dialog_Common.Transparent">
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 

@@ -9,16 +9,17 @@
 
     <!--Dialog-->
     <style name="Theme_Dialog_Common">
-        <item name="android:windowAnimationStyle">@style/Style_Anim_Bottom_In</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.4</item>
         <item name="windowActionBar">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
+
 
 </resources>
