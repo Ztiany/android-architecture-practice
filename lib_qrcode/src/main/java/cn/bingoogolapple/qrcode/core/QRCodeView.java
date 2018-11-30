@@ -86,7 +86,8 @@ public abstract class QRCodeView extends FrameLayout implements ProcessDataTask.
     }
 
     private void processFrame(Frame frame) {
-        if (mSpotAble && (mProcessDataTask == null || mProcessDataTask.isCancelled())) {
+        ProcessDataTask processDataTask = mProcessDataTask;
+        if (mSpotAble && (processDataTask == null || processDataTask.isCancelled())) {
             mProcessDataTask = new ProcessDataTask(frame.image, frame.size, frame.rotation, this) {
                 @Override
                 protected void onPostExecute(String result) {
@@ -216,7 +217,6 @@ public abstract class QRCodeView extends FrameLayout implements ProcessDataTask.
      * 销毁二维码扫描控件
      */
     public void onDestroy() {
-        stopCamera();
         mDelegate = null;
     }
 
