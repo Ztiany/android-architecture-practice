@@ -105,7 +105,11 @@ public class JsonUtils {
                 } else if (property instanceof String) {
                     String str = (String) property;
                     if (isArray(str) || isObj(str)) {
-                        object.add(key, jsonParser.parse(str));
+                        try {
+                            object.add(key, jsonParser.parse(str));
+                        } catch (JsonParseException e) {
+                            object.addProperty(key, str);
+                        }
                     } else {
                         object.addProperty(key, str);
                     }
@@ -118,6 +122,26 @@ public class JsonUtils {
         return obj;
     }
 
+    /**
+     * 除非有必要，不要暴露 JsonObject 到具体业务中，因为 JsonObject 不是 SDK 中的 API。
+     */
+    public static JsonObject toJsonObject(Map<String, Object> map) {
+        JsonObject jsonObject = new JsonObject();
+        JsonParser jsonParser = new JsonParser();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            String value = entry.getValue().toString();
+            if (JsonUtils.isObj(value) || JsonUtils.isArray(value)) {
+                try {
+                    jsonObject.add(entry.getKey(), jsonParser.parse(value));
+                } catch (JsonParseException e) {
+                    jsonObject.addProperty(entry.getKey(), value);
+                }
+            } else {
+                jsonObject.addProperty(entry.getKey(), value);
+            }
+        }
+        return jsonObject;
+    }
 
     /**
      * 元素添加到一个 json 数组中
@@ -141,7 +165,11 @@ public class JsonUtils {
                 } else if (property instanceof String) {
                     String str = (String) property;
                     if (isArray(str) || isObj(str)) {
-                        array.add(jsonParser.parse(str));
+                        try {
+                            array.add(jsonParser.parse(str));
+                        } catch (JsonParseException e) {
+                            array.add(str);
+                        }
                     } else {
                         array.add(str);
                     }
@@ -157,17 +185,16 @@ public class JsonUtils {
     /**
      * 初略判断字符串是否为json array
      */
-    public static boolean isArray(String str) {
+    private static boolean isArray(String str) {
         return str != null && !str.isEmpty() && str.startsWith("[") && str.endsWith("]");
     }
 
     /**
      * 初略判断字符串是否为json obj
      */
-    public static boolean isObj(String str) {
+    private static boolean isObj(String str) {
         return str != null && !str.isEmpty() && str.startsWith("{") && str.endsWith("}");
     }
-
 
     @SuppressWarnings("unchecked")
     public static <T> T fromJson(String json, Class<T> clazz) {
@@ -233,6 +260,5 @@ public class JsonUtils {
         }
         return null;
     }
-
 
 }
