@@ -7,13 +7,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Ztiany
@@ -42,7 +46,7 @@ final class JsonUtils {
     }
 
     @SuppressWarnings("unchecked")
-    static <T> T fromJson(String json, Class<T> clazz) {
+    static <T> T fromJson(String json, Type clazz) {
         try {
             if (clazz == String.class) {
                 return (T) json;
@@ -82,4 +86,37 @@ final class JsonUtils {
         }
         return null;
     }
+
+    /**
+     * 解析 map 类型的 json，该 json 的样式必须是 "{}" 类型的，且 Key 类型为基本类型或字符串，值必须类型相同。
+     */
+    static <K, V> Map<K, V> parseMap(String json, Class<K> keyClazz, Class<V> valueClazz) {
+        try {
+            JsonParser jsonParser = new JsonParser();
+            JsonElement element = jsonParser.parse(json);
+
+            if (element == null) {
+                return null;
+            }
+
+            Map<K, V> resultMap = new HashMap<>();
+            JsonObject jsonObject = element.getAsJsonObject();
+
+            JsonElement valueElement;
+
+            for (String objKey : jsonObject.keySet()) {
+                valueElement = jsonObject.get(objKey);
+                K k = JsonUtils.fromJson(objKey, keyClazz);
+                V v = JsonUtils.fromJson(valueElement.toString(), valueClazz);
+                resultMap.put(k, v);
+            }
+
+            return resultMap;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("JsonSerializer parseMap error with: json = " + json + " key class = " + keyClazz + " value class = " + valueClazz);
+        }
+        return null;
+    }
+
 }

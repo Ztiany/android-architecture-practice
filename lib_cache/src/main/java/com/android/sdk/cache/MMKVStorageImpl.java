@@ -7,10 +7,10 @@ import com.android.sdk.functional.Optional;
 import com.tencent.mmkv.MMKV;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 
 /**
  * @author Ztiany
@@ -21,7 +21,7 @@ public class MMKVStorageImpl implements Storage {
 
     private static final String TAG = MMKVStorageImpl.class.getSimpleName();
 
-    private static final AtomicBoolean FLAT = new AtomicBoolean(false);
+    private static final AtomicBoolean INITIALIZED = new AtomicBoolean(false);
 
     private final MMKV mMmkv;
 
@@ -31,7 +31,7 @@ public class MMKVStorageImpl implements Storage {
 
     public MMKVStorageImpl(Context context, String mmkvId, boolean multiProcess) {
 
-        if (FLAT.compareAndSet(false, true)) {
+        if (INITIALIZED.compareAndSet(false, true)) {
             String rootDir = MMKV.initialize(context.getApplicationContext());
             Log.d(TAG, "MMKV initialized and rootDir is: " + rootDir);
         }
@@ -156,48 +156,43 @@ public class MMKVStorageImpl implements Storage {
     }
 
     @Override
-    public <T> List<T> getEntities(String key, Class<T> clazz) {
-        return CommonImpl.getEntities(key, clazz, this);
+    public <T> List<T> getEntityList(String key, Class<T> clazz) {
+        return CommonImpl.getEntityList(key, clazz, this);
     }
 
     @Override
-    public <T> Observable<List<T>> observableEntities(String key, Class<T> clazz) {
-        return CommonImpl.observableEntities(key, clazz, this);
+    public <K, V> Map<K, V> getEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz) {
+        return CommonImpl.getEntityMap(key, keyClazz, valueClazz, this);
     }
 
     @Override
-    public <T> Flowable<List<T>> flowableEntities(String key, Class<T> clazz) {
-        return CommonImpl.flowableEntities(key, clazz, this);
-    }
-
-    @Override
-    public <T> Observable<T> observableEntity(String key, Class<T> clazz) {
-        return CommonImpl.observableEntity(key, clazz, this);
-    }
-
-    @Override
-    public <T> Flowable<T> flowableEntity(String key, Class<T> clazz) {
+    public <T> Flowable<T> entity(String key, Class<T> clazz) {
         return CommonImpl.flowableEntity(key, clazz, this);
     }
 
     @Override
-    public <T> Observable<Optional<List<T>>> observableOptionalEntities(String key, Class<T> clazz) {
-        return CommonImpl.observableOptionalEntities(key, clazz, this);
-    }
-
-    @Override
-    public <T> Flowable<Optional<List<T>>> flowableOptionalEntities(String key, Class<T> clazz) {
-        return CommonImpl.flowableOptionalEntities(key, clazz, this);
-    }
-
-    @Override
-    public <T> Observable<Optional<T>> observableOptionalEntity(String key, Class<T> clazz) {
-        return CommonImpl.observableOptionalEntity(key, clazz, this);
-    }
-
-    @Override
-    public <T> Flowable<Optional<T>> flowableOptionalEntity(String key, Class<T> clazz) {
+    public <T> Flowable<Optional<T>> optionalEntity(String key, Class<T> clazz) {
         return CommonImpl.flowableOptionalEntity(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<List<T>> entityList(String key, Class<T> clazz) {
+        return CommonImpl.flowableEntityList(key, clazz, this);
+    }
+
+    @Override
+    public <T> Flowable<Optional<List<T>>> optionalEntityList(String key, Class<T> clazz) {
+        return CommonImpl.flowableOptionalEntityList(key, clazz, this);
+    }
+
+    @Override
+    public <K, V> Flowable<Map<K, V>> entityMap(String key, Class<K> keyClazz, Class<V> valueClazz) {
+        return CommonImpl.flowableEntityMap(key, keyClazz, valueClazz, this);
+    }
+
+    @Override
+    public <K, V> Flowable<Optional<Map<K, V>>> optionalEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz) {
+        return CommonImpl.flowableOptionalEntityMap(key, keyClazz, valueClazz, this);
     }
 
 }

@@ -5,9 +5,9 @@ import android.text.TextUtils;
 import com.android.sdk.functional.Optional;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -22,78 +22,52 @@ final class CommonImpl {
         storage.putString(key, JsonUtils.toJson(cacheEntity));
     }
 
+    private static String getCacheEntity(String key, Storage storage) {
+        String cacheStr = storage.getString(key);
+        if (TextUtils.isEmpty(cacheStr)) {
+            return null;
+        }
+
+        CacheEntity cacheEntity = JsonUtils.fromJson(cacheStr, CacheEntity.class);
+
+        if (cacheEntity == null) {
+            return null;
+        }
+
+        if (cacheEntity.mCacheTime == 0) {
+            return cacheEntity.mJsonData;
+        }
+
+        if (System.currentTimeMillis() - cacheEntity.mStoreTime < cacheEntity.mCacheTime) {
+            return cacheEntity.mJsonData;
+        } else {
+            storage.remove(key);
+        }
+        return null;
+    }
+
     static <T> T getEntity(String key, Class<T> clazz, Storage storage) {
-        String cacheStr = storage.getString(key);
-        if (TextUtils.isEmpty(cacheStr)) {
-            return null;
-        }
-        CacheEntity cacheEntity = JsonUtils.fromJson(cacheStr, CacheEntity.class);
-        if (cacheEntity == null) {
-            return null;
-        }
-        if (cacheEntity.mCacheTime == 0) {
-            return JsonUtils.fromJson(cacheEntity.mJsonData, clazz);
-        }
-        if (System.currentTimeMillis() - cacheEntity.mStoreTime < cacheEntity.mCacheTime) {
-            return JsonUtils.fromJson(cacheEntity.mJsonData, clazz);
-        } else {
-            storage.remove(key);
+        String cacheEntity = getCacheEntity(key, storage);
+        if (cacheEntity != null) {
+            return JsonUtils.fromJson(key, clazz);
         }
         return null;
     }
 
-    static <T> List<T> getEntities(String key, Class<T> clazz, Storage storage) {
-        String cacheStr = storage.getString(key);
-        if (TextUtils.isEmpty(cacheStr)) {
-            return null;
-        }
-        CacheEntity cacheEntity = JsonUtils.fromJson(cacheStr, CacheEntity.class);
-        if (cacheEntity == null) {
-            return null;
-        }
-        if (cacheEntity.mCacheTime == 0) {
-            return JsonUtils.parseArray(cacheEntity.mJsonData, clazz);
-        }
-        if (System.currentTimeMillis() - cacheEntity.mStoreTime < cacheEntity.mCacheTime) {
-            return JsonUtils.parseArray(cacheEntity.mJsonData, clazz);
-        } else {
-            storage.remove(key);
+    static <T> List<T> getEntityList(String key, Class<T> clazz, Storage storage) {
+        String cacheEntity = getCacheEntity(key, storage);
+        if (cacheEntity != null) {
+            return JsonUtils.parseArray(key, clazz);
         }
         return null;
     }
 
-    static <T> Observable<List<T>> observableEntities(String key, Class<T> clazz, Storage storage) {
-        return Observable.defer(() -> {
-            List<T> entities = storage.getEntities(key, clazz);
-            if (entities == null) {
-                return Observable.empty();
-            } else {
-                return Observable.just(entities);
-            }
-        }).subscribeOn(Schedulers.io());
-    }
-
-    static <T> Flowable<List<T>> flowableEntities(String key, Class<T> clazz, Storage storage) {
-        return Flowable.defer(() -> {
-            List<T> entities = storage.getEntities(key, clazz);
-            if (entities == null) {
-                return Flowable.empty();
-            } else {
-                return Flowable.just(entities);
-            }
-        }).subscribeOn(Schedulers.io());
-    }
-
-
-    static <T> Observable<T> observableEntity(String key, Class<T> clazz, Storage storage) {
-        return Observable.defer(() -> {
-            T entity = storage.getEntity(key, clazz);
-            if (entity == null) {
-                return Observable.empty();
-            } else {
-                return Observable.just(entity);
-            }
-        }).subscribeOn(Schedulers.io());
+    static <V, K> Map<K, V> getEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz, Storage storage) {
+        String cacheEntity = getCacheEntity(key, storage);
+        if (cacheEntity == null) {
+            return null;
+        }
+        return JsonUtils.parseMap(cacheEntity, keyClazz, valueClazz);
     }
 
     static <T> Flowable<T> flowableEntity(String key, Class<T> clazz, Storage storage) {
@@ -107,23 +81,40 @@ final class CommonImpl {
         }).subscribeOn(Schedulers.io());
     }
 
-    static <T> Observable<Optional<List<T>>> observableOptionalEntities(String key, Class<T> clazz, Storage storage) {
-        return Observable.fromCallable(() -> Optional.ofNullable(storage.getEntities(key, clazz)))
-                .subscribeOn(Schedulers.io());
-    }
-
-    static <T> Observable<Optional<T>> observableOptionalEntity(String key, Class<T> clazz, Storage storage) {
-        return Observable.fromCallable(() -> Optional.ofNullable(storage.getEntity(key, clazz)))
-                .subscribeOn(Schedulers.io());
-    }
-
-    static <T> Flowable<Optional<List<T>>> flowableOptionalEntities(String key, Class<T> clazz, Storage storage) {
-        return Flowable.fromCallable(() -> Optional.ofNullable(storage.getEntities(key, clazz)))
-                .subscribeOn(Schedulers.io());
-    }
-
     static <T> Flowable<Optional<T>> flowableOptionalEntity(String key, Class<T> clazz, Storage storage) {
         return Flowable.fromCallable(() -> Optional.ofNullable(storage.getEntity(key, clazz)))
+                .subscribeOn(Schedulers.io());
+    }
+
+    static <T> Flowable<List<T>> flowableEntityList(String key, Class<T> clazz, Storage storage) {
+        return Flowable.defer(() -> {
+            List<T> entities = storage.getEntityList(key, clazz);
+            if (entities == null) {
+                return Flowable.empty();
+            } else {
+                return Flowable.just(entities);
+            }
+        }).subscribeOn(Schedulers.io());
+    }
+
+    static <T> Flowable<Optional<List<T>>> flowableOptionalEntityList(String key, Class<T> clazz, Storage storage) {
+        return Flowable.fromCallable(() -> Optional.ofNullable(storage.getEntityList(key, clazz)))
+                .subscribeOn(Schedulers.io());
+    }
+
+    static <K, V> Flowable<Map<K, V>> flowableEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz, Storage storage) {
+        return Flowable.defer(() -> {
+            Map<K, V> entityMap = storage.getEntityMap(key, keyClazz, valueClazz);
+            if (entityMap == null) {
+                return Flowable.empty();
+            } else {
+                return Flowable.just(entityMap);
+            }
+        }).subscribeOn(Schedulers.io());
+    }
+
+    static <K, V> Flowable<Optional<Map<K, V>>> flowableOptionalEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz, Storage storage) {
+        return Flowable.fromCallable(() -> Optional.ofNullable(storage.getEntityMap(key, keyClazz, valueClazz)))
                 .subscribeOn(Schedulers.io());
     }
 

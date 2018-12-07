@@ -3,9 +3,9 @@ package com.android.sdk.cache;
 import com.android.sdk.functional.Optional;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 
 /**
  * 缓存接口
@@ -15,6 +15,8 @@ import io.reactivex.Observable;
  */
 public interface Storage {
 
+    void putEntity(String key, Object entity, long cacheTime);
+
     void putEntity(String key, Object entity);
 
     <T> T getEntity(String key, Class<T> clazz);
@@ -22,9 +24,16 @@ public interface Storage {
     /**
      * 如果使用 {@link #putEntity(String, Object)} 方法传入的是 list 类型，则需要使用此方法获取。
      */
-    <T> List<T> getEntities(String key, Class<T> clazz);
+    <T> List<T> getEntityList(String key, Class<T> clazz);
 
-    void putEntity(String key, Object entity, long cacheTime);
+    /**
+     * 如果使用 {@link #putEntity(String, Object)} 方法传入的是 map 类型，则需要使用此方法获取。
+     */
+    <K, V> Map<K, V> getEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // basic type
+    ///////////////////////////////////////////////////////////////////////////
 
     void putString(String key, String value);
 
@@ -44,24 +53,28 @@ public interface Storage {
 
     boolean getBoolean(String key, boolean defaultValue);
 
+    ///////////////////////////////////////////////////////////////////////////
+    // utils
+    ///////////////////////////////////////////////////////////////////////////
+
     void remove(String key);
 
     void clearAll();
 
-    <T> Observable<List<T>> observableEntities(String key, Class<T> clazz);
+    ///////////////////////////////////////////////////////////////////////////
+    // react
+    ///////////////////////////////////////////////////////////////////////////
 
-    <T> Flowable<List<T>> flowableEntities(String key, Class<T> clazz);
+    <T> Flowable<T> entity(String key, Class<T> clazz);
 
-    <T> Observable<T> observableEntity(String key, Class<T> clazz);
+    <T> Flowable<Optional<T>> optionalEntity(String key, Class<T> clazz);
 
-    <T> Flowable<T> flowableEntity(String key, Class<T> clazz);
+    <T> Flowable<List<T>> entityList(String key, Class<T> clazz);
 
-    <T> Observable<Optional<List<T>>> observableOptionalEntities(String key, Class<T> clazz);
+    <T> Flowable<Optional<List<T>>> optionalEntityList(String key, Class<T> clazz);
 
-    <T> Flowable<Optional<List<T>>> flowableOptionalEntities(String key, Class<T> clazz);
+    <K, V> Flowable<Map<K, V>> entityMap(String key, Class<K> keyClazz, Class<V> valueClazz);
 
-    <T> Observable<Optional<T>> observableOptionalEntity(String key, Class<T> clazz);
-
-    <T> Flowable<Optional<T>> flowableOptionalEntity(String key, Class<T> clazz);
+    <K, V> Flowable<Optional<Map<K, V>>> optionalEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz);
 
 }
