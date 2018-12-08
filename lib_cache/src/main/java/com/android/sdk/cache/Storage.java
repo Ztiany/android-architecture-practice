@@ -1,9 +1,10 @@
 package com.android.sdk.cache;
 
+import android.support.annotation.Nullable;
+
 import com.android.sdk.functional.Optional;
 
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Type;
 
 import io.reactivex.Flowable;
 
@@ -19,17 +20,18 @@ public interface Storage {
 
     void putEntity(String key, Object entity);
 
-    <T> T getEntity(String key, Class<T> clazz);
-
     /**
-     * 如果使用 {@link #putEntity(String, Object)} 方法传入的是 list 类型，则需要使用此方法获取。
+     * @param key  缓存的 key
+     * @param type 缓存实体类型，如果是泛型类型，请使用 {@link TypeFlag}标识
+     * @param <T>  缓存实体类型
+     * @return 缓存
      */
-    <T> List<T> getEntityList(String key, Class<T> clazz);
+    @Nullable
+    <T> T getEntity(String key, Type type);
 
-    /**
-     * 如果使用 {@link #putEntity(String, Object)} 方法传入的是 map 类型，则需要使用此方法获取。
-     */
-    <K, V> Map<K, V> getEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz);
+    <T> Flowable<T> entity(String key, Type type);
+
+    <T> Flowable<Optional<T>> optionalEntity(String key, Type type);
 
     ///////////////////////////////////////////////////////////////////////////
     // basic type
@@ -64,17 +66,5 @@ public interface Storage {
     ///////////////////////////////////////////////////////////////////////////
     // react
     ///////////////////////////////////////////////////////////////////////////
-
-    <T> Flowable<T> entity(String key, Class<T> clazz);
-
-    <T> Flowable<Optional<T>> optionalEntity(String key, Class<T> clazz);
-
-    <T> Flowable<List<T>> entityList(String key, Class<T> clazz);
-
-    <T> Flowable<Optional<List<T>>> optionalEntityList(String key, Class<T> clazz);
-
-    <K, V> Flowable<Map<K, V>> entityMap(String key, Class<K> keyClazz, Class<V> valueClazz);
-
-    <K, V> Flowable<Optional<Map<K, V>>> optionalEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz);
 
 }

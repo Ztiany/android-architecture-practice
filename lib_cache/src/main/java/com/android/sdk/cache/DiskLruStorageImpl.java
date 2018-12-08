@@ -8,8 +8,7 @@ import com.android.sdk.functional.Optional;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Type;
 
 import io.reactivex.Flowable;
 
@@ -143,48 +142,18 @@ public class DiskLruStorageImpl implements Storage {
     }
 
     @Override
-    public <T> T getEntity(String key, Class<T> clazz) {
-        return CommonImpl.getEntity(key, clazz, this);
+    public <T> T getEntity(String key, Type type) {
+        return CommonImpl.getEntity(key, type, this);
     }
 
     @Override
-    public <T> List<T> getEntityList(String key, Class<T> clazz) {
-        return CommonImpl.getEntityList(key, clazz, this);
+    public <T> Flowable<T> entity(String key, Type type) {
+        return CommonImpl.flowableEntity(key, type, this);
     }
 
     @Override
-    public <K, V> Map<K, V> getEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz) {
-        return CommonImpl.getEntityMap(key, keyClazz, valueClazz, this);
-    }
-
-    @Override
-    public <T> Flowable<T> entity(String key, Class<T> clazz) {
-        return CommonImpl.flowableEntity(key, clazz, this);
-    }
-
-    @Override
-    public <T> Flowable<Optional<T>> optionalEntity(String key, Class<T> clazz) {
-        return CommonImpl.flowableOptionalEntity(key, clazz, this);
-    }
-
-    @Override
-    public <T> Flowable<List<T>> entityList(String key, Class<T> clazz) {
-        return CommonImpl.flowableEntityList(key, clazz, this);
-    }
-
-    @Override
-    public <T> Flowable<Optional<List<T>>> optionalEntityList(String key, Class<T> clazz) {
-        return CommonImpl.flowableOptionalEntityList(key, clazz, this);
-    }
-
-    @Override
-    public <K, V> Flowable<Map<K, V>> entityMap(String key, Class<K> keyClazz, Class<V> valueClazz) {
-        return CommonImpl.flowableEntityMap(key, keyClazz, valueClazz, this);
-    }
-
-    @Override
-    public <K, V> Flowable<Optional<Map<K, V>>> optionalEntityMap(String key, Class<K> keyClazz, Class<V> valueClazz) {
-        return CommonImpl.flowableOptionalEntityMap(key, keyClazz, valueClazz, this);
+    public <T> Flowable<Optional<T>> optionalEntity(String key, Type type) {
+        return CommonImpl.flowableOptionalEntity(key, type, this);
     }
 
 }
