@@ -46,9 +46,9 @@ final class CommonImpl {
     }
 
     static <T> T getEntity(String key, Type clazz, Storage storage) {
-        String cacheEntity = getCacheEntity(key, storage);
-        if (cacheEntity != null) {
-            return JsonUtils.fromJson(key, clazz);
+        String cacheJson = getCacheEntity(key, storage);
+        if (cacheJson != null) {
+            return JsonUtils.fromJson(cacheJson, clazz);
         }
         return null;
     }
