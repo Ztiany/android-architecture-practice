@@ -1,6 +1,6 @@
 package me.ztiany.arch.home.main.mine.presentation
 
-import com.android.base.app.arch.ArchViewModel
+import com.android.base.app.mvvn.ArchViewModel
 import me.ztiany.arch.home.main.mine.data.MineDataSource
 import javax.inject.Inject
 

@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.android.base.app.fragment.BaseFragment
+import com.app.base.app.AppBaseFragment
 import org.jetbrains.anko.textColor
 import timber.log.Timber
 import javax.inject.Inject
@@ -18,13 +18,11 @@ import javax.inject.Inject
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-02 14:38
  */
-class MiddleFragment : BaseFragment() {
-
-    override fun hasInjector() = true
+class MiddleFragment : AppBaseFragment() {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory
-    lateinit var mMiddleViewModel: MiddleViewModule
+    private lateinit var mMiddleViewModel: MiddleViewModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

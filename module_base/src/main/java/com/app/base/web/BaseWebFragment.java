@@ -19,9 +19,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.android.base.app.fragment.BaseDialogFragment;
-import com.android.base.app.tools.ToolbarUtils;
 import com.android.base.utils.android.WebViewUtils;
 import com.app.base.R;
+import com.app.base.app.ToolbarUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
@@ -298,4 +298,5 @@ public class BaseWebFragment extends BaseDialogFragment {
     protected final void refresh() {
         loadUrl(mCurrentUrl);
     }
+    
 }

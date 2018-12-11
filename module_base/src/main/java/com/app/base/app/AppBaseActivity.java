@@ -41,5 +41,4 @@ public abstract class AppBaseActivity extends BaseActivity {
         return true;
     }
 
-
 }
