@@ -29,7 +29,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="8dp"
-        android:text="@string/error_net_error"
+        android:text="@string/page_error_no_network"
         android:textSize="12sp"/>
 
     <android.support.v7.widget.AppCompatButton
@@ -40,7 +40,7 @@
         android:layout_below="@id/base_retry_tv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="@string/error_retry_action_tips"
+        android:text="@string/page_error_retry_action_tips"
         android:textColor="@color/black"/>
 
 </android.support.percent.PercentRelativeLayout>

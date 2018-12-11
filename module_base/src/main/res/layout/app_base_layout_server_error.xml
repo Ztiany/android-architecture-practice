@@ -12,8 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:src="@drawable/base_img_error"
         app:layout_marginTopPercent="25%"
         tools:ignore="ContentDescription"/>
+
 
     <TextView
         android:id="@id/base_retry_tv"
@@ -27,7 +29,7 @@
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
         android:paddingTop="8dp"
-        android:text="@string/page_error_no_data"
+        android:text="@string/page_error_server_error"
         android:textSize="@dimen/text_little"/>
 
     <android.support.v7.widget.AppCompatButton
@@ -37,6 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/base_retry_tv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/widget_margin_normal"/>
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:text="@string/page_error_retry_action_tips"
+        android:textColor="@color/black"
+        />
 
 </android.support.percent.PercentRelativeLayout>

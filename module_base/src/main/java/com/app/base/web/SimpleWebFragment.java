@@ -33,7 +33,7 @@ public class SimpleWebFragment extends BaseWebFragment {
             if (mOnNavigationClickDismiss) {
                 dismiss();
             } else {
-                FragmentUtils.fragmentBack(SimpleWebFragment.this, false);
+                FragmentUtils.fragmentBack(getActivity(), false);
             }
         });
     }

@@ -7,23 +7,24 @@
         <item name="android:id">@id/base_state_layout</item>
         <item name="msv_animateViewChanges">false</item>
         <item name="msv_viewState">content</item>
+
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
 
         <item name="msv_errorImg">@drawable/base_img_error</item>
         <item name="msv_errorView">@layout/app_base_layout_error</item>
-        <item name="msv_errorText">@string/error_load_fail_tips</item>
-        <item name="msv_errorAction">@string/error_retry_action_tips</item>
+        <item name="msv_errorText">@string/page_error_load_fail_tips</item>
+        <item name="msv_errorAction">@string/page_error_retry_action_tips</item>
 
-        <item name="msv_emptyText">@string/error_no_data</item>
+        <item name="msv_emptyText">@string/page_error_no_data</item>
         <item name="msv_emptyView">@layout/app_base_layout_empty</item>
-
-        <item name="msv_loadingView">@layout/app_base_layout_loading</item>
 
         <item name="msv_net_errorImg">@drawable/base_img_no_network</item>
         <item name="msv_net_errorView">@layout/app_base_layout_no_network</item>
-        <item name="msv_net_errorText">@string/error_no_network</item>
-        <item name="msv_net_errorAction">@string/error_retry_action_tips</item>
+        <item name="msv_net_errorText">@string/page_error_retry_action_tips</item>
+        <item name="msv_net_errorAction">@string/page_error_retry_action_tips</item>
+
+        <item name="msv_loadingView">@layout/app_base_layout_loading</item>
     </style>
 
 

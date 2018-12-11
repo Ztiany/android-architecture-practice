@@ -57,20 +57,22 @@
     <!-- ====================================错误提示==================================== -->
 
     <!--错误提示 toast-->
-    <string name="error_net_error">网络连接不可用，请稍后再试！</string>
-    <string name="error_service_error">服务器错误！</string><!--error code 500-600-->
-    <string name="error_request_error">请求失败！</string><!--error code 400-500-->
+    <string name="error_net_error">网络连接失败，请检查网络喔</string>
+    <string name="error_service_error">服务器开小差了，请稍后重试喔</string><!--error code 500-600-->
+    <string name="error_request_error">请求失败，code(400–500)！</string><!--error code 400-500-->
     <string name="error_service_data_error">服务器数据异常</string><!--解析数据出错-->
-    <string name="error_api_code_mask_tips">服务器错误！，错误码为(%d)。</string><!--响应码错误-->
+    <string name="error_api_code_mask_tips">请求错误！，错误码为(%d)</string><!--响应码错误-->
     <string name="error_unknow">未知错误</string>
     <!--错误提示 dialog-->
     <string name="load_error_retry_tips">数据加载失败，是否重试？</string>
     <string name="submit_error_retry_tips">数据提交失败，是否重试？</string>
     <!--错误状态布局-->
-    <string name="error_load_fail_tips">加载失败了/(ㄒoㄒ)/~~ </string>
-    <string name="error_retry_action_tips">点我重试吧</string>
-    <string name="error_no_data">还没有相关数据哦！</string>
-    <string name="error_no_network">网络连接不可用！</string>
+    <string name="page_error_load_fail_tips">加载失败了/(ㄒoㄒ)/~~ </string>
+    <string name="page_error_retry_action_tips">重新加载</string>
+    <string name="page_error_no_data">暂无可用数据喔</string>
+    <string name="page_loading">正在努力加载数据…</string>
+    <string name="page_error_no_network">@string/error_net_error</string>
+    <string name="page_error_server_error">@string/error_service_error</string>
 
 
     <!-- ====================================表单校验提示==================================== -->

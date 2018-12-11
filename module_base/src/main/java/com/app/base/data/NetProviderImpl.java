@@ -90,7 +90,7 @@ public class NetProviderImpl implements NetProvider {
 
         @Override
         public CharSequence serverErrorMessage(Throwable exception) {
-            return ResourceUtils.getString(R.string.error_service_data_error);
+            return ResourceUtils.getString(R.string.error_service_error);
         }
 
         @Override
