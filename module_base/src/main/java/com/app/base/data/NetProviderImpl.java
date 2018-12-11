@@ -1,18 +1,14 @@
 package com.app.base.data;
 
-import android.support.annotation.NonNull;
-
 import com.android.base.utils.android.ResourceUtils;
 import com.android.sdk.net.exception.ApiErrorException;
 import com.android.sdk.net.provider.ApiHandler;
 import com.android.sdk.net.provider.ErrorDataAdapter;
 import com.android.sdk.net.provider.ErrorMessage;
 import com.android.sdk.net.provider.HttpConfig;
-import com.android.sdk.net.provider.NetProvider;
 import com.app.base.BuildConfig;
 import com.app.base.R;
 import com.app.base.data.api.ApiHelper;
-import com.blankj.utilcode.util.NetworkUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.lang.annotation.Annotation;
@@ -30,13 +26,13 @@ import timber.log.Timber;
  * Email: ztiany3@gmail.com
  * Date : 2018-11-08 16:16
  */
-public class NetProviderImpl implements NetProvider {
+final class NetProviderImpl {
 
-    private ApiHandler mApiHandler = result -> {
+    ApiHandler mApiHandler = result -> {
         //todo
     };
 
-    private HttpConfig mHttpConfig = new HttpConfig() {
+    HttpConfig mHttpConfig = new HttpConfig() {
 
         private static final int CONNECTION_TIME_OUT = 10;
         private static final int IO_TIME_OUT = 20;
@@ -77,7 +73,7 @@ public class NetProviderImpl implements NetProvider {
     };
 
 
-    private ErrorMessage mErrorMessage = new ErrorMessage() {
+    ErrorMessage mErrorMessage = new ErrorMessage() {
         @Override
         public CharSequence netErrorMessage(Throwable exception) {
             return ResourceUtils.getString(R.string.error_net_error);
@@ -110,7 +106,7 @@ public class NetProviderImpl implements NetProvider {
 
     };
 
-    private ErrorDataAdapter mErrorDataAdapter = new ErrorDataAdapter() {
+    ErrorDataAdapter mErrorDataAdapter = new ErrorDataAdapter() {
         @Override
         public Object createErrorDataStub(Type type, Annotation[] annotations, Retrofit retrofit, ResponseBody value) {
             return ApiHelper.newErrorDataStub();
@@ -121,34 +117,5 @@ public class NetProviderImpl implements NetProvider {
             return ApiHelper.isDataError(object);
         }
     };
-
-    @Override
-    public boolean isConnected() {
-        return NetworkUtils.isConnected();
-    }
-
-    @NonNull
-    @Override
-    public ApiHandler aipHandler() {
-        return mApiHandler;
-    }
-
-    @NonNull
-    @Override
-    public HttpConfig httpConfig() {
-        return mHttpConfig;
-    }
-
-    @NonNull
-    @Override
-    public ErrorMessage errorMessage() {
-        return mErrorMessage;
-    }
-
-    @NonNull
-    @Override
-    public ErrorDataAdapter errorDataAdapter() {
-        return mErrorDataAdapter;
-    }
 
 }

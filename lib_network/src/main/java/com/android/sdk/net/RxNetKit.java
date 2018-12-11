@@ -189,5 +189,4 @@ public class RxNetKit {
         return Observable.concat(sharedLocal.filter(Optional::isPresent), complexRemote);
     }
 
-
 }

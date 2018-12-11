@@ -5,6 +5,7 @@ import android.app.Application;
 import com.android.base.utils.android.SpCache;
 import com.android.sdk.net.NetContext;
 import com.app.base.BuildConfig;
+import com.blankj.utilcode.util.NetworkUtils;
 
 /**
  * Data层配置，抽象为DataContext
@@ -34,7 +35,15 @@ public class DataContext {
     private DataContext(Application application) {
         mSpCache = new SpCache(application, NAME);
         initSelf();
-        NetContext.get().init(new NetProviderImpl());
+        //初始化网络库
+        NetProviderImpl netProvider = new NetProviderImpl();
+        NetContext.get()
+                .newBuilder()
+                .aipHandler(netProvider.mApiHandler)
+                .httpConfig(netProvider.mHttpConfig)
+                .networkChecker(NetworkUtils::isConnected)
+                .errorDataAdapter(netProvider.mErrorDataAdapter)
+                .errorMessage(netProvider.mErrorMessage);
     }
 
     private static final String NAME = "data_context";
