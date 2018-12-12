@@ -43,7 +43,8 @@ public class DataContext {
                 .httpConfig(netProvider.mHttpConfig)
                 .networkChecker(NetworkUtils::isConnected)
                 .errorDataAdapter(netProvider.mErrorDataAdapter)
-                .errorMessage(netProvider.mErrorMessage);
+                .errorMessage(netProvider.mErrorMessage)
+                .setup();
     }
 
     private static final String NAME = "data_context";

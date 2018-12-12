@@ -69,9 +69,20 @@ public abstract class AppContext extends BaseAppContext implements HasSupportFra
         AndroidBase.get()
                 .enableAutoInject()
                 .setDefaultContainerId(R.id.common_container_id)//默认的Fragment容器id
-                .registerLoadingFactory(AppLoadingView::new)//默认的通用的LoadingDialog和Toast实现
+                .setLoadingFactory(AppLoadingView::new)//默认的通用的LoadingDialog和Toast实现
                 .setDefaultPageStart(0)//分页开始页码
-                .setDefaultPageSize(20);//默认分页大小
+                .setDefaultPageSize(20)//默认分页大小
+                .setErrorClassifier(new AndroidBase.ErrorClassifier() {
+                    @Override
+                    public boolean isNetworkError(Throwable throwable) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean isServerError(Throwable throwable) {
+                        return false;
+                    }
+                });
 
         injectAppContext();
     }

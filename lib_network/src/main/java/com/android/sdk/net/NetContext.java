@@ -97,7 +97,7 @@ public class NetContext {
             return this;
         }
 
-        void setup() {
+        public void setup() {
             mNetProvider.checkRequired();
             NetContext.get().init(mNetProvider);
         }

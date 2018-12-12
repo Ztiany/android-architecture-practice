@@ -5,7 +5,6 @@
     <!--状态布局-->
     <style name="SimpleMultiStateView_Default">
         <item name="android:id">@id/base_state_layout</item>
-        <item name="msv_animateViewChanges">false</item>
         <item name="msv_viewState">content</item>
 
         <item name="android:layout_width">match_parent</item>
