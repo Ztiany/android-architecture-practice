@@ -24,6 +24,7 @@
         <item name="msv_net_errorAction">@string/page_error_retry_action_tips</item>
 
         <item name="msv_loadingView">@layout/app_base_layout_loading</item>
+        <item name="msv_requestingView">@layout/app_base_layout_loading</item>
     </style>
 
 
