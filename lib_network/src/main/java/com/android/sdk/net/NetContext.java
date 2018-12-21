@@ -7,6 +7,7 @@ import com.android.sdk.net.provider.ErrorDataAdapter;
 import com.android.sdk.net.provider.ErrorMessage;
 import com.android.sdk.net.provider.HttpConfig;
 import com.android.sdk.net.provider.NetworkChecker;
+import com.android.sdk.net.provider.PostTransformer;
 import com.android.sdk.net.service.ServiceFactory;
 import com.android.sdk.net.service.ServiceHelper;
 
@@ -94,6 +95,11 @@ public class NetContext {
 
         public Builder networkChecker(@NonNull NetworkChecker networkChecker) {
             mNetProvider.mNetworkChecker = networkChecker;
+            return this;
+        }
+
+        public Builder postTransformer(@NonNull PostTransformer postTransformer) {
+            mNetProvider.mPostTransformer = postTransformer;
             return this;
         }
 

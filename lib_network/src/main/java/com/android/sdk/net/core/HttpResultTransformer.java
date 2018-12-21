@@ -6,6 +6,8 @@ import com.android.sdk.net.NetContext;
 import com.android.sdk.net.exception.ApiErrorException;
 import com.android.sdk.net.exception.NetworkErrorException;
 import com.android.sdk.net.exception.ServerErrorException;
+import com.android.sdk.net.provider.ApiHandler;
+import com.android.sdk.net.provider.PostTransformer;
 
 import org.reactivestreams.Publisher;
 
@@ -31,12 +33,26 @@ public class HttpResultTransformer<Upstream, Downstream, T extends Result<Upstre
 
     @Override
     public Publisher<Downstream> apply(Flowable<T> upstream) {
-        return upstream.map(this::processData);
+        Flowable<Downstream> downstreamFlowable = upstream.map(this::processData);
+        @SuppressWarnings("unchecked")
+        PostTransformer<Downstream> postTransformer = (PostTransformer<Downstream>) NetContext.get().netProvider().postTransformer();
+        if (postTransformer != null) {
+            return downstreamFlowable.compose(postTransformer);
+        } else {
+            return downstreamFlowable;
+        }
     }
 
     @Override
     public ObservableSource<Downstream> apply(Observable<T> upstream) {
-        return upstream.map(this::processData);
+        Observable<Downstream> downstreamObservable = upstream.map(this::processData);
+        @SuppressWarnings("unchecked")
+        PostTransformer<Downstream> postTransformer = (PostTransformer<Downstream>) NetContext.get().netProvider().postTransformer();
+        if (postTransformer != null) {
+            return downstreamObservable.compose(postTransformer);
+        } else {
+            return downstreamObservable;
+        }
     }
 
     private static boolean isConnected() {
@@ -57,7 +73,10 @@ public class HttpResultTransformer<Upstream, Downstream, T extends Result<Upstre
             throwAs(new ServerErrorException(ServerErrorException.SERVER_DATA_ERROR));//服务器数据格式错误
 
         } else if (!rResult.isSuccess()) {//检测响应码是否正确
-            NetContext.get().netProvider().aipHandler().onApiError(rResult);
+            ApiHandler apiHandler = NetContext.get().netProvider().aipHandler();
+            if (apiHandler != null) {
+                apiHandler.onApiError(rResult);
+            }
             throwAs(createException(rResult));
         }
 

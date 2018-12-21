@@ -7,6 +7,7 @@ import com.android.sdk.net.provider.ErrorDataAdapter;
 import com.android.sdk.net.provider.ErrorMessage;
 import com.android.sdk.net.provider.HttpConfig;
 import com.android.sdk.net.provider.NetworkChecker;
+import com.android.sdk.net.provider.PostTransformer;
 
 public interface NetProvider {
 
@@ -22,6 +23,8 @@ public interface NetProvider {
     @NonNull
     ErrorDataAdapter errorDataAdapter();
 
+    PostTransformer postTransformer();
+
 }
 
 class NetProviderImpl implements NetProvider {
@@ -31,6 +34,7 @@ class NetProviderImpl implements NetProvider {
     ErrorMessage mErrorMessage;
     ErrorDataAdapter mErrorDataAdapter;
     NetworkChecker mNetworkChecker;
+    PostTransformer mPostTransformer;
 
     @Override
     public boolean isConnected() {
@@ -59,6 +63,11 @@ class NetProviderImpl implements NetProvider {
     @Override
     public ErrorDataAdapter errorDataAdapter() {
         return mErrorDataAdapter;
+    }
+
+    @Override
+    public PostTransformer postTransformer() {
+        return mPostTransformer;
     }
 
     void checkRequired() {
