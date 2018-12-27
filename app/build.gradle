@@ -123,11 +123,11 @@ dependencies {
 
         //第三方库
 
-        /*ARouter*/
-        kapt thirdLibraries.arouterAnnotation
         /*Dagger2*/
         kapt thirdLibraries.dagger2Apt
         kapt thirdLibraries.dagger2AndroidApt
+        /*ARouter*/
+        kapt thirdLibraries.arouterAnnotation
 
     } else {
         implementation androidLibraries.androidCompatV7

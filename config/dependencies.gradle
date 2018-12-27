@@ -222,7 +222,7 @@ ext {
             //Utils
             //============================================================================
             //kv存储
-            mmkv                             : 'com.tencent:mmkv:1.0.11',//https://github.com/tencent/mmkv、https://mp.weixin.qq.com/s/kTr1GVDCAhs5K7Hq3322FA
+            mmkv                             : 'com.tencent:mmkv:1.0.15',//https://github.com/tencent/mmkv、https://mp.weixin.qq.com/s/kTr1GVDCAhs5K7Hq3322FA
             //日志
             timber                           : "com.jakewharton.timber:timber:4.5.1",//https://github.com/JakeWharton/timber
             /*image compression*/
