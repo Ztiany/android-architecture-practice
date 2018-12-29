@@ -104,7 +104,7 @@ ext {
             ankoSQLite                 : "org.jetbrains.anko:anko-sqlite:$anko_version",        // Anko SQLite
 
             // Anko Layouts , sdk15, sdk19, sdk21, sdk23 are also available, 只需要依赖一个sdk
-            ankoLayoutSDK           : "org.jetbrains.anko:anko-sdk27:$anko_version",
+            ankoLayoutSDK            : "org.jetbrains.anko:anko-sdk27:$anko_version",
             ankoLayoutCompatV7         : "org.jetbrains.anko:anko-appcompat-v7:$anko_version",
             ankoLayoutCompatV4         : "org.jetbrains.anko:anko-support-v4:$anko_version",
             ankoLayoutDesign           : "org.jetbrains.anko:anko-design:$anko_version",
@@ -135,7 +135,7 @@ ext {
     def rxLifecycle = '1.0'
     def rxLifecycle2 = '2.2.2'
     def retrofitVersion = '2.4.0'
-    def daggerVersion = "2.19"
+    def daggerVersion = "2.17"
 
     thirdLibraries = [
             //============================================================================
@@ -308,7 +308,7 @@ ext {
             cameraView               : 'com.otaliastudios:cameraview:1.3.1',//https://github.com/natario1/CameraView
 
             wheelPicker              : 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2',//https://github.com/AigeStudio/WheelPicker
-            timePicker               : 'com.wdullaer:materialdatetimepicker:3.3.0',//https://github.com/wdullaer/MaterialDateTimePicker
+            timePicker               : 'com.wdullaer:materialdatetimepicker:3.6.4',//https://github.com/wdullaer/MaterialDateTimePicker
 
             avLoadingIndicatorView   : 'com.wang.avi:library:2.1.3', //https://github.com/81813780/AVLoadingIndicatorView
 
