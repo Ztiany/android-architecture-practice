@@ -1,4 +1,4 @@
-# Android App Architecture Template（Suspend maintenance）
+# Android App Architecture Template
 
 ## 1 download
 
