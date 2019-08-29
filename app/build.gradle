@@ -20,10 +20,12 @@ android {
 
     signingConfigs {
         release {
-            keyAlias rootProject.releaseKeyAlias
-            keyPassword rootProject.releaseKeyPassword
-            storeFile file(rootProject.releaseStoreFile)
-            storePassword rootProject.releaseStorePassword
+            v1SigningEnabled true
+            v2SigningEnabled true
+            keyAlias releaseKeyAlias
+            keyPassword releaseKeyPassword
+            storeFile rootProject.file(releaseKeyFileName)
+            storePassword releaseKeyPassword
         }
     }
 
@@ -85,9 +87,7 @@ android {
 
     sourceSets {
         main {
-            if (rootProject.isMultiApp) {
-                manifest.srcFile 'src/app_fake/AndroidManifest.xml'
-            } else {//组合
+            if (!rootProject.isMultiApp) {
                 java.srcDirs += "src/app/java"
                 res.srcDirs += "src/app/res"
                 manifest.srcFile 'src/app/AndroidManifest.xml'
@@ -101,6 +101,10 @@ android {
 
     dexOptions {
         javaMaxHeapSize "4g"
+    }
+
+    aaptOptions {
+        cruncherEnabled openCruncherEnabled.toBoolean()
     }
 
     android.applicationVariants.all { variant ->

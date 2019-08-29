@@ -19,22 +19,15 @@ public abstract class AppBaseActivity extends BaseActivity {
     @Override
     protected void initialize(@Nullable Bundle savedInstanceState) {
         super.initialize(savedInstanceState);
-        if (hasRouterArguments()) {
-            RouterManager.inject(this);
-        }
+        RouterManager.inject(this);
     }
 
     @Override
     @CallSuper
     protected void setupView(@Nullable Bundle savedInstanceState) {
         if (tintStatusBar()) {
-            SystemBarCompat.setTranslucentStatusOnKitkat(this);
-            SystemBarCompat.setStatusBarColorOnKitkat(this, ContextCompat.getColor(this, R.color.colorPrimaryDark));
+            SystemBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
-    }
-
-    protected boolean hasRouterArguments() {
-        return false;
     }
 
     protected boolean tintStatusBar() {

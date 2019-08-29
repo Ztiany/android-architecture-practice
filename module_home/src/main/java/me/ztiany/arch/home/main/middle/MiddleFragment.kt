@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.app.base.app.AppBaseFragment
+import com.app.base.app.InjectorBaseFragment
 import org.jetbrains.anko.textColor
 import timber.log.Timber
 import javax.inject.Inject
@@ -18,7 +19,7 @@ import javax.inject.Inject
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-02 14:38
  */
-class MiddleFragment : AppBaseFragment() {
+class MiddleFragment : InjectorBaseFragment() {
 
     @Inject
     lateinit var mViewModelFactory: ViewModelProvider.Factory

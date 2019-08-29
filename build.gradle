@@ -1,28 +1,39 @@
 buildscript {
 
-    apply from: 'config/dependencies.gradle'
+    apply from: '../Gw-Libs/config/repository.gradle'
+    apply from: 'libraries.gradle'
 
     repositories {
         jcenter()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
         maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         maven { url 'https://jitpack.io' }
         maven { url uri('repo') }
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        //android
+        classpath 'com.android.tools.build:gradle:3.5.0'
         //kotlin
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41'
+        //multi channel
+        classpath 'com.leon.channel:plugin:2.0.3'
+        //tinker
+        classpath "com.tencent.bugly:tinker-support:1.1.5"
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
         maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         maven { url 'https://jitpack.io' }
         google()
-
+        flatDir { dirs rootProject.projectDir.getAbsolutePath() + '/repo/aar' }
+        flatDir { dirs 'libs' }
         configurations.all {
             resolutionStrategy.force(
                     "android.arch.core:runtime:1.1.1",
@@ -36,37 +47,16 @@ allprojects {
     }
 }
 
-/*加载配置信息*/
 ext {
-    //isMultiApp=true表示各个模块独立编译成app，isMultiApp=false标识所有模块构建为一个app
     isMultiApp = isModularization.toBoolean()
 
-    //加载版本信息
-    File buildFile = file('config/build.properties')
-    Properties buildProperties = new Properties()
-    buildFile.withInputStream {
-        buildProperties.load(it)
-    }
-    minSdkVersion = buildProperties.getProperty('minSdkVersion').toInteger()
-    targetSdkVersion = buildProperties.getProperty('targetSdkVersion').toInteger()
-    compileSdkVersion = buildProperties.getProperty('compileSdkVersion').toInteger()
-    buildToolsVersion = buildProperties.getProperty('buildToolsVersion')
+    minSdkVersion = androidMinSdkVersion.toInteger()
+    targetSdkVersion = androidTargetSdkVersion.toInteger()
+    compileSdkVersion = androidCompileSdkVersion.toInteger()
+    buildToolsVersion = androidBuildToolsVersion
 
-    versionCode = buildProperties.getProperty('versionCode').toInteger()
-    versionName = buildProperties.getProperty('versionName')
-
-    //加载打包key信息
-    File releaseFile = file('config/release.properties')
-    Properties releaseProperties = new Properties()
-    releaseFile.withInputStream {
-        releaseProperties.load(it)
-    }
-
-    releaseKeyAlias = releaseProperties.getProperty('keyAlias')
-    releaseKeyPassword = releaseProperties.getProperty('keyPassword')
-    releaseStoreFile = new File(releaseProperties.getProperty('storeFile')).getAbsolutePath()
-    releaseStorePassword = releaseProperties.getProperty('storePassword')
-
+    versionCode = androidVersionCode.toInteger()
+    versionName = androidVersionName
 }
 
 task clean(type: Delete) {

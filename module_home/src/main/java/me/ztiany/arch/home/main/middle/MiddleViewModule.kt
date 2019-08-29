@@ -1,6 +1,6 @@
 package me.ztiany.arch.home.main.middle
 
-import com.android.base.app.mvvn.ArchViewModel
+import com.android.base.app.mvvm.ArchViewModel
 import javax.inject.Inject
 
 /**

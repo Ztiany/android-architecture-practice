@@ -1,0 +1,112 @@
+ext {
+    repository = newRepository()
+    def androidRepo = repository.androidLibraries
+    def kotlinRepo = repository.kotlinLibraries
+    def thirdRepo = repository.thirdLibraries
+    def debugRepo = repository.debugLibraries
+    def uiRepo = repository.uiLibraries
+    def testRepo = repository.testLibraries
+
+    androidLibraries = [
+            androidCompatV4        : androidRepo["androidCompatV4"],
+            androidCompatV7        : androidRepo["androidCompatV7"],
+            androidDesign          : androidRepo["androidDesign"],
+            androidPrecent         : androidRepo["androidPrecent"],
+            androidAnnotations     : androidRepo["androidAnnotations"],
+            androidCard            : androidRepo["androidCard"],
+            androidRecyclerView    : androidRepo["androidRecyclerView"],
+            androidExif            : androidRepo["androidExif"],
+            constraintLayout       : androidRepo["constraintLayout"],
+            multiDex               : androidRepo["multiDex"],
+            lifecycle              : androidRepo["lifecycle"],
+            lifecycleJava8         : androidRepo["lifecycleJava8"],
+            //LiveData, and ViewModel
+            lifecycleExtensions    : androidRepo["lifecycleExtensions"],
+            liveDataReactiveStreams: androidRepo["liveDataReactiveStreams"],
+            flexbox                : androidRepo["flexbox"]
+    ]
+
+    kotlinLibraries = [
+            kotlinStdlib           : kotlinRepo["kotlinStdlib"],
+            kotlinReflect          : kotlinRepo["kotlinReflect"],
+            kotlinCoroutines       : kotlinRepo["kotlinCoroutines"],
+            kotlinAndroidCoroutines: kotlinRepo["kotlinAndroidCoroutines"],
+            rxKotlin               : kotlinRepo["rxKotlin"],
+    ]
+
+    thirdLibraries = [
+            //rx java
+            rxJava                            : thirdRepo["rxJava"],
+            rxAndroid                         : thirdRepo["rxAndroid"],
+            rxBinding                         : thirdRepo["rxBinding"],
+            rxBindingCompat                   : thirdRepo["rxBindingCompat"],
+            autoDispose                       : thirdRepo["autoDispose"],
+            autoDisposeLifecycleJDK8          : thirdRepo["autoDisposeLifecycleJDK8"],
+            autoDisposeLifecycleArchcomponents: thirdRepo["autoDisposeLifecycleArchcomponents"],
+            rxLifecycle                       : thirdRepo["rxLifecycle"],
+            rxLifecycleAndroid                : thirdRepo["rxLifecycleAndroid"],
+            rxLifecycleComponents             : thirdRepo["rxLifecycleComponents"],
+            rxLifecycleAndroidLifecycle       : thirdRepo["rxLifecycleAndroidLifecycle"],
+            rxLifecycleAndroidLifecycleKotlin : thirdRepo["rxLifecycleAndroidLifecycleKotlin"],
+            //http
+            okHttp                            : thirdRepo["okHttp"],
+            okHttpLogging                     : thirdRepo["okHttpLogging"],
+            retrofit                          : thirdRepo["retrofit"],
+            retrofitConverterGson             : thirdRepo["retrofitConverterGson"],
+            retrofitRxJava2CallAdapter        : thirdRepo["retrofitRxJava2CallAdapter"],
+            gson                              : thirdRepo["gson"],
+            glide                             : thirdRepo["glide"],
+            glideApt                          : thirdRepo["glideApt"],
+            glideOkHttp                       : thirdRepo["glideOkHttp"],
+            //dagger
+            dagger2                           : thirdRepo["dagger2"],
+            dagger2Android                    : thirdRepo["dagger2Android"],
+            dagger2AndroidSupport             : thirdRepo["dagger2AndroidSupport"],
+            dagger2Apt                        : thirdRepo["dagger2Apt"],
+            dagger2AndroidApt                 : thirdRepo["dagger2AndroidApt"],
+            jsr305                            : thirdRepo["jsr305"],
+            //router
+            arouter                           : thirdRepo["arouter"],
+            arouterAnnotation                 : thirdRepo["arouterAnnotation"],
+            //others
+            mmkv                              : thirdRepo["mmkv"],
+            timber                            : thirdRepo["timber"],
+            jOOR                              : thirdRepo["jOOR"],
+            utilcode                          : thirdRepo["utilcode"],
+            andPermission                     : thirdRepo["andPermission"],
+            vasDolly                          : thirdRepo["vasDolly"],
+            aspectj                           : thirdRepo["aspectj"],
+            supportOptional                   : thirdRepo["supportOptional"],
+            tiny                              : thirdRepo["tiny"]
+    ]
+
+    debugLibraries = [
+            debugLeakCanary        : debugRepo["debugLeakCanary"],
+            debugLeakCanaryFragment: debugRepo["debugLeakCanaryFragment"],
+            releaseLeakCanary      : debugRepo["releaseLeakCanary"],
+            stetho                 : debugRepo["stetho"],
+            stethoOkhttp3          : debugRepo["stethoOkhttp3"],
+            ueTool                 : debugRepo["ueTool"],
+            debugDoraemonKit       : debugRepo["debugDoraemonKit"]
+    ]
+
+    uiLibraries = [
+            qmui                   : uiRepo["qmui"],
+            multiType              : uiRepo["multiType"],
+            multiTypeKotlin        : uiRepo["multiTypeKotlin"],
+            wrapperAdapter         : uiRepo["wrapperAdapter"],
+            photoView              : uiRepo["photoView"],
+            circleImageView        : uiRepo["circleImageView"],
+            roundedImageView       : uiRepo["roundedImageView"],
+            smartTab               : uiRepo["smartTab"],
+            fotoapparat            : uiRepo["fotoapparat"],
+            androidWheelPicker     : uiRepo["androidWheelPicker"],
+            superTextView          : uiRepo["superTextView"],
+            keyboardvisibilityevent: uiRepo["keyboardvisibilityevent"]
+    ]
+
+    testLibraries = [
+            junit: testRepo["junit"],
+    ]
+
+}

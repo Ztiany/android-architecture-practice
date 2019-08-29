@@ -1,21 +1,18 @@
-//插件
-//include ':buildPlugin'
-
 //通用类库
-include ':AndroidBase'
-include ':lib_functional'
-include ':lib_cache'
-include ':lib_media_selector'
-include ':lib_qrcode'
-include ':lib_network'
-//include ':lib_security'
-//include ':lib_social'
-//include ':lib_wechat'
+def libs = ["lib_base", "lib_cache", "lib_media_selector", "lib_qrcode", "lib_network", "lib_push", "lib_social"]
+libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File("../Android-Libs/$it")
+}
 
-//项目基础类库
+//业务基础架构
 include ':module_base'
-//Home模块
+
+//业务模块
 include ':module_home'
 
 //app壳
 include ':app'
+
+//插件
+//include ':buildSrc'

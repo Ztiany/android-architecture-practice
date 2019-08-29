@@ -1,6 +1,6 @@
 package me.ztiany.arch.home.main.index.presentation
 
-import com.android.base.app.mvvn.ArchViewModel
+import com.android.base.app.mvvm.ArchViewModel
 import me.ztiany.arch.home.main.index.data.IndexDataSource
 import javax.inject.Inject
 
