@@ -1,6 +1,9 @@
 package me.ztiany.arch.home.main.index.presentation
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.TextView
 import com.android.base.app.mvvm.getViewModel
 import com.app.base.app.InjectorBaseFragment
@@ -28,6 +31,9 @@ class IndexFragment : InjectorBaseFragment() {
     override fun provideLayout() = TextView(context).apply {
         text = "首页"
         textSize = 30F
+        gravity = Gravity.CENTER
+        setTextColor(Color.BLUE)
+        layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
     }
 
 }
