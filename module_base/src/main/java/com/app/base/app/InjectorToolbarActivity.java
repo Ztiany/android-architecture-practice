@@ -1,6 +1,6 @@
 package com.app.base.app;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.android.base.app.dagger.Injectable;
 

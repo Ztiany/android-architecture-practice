@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.alibaba.android.arouter.facade.Postcard;
