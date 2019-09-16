@@ -34,6 +34,11 @@ public class AppLoadingView implements LoadingView {
     }
 
     @Override
+    public void showLoadingDialog() {
+        showLoadingDialog(true);
+    }
+
+    @Override
     public void showLoadingDialog(boolean cancelable) {
         showLoadingDialog(null, cancelable);
     }
@@ -57,7 +62,7 @@ public class AppLoadingView implements LoadingView {
 
     private void initDialog() {
         if (mLoadingDialog == null) {
-            mLoadingDialog = (LoadingDialog) DialogManager.createLoadingDialog(mContext, false);
+            mLoadingDialog = (LoadingDialog) Dialogs.createLoadingDialog(mContext, false);
         }
     }
 

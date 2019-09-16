@@ -29,7 +29,7 @@ import timber.log.Timber
 @Route(path = RouterPath.Main.PATH)
 class MainActivity : InjectorAppBaseActivity() {
 
-    private lateinit var tabManager: TabManager
+    private lateinit var tabManager: MainTabManager
     private var clickToExit = false
 
     override fun layout() = R.layout.main_activity
@@ -56,10 +56,12 @@ class MainActivity : InjectorAppBaseActivity() {
         //MainTable
         tabManager.setup(savedInstanceState)
         //bottomBar
-        mainBottomBar.setOnTabSelectListener { tabId ->
-            tabManager.selectTabById(tabId)
+        mainBottomBar.setOnNavigationItemSelectedListener {
+            tabManager.selectTabById(it.itemId)
             onSelectTab(tabManager.currentPosition)
+            true
         }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -71,11 +73,13 @@ class MainActivity : InjectorAppBaseActivity() {
         super.onNewIntent(intent)
         val page = intent.getIntExtra(RouterPath.Main.PAGE_KEY, 0)
         if (page in 0..3) {
-            mainBottomBar.post { mainBottomBar.selectTabAtPosition(page, true) }
+            mainBottomBar.post {
+                mainBottomBar.selectedItemId = tabManager.getItemId(page)
+            }
         }
     }
 
-    override fun processBackPressed() {
+    override fun superOnBackPressed() {
         if (clickToExit) {
             supportFinishAfterTransition()
         }
@@ -84,6 +88,7 @@ class MainActivity : InjectorAppBaseActivity() {
             TipsManager.showMessage(getString(R.string.main_exit_tips))
             mainBottomBar.postDelayed({ clickToExit = false }, 1000)
         }
+
     }
 
     private fun onSelectTab(currentPosition: Int) {
@@ -91,11 +96,23 @@ class MainActivity : InjectorAppBaseActivity() {
     }
 }
 
-
 private class MainTabManager(
         context: Context,
         fragmentManager: FragmentManager, containerId: Int
 ) : TabManager(context, fragmentManager, MainTabs(), containerId, SHOW_HIDE) {
+
+    private val itemIdArray = intArrayOf(
+            R.id.main_index,
+            R.id.main_middle,
+            R.id.main_mine
+    )
+
+    fun getItemId(position: Int): Int {
+        if (position < itemIdArray.size && position >= 0) {
+            return itemIdArray[position]
+        }
+        return -1
+    }
 
     private class MainTabs internal constructor() : TabManager.Tabs() {
         init {

@@ -9,4 +9,6 @@ import javax.inject.Inject
  * Email: ztiany3@gmail.com
  * Date : 2018-11-05 14:23
  */
-class IndexViewModule @Inject constructor(private val indexDataSource: IndexDataSource) : ArchViewModel()
+class IndexViewModule @Inject constructor(
+        private val indexDataSource: IndexDataSource
+) : ArchViewModel()

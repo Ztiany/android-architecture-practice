@@ -29,28 +29,24 @@ public class RouterManager {
         }
     }
 
-    public static <T extends IProvider> T navigation(Class<T> iProviderClass) {
+    static <T extends IProvider> T navigation(Class<T> iProviderClass) {
         return ARouter.getInstance().navigation(iProviderClass);
     }
 
     /**
-     * 一般情况下推荐使用use {@link AppRouter}
-     *
      * @param path 路径
      * @return 路由表
      */
-    public static IPostcard build(String path) {
+    static IPostcard build(String path) {
         Postcard build = ARouter.getInstance().build(path);
         return new PostcardImpl(build);
     }
 
     /**
-     * 一般情况下推荐使用use {@link AppRouter}
-     *
      * @param path 路径
      * @return 路由表
      */
-    public static IPostcard build(Uri path) {
+    static IPostcard build(Uri path) {
         Postcard build = ARouter.getInstance().build(path);
         return new PostcardImpl(build);
     }
@@ -59,10 +55,8 @@ public class RouterManager {
         ARouter.getInstance().inject(object);
     }
 
+    @SuppressWarnings("unused")
     public static void restartApp(Activity activity, Class<? extends Activity> target) {
-        //save data
-        //todo AnalyticsTools.onKillProcess(activity);
-        //do kill
         Intent intent = new Intent(activity, target);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
@@ -71,11 +65,12 @@ public class RouterManager {
     }
 
     /**
-     * ARouter不支持Fragment的onActivityResult，暂时使用此方法分发
+     * ARouter 不支持 Fragment.startActivityForResult()，暂时使用此方法分发
      */
+    @SuppressWarnings("WeakerAccess")
     public static void dispatchActivityResult(FragmentManager fragmentManager, int requestCode, int resultCode, Intent data) {
         List<Fragment> fragments = fragmentManager.getFragments();
-        if (fragments == null || fragments.isEmpty()) {
+        if (fragments.isEmpty()) {
             return;
         }
         for (Fragment fragment : fragments) {

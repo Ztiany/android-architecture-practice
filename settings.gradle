@@ -13,6 +13,3 @@ include ':module_home'
 
 //app壳
 include ':app'
-
-//插件
-//include ':buildSrc'

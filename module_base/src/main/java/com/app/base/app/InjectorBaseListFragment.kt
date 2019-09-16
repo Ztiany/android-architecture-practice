@@ -5,7 +5,6 @@ import com.android.base.app.dagger.Injectable
 import com.android.base.app.fragment.BaseListFragment
 import com.android.base.rx.AutoDisposeLifecycleOwnerEx
 import com.app.base.router.AppRouter
-import org.xml.sax.ErrorHandler
 import javax.inject.Inject
 
 /**

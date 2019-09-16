@@ -2,10 +2,19 @@ package com.app.base.data;
 
 import android.app.Application;
 
-import com.android.base.utils.android.SpCache;
 import com.android.sdk.net.NetContext;
+import com.app.base.AppContext;
 import com.app.base.BuildConfig;
+import com.app.base.data.api.ApiHelper;
+import com.app.base.data.app.AppDataSource;
 import com.blankj.utilcode.util.NetworkUtils;
+
+import timber.log.Timber;
+
+import static com.app.base.data.URLProviderKt.addAllHost;
+import static com.app.base.data.URLProviderKt.addReleaseHost;
+import static com.app.base.data.URLProviderKt.getBaseUrl;
+import static com.app.base.data.URLProviderKt.getBaseWebUrl;
 
 /**
  * Data层配置，抽象为DataContext
@@ -16,14 +25,14 @@ import com.blankj.utilcode.util.NetworkUtils;
  */
 public class DataContext {
 
+    private static DataContext sDataContext;
+
     public synchronized static void init(Application application) {
         if (sDataContext != null) {
             throw new IllegalStateException("DataContext was  initialized");
         }
         sDataContext = new DataContext(application);
     }
-
-    private static DataContext sDataContext;
 
     public static DataContext getInstance() {
         if (sDataContext == null) {
@@ -32,9 +41,12 @@ public class DataContext {
         return sDataContext;
     }
 
+    private AppDataSource mAppDataSource;
+
+    @SuppressWarnings("unused")
     private DataContext(Application application) {
-        mSpCache = new SpCache(application, NAME);
-        initSelf();
+        //环境初始化
+        initEnvironment();
         //初始化网络库
         NetProviderImpl netProvider = new NetProviderImpl();
         NetContext.get()
@@ -42,72 +54,42 @@ public class DataContext {
                 .aipHandler(netProvider.mApiHandler)
                 .httpConfig(netProvider.mHttpConfig)
                 .networkChecker(NetworkUtils::isConnected)
+                //.postTransformer(netProvider.mPostTransformer)
                 .errorDataAdapter(netProvider.mErrorDataAdapter)
                 .errorMessage(netProvider.mErrorMessage)
+                .exceptionFactory(netProvider.mExceptionFactory)
                 .setup();
     }
 
-    private static final String NAME = "data_context";
-    private static final String HOST_KEY = "host_key";
-
-    private final SpCache mSpCache;
-    private int mHostEnvIdentification;
-
-    /*环境配置*/
-    public static final int BUILD_DEBUG = 1;
-    public static final int BUILD_PRE_RELEASE = 2;
-    public static final int BUILD_RELEASE = 3;
-
-    /*永远不要修改*/
-    static final String DEBUG = "debug";
-    static final String PRE = "pre-release";
-    static final String RELEASE = "release";
-
-    /**
-     * 获取当前构建的主机地址标识，如：<font color="red">调试、预发布、生产</font>
-     *
-     * @return Identification
-     */
-    int getHostIdentification() {
-        return mHostEnvIdentification;
+    void publishLoginExpired(int code) {
+        AppContext.errorHandler().handleGlobalError(code);
+        Timber.d("用户登录过期：" + ((ApiHelper.isLoginExpired(code)) ? "token 过期。" : "其他设备登录。"));
     }
 
-    /**
-     * 获取当前构建的主机地址标识对象字符串，如：<font color="red">调试、预发布、生产</font>
-     *
-     * @return Identification
-     */
-    private String getHostTag() {
-        if (mHostEnvIdentification == BUILD_RELEASE) {
-            return RELEASE;
-        } else if (mHostEnvIdentification == BUILD_PRE_RELEASE) {
-            return PRE;
-        }
-        return DEBUG;
-    }
-
-    /**
-     * 获取语言环境和主机环境的综合标识，比如<font color="red">调试环境的中文</font>
-     *
-     * @return tag
-     */
-    String getEnvTag() {
-        return getHostTag();
-    }
-
-    private void initSelf() {
+    private void initEnvironment() {
         if (BuildConfig.openDebug) {
-            mHostEnvIdentification = mSpCache.getInt(HOST_KEY, BUILD_DEBUG);
+            addAllHost();
         } else {
-            mHostEnvIdentification = BUILD_RELEASE;
+            addReleaseHost();
         }
     }
 
-    /**
-     * 用于调试，切换主机环境。
-     */
-    public void switchHost(int host) {
-        mSpCache.putInt(HOST_KEY, host);
+    ///////////////////////////////////////////////////////////////////////////
+    // public
+    ///////////////////////////////////////////////////////////////////////////
+    public void onAppDataSourcePrepared(AppDataSource appDataSource) {
+        if (mAppDataSource != null) {
+            throw new IllegalStateException("DataContext.onAppDataSourcePrepared already called");
+        }
+        mAppDataSource = appDataSource;
+    }
+
+    public String baseWebUrl() {
+        return getBaseWebUrl();
+    }
+
+    static String baseUrl() {
+        return getBaseUrl();
     }
 
 }

@@ -31,5 +31,4 @@ public class AppRouterImpl implements AppRouter {
         return RouterManager.navigation(iProviderClass);
     }
 
-
 }

@@ -15,7 +15,7 @@ import me.ztiany.arch.home.main.index.data.IndexRepository
 import me.ztiany.arch.home.main.index.presentation.IndexFragment
 import me.ztiany.arch.home.main.index.presentation.IndexViewModule
 import me.ztiany.arch.home.main.middle.MiddleFragment
-import me.ztiany.arch.home.main.middle.MiddleViewModule
+import me.ztiany.arch.home.main.middle.MiddleViewModel
 import me.ztiany.arch.home.main.mine.data.MineDataSource
 import me.ztiany.arch.home.main.mine.data.MineRepository
 import me.ztiany.arch.home.main.mine.presentation.MineFragment
@@ -34,7 +34,6 @@ abstract class HomeModule {
     internal abstract fun contributeMainActivityInjector(): MainActivity
 
 }
-
 
 @Module
 abstract class SubModule {
@@ -55,8 +54,8 @@ abstract class SubModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MiddleViewModule::class)
-    abstract fun provideAccompanyViewModule(middleViewModule: MiddleViewModule): ViewModel
+    @ViewModelKey(MiddleViewModel::class)
+    abstract fun provideAccompanyViewModule(middleViewModule: MiddleViewModel): ViewModel
 
     @Binds
     @ActivityScope

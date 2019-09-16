@@ -7,6 +7,7 @@ import com.android.base.app.dagger.ContextType;
 import com.android.base.imageloader.ImageLoader;
 import com.android.base.imageloader.ImageLoaderFactory;
 import com.android.base.rx.SchedulerProvider;
+import com.android.base.rx.SchedulerProviders;
 import com.app.base.router.AppRouter;
 import com.app.base.router.AppRouterImpl;
 
@@ -51,7 +52,7 @@ public class AppModule {
     @Provides
     @Singleton
     SchedulerProvider provideSchedulerProvider() {
-        return SchedulerProvider.defaultSchedulerProvider();
+        return SchedulerProviders.newDefaultSchedulerProvider();
     }
 
 }

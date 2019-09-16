@@ -1,5 +1,6 @@
 package me.ztiany.arch.home.setting
 
+import android.support.v7.widget.AppCompatTextView
 import com.app.base.app.AppBaseActivity
 
 /**
@@ -9,6 +10,8 @@ import com.app.base.app.AppBaseActivity
  */
 class SettingActivity : AppBaseActivity() {
 
-    override fun layout() = null
-    
+    override fun layout() = AppCompatTextView(this).apply {
+        text = "设置"
+    }
+
 }

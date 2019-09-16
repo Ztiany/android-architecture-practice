@@ -1,12 +1,18 @@
 package com.app.base.widget.dialog;
 
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
+import com.android.base.utils.android.ResourceUtils;
 import com.blankj.utilcode.util.ToastUtils;
 
 
 public class TipsManager {
+
+    public static void showMessage(@StringRes int msgId) {
+        showMessage(ResourceUtils.getText(msgId));
+    }
 
     public static void showMessage(CharSequence message) {
         ToastUtils.showShort(message);

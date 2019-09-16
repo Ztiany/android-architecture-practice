@@ -1,18 +1,9 @@
 package me.ztiany.arch.home.main.index.presentation
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
-import com.app.base.app.AppBaseFragment
+import com.android.base.app.mvvm.getViewModel
 import com.app.base.app.InjectorBaseFragment
-import org.jetbrains.anko.textColor
-import timber.log.Timber
-import javax.inject.Inject
 
 /**
  *@author Ztiany
@@ -21,21 +12,22 @@ import javax.inject.Inject
  */
 class IndexFragment : InjectorBaseFragment() {
 
-    private lateinit var mIndexViewModule: IndexViewModule
+    private val viewModule by lazy {
+        getViewModel<IndexViewModule>(viewModelFactory)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mIndexViewModule = ViewModelProviders.of(this, mVewModelFactory)[IndexViewModule::class.java]
-        Timber.d(mIndexViewModule.toString())
-        Timber.d(mVewModelFactory.toString())
+        subscribeViewModel()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return TextView(context).apply {
-            text = "首页"
-            textSize = 30F
-            textColor = Color.BLACK
-        }
+    private fun subscribeViewModel() {
+
+    }
+
+    override fun provideLayout() = TextView(context).apply {
+        text = "首页"
+        textSize = 30F
     }
 
 }

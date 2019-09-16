@@ -18,17 +18,13 @@ class LoadingDialog extends AppCompatDialog {
 
     private TextView mMessageTv;
 
-    LoadingDialog(Context context, boolean horizontal) {
+    LoadingDialog(Context context) {
         super(context);
-        setView(horizontal);
+        setView();
     }
 
-    private void setView(boolean horizontal) {
-        if (horizontal) {
-            setContentView(R.layout.dialog_loading_horizontal);
-        } else {
-            setContentView(R.layout.dialog_loading);
-        }
+    private void setView() {
+        setContentView(R.layout.dialog_loading);
         mMessageTv = findViewById(R.id.dialog_loading_tv_title);
     }
 
@@ -43,4 +39,5 @@ class LoadingDialog extends AppCompatDialog {
             mMessageTv.setText(messageId);
         }
     }
+
 }

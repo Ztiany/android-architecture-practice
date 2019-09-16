@@ -35,4 +35,9 @@ public class ApiHelper {
     public static Object newErrorDataStub() {
         return new HttpResult<>(DATA_ERROR);
     }
+
+    public static boolean isLoginExpired(int code) {
+        return false;
+    }
+
 }

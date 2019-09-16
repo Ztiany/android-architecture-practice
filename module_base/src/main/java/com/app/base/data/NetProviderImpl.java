@@ -1,20 +1,29 @@
 package com.app.base.data;
 
 import com.android.base.utils.android.ResourceUtils;
+import com.android.sdk.net.core.ExceptionFactory;
 import com.android.sdk.net.exception.ApiErrorException;
 import com.android.sdk.net.provider.ApiHandler;
 import com.android.sdk.net.provider.ErrorDataAdapter;
 import com.android.sdk.net.provider.ErrorMessage;
 import com.android.sdk.net.provider.HttpConfig;
+import com.android.sdk.net.provider.PostTransformer;
 import com.app.base.BuildConfig;
 import com.app.base.R;
 import com.app.base.data.api.ApiHelper;
-import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.app.base.debug.DebugTools;
+
+import org.reactivestreams.Publisher;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Single;
+import io.reactivex.SingleSource;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -28,8 +37,14 @@ import timber.log.Timber;
  */
 final class NetProviderImpl {
 
+    ExceptionFactory mExceptionFactory = result -> null;
+
     ApiHandler mApiHandler = result -> {
-        //todo
+        int code = result.getCode();
+        //登录状态已过期，请重新登录、账号在其他设备登陆
+        if (ApiHelper.isLoginExpired(code)) {
+            DataContext.getInstance().publishLoginExpired(code);
+        }
     };
 
     HttpConfig mHttpConfig = new HttpConfig() {
@@ -39,26 +54,28 @@ final class NetProviderImpl {
 
         @Override
         public void configHttp(OkHttpClient.Builder builder) {
-            configDebug(builder)
-                    .connectTimeout(CONNECTION_TIME_OUT, TimeUnit.SECONDS)
+            //常规配置
+            builder.connectTimeout(CONNECTION_TIME_OUT, TimeUnit.SECONDS)
                     .readTimeout(IO_TIME_OUT, TimeUnit.SECONDS)
                     .writeTimeout(IO_TIME_OUT, TimeUnit.SECONDS)
                     .hostnameVerifier((hostname, session) -> {
                         Timber.d("hostnameVerifier called with: hostname 、session = [" + hostname + "、" + session.getProtocol() + "]");
                         return true;
                     });
+
+            //调试配置
+            configDebug(builder);
         }
 
-        OkHttpClient.Builder configDebug(OkHttpClient.Builder builder) {
+        void configDebug(OkHttpClient.Builder builder) {
             if (BuildConfig.openDebug) {
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(
                         message -> Timber.tag("===OkHttp===").i(message)
                 );
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                builder.addInterceptor(httpLoggingInterceptor)
-                        .addNetworkInterceptor(new StethoInterceptor());
+                builder.addInterceptor(httpLoggingInterceptor);
+                DebugTools.installStethoHttp(builder);
             }
-            return builder;
         }
 
         @Override
@@ -68,10 +85,9 @@ final class NetProviderImpl {
 
         @Override
         public String baseUrl() {
-            return URLProvider.baseUrl();
+            return DataContext.baseUrl();
         }
     };
-
 
     ErrorMessage mErrorMessage = new ErrorMessage() {
         @Override
@@ -115,6 +131,23 @@ final class NetProviderImpl {
         @Override
         public boolean isErrorDataStub(Object object) {
             return ApiHelper.isDataError(object);
+        }
+    };
+
+    PostTransformer mPostTransformer = new PostTransformer<Object>() {
+        @Override
+        public SingleSource<Object> apply(Single<Object> upstream) {
+            return upstream;
+        }
+
+        @Override
+        public Publisher<Object> apply(Flowable<Object> upstream) {
+            return upstream;
+        }
+
+        @Override
+        public ObservableSource<Object> apply(Observable<Object> upstream) {
+            return upstream;
         }
     };
 
