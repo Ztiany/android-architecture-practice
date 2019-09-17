@@ -11,6 +11,10 @@ import com.blankj.utilcode.util.NetworkUtils;
 
 import timber.log.Timber;
 
+import static com.app.base.data.NetProviderImplKt.newApiHandler;
+import static com.app.base.data.NetProviderImplKt.newErrorDataAdapter;
+import static com.app.base.data.NetProviderImplKt.newErrorMessage;
+import static com.app.base.data.NetProviderImplKt.newHttpConfig;
 import static com.app.base.data.URLProviderKt.addAllHost;
 import static com.app.base.data.URLProviderKt.addReleaseHost;
 import static com.app.base.data.URLProviderKt.getBaseUrl;
@@ -48,16 +52,15 @@ public class DataContext {
         //环境初始化
         initEnvironment();
         //初始化网络库
-        NetProviderImpl netProvider = new NetProviderImpl();
         NetContext.get()
                 .newBuilder()
-                .aipHandler(netProvider.mApiHandler)
-                .httpConfig(netProvider.mHttpConfig)
+                .aipHandler(newApiHandler())
+                .httpConfig(newHttpConfig())
                 .networkChecker(NetworkUtils::isConnected)
-                //.postTransformer(netProvider.mPostTransformer)
-                .errorDataAdapter(netProvider.mErrorDataAdapter)
-                .errorMessage(netProvider.mErrorMessage)
-                .exceptionFactory(netProvider.mExceptionFactory)
+                //.postTransformer(null)
+                .errorDataAdapter(newErrorDataAdapter())
+                .errorMessage(newErrorMessage())
+                .exceptionFactory(result -> null)
                 .setup();
     }
 

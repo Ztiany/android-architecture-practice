@@ -1,10 +1,10 @@
 package com.gwchina.sdk.base.data
 
-import com.android.base.kotlin.ifNonNull
-import com.android.base.kotlin.ifNull
-import com.android.base.kotlin.otherwise
+import com.android.base.utils.common.ifNonNull
+import com.android.base.utils.common.ifNull
+import com.android.base.utils.common.otherwise
 import com.android.base.utils.BaseUtils
-import com.android.base.utils.android.SpCache
+import com.android.base.utils.android.cache.SpCache
 
 
 object EnvironmentContext {

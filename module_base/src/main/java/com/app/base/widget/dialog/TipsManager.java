@@ -2,7 +2,7 @@ package com.app.base.widget.dialog;
 
 import android.view.View;
 
-import com.android.base.utils.android.ResourceUtils;
+import com.android.base.utils.android.views.Resources;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -12,7 +12,7 @@ import androidx.annotation.StringRes;
 public class TipsManager {
 
     public static void showMessage(@StringRes int msgId) {
-        showMessage(ResourceUtils.getText(msgId));
+        showMessage(Resources.getText(msgId));
     }
 
     public static void showMessage(CharSequence message) {

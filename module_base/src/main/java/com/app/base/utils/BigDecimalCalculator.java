@@ -65,7 +65,6 @@ public class BigDecimalCalculator {
      * @param v 需要四舍五入的数字
      * @return 四舍五入后的结果
      */
-
     public static float round(float v) {
         BigDecimal b = new BigDecimal(Float.toString(v));
         BigDecimal one = new BigDecimal("1");
@@ -115,5 +114,3 @@ public class BigDecimalCalculator {
     }
 
 }
-
-

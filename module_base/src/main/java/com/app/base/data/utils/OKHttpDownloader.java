@@ -1,7 +1,7 @@
 package com.app.base.data.utils;
 
-import com.android.base.utils.common.CloseUtils;
-import com.android.base.utils.common.FileUtils;
+import com.android.base.utils.common.Files;
+import com.android.base.utils.common.Lang;
 import com.android.sdk.net.exception.NetworkErrorException;
 
 import java.io.File;
@@ -66,7 +66,7 @@ public class OKHttpDownloader {
             throw new NetworkErrorException();
         }
 
-        FileUtils.makeFilePath(saveFile);
+        Files.makeFilePath(saveFile);
 
         InputStream is = null;
         FileOutputStream fos = null;
@@ -82,9 +82,8 @@ public class OKHttpDownloader {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.closeIOQuietly(is, fos);
+            Lang.closeIOQuietly(is, fos);
         }
-
         return saveFile.getAbsolutePath();
     }
 

@@ -8,7 +8,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.widget.TextView
-import com.android.base.kotlin.use
+import com.android.base.utils.android.views.use
 import com.app.base.R
 
 /**
