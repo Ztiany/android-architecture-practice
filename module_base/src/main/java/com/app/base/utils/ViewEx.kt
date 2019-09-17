@@ -1,7 +1,6 @@
 package com.app.base.utils
 
-import android.support.design.widget.TextInputLayout
-import android.support.v4.content.ContextCompat
+
 import android.text.InputFilter
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
@@ -9,6 +8,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.google.android.material.textfield.TextInputLayout
 
 fun TextInputLayout.textStr(): String {
     val editText = this.editText

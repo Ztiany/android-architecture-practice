@@ -16,7 +16,6 @@
         app:layout_marginTopPercent="25%"
         tools:ignore="ContentDescription"/>
 
-
     <TextView
         android:id="@id/base_retry_tv"
         android:layout_width="wrap_content"
@@ -41,7 +40,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/widget_margin_normal"
         android:text="@string/page_error_retry_action_tips"
-        android:textColor="@color/black"
-        />
+        android:textColor="@color/black" />
 
 </androidx.percentlayout.widget.PercentRelativeLayout>

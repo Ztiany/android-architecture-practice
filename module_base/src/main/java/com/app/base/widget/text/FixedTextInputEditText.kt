@@ -2,9 +2,9 @@ package com.app.base.widget.text
 
 import android.content.Context
 import android.os.Build
-import android.support.design.widget.TextInputEditText
 import android.util.AttributeSet
 import android.widget.TextView
+import com.google.android.material.textfield.TextInputEditText
 
 /** replacing [TextInputEditText] fix bug on ColorOS(MeiZu)*/
 class FixedTextInputEditText(context: Context, attrs: AttributeSet?) : TextInputEditText(context, attrs) {

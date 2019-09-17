@@ -1,10 +1,10 @@
-package com.gwchina.sdk.base.widget.shape
+package com.app.base.widget.shape
 
-import android.support.annotation.IntDef
-import com.gwchina.sdk.base.widget.shape.Direction.Companion.BOTTOM
-import com.gwchina.sdk.base.widget.shape.Direction.Companion.LEFT
-import com.gwchina.sdk.base.widget.shape.Direction.Companion.RIGHT
-import com.gwchina.sdk.base.widget.shape.Direction.Companion.TOP
+import androidx.annotation.IntDef
+import com.app.base.widget.shape.Direction.Companion.BOTTOM
+import com.app.base.widget.shape.Direction.Companion.LEFT
+import com.app.base.widget.shape.Direction.Companion.RIGHT
+import com.app.base.widget.shape.Direction.Companion.TOP
 
 @IntDef(TOP, BOTTOM, LEFT, RIGHT)
 @Retention(AnnotationRetention.SOURCE)

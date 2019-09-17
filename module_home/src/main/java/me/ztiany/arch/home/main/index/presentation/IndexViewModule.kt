@@ -1,6 +1,6 @@
 package me.ztiany.arch.home.main.index.presentation
 
-import com.android.base.app.mvvm.ArchViewModel
+import com.android.base.app.mvvm.RxViewModel
 import me.ztiany.arch.home.main.index.data.IndexDataSource
 import javax.inject.Inject
 
@@ -11,4 +11,4 @@ import javax.inject.Inject
  */
 class IndexViewModule @Inject constructor(
         private val indexDataSource: IndexDataSource
-) : ArchViewModel()
+) : RxViewModel()

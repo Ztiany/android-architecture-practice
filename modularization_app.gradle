@@ -32,6 +32,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
         applicationId "me.ztiany.architecture.${project.name.toLowerCase()}"
         minSdkVersion rootProject.minSdkVersion

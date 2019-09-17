@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
-import com.android.base.app.mvvm.getViewModel
+import androidx.fragment.app.viewModels
 import com.app.base.app.InjectorBaseFragment
 
 /**
@@ -15,9 +15,7 @@ import com.app.base.app.InjectorBaseFragment
  */
 class IndexFragment : InjectorBaseFragment() {
 
-    private val viewModule by lazy {
-        getViewModel<IndexViewModule>(viewModelFactory)
-    }
+    private val viewModel: IndexViewModule by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,6 +1,6 @@
 package me.ztiany.arch.home.setting
 
-import android.support.v7.widget.AppCompatTextView
+import androidx.appcompat.widget.AppCompatTextView
 import com.app.base.app.AppBaseActivity
 
 /**

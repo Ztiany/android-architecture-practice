@@ -1,6 +1,6 @@
 package com.app.base.app
 
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import com.android.base.app.dagger.Injectable
 import com.android.base.app.fragment.BaseStateFragment
 import com.android.base.rx.AutoDisposeLifecycleOwnerEx

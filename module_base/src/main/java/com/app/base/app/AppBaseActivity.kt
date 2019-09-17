@@ -1,8 +1,9 @@
 package com.app.base.app
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v4.content.ContextCompat
+
+import androidx.annotation.CallSuper
+import androidx.core.content.ContextCompat
 import com.android.base.app.activity.BaseActivity
 import com.android.base.rx.AutoDisposeLifecycleOwnerEx
 import com.android.base.utils.android.compat.SystemBarCompat

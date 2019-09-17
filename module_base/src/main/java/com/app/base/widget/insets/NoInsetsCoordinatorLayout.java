@@ -1,12 +1,13 @@
 package com.app.base.widget.insets;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 
 import java.lang.reflect.Field;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 /**
  * @author Ztiany
@@ -19,7 +20,7 @@ public class NoInsetsCoordinatorLayout extends CoordinatorLayout {
         try {
             Field mApplyWindowInsetsListener = CoordinatorLayout.class.getDeclaredField("mApplyWindowInsetsListener");
             mApplyWindowInsetsListener.setAccessible(true);
-            mApplyWindowInsetsListener.set(this, (android.support.v4.view.OnApplyWindowInsetsListener) (view, windowInsetsCompat) -> null);
+            mApplyWindowInsetsListener.set(this, (OnApplyWindowInsetsListener) (view, windowInsetsCompat) -> null);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }

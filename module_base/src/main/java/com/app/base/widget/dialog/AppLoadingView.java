@@ -1,11 +1,12 @@
 package com.app.base.widget.dialog;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
 import com.android.base.app.ui.LoadingView;
 import com.app.base.R;
+
+import androidx.annotation.StringRes;
 
 public class AppLoadingView implements LoadingView {
 

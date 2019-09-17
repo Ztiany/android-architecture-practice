@@ -2,7 +2,6 @@ package com.app.base.config;
 
 import android.annotation.SuppressLint;
 import android.os.Environment;
-import android.support.annotation.NonNull;
 
 import com.android.base.utils.BaseUtils;
 import com.android.base.utils.android.DirectoryUtils;
@@ -11,6 +10,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
 import timber.log.Timber;
 
 /**

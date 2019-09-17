@@ -2,9 +2,9 @@ package com.app.base.widget.insets
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
-import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.app.base.R

@@ -1,11 +1,12 @@
 package com.app.base.widget.dialog;
 
-import android.support.annotation.StringRes;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.android.base.utils.android.ResourceUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.StringRes;
 
 
 public class TipsManager {

@@ -1,6 +1,6 @@
 package me.ztiany.arch.home.main.mine.presentation
 
-import com.android.base.app.mvvm.ArchViewModel
+import com.android.base.app.mvvm.RxViewModel
 import me.ztiany.arch.home.main.mine.data.MineDataSource
 import javax.inject.Inject
 
@@ -11,7 +11,7 @@ import javax.inject.Inject
  */
 class MineViewModel @Inject constructor(
         private val mineDataSource: MineDataSource
-) : ArchViewModel() {
+) : RxViewModel() {
 
 
 }

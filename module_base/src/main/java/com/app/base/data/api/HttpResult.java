@@ -1,8 +1,9 @@
 package com.app.base.data.api;
 
-import android.support.annotation.NonNull;
 
 import com.android.sdk.net.core.Result;
+
+import androidx.annotation.NonNull;
 
 @SuppressWarnings("unused")
 public class HttpResult<T> implements Result<T> {

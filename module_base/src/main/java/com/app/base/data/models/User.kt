@@ -1,4 +1,4 @@
-package com.gwchina.sdk.base.data.models
+package com.app.base.data.models
 
 /**
  * @author Ztiany

@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
-import androidx.fragment.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.template.IProvider;
@@ -13,6 +11,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.app.base.BuildConfig;
 
 import java.util.List;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * @author Ztiany

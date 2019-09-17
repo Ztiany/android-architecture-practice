@@ -1,6 +1,7 @@
 package com.app.base.debug;
 
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author Ztiany

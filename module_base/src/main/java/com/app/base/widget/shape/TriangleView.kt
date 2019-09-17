@@ -10,7 +10,6 @@ import android.util.AttributeSet
 import android.widget.TextView
 import com.android.base.kotlin.use
 import com.app.base.R
-import com.gwchina.sdk.base.widget.shape.Direction
 
 /**
  *@author Ztiany

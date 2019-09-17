@@ -1,12 +1,13 @@
 package com.app.base.widget.dialog;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AppCompatDialog;
 import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.app.base.R;
+
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatDialog;
 
 
 /**

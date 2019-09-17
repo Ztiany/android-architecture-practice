@@ -1,6 +1,6 @@
 package me.ztiany.arch.home.main.injection
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.android.base.app.dagger.ActivityScope
 import com.android.base.app.dagger.FragmentScope
 import com.android.base.app.dagger.ViewModelKey

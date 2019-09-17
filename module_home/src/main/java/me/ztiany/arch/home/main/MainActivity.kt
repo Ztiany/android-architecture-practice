@@ -3,7 +3,7 @@ package me.ztiany.arch.home.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.base.app.fragment.FragmentInfo
 import com.android.base.app.fragment.TabManager

@@ -5,14 +5,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.util.SparseArray;
 
 import com.alibaba.android.arouter.facade.Postcard;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 
 /**
  * @author Ztiany

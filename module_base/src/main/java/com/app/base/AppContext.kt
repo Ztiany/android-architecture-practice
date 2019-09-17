@@ -2,8 +2,8 @@ package com.app.base
 
 import android.app.Activity
 import android.content.Context
-import android.support.multidex.MultiDex
 import androidx.fragment.app.Fragment
+import androidx.multidex.MultiDex
 import com.android.base.app.BaseAppContext
 import com.android.base.app.BaseKit
 import com.android.base.rx.SchedulerProvider

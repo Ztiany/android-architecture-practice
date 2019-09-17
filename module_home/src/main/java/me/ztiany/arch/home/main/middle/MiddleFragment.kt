@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
-import com.android.base.app.mvvm.getViewModel
+import androidx.fragment.app.viewModels
 import com.app.base.app.InjectorBaseFragment
 
 
@@ -15,9 +15,7 @@ import com.app.base.app.InjectorBaseFragment
  */
 class MiddleFragment : InjectorBaseFragment() {
 
-    private val viewModule by lazy {
-        getViewModel<MiddleViewModel>(viewModelFactory)
-    }
+    private val viewModule: MiddleViewModel by viewModels { viewModelFactory }
 
     override fun provideLayout() = TextView(context).apply {
         text = "陪伴"

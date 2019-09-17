@@ -1,8 +1,9 @@
 package com.app.base.data.api;
 
-import android.support.annotation.NonNull;
 
 import com.android.sdk.net.exception.ApiErrorException;
+
+import androidx.annotation.NonNull;
 
 public class ApiHelper {
 

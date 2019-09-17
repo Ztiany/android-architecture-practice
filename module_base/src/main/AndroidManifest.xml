@@ -22,7 +22,7 @@
         <!-- ================================================   Config ================================================ -->
         <!--应用间共享文件-->
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.file.provider"
             android:exported="false"
             android:grantUriPermissions="true">

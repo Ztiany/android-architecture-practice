@@ -1,8 +1,8 @@
 package com.app.base.widget.dialog
 
 import android.content.Context
-import android.support.v7.app.AppCompatDialog
 import android.view.View
+import androidx.appcompat.app.AppCompatDialog
 import com.app.base.R
 import com.blankj.utilcode.util.ScreenUtils
 

@@ -38,6 +38,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     sourceSets {
         main {
             java.srcDirs += "src/github/java"
@@ -103,16 +107,9 @@ dependencies {
     kapt thirdLibraries.glideApt
 
     /*UI*/
-    implementation(uiLibraries.androidWheelPicker) {
-        exclude group: 'com.android.support'
-    }
     api(uiLibraries.qmui) {
         exclude group: 'com.android.support'
     }
-    api uiLibraries.circleImageView
-    api uiLibraries.roundedImageView
-    api uiLibraries.superTextView
-    api uiLibraries.keyboardvisibilityevent
 
     //Debug
     if (openDebug) {
