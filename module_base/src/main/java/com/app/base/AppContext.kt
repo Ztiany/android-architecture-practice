@@ -2,7 +2,6 @@ package com.app.base
 
 import android.app.Activity
 import android.content.Context
-import androidx.fragment.app.Fragment
 import androidx.multidex.MultiDex
 import com.android.base.app.BaseAppContext
 import com.android.base.app.BaseKit
@@ -22,8 +21,7 @@ import com.app.base.router.RouterManager
 import com.app.base.widget.dialog.AppLoadingView
 import com.app.base.widget.dialog.TipsManager
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import okhttp3.OkHttpClient
 import retrofit2.HttpException
 import timber.log.Timber
@@ -35,18 +33,17 @@ import javax.inject.Inject
  * Email: ztiany3@gmail.com
  * Date : 2018-11-01 10:20
  */
-abstract class AppContext : BaseAppContext(), HasSupportFragmentInjector, HasActivityInjector {
+abstract class AppContext : BaseAppContext(), HasAndroidInjector {
 
-    @Inject lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
-    @Inject lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
+    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
-    @Inject lateinit var mAppDataSource: AppDataSource
-    @Inject lateinit var mErrorHandler: ErrorHandler
-    @Inject lateinit var mServiceFactory: ServiceFactory
-    @Inject lateinit var mAppRouter: AppRouter
-    @Inject lateinit var mStorageManager: StorageManager
-    @Inject lateinit var mSchedulerProvider: SchedulerProvider
-    @Inject lateinit var mOkHttpClient: OkHttpClient
+    @Inject lateinit var appDataSource: AppDataSource
+    @Inject lateinit var errorHandler: ErrorHandler
+    @Inject lateinit var serviceFactory: ServiceFactory
+    @Inject lateinit var appRouter: AppRouter
+    @Inject lateinit var storageManager: StorageManager
+    @Inject lateinit var schedulerProvider: SchedulerProvider
+    @Inject lateinit var okHttpClient: OkHttpClient
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
@@ -96,9 +93,7 @@ abstract class AppContext : BaseAppContext(), HasSupportFragmentInjector, HasAct
         //DataContext.getInstance().onAppDataSourcePrepared(appDataSource());
     }
 
-    override fun activityInjector() = dispatchingActivityInjector
-
-    override fun supportFragmentInjector() = dispatchingFragmentInjector
+    override fun androidInjector() = androidInjector
 
     protected abstract fun injectAppContext()
 
@@ -118,37 +113,37 @@ abstract class AppContext : BaseAppContext(), HasSupportFragmentInjector, HasAct
 
         @JvmStatic
         fun storageManager(): StorageManager {
-            return context.mStorageManager
+            return context.storageManager
         }
 
         @JvmStatic
         fun errorHandler(): ErrorHandler {
-            return context.mErrorHandler
+            return context.errorHandler
         }
 
         @JvmStatic
         fun serviceFactory(): ServiceFactory {
-            return context.mServiceFactory
+            return context.serviceFactory
         }
 
         @JvmStatic
         fun appDataSource(): AppDataSource {
-            return context.mAppDataSource
+            return context.appDataSource
         }
 
         @JvmStatic
         fun appRouter(): AppRouter {
-            return context.mAppRouter
+            return context.appRouter
         }
 
         @JvmStatic
         fun schedulerProvider(): SchedulerProvider {
-            return context.mSchedulerProvider
+            return context.schedulerProvider
         }
 
         @JvmStatic
         fun httpClient(): OkHttpClient {
-            return context.mOkHttpClient
+            return context.okHttpClient
         }
 
     }

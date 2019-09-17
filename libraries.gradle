@@ -125,11 +125,11 @@ ext {
             //Dagger
             //============================================================================
             //https://github.com/google/dagger
-            dagger2                           : "com.google.dagger:dagger:2.17",
-            dagger2Android                    : "com.google.dagger:dagger-android:2.17",
-            dagger2AndroidSupport             : "com.google.dagger:dagger-android-support:2.17",
-            dagger2Apt                        : "com.google.dagger:dagger-compiler:2.17",
-            dagger2AndroidApt                 : "com.google.dagger:dagger-android-processor:2.17",
+            dagger2                           : "com.google.dagger:dagger:2.24",
+            dagger2Android                    : "com.google.dagger:dagger-android:2.24",
+            dagger2AndroidSupport             : "com.google.dagger:dagger-android-support:2.24",
+            dagger2Apt                        : "com.google.dagger:dagger-compiler:2.24",
+            dagger2AndroidApt                 : "com.google.dagger:dagger-android-processor:2.24",
             jsr305                            : 'com.google.code.findbugs:jsr305:2.0.1',
 
             //https://github.com/alibaba/ARouter，注意：apt arouter 应该放在  apt dagger 后面
