@@ -1,21 +1,20 @@
 package me.ztiany.arch.home.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.android.base.app.fragment.FragmentInfo
-import com.android.base.app.fragment.TabManager
+import com.android.base.app.fragment.clearBackStack
+import com.android.base.app.fragment.findFragmentByTag
+import com.android.base.app.fragment.inFragmentTransaction
 import com.android.base.utils.android.compat.SystemBarCompat
+import com.android.base.utils.common.ifNonNull
+import com.android.base.utils.common.ignoreCrash
+import com.android.base.utils.common.otherwise
 import com.app.base.app.InjectorAppBaseActivity
 import com.app.base.router.RouterPath
 import com.app.base.widget.dialog.TipsManager
 import com.blankj.utilcode.util.AppUtils
-import kotlinx.android.synthetic.main.main_activity.*
-import me.ztiany.arch.home.main.index.presentation.IndexFragment
-import me.ztiany.arch.home.main.middle.MiddleFragment
-import me.ztiany.arch.home.main.mine.presentation.MineFragment
+import kotlinx.android.synthetic.main.main_fragment_root.*
 import me.ztiany.architecture.home.R
 import timber.log.Timber
 
@@ -29,8 +28,9 @@ import timber.log.Timber
 @Route(path = RouterPath.Main.PATH)
 class MainActivity : InjectorAppBaseActivity() {
 
-    private lateinit var tabManager: MainTabManager
     private var clickToExit = false
+
+    private lateinit var mainFragment: MainFragment
 
     override fun layout() = R.layout.main_activity
 
@@ -49,33 +49,34 @@ class MainActivity : InjectorAppBaseActivity() {
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
-        tabManager = MainTabManager(this, supportFragmentManager, R.id.common_container_id)
-        //ui初始化
+        super.setupView(savedInstanceState)
         //设置 TranslucentStatus
         SystemBarCompat.setTranslucentSystemUi(this, true, false)
-        //MainTable
-        tabManager.setup(savedInstanceState)
-        //bottomBar
-        mainBottomBar.setOnNavigationItemSelectedListener {
-            tabManager.selectTabById(it.itemId)
-            onSelectTab(tabManager.currentPosition)
-            true
+        //设置 MainFragment
+        supportFragmentManager.findFragmentByTag(MainFragment::class).ifNonNull {
+            mainFragment = this@ifNonNull
+        }.otherwise {
+            mainFragment = MainFragment()
+            inFragmentTransaction {
+                addFragment(mainFragment)
+            }
         }
-
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        tabManager.onSaveInstanceState(outState)
-        super.onSaveInstanceState(outState)
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        val page = intent.getIntExtra(RouterPath.Main.PAGE_KEY, 0)
-        if (page in 0..3) {
-            mainBottomBar.post {
-                mainBottomBar.selectedItemId = tabManager.getItemId(page)
-            }
+        setIntent(intent)
+        window.decorView.post {
+            ignoreCrash { processIntent(intent) }
+        }
+    }
+
+    private fun processIntent(intent: Intent) {
+        //切换页面
+        if (intent.hasExtra(RouterPath.PAGE_KEY)) {
+            val page = intent.getIntExtra(RouterPath.PAGE_KEY, 0)
+            supportFragmentManager.clearBackStack()
+            mainFragment.selectTabAtPosition(page)
         }
     }
 
@@ -89,54 +90,6 @@ class MainActivity : InjectorAppBaseActivity() {
             mainBottomBar.postDelayed({ clickToExit = false }, 1000)
         }
 
-    }
-
-    private fun onSelectTab(currentPosition: Int) {
-        // no op
-    }
-}
-
-private class MainTabManager(
-        context: Context,
-        fragmentManager: FragmentManager, containerId: Int
-) : TabManager(context, fragmentManager, MainTabs(), containerId, SHOW_HIDE) {
-
-    private val itemIdArray = intArrayOf(
-            R.id.main_index,
-            R.id.main_middle,
-            R.id.main_mine
-    )
-
-    fun getItemId(position: Int): Int {
-        if (position < itemIdArray.size && position >= 0) {
-            return itemIdArray[position]
-        }
-        return -1
-    }
-
-    private class MainTabs internal constructor() : TabManager.Tabs() {
-        init {
-            add(FragmentInfo.PageBuilder()
-                    .clazz(IndexFragment::class.java)
-                    .tag(IndexFragment::class.java.name)
-                    .toStack(false)
-                    .pagerId(R.id.main_index)
-                    .build())
-
-            add(FragmentInfo.PageBuilder()
-                    .clazz(MiddleFragment::class.java)
-                    .tag(MiddleFragment::class.java.name)
-                    .toStack(false)
-                    .pagerId(R.id.main_middle)
-                    .build())
-
-            add(FragmentInfo.PageBuilder()
-                    .clazz(MineFragment::class.java)
-                    .tag(MineFragment::class.java.name)
-                    .toStack(false)
-                    .pagerId(R.id.main_mine)
-                    .build())
-        }
     }
 
 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.app.base.app.InjectorBaseFragment
+import me.ztiany.arch.home.main.MainFragment
 
 
 /**
@@ -13,7 +14,7 @@ import com.app.base.app.InjectorBaseFragment
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-02 14:38
  */
-class MiddleFragment : InjectorBaseFragment() {
+class MiddleFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
 
     private val viewModule: MiddleViewModel by viewModels { viewModelFactory }
 

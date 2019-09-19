@@ -1,0 +1,5 @@
+apply from: '../modularization_config.gradle'
+
+android {
+    resourcePrefix "account_"
+}
