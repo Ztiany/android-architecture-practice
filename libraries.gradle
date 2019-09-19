@@ -171,6 +171,8 @@ ext {
             wrapperAdapter : 'com.github.Ztiany:WrapperAdapter:4.0.1',
             //https://github.com/hdodenhof/CircleImageView
             circleImageView: 'de.hdodenhof:circleimageview:3.0.1',
+            //https://github.com/Fotoapparat/Fotoapparat
+            fotoapparat              : 'io.fotoapparat:fotoapparat:2.7.0'
     ]
 
     testLibraries = [

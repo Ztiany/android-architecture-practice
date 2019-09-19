@@ -1,5 +1,5 @@
 //通用类库
-def libs = ["lib_base", "lib_network", "lib_cache"/* ,"lib_media_selector", "lib_qrcode", , "lib_push", "lib_social"*/]
+def libs = ["lib_base", "lib_network", "lib_cache", "lib_media_selector", "lib_qrcode"/* , "lib_push", "lib_social"*/]
 libs.forEach {
     include(":$it")
     project(":$it").projectDir = new File("../Android-Libs/$it")
