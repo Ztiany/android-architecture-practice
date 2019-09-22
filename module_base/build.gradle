@@ -81,6 +81,7 @@ dependencies {
     api androidLibraries.multidex
     api androidLibraries.exifinterface
     api androidLibraries.flexbox
+    api androidLibraries.ktx
 
     //kotlin
     api kotlinLibraries.rxKotlin
