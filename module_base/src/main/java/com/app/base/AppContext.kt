@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.android.base.app.BaseAppContext
-import com.android.base.app.BaseKit
+import com.android.base.app.Sword
 import com.android.base.rx.SchedulerProvider
 import com.android.sdk.net.exception.NetworkErrorException
 import com.android.sdk.net.exception.ServerErrorException
@@ -71,13 +71,13 @@ abstract class AppContext : BaseAppContext(), HasAndroidInjector {
         injectAppContext()
 
         //基础库配置
-        BaseKit.get()
+        Sword.get()
                 .enableAutoInject()
                 .setDefaultFragmentContainerId(R.id.common_container_id)//默认的Fragment容器id
                 .registerLoadingFactory { AppLoadingView(it) }//默认的通用的LoadingDialog和Toast实现
                 .setDefaultPageStart(AppSettings.DEFAULT_PAGE_START)//分页开始页码
                 .setDefaultPageSize(AppSettings.DEFAULT_PAGE_SIZE)//默认分页大小
-                .setErrorClassifier(object : BaseKit.ErrorClassifier {
+                .setErrorClassifier(object : Sword.ErrorClassifier {
                     override fun isNetworkError(throwable: Throwable): Boolean {
                         Timber.d("isNetworkError $throwable")
                         return throwable is NetworkErrorException || throwable is IOException

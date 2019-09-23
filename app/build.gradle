@@ -128,6 +128,7 @@ dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation project(path: ':module_base')
         implementation project(path: ':module_home')
+        implementation project(path: ':module_account')
 
         //第三方库
 

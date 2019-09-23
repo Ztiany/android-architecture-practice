@@ -10,6 +10,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import me.ztiany.arch.home.main.MainActivity
+import me.ztiany.arch.home.main.MainFragment
 import me.ztiany.arch.home.main.index.data.IndexDataSource
 import me.ztiany.arch.home.main.index.data.IndexRepository
 import me.ztiany.arch.home.main.index.presentation.IndexFragment
@@ -60,6 +61,10 @@ abstract class SubModule {
     @Binds
     @ActivityScope
     abstract fun provideIndexDataSource(indexRepository: IndexRepository): IndexDataSource
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributeMainFragmentInjector(): MainFragment
 
     @FragmentScope
     @ContributesAndroidInjector

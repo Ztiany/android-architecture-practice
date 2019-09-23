@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:gravity="center_horizontal"
+    tools:ignore="ResourceName,HardcodedText">
+
+    <Button
+        android:id="@+id/indexBtnOpenAccount"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:text="打开 Account Activity"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/indexBtnSelectPicture"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:text="选择图片"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

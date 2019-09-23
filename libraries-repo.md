@@ -58,9 +58,9 @@
             rclayout                 : 'com.gcssloop.widget:rclayout:1.6.0'
 
             /*image view about*/
+            rotatePhotoView          : 'com.chensl.rotatephotoview:rotatephotoview:1.0.5'
             //https://github.com/chrisbanes/PhotoView
             photoView                : 'com.github.chrisbanes:PhotoView:2.1.3'
-            rotatePhotoView          : 'com.chensl.rotatephotoview:rotatephotoview:1.0.5'
             //https://github.com/davemorrissey/subsampling-scale-image-view
             subsamplingScaleImageView: 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
             //https://github.com/vinc3m1/RoundedImageView
@@ -85,8 +85,6 @@
             smartTab                 : 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
 
             /*camera*/
-            //https://github.com/Fotoapparat/Fotoapparat
-            fotoapparat              : 'io.fotoapparat:fotoapparat:2.7.0'
             //https://github.com/CameraKit/camerakit-android
             cameraKit                : 'com.camerakit:camerakit:1.0.0-beta3.10'
             //need kotlin and kotlinx-coroutines-android

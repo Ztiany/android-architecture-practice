@@ -48,12 +48,14 @@ allprojects {
 
         configurations.all {
             resolutionStrategy.force(
-                    "android.arch.core:runtime:1.1.1",
-                    "android.arch.lifecycle:livedata:1.1.1",
-                    "android.arch.lifecycle:viewmodel:1.1.1",
-                    "android.arch.lifecycle:extensions:1.1.1",
-                    "android.arch.lifecycle:livedata-core:1.1.1",
-                    "android.arch.lifecycle:runtime:1.1.1"
+                    "androidx.fragment:fragment:1.2.0-alpha02",
+                    "androidx.activity:activity:1.1.0-alpha02",
+                    "androidx.core:core:1.1.0",
+                    "androidx.lifecycle:lifecycle-livedata:2.2.0-alpha03",
+                    "androidx.recyclerview:recyclerview:1.1.0-beta03",
+                    "androidx.transition:transition:1.2.0-rc01",
+                    "androidx.vectordrawable:vectordrawable:1.1.0",
+                    "androidx.vectordrawable:vectordrawable-animated:1.1.0",
             )
         }
     }
