@@ -3,7 +3,6 @@ package com.app.base.app
 import androidx.lifecycle.ViewModelProvider
 import com.android.base.app.dagger.Injectable
 import com.android.base.app.fragment.BaseStateFragment
-import com.android.base.rx.AutoDisposeLifecycleOwnerEx
 import com.app.base.router.AppRouter
 import javax.inject.Inject
 
@@ -12,7 +11,7 @@ import javax.inject.Inject
  *      Email: ztiany3@gmail.com
  *      Date : 2019-01-15 12:57
  */
-open class InjectorBaseStateFragment : BaseStateFragment(), Injectable, AutoDisposeLifecycleOwnerEx {
+open class InjectorBaseStateFragment : BaseStateFragment(), Injectable {
 
     @Inject protected lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject protected lateinit var appRouter: AppRouter

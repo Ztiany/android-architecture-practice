@@ -27,11 +27,11 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
 
     private val mediaSelector by lazy {
         MediaSelector(this, object : MediaSelector.Callback {
-            override fun onTakeMultiPictureSuccess(pictures: MutableList<String>?) {
+            override fun onTakeMultiPictureSuccess(pictures: MutableList<String>) {
                 Timber.d("pictures $pictures")
             }
 
-            override fun onTakePictureSuccess(picture: String?) {
+            override fun onTakePictureSuccess(picture: String) {
                 Timber.d("picture $picture")
             }
         })

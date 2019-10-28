@@ -3,9 +3,9 @@ package me.ztiany.arch.home.main
 import android.content.Intent
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.android.base.app.fragment.clearBackStack
-import com.android.base.app.fragment.findFragmentByTag
-import com.android.base.app.fragment.inFragmentTransaction
+import com.android.base.app.fragment.tools.clearBackStack
+import com.android.base.app.fragment.tools.findFragmentByTag
+import com.android.base.app.fragment.tools.inFragmentTransaction
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash

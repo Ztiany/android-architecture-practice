@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import com.android.base.app.fragment.BaseFragment
-import com.android.base.app.fragment.FragmentInfo
-import com.android.base.app.fragment.TabManager
+import com.android.base.app.fragment.tools.FragmentInfo
+import com.android.base.app.fragment.tools.TabManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment_root.*
 import me.ztiany.arch.home.main.index.presentation.IndexFragment

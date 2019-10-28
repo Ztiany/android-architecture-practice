@@ -66,7 +66,7 @@ public class OKHttpDownloader {
             throw new NetworkErrorException();
         }
 
-        Files.makeFilePath(saveFile);
+        Files.makeParentPath(saveFile);
 
         InputStream is = null;
         FileOutputStream fos = null;

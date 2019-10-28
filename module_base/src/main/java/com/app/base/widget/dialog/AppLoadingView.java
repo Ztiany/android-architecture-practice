@@ -6,7 +6,11 @@ import android.text.TextUtils;
 import com.android.base.app.ui.LoadingView;
 import com.app.base.R;
 
+import org.jetbrains.annotations.NotNull;
+
 import androidx.annotation.StringRes;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 public class AppLoadingView implements LoadingView {
 
@@ -18,7 +22,7 @@ public class AppLoadingView implements LoadingView {
     }
 
     @Override
-    public void showLoadingDialog(CharSequence message, boolean cancelable) {
+    public void showLoadingDialog(@NotNull CharSequence message, boolean cancelable) {
         initDialog();
         if (TextUtils.isEmpty(message)) {
             mLoadingDialog.setMessage(R.string.dialog_loading);
@@ -41,7 +45,7 @@ public class AppLoadingView implements LoadingView {
 
     @Override
     public void showLoadingDialog(boolean cancelable) {
-        showLoadingDialog(null, cancelable);
+        showLoadingDialog("", cancelable);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class AppLoadingView implements LoadingView {
     }
 
     @Override
-    public void showMessage(CharSequence message) {
+    public void showMessage(@NotNull CharSequence message) {
         TipsManager.showMessage(message);
     }
 
@@ -65,6 +69,16 @@ public class AppLoadingView implements LoadingView {
         if (mLoadingDialog == null) {
             mLoadingDialog = (LoadingDialog) Dialogs.createLoadingDialog(mContext, false);
         }
+    }
+
+    @Override
+    public void dismissLoadingDialog(long minimumMills, @NotNull Function0<Unit> onDismiss) {
+        throw new UnsupportedOperationException("the method should be implemented by implementer of LoadingView");
+    }
+
+    @Override
+    public boolean isLoadingDialogShowing() {
+        return mLoadingDialog !=null && mLoadingDialog.isShowing();
     }
 
 }
