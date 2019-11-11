@@ -9,9 +9,9 @@ import com.android.base.app.fragment.tools.FragmentInfo
 import com.android.base.app.fragment.tools.TabManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.main_fragment_root.*
-import me.ztiany.arch.home.main.index.presentation.IndexFragment
-import me.ztiany.arch.home.main.middle.MiddleFragment
-import me.ztiany.arch.home.main.mine.presentation.MineFragment
+import me.ztiany.arch.home.main.presentation.index.IndexFragment
+import me.ztiany.arch.home.main.presentation.middle.MiddleFragment
+import me.ztiany.arch.home.main.presentation.mine.MineFragment
 import me.ztiany.architecture.home.R
 import timber.log.Timber
 

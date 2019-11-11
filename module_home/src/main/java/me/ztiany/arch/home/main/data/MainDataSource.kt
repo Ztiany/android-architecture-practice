@@ -1,4 +1,4 @@
-package me.ztiany.arch.home.main.index.data
+package me.ztiany.arch.home.main.data
 
 import javax.inject.Inject
 
@@ -7,11 +7,11 @@ import javax.inject.Inject
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-05 15:34
  */
-interface IndexDataSource {
+interface MainDataSource {
     fun loadData(): String
 }
 
-class IndexRepository @Inject constructor() : IndexDataSource {
+class MainRepository @Inject constructor() : MainDataSource {
 
     override fun loadData(): String {
         return "Index"

@@ -1,4 +1,4 @@
-package me.ztiany.arch.home.main.mine.presentation
+package me.ztiany.arch.home.main.presentation.mine
 
 import android.graphics.Color
 import android.os.Bundle

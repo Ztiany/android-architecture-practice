@@ -9,7 +9,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
-import me.ztiany.arch.home.main.HomeModule;
+import me.ztiany.arch.home.main.injection.HomeModule;
 
 @Component(
         modules = {

@@ -1,4 +1,4 @@
-package me.ztiany.arch.home.main.index.presentation
+package me.ztiany.arch.home.main.presentation.index
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package me.ztiany.arch.home.main.middle
+package me.ztiany.arch.home.main.presentation.middle
 
 import com.android.base.app.mvvm.RxViewModel
 import javax.inject.Inject

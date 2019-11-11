@@ -139,8 +139,8 @@ dependencies {
         kapt thirdLibraries.arouterAnnotation
 
     } else {
-        implementation androidLibraries.androidCompatV7
-        implementation androidLibraries.androidDesign
+        implementation androidLibraries.appcompat
+        implementation androidLibraries.material
     }
 
 }

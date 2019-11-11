@@ -11,16 +11,14 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import me.ztiany.arch.home.main.MainActivity
 import me.ztiany.arch.home.main.MainFragment
-import me.ztiany.arch.home.main.index.data.IndexDataSource
-import me.ztiany.arch.home.main.index.data.IndexRepository
-import me.ztiany.arch.home.main.index.presentation.IndexFragment
-import me.ztiany.arch.home.main.index.presentation.IndexViewModule
-import me.ztiany.arch.home.main.middle.MiddleFragment
-import me.ztiany.arch.home.main.middle.MiddleViewModel
-import me.ztiany.arch.home.main.mine.data.MineDataSource
-import me.ztiany.arch.home.main.mine.data.MineRepository
-import me.ztiany.arch.home.main.mine.presentation.MineFragment
-import me.ztiany.arch.home.main.mine.presentation.MineViewModel
+import me.ztiany.arch.home.main.data.MainDataSource
+import me.ztiany.arch.home.main.data.MainRepository
+import me.ztiany.arch.home.main.presentation.index.IndexFragment
+import me.ztiany.arch.home.main.presentation.index.IndexViewModule
+import me.ztiany.arch.home.main.presentation.middle.MiddleFragment
+import me.ztiany.arch.home.main.presentation.middle.MiddleViewModel
+import me.ztiany.arch.home.main.presentation.mine.MineFragment
+import me.ztiany.arch.home.main.presentation.mine.MineViewModel
 
 /**
  * @author Ztiany
@@ -40,10 +38,6 @@ abstract class HomeModule {
 abstract class SubModule {
 
     @Binds
-    @ActivityScope
-    abstract fun provideMineDataSource(mineRepository: MineRepository): MineDataSource
-
-    @Binds
     @IntoMap
     @ViewModelKey(IndexViewModule::class)
     abstract fun provideIndexViewModule(indexViewModule: IndexViewModule): ViewModel
@@ -60,7 +54,7 @@ abstract class SubModule {
 
     @Binds
     @ActivityScope
-    abstract fun provideIndexDataSource(indexRepository: IndexRepository): IndexDataSource
+    abstract fun provideMainDataSource(indexRepository: MainRepository): MainDataSource
 
     @FragmentScope
     @ContributesAndroidInjector

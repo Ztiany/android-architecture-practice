@@ -1,7 +1,7 @@
-package me.ztiany.arch.home.main.index.presentation
+package me.ztiany.arch.home.main.presentation.index
 
 import com.android.base.app.mvvm.RxViewModel
-import me.ztiany.arch.home.main.index.data.IndexDataSource
+import me.ztiany.arch.home.main.data.MainDataSource
 import javax.inject.Inject
 
 /**
@@ -10,5 +10,5 @@ import javax.inject.Inject
  * Date : 2018-11-05 14:23
  */
 class IndexViewModule @Inject constructor(
-        private val indexDataSource: IndexDataSource
+        private val mainDataSource: MainDataSource
 ) : RxViewModel()
