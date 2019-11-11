@@ -1,13 +1,12 @@
 //通用类库
-def libs = ["lib_base", "lib_network", "lib_cache", "lib_media_selector", "lib_qrcode" ,"lib_coroutines"]
+def libs = ["lib_base", "lib_network", "lib_cache", "lib_media_selector", "lib_qrcode"]
 libs.forEach {
     include(":$it")
     project(":$it").projectDir = new File("../Android-Libs/$it")
 }
 
 //业务基础架构
-include ':module_lib_push'
-include ':module_lib_social'
+include ':module_base_social'
 include ':module_base'
 //业务模块
 include ':module_home'

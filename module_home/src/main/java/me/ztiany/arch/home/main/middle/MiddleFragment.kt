@@ -19,7 +19,7 @@ class MiddleFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
     private val viewModule: MiddleViewModel by viewModels { viewModelFactory }
 
     override fun provideLayout() = TextView(context).apply {
-        text = "陪伴"
+        text = "中间"
         textSize = 30F
         gravity = Gravity.CENTER
         setTextColor(Color.BLUE)
