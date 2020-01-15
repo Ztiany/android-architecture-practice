@@ -5,9 +5,13 @@
 ```shell
 # base
 git clone git@github.com:Ztiany/Android-Libs.git
+cd Android-Libs
+git checkout -b androidx origin/androidx
 
 # project
 git clone git@github.com:Ztiany/AndroidArchitecture.git
+cd AndroidArchitecture
+git checkout -b androidx origin/androidx
 ```
 
 make sure the projects in the same directory.
@@ -31,4 +35,4 @@ business modules:
 
 ## 3 architecture 
 
-refer android architecture parts in [notes](https://github.com/Ztiany/notes)。
+refer android architecture parts in [notes](https://github.com/Ztiany/programming-data)。
