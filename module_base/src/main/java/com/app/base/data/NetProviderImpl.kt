@@ -105,6 +105,6 @@ internal fun newPostTransformer(): PostTransformer<*> = object : PostTransformer
 internal fun newApiHandler(): ApiHandler = ApiHandler { result ->
     //登录状态已过期，请重新登录、账号在其他设备登陆
     if (ApiHelper.isLoginExpired(result.code)) {
-        DataContext.getInstance().publishLoginExpired(result.code)
+        DataContext.getInstance().publishLoginExpired(ApiErrorException(result.code,"登录过期"))
     }
 }

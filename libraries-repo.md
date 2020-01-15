@@ -22,7 +22,7 @@
             aspectj                           : 'org.aspectj:aspectjrt:1.8.9'
             
             //https://github.com/yanzhenjie/AndPermission
-            andPermission                     : 'com.yanzhenjie.permission:support:2.0.1'
+            andPermission                     : 'com.yanzhenjie:permission:2.0.3'
             //zip4j
             zip4j                             : 'net.lingala.zip4j:zip4j:1.3.2'
             //JobScheduler：https://github.com/evernote/android-job
@@ -56,7 +56,7 @@
 ```groovy
             //https://github.com/GcsSloop/rclayout
             rclayout                 : 'com.gcssloop.widget:rclayout:1.6.0'
-
+            
             /*image view about*/
             rotatePhotoView          : 'com.chensl.rotatephotoview:rotatephotoview:1.0.5'
             //https://github.com/chrisbanes/PhotoView
@@ -65,17 +65,17 @@
             subsamplingScaleImageView: 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
             //https://github.com/vinc3m1/RoundedImageView
             roundedImageView         : 'com.makeramen:roundedimageview:2.3.0'
-            //https://github.com/Piasy/BigImageViewer
+            //https://github.com/stfalcon-studio/StfalconImageViewer
+            stfalconImageviewer      : 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
+            //https://github.com/gjiazhe/ScrollParallaxImageView
+            scrollparallaximageview  : 'com.gjiazhe:scrollparallaximageview:1.0'
+             //https://github.com/Piasy/BigImageViewer
             bigImageViewer           : 'com.github.piasy:BigImageViewer:1.5.0'
             //https://github.com/Piasy/BigImageViewer
             bigImageViewerGlideLoader: 'com.github.piasy:GlideImageLoader:1.5.0'
             //https://github.com/iielse/ImageWatcher，高仿微信可拖拽返回
             imageWatcher             : 'com.github.iielse:ImageWatcher:1.1.1'
-            //https://github.com/stfalcon-studio/StfalconImageViewer
-            stfalconImageviewer      : 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
-            //https://github.com/gjiazhe/ScrollParallaxImageView
-            scrollparallaximageview  : 'com.gjiazhe:scrollparallaximageview:1.0'
-
+            
             /*view pager about*/
             //https://github.com/HuanHaiLiuXin/CoolViewPager
             coolviewpager            : 'com.huanhailiuxin.view:coolviewpager:1.0.0'
@@ -101,8 +101,6 @@
             wheelWiewPicker          : "com.github.zyyoona7:wheelview:1.0.5"
 
             /*text view*/
-            //https://github.com/chenBingX/SuperTextView
-            superTextView            : 'com.github.chenBingX:SuperTextView:v3.1.4'
             //https://github.com/iwgang/CountdownView
             countdownView            : 'com.github.iwgang:countdownview:2.1.3'
 
@@ -118,7 +116,7 @@
             //https://github.com/GcsSloop/pager-layoutmanager
             pagerlayoutmanager       : 'com.gcssloop.recyclerview:pagerlayoutmanager:2.3.2@aar'
             //https://github.com/alibaba/vlayout
-            vlayout                  : 'com.alibaba.android:vlayout:1.0.4@aar',
+            vlayout                  : 'com.alibaba.android:vlayout:1.0.4@aar'
             //https://github.com/DingMouRen/LayoutManagerGroup
             layoutManagerGroup       : 'com.github.DingMouRen:LayoutManagerGroup:f68c9712e5'
 
@@ -129,4 +127,7 @@
             systemUiHelper           : 'me.zhanghai.android.systemuihelper:library:1.0.0'
             //soft input method：https://github.com/yshrsmz/KeyboardVisibilityEvent
             keyboardvisibilityevent  : 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.0.0'
+            
+            //https://github.com/zyyoona7/WheelPicker
+            WheelPicker:"com.github.zyyoona7:wheelview:1.0.7"
 ```

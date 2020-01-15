@@ -14,6 +14,7 @@ androidExtensions {
 }
 
 boolean openDebug = isOpenDebug.toBoolean()
+boolean openLog = isOpenLog.toBoolean()
 
 android {
 
@@ -26,6 +27,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("boolean", "openDebug", "$openDebug")
+        buildConfigField("boolean", "openLog", "$openLog")
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -46,16 +48,20 @@ android {
         main {
             java.srcDirs += "src/github/java"
             res.srcDirs += "src/github/res"
-            if (openDebug) {
-                java.srcDirs += "src/tools/java"
-                res.srcDirs += "src/tools/res"
-            }
-        }
-    }
 
-    externalNativeBuild {
-        cmake {
-            //path "src/main/cpp/CMakeLists.txt"
+            java.srcDirs += "src/umeng/java"
+            res.srcDirs += "src/umeng/res"
+
+            java.srcDirs += "src/common/java"
+            res.srcDirs += "src/common/res"
+
+            if (openDebug) {
+                java.srcDirs += "src/tools-debug/java"
+                res.srcDirs += "src/tools-debug/res"
+            } else {
+                java.srcDirs += "src/tools-release/java"
+                res.srcDirs += "src/tools-release/res"
+            }
         }
     }
 

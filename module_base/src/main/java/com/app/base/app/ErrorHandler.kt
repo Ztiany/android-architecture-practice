@@ -12,16 +12,13 @@ import java.lang.ref.WeakReference
 interface ErrorHandler {
 
     /** 根据异常，生成一个合理的错误提示 */
-    fun createMessage(throwable: Throwable): CharSequence
+    fun generateMessage(throwable: Throwable): CharSequence
 
-    /** 直接处理异常，比如根据 [createMessage] 方法生成的消息弹出一个 toast。 */
+    /** 直接处理异常，比如根据 [generateMessage] 方法生成的消息弹出一个 toast。 */
     fun handleError(throwable: Throwable)
 
-    /** 直接处理异常，自定义消息处理*/
-    fun handleError(throwable: Throwable, processor: ((CharSequence) -> Unit))
-
     /**处理全局异常，此方法仅由数据层调用，用于统一处理全局异常*/
-    fun handleGlobalError(code: Int)
+    fun handleGlobalError(throwable: Throwable)
 
 }
 
@@ -29,24 +26,17 @@ internal class AppErrorHandler : ErrorHandler {
 
     private var showingDialog: WeakReference<Dialog>? = null
 
-    override fun createMessage(throwable: Throwable): CharSequence {
+    override fun generateMessage(throwable: Throwable): CharSequence {
         return ErrorMessageFactory.createMessage(throwable)
     }
 
     override fun handleError(throwable: Throwable) {
-
     }
 
-    override fun handleError(throwable: Throwable, processor: (CharSequence) -> Unit) {
-
-    }
-
-    override fun handleGlobalError(code: Int) {
-
+    override fun handleGlobalError(throwable: Throwable) {
     }
 
     private fun showReLoginDialog(code: Int): Boolean {
-
         return true
     }
 

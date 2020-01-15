@@ -1,7 +1,7 @@
 package com.app.base.data
 
-import com.gwchina.sdk.base.data.Environment
-import com.gwchina.sdk.base.data.EnvironmentContext
+import com.android.base.utils.debug.Environment
+import com.android.base.utils.debug.EnvironmentContext
 
 private const val CATEGORY_HOST = "接口环境"
 private const val H5_HOST = "H5环境"
