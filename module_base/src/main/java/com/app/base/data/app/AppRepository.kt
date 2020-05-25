@@ -2,7 +2,7 @@ package com.app.base.data.app
 
 import android.content.Context
 import com.android.base.app.dagger.ContextType
-import com.android.base.rx.SchedulerProvider
+import com.android.base.concurrent.SchedulerProvider
 import com.android.sdk.net.service.ServiceFactory
 import com.app.base.data.models.User
 import io.reactivex.Completable
@@ -25,7 +25,7 @@ internal class AppRepository @Inject constructor(
         private const val APP_USER_KEY = "parent_user"
     }
 
-    internal val storageManager = StorageManager(context, this)
+    internal val storageManager = StorageManager(context)
     private val observableUser = BehaviorProcessor.create<User>()
 
     private var currentUser = User.NOT_LOGIN

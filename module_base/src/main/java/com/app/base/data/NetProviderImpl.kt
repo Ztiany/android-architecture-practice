@@ -25,7 +25,7 @@ internal fun newHttpConfig(): HttpConfig {
         private val CONNECTION_TIME_OUT = 10
         private val IO_TIME_OUT = 20
 
-        override fun baseUrl() = DataContext.baseUrl()
+        override fun baseUrl() = DataContext.baseAPIUrl()
         override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder)= false
 
         override fun configHttp(builder: OkHttpClient.Builder) {

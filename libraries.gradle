@@ -1,44 +1,64 @@
 ext {
 
+    def appcompat_version = "1.1.0"
+    def activity_version = "1.1.0"
+    def fragment_version = "1.2.1"
+    def lifecycle_version = "2.2.0"
+    def arch_version = "2.1.0"
+
     androidLibraries = [
+            /*multi-dex*/
             multidex                : "androidx.multidex:multidex:2.0.1",
             multidexInstrumentation : "androidx.multidex:multidex-instrumentation:2.0.0",
 
-            annotation              : "androidx.annotation:annotation:1.1.0",
+            /*activity*/
+            // Java language implementation
+            activity                : "androidx.activity:activity:$activity_version",
+            // Kotlin
+            activityKtx             : "androidx.activity:activity-ktx:$activity_version",
 
-            supportV4               : "androidx.legacy:legacy-support-v4:1.0.0",
-            supportV13              : "androidx.legacy:legacy-support-v13:1.0.0",
-            appcompat               : "androidx.appcompat:appcompat:1.1.0-rc01",
-            asyncLayoutInflater     : "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0",
+            /*fragment*/
+            // Java language implementation
+            fragment                : "androidx.fragment:fragment:$fragment_version",
+            // Kotlin
+            fragmentKtx             : "androidx.fragment:fragment-ktx:$fragment_version",
 
-            material                : "com.google.android.material:material:1.1.0-alpha09",
-            dynamicAnimation        : "androidx.dynamicanimation:dynamicanimation:1.0.0",
-            percentLayout           : "androidx.percentlayout:percentlayout:1.0.0",
-            transition              : "androidx.transition:transition:1.0.1",
-            constraintLayout        : "androidx.constraintlayout:constraintlayout:2.0.0-beta2",
+            /*appcompat*/
+            appcompat               : "androidx.appcompat:appcompat:$appcompat_version",
+            // For loading and tinting drawables on older versions of the platform
+            appcompatResources      : "androidx.appcompat:appcompat-resources:$appcompat_version",
+
+            /*ui component*/
             recyclerView            : "androidx.recyclerview:recyclerview:1.1.0",
             recyclerViewSelection   : "androidx.recyclerview:recyclerview-selection:1.0.0",
-            exifinterface           : "androidx.exifinterface:exifinterface:1.0.0",
+            constraintLayout        : "androidx.constraintlayout:constraintlayout:2.0.0-beta4",
+            percentLayout           : "androidx.percentlayout:percentlayout:1.0.0",
             cardView                : "androidx.cardview:cardview:1.0.0",
             viewpager2              : "androidx.viewpager2:viewpager2:1.0.0",
+            asyncLayoutInflater     : "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0",
+            swiperefreshlayout      : "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
+            transition              : "androidx.transition:transition:1.3.0",
+            dynamicAnimation        : "androidx.dynamicanimation:dynamicanimation:1.0.0",
 
-            fragmentKtx             : "androidx.fragment:fragment-ktx:1.1.0",
-            archRuntime             : "androidx.arch.core:core-runtime:2.1.0-rc01",
-            archCommon              : "androidx.arch.core:core-common:2.1.0-rc01",
-            lifecycleCommon         : "androidx.lifecycle:lifecycle-common:2.2.0-alpha03",
-            lifecycleCommonJava8    : "androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha03",
-            lifecycleRuntimeKtx     : "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha03",
-            lifecycleLiveDataCore   : "androidx.lifecycle:lifecycle-livedata-core:2.2.0-alpha03",
-            lifecycleLiveData       : "androidx.lifecycle:lifecycle-livedata:2.2.0-alpha03",
-            lifecycleLiveKtx        : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha03",
-            lifecycleViewModel      : "androidx.lifecycle:lifecycle-viewmodel:2.2.0-alpha03",
-            lifecycleViewModelKtx   : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha03",
-            lifecycleExtensions     : "androidx.lifecycle:lifecycle-extensions:2.2.0-alpha03",
-            lifecycleReactiveStreams: "androidx.lifecycle:lifecycle-reactivestreams:2.2.0-alpha03",
+            archRuntime             : "androidx.arch.core:core-runtime:$arch_version",
+            archCommon              : "androidx.arch.core:core-common:$arch_version",
+            lifecycleCommon         : "androidx.lifecycle:lifecycle-common:$lifecycle_version",
+            lifecycleCommonJava8    : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+            lifecycleRuntimeKtx     : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+            lifecycleLiveDataCore   : "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version",
+            lifecycleLiveData       : "androidx.lifecycle:lifecycle-livedata:$lifecycle_version",
+            lifecycleLiveKtx        : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+            lifecycleViewModel      : "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version",
+            lifecycleViewModelKtx   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+            lifecycleExtensions     : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            lifecycleReactiveStreams: "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version",
 
+            /*paging*/
             paging                  : "androidx.paging:paging-common:2.0.0-rc01",
             pagingRuntime           : "androidx.paging:paging-runtime:2.0.0-rc01",
             pagingRxJava            : "androidx.paging:paging-rxjava2:2.0.0-rc01",
+
+            /*room*/
             room                    : "androidx.room:room-common:2.0.0-rc01",
             roomCompiler            : "androidx.room:room-compiler:2.0.0-rc01",
             roomGuava               : "androidx.room:room-guava:2.0.0-rc01",
@@ -53,27 +73,33 @@ ext {
             navigationFragmentKtx   : "androidx.navigation:navigation-fragment-ktx:2.0.0",
             navigationUiKtx         : "androidx.navigation:navigation-ui-ktx:2.0.0",
 
-            //https://android.github.io/android-ktx/core-ktx/index.html
-            ktx                     : 'androidx.core:core-ktx:1.0.2',
+            //tools
+            annotation              : "androidx.annotation:annotation:1.1.0",
+            exifinterface           : "androidx.exifinterface:exifinterface:1.0.0",
+            biometric               : "androidx.biometric:biometric:1.0.0",
 
+            //https://android.github.io/android-ktx/core-ktx/index.html
+            ktx                     : 'androidx.core:core-ktx:1.2.0',
             //https://github.com/google/flexbox-layout/
             flexbox                 : 'com.google.android:flexbox:1.1.0',
+            //https://github.com/material-components/material-components-android
+            material                : "com.google.android.material:material:1.2.0-alpha05",
     ]
 
-    def kotlin_version = '1.3.50'
-    def coroutinesVersion = "1.3.0-M2"
+    def kotlin_version = '1.3.72'
+    def coroutinesVersion = "1.3.4"
 
     kotlinLibraries = [
             //Kotlin
             kotlinStdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             kotlinReflect          : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+            //Coroutines
             kotlinCoroutines       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
             kotlinAndroidCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
-            kotlinxCoroutinesRx2   : 'org.jetbrains.kotlinx:kotlinx-coroutines-rx2:1.3.0-RC',
+            kotlinxCoroutinesRx2   : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${coroutinesVersion}",
+            rxKotlin               : 'io.reactivex.rxjava2:rxkotlin:2.4.0',//https://github.com/ReactiveX/RxKotlin
             //https://github.com/JetBrains/kotlin/tree/master/libraries/kotlinx-metadata/jvm
             kotlinxMetadata        : "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.0.5",
-            //https://github.com/ReactiveX/RxKotlin
-            rxKotlin               : 'io.reactivex.rxjava2:rxkotlin:2.4.0',
     ]
 
     def rxBindingVersion = '3.0.0'
@@ -115,7 +141,7 @@ ext {
             retrofitRxJavaCallAdapter         : "com.squareup.retrofit2:adapter-rxjava:2.5.0",
             retrofitRxJava2CallAdapter        : "com.squareup.retrofit2:adapter-rxjava2:2.5.0",
             //https://github.com/google/gson/blob/master/UserGuide.md#TOC-Overview
-            gson                              : "com.google.code.gson:gson:2.8.5",
+            gson                              : "com.google.code.gson:gson:2.8.6",
 
             //https://github.com/bumptech/glide
             glide                             : "com.github.bumptech.glide:glide:4.9.0",
@@ -148,9 +174,11 @@ ext {
             //https://github.com/jOOQ/jOOR
             jOOR                              : "org.jooq:joor-java-6:0.9.7",
             //https://github.com/Blankj/AndroidUtilCode
-            utilcode                          : 'com.blankj:utilcodex:1.26.0',
+            utilcode                          : 'com.blankj:utilcodex:1.28.0',
             //https://github.com/yanzhenjie/AndPermission
-            andPermission                     : 'com.yanzhenjie:permission:2.0.3'
+            andPermission                     : 'com.yanzhenjie:permission:2.0.3',
+            //https://github.com/tiann/FreeReflection
+            freeReflection                    : 'me.weishu:free_reflection:2.2.0'
     ]
 
     debugLibraries = [
@@ -158,8 +186,8 @@ ext {
             debugLeakCanary: "com.squareup.leakcanary:leakcanary-android:2.1",
 
             //http://facebook.github.io/stetho
-            stetho         : 'com.facebook.stetho:stetho:1.4.2',
-            stethoOkhttp3  : 'com.facebook.stetho:stetho-okhttp3:1.4.2',
+            stetho         : 'com.facebook.stetho:stetho:1.5.1',
+            stethoOkhttp3  : 'com.facebook.stetho:stetho-okhttp3:1.5.1',
 
             //https://github.com/eleme/UETool
             ueTool         : 'me.ele:uetool:1.2.1',
@@ -167,7 +195,7 @@ ext {
 
     uiLibraries = [
             //qmui：https://qmuiteam.com/
-            qmui           : 'com.qmuiteam:qmui:2.0.0-alpha02',
+            qmui           : 'com.qmuiteam:qmui:2.0.0-alpha07',
             //https://github.com/drakeet/MultiType
             multiType      : 'com.drakeet.multitype:multitype:4.0.0',
             // https://github.com/Ztiany/WrapperAdapter

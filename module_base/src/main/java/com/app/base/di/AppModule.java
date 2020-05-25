@@ -4,10 +4,12 @@ import android.app.Application;
 import android.content.Context;
 
 import com.android.base.app.dagger.ContextType;
+import com.android.base.concurrent.DispatcherProvider;
+import com.android.base.concurrent.DispatcherProviders;
+import com.android.base.concurrent.SchedulerProvider;
+import com.android.base.concurrent.SchedulerProviders;
 import com.android.base.imageloader.ImageLoader;
 import com.android.base.imageloader.ImageLoaderFactory;
-import com.android.base.rx.SchedulerProvider;
-import com.android.base.rx.SchedulerProviders;
 import com.app.base.router.AppRouter;
 import com.app.base.router.AppRouterImpl;
 
@@ -53,6 +55,12 @@ public class AppModule {
     @Singleton
     SchedulerProvider provideSchedulerProvider() {
         return SchedulerProviders.newDefaultSchedulerProvider();
+    }
+
+    @Provides
+    @Singleton
+    DispatcherProvider provideDispatcherProvider() {
+        return DispatcherProviders.newRxDispatchProvider();
     }
 
 }

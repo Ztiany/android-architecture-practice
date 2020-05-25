@@ -34,8 +34,4 @@ open class InjectorBaseListFragment<T> : BaseListFragment<T>(), Injectable, UIEr
         errorHandler.handleError(throwable)
     }
 
-    override fun generateErrorMessage(throwable: Throwable) {
-        errorHandler.generateMessage(throwable)
-    }
-    
 }

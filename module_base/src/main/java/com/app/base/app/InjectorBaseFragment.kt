@@ -14,7 +14,7 @@ import javax.inject.Inject
  *      Email: ztiany3@gmail.com
  *      Date : 2019-01-15 12:57
  */
-open class InjectorBaseFragment : BaseFragment(), Injectable,UIErrorHandler {
+open class InjectorBaseFragment : BaseFragment(), Injectable, UIErrorHandler {
 
     @Inject protected lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject protected lateinit var appRouter: AppRouter
@@ -32,10 +32,6 @@ open class InjectorBaseFragment : BaseFragment(), Injectable,UIErrorHandler {
 
     override fun handleError(throwable: Throwable) {
         errorHandler.handleError(throwable)
-    }
-
-    override fun generateErrorMessage(throwable: Throwable) {
-        errorHandler.generateMessage(throwable)
     }
 
 }

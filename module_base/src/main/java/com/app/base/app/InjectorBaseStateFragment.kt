@@ -34,8 +34,4 @@ open class InjectorBaseStateFragment : BaseStateFragment(), Injectable, UIErrorH
         errorHandler.handleError(throwable)
     }
 
-    override fun generateErrorMessage(throwable: Throwable) {
-        errorHandler.generateMessage(throwable)
-    }
-
 }

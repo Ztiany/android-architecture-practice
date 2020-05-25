@@ -6,7 +6,8 @@ import androidx.multidex.MultiDex
 import com.android.base.app.BaseAppContext
 import com.android.base.app.ErrorClassifier
 import com.android.base.app.Sword
-import com.android.base.rx.SchedulerProvider
+import com.android.base.concurrent.DispatcherProvider
+import com.android.base.concurrent.SchedulerProvider
 import com.android.sdk.net.exception.NetworkErrorException
 import com.android.sdk.net.exception.ServerErrorException
 import com.android.sdk.net.service.ServiceFactory
@@ -39,11 +40,19 @@ abstract class AppContext : BaseAppContext(), HasAndroidInjector {
     @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     @Inject lateinit var appDataSource: AppDataSource
+
     @Inject lateinit var errorHandler: ErrorHandler
+
     @Inject lateinit var serviceFactory: ServiceFactory
+
     @Inject lateinit var appRouter: AppRouter
+
     @Inject lateinit var storageManager: StorageManager
+
     @Inject lateinit var schedulerProvider: SchedulerProvider
+
+    @Inject lateinit var dispatcherProvider: DispatcherProvider
+
     @Inject lateinit var okHttpClient: OkHttpClient
 
     override fun attachBaseContext(base: Context) {
@@ -140,6 +149,11 @@ abstract class AppContext : BaseAppContext(), HasAndroidInjector {
         @JvmStatic
         fun schedulerProvider(): SchedulerProvider {
             return context.schedulerProvider
+        }
+
+        @JvmStatic
+        fun dispatcherProvider(): DispatcherProvider {
+            return context.dispatcherProvider
         }
 
         @JvmStatic

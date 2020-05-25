@@ -1,6 +1,7 @@
 package com.app.base.data.app
 
 import android.content.Context
+import com.android.sdk.cache.Encipher
 import com.android.sdk.cache.MMKVStorageFactoryImpl
 import com.android.sdk.cache.Storage
 import com.android.sdk.cache.TypeFlag
@@ -13,15 +14,13 @@ import java.lang.ref.WeakReference
  *      Date : 2018-12-19 13:51
  */
 class StorageManager internal constructor(
-        private val context: Context,
-        private val appDataSource: AppDataSource
+        private val context: Context
 ) {
 
     companion object {
         private const val STABLE_CACHE_ID = "app-forever-cache-id"
         private const val USER_ASSOCIATED_CACHE_ID = "app-UserAssociated-default-cache-id"
         private const val ALL_USER_ASSOCIATED_CACHE_ID_KEY = "all_user_associated_cache_id_key"
-        private const val EMPTY_DEVICE_ID = "empty_device_id"//avoid app crash when no device bound
     }
 
     private val storageFactory = MMKVStorageFactoryImpl()
@@ -51,8 +50,16 @@ class StorageManager internal constructor(
     /** 全局默认永久缓存，不支持跨进程，用户退出后缓存不会被清理。 */
     fun stableStorage() = _stable
 
+    /**
+     * 创建一个存储器，不支持跨进程，请确保每一次调用此方法时，相同的 [storageId] 对应相同的 [userAssociated] 和 [encipher]。
+     *
+     * - [storageId] 缓存文件名。
+     * - [userAssociated] 如果为true，则退出登录后自动清除。
+     * - [encipher] 用于数据加密。
+     */
     @Synchronized
-    fun newStorage(storageId: String, userAssociated: Boolean = false): Storage {
+    fun newStorage(storageId: String, userAssociated: Boolean = false, encipher: Encipher? = null): Storage {
+
         if (userAssociated) {
             if (!_userAssociatedIdList.contains(storageId)) {
                 _userAssociatedIdList.add(storageId)
@@ -71,6 +78,7 @@ class StorageManager internal constructor(
 
         val storage = storageFactory.newBuilder(context)
                 .storageId(storageId)
+                .encipher(encipher)
                 .build()
 
         storageCache[storageId] = WeakReference(storage)
@@ -89,7 +97,19 @@ class StorageManager internal constructor(
             if (cacheId.isEmpty()) {
                 continue
             }
-            storageFactory.newBuilder(context).storageId(cacheId).build().clearAll()
+            /*只是清理的话，不需要考虑加密器*/
+            val weakReference = storageCache[cacheId]
+
+            if (weakReference != null) {
+                val storage = weakReference.get()
+                if (storage != null) {
+                    storage.clearAll()
+                    Timber.d("clear user associated cache：$cacheId")
+                    continue
+                }
+            }
+
+            storageFactory.newBuilder(context).storageId(cacheId).build()
             Timber.d("clear user associated cache：$cacheId")
         }
         _userAssociatedIdList.clear()

@@ -14,7 +14,10 @@ androidExtensions {
 }
 
 boolean openDebug = isOpenDebug.toBoolean()
+boolean showDisturbingDebugTools = showDisturbingDebugTools.toBoolean()
+boolean trustAllHttpsCertification = httpsTrustAll.toBoolean()
 boolean openLog = isOpenLog.toBoolean()
+String specifiedHost = HOST_ENV
 
 android {
 
@@ -27,7 +30,10 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("boolean", "openDebug", "$openDebug")
+        buildConfigField("boolean", "showDisturbingDebugTools", "$showDisturbingDebugTools")
+        buildConfigField("boolean", "trustAllHttpsCertification", "$trustAllHttpsCertification")
         buildConfigField("boolean", "openLog", "$openLog")
+        buildConfigField("String", "specifiedHost", "\"$specifiedHost\"")
         vectorDrawables.useSupportLibrary = true
     }
 

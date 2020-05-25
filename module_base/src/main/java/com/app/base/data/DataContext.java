@@ -6,6 +6,8 @@ import com.android.sdk.net.NetContext;
 import com.app.base.AppContext;
 import com.app.base.BuildConfig;
 import com.app.base.data.app.AppDataSource;
+import com.app.base.debug.Debug;
+import com.app.base.debug.EnvironmentContext;
 import com.blankj.utilcode.util.NetworkUtils;
 
 import timber.log.Timber;
@@ -14,10 +16,11 @@ import static com.app.base.data.NetProviderImplKt.newApiHandler;
 import static com.app.base.data.NetProviderImplKt.newErrorDataAdapter;
 import static com.app.base.data.NetProviderImplKt.newErrorMessage;
 import static com.app.base.data.NetProviderImplKt.newHttpConfig;
-import static com.app.base.data.URLProviderKt.addAllHost;
-import static com.app.base.data.URLProviderKt.addReleaseHost;
-import static com.app.base.data.URLProviderKt.getBaseUrl;
-import static com.app.base.data.URLProviderKt.getBaseWebUrl;
+import static com.app.base.data.URLProviderKt.API_HOST;
+import static com.app.base.data.URLProviderKt.H5_HOST;
+import static com.app.base.data.URLProviderKt.getAPIBaseURL;
+import static com.app.base.data.URLProviderKt.getBaseWebURL;
+import static com.app.base.data.URLSKt.addHost;
 
 /**
  * Data层配置，抽象为DataContext
@@ -69,10 +72,12 @@ public class DataContext {
     }
 
     private void initEnvironment() {
-        if (BuildConfig.openDebug) {
-            addAllHost();
-        } else {
-            addReleaseHost();
+        addHost();
+        //如果规定了，选择某一个环境，则优先选择该环境
+        if (Debug.isOpenDebug() && !BuildConfig.specifiedHost.equalsIgnoreCase("AUTO")) {
+            Timber.d("BuildConfig.specifiedHost=>%s", BuildConfig.specifiedHost);
+            EnvironmentContext.INSTANCE.select(API_HOST, BuildConfig.specifiedHost);
+            EnvironmentContext.INSTANCE.select(H5_HOST, BuildConfig.specifiedHost);
         }
     }
 
@@ -87,11 +92,11 @@ public class DataContext {
     }
 
     public String baseWebUrl() {
-        return getBaseWebUrl();
+        return getBaseWebURL();
     }
 
-    static String baseUrl() {
-        return getBaseUrl();
+    static String baseAPIUrl() {
+        return getAPIBaseURL();
     }
 
 }

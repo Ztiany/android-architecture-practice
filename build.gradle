@@ -23,7 +23,7 @@ buildscript {
         //android
         classpath 'com.android.tools.build:gradle:3.5.3'
         //kotlin
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72'
     }
 }
 
@@ -44,18 +44,16 @@ allprojects {
         google()
         mavenCentral()
         flatDir { dirs rootProject.projectDir.getAbsolutePath() + '/repo/aar' }
-        flatDir { dirs 'libs' }
 
         configurations.all {
             resolutionStrategy.force(
-                    "androidx.fragment:fragment:1.2.0-alpha02",
-                    "androidx.activity:activity:1.1.0-alpha02",
-                    "androidx.core:core:1.1.0",
-                    "androidx.lifecycle:lifecycle-livedata:2.2.0-alpha03",
-                    "androidx.recyclerview:recyclerview:1.1.0-beta03",
-                    "androidx.transition:transition:1.2.0-rc01",
-                    "androidx.vectordrawable:vectordrawable:1.1.0",
-                    "androidx.vectordrawable:vectordrawable-animated:1.1.0",
+                    //elect the  latest version.
+                    "androidx.appcompat:appcompat:1.1.0",
+                    "androidx.appcompat:appcompat-resources:1.1.0",
+                    "androidx.activity:activity:1.1.0",
+                    "androidx.fragment:fragment:1.2.1",
+                    "androidx.core:core-ktx:1.2.0",
+                    "androidx.lifecycle:lifecycle-livedata:2.2.0",
             )
         }
     }

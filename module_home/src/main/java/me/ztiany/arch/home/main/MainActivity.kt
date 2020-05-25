@@ -43,13 +43,13 @@ class MainActivity : InjectorAppBaseActivity() {
         }
     }
 
-    override fun setupView(savedInstanceState: Bundle?) {
-        super.setupView(savedInstanceState)
+    override fun initializeView(savedInstanceState: Bundle?) {
+        super.initializeView(savedInstanceState)
         initViews(savedInstanceState)
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
-        super.setupView(savedInstanceState)
+        super.initializeView(savedInstanceState)
         //设置 TranslucentStatus
         SystemBarCompat.setTranslucentSystemUi(this, true, false)
         //设置 MainFragment
