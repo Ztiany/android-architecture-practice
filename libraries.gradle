@@ -16,10 +16,11 @@ ext {
             percentLayout           : "androidx.percentlayout:percentlayout:1.0.0",
             transition              : "androidx.transition:transition:1.0.1",
             constraintLayout        : "androidx.constraintlayout:constraintlayout:2.0.0-beta2",
-            recyclerView            : "androidx.recyclerview:recyclerview:1.1.0-beta03",
+            recyclerView            : "androidx.recyclerview:recyclerview:1.1.0",
             recyclerViewSelection   : "androidx.recyclerview:recyclerview-selection:1.0.0",
             exifinterface           : "androidx.exifinterface:exifinterface:1.0.0",
             cardView                : "androidx.cardview:cardview:1.0.0",
+            viewpager2              : "androidx.viewpager2:viewpager2:1.0.0",
 
             fragmentKtx             : "androidx.fragment:fragment-ktx:1.1.0",
             archRuntime             : "androidx.arch.core:core-runtime:2.1.0-rc01",
@@ -106,8 +107,8 @@ ext {
             //okHttp、retrofit、gson
             //============================================================================
             //https://github.com/square/okhttp
-            okHttp                            : "com.squareup.okhttp3:okhttp:3.12.0",
-            okHttpLogging                     : "com.squareup.okhttp3:logging-interceptor:3.12.0",
+            okHttp                            : "com.squareup.okhttp3:okhttp:3.12.6",
+            okHttpLogging                     : "com.squareup.okhttp3:logging-interceptor:3.12.6",
             // https://github.com/square/retrofit
             retrofit                          : "com.squareup.retrofit2:retrofit:2.5.0",
             retrofitConverterGson             : "com.squareup.retrofit2:converter-gson:2.5.0",
@@ -131,6 +132,8 @@ ext {
             dagger2Apt                        : "com.google.dagger:dagger-compiler:2.24",
             dagger2AndroidApt                 : "com.google.dagger:dagger-android-processor:2.24",
             jsr305                            : 'com.google.code.findbugs:jsr305:2.0.1',
+            injectAssisted                    : 'com.squareup.inject:assisted-inject-annotations-dagger2:0.5.1',
+            injectAssistedApt                 : 'com.squareup.inject:assisted-inject-processor-dagger2:0.5.1',
 
             //https://github.com/alibaba/ARouter，注意：apt arouter 应该放在  apt dagger 后面
             arouter                           : 'com.alibaba:arouter-api:1.5.0',
@@ -145,26 +148,26 @@ ext {
             //https://github.com/jOOQ/jOOR
             jOOR                              : "org.jooq:joor-java-6:0.9.7",
             //https://github.com/Blankj/AndroidUtilCode
-            utilcode                          : 'com.blankj:utilcode:1.25.9'
+            utilcode                          : 'com.blankj:utilcodex:1.26.0',
+            //https://github.com/yanzhenjie/AndPermission
+            andPermission                     : 'com.yanzhenjie:permission:2.0.3'
     ]
 
     debugLibraries = [
             //https://github.com/square/leakcanary
-            debugLeakCanary        : "com.squareup.leakcanary:leakcanary-android:1.6.3",
-            debugLeakCanaryFragment: "com.squareup.leakcanary:leakcanary-support-fragment:1.6.3",
-            releaseLeakCanary      : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.3",
+            debugLeakCanary: "com.squareup.leakcanary:leakcanary-android:2.1",
 
             //http://facebook.github.io/stetho
-            stetho                 : 'com.facebook.stetho:stetho:1.4.2',
-            stethoOkhttp3          : 'com.facebook.stetho:stetho-okhttp3:1.4.2',
+            stetho         : 'com.facebook.stetho:stetho:1.4.2',
+            stethoOkhttp3  : 'com.facebook.stetho:stetho-okhttp3:1.4.2',
 
             //https://github.com/eleme/UETool
-            ueTool                 : 'me.ele:uetool:1.2.1',
+            ueTool         : 'me.ele:uetool:1.2.1',
     ]
 
     uiLibraries = [
             //qmui：https://qmuiteam.com/
-            qmui           : 'com.qmuiteam:qmui:1.4.0',
+            qmui           : 'com.qmuiteam:qmui:2.0.0-alpha02',
             //https://github.com/drakeet/MultiType
             multiType      : 'com.drakeet.multitype:multitype:4.0.0',
             // https://github.com/Ztiany/WrapperAdapter
@@ -172,7 +175,7 @@ ext {
             //https://github.com/hdodenhof/CircleImageView
             circleImageView: 'de.hdodenhof:circleimageview:3.0.1',
             //https://github.com/Fotoapparat/Fotoapparat
-            fotoapparat              : 'io.fotoapparat:fotoapparat:2.7.0'
+            fotoapparat    : 'io.fotoapparat:fotoapparat:2.7.0'
     ]
 
     testLibraries = [

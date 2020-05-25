@@ -5,7 +5,6 @@ import android.app.Application;
 import com.android.sdk.net.NetContext;
 import com.app.base.AppContext;
 import com.app.base.BuildConfig;
-import com.app.base.data.api.ApiHelper;
 import com.app.base.data.app.AppDataSource;
 import com.blankj.utilcode.util.NetworkUtils;
 
@@ -64,9 +63,9 @@ public class DataContext {
                 .setup();
     }
 
-    void publishLoginExpired(int code) {
-        AppContext.errorHandler().handleGlobalError(code);
-        Timber.d("用户登录过期：" + ((ApiHelper.isLoginExpired(code)) ? "token 过期。" : "其他设备登录。"));
+    void publishLoginExpired(Throwable throwable) {
+        AppContext.errorHandler().handleGlobalError(throwable);
+        Timber.d("用户登录过期");
     }
 
     private void initEnvironment() {

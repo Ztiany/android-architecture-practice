@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.android.base.app.BaseAppContext
+import com.android.base.app.ErrorClassifier
 import com.android.base.app.Sword
 import com.android.base.rx.SchedulerProvider
 import com.android.sdk.net.exception.NetworkErrorException
@@ -11,6 +12,7 @@ import com.android.sdk.net.exception.ServerErrorException
 import com.android.sdk.net.service.ServiceFactory
 import com.app.base.app.AppSecurity
 import com.app.base.app.ErrorHandler
+import com.app.base.app.FragmentScaleAnimator
 import com.app.base.config.AppSettings
 import com.app.base.data.DataContext
 import com.app.base.data.app.AppDataSource
@@ -24,7 +26,6 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import okhttp3.OkHttpClient
 import retrofit2.HttpException
-import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
@@ -71,26 +72,26 @@ abstract class AppContext : BaseAppContext(), HasAndroidInjector {
         injectAppContext()
 
         //基础库配置
-        Sword.get()
-                .enableAutoInject()
-                .setDefaultFragmentContainerId(R.id.common_container_id)//默认的Fragment容器id
-                .registerLoadingFactory { AppLoadingView(it) }//默认的通用的LoadingDialog和Toast实现
+        Sword.setDefaultFragmentContainerId(R.id.common_container_id) //默认的Fragment容器id
+                .setDefaultFragmentAnimator(FragmentScaleAnimator())
                 .setDefaultPageStart(AppSettings.DEFAULT_PAGE_START)//分页开始页码
                 .setDefaultPageSize(AppSettings.DEFAULT_PAGE_SIZE)//默认分页大小
-                .setErrorClassifier(object : Sword.ErrorClassifier {
-                    override fun isNetworkError(throwable: Throwable): Boolean {
-                        Timber.d("isNetworkError $throwable")
-                        return throwable is NetworkErrorException || throwable is IOException
+                .enableAutoInject()
+                .setupRxJavaErrorHandler()
+                .apply {
+                    //Dialog 最短展示时间
+                    minimumShowingDialogMills = 500
+                    //默认的通用的LoadingDialog和Toast实现
+                    loadingViewFactory = { AppLoadingView(it) }
+                    //错误分类器
+                    errorClassifier = object : ErrorClassifier {
+                        override fun isNetworkError(throwable: Throwable) = throwable is NetworkErrorException || throwable is IOException
+                        override fun isServerError(throwable: Throwable) = throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500
                     }
-
-                    override fun isServerError(throwable: Throwable): Boolean {
-                        Timber.d("isServerError $throwable")
-                        return throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500
-                    }
-                })
+                }
 
         //给数据层设置全局数据源
-        //DataContext.getInstance().onAppDataSourcePrepared(appDataSource());
+        DataContext.getInstance().onAppDataSourcePrepared(appDataSource())
     }
 
     override fun androidInjector() = androidInjector

@@ -1,11 +1,9 @@
 package com.app.base.app
 
 import android.os.Bundle
-
 import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
 import com.android.base.app.activity.BaseActivity
-import com.android.base.rx.AutoDisposeLifecycleOwnerEx
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.app.base.R
 import com.app.base.config.AppSettings
@@ -15,7 +13,7 @@ import com.app.base.router.RouterManager
  * @author Ztiany
  * Date : 2018-09-21 14:34
  */
-abstract class AppBaseActivity : BaseActivity(), AutoDisposeLifecycleOwnerEx {
+abstract class AppBaseActivity : BaseActivity(){
 
     override fun initialize(savedInstanceState: Bundle?) {
         super.initialize(savedInstanceState)

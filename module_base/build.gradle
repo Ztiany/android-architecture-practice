@@ -14,6 +14,7 @@ androidExtensions {
 }
 
 boolean openDebug = isOpenDebug.toBoolean()
+boolean openLog = isOpenLog.toBoolean()
 
 android {
 
@@ -26,6 +27,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("boolean", "openDebug", "$openDebug")
+        buildConfigField("boolean", "openLog", "$openLog")
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -46,16 +48,20 @@ android {
         main {
             java.srcDirs += "src/github/java"
             res.srcDirs += "src/github/res"
-            if (openDebug) {
-                java.srcDirs += "src/tools/java"
-                res.srcDirs += "src/tools/res"
-            }
-        }
-    }
 
-    externalNativeBuild {
-        cmake {
-            //path "src/main/cpp/CMakeLists.txt"
+            java.srcDirs += "src/umeng/java"
+            res.srcDirs += "src/umeng/res"
+
+            java.srcDirs += "src/common/java"
+            res.srcDirs += "src/common/res"
+
+            if (openDebug) {
+                java.srcDirs += "src/tools-debug/java"
+                res.srcDirs += "src/tools-debug/res"
+            } else {
+                java.srcDirs += "src/tools-release/java"
+                res.srcDirs += "src/tools-release/res"
+            }
         }
     }
 
@@ -73,9 +79,7 @@ dependencies {
     api project(':lib_network')//基础网络库
     api project(':lib_cache')//缓存库
     api project(':lib_media_selector')//媒体选择器
-    //api project(':lib_qrcode')//二维码
-    //api project(':lib_social')//第三方登录、分享、支付
-    //implementation project(':lib_push')//推送
+    api project(':lib_qrcode')//二维码
 
     //Android
     api androidLibraries.multidex

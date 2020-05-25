@@ -107,10 +107,6 @@ android {
         javaMaxHeapSize "4g"
     }
 
-    aaptOptions {
-        cruncherEnabled openCruncherEnabled.toBoolean()
-    }
-
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             outputFileName = "${project.name}-${variant.versionName}.apk"
@@ -139,8 +135,8 @@ dependencies {
         kapt thirdLibraries.arouterAnnotation
 
     } else {
-        implementation androidLibraries.androidCompatV7
-        implementation androidLibraries.androidDesign
+        implementation androidLibraries.appcompat
+        implementation androidLibraries.material
     }
 
 }

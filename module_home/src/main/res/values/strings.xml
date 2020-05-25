@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string name="main_tab_index">首页</string>
-    <string name="main_tab_accompany">陪伴</string>
+    <string name="main_tab_accompany">中间</string>
     <string name="main_tab_mine">我的</string>
     <string name="main_exit_tips">再点击一次退出app</string>
 

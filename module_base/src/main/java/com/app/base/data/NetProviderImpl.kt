@@ -26,7 +26,7 @@ internal fun newHttpConfig(): HttpConfig {
         private val IO_TIME_OUT = 20
 
         override fun baseUrl() = DataContext.baseUrl()
-        override fun configRetrofit(builder: Retrofit.Builder?) = false
+        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder)= false
 
         override fun configHttp(builder: OkHttpClient.Builder) {
             //常规配置
@@ -105,6 +105,6 @@ internal fun newPostTransformer(): PostTransformer<*> = object : PostTransformer
 internal fun newApiHandler(): ApiHandler = ApiHandler { result ->
     //登录状态已过期，请重新登录、账号在其他设备登陆
     if (ApiHelper.isLoginExpired(result.code)) {
-        DataContext.getInstance().publishLoginExpired(result.code)
+        DataContext.getInstance().publishLoginExpired(ApiErrorException(result.code,"登录过期"))
     }
 }
