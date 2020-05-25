@@ -21,23 +21,3 @@ interface ErrorHandler {
     fun handleGlobalError(throwable: Throwable)
 
 }
-
-internal class AppErrorHandler : ErrorHandler {
-
-    private var showingDialog: WeakReference<Dialog>? = null
-
-    override fun generateMessage(throwable: Throwable): CharSequence {
-        return ErrorMessageFactory.createMessage(throwable)
-    }
-
-    override fun handleError(throwable: Throwable) {
-    }
-
-    override fun handleGlobalError(throwable: Throwable) {
-    }
-
-    private fun showReLoginDialog(code: Int): Boolean {
-        return true
-    }
-
-}

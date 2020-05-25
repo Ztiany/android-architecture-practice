@@ -8,7 +8,10 @@ import com.android.base.utils.android.DirectoryUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import timber.log.Timber;
@@ -22,11 +25,20 @@ public class DirectoryManager {
 
     private static final String APP_NAME = "gelei";
     private static final String TEMP_PICTURE = "temp-pictures";
+    private static final String TEMP_FILES = "temp-files";
     public static final String PICTURE_FORMAT_JPEG = ".jpeg";
     public static final String PICTURE_FORMAT_PNG = ".png";
     public static final String VIDEO_FORMAT_MP4 = ".mp4";
+    public static final String BH_SDCARD_FOLDER_NAME = "YourAppName";
 
     static final String IMAGE_CACHE_DIR = "app_images_cache";//Glide的图片缓存位置
+
+    public static List<String> getAppClearableCachePathList() {
+        ArrayList<String> paths = new ArrayList<>();
+        paths.add(getAppExternalStoreCachePath());
+        paths.add(getAppExternalStorePath(Environment.DIRECTORY_DOWNLOADS) + "apk");
+        return paths;
+    }
 
     /**
      * APK下载路径
@@ -41,21 +53,28 @@ public class DirectoryManager {
      * 根据日期生成一个临时的用于存储图片的全路径，格式为 jpeg
      */
     public static String createTempJPEGPicturePath() {
-        return getAppExternalStoreCachePath() + TEMP_PICTURE + File.separator + formatDate(new Date()) + PICTURE_FORMAT_JPEG;
+        return createTempPicturePath(PICTURE_FORMAT_JPEG);
     }
 
     /**
      * 根据日期生成一个临时的用于存储图片的全路径，格式由 format 制定。
      */
     public static String createTempPicturePath(String format) {
-        return getAppExternalStoreCachePath() + TEMP_PICTURE + File.separator + new Date().getTime() + format;
+        return getAppExternalStoreCachePath() + TEMP_PICTURE + File.separator + tempFileName() + format;
+    }
+
+    /**
+     * 根据日期生成一个临时的用于存储文件的全路径，格式由 format 制定。
+     */
+    public static String createTempFilePath(String format) {
+        return getAppExternalStoreCachePath() + TEMP_FILES + File.separator + tempFileName() + format;
     }
 
     /**
      * 根据日期生成一个临时文件名，格式由 format 制定。
      */
     public static String createTempFileName(String format) {
-        return formatDate(new Date()) + format;
+        return tempFileName() + format;
     }
 
     @NonNull
@@ -64,7 +83,7 @@ public class DirectoryManager {
         File parentFile = file.getParentFile();
         if (!parentFile.exists()) {
             boolean mkdirs = parentFile.mkdirs();
-            Timber.d("createDCIMPictureStorePath() called mkdirs:" + mkdirs);
+            Timber.d("createDCIMPictureStorePath() called mkdirs:%b", mkdirs);
         }
         return file.getAbsolutePath();
     }
@@ -88,13 +107,13 @@ public class DirectoryManager {
     /**
      * 获取SD 卡上外部存储目录
      */
-    private static String getSDCardExternalStorePath() {
+    public static String getBHSDCardExternalStorePath() {
         String state = Environment.getExternalStorageState();
         String path;
         if (!Environment.MEDIA_MOUNTED.equals(state)) {
-            path = BaseUtils.getAppContext().getFilesDir().getAbsolutePath() + File.separator;
+            path = BaseUtils.getAppContext().getFilesDir().getAbsolutePath() + File.separator + BH_SDCARD_FOLDER_NAME;
         } else {
-            path = Environment.getExternalStorageDirectory() + File.separator;
+            path = Environment.getExternalStorageDirectory() + File.separator + BH_SDCARD_FOLDER_NAME;
         }
         return path;
     }
@@ -128,8 +147,8 @@ public class DirectoryManager {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private static String formatDate(Date date) {
-        return new SimpleDateFormat("yyyyMMddHHmmss").format(date);//统一生成图片的名称格式
+    private static String tempFileName() {
+        return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + UUID.randomUUID().toString();//统一生成图片的名称格式
     }
 
 }

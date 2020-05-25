@@ -19,6 +19,7 @@ object AppSettings {
 
     const val DEFAULT_PAGE_START = 1
     const val DEFAULT_PAGE_SIZE = 20
+
     const val TRANSITION_ANIMATION_PHOTOS = "transition_animation_photos"
 
     fun appFileProviderAuthorities() = AppContext.get().packageName + ".file.provider"
@@ -33,13 +34,13 @@ object AppSettings {
      * 相同版本的 app 是不是第一次启动
      */
     fun isFirstInSameVersion(flag: String): Boolean {
-        val last = sStorage!!.getInt(flag, -1)
+        val last = sStorage.getInt(flag, -1)
         val curr = AppUtils.getAppVersionCode()
-        if (last < curr) {
-            sStorage!!.putInt(flag, curr)
-            return true
+        return if (last < curr) {
+            sStorage.putInt(flag, curr)
+            true
         } else {
-            return false
+            false
         }
     }
 
@@ -50,12 +51,12 @@ object AppSettings {
      * @return true表示没有存储过
      */
     fun isFirst(flag: String): Boolean {
-        val first = settingsStorage()!!.getBoolean(flag, true)
-        if (first) {
-            settingsStorage()!!.putBoolean(flag, false)
-            return true
+        val first = settingsStorage().getBoolean(flag, true)
+        return if (first) {
+            settingsStorage().putBoolean(flag, false)
+            true
         } else {
-            return false
+            false
         }
     }
 
