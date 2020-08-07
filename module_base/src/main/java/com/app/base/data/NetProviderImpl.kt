@@ -1,8 +1,8 @@
 package com.app.base.data
 
 import com.android.base.utils.android.views.getString
-import com.android.sdk.net.exception.ApiErrorException
-import com.android.sdk.net.provider.*
+import com.android.sdk.net.core.exception.ApiErrorException
+import com.android.sdk.net.core.provider.*
 import com.app.base.BuildConfig
 import com.app.base.R
 import com.app.base.data.api.ApiHelper

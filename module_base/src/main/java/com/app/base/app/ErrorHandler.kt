@@ -1,9 +1,5 @@
 package com.app.base.app
 
-import android.app.Dialog
-import com.android.sdk.net.errorhandler.ErrorMessageFactory
-import java.lang.ref.WeakReference
-
 /**
  * @author Ztiany
  * Email: ztiany3@gmail.com

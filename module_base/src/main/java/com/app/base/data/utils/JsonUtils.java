@@ -2,7 +2,7 @@ package com.app.base.data.utils;
 
 import android.text.TextUtils;
 
-import com.android.sdk.net.gson.GsonUtils;
+import com.android.sdk.net.core.json.GsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

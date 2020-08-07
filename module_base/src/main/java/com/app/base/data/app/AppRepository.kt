@@ -3,7 +3,7 @@ package com.app.base.data.app
 import android.content.Context
 import com.android.base.app.dagger.ContextType
 import com.android.base.concurrent.SchedulerProvider
-import com.android.sdk.net.service.ServiceFactory
+import com.android.sdk.net.core.service.ServiceFactory
 import com.app.base.data.models.User
 import io.reactivex.Completable
 import io.reactivex.Flowable

@@ -8,9 +8,9 @@ import com.android.base.app.ErrorClassifier
 import com.android.base.app.Sword
 import com.android.base.concurrent.DispatcherProvider
 import com.android.base.concurrent.SchedulerProvider
-import com.android.sdk.net.exception.NetworkErrorException
-import com.android.sdk.net.exception.ServerErrorException
-import com.android.sdk.net.service.ServiceFactory
+import com.android.sdk.net.core.exception.NetworkErrorException
+import com.android.sdk.net.core.exception.ServerErrorException
+import com.android.sdk.net.core.service.ServiceFactory
 import com.app.base.app.AppSecurity
 import com.app.base.app.ErrorHandler
 import com.app.base.app.FragmentScaleAnimator

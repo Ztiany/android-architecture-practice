@@ -8,10 +8,10 @@ import androidx.fragment.app.viewModels
 import com.android.base.permission.AutoPermissionRequester
 import com.android.base.permission.Permission
 import com.android.base.utils.android.views.onDebouncedClick
-import com.android.sdk.custom.MediaSelector
-import com.android.sdk.common.ResultListener
-import com.android.sdk.system.lazySystemMediaSelector
-import com.android.sdk.system.newSystemMediaSelector
+import com.android.sdk.mediaselector.custom.MediaSelector
+import com.android.sdk.mediaselector.common.ResultListener
+import com.android.sdk.mediaselector.system.lazySystemMediaSelector
+import com.android.sdk.mediaselector.system.newSystemMediaSelector
 import com.app.base.AppContext
 import com.app.base.app.InjectorBaseFragment
 import com.app.base.router.RouterPath

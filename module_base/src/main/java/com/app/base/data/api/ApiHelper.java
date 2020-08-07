@@ -1,7 +1,7 @@
 package com.app.base.data.api;
 
 
-import com.android.sdk.net.exception.ApiErrorException;
+import com.android.sdk.net.core.exception.ApiErrorException;
 
 import androidx.annotation.NonNull;
 

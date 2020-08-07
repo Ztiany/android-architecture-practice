@@ -1,7 +1,7 @@
 package com.app.base.data.api;
 
 
-import com.android.sdk.net.core.Result;
+import com.android.sdk.net.core.result.Result;
 
 import androidx.annotation.NonNull;
 

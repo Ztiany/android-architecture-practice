@@ -2,7 +2,7 @@ package com.app.base.data.utils;
 
 import com.android.base.utils.common.Files;
 import com.android.base.utils.common.Lang;
-import com.android.sdk.net.exception.NetworkErrorException;
+import com.android.sdk.net.core.exception.NetworkErrorException;
 
 import java.io.File;
 import java.io.FileOutputStream;

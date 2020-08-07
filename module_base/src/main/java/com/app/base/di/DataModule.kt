@@ -1,7 +1,7 @@
 package com.app.base.di
 
 import com.android.sdk.net.NetContext
-import com.android.sdk.net.service.ServiceFactory
+import com.android.sdk.net.core.service.ServiceFactory
 import com.app.base.app.AppErrorHandler
 import com.app.base.app.ErrorHandler
 import com.app.base.data.app.AppDataSource

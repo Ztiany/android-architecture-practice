@@ -1,7 +1,7 @@
 package com.app.base.app
 
 import android.app.Dialog
-import com.android.sdk.net.errorhandler.ErrorMessageFactory
+import com.android.sdk.net.core.errorhandler.ErrorMessageFactory
 import java.lang.ref.WeakReference
 
 internal class AppErrorHandler : ErrorHandler {
