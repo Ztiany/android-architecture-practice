@@ -6,5 +6,6 @@
 
     <!--common id-->
     <item name="common_container_id" type="id"/><!--Fragment的容器布局-->
+    <item name="common_glide_item_tag_id" type="id"/><!--Fragment的容器布局-->
 
 </resources>

@@ -62,24 +62,13 @@ class MainFragment : BaseFragment() {
         }
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (!hidden) {
-            childFragmentManager.fragments.forEach {
-                if (!it.isHidden) {
-                    it.onHiddenChanged(hidden)
-                }
-            }
-        }
-    }
-
 }
 
 private class MainTabManager(
         context: Context,
         fragmentManager: FragmentManager,
         containerId: Int
-) : TabManager(context, fragmentManager, MainTabs(), containerId, SHOW_HIDE) {
+) : TabManager(context, fragmentManager, MainTabs(), containerId) {
 
     private val itemIdArray = intArrayOf(
             R.id.main_index,

@@ -1,13 +1,17 @@
 package me.ztiany.arch.home.main.presentation.index
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.base.permission.AutoPermissionRequester
 import com.android.base.permission.Permission
 import com.android.base.utils.android.views.onDebouncedClick
-import com.android.sdk.mediaselector.MediaSelector
+import com.android.sdk.custom.MediaSelector
+import com.android.sdk.common.ResultListener
+import com.android.sdk.system.lazySystemMediaSelector
+import com.android.sdk.system.newSystemMediaSelector
 import com.app.base.AppContext
 import com.app.base.app.InjectorBaseFragment
 import com.app.base.router.RouterPath
@@ -37,6 +41,17 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
         })
     }
 
+    private val systemMediaSelector by lazy {
+        newSystemMediaSelector(this, object : ResultListener {
+            override fun onTakeSuccess(result: List<Uri>) {
+                Timber.d("picture $result")
+                /*val decodeFile = BitmapFactory.decodeFile(it[0])
+                Timber.d("decodeFile $decodeFile")
+                image.setImageBitmap(decodeFile)*/
+            }
+        })
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         subscribeViewModel()
@@ -61,11 +76,21 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
             AppContext.appRouter().build(RouterPath.Account.PATH).navigation()
         }
 
-        indexBtnSelectPicture.onDebouncedClick {
+        indexBtnCustomSelectPicture.onDebouncedClick {
             AutoPermissionRequester.with(this)
-                    .permission(Permission.WRITE_EXTERNAL_STORAGE)
+                    .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
                     .onGranted {
                         mediaSelector.takeMultiPicture(true, 3)
+                    }
+                    .request()
+        }
+
+        indexBtnSystemSelectPicture.setOnClickListener {
+            AutoPermissionRequester.with(this)
+                    .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
+                    .onGranted {
+                        val result = systemMediaSelector.takePhotoFromSystem().setNeedCrop().start()
+                        Timber.d("result = $result")
                     }
                     .request()
         }
@@ -74,6 +99,7 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         mediaSelector.onActivityResult(requestCode, resultCode, data)
+        systemMediaSelector.onActivityResult(requestCode, resultCode, data)
     }
 
 }
