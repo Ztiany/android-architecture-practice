@@ -27,7 +27,7 @@ public class CustomGlideModule extends ProgressGlideModule {
         int dirCacheSize = 1024 * 1024 * 500;
         builder.setDiskCache(new ExternalPreferredCacheDiskCacheFactory(context, DirectoryManager.IMAGE_CACHE_DIR, dirCacheSize));
         long maxMemory = Runtime.getRuntime().maxMemory() / 8;
-        Timber.d("FtGlideModule image cache size:%l", maxMemory);
+        Timber.d("FtGlideModule image cache size:%d", maxMemory);
         builder.setMemoryCache(new LruResourceCache((int) (maxMemory)));
     }
 

@@ -1,16 +1,16 @@
 package me.ztiany.arch.home.main.presentation.index
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.android.base.imageloader.ImageLoaderFactory
+import com.android.base.imageloader.Source
 import com.android.base.permission.AutoPermissionRequester
 import com.android.base.permission.Permission
 import com.android.base.utils.android.views.onDebouncedClick
-import com.android.sdk.mediaselector.custom.MediaSelector
 import com.android.sdk.mediaselector.common.ResultListener
-import com.android.sdk.mediaselector.system.lazySystemMediaSelector
+import com.android.sdk.mediaselector.custom.newMediaSelector
 import com.android.sdk.mediaselector.system.newSystemMediaSelector
 import com.app.base.AppContext
 import com.app.base.app.InjectorBaseFragment
@@ -30,13 +30,10 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
     private val viewModel: IndexViewModule by viewModels { viewModelFactory }
 
     private val mediaSelector by lazy {
-        MediaSelector(this, object : MediaSelector.Callback {
-            override fun onTakeMultiPictureSuccess(pictures: MutableList<String>) {
-                Timber.d("pictures $pictures")
-            }
-
-            override fun onTakePictureSuccess(picture: String) {
-                Timber.d("picture $picture")
+        newMediaSelector(this, object : ResultListener {
+            override fun onTakeSuccess(result: List<Uri>) {
+                Timber.d("----------------------------------------picture $result")
+                ImageLoaderFactory.getImageLoader().display(image, Source.createWithUri(result[0]))
             }
         })
     }
@@ -44,10 +41,8 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
     private val systemMediaSelector by lazy {
         newSystemMediaSelector(this, object : ResultListener {
             override fun onTakeSuccess(result: List<Uri>) {
-                Timber.d("picture $result")
-                /*val decodeFile = BitmapFactory.decodeFile(it[0])
-                Timber.d("decodeFile $decodeFile")
-                image.setImageBitmap(decodeFile)*/
+                Timber.d("----------------------------------------picture $result")
+                ImageLoaderFactory.getImageLoader().display(image, Source.createWithUri(result[0]))
             }
         })
     }
@@ -72,6 +67,9 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
+
+        ImageLoaderFactory.getImageLoader().display(image, Source.create(R.drawable.icon_back))
+
         indexBtnOpenAccount.onDebouncedClick {
             AppContext.appRouter().build(RouterPath.Account.PATH).navigation()
         }
@@ -80,7 +78,7 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
             AutoPermissionRequester.with(this)
                     .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
                     .onGranted {
-                        mediaSelector.takeMultiPicture(true, 3)
+                        mediaSelector.takeMedia().crop().needCamera().start()
                     }
                     .request()
         }
@@ -89,17 +87,14 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
             AutoPermissionRequester.with(this)
                     .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.CAMERA)
                     .onGranted {
-                        val result = systemMediaSelector.takePhotoFromSystem().setNeedCrop().start()
-                        Timber.d("result = $result")
+                        systemMediaSelector
+                                .takePhotoFromSystem()
+                                .setNeedCrop()
+                                .start()
                     }
                     .request()
         }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        mediaSelector.onActivityResult(requestCode, resultCode, data)
-        systemMediaSelector.onActivityResult(requestCode, resultCode, data)
     }
 
 }

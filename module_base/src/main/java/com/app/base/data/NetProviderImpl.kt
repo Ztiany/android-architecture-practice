@@ -3,6 +3,7 @@ package com.app.base.data
 import com.android.base.utils.android.views.getString
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.android.sdk.net.core.provider.*
+import com.android.sdk.net.rxjava.RxResultPostTransformer
 import com.app.base.BuildConfig
 import com.app.base.R
 import com.app.base.data.api.ApiHelper
@@ -88,7 +89,7 @@ internal fun newErrorDataAdapter(): ErrorDataAdapter = object : ErrorDataAdapter
     }
 }
 
-internal fun newPostTransformer(): PostTransformer<*> = object : PostTransformer<Any> {
+internal fun newPostTransformer(): RxResultPostTransformer<*> = object : RxResultPostTransformer<Any> {
     override fun apply(upstream: Single<Any>): SingleSource<Any> {
         return upstream
     }
