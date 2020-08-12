@@ -17,6 +17,8 @@ import retrofit2.Retrofit
 import timber.log.Timber
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.SSLSession
 
 
 internal fun newHttpConfig(): HttpConfig {
@@ -27,21 +29,25 @@ internal fun newHttpConfig(): HttpConfig {
         private val IO_TIME_OUT = 20
 
         override fun baseUrl() = DataContext.baseAPIUrl()
-        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder)= false
+        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder) = false
 
         override fun configHttp(builder: OkHttpClient.Builder) {
             //常规配置
             builder.connectTimeout(CONNECTION_TIME_OUT.toLong(), TimeUnit.SECONDS)
                     .readTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
                     .writeTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                    .hostnameVerifier { hostname, session ->
-                        Timber.d("hostnameVerifier called with: hostname 、session = [" + hostname + "、" + session.protocol + "]")
+                    .hostnameVerifier(HostnameVerifier { hostname, session ->
+                        Timber.d("hostnameVerifier called with: hostname ${hostname}、session $session.protocol ")
                         true
-                    }
+                    })
 
             //调试配置
             if (BuildConfig.openDebug) {
-                val httpLoggingInterceptor = HttpLoggingInterceptor { message -> Timber.tag("===OkHttp===").i(message) }
+                val httpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+                    override fun log(message: String) {
+                        Timber.tag("===OkHttp===").i(message)
+                    }
+                })
                 httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
                 builder.addInterceptor(httpLoggingInterceptor)
                 DebugTools.installStethoHttp(builder)
@@ -106,6 +112,6 @@ internal fun newPostTransformer(): RxResultPostTransformer<*> = object : RxResul
 internal fun newApiHandler(): ApiHandler = ApiHandler { result ->
     //登录状态已过期，请重新登录、账号在其他设备登陆
     if (ApiHelper.isLoginExpired(result.code)) {
-        DataContext.getInstance().publishLoginExpired(ApiErrorException(result.code,"登录过期"))
+        DataContext.getInstance().publishLoginExpired(ApiErrorException(result.code, "登录过期"))
     }
 }

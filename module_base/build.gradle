@@ -55,9 +55,6 @@ android {
             java.srcDirs += "src/github/java"
             res.srcDirs += "src/github/res"
 
-            java.srcDirs += "src/umeng/java"
-            res.srcDirs += "src/umeng/res"
-
             java.srcDirs += "src/common/java"
             res.srcDirs += "src/common/res"
 
@@ -118,9 +115,8 @@ dependencies {
     kapt thirdLibraries.glideApt
 
     /*UI*/
-    api(uiLibraries.qmui) {
-        exclude group: 'com.android.support'
-    }
+    api uiLibraries.qmui
+    api uiLibraries.circleImageView
 
     //Debug
     if (openDebug) {

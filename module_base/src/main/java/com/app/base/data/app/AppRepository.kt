@@ -16,7 +16,8 @@ import javax.inject.Singleton
 internal class AppRepository @Inject constructor(
         @ContextType private val context: Context,
         serviceFactory: ServiceFactory,
-        private val schedulerProvider: SchedulerProvider
+        private val schedulerProvider: SchedulerProvider,
+        private val storageManager: StorageManager
 ) : AppDataSource {
 
     companion object {
@@ -25,12 +26,12 @@ internal class AppRepository @Inject constructor(
         private const val APP_USER_KEY = "parent_user"
     }
 
-    internal val storageManager = StorageManager(context)
     private val observableUser = BehaviorProcessor.create<User>()
 
     private var currentUser = User.NOT_LOGIN
 
     private val appStorage = storageManager.userStorage()
+
     private val stableStorage = storageManager.stableStorage()
 
     init {

@@ -54,7 +54,7 @@ public class JsonUtils {
 
     public static String createJson(String[] params) {
 
-        Timber.i("JsonUtils process Json：" + Arrays.toString(params));
+        Timber.i("JsonUtils process Json：%s", Arrays.toString(params));
 
         JSONObject jsonObject = new JSONObject();
 
@@ -65,7 +65,7 @@ public class JsonUtils {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            Timber.e("JsonUtils create Params Error " + e);
+            Timber.e(e, "JsonUtils create Params Error");
         }
         return jsonObject.toString();
     }
@@ -141,6 +141,16 @@ public class JsonUtils {
             }
         }
         return jsonObject;
+    }
+
+    public static JsonObject toJsonObject(Object entity) {
+        String json = toJson(entity);
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(json);
+        if (isArray(json) || isObj(json)) {
+            return jsonElement.getAsJsonObject();
+        }
+        return new JsonObject();
     }
 
     /**
@@ -259,6 +269,16 @@ public class JsonUtils {
             Timber.e(e, "JsonSerializer parseArray error with: json = %s , class = %s", json, cls);
         }
         return null;
+    }
+
+    public static String getJsonString(JsonElement value) {
+        if (value.isJsonObject()) {
+            return value.getAsJsonObject().toString();
+        } else if (value.isJsonArray()) {
+            return value.getAsJsonArray().toString();
+        } else {
+            return value.getAsString();
+        }
     }
 
 }

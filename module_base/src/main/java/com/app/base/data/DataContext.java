@@ -6,7 +6,6 @@ import com.android.sdk.net.NetContext;
 import com.app.base.AppContext;
 import com.app.base.BuildConfig;
 import com.app.base.data.app.AppDataSource;
-import com.app.base.debug.Debug;
 import com.app.base.debug.EnvironmentContext;
 import com.blankj.utilcode.util.NetworkUtils;
 
@@ -23,7 +22,7 @@ import static com.app.base.data.URLProviderKt.getBaseWebURL;
 import static com.app.base.data.URLSKt.addHost;
 
 /**
- * Data层配置，抽象为DataContext
+ * Data 层配置。
  *
  * @author Ztiany
  * Email: 1169654504@qq.com
@@ -74,8 +73,8 @@ public class DataContext {
     private void initEnvironment() {
         addHost();
         //如果规定了，选择某一个环境，则优先选择该环境
-        if (Debug.isOpenDebug() && !BuildConfig.specifiedHost.equalsIgnoreCase("AUTO")) {
-            Timber.d("BuildConfig.specifiedHost=>%s", BuildConfig.specifiedHost);
+        if (!BuildConfig.specifiedHost.equalsIgnoreCase("AUTO")) {
+            Timber.d("BuildConfig.specifiedHost=>" + BuildConfig.specifiedHost);
             EnvironmentContext.INSTANCE.select(API_HOST, BuildConfig.specifiedHost);
             EnvironmentContext.INSTANCE.select(H5_HOST, BuildConfig.specifiedHost);
         }

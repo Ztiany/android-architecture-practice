@@ -1,20 +1,24 @@
 package com.app.base.data.app
 
 import android.content.Context
+import com.android.base.app.dagger.ContextType
 import com.android.sdk.cache.Encipher
 import com.android.sdk.cache.MMKVStorageFactoryImpl
 import com.android.sdk.cache.Storage
 import com.android.sdk.cache.TypeFlag
 import timber.log.Timber
 import java.lang.ref.WeakReference
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  *@author Ztiany
  *      Email: ztiany3@gmail.com
  *      Date : 2018-12-19 13:51
  */
-class StorageManager internal constructor(
-        private val context: Context
+@Singleton
+class StorageManager @Inject internal constructor(
+        @ContextType private val context: Context
 ) {
 
     companion object {

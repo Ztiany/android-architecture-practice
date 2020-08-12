@@ -32,7 +32,7 @@ class StatusInsetsView @JvmOverloads constructor(
 
     init {
         if (background == null) {
-            background = if (AppSettings.supportStatusBarLightMode()) {
+            background = if (AppSettings.supportStatusBarLightMode) {
                 ColorDrawable(ContextCompat.getColor(context, R.color.white))
             } else {
                 ColorDrawable(ContextCompat.getColor(context, R.color.colorPrimaryDark))

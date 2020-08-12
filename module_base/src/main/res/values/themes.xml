@@ -43,6 +43,17 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="AppTheme_Toolbar" parent="Theme.AppCompat.Light">
+        <!-- 设置显示在 toolbar 上菜单文字的颜色 -->
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <!-- 设置 toolbar 弹出菜单的字体大小和溢出菜单文字大小-->
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Style_Toolbar_titleTextAppearance">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <!--Anim-->
     <style name="Style_Anim_Bottom_In" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/bottom_in</item>

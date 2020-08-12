@@ -13,12 +13,12 @@ import com.app.base.router.RouterManager
  * @author Ztiany
  * Date : 2018-09-21 14:34
  */
-abstract class AppBaseActivity : BaseActivity(){
+abstract class AppBaseActivity : BaseActivity() {
 
     override fun initialize(savedInstanceState: Bundle?) {
         super.initialize(savedInstanceState)
         if (enableStatusBarLightMode()) {
-            AppSettings.setSupportStatusBarLightMode(setStatusBarLightMode())
+            AppSettings.supportStatusBarLightMode = setStatusBarLightMode()
         }
         RouterManager.inject(this)
     }
@@ -27,7 +27,7 @@ abstract class AppBaseActivity : BaseActivity(){
     override fun initializeView(savedInstanceState: Bundle?) {
         if (tintStatusBar()) {
             SystemBarCompat.setTranslucentStatusOn19(this)
-            if (enableStatusBarLightMode() && AppSettings.supportStatusBarLightMode()) {
+            if (enableStatusBarLightMode() && AppSettings.supportStatusBarLightMode) {
                 SystemBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white))
             } else {
                 SystemBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimaryDark))

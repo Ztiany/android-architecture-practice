@@ -15,6 +15,18 @@
         <attr name="ctil_enable_clear_drawable" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="AppTitleLayout">
+        <attr name="atl_title" format="string|reference" />
+        <attr name="atl_title_color" format="color|reference" />
+        <attr name="atl_navigation_icon" format="reference" />
+        <attr name="atl_disable_navigation" format="boolean" />
+        <attr name="atl_navigation_icon_tint" format="color|reference" />
+        <attr name="atl_menu_id" format="reference" />
+        <attr name="atl_show_cutting_line" format="boolean" />
+        <attr name="atl_adjust_for_status" format="boolean" />
+        <attr name="atl_menu_color" format="color|reference" />
+    </declare-styleable>
+
     <declare-styleable name="TriangleView">
         <attr name="tv_triangle_solid_color" format="color|reference" />
         <attr name="tv_triangle_bottom_color" format="color|reference" />

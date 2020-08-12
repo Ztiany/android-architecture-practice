@@ -43,10 +43,4 @@ class DataModule {
         return NetContext.get().httpClient()
     }
 
-    @Provides
-    @Singleton
-    internal fun provideStorageManager(appRepository: AppRepository): StorageManager {
-        return appRepository.storageManager
-    }
-
 }
