@@ -1,15 +1,14 @@
 package com.app.base.debug
 
-import com.android.base.utils.BaseUtils
 import com.android.base.utils.android.cache.SpCache
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ifNull
 import com.android.base.utils.common.otherwise
-
+import com.app.base.AppContext
 
 object EnvironmentContext {
 
-    private val spCache = SpCache(BaseUtils.getAppContext().packageName, false)
+    private val spCache = SpCache(AppContext.get().packageName, false)
 
     private val envMap = LinkedHashMap<String, MutableList<Environment>>()
 

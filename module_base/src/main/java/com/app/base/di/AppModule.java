@@ -1,9 +1,5 @@
 package com.app.base.di;
 
-import android.app.Application;
-import android.content.Context;
-
-import com.android.base.app.dagger.ContextType;
 import com.android.base.concurrent.DispatcherProvider;
 import com.android.base.concurrent.DispatcherProviders;
 import com.android.base.concurrent.SchedulerProvider;
@@ -17,6 +13,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.hilt.InstallIn;
+import dagger.hilt.android.components.ApplicationComponent;
 
 /**
  * @author Ztiany
@@ -24,20 +22,8 @@ import dagger.Provides;
  * Date : 2018-11-01 10:33
  */
 @Module
+@InstallIn(ApplicationComponent.class)
 public class AppModule {
-
-    private Context mContext;
-
-    public AppModule(Application application) {
-        mContext = application;
-    }
-
-    @Provides
-    @Singleton
-    @ContextType
-    Context getAppContext() {
-        return mContext;
-    }
 
     @Provides
     @Singleton

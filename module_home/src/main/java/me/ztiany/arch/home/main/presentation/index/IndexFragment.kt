@@ -4,6 +4,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
+import com.android.base.app.fragment.BaseFragment
 import com.android.base.imageloader.ImageLoaderFactory
 import com.android.base.imageloader.Source
 import com.android.base.permission.AutoPermissionRequester
@@ -13,8 +15,8 @@ import com.android.sdk.mediaselector.common.ResultListener
 import com.android.sdk.mediaselector.custom.newMediaSelector
 import com.android.sdk.mediaselector.system.newSystemMediaSelector
 import com.app.base.AppContext
-import com.app.base.app.InjectorBaseFragment
 import com.app.base.router.RouterPath
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.index_fragment.*
 import me.ztiany.arch.home.main.MainFragment
 import me.ztiany.architecture.home.R
@@ -25,9 +27,10 @@ import timber.log.Timber
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-02 14:40
  */
-class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
+@AndroidEntryPoint
+class IndexFragment : BaseFragment(), MainFragment.MainFragmentChild {
 
-    private val viewModel: IndexViewModule by viewModels { viewModelFactory }
+    private val viewModel: IndexViewModule by viewModels()
 
     private val mediaSelector by lazy {
         newMediaSelector(this, object : ResultListener {
@@ -53,7 +56,9 @@ class IndexFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
     }
 
     private fun subscribeViewModel() {
-        //no op
+        viewModel.demo.observe(this) {
+            showMessage(it)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

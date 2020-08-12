@@ -1,5 +1,6 @@
 package me.ztiany.arch.home.main.data
 
+import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
 /**
@@ -7,13 +8,10 @@ import javax.inject.Inject
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-05 15:34
  */
-interface MainDataSource {
-    fun loadData(): String
-}
+@ActivityScoped
+class MainRepository @Inject constructor() {
 
-class MainRepository @Inject constructor() : MainDataSource {
-
-    override fun loadData(): String {
+    fun loadData(): String {
         return "Index"
     }
 

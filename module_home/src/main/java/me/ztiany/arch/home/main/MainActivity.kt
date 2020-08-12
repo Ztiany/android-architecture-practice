@@ -10,10 +10,12 @@ import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
-import com.app.base.app.InjectorAppBaseActivity
+import com.app.base.app.AppBaseActivity
 import com.app.base.router.RouterPath
 import com.app.base.widget.dialog.TipsManager
 import com.blankj.utilcode.util.AppUtils
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment_root.*
 import me.ztiany.architecture.home.R
 import timber.log.Timber
@@ -26,7 +28,8 @@ import timber.log.Timber
  *      Date : 2018-09-06 14:42
  */
 @Route(path = RouterPath.Main.PATH)
-class MainActivity : InjectorAppBaseActivity() {
+@AndroidEntryPoint
+class MainActivity : AppBaseActivity() {
 
     private var clickToExit = false
 

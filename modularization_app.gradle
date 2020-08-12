@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 kapt {
     arguments {
@@ -101,9 +102,11 @@ dependencies {
     implementation project(':module_base')
     //测试
     testImplementation testLibraries.junit
-    /*Dagger2*/
-    kapt thirdLibraries.dagger2Apt
-    kapt thirdLibraries.dagger2AndroidApt
+    /*Hilt*/
+    api androidLibraries.hiltDagger
+    kapt androidLibraries.hiltDaggerApt
+    api androidLibraries.hiltViewiewModel
+    kapt androidLibraries.hiltApt
     /*ARouter*/
     kapt thirdLibraries.arouterAnnotation
     /* all jar*/

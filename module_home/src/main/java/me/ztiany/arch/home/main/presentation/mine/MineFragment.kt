@@ -6,16 +6,18 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
-import com.app.base.app.InjectorBaseFragment
+import com.android.base.app.fragment.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  *@author Ztiany
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-02 14:40
  */
-class MineFragment : InjectorBaseFragment() {
+@AndroidEntryPoint
+class MineFragment : BaseFragment() {
 
-    private val viewModule: MineViewModel by viewModels { viewModelFactory }
+    private val viewModule: MineViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

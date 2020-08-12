@@ -3,7 +3,6 @@ package me.ztiany.architecture
 /**
  *@author Ztiany
  *      Email: ztiany3@gmail.com
- *      Date : 2018-10-12 21:53
+ *      Date : 2020-08-12 16:41
  */
-interface AppComponent {
-}
+class ReleaseMode

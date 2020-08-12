@@ -5,7 +5,8 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
-import com.app.base.app.InjectorBaseFragment
+import com.android.base.app.fragment.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.arch.home.main.MainFragment
 
 
@@ -14,9 +15,10 @@ import me.ztiany.arch.home.main.MainFragment
  *      Email: ztiany3@gmail.com
  *      Date : 2018-11-02 14:38
  */
-class MiddleFragment : InjectorBaseFragment(), MainFragment.MainFragmentChild {
+@AndroidEntryPoint
+class MiddleFragment : BaseFragment(), MainFragment.MainFragmentChild {
 
-    private val viewModule: MiddleViewModel by viewModels { viewModelFactory }
+    private val viewModule: MiddleViewModel by viewModels()
 
     override fun provideLayout() = TextView(context).apply {
         text = "中间"

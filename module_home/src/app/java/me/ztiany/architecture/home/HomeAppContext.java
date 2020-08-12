@@ -2,16 +2,16 @@ package me.ztiany.architecture.home;
 
 
 import com.app.base.AppContext;
-import com.app.base.di.AppModule;
 
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
 public class HomeAppContext extends AppContext {
 
     @Override
-    protected void injectAppContext() {
-        DaggerHomeAppComponent.builder()
-                .appModule(new AppModule(this))
-                .build()
-                .inject(this);
+    public void onCreate() {
+        initBeforeInject();
+        super.onCreate();
     }
 
 }

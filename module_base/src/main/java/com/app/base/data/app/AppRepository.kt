@@ -1,10 +1,10 @@
 package com.app.base.data.app
 
 import android.content.Context
-import com.android.base.app.dagger.ContextType
 import com.android.base.concurrent.SchedulerProvider
 import com.android.sdk.net.core.service.ServiceFactory
 import com.app.base.data.models.User
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.processors.BehaviorProcessor
@@ -12,9 +12,9 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-internal class AppRepository @Inject constructor(
-        @ContextType private val context: Context,
+
+internal class AppRepository constructor(
+        private val context: Context,
         serviceFactory: ServiceFactory,
         private val schedulerProvider: SchedulerProvider,
         private val storageManager: StorageManager

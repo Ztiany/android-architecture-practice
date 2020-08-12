@@ -1,5 +1,7 @@
 package com.app.base.di
 
+import android.content.Context
+import com.android.base.concurrent.SchedulerProvider
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.service.ServiceFactory
 import com.app.base.app.AppErrorHandler
@@ -9,6 +11,9 @@ import com.app.base.data.app.AppRepository
 import com.app.base.data.app.StorageManager
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
@@ -18,28 +23,34 @@ import javax.inject.Singleton
  * Date : 2018-11-01 11:06
  */
 @Module
+@InstallIn(ApplicationComponent::class)
 class DataModule {
 
     @Provides
-    internal fun provideUserDataSource(appRepository: AppRepository): AppDataSource {
-        return appRepository
+    fun provideUserDataSource(
+            @ApplicationContext context: Context,
+            serviceFactory: ServiceFactory,
+            schedulerProvider: SchedulerProvider,
+            storageManager: StorageManager
+    ): AppDataSource {
+        return AppRepository(context, serviceFactory, schedulerProvider, storageManager)
     }
 
     @Singleton
     @Provides
-    internal fun provideServiceFactory(): ServiceFactory {
+    fun provideServiceFactory(): ServiceFactory {
         return NetContext.get().serviceFactory()
     }
 
     @Provides
     @Singleton
-    internal fun provideErrorHandler(): ErrorHandler {
+    fun provideErrorHandler(): ErrorHandler {
         return AppErrorHandler()
     }
 
     @Provides
     @Singleton
-    internal fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         return NetContext.get().httpClient()
     }
 

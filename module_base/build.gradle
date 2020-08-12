@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 kapt {
     arguments {
@@ -90,28 +91,27 @@ dependencies {
     api androidLibraries.flexbox
     api androidLibraries.ktx
 
-    //kotlin
-    api kotlinLibraries.rxKotlin
-
-    //Third Library(apt放前面)
-    /*Dagger2*/
-    kapt thirdLibraries.dagger2Apt
-    kapt thirdLibraries.dagger2AndroidApt
+    /*Hilt*/
+    api androidLibraries.hiltDagger
+    kapt androidLibraries.hiltDaggerApt
+    api androidLibraries.hiltViewiewModel
+    kapt androidLibraries.hiltApt
     /*ARouter*/
     api thirdLibraries.arouter
     kapt thirdLibraries.arouterAnnotation
     /*OkHttp*/
     implementation thirdLibraries.okHttp
     implementation thirdLibraries.okHttpLogging
-    /*gson*/
+    /*Gson*/
     api thirdLibraries.gson
-    /*retrofit*/
+    /*Retrofit*/
     api thirdLibraries.retrofit
     implementation thirdLibraries.retrofitConverterGson
     implementation thirdLibraries.retrofitRxJava2CallAdapter
-    /*rx binding*/
+    /*RxKotlin, RxBinding*/
     api thirdLibraries.rxBindingCompat
-    /*glideAPT*/
+    api kotlinLibraries.rxKotlin
+    /*GlideAPT*/
     kapt thirdLibraries.glideApt
 
     /*UI*/
@@ -120,7 +120,7 @@ dependencies {
 
     //Debug
     if (openDebug) {
-        //stetho
+        //Stetho
         implementation debugLibraries.stetho
         implementation debugLibraries.stethoOkhttp3
         //LeakCanary

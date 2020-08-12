@@ -23,8 +23,6 @@ import com.app.base.router.AppRouter
 import com.app.base.router.RouterManager
 import com.app.base.widget.dialog.AppLoadingView
 import com.app.base.widget.dialog.TipsManager
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
 import okhttp3.OkHttpClient
 import retrofit2.HttpException
 import java.io.IOException
@@ -35,9 +33,7 @@ import javax.inject.Inject
  * Email: ztiany3@gmail.com
  * Date : 2018-11-01 10:20
  */
-abstract class AppContext : BaseAppContext(), HasAndroidInjector {
-
-    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
+abstract class AppContext : BaseAppContext() {
 
     @Inject lateinit var appDataSource: AppDataSource
 
@@ -60,14 +56,9 @@ abstract class AppContext : BaseAppContext(), HasAndroidInjector {
         MultiDex.install(this)
     }
 
-    override fun onCreate() {
-        super.onCreate()
+    /**called by subclass before doing injection*/
+    protected fun initBeforeInject() {
         context = this
-        initApp()
-    }
-
-    //todo, initialization in multi thread.
-    private fun initApp() {
         //安全层
         AppSecurity.init()
         //路由
@@ -76,16 +67,17 @@ abstract class AppContext : BaseAppContext(), HasAndroidInjector {
         DataContext.init(this)
         //调试
         DebugTools.init(this)
+    }
 
-        //完成全局对象注入
-        injectAppContext()
-
+    override fun onCreate() {
+        super.onCreate()
+        //给数据层设置全局数据源
+        DataContext.getInstance().onAppDataSourcePrepared(appDataSource())
         //基础库配置
         Sword.setDefaultFragmentContainerId(R.id.common_container_id) //默认的Fragment容器id
                 .setDefaultFragmentAnimator(FragmentScaleAnimator())
                 .setDefaultPageStart(AppSettings.DEFAULT_PAGE_START)//分页开始页码
                 .setDefaultPageSize(AppSettings.DEFAULT_PAGE_SIZE)//默认分页大小
-                .enableAutoInject()
                 .setupRxJavaErrorHandler()
                 .apply {
                     //Dialog 最短展示时间
@@ -99,13 +91,7 @@ abstract class AppContext : BaseAppContext(), HasAndroidInjector {
                     }
                 }
 
-        //给数据层设置全局数据源
-        DataContext.getInstance().onAppDataSourcePrepared(appDataSource())
     }
-
-    override fun androidInjector() = androidInjector
-
-    protected abstract fun injectAppContext()
 
     open fun restartApp(activity: Activity) {
         TipsManager.showMessage("no implementation")

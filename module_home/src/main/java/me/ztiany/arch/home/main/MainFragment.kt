@@ -8,6 +8,7 @@ import com.android.base.app.fragment.BaseFragment
 import com.android.base.app.fragment.tools.FragmentInfo
 import com.android.base.app.fragment.tools.TabManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment_root.*
 import me.ztiany.arch.home.main.presentation.index.IndexFragment
 import me.ztiany.arch.home.main.presentation.middle.MiddleFragment
@@ -20,6 +21,7 @@ import timber.log.Timber
  *      Email: ztiany3@gmail.com
  *      Date : 2019-09-19 16:06
  */
+@AndroidEntryPoint
 class MainFragment : BaseFragment() {
 
     interface MainFragmentChild
