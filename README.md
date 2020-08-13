@@ -18,21 +18,19 @@ make sure the projects in the same directory.
 
 ## 2 modules explanation
 
-common modules: 
+[common modules](https://github.com/Ztiany/Android-Libs): 
 
-- lib_base：common util classes and base classes，including BaseActivity, BaseFragment, BaseStateFragment, BaseListFragment, BaseAdapter, MVVM, MVP, MultiStateView, Dagger2, AAC, RxJava2, Kotlin, etc.
-- lib_media_selector：gets photos or videos from system.
-- lib_qrcode：library for scanning and generating qrcode.
-- lib_network：RxJava + Retrofit + OkHttp.
-- lib_cache： DiskLruCache + MMKV.
+- lib_foundation: DelegateFragment, DelegateActivity.
+- lib_base: common util classes and base classes, including BaseActivity, BaseFragment, BaseStateFragment, BaseListFragment, BaseAdapter, MVVM, MVP, MultiStateView, Dagger2, AAC, RxJava2, Kotlin, etc.
+- lib_media_selector: gets photos or videos from system.
+- lib_qrcode: library for scanning and generating qrcode.
+- lib_network: RxJava + Retrofit + OkHttp.
+- lib_cache:  DiskLruCache + MMKV.
+- lib_upgrade: A library for checking app upgrade.
 
 business modules: 
 
-- app: combine all of the business module.
-- module_base
-- module_account
-- module_home
-
-## 3 architecture 
-
-refer android architecture parts in [notes](https://github.com/Ztiany/programming-data)。
+- app: assemble all of the business module.
+- module_base: assemble all the libs.
+- module_account: business module for login/register.
+- module_home: business module.
