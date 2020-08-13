@@ -3,12 +3,7 @@ buildscript {
     apply from: 'libraries.gradle'
 
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url 'https://dl.google.com/dl/android/maven2/' }
         maven { url 'https://jitpack.io' }
@@ -30,14 +25,10 @@ buildscript {
 }
 
 allprojects {
-    repositories {
 
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    repositories {
         maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url 'https://dl.google.com/dl/android/maven2/' }
         maven { url 'https://jitpack.io' }
