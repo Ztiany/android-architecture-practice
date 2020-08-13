@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/pressed">
+
+    <item>
+
+        <selector>
+
+            <item
+                android:state_enabled="false"
+                android:drawable="@color/disable" />
+
+            <item
+                android:state_enabled="true"
+                android:drawable="@color/white" />
+
+        </selector>
+
+    </item>
+
+</ripple>

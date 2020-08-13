@@ -1,5 +1,18 @@
 //通用类库
-def libs = ["lib_foundation", "lib_base", "lib_network", "lib_cache", "lib_media_selector", "lib_qrcode", "lib_social"]
+def libs = [
+        "lib_foundation",
+        "lib_base",
+        "lib_network",
+        "lib_cache",
+        "lib_common_ui",
+        "lib_media_selector",
+        "lib_qrcode",
+        'lib_upgrade',
+        "lib_social",
+        "lib_safekeyboard",
+        "lib_biometrics",
+        "lib_webview",
+]
 
 libs.forEach {
     include(":$it")

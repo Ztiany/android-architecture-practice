@@ -2,6 +2,7 @@ package com.app.base.data.api;
 
 
 import com.android.sdk.net.core.exception.ApiErrorException;
+import com.android.sdk.net.core.result.Result;
 
 import androidx.annotation.NonNull;
 
@@ -27,8 +28,8 @@ public class ApiHelper {
     }
 
     public static boolean isDataError(Object data) {
-        if (data instanceof HttpResult) {
-            return ((HttpResult) data).getCode() == DATA_ERROR;
+        if (data instanceof Result) {
+            return ((Result) data).getCode() == DATA_ERROR;
         }
         return false;
     }

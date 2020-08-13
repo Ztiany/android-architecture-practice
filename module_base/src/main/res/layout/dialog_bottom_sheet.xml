@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/flLevelDialogFunctionsRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <TextView
+        android:id="@+id/dialogBottomSheetTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_edge"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textColor="#333333"
+        android:textSize="@dimen/text_small"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dialogBottomRvList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        tools:listitem="@layout/dialog_bottom_sheet_item" />
+
+    <View
+        android:id="@+id/dialogBottomSheetVDivider"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:background="#F3F3F3" />
+
+    <TextView
+        android:id="@+id/dialogBottomSheetTvBottomAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="@string/cancel_"
+        android:textColor="#333333" />
+
+</LinearLayout>

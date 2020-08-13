@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.roundwidget.QMUIRoundFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="130dp"
+    android:layout_height="130dp"
+    app:qmui_backgroundColor="@color/opacity80_black"
+    app:qmui_radius="10dp">
+
+    <TextView
+        android:id="@+id/dialogTipsTvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="12dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:text="成功提示" />
+
+</com.qmuiteam.qmui.widget.roundwidget.QMUIRoundFrameLayout>

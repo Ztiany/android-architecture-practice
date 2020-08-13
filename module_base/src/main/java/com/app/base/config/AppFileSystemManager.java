@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Environment;
 
 import com.android.base.utils.BaseUtils;
-import com.android.base.utils.android.DirectoryUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import androidx.annotation.NonNull;
@@ -20,8 +20,10 @@ import timber.log.Timber;
  * @author Ztiany
  * Email: ztiany3@gmail.com
  * Date : 2018-11-01 14:24
+ * <p>
+ * todo 适配 AndroidQ ScopedStorage
  */
-public class DirectoryManager {
+public class AppFileSystemManager {
 
     private static final String APP_NAME = "gelei";
     private static final String TEMP_PICTURE = "temp-pictures";
@@ -100,14 +102,14 @@ public class DirectoryManager {
      * 获取 DCIM 存储图片的路径
      */
     private static String getExternalPicturePath() {
-        File publicDirectory = DirectoryUtils.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+        File publicDirectory = getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
         return publicDirectory.toString() + File.separator + APP_NAME + File.separator;
     }
 
     /**
      * 获取SD 卡上外部存储目录
      */
-    public static String getBHSDCardExternalStorePath() {
+    public static String getAppSDCardExternalStorePath() {
         String state = Environment.getExternalStorageState();
         String path;
         if (!Environment.MEDIA_MOUNTED.equals(state)) {
@@ -148,7 +150,58 @@ public class DirectoryManager {
 
     @SuppressLint("SimpleDateFormat")
     private static String tempFileName() {
-        return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + UUID.randomUUID().toString();//统一生成图片的名称格式
+        return new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault()).format(new Date()) + "_" + UUID.randomUUID().toString();
+    }
+
+    /**
+     * 获取SD卡上私有的外部存储
+     *
+     * @return /storage/emulated/0/Android/data/包名/cache/
+     */
+    public static File getAppExternalCacheStorage() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return BaseUtils.getAppContext().getExternalCacheDir();
+        } else {
+            return BaseUtils.getAppContext().getCacheDir();
+        }
+    }
+
+    /**
+     * 获取SD卡上外部存储
+     *
+     * @return /storage/emulated/0/
+     */
+    public static File getExternalStorage() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return Environment.getExternalStorageDirectory();
+        } else {
+            return BaseUtils.getAppContext().getCacheDir();
+        }
+    }
+
+    /**
+     * 获取公共的外部存储目录
+     *
+     * @param type {@link Environment#DIRECTORY_DOWNLOADS},
+     *             {@link Environment#DIRECTORY_DCIM}, ect
+     * @return DIRECTORY_DCIM = /storage/sdcard0/DCIM ,
+     * DIRECTORY_DOWNLOADS =  /storage/sdcard0/Download ...ect
+     */
+    public static File getExternalStoragePublicDirectory(@NonNull String type) {
+        String state = Environment.getExternalStorageState();
+        File dir;
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            dir = Environment.getExternalStoragePublicDirectory(type);
+        } else {
+            dir = new File(BaseUtils.getAppContext().getCacheDir(), type);
+        }
+        if (dir != null && !dir.exists()) {
+            boolean mkdirs = dir.mkdirs();
+            Timber.d("getExternalStoragePublicDirectory type = " + type + " mkdirs = " + mkdirs);
+        }
+        return dir;
     }
 
 }

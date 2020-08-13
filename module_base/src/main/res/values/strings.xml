@@ -1,7 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <!--通用词-->
+    <!-- ====================================通用词==================================== -->
     <string name="confirm">确认</string>
+    <string name="sure">确定</string>
     <string name="cancel_">取消</string>
     <string name="tips">提示</string>
     <string name="avatar">头像</string>
@@ -45,7 +46,7 @@
     <string name="forgot_password">忘记密码</string>
     <string name="photo">照片</string>
     <string name="search">搜索</string>
-
+    <string name="please_select">请选择</string>
 
     <!-- ====================================mask==================================== -->
     <string name="currency_mask">¥%s</string><!--全局唯一货币符号-->
@@ -55,7 +56,6 @@
     <string name="dialog_loading">请稍等…</string>
 
     <!-- ====================================错误提示==================================== -->
-
     <!--错误提示 toast-->
     <string name="error_net_error">网络连接失败，请检查网络喔</string>
     <string name="error_service_error">服务器开小差了，请稍后重试喔</string><!--error code 500-600-->
@@ -74,14 +74,12 @@
     <string name="page_error_no_network">@string/error_net_error</string>
     <string name="page_error_server_error">@string/error_service_error</string>
 
-
     <!-- ====================================表单校验提示==================================== -->
-
     <!--密码-->
     <string name="please_enter_password">请输入密码</string>
-    <string name="password_too_short_tips">密码至少需要六位</string>
     <string name="please_enter_confirm_password">请确认密码</string>
-    <string name="enter_the_password_twice_inconsistent">确认密码不一致</string>
+    <string name="password_too_wrong_format_tips">密码不符合要求</string>
+    <string name="enter_the_password_twice_inconsistent">两次密码输入不一致</string>
     <!--邮箱-->
     <string name="please_enter_email">请输入邮箱</string>
     <string name="email_wrong_format">邮箱格式错误</string>
@@ -90,22 +88,16 @@
     <string name="mobile_phone_number_wrong_format">手机号格式错误</string>
     <!--验证码-->
     <string name="please_enter_validate_code">请输入验证码</string>
+    <string name="validate_code_length_error">验证码错误</string>
+    <string name="please_enter_image_validate_code">请输入图形验证码</string>
+    <!--身份证-->
+    <string name="please_enter_paperwork_code">请输入证件号码</string>
+    <string name="please_enter_legitimate_paperwork_code">身份证格式不正确</string>
     <!--联系人-->
     <string name="please_enter_name">请填写联系人</string>
-    <string name="name_not_meet_the_requirements">联系人：2–15位中英文</string>
-    <!--详细地址-->
-    <string name="please_select_address">请选择地址</string>
-    <string name="please_enter_detail_address">请填写详细街道地址</string>
-    <string name="detail_address_not_meet_the_requirements">详细街道地址：5–60位中英文</string>
+    <string name="please_enter_legitimate_name">请输入合法姓名</string>
     <!--选择时间-->
     <string name="please_select_date">请选择日期</string>
     <string name="please_select_time">请选择时间</string>
-    <!--其他-->
-    <string name="please_enter_title">请输入标题</string>
-    <string name="please_enter_content">请输入内容</string>
-    <string name="please_enter_remark">请输入备注</string>
-    <string name="text_hint_option_limited_mask">(选填)字数不超过%d</string>
-    <string name="text_hint_must_limited_mask">(必填)字数不超过%d</string>
-    <string name="please_select_image">请选择图片</string>
 
 </resources>

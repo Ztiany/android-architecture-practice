@@ -10,4 +10,6 @@ public class AppSecurity {
 
     public static native String getAppId();
 
+    public static native String getAESKey();
+
 }

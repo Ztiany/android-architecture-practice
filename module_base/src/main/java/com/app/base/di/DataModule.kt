@@ -6,9 +6,9 @@ import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.service.ServiceFactory
 import com.app.base.app.AppErrorHandler
 import com.app.base.app.ErrorHandler
-import com.app.base.data.app.AppDataSource
+import com.app.base.data.app.*
 import com.app.base.data.app.AppRepository
-import com.app.base.data.app.StorageManager
+import com.app.base.data.app.CommonServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,6 +52,12 @@ class DataModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return NetContext.get().httpClient()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommonService(serviceFactory: ServiceFactory): CommonService {
+        return CommonServiceImpl(serviceFactory)
     }
 
 }

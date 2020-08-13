@@ -113,4 +113,8 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
+    <style name="Theme_Dialog_Tips" parent="Theme_Dialog_Common.Transparent.Floating">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
 </resources>

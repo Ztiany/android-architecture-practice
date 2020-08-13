@@ -31,6 +31,18 @@
                 android:resource="@xml/file_path"/>
         </provider>
 
+        <!--调试工具-->
+        <activity
+            android:name="com.app.base.debug.DebugActivity"
+            android:exported="false"
+            android:label="调试工具"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.app.base.debug.intent.Debug" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

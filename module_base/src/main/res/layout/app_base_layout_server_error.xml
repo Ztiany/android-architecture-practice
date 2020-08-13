@@ -29,7 +29,7 @@
         android:paddingStart="20dp"
         android:paddingTop="8dp"
         android:text="@string/page_error_server_error"
-        android:textSize="@dimen/text_little"/>
+        android:textSize="@dimen/text_small"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@id/base_retry_btn"

@@ -2,6 +2,7 @@ package com.app.base.data.utils
 
 import com.android.base.utils.security.AESUtils
 import com.android.sdk.cache.Encipher
+import com.app.base.app.AppSecurity
 import timber.log.Timber
 import java.nio.charset.Charset
 
@@ -12,7 +13,7 @@ import java.nio.charset.Charset
  */
 object StorageEncipher : Encipher {
 
-    private val password = "12345678"
+    private val password = AppSecurity.getAESKey()
 
     override fun encrypt(origin: String?): String? {
         Timber.d("encrypt %s", origin)
