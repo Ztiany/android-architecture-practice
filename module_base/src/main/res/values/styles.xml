@@ -23,4 +23,13 @@
         <item name="msv_requestingView">@layout/app_base_layout_loading</item>
     </style>
 
+    <!--通用 switch 样式 -->
+    <style name="Style_SwitchBtn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="kswThumbMargin">1dp</item>
+        <item name="kswBackColor">@color/color_switch_bg</item>
+        <item name="kswThumbColor">@color/color_switch_thumb</item>
+    </style>
+
 </resources>
