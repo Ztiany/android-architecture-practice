@@ -8,7 +8,7 @@
     </style>
 
     <!--Dialog-->
-    <style name="Theme_Dialog_Common">
+    <style name="ThemeDialogCommon">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowFrame">@null</item>

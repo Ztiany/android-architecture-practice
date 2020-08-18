@@ -6,7 +6,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:windowBackground">@color/white</item>
         <!--lib base qmui-->
         <item name="qmui_alpha_pressed">0.5</item>
         <item name="qmui_alpha_disabled">0.5</item>
@@ -14,24 +13,19 @@
         <item name="qmui_general_shadow_alpha">0.25</item>
     </style>
 
-    <!--Overlay-->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.FullScreen">
-        <item name="android:windowFullscreen">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.FullScreen.Transparent">
+    <style name="AppTheme.NoActionBar.NoBackground">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="AppTheme.FullScreen">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -43,50 +37,66 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppTheme_Toolbar" parent="Theme.AppCompat.Light">
+    <style name="AppTheme.NoActionBar.Transparent">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.FullScreen.Transparent">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <!--Toolbar Overlay-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppThemeToolbar" parent="Theme.AppCompat.Light">
         <!-- 设置显示在 toolbar 上菜单文字的颜色 -->
         <item name="actionMenuTextColor">@android:color/white</item>
         <!-- 设置 toolbar 弹出菜单的字体大小和溢出菜单文字大小-->
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="Style_Toolbar_titleTextAppearance">
+    <style name="StyleToolbarTitleTextAppearance">
         <item name="android:textSize">20sp</item>
     </style>
 
     <!--Anim-->
-    <style name="Style_Anim_Bottom_In" parent="android:Animation">
+    <style name="StyleAnimBottomIn" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/bottom_in</item>
         <item name="android:windowExitAnimation">@anim/bottom_out</item>
     </style>
 
-    <style name="Style_Anim_Top_In" parent="android:Animation">
+    <style name="StyleAnimTopIn" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/top_in</item>
         <item name="android:windowExitAnimation">@anim/top_out</item>
     </style>
 
-    <style name="Style_Anim_Fade_In" parent="android:Animation">
+    <style name="StyleAnimFadeIn" parent="android:Animation">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <style name="Style_Anim_Dialog_Fade_In" parent="android:Animation">
+    <style name="StyleAnimDialogFadeIn" parent="android:Animation">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@null</item>
     </style>
 
-    <style name="Style_Anim_Scale_In" parent="android:Animation">
+    <style name="StyleAnimScaleIn" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/scale_in</item>
         <item name="android:windowExitAnimation">@anim/scale_out</item>
     </style>
 
-    <style name="Style_Anim_Fragment_Scale_In" parent="android:Animation">
+    <style name="StyleAnimFragmentScaleIn" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/window_scale_in</item>
         <item name="android:windowExitAnimation">@anim/window_scale_out</item>
     </style>
 
     <!--Dialog-->
-    <style name="Theme_Dialog_Common" parent="Theme.AppCompat.Dialog">
+    <style name="ThemeDialogCommon" parent="Theme.AppCompat.Dialog">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowFrame">@null</item>
@@ -100,20 +110,20 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
     </style>
 
-    <style name="Theme_Dialog_Common.Transparent">
+    <style name="ThemeDialogCommon.Transparent">
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="Theme_Dialog_Common.Floating">
+    <style name="ThemeDialogCommon.Floating">
         <item name="android:windowIsFloating">true</item>
     </style>
 
-    <style name="Theme_Dialog_Common.Transparent.Floating">
+    <style name="ThemeDialogCommon.Transparent.Floating">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
 
-    <style name="Theme_Dialog_Tips" parent="Theme_Dialog_Common.Transparent.Floating">
+    <style name="ThemeDialogTips" parent="ThemeDialogCommon.Transparent.Floating">
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 

@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.ScreenUtils
 open class BaseDialog(
         context: Context,
         private val limitHeight: Boolean = false,
-        style: Int = R.style.Theme_Dialog_Common_Transparent_Floating
+        style: Int = R.style.ThemeDialogCommon_Transparent_Floating
 ) : AppCompatDialog(context, style) {
 
     companion object {
@@ -25,7 +25,7 @@ open class BaseDialog(
 
     private fun setCommonWindowAttributes() {
         window?.run {
-            attributes.windowAnimations = R.style.Style_Anim_Dialog_Fade_In
+            attributes.windowAnimations = R.style.StyleAnimDialogFadeIn
         }
     }
 

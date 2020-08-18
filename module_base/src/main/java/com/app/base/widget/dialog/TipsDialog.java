@@ -23,11 +23,11 @@ class TipsDialog extends AppCompatDialog {
     private TextView mMessageTv;
 
     TipsDialog(Context context) {
-        super(context, R.style.Theme_Dialog_Tips);
+        super(context, R.style.ThemeDialogTips);
         Window window = getWindow();
         assert window != null;
         WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.windowAnimations = R.style.Style_Anim_Fade_In;
+        attributes.windowAnimations = R.style.StyleAnimFadeIn;
         setView();
     }
 

@@ -57,7 +57,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.Theme_Dialog_Common_Floating);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.ThemeDialogCommon_Floating);
         mAddressInquirers = new AddressInquirers();
         mAddressInquirers.setAddressQueryCallback(this);
         mAddressAdapter = new AddressAdapter(getContext());
@@ -198,7 +198,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
 
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            dialogWindow.setWindowAnimations(R.style.Style_Anim_Bottom_In);
+            dialogWindow.setWindowAnimations(R.style.StyleAnimBottomIn);
             dialogWindow.setAttributes(lp);
         }
 

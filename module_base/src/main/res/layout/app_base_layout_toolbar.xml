@@ -8,10 +8,10 @@
     android:layout_height="wrap_content"
     android:elevation="4dp"
     android:minHeight="?actionBarSize"
-    android:theme="@style/AppTheme_Toolbar"
+    android:theme="@style/AppThemeToolbar"
     app:popupTheme="@style/AppTheme.AppBarOverlay"
     app:titleMarginStart="0dp"
-    app:titleTextAppearance="@style/Style_Toolbar_titleTextAppearance"
+    app:titleTextAppearance="@style/StyleToolbarTitleTextAppearance"
     tools:ignore="PrivateResource,UnusedAttribute">
 
 </androidx.appcompat.widget.Toolbar>

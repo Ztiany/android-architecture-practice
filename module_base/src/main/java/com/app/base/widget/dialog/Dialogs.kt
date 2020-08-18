@@ -190,7 +190,7 @@ open class BaseDialogBuilder(val context: Context) {
     }
 
     /**样式*/
-    var style: Int = R.style.Theme_Dialog_Common_Transparent_Floating
+    var style: Int = R.style.ThemeDialogCommon_Transparent_Floating
 
     /**确认按钮*/
     @StringRes
