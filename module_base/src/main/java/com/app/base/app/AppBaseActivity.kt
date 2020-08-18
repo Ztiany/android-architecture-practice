@@ -24,7 +24,7 @@ abstract class AppBaseActivity : BaseActivity() {
     }
 
     @CallSuper
-    override fun initializeView(savedInstanceState: Bundle?) {
+    override fun setUpView(savedInstanceState: Bundle?) {
         if (tintStatusBar()) {
             SystemBarCompat.setTranslucentStatusOn19(this)
             if (enableStatusBarLightMode() && AppSettings.supportStatusBarLightMode) {

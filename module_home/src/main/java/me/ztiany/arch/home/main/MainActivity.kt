@@ -14,7 +14,6 @@ import com.app.base.app.AppBaseActivity
 import com.app.base.router.RouterPath
 import com.app.base.widget.dialog.TipsManager
 import com.blankj.utilcode.util.AppUtils
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment_root.*
 import me.ztiany.architecture.home.R
@@ -46,13 +45,13 @@ class MainActivity : AppBaseActivity() {
         }
     }
 
-    override fun initializeView(savedInstanceState: Bundle?) {
-        super.initializeView(savedInstanceState)
+    override fun setUpView(savedInstanceState: Bundle?) {
+        super.setUpView(savedInstanceState)
         initViews(savedInstanceState)
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
-        super.initializeView(savedInstanceState)
+        super.setUpView(savedInstanceState)
         //设置 TranslucentStatus
         SystemBarCompat.setTranslucentSystemUi(this, true, false)
         //设置 MainFragment

@@ -23,8 +23,8 @@ public abstract class ToolBarActivity extends AppBaseActivity {
 
     @Override
     @CallSuper
-    protected void initializeView(@Nullable Bundle savedInstanceState) {
-        super.initializeView(savedInstanceState);
+    protected void setUpView(@Nullable Bundle savedInstanceState) {
+        super.setUpView(savedInstanceState);
         initToolbar();
     }
 
