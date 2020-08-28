@@ -6,12 +6,12 @@
 # base
 git clone git@github.com:Ztiany/Android-Libs.git
 cd Android-Libs
-git checkout -b androidx origin/androidx
+git checkout -b androidx origin/androidx-hilt
 
 # project
 git clone git@github.com:Ztiany/AndroidArchitecture.git
 cd AndroidArchitecture
-git checkout -b androidx origin/androidx
+git checkout -b androidx origin/androidx-hilt
 ```
 
 make sure the projects in the same directory.
