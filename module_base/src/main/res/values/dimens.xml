@@ -15,13 +15,4 @@
     <dimen name="text_smaller">10sp</dimen><!--最弱内容-->
     <dimen name="text_smallest">8sp</dimen>
 
-    <!--组件之间margin-->
-    <dimen name="widget_margin_least">3dp</dimen>
-    <dimen name="widget_margin_little">5dp</dimen>
-    <dimen name="widget_margin_normal">10dp</dimen>
-    <dimen name="widget_margin_slightly_large">15dp</dimen>
-    <dimen name="widget_margin_large">20dp</dimen>
-    <dimen name="widget_margin_xlarge">30dp</dimen>
-    <dimen name="widget_margin_huge">40dp</dimen>
-
 </resources>

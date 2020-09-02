@@ -26,7 +26,7 @@
 
     <com.kyleduo.switchbutton.SwitchButton
         android:id="@+id/sbWidgetItemSwitch"
-        style="@style/Style_SwitchBtn"
+        style="@style/StyleSwitchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_arrow_right_gray"

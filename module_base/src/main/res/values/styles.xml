@@ -24,7 +24,7 @@
     </style>
 
     <!--通用 switch 样式 -->
-    <style name="Style_SwitchBtn">
+    <style name="StyleSwitchBtn">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="kswThumbMargin">1dp</item>

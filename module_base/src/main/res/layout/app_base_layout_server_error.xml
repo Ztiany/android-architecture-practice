@@ -23,7 +23,7 @@
         android:layout_below="@id/base_retry_icon"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/widget_margin_least"
+        android:layout_marginTop="3dp"
         android:paddingBottom="8dp"
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/base_retry_tv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:layout_marginTop="10dp"
         android:text="@string/page_error_retry_action_tips"
         android:textColor="@color/black" />
 
