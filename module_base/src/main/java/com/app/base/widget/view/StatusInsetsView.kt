@@ -1,4 +1,4 @@
-package com.app.base.widget.insets
+package com.app.base.widget.view
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
