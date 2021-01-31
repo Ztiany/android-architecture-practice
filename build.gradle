@@ -2,6 +2,10 @@ buildscript {
 
     apply from: 'libraries.gradle'
 
+    ext {
+        kotlin_version = '1.4.0'
+    }
+
     repositories {
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url "https://maven.aliyun.com/repository/google" }
@@ -18,14 +22,17 @@ buildscript {
         //android
         classpath 'com.android.tools.build:gradle:4.0.1'
         //kotlin
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0'
         //hilt
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.28-alpha"
+        //channel
+        classpath 'com.leon.channel:plugin:2.0.3'
+        //DexCount requires Java 8 or higher, Gradle 6.0 or higher, and Android Gradle Plugin 3.4.0 or higher.
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:2.0.0'
     }
 }
 
 allprojects {
-
     repositories {
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/public' }
@@ -36,17 +43,22 @@ allprojects {
         jcenter()
         google()
         mavenCentral()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
         flatDir { dirs rootProject.projectDir.getAbsolutePath() + '/repo/aar' }
 
         configurations.all {
             resolutionStrategy.force(
-                    //elect the  latest version.
+                    //choose the  latest version.
+                    "androidx.core:core:1.3.1",
                     "androidx.appcompat:appcompat:1.1.0",
                     "androidx.appcompat:appcompat-resources:1.1.0",
                     "androidx.activity:activity:1.1.0",
                     "androidx.fragment:fragment:1.2.1",
                     "androidx.core:core-ktx:1.2.0",
                     "androidx.lifecycle:lifecycle-livedata:2.2.0",
+                    //kotlin
+                    "org.jetbrains.kotlin:kotlin-stdlib:1.4.0",
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
             )
         }
     }

@@ -30,6 +30,12 @@ class DialogBottomLayout @JvmOverloads constructor(
         tvDialogPositive.text = text
     }
 
+    var positiveEnable: Boolean
+        get() = tvDialogPositive.isEnabled
+        set(value) {
+            tvDialogPositive.isEnabled = value
+        }
+
     fun positiveColor(@ColorInt color: Int) {
         tvDialogPositive.setTextColor(color)
     }
@@ -38,13 +44,21 @@ class DialogBottomLayout @JvmOverloads constructor(
         tvDialogPositive.setTextColor(colors)
     }
 
+    fun onPositiveClick(onClick: View.OnClickListener) {
+        tvDialogPositive.setOnClickListener(onClick)
+    }
+
+    fun onPositiveClick(onClick: (View) -> Unit) {
+        tvDialogPositive.setOnClickListener(onClick)
+    }
+
     fun negativeText(text: CharSequence?) {
         if (text.isNullOrEmpty()) {
             tvDialogNegative.gone()
-            viewDialogBtnDivider.gone()
+            viewDialogBtnLeftDivider.gone()
         } else {
             tvDialogNegative.visible()
-            viewDialogBtnDivider.visible()
+            viewDialogBtnLeftDivider.visible()
             tvDialogNegative.text = text
         }
     }
@@ -61,26 +75,43 @@ class DialogBottomLayout @JvmOverloads constructor(
         tvDialogNegative.setOnClickListener(onClick)
     }
 
-    fun onPositiveClick(onClick: View.OnClickListener) {
-        tvDialogPositive.setOnClickListener(onClick)
-    }
-
     fun onNegativeClick(onClick: (View) -> Unit) {
         tvDialogNegative.setOnClickListener(onClick)
-    }
-
-    fun onPositiveClick(onClick: (View) -> Unit) {
-        tvDialogPositive.setOnClickListener(onClick)
     }
 
     fun hideNegative() {
         negativeText(null)
     }
 
-    var positiveEnable: Boolean
-        get() = tvDialogPositive.isEnabled
-        set(value) {
-            tvDialogPositive.isEnabled = value
+    fun neutralText(text: CharSequence?) {
+        if (text.isNullOrEmpty()) {
+            tvDialogNeutral.gone()
+            viewDialogBtnRightDivider.gone()
+        } else {
+            tvDialogNeutral.visible()
+            viewDialogBtnRightDivider.visible()
+            tvDialogNeutral.text = text
         }
+    }
+
+    fun neutralColor(@ColorInt color: Int) {
+        tvDialogNeutral.setTextColor(color)
+    }
+
+    fun middleColor(colors: ColorStateList) {
+        tvDialogNeutral.setTextColor(colors)
+    }
+
+    fun onNeutralClick(onClick: View.OnClickListener) {
+        tvDialogNeutral.setOnClickListener(onClick)
+    }
+
+    fun onNeutralClick(onClick: (View) -> Unit) {
+        tvDialogNeutral.setOnClickListener(onClick)
+    }
+
+    fun hideNeutral() {
+        neutralText(null)
+    }
 
 }

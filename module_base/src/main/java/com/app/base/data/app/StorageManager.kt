@@ -12,6 +12,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
+ * 全局存储管理器，底层使用 mmkv，可达到内存级访问速度。
+ *
  *@author Ztiany
  *      Email: ztiany3@gmail.com
  *      Date : 2018-12-19 13:51
@@ -22,8 +24,8 @@ class StorageManager @Inject internal constructor(
 ) {
 
     companion object {
-        private const val STABLE_CACHE_ID = "app-forever-cache-id"
-        private const val USER_ASSOCIATED_CACHE_ID = "app-UserAssociated-default-cache-id"
+        private const val STABLE_CACHE_ID = "app-stable-cache-id"
+        private const val USER_ASSOCIATED_CACHE_ID = "app-UserAssociated-cache-id"
         private const val ALL_USER_ASSOCIATED_CACHE_ID_KEY = "all_user_associated_cache_id_key"
     }
 
@@ -98,9 +100,11 @@ class StorageManager @Inject internal constructor(
             return
         }
         for (cacheId in _userAssociatedIdList) {
+
             if (cacheId.isEmpty()) {
                 continue
             }
+
             /*只是清理的话，不需要考虑加密器*/
             val weakReference = storageCache[cacheId]
 
@@ -116,6 +120,7 @@ class StorageManager @Inject internal constructor(
             storageFactory.newBuilder(context).storageId(cacheId).build()
             Timber.d("clear user associated cache：$cacheId")
         }
+
         _userAssociatedIdList.clear()
 
         stableStorage().remove(ALL_USER_ASSOCIATED_CACHE_ID_KEY)

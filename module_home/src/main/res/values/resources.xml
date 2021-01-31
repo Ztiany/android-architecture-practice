@@ -2,8 +2,8 @@
 <resources>
 
     <!--MainTab-->
-    <item name="main_index" type="id"/>
-    <item name="main_middle" type="id"/>
-    <item name="main_mine" type="id"/>
+    <item name="main_feed" type="id" />
+    <item name="main_message" type="id" />
+    <item name="main_me" type="id" />
 
 </resources>

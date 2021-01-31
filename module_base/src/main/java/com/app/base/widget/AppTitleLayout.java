@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.LinearLayout;
 import com.android.base.app.fragment.tools.Fragments;
 import com.android.base.utils.android.compat.AndroidVersion;
 import com.android.base.utils.android.compat.SystemBarCompat;
-import com.android.base.utils.android.views.TintUtilsKt;
+import com.android.base.utils.android.views.TintUtils;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
 
@@ -53,8 +54,13 @@ public class AppTitleLayout extends LinearLayout {
 
     public AppTitleLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AppTitleLayout);
+        fillAttributes(context, typedArray);
+        typedArray.recycle();
+    }
+
+    private void fillAttributes(@NonNull Context context, TypedArray typedArray) {
+        //get all attributes
         String title = typedArray.getString(R.styleable.AppTitleLayout_atl_title);
         int menuResId = typedArray.getResourceId(R.styleable.AppTitleLayout_atl_menu_id, INVALIDATE_ID);
         boolean showCuttingLime = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_cutting_line, false);
@@ -64,49 +70,46 @@ public class AppTitleLayout extends LinearLayout {
         int titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.WHITE);
         int menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.WHITE);
         boolean adjustForStatusBar = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_adjust_for_status, false);
-        typedArray.recycle();
+        //add layout
+        inflateLayout(context, adjustForStatusBar);
+        //get resource
+        iniToolbar(title, showCuttingLime, titleColor);
+        //icon
+        initNavigationIcon(disableNavigation, navigationIcon, iconTintColor);
+        //menu
+        initMenu(menuResId, menuColor);
+    }
 
+    private void inflateLayout(@NonNull Context context, boolean adjustForStatusBar) {
         mOriginalTopPadding = getPaddingTop();
         adjustForStatusBar(adjustForStatusBar);
         setOrientation(VERTICAL);
         inflate(context, R.layout.widget_title_layout, this);
-
-        //get resource
-        iniToolbar(title, showCuttingLime, titleColor);
-        //icon
-        if (!disableNavigation) {
-            initNavigationIcon(navigationIcon, iconTintColor);
-        }
-        //menu
-        initMenu(menuResId, menuColor);
-        //set background
-        if (getBackground() == null) {
-            setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-        }
-
     }
 
     private void initMenu(int menuResId, int menuColor) {
         if (menuResId != INVALIDATE_ID) {
             mToolbar.inflateMenu(menuResId);
-            if (menuColor != Color.WHITE) {
-                setMenuColor(menuColor);
-            }
+            setMenuColor(menuColor);
         }
     }
 
-    private void initNavigationIcon(Drawable navigationIcon, int iconTintColor) {
+    private void initNavigationIcon(boolean disableNavigation, Drawable navigationIcon, int iconTintColor) {
+        if (disableNavigation) {
+            return;
+        }
+
         if (navigationIcon != null) {
             if (iconTintColor == -1) {
                 mToolbar.setNavigationIcon(navigationIcon);
             } else {
-                mToolbar.setNavigationIcon(TintUtilsKt.tint(navigationIcon.mutate(), iconTintColor));
+                mToolbar.setNavigationIcon(TintUtils.tint(navigationIcon.mutate(), iconTintColor));
             }
         } else {
             if (iconTintColor == -1) {
                 mToolbar.setNavigationIcon(R.drawable.icon_back);
             } else {
-                mToolbar.setNavigationIcon(TintUtilsKt.tint(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.icon_back)).mutate(), iconTintColor));
+                mToolbar.setNavigationIcon(TintUtils.tint(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.icon_back)).mutate(), iconTintColor));
             }
         }
     }
@@ -143,6 +146,11 @@ public class AppTitleLayout extends LinearLayout {
 
     public void setTitle(String title) {
         mToolbar.setTitle(title);
+
+    }
+
+    public void setLogo(int resID) {
+        mToolbar.setLogo(resID);
     }
 
     public void setTitle(int titleId) {
@@ -171,6 +179,10 @@ public class AppTitleLayout extends LinearLayout {
     }
 
     public void setMenuColor(@ColorInt int color) {
+        setMenuColor(color, "");
+    }
+
+    public void setMenuColor(@ColorInt int color, String target) {
         View view;
         View innerView;
 
@@ -179,14 +191,24 @@ public class AppTitleLayout extends LinearLayout {
             view = mToolbar.getChildAt(i);
 
             if (view instanceof ActionMenuView) {
+
                 for (int j = 0; j < ((ActionMenuView) view).getChildCount(); j++) {
                     innerView = ((ActionMenuView) view).getChildAt(j);
-                    if (innerView instanceof ActionMenuItemView) {
-                        ((ActionMenuItemView) innerView).setTextColor(color);
+
+                    if (!TextUtils.isEmpty(target)) {
+                        if (innerView instanceof ActionMenuItemView && ((ActionMenuItemView) innerView).getText().equals(target)) {
+                            ((ActionMenuItemView) innerView).setTextColor(color);
+                            break;
+                        }
+                    } else {
+                        if (innerView instanceof ActionMenuItemView) {
+                            ((ActionMenuItemView) innerView).setTextColor(color);
+                        }
                     }
                 }
-            }
 
+                break;
+            }
         }
     }
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:textColor="#333333"
-        android:textSize="@dimen/text_large"
+        android:textSize="14sp"
         tools:text="湖南" />
 
     <View

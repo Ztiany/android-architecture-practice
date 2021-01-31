@@ -14,15 +14,16 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:background="#EFEFEF" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/mainBottomBar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom"
-        app:itemBackground="@color/white"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:itemIconTint="@color/app_main"
+        app:itemTextColor="@color/app_main"
         app:menu="@menu/main_table" />
 
 </LinearLayout>

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
 
     <item
-        android:icon="@drawable/main_icon_tab_index_sel"
-        android:id="@id/main_index"
-        android:title="@string/main_tab_index" />
+        android:id="@id/main_feed"
+        android:icon="@drawable/main_icon_tab_discovery"
+        android:title="@string/main_tab_feed" />
 
     <item
-        android:icon="@drawable/main_icon_tab_accompany_sel"
-        android:id="@id/main_middle"
-        android:title="@string/main_tab_accompany" />
+        android:id="@id/main_message"
+        android:icon="@drawable/main_icon_tab_message"
+        android:title="@string/main_tab_message" />
 
     <item
-        android:icon="@drawable/main_icon_tab_mine_sel"
-        android:id="@id/main_mine"
-        android:title="@string/main_tab_mine" />
+        android:id="@id/main_me"
+        android:icon="@drawable/main_icon_tab_me"
+        android:title="@string/main_tab_me" />
 
 </menu>

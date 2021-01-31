@@ -1,11 +1,11 @@
-<manifest package="me.ztiany.architecture.account"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.architecture.account">
 
     <application>
 
         <!--登录注册界面-->
         <activity
-            android:name=".AccountActivity"
+            android:name="com.android.architecture.account.AccountActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 

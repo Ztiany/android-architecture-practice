@@ -10,8 +10,10 @@ public class ApiHelper {
 
     /*Json解析错误*/
     private static final int DATA_ERROR = -8088;
+
     /*返回成功*/
-    private static final int CODE_SUCCESS = 200;
+    private static final int CODE_SUCCESS = 1;
+
     /*Key失效*/
     private static final int KEY_INVALID = 99;
 
@@ -27,6 +29,11 @@ public class ApiHelper {
         return throwable instanceof ApiErrorException && ApiHelper.isKeyInvalid(((ApiErrorException) throwable).getCode());
     }
 
+    public static Exception buildAuthenticationExpiredException() {
+        return new ApiErrorException(KEY_INVALID, "登录过期");
+    }
+
+    @SuppressWarnings({"rawtypes"})
     public static boolean isDataError(Object data) {
         if (data instanceof Result) {
             return ((Result) data).getCode() == DATA_ERROR;

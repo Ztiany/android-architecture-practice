@@ -1,7 +1,5 @@
 package com.app.base.debug;
 
-import android.util.Log;
-
 import com.android.base.utils.android.DebugUtils;
 import com.android.base.utils.android.DevicesUtils;
 import com.app.base.AppContext;
@@ -16,20 +14,17 @@ public class DebugTools {
 
     public static void init(AppContext appContext) {
         if (Debug.isOpenDebug()) {
-            Log.e("DebugTools", "=============================Base Debug mode is activate=============================");
-            Log.e("DebugTools", "=============================Base Debug mode is activate=============================");
-            Log.e("DebugTools", "=============================Base Debug mode is activate=============================");
-
+            Timber.e("=============================Base Debug mode is activate=============================");
             DevicesUtils.printSystemInfo();
             DebugUtils.startStrictMode();
             installLogger();
             installStetho(appContext);
-
         }
     }
 
     private static void installLogger() {
         Timber.plant(new Timber.DebugTree());
+        DevicesUtils.printSystemInfo();
     }
 
     private static void installStetho(AppContext appContext) {

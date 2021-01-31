@@ -1,18 +1,27 @@
-<manifest package="me.ztiany.architecture.home"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.architecture.main">
 
     <application>
 
         <activity
-            android:name="me.ztiany.arch.home.main.MainActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:name="com.android.architecture.launcher.AppLauncherActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity
+            android:name="com.android.architecture.main.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

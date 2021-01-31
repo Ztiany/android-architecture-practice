@@ -6,3 +6,10 @@
 /build
 /captures
 .externalNativeBuild
+*.hprof
+extra_modules
+/ssy_libs/lib_biometrics
+/ssy_libs/lib_webview
+/ssy_libs/lib_qrcode
+/ssy_libs/lib_safekeyboard
+/app/apk

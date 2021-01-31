@@ -13,7 +13,7 @@
         android:padding="14dp"
         android:text="所在地区"
         android:textColor="#808080"
-        android:textSize="@dimen/text_large" />
+        android:textSize="14sp" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/dialog_address_tbl_tab"

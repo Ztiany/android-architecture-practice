@@ -28,25 +28,23 @@ internal class ConfirmDialog(builder: ConfirmDialogBuilder) : BaseDialog(builder
 
         //title
         val title = builder.title
+        tvConfirmDialogTitle.setTextColor(builder.titleColor)
         if (title != null) {
             tvConfirmDialogTitle.visible()
             tvConfirmDialogTitle.text = title
-            if (builder.titleSize != 0F) {
+            if (builder.titleSize > 0F) {
                 tvConfirmDialogTitle.textSize = builder.titleSize
             } else {
                 tvConfirmDialogTitle.textSize = 16F
-            }
-            if (builder.titleColor != 0) {
-                tvConfirmDialogTitle.setTextColor(builder.titleColor)
-            } else {
-                tvConfirmDialogTitle.setTextColor(context.colorFromId(R.color.colorPrimary))
             }
         }
 
         //message
         tvConfirmDialogMessage.text = builder.message
+        tvConfirmDialogMessage.setTextColor(builder.messageColor)
         tvConfirmDialogMessage.gravity = builder.messageGravity
-        if (builder.messageSize != 0F) {
+        tvConfirmDialogMessage.setTextColor(builder.messageColor)
+        if (builder.messageSize > 0F) {
             tvConfirmDialogMessage.textSize = builder.titleSize
         } else {
             tvConfirmDialogMessage.textSize = if (builder.title.isNullOrEmpty()) {
@@ -54,15 +52,6 @@ internal class ConfirmDialog(builder: ConfirmDialogBuilder) : BaseDialog(builder
             } else {
                 14F
             }
-        }
-        if (builder.titleColor != 0) {
-            tvConfirmDialogMessage.setTextColor(builder.titleColor)
-        } else {
-            tvConfirmDialogMessage.setTextColor(if (builder.title.isNullOrEmpty()) {
-                context.colorFromId(R.color.colorPrimary)
-            } else {
-                context.colorFromId(R.color.colorPrimaryDark)
-            })
         }
 
         //checkbox
@@ -81,11 +70,24 @@ internal class ConfirmDialog(builder: ConfirmDialogBuilder) : BaseDialog(builder
             dblDialogBottom.onNegativeClick(View.OnClickListener {
                 dismissChecked(builder)
                 builder.negativeListener?.invoke(this)
-                builder.negativeListener2?.invoke(this, cbConfirmDialogCheckBox.isChecked)
             })
         } else {
             dblDialogBottom.hideNegative()
         }
+        dblDialogBottom.negativeColor(builder.negativeColor)
+
+        //neutral
+        val neutralText = builder.neutralText
+        if (neutralText != null) {
+            dblDialogBottom.neutralText(neutralText)
+            dblDialogBottom.onNeutralClick(View.OnClickListener {
+                dismissChecked(builder)
+                builder.neutralListener?.invoke(this)
+            })
+        } else {
+            dblDialogBottom.hideNeutral()
+        }
+        dblDialogBottom.neutralColor(builder.neutralColor)
 
         //confirm
         dblDialogBottom.positiveText(builder.positiveText)
@@ -94,7 +96,9 @@ internal class ConfirmDialog(builder: ConfirmDialogBuilder) : BaseDialog(builder
             builder.positiveListener?.invoke(this)
             builder.positiveListener2?.invoke(this, cbConfirmDialogCheckBox.isChecked)
         })
+        dblDialogBottom.positiveColor(builder.positiveColor)
 
+        //cancelable
         setCanceledOnTouchOutside(builder.cancelableTouchOutside)
         setCancelable(builder.cancelable)
     }

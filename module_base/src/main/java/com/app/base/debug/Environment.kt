@@ -8,7 +8,7 @@ import com.app.base.AppContext
 
 object EnvironmentContext {
 
-    private val spCache = SpCache(AppContext.get().packageName, false)
+    private val spCache = SpCache(AppContext.get(), AppContext.get().packageName, false)
 
     private val envMap = LinkedHashMap<String, MutableList<Environment>>()
 
@@ -34,9 +34,9 @@ object EnvironmentContext {
         envMap.forEach { (category, list) ->
             val url = spCache.getString(category, "")
             list.find {
-                url == it.url
+                url == it.value
             }.ifNull {
-                spCache.putString(category, list[0].url)
+                spCache.putString(category, list[0].value)
             }
         }
     }
@@ -46,7 +46,7 @@ object EnvironmentContext {
     }
 
     internal fun select(category: String, env: Environment) {
-        spCache.putString(category, env.url)
+        spCache.putString(category, env.value)
     }
 
     /**修改所选择的环境*/
@@ -62,7 +62,7 @@ object EnvironmentContext {
     fun selected(category: String): Environment {
         val url = spCache.getString(category, "")
         return envMap[category]?.find {
-            url == it.url
+            url == it.value
         } ?: throw NullPointerException("no selected Environment with category: $category")
     }
 
@@ -72,4 +72,4 @@ interface EnvironmentAdder {
     fun add(category: String, env: Environment)
 }
 
-class Environment(val name: String, val tag: String, val url: String)
+class Environment(val name: String, val tag: String, val value: String)

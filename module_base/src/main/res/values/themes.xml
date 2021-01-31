@@ -1,12 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+        <!--main color-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--text-->
         <item name="android:textAllCaps">false</item>
-        <!--lib base qmui-->
+        <!--qmui-->
         <item name="qmui_alpha_pressed">0.5</item>
         <item name="qmui_alpha_disabled">0.5</item>
         <item name="qmui_general_shadow_elevation">14dp</item>
@@ -30,11 +32,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.Transparent">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
-
     <style name="AppTheme.NoActionBar.Transparent">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -49,17 +46,21 @@
     </style>
 
     <!--Toolbar Overlay-->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
-    <style name="AppThemeToolbar" parent="Theme.AppCompat.Light">
+    <style name="AppThemeToolbar" parent="Theme.MaterialComponents.Light.Bridge">
         <!-- 设置显示在 toolbar 上菜单文字的颜色 -->
-        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/black</item>
         <!-- 设置 toolbar 弹出菜单的字体大小和溢出菜单文字大小-->
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="StyleTabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">17sp</item>
     </style>
 
     <style name="StyleToolbarTitleTextAppearance">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <!--Anim-->
@@ -103,13 +104,13 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
     </style>
 
     <style name="ThemeDialogCommon.Transparent">
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="ThemeDialogCommon.Floating">
@@ -117,7 +118,6 @@
     </style>
 
     <style name="ThemeDialogCommon.Transparent.Floating">
-        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
 

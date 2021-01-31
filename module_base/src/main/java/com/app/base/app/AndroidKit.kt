@@ -1,6 +1,7 @@
 package com.app.base.app
 
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.MetaDataUtils
 import com.blankj.utilcode.util.NetworkUtils
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,6 +16,8 @@ class AndroidKit @Inject constructor() {
 
     fun isConnected() = NetworkUtils.isConnected()
 
-    fun getAppVersionName(): String =AppUtils.getAppVersionName()
+    fun getAppVersionName(): String = AppUtils.getAppVersionName()
+
+    fun getManifestValue(key: String): String = MetaDataUtils.getMetaDataInApp(key)
 
 }

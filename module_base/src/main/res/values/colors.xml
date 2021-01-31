@@ -1,22 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--主色调-->
-    <color name="colorPrimary">#008577</color>
-    <!--主暗色调-->
-    <color name="colorPrimaryDark">#00574B</color>
-    <!--控件-->
-    <color name="colorAccent">#D81B60</color>
+    <!-- ============================ UI设计规范 ============================ -->
+    <color name="app_main">#FF1E26</color><!--主色调-->
+    <color name="app_white">@color/white</color>
 
+    <color name="app_tips_success">#07C160</color><!--提示：完成-->
+    <color name="app_tips_warn">#FA5151</color><!--提示：警告-->
+    <color name="app_tips_info">#10AEFF</color><!--提示：信息-->
+
+    <!--用于一些设计组件的背景，底衬-->
+    <color name="app_gray_level1">#1A1A1A</color>
+    <color name="app_gray_level2">#444444</color>
+    <color name="app_gray_level3">#808080</color>
+    <color name="app_gray_level4">#B3B3B3</color>
+    <color name="app_gray_level5">#EBEBEB</color>
+    <color name="app_gray_level6">#F5F5F5</color>
+    <!-- ============================ UI设计规范 ============================ -->
+
+    <!--主色调-->
+    <color name="colorPrimary">@color/app_main</color>
+    <!--主暗色调-->
+    <color name="colorPrimaryDark">@color/white</color>
+    <!--控件-->
+    <color name="colorAccent">@color/app_main</color>
+    <!--  窗口背景  -->
+    <color name="page_bg_color">#F5F5F5</color>
+    <!--  分割线  -->
+    <color name="divider_color">#E5E5E5</color>
     <!--不可用-->
-    <color name="disable">#E5E5E5</color>
+    <color name="btn_disable">#E5E5E5</color>
     <!--按下-->
-    <color name="pressed">#EAEAEA</color>
+    <color name="btn_pressed">#EAEAEA</color>
 
     <!--透明系-->
+    <color name="color_translate">#00000000</color>
     <color name="opacity10_black">#1A000000</color>
     <color name="opacity20_black">#33000000</color>
+    <color name="opacity30_black">#4D000000</color>
     <color name="opacity40_black">#66000000</color>
+    <color name="opacity50_black">#80000000</color>
     <color name="opacity60_black">#99000000</color>
     <color name="opacity75_black">#BF000000</color>
     <color name="opacity25_black">#40000000</color>
@@ -24,5 +47,10 @@
     <color name="opacity10_white">#1AFFFFFF</color>
     <color name="opacity60_white">#99FFFFFF</color>
     <color name="opacity80_white">#CCFFFFFF</color>
+
+    <!-- 文字 -->
+    <color name="text_normal">#808080</color>
+    <color name="text_link">#007AFF</color>
+    <color name="text_warn">#FA5151</color>
 
 </resources>

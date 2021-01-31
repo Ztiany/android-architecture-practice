@@ -15,11 +15,11 @@ import androidx.appcompat.app.AppCompatDialog;
  * Email: 1169654504@qq.com
  * Date : 2017-05-02 14:37
  */
-class LoadingDialog extends AppCompatDialog {
+public class LoadingDialog extends AppCompatDialog {
 
     private TextView mMessageTv;
 
-    LoadingDialog(Context context) {
+    public LoadingDialog(Context context) {
         super(context);
         setView();
     }

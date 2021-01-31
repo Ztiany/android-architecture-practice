@@ -1,5 +1,6 @@
 <resources>
 
+    <!--App-->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -17,7 +18,6 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>

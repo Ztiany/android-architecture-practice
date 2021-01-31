@@ -22,15 +22,36 @@
             android:paddingBottom="15dp"
             android:text="@string/cancel_"
             android:textColor="#808080"
-            android:textSize="@dimen/text_large"
+            android:textSize="14sp"
             android:visibility="visible" />
 
         <View
-            android:id="@+id/viewDialogBtnDivider"
+            android:id="@+id/viewDialogBtnLeftDivider"
             android:layout_width="@dimen/common_separate_width"
             android:layout_height="match_parent"
             android:background="#EFEFEF"
             android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvDialogNeutral"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/confirm"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/viewDialogBtnRightDivider"
+            android:layout_width="@dimen/common_separate_width"
+            android:layout_height="match_parent"
+            android:background="#EFEFEF"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvDialogPositive"
@@ -42,8 +63,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="@string/confirm"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_large" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 

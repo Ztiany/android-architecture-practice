@@ -8,6 +8,7 @@ import com.app.base.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -67,18 +68,18 @@ public class AppLoadingView implements LoadingView {
 
     private void initDialog() {
         if (mLoadingDialog == null) {
-            mLoadingDialog = (LoadingDialog) Dialogs.createLoadingDialog(mContext, false);
+            mLoadingDialog = (LoadingDialog) DialogManager.createLoadingDialog(mContext, false);
         }
     }
 
     @Override
-    public void dismissLoadingDialog(long minimumMills, @NotNull Function0<Unit> onDismiss) {
+    public void dismissLoadingDialog(long minimumMills, @Nullable Function0<Unit> onDismiss) {
         throw new UnsupportedOperationException("the method should be implemented by implementer of LoadingView");
     }
 
     @Override
     public boolean isLoadingDialogShowing() {
-        return mLoadingDialog !=null && mLoadingDialog.isShowing();
+        return mLoadingDialog != null && mLoadingDialog.isShowing();
     }
 
 }

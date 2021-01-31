@@ -2,47 +2,56 @@ package com.app.base.data
 
 import com.android.base.utils.android.views.getString
 import com.android.sdk.net.core.exception.ApiErrorException
-import com.android.sdk.net.core.provider.*
+import com.android.sdk.net.core.provider.ApiHandler
+import com.android.sdk.net.core.provider.ErrorDataAdapter
+import com.android.sdk.net.core.provider.ErrorMessage
+import com.android.sdk.net.core.provider.HttpConfig
 import com.android.sdk.net.rxjava.RxResultPostTransformer
-import com.app.base.BuildConfig
 import com.app.base.R
 import com.app.base.data.api.ApiHelper
+import com.app.base.data.api.ProtocolUtils
+import com.app.base.data.api.configApiProtocol
 import com.app.base.debug.DebugTools
+import com.app.base.debug.ifOpenLog
+import com.app.base.debug.isOpenDebug
 import io.reactivex.*
-import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import org.reactivestreams.Publisher
 import retrofit2.Retrofit
 import timber.log.Timber
 import java.lang.reflect.Type
+import java.net.Proxy
 import java.util.concurrent.TimeUnit
-import javax.net.ssl.HostnameVerifier
-import javax.net.ssl.SSLSession
-
 
 internal fun newHttpConfig(): HttpConfig {
 
     return object : HttpConfig {
 
-        private val CONNECTION_TIME_OUT = 10
-        private val IO_TIME_OUT = 20
+        private val CONNECTION_TIME_OUT = 30
+        private val IO_TIME_OUT = 30
 
-        override fun baseUrl() = DataContext.baseAPIUrl()
-        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder) = false
+        override fun baseUrl() = DataContext.baseApiUrl()
+
+        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder): Boolean {
+            return false
+        }
 
         override fun configHttp(builder: OkHttpClient.Builder) {
             //常规配置
             builder.connectTimeout(CONNECTION_TIME_OUT.toLong(), TimeUnit.SECONDS)
                     .readTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
                     .writeTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                    .hostnameVerifier(HostnameVerifier { hostname, session ->
-                        Timber.d("hostnameVerifier called with: hostname ${hostname}、session $session.protocol ")
-                        true
-                    })
-
+            //Api 签名协议
+            configApiProtocol(builder)
             //调试配置
-            if (BuildConfig.openDebug) {
+            configDebugIfNeeded(builder)
+        }
+
+        @Suppress("ConstantConditionIf")
+        private fun configDebugIfNeeded(builder: OkHttpClient.Builder) {
+            //打印日志
+            ifOpenLog {
                 val httpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
                     override fun log(message: String) {
                         Timber.tag("===OkHttp===").i(message)
@@ -50,8 +59,25 @@ internal fun newHttpConfig(): HttpConfig {
                 })
                 httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
                 builder.addInterceptor(httpLoggingInterceptor)
-                DebugTools.installStethoHttp(builder)
             }
+
+            //Stetho 调试
+            if (isOpenDebug()) {
+                DebugTools.installStethoHttp(builder)
+            } else {
+                //禁用代理
+                builder.proxy(Proxy.NO_PROXY)
+            }
+
+            builder.authenticator(object : Authenticator {
+                override fun authenticate(route: Route?, response: Response): Request? {
+                    DataContext.getInstance().publishLoginExpired(ApiHelper.buildAuthenticationExpiredException())
+                    return null
+                }
+            })
+
+            //HTTPS
+            ProtocolUtils.trustAllCertificationChecked(builder)
         }
     }
 
@@ -80,7 +106,7 @@ internal fun newErrorMessage(): ErrorMessage {
         }
 
         override fun unknowErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_unknow)
+            return getString(R.string.error_unknow) + "：${exception.message}"
         }
     }
 }
@@ -90,8 +116,8 @@ internal fun newErrorDataAdapter(): ErrorDataAdapter = object : ErrorDataAdapter
         return ApiHelper.newErrorDataStub()
     }
 
-    override fun isErrorDataStub(`object`: Any): Boolean {
-        return ApiHelper.isDataError(`object`)
+    override fun isErrorDataStub(value: Any): Boolean {
+        return ApiHelper.isDataError(value)
     }
 }
 

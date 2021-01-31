@@ -36,7 +36,7 @@ public class RouterManager {
 
     /**
      * @param path 路径
-     * @return 路由表
+     * @return 路由
      */
     static IPostcard build(String path) {
         Postcard build = ARouter.getInstance().build(path);
@@ -45,7 +45,7 @@ public class RouterManager {
 
     /**
      * @param path 路径
-     * @return 路由表
+     * @return 路由
      */
     static IPostcard build(Uri path) {
         Postcard build = ARouter.getInstance().build(path);
@@ -56,7 +56,6 @@ public class RouterManager {
         ARouter.getInstance().inject(object);
     }
 
-    @SuppressWarnings("unused")
     public static void restartApp(Activity activity, Class<? extends Activity> target) {
         Intent intent = new Intent(activity, target);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -2,10 +2,10 @@ package com.app.base.data.api;
 
 
 import com.android.sdk.net.core.result.Result;
+import com.google.gson.annotations.SerializedName;
 
 import androidx.annotation.NonNull;
 
-@SuppressWarnings("unused")
 public class HttpResult<T> implements Result<T> {
 
     public HttpResult() {
@@ -15,8 +15,13 @@ public class HttpResult<T> implements Result<T> {
         this.code = code;
     }
 
-    private int code;
+    @SerializedName("msg")
     private String msg;
+
+    @SerializedName("ret")
+    private int code;
+
+    @SerializedName("data")
     private T data;
 
     public T getData() {

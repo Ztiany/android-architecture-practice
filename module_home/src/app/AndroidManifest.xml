@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="me.ztiany.architecture.home"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.android.architecture.main">
 
     <application
         android:name=".HomeAppContext"
@@ -26,9 +26,10 @@
         </activity>
 
         <activity
-            android:name="me.ztiany.arch.home.main.MainActivity"
+            android:name="com.android.architecture.main.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

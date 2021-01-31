@@ -23,13 +23,25 @@
         <item name="msv_requestingView">@layout/app_base_layout_loading</item>
     </style>
 
-    <!--通用 switch 样式 -->
-    <style name="StyleSwitchBtn">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="kswThumbMargin">1dp</item>
-        <item name="kswBackColor">@color/color_switch_bg</item>
-        <item name="kswThumbColor">@color/color_switch_thumb</item>
+    <!--下拉刷新通用颜色-->
+    <array name="swipe_refresh_color">
+        <item>@color/colorPrimary</item>
+    </array>
+
+    <style name="Style_SwipeRefreshLayout">
+        <item name="android:id">@id/base_refresh_layout</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="srl_color_scheme">@array/swipe_refresh_color</item>
+    </style>
+
+    <!--白色标题栏-->
+    <style name="Style_TitleLayout">
+        <item name="android:elevation">3dp</item>
+        <item name="atl_navigation_icon_tint">@color/black</item>
+        <item name="atl_title_color">@color/black</item>
+        <item name="android:background">@color/white</item>
+        <item name="atl_navigation_icon">@drawable/icon_back</item>
     </style>
 
 </resources>

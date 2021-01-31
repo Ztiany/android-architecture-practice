@@ -22,4 +22,21 @@
         <attr name="atl_menu_color" format="color|reference" />
     </declare-styleable>
 
+    <declare-styleable name="SelectPhotosLayout">
+        <attr name="spl_max_image_size" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TextItemLayout">
+        <attr name="til_title" format="string|reference" />
+        <attr name="til_title_color" format="color|reference" />
+        <attr name="til_subtitle" format="string|reference" />
+        <attr name="til_subtitle_color" format="color|reference" />
+        <attr name="til_title_in_middle" format="boolean" />
+        <attr name="til_show_arrow" format="boolean" />
+        <attr name="til_show_bottom_line" format="boolean" />
+        <attr name="til_bottom_line_align_title" format="boolean" />
+        <attr name="til_bottom_line_height" format="dimension|reference" />
+        <attr name="til_bottom_line_color" format="color|reference" />
+    </declare-styleable>
+
 </resources>

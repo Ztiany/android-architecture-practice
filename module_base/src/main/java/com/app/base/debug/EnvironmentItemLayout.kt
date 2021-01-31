@@ -38,7 +38,12 @@ class EnvironmentItemLayout @JvmOverloads constructor(
 
     @SuppressLint("SetTextI18n")
     private fun showSelectedValue(selected: Environment) {
-        baseTvDebugHostValue.text = "${selected.name}：${selected.url}"
+        baseTvDebugHostValue.text = "${selected.name}：${selected.value}"
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun refresh() {
+        showSelectedValue(EnvironmentContext.selected(categoryName))
     }
 
     private fun showSwitchDialog() {

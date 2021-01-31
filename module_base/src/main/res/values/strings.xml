@@ -35,6 +35,10 @@
     <string name="sex">性别</string>
     <string name="check_detail">查看详情</string>
     <string name="account">账号</string>
+    <string name="input_account">请输入账号</string>
+    <string name="input_psw">请输入密码</string>
+    <string name="input_mid">请输入MID</string>
+    <string name="psw">密码</string>
     <string name="camera">相机</string>
     <string name="album">相册</string>
     <string name="color">颜色</string>
@@ -99,5 +103,8 @@
     <!--选择时间-->
     <string name="please_select_date">请选择日期</string>
     <string name="please_select_time">请选择时间</string>
+
+    <!-- ====================================具体业务==================================== -->
+    <string name="real_app_name">Android 架构模板</string>
 
 </resources>

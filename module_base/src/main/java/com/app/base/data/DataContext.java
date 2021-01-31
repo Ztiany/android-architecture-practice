@@ -1,25 +1,21 @@
 package com.app.base.data;
 
-import android.app.Application;
-
 import com.android.sdk.net.NetContext;
 import com.app.base.AppContext;
 import com.app.base.BuildConfig;
 import com.app.base.data.app.AppDataSource;
-import com.app.base.debug.EnvironmentContext;
 import com.blankj.utilcode.util.NetworkUtils;
 
 import timber.log.Timber;
 
+import static com.app.base.data.ENVSKt.addEnvironmentValues;
 import static com.app.base.data.NetProviderImplKt.newApiHandler;
 import static com.app.base.data.NetProviderImplKt.newErrorDataAdapter;
 import static com.app.base.data.NetProviderImplKt.newErrorMessage;
 import static com.app.base.data.NetProviderImplKt.newHttpConfig;
-import static com.app.base.data.URLProviderKt.API_HOST;
-import static com.app.base.data.URLProviderKt.H5_HOST;
 import static com.app.base.data.URLProviderKt.getAPIBaseURL;
 import static com.app.base.data.URLProviderKt.getBaseWebURL;
-import static com.app.base.data.URLSKt.addHost;
+import static com.app.base.data.URLProviderKt.selectSpecified;
 
 /**
  * Data 层配置。
@@ -32,11 +28,11 @@ public class DataContext {
 
     private static DataContext sDataContext;
 
-    public synchronized static void init(Application application) {
+    public synchronized static void init(AppContext appContext) {
         if (sDataContext != null) {
             throw new IllegalStateException("DataContext was  initialized");
         }
-        sDataContext = new DataContext(application);
+        sDataContext = new DataContext(appContext);
     }
 
     public static DataContext getInstance() {
@@ -49,7 +45,7 @@ public class DataContext {
     private AppDataSource mAppDataSource;
 
     @SuppressWarnings("unused")
-    private DataContext(Application application) {
+    private DataContext(AppContext appContext) {
         //环境初始化
         initEnvironment();
         //初始化网络库
@@ -71,12 +67,11 @@ public class DataContext {
     }
 
     private void initEnvironment() {
-        addHost();
+        addEnvironmentValues();
         //如果规定了，选择某一个环境，则优先选择该环境
-        if (!BuildConfig.specifiedHost.equalsIgnoreCase("AUTO")) {
-            Timber.d("BuildConfig.specifiedHost=>" + BuildConfig.specifiedHost);
-            EnvironmentContext.INSTANCE.select(API_HOST, BuildConfig.specifiedHost);
-            EnvironmentContext.INSTANCE.select(H5_HOST, BuildConfig.specifiedHost);
+        if (!"AUTO".equalsIgnoreCase(BuildConfig.specifiedHost)) {
+            Timber.d("BuildConfig.specifiedHost =>%s", BuildConfig.specifiedHost);
+            selectSpecified(BuildConfig.specifiedHost);
         }
     }
 
@@ -90,11 +85,11 @@ public class DataContext {
         mAppDataSource = appDataSource;
     }
 
-    public String baseWebUrl() {
+    public static String baseWebUrl() {
         return getBaseWebURL();
     }
 
-    static String baseAPIUrl() {
+    public static String baseApiUrl() {
         return getAPIBaseURL();
     }
 

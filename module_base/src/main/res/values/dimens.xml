@@ -1,18 +1,9 @@
 <resources>
 
-    <!--common size-->
-    <dimen name="common_edge">10dp</dimen>  <!--边距-->
+    <!-- ============================ common size ============================ -->
+    <dimen name="common_page_edge">15dp</dimen>  <!--边距-->
+    <dimen name="common_page_edge_big">28dp</dimen>  <!--边距-->
     <dimen name="common_separate_width">1px</dimen><!--分割线宽度-->
-    <dimen name="common_edge_big">28dp</dimen>  <!--边距-->
-
-    <!--字体-->
-    <dimen name="text_huge">24sp</dimen><!--重点数据-->
-    <dimen name="text_xx_large">20sp</dimen><!--次级数据-->
-    <dimen name="text_x_large">18sp</dimen><!--重点内容-->
-    <dimen name="text_large">16sp</dimen><!--大号文字 : 页面标题-->
-    <dimen name="text_normal">14sp</dimen><!--一般字体，Item小标题，页面内容等-->
-    <dimen name="text_small">12sp</dimen><!--小字体：Item内容等 -->
-    <dimen name="text_smaller">10sp</dimen><!--最弱内容-->
-    <dimen name="text_smallest">8sp</dimen>
+    <!-- ============================ common size ============================ -->
 
 </resources>

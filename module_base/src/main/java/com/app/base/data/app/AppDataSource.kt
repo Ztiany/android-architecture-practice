@@ -1,7 +1,6 @@
 package com.app.base.data.app
 
 import com.app.base.data.models.User
-
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -15,9 +14,6 @@ interface AppDataSource {
     /**登录之后，保存用户数据*/
     fun saveUser(user: User)
 
-    /**同步用户所有数据，同时也会刷新token，同步完毕后，从[observableUser] 获取的观察者将会收到新的[User]*/
-    fun syncUser(): Completable
-
     /**同步获取获取用户是否已经登录，判断条件为[.user]返回值不为null*/
     fun userLogined(): Boolean
 
@@ -28,6 +24,6 @@ interface AppDataSource {
     fun observableUser(): Flowable<User>
 
     /**退出登录*/
-    fun logout()
+    fun logout(askRemote: Boolean = true): Completable
 
 }

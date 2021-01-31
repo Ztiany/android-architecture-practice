@@ -11,13 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingStart="@dimen/common_edge"
+        android:paddingStart="24dp"
         android:paddingTop="15dp"
-        android:paddingEnd="@dimen/common_edge"
+        android:paddingEnd="24dp"
         android:paddingBottom="15dp"
         android:textColor="#333333"
-        android:textSize="@dimen/text_large"
+        android:textSize="14sp"
         tools:text="哈哈哈" />
+
+    <ImageView
+        android:id="@+id/dialogBottomSheetTvItemSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/icon_selected"
+        tools:ignore="ContentDescription" />
 
     <View
         android:layout_width="match_parent"

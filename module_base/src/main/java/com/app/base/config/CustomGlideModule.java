@@ -25,7 +25,7 @@ public class CustomGlideModule extends ProgressGlideModule {
         //缓存位置，大小
         ViewTarget.setTagId(R.id.common_glide_item_tag_id);
         int dirCacheSize = 1024 * 1024 * 500;
-        builder.setDiskCache(new ExternalPreferredCacheDiskCacheFactory(context, AppFileSystemManager.IMAGE_CACHE_DIR, dirCacheSize));
+        builder.setDiskCache(new ExternalPreferredCacheDiskCacheFactory(context, AppFileSystemKit.IMAGE_CACHE_DIR, dirCacheSize));
         long maxMemory = Runtime.getRuntime().maxMemory() / 8;
         Timber.d("FtGlideModule image cache size:%d", maxMemory);
         builder.setMemoryCache(new LruResourceCache((int) (maxMemory)));

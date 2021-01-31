@@ -8,6 +8,7 @@ import com.android.sdk.net.core.errorhandler.ErrorMessageFactory
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.app.base.AppContext
 import com.app.base.data.api.ApiHelper
+import com.app.base.router.RouterPath
 import com.app.base.widget.dialog.TipsManager
 import com.app.base.widget.dialog.showConfirmDialog
 import java.lang.ref.WeakReference
@@ -35,11 +36,19 @@ internal class AppErrorHandler : ErrorHandler {
     }
 
     private fun isTokenExpired(throwable: ApiErrorException): Boolean {
-        return false
+        return ApiHelper.isAuthenticationExpired(throwable)
     }
 
     private fun showReLoginDialog(): Boolean {
         val currentActivity = Sword.topActivity ?: return false
+
+        if (currentActivity is CannotShowDialogOnIt) {
+            return false
+        }
+
+        if (currentActivity is CannotShowExpiredDialogOnIt) {
+            return false
+        }
 
         val dialog = showingDialog?.get()
 
@@ -53,6 +62,9 @@ internal class AppErrorHandler : ErrorHandler {
             positiveListener = {
                 showingDialog = null
                 //handle login expired
+                AppContext.appRouter().build(RouterPath.Main.PATH)
+                        .withInt(RouterPath.Main.ACTION_KEY, RouterPath.Main.ACTION_RE_LOGIN)
+                        .navigation()
             }
         }
 

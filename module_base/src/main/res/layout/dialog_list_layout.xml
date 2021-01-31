@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_white_solid_round10"
+    android:background="@drawable/shape_rect_white_round10"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvListDialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="18dp"
         android:textColor="#333333"
-        android:textSize="@dimen/text_small"
+        android:textSize="16sp"
         android:visibility="gone"
         tools:text="添加为禁止使用"
         tools:visibility="visible" />

@@ -73,13 +73,13 @@ internal class ListDialog(
         rvDialogListContent.layoutManager = LinearLayoutManager(context)
         val items = listDialogBuilder.items
         val adapter = listDialogBuilder.adapter
-
         if (items != null) {
             setupDefault(items, listDialogBuilder)
         } else if (adapter != null) {
             setupUsingSpecifiedAdapter(adapter, listDialogBuilder)
         }
 
+        //cancelable
         setCanceledOnTouchOutside(listDialogBuilder.cancelableTouchOutside)
         setCancelable(listDialogBuilder.cancelable)
     }
@@ -129,7 +129,7 @@ internal class ListDialog(
         }
     }
 
-    private inner class Adapter internal constructor(
+    private inner class Adapter(
             context: Context,
             data: List<CharSequence>
     ) : SimpleRecyclerAdapter<CharSequence>(context, data) {

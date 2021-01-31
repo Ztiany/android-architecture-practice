@@ -1,8 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,ExtraTranslation">
 
-    <string name="main_tab_index">首页</string>
-    <string name="main_tab_accompany">中间</string>
-    <string name="main_tab_mine">我的</string>
+    <string name="main_tab_feed">动态</string>
+    <string name="main_tab_message">消息</string>
+    <string name="main_tab_me">我</string>
+
     <string name="main_exit_tips">再点击一次退出app</string>
 
 </resources>

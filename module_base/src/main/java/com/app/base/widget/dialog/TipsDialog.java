@@ -6,11 +6,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.app.base.R;
-
-import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDialog;
+import androidx.core.content.ContextCompat;
+
+import com.app.base.R;
 
 
 /**
@@ -48,24 +48,23 @@ class TipsDialog extends AppCompatDialog {
         }
     }
 
-    public void setIcon(@DrawableRes int icon) {
-        if (icon != 0) {
-            mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, icon, 0, 0);
-        }
-    }
-
-    public void setIconType(@TipsType int type) {
+    public void setTipsType(@TipsType int type) {
         switch (type) {
             case TipsDialogBuilder.TYPE_SUCCESS: {
-                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.img_success_tips, 0, 0);
-
+                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_tips_success, 0, 0);
+                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
             }
+            break;
             case TipsDialogBuilder.TYPE_FAILURE: {
-                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.img_failure_tips, 0, 0);
+                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_tips_failed, 0, 0);
+                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.app_tips_warn));
             }
+            break;
             case TipsDialogBuilder.TYPE_WARNING: {
-                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.img_warning_tips, 0, 0);
+                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_tips_failed, 0, 0);
+                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.app_tips_warn));
             }
+            break;
         }
     }
 

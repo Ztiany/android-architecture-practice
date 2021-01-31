@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.percentlayout.widget.PercentRelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
         android:src="@drawable/base_img_error"
-        app:layout_marginTopPercent="25%"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@id/base_retry_tv"
@@ -24,12 +23,13 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="3dp"
-        android:paddingBottom="8dp"
-        android:paddingEnd="20dp"
         android:paddingStart="20dp"
         android:paddingTop="8dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp"
         android:text="@string/page_error_server_error"
-        android:textSize="@dimen/text_small"/>
+        android:textColor="@color/app_gray_level3"
+        android:textSize="14sp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@id/base_retry_btn"
@@ -42,4 +42,4 @@
         android:text="@string/page_error_retry_action_tips"
         android:textColor="@color/black" />
 
-</androidx.percentlayout.widget.PercentRelativeLayout>
+</RelativeLayout>
