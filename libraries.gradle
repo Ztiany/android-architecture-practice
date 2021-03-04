@@ -216,7 +216,9 @@ ext {
             //https://github.com/Fotoapparat/Fotoapparat
             fotoapparat            : 'io.fotoapparat:fotoapparat:2.7.0',
             //https://github.com/yshrsmz/KeyboardVisibilityEvent
-            keyboardVisibilityEvent: 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
+            keyboardVisibilityEvent: 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2',
+            //https://github.com/RuffianZhong/RWidgetHelper
+            rWidget:'com.ruffian.library:RWidgetHelper-AndroidX:0.0.8'
     ]
 
     testLibraries = [
