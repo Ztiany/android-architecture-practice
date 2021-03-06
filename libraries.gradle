@@ -1,9 +1,9 @@
 ext {
 
     def appcompat_version = "1.2.0"
-    def activity_version = "1.1.0"
-    def fragment_version = "1.2.5"
-    def lifecycle_version = "2.2.0"
+    def activity_version = "1.2.0"
+    def fragment_version = "1.3.0"
+    def lifecycle_version = "2.3.0"
     def arch_version = "2.1.0"
 
     androidLibraries = [
@@ -30,21 +30,22 @@ ext {
             lifecycleLiveKtx        : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
             lifecycleViewModel      : "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version",
             lifecycleViewModelKtx   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
-            lifecycleExtensions     : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
             lifecycleReactiveStreams: "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version",
-            ktx                     : 'androidx.core:core-ktx:1.3.1',//https://android.github.io/android-ktx/core-ktx/index.html
+            lifecycleExtensions     : "androidx.lifecycle:lifecycle-extensions:2.2.0",
+            //https://android.github.io/android-ktx/core-ktx/index.html
+            ktx                     : 'androidx.core:core-ktx:1.3.2',
 
             /*paging*/
-            paging                  : "androidx.paging:paging-common:3.0.0-alpha05",
-            pagingRuntime           : "androidx.paging:paging-runtime:3.0.0-alpha05",
+            paging                  : "androidx.paging:paging-common:3.0.0-beta01",
+            pagingRuntime           : "androidx.paging:paging-runtime:3.0.0-alpha13",
             pagingRxJava            : "androidx.paging:paging-rxjava2:3.0.0-alpha05",
 
             /*room*/
-            room                    : "androidx.room:room-common:2.3.0-alpha02",
+            room                    : "androidx.room:room-common:2.3.0-beta01",
             roomKtx                 : "androidx.room:room-ktx:2.3.0-alpha02",
             roomGuava               : "androidx.room:room-guava:2.3.0-alpha02",
-            roomMigration           : "androidx.room:room-migration:2.3.0-alpha02",
-            roomRuntime             : "androidx.room:room-runtime:2.3.0-alpha02",
+            roomMigration           : "androidx.room:room-migration:2.3.0-beta01",
+            roomRuntime             : "androidx.room:room-runtime:2.3.0-beta01",
             roomRxJava              : "androidx.room:room-rxjava2:2.3.0-alpha02",
             roomApt                 : "androidx.room:room-compiler:2.3.0-alpha02",
 
@@ -53,23 +54,25 @@ ext {
             persistenceFramework    : "androidx.sqlite:sqlite-framework:2.1.0",
 
             //navigation
-            //classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.0"
+            //classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.2"
             //apply plugin: 'androidx.navigation.safeargs.kotlin'
-            navigationFragmentKtx   : "androidx.navigation:navigation-fragment-ktx:2.3.0",
+            navigationFragmentKtx   : "androidx.navigation:navigation-fragment-ktx:2.3.2",
             navigationUiKtx         : "androidx.navigation:navigation-ui-ktx:2.3.0",
 
             //tools
             annotation              : "androidx.annotation:annotation:1.1.0",
-            exifinterface           : "androidx.exifinterface:exifinterface:1.3.0-beta01",
+            exifinterface           : "androidx.exifinterface:exifinterface:1.3.2",
             biometric               : "androidx.biometric:biometric:1.0.1",
             documentfile            : "androidx.documentfile:documentfile:1.0.1",
+
+            //multi dex
             multidex                : "androidx.multidex:multidex:2.0.1",
             multidexInstrumentation : "androidx.multidex:multidex-instrumentation:2.0.0",
 
             /*ui component*/
             recyclerView            : "androidx.recyclerview:recyclerview:1.1.0",
             recyclerViewSelection   : "androidx.recyclerview:recyclerview-selection:1.0.0",
-            constraintLayout        : "androidx.constraintlayout:constraintlayout:2.0.1",
+            constraintLayout        : "androidx.constraintlayout:constraintlayout:2.0.4",
             percentLayout           : "androidx.percentlayout:percentlayout:1.0.0",
             cardView                : "androidx.cardview:cardview:1.0.0",
             viewpager               : "androidx.viewpager:viewpager:1.0.0",
@@ -78,16 +81,19 @@ ext {
             swiperefreshlayout      : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
             transition              : "androidx.transition:transition:1.3.1",
             dynamicAnimation        : "androidx.dynamicanimation:dynamicanimation:1.0.0",
-            flexbox                 : 'com.google.android:flexbox:2.0.1',//https://github.com/google/flexbox-layout/
-            material                : "com.google.android.material:material:1.2.0", //https://github.com/material-components/material-components-android
-            appcompatResources      : "androidx.appcompat:appcompat-resources:$appcompat_version",// For loading and tinting drawables on older versions of the platform
+            //https://github.com/google/flexbox-layout/
+            flexbox                 : 'com.google.android:flexbox:2.0.1',
+            //https://github.com/material-components/material-components-android
+            material                : "com.google.android.material:material:1.3.0",
+            // For loading and tinting drawables on older versions of the platform
+            appcompatResources      : "androidx.appcompat:appcompat-resources:$appcompat_version",
 
             //Hilt
-            hiltDagger              : 'com.google.dagger:hilt-android:2.28-alpha',
-            hiltDaggerApt           : 'com.google.dagger:hilt-android-compiler:2.28-alpha',
-            hiltViewiewModel        : 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02',
-            hiltApt                 : 'androidx.hilt:hilt-compiler:1.0.0-alpha02',
-            //classpath "com.google.dagger:hilt-android-gradle-plugin:2.28-alpha"
+            hiltDagger              : 'com.google.dagger:hilt-android:2.33-beta',
+            hiltDaggerApt           : 'com.google.dagger:hilt-android-compiler:2.33-beta',
+            hiltViewiewModel        : 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03',
+            hiltApt                 : 'androidx.hilt:hilt-compiler:1.0.0-alpha03',
+            //classpath "com.google.dagger:hilt-android-gradle-plugin:2.33-beta"
             //apply plugin: 'dagger.hilt.android.plugin'
 
             //start-up
@@ -99,8 +105,8 @@ ext {
             concurrentFuturesKtx    : "androidx.concurrent:concurrent-futures-ktx:1.1.0"
     ]
 
-    def kotlin_version = '1.4.0'
-    def coroutinesVersion = "1.3.9"
+    def kotlin_version = '1.4.31'
+    def coroutinesVersion = "1.4.3"
 
     kotlinLibraries = [
             //Kotlin
@@ -110,7 +116,8 @@ ext {
             kotlinCoroutines       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
             kotlinAndroidCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
             kotlinxCoroutinesRx2   : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${coroutinesVersion}",
-            rxKotlin               : 'io.reactivex.rxjava2:rxkotlin:2.4.0',//https://github.com/ReactiveX/RxKotlin
+            //https://github.com/ReactiveX/RxKotlin
+            rxKotlin               : 'io.reactivex.rxjava2:rxkotlin:2.4.0',
             //https://github.com/JetBrains/kotlin/tree/master/libraries/kotlinx-metadata/jvm
             kotlinxMetadata        : "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.0.5",
     ]

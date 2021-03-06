@@ -12,8 +12,7 @@ import com.android.base.imageloader.LoadListener
 import com.android.base.imageloader.Source
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
-import com.app.base.R
-import kotlinx.android.synthetic.main.gallery_item_photo.view.*
+import com.app.base.databinding.GalleryItemPhotoBinding
 import me.ztiany.widget.viewpager.BannerViewPagerAdapter
 import uk.co.senab.photoview.PhotoViewAttacher
 import java.lang.ref.WeakReference
@@ -28,40 +27,40 @@ class GalleryPagerAdapter(
 ) : BannerViewPagerAdapter() {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val itemView: View = createBannerPagerView(container, context)
+        val binding = createBannerPagerView(container, context)
         val uri = entities[position]
-        bindViewItem(itemView, uri, position)
-        container.addView(itemView)
-        return itemView
+        bindViewItem(binding, uri, position)
+        container.addView(binding.root)
+        return binding
     }
 
-    private fun createBannerPagerView(container: ViewGroup, context: Context): View {
-        return LayoutInflater.from(context).inflate(R.layout.gallery_item_photo, container, false)
+    private fun createBannerPagerView(container: ViewGroup, context: Context): GalleryItemPhotoBinding {
+        return GalleryItemPhotoBinding.inflate(LayoutInflater.from(context), container, false)
     }
 
-    private fun bindViewItem(itemView: View, uri: Uri, position: Int) {
+    private fun bindViewItem(binding: GalleryItemPhotoBinding, uri: Uri, position: Int) {
         if (!URLUtil.isNetworkUrl(uri.toString()) || thumbnailMap.isNullOrEmpty()) {
-            val galleryIv = itemView.galleryIv
+            val galleryIv = binding.galleryIv
             ImageLoaderFactory.getImageLoader().display(galleryIv, Source.create(uri))
         } else {
-            itemView.galleryPb.visible()
-            itemView.galleryIvThumbnail.visible()
-            ImageLoaderFactory.getImageLoader().display(itemView.galleryIvThumbnail, Source.create(thumbnailMap[uri]))
-            loadRaw(itemView, uri)
+            binding.galleryPb.visible()
+            binding.galleryIvThumbnail.visible()
+            ImageLoaderFactory.getImageLoader().display(binding.galleryIvThumbnail, Source.create(thumbnailMap[uri]))
+            loadRaw(binding, uri)
         }
 
-        itemView.galleryIv.setOnPhotoTapListener(object : PhotoViewAttacher.OnPhotoTapListener {
+        binding.galleryIv.setOnPhotoTapListener(object : PhotoViewAttacher.OnPhotoTapListener {
             override fun onOutsidePhotoTap() = Unit
             override fun onPhotoTap(view: View?, x: Float, y: Float) {
-                callPagerClicked(position, itemView.galleryIv)
+                callPagerClicked(position, binding.galleryIv)
             }
         })
     }
 
-    private fun loadRaw(itemView: View, uri: Uri) {
-        val weakIv = WeakReference(itemView.galleryIvThumbnail)
-        val weakPb = WeakReference(itemView.galleryPb)
-        ImageLoaderFactory.getImageLoader().display(itemView.galleryIv, uri.toString(), object : LoadListener<Drawable> {
+    private fun loadRaw(binding: GalleryItemPhotoBinding, uri: Uri) {
+        val weakIv = WeakReference(binding.galleryIvThumbnail)
+        val weakPb = WeakReference(binding.galleryPb)
+        ImageLoaderFactory.getImageLoader().display(binding.galleryIv, uri.toString(), object : LoadListener<Drawable> {
             override fun onLoadSuccess(resource: Drawable?) {
                 weakIv.get()?.gone()
                 weakPb.get()?.gone()

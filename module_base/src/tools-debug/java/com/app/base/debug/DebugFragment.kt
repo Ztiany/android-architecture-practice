@@ -5,17 +5,16 @@ import android.os.Bundle
 import android.os.Process
 import android.view.View
 import androidx.appcompat.app.AlertDialog.Builder
-import com.android.base.app.fragment.BaseFragment
+import com.android.base.app.fragment.BaseUIFragment
 import com.android.base.app.fragment.tools.inFragmentTransaction
 import com.android.sdk.permission.AutoPermission
 import com.android.sdk.permission.Permission
 import com.app.base.AppContext
 import com.app.base.AppContext.Companion.appDataSource
 import com.app.base.AppContext.Companion.storageManager
-import com.app.base.R
 import com.app.base.R.string
+import com.app.base.databinding.BaseFragmentDebugBinding
 import com.blankj.utilcode.util.ActivityUtils
-import kotlinx.android.synthetic.main.base_fragment_debug.*
 import org.joor.Reflect
 
 
@@ -26,9 +25,7 @@ import org.joor.Reflect
  * Email: 1169654504@qq.com
  * Date : 2017-07-26 18:49
  */
-class DebugFragment : BaseFragment() {
-
-    override fun provideLayout() = R.layout.base_fragment_debug
+class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         initToolViews()
@@ -53,9 +50,9 @@ class DebugFragment : BaseFragment() {
     }
 
     private fun initToolViews() {
-        debug_switch.setOnClickListener { showSwitchTips() }
-        debug_open_ue_tool.setOnClickListener { openUETool() }
-        debug_restart.setOnClickListener { confirmRestart() }
+        layout.debugSwitch.setOnClickListener { showSwitchTips() }
+        layout.debugOpenUeTool.setOnClickListener { openUETool() }
+        layout.debugRestart.setOnClickListener { confirmRestart() }
     }
 
     private fun confirmRestart() {

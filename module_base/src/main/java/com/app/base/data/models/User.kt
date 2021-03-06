@@ -2,7 +2,7 @@ package com.app.base.data.models
 
 import android.os.Parcelable
 import com.app.base.data.api.SEX_MALE
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * @author Ztiany

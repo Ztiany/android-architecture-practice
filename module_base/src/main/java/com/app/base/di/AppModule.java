@@ -14,7 +14,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
+import dagger.hilt.components.SingletonComponent;
 
 /**
  * @author Ztiany
@@ -22,7 +22,7 @@ import dagger.hilt.android.components.ApplicationComponent;
  * Date : 2018-11-01 10:33
  */
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class AppModule {
 
     @Provides

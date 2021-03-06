@@ -3,13 +3,13 @@ package com.app.base.widget.dialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
-import com.app.base.R
-import kotlinx.android.synthetic.main.dialog_common_bottom.view.*
+import com.app.base.databinding.DialogCommonBottomBinding
 
 /**
  * 通用的 Dialog 底部布局
@@ -22,61 +22,59 @@ class DialogBottomLayout @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    init {
-        View.inflate(context, R.layout.dialog_common_bottom, this)
-    }
+    private val viewBinding = DialogCommonBottomBinding.inflate(LayoutInflater.from(context), this)
 
     fun positiveText(text: CharSequence?) {
-        tvDialogPositive.text = text
+        viewBinding.tvDialogPositive.text = text
     }
 
     var positiveEnable: Boolean
-        get() = tvDialogPositive.isEnabled
+        get() = viewBinding.tvDialogPositive.isEnabled
         set(value) {
-            tvDialogPositive.isEnabled = value
+            viewBinding.tvDialogPositive.isEnabled = value
         }
 
     fun positiveColor(@ColorInt color: Int) {
-        tvDialogPositive.setTextColor(color)
+        viewBinding.tvDialogPositive.setTextColor(color)
     }
 
     fun positiveColor(colors: ColorStateList) {
-        tvDialogPositive.setTextColor(colors)
+        viewBinding.tvDialogPositive.setTextColor(colors)
     }
 
     fun onPositiveClick(onClick: View.OnClickListener) {
-        tvDialogPositive.setOnClickListener(onClick)
+        viewBinding.tvDialogPositive.setOnClickListener(onClick)
     }
 
     fun onPositiveClick(onClick: (View) -> Unit) {
-        tvDialogPositive.setOnClickListener(onClick)
+        viewBinding.tvDialogPositive.setOnClickListener(onClick)
     }
 
     fun negativeText(text: CharSequence?) {
         if (text.isNullOrEmpty()) {
-            tvDialogNegative.gone()
-            viewDialogBtnLeftDivider.gone()
+            viewBinding.tvDialogNegative.gone()
+            viewBinding.viewDialogBtnLeftDivider.gone()
         } else {
-            tvDialogNegative.visible()
-            viewDialogBtnLeftDivider.visible()
-            tvDialogNegative.text = text
+            viewBinding.tvDialogNegative.visible()
+            viewBinding.viewDialogBtnLeftDivider.visible()
+            viewBinding.tvDialogNegative.text = text
         }
     }
 
     fun negativeColor(@ColorInt color: Int) {
-        tvDialogNegative.setTextColor(color)
+        viewBinding.tvDialogNegative.setTextColor(color)
     }
 
     fun negativeColor(colors: ColorStateList) {
-        tvDialogNegative.setTextColor(colors)
+        viewBinding.tvDialogNegative.setTextColor(colors)
     }
 
     fun onNegativeClick(onClick: View.OnClickListener) {
-        tvDialogNegative.setOnClickListener(onClick)
+        viewBinding.tvDialogNegative.setOnClickListener(onClick)
     }
 
     fun onNegativeClick(onClick: (View) -> Unit) {
-        tvDialogNegative.setOnClickListener(onClick)
+        viewBinding.tvDialogNegative.setOnClickListener(onClick)
     }
 
     fun hideNegative() {
@@ -85,29 +83,29 @@ class DialogBottomLayout @JvmOverloads constructor(
 
     fun neutralText(text: CharSequence?) {
         if (text.isNullOrEmpty()) {
-            tvDialogNeutral.gone()
-            viewDialogBtnRightDivider.gone()
+            viewBinding.tvDialogNeutral.gone()
+            viewBinding.viewDialogBtnRightDivider.gone()
         } else {
-            tvDialogNeutral.visible()
-            viewDialogBtnRightDivider.visible()
-            tvDialogNeutral.text = text
+            viewBinding.tvDialogNeutral.visible()
+            viewBinding.viewDialogBtnRightDivider.visible()
+            viewBinding.tvDialogNeutral.text = text
         }
     }
 
     fun neutralColor(@ColorInt color: Int) {
-        tvDialogNeutral.setTextColor(color)
+        viewBinding.tvDialogNeutral.setTextColor(color)
     }
 
     fun middleColor(colors: ColorStateList) {
-        tvDialogNeutral.setTextColor(colors)
+        viewBinding.tvDialogNeutral.setTextColor(colors)
     }
 
     fun onNeutralClick(onClick: View.OnClickListener) {
-        tvDialogNeutral.setOnClickListener(onClick)
+        viewBinding.tvDialogNeutral.setOnClickListener(onClick)
     }
 
     fun onNeutralClick(onClick: (View) -> Unit) {
-        tvDialogNeutral.setOnClickListener(onClick)
+        viewBinding.tvDialogNeutral.setOnClickListener(onClick)
     }
 
     fun hideNeutral() {

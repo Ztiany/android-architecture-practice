@@ -1,53 +1,59 @@
 package com.app.base.widget.dialog
 
 import android.view.View
-import com.android.base.utils.android.views.*
-import com.app.base.R
+import com.android.base.app.ui.viewBinding
+import com.android.base.utils.android.views.clearComponentDrawable
+import com.android.base.utils.android.views.gone
+import com.android.base.utils.android.views.setLeftDrawable
+import com.android.base.utils.android.views.visible
+import com.app.base.databinding.DialogConfirmLayoutBinding
 import com.app.base.widget.dialog.BaseDialogBuilder.Companion.NO_ID
-import kotlinx.android.synthetic.main.dialog_confirm_layout.*
 
 /**
  * @author Ztiany
  * Email: ztiany3@gmail.com
  * Date : 2018-11-29 10:49
  */
-internal class ConfirmDialog(builder: ConfirmDialogBuilder) : BaseDialog(builder.context, true, builder.style) {
+internal class ConfirmDialog(
+        builder: ConfirmDialogBuilder
+) : BaseDialog(builder.context, true, builder.style) {
+
+    private val vb: DialogConfirmLayoutBinding by viewBinding(true)
 
     init {
-        setContentView(R.layout.dialog_confirm_layout)
         applyBuilder(builder)
     }
 
     private fun applyBuilder(builder: ConfirmDialogBuilder) {
         //icon
         if (builder.iconId != NO_ID) {
-            tvConfirmDialogTitle.setLeftDrawable(builder.iconId)
+            vb.tvConfirmDialogTitle.setLeftDrawable(builder.iconId)
         } else {
-            tvConfirmDialogTitle.clearComponentDrawable()
+            vb.tvConfirmDialogTitle.clearComponentDrawable()
         }
 
         //title
         val title = builder.title
-        tvConfirmDialogTitle.setTextColor(builder.titleColor)
+        vb.tvConfirmDialogTitle.setTextColor(builder.titleColor)
         if (title != null) {
-            tvConfirmDialogTitle.visible()
-            tvConfirmDialogTitle.text = title
+            vb.tvConfirmDialogTitle.visible()
+            vb.tvConfirmDialogTitle.text = title
             if (builder.titleSize > 0F) {
-                tvConfirmDialogTitle.textSize = builder.titleSize
+                vb.tvConfirmDialogTitle.textSize = builder.titleSize
             } else {
-                tvConfirmDialogTitle.textSize = 16F
+                vb.tvConfirmDialogTitle.textSize = 16F
             }
         }
 
         //message
-        tvConfirmDialogMessage.text = builder.message
-        tvConfirmDialogMessage.setTextColor(builder.messageColor)
-        tvConfirmDialogMessage.gravity = builder.messageGravity
-        tvConfirmDialogMessage.setTextColor(builder.messageColor)
+        vb.tvConfirmDialogMessage.text = builder.message
+        vb.tvConfirmDialogMessage.setTextColor(builder.messageColor)
+        vb.tvConfirmDialogMessage.gravity = builder.messageGravity
+        vb.tvConfirmDialogMessage.setTextColor(builder.messageColor)
         if (builder.messageSize > 0F) {
-            tvConfirmDialogMessage.textSize = builder.titleSize
+            vb.tvConfirmDialogMessage.textSize = builder.titleSize
         } else {
-            tvConfirmDialogMessage.textSize = if (builder.title.isNullOrEmpty()) {
+            vb.tvConfirmDialogMessage.textSize = if (builder.title.isNullOrEmpty()) {
                 16F
             } else {
                 14F
@@ -56,47 +62,47 @@ internal class ConfirmDialog(builder: ConfirmDialogBuilder) : BaseDialog(builder
 
         //checkbox
         if (builder.checkBoxText.isNotEmpty()) {
-            cbConfirmDialogCheckBox.visible()
-            cbConfirmDialogCheckBox.text = builder.checkBoxText
-            cbConfirmDialogCheckBox.isChecked = builder.checkBoxChecked
+            vb.cbConfirmDialogCheckBox.visible()
+            vb.cbConfirmDialogCheckBox.text = builder.checkBoxText
+            vb.cbConfirmDialogCheckBox.isChecked = builder.checkBoxChecked
         } else {
-            cbConfirmDialogCheckBox.gone()
+            vb.cbConfirmDialogCheckBox.gone()
         }
 
         //cancel
         val negativeText = builder.negativeText
         if (negativeText != null) {
-            dblDialogBottom.negativeText(negativeText)
-            dblDialogBottom.onNegativeClick(View.OnClickListener {
+            vb.dblDialogBottom.negativeText(negativeText)
+            vb.dblDialogBottom.onNegativeClick(View.OnClickListener {
                 dismissChecked(builder)
                 builder.negativeListener?.invoke(this)
             })
         } else {
-            dblDialogBottom.hideNegative()
+            vb.dblDialogBottom.hideNegative()
         }
-        dblDialogBottom.negativeColor(builder.negativeColor)
+        vb.dblDialogBottom.negativeColor(builder.negativeColor)
 
         //neutral
         val neutralText = builder.neutralText
         if (neutralText != null) {
-            dblDialogBottom.neutralText(neutralText)
-            dblDialogBottom.onNeutralClick(View.OnClickListener {
+            vb.dblDialogBottom.neutralText(neutralText)
+            vb.dblDialogBottom.onNeutralClick(View.OnClickListener {
                 dismissChecked(builder)
                 builder.neutralListener?.invoke(this)
             })
         } else {
-            dblDialogBottom.hideNeutral()
+            vb.dblDialogBottom.hideNeutral()
         }
-        dblDialogBottom.neutralColor(builder.neutralColor)
+        vb.dblDialogBottom.neutralColor(builder.neutralColor)
 
         //confirm
-        dblDialogBottom.positiveText(builder.positiveText)
-        dblDialogBottom.onPositiveClick(View.OnClickListener {
+        vb.dblDialogBottom.positiveText(builder.positiveText)
+        vb.dblDialogBottom.onPositiveClick(View.OnClickListener {
             dismissChecked(builder)
             builder.positiveListener?.invoke(this)
-            builder.positiveListener2?.invoke(this, cbConfirmDialogCheckBox.isChecked)
+            builder.positiveListener2?.invoke(this, vb.cbConfirmDialogCheckBox.isChecked)
         })
-        dblDialogBottom.positiveColor(builder.positiveColor)
+        vb.dblDialogBottom.positiveColor(builder.positiveColor)
 
         //cancelable
         setCanceledOnTouchOutside(builder.cancelableTouchOutside)

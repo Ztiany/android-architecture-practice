@@ -15,6 +15,7 @@ import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import com.android.base.app.activity.BaseActivity
+import com.android.base.app.ui.viewBinding
 import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.imageloader.ImageLoaderFactory
 import com.android.base.imageloader.Source
@@ -24,8 +25,8 @@ import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.*
 import com.android.base.utils.common.toArrayList
 import com.app.base.R
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.gallery_activity.*
+import com.app.base.databinding.GalleryActivityBinding
+import kotlinx.parcelize.Parcelize
 
 /**
  * 浏览图片。
@@ -124,6 +125,8 @@ class GalleryActivity : BaseActivity() {
         }
     }
 
+    private val layout: GalleryActivityBinding by viewBinding(true)
+
     private lateinit var galleryInfo: GalleryInfo
     private var curPosition = 0
     private lateinit var initializedPositionPhoto: Uri
@@ -146,11 +149,9 @@ class GalleryActivity : BaseActivity() {
         }
     }
 
-    override fun provideLayout() = R.layout.gallery_activity
-
     override fun setUpLayout(savedInstanceState: Bundle?) {
         val transUri = galleryInfo.thumbPhotos?.get(curPosition) ?: galleryInfo.photos[curPosition]
-        ImageLoaderFactory.getImageLoader().display(commonGalleryIvTrans, Source.create(transUri))
+        ImageLoaderFactory.getImageLoader().display(layout.commonGalleryIvTrans, Source.create(transUri))
 
         if (galleryInfo.useTransition && AndroidVersion.atLeast(21)) {
             window.enterTransition.addListener(object : TransitionListenerAdapter {
@@ -164,25 +165,25 @@ class GalleryActivity : BaseActivity() {
     }
 
     private fun initView() {
-        commonGalleryFlBackground.background = background
+        layout.commonGalleryFlBackground.background = background
         setupViewPager()
         setupToolbar()
         setupPullback()
         showOrHideToolBar(true)
         window.decorView.post {
-            commonGalleryIvTrans.invisible()
+            layout.commonGalleryIvTrans.invisible()
         }
     }
 
     private fun setupToolbar() {
-        setSupportActionBar(commonGalleryToolbar)
+        setSupportActionBar(layout.commonGalleryToolbar)
         val supportActionBar = supportActionBar
 
         if (supportActionBar != null) {
             supportActionBar.title = galleryInfo.title
             supportActionBar.setDisplayHomeAsUpEnabled(true)
-            commonGalleryToolbar.contentInsetStartWithNavigation = 0
-            commonGalleryToolbar.setNavigationOnClickListener { finishSelf(false) }
+            layout.commonGalleryToolbar.contentInsetStartWithNavigation = 0
+            layout.commonGalleryToolbar.setNavigationOnClickListener { finishSelf(false) }
         }
     }
 
@@ -211,7 +212,7 @@ class GalleryActivity : BaseActivity() {
     }
 
     private fun setupViewPager() {
-        with(commonGalleryVp) {
+        with(layout.commonGalleryVp) {
             val previous = curPosition
             setEnableLooper(false)
             setOnBannerPositionChangedListener { position ->
@@ -238,7 +239,7 @@ class GalleryActivity : BaseActivity() {
     }
 
     private fun setupPullback() {
-        commonGalleryViewPullback.setCallback(object : PullBackLayout.Callback {
+        layout.commonGalleryViewPullback.setCallback(object : PullBackLayout.Callback {
             override fun onPullStart() {
                 showOrHideToolBar(false)
             }
@@ -259,7 +260,7 @@ class GalleryActivity : BaseActivity() {
     }
 
     private fun showOrHideToolBar(show: Boolean) {
-        commonGalleryToolbar.animate().alpha(if (show) 1.0f else 0.0f)
+        layout.commonGalleryToolbar.animate().alpha(if (show) 1.0f else 0.0f)
     }
 
     override fun onBackPressed() {
@@ -275,8 +276,8 @@ class GalleryActivity : BaseActivity() {
 
         when {
             !transitionPhotoDeleted && galleryInfo.position == curPosition -> {
-                commonGalleryVp.invisible()
-                commonGalleryIvTrans.visible()
+                layout.commonGalleryVp.invisible()
+                layout.commonGalleryIvTrans.visible()
                 supportFinishAfterTransition()
             }
             scale -> this.finishWithAnimation(0, 0)

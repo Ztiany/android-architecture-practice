@@ -7,9 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.JsPromptResult;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
@@ -18,13 +16,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.android.base.app.fragment.BaseFragment;
+import com.android.base.app.fragment.BaseUIFragment;
 import com.android.base.app.fragment.tools.Fragments;
 import com.android.base.utils.android.WebViewUtils;
 import com.app.base.R;
+import com.app.base.databinding.AppBaseWebFragmentBinding;
 import com.app.base.router.RouterPath;
 import com.app.base.widget.AppTitleLayout;
 import com.blankj.utilcode.util.NetworkUtils;
@@ -34,6 +30,8 @@ import org.jetbrains.annotations.NotNull;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import timber.log.Timber;
 
 /**
@@ -41,9 +39,8 @@ import timber.log.Timber;
  * Email: 1169654504@qq.com
  * Date : 2017-09-04 17:02
  */
-public class BaseWebFragment extends BaseFragment {
+public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
-    private View mLayout;
     private WebView mWebView;
     private AppTitleLayout mTitleLayout;
     private View mErrorLayout;
@@ -58,6 +55,7 @@ public class BaseWebFragment extends BaseFragment {
     private String customTitle = null;
 
     private String mCurrentUrl;
+
     private DefaultWebSetting mDefaultWebSetting;
 
     @Override
@@ -80,14 +78,9 @@ public class BaseWebFragment extends BaseFragment {
         }
     }
 
-    @Nullable
     @Override
-    public final View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (mLayout == null) {
-            mLayout = inflater.inflate(R.layout.app_base_web_fragment, container, false);
-            setupViews();
-        }
-        return mLayout;
+    protected void onViewPrepared(@NotNull View view, @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        setupViews();
     }
 
     @Override
@@ -170,11 +163,11 @@ public class BaseWebFragment extends BaseFragment {
 
     private void setupViews() {
         /*Find view*/
-        mWebView = mLayout.findViewById(R.id.web_view);
-        mWebProgress = new WebProgress(mLayout.findViewById(R.id.web_pb));
-        mErrorLayout = mLayout.findViewById(R.id.layout_error);
-        mTitleLayout = mLayout.findViewById(R.id.atlWebRulesTitle);
-        mCustomLayout = mLayout.findViewById(R.id.web_fl_custom);
+        mWebView = getLayout().webView;
+        mWebProgress = new WebProgress(getLayout().webPb);
+        mErrorLayout = getLayout().layoutError.getRoot();
+        mTitleLayout = getLayout().atlWebRulesTitle;
+        mCustomLayout = getLayout().webFlCustom;
 
         /*Title*/
         mTitleLayout.setOnNavigationOnClickListener(v -> Fragments.exitFragment(this));

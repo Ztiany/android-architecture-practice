@@ -4,18 +4,17 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import com.android.base.app.fragment.BaseFragment
+import com.android.base.app.fragment.BaseUIFragment
 import com.android.base.utils.android.views.views
 import com.android.base.utils.android.views.visibleOrGone
-import com.app.base.R
-import kotlinx.android.synthetic.main.base_debug_environment.*
+import com.app.base.databinding.BaseDebugEnvironmentBinding
 
 /**
  * @author Ztiany
  * Email: ztiany3@gmail.com
  * Date : 2019-08-13 19:17
  */
-class EnvironmentConfigFragment : BaseFragment() {
+class EnvironmentConfigFragment : BaseUIFragment<BaseDebugEnvironmentBinding>() {
 
     companion object {
         private const val SHOW_TITLE = "show_title"
@@ -27,14 +26,12 @@ class EnvironmentConfigFragment : BaseFragment() {
         }
     }
 
-    override fun provideLayout() = R.layout.base_debug_environment
-
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
 
-        baseToolbarDebug.visibleOrGone(arguments?.getBoolean(SHOW_TITLE, false) ?: false)
+        layout.baseToolbarDebug.visibleOrGone(arguments?.getBoolean(SHOW_TITLE, false) ?: false)
 
-        baseBtnDebugOneKeySwitch.setOnClickListener {
+        layout.baseBtnDebugOneKeySwitch.setOnClickListener {
             doOneKeySwitch()
         }
 
@@ -43,7 +40,7 @@ class EnvironmentConfigFragment : BaseFragment() {
         allCategory.forEach { (category, list) ->
             val environmentItemLayout = EnvironmentItemLayout(requireContext())
             environmentItemLayout.bindEnvironmentList(category, list)
-            baseLlDebugHostContent.addView(environmentItemLayout, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+            layout.baseLlDebugHostContent.addView(environmentItemLayout, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
         }
     }
 
@@ -59,7 +56,7 @@ class EnvironmentConfigFragment : BaseFragment() {
                         EnvironmentContext.select(category, list[which])
                     }
 
-                    baseLlDebugHostContent.views.filterIsInstance<EnvironmentItemLayout>().forEach {
+                    layout.baseLlDebugHostContent.views.filterIsInstance<EnvironmentItemLayout>().forEach {
                         it.refresh()
                     }
 

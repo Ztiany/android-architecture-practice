@@ -7,14 +7,15 @@ import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.service.ServiceFactory
 import com.app.base.app.AppErrorHandler
 import com.app.base.app.ErrorHandler
-import com.app.base.data.app.*
+import com.app.base.data.app.AppDataSource
 import com.app.base.data.app.AppRepository
+import com.app.base.data.app.StorageManager
 import com.app.base.services.ServiceManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
@@ -24,7 +25,7 @@ import javax.inject.Singleton
  * Date : 2018-11-01 11:06
  */
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class DataModule {
 
     @Provides
@@ -35,7 +36,7 @@ class DataModule {
             schedulerProvider: SchedulerProvider,
             storageManager: StorageManager
     ): AppDataSource {
-        return AppRepository(context,serviceFactory, storageManager)
+        return AppRepository(context, serviceFactory, storageManager)
     }
 
     @Singleton

@@ -15,7 +15,7 @@ import kotlin.jvm.functions.Function0;
 
 public class AppLoadingView implements LoadingView {
 
-    private Context mContext;
+    private final Context mContext;
     private LoadingDialog mLoadingDialog;
 
     public AppLoadingView(Context context) {

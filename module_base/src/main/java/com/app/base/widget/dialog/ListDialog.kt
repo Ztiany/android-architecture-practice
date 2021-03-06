@@ -2,18 +2,19 @@ package com.app.base.widget.dialog
 
 import android.content.Context
 import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.base.adapter.recycler.KtViewHolder
+import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.SimpleRecyclerAdapter
+import com.android.base.app.ui.viewBinding
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
-import com.app.base.R
-import kotlinx.android.synthetic.main.dialog_list_item.*
-import kotlinx.android.synthetic.main.dialog_list_layout.*
+import com.app.base.databinding.DialogListItemBinding
+import com.app.base.databinding.DialogListLayoutBinding
 
 /**
  * 列表对话框
@@ -29,18 +30,20 @@ internal class ListDialog(
     private var selectedItemIndex: Int = 0
     private var selectableBgId = 0
 
+    private val viewBinding by viewBinding<DialogListLayoutBinding>()
+
     private val dialogController = object : DialogController {
         override var positiveEnable: Boolean
-            get() = dblListDialogBottom?.positiveEnable ?: false
+            get() = viewBinding.dblListDialogBottom.positiveEnable ?: false
             set(value) {
-                dblListDialogBottom?.positiveEnable = value
+                viewBinding.dblListDialogBottom.positiveEnable = value
             }
     }
 
     init {
         maxDialogWidthPercent = listDialogBuilder.maxWidthPercent
 
-        setContentView(R.layout.dialog_list_layout)
+        setContentView(viewBinding.root)
         getSelectedBg()
         applyListDialogBuilder(listDialogBuilder)
 
@@ -51,26 +54,26 @@ internal class ListDialog(
         //title
         val title = listDialogBuilder.title
         if (title != null) {
-            tvListDialogTitle.visible()
-            tvListDialogTitle.text = title
-            tvListDialogTitle.textSize = listDialogBuilder.titleSize
-            tvListDialogTitle.setTextColor(listDialogBuilder.titleColor)
+            viewBinding.tvListDialogTitle.visible()
+            viewBinding.tvListDialogTitle.text = title
+            viewBinding.tvListDialogTitle.textSize = listDialogBuilder.titleSize
+            viewBinding.tvListDialogTitle.setTextColor(listDialogBuilder.titleColor)
         } else {
-            tvListDialogTitle.gone()
+            viewBinding.tvListDialogTitle.gone()
         }
 
         //cancel
-        dblListDialogBottom.negativeText(listDialogBuilder.negativeText)
-        dblListDialogBottom.onNegativeClick(View.OnClickListener {
+        viewBinding.dblListDialogBottom.negativeText(listDialogBuilder.negativeText)
+        viewBinding.dblListDialogBottom.onNegativeClick(View.OnClickListener {
             checkDismiss(listDialogBuilder)
             listDialogBuilder.negativeListener?.invoke()
         })
 
         //confirm
-        dblListDialogBottom.positiveText(listDialogBuilder.positiveText)
+        viewBinding.dblListDialogBottom.positiveText(listDialogBuilder.positiveText)
 
         //list
-        rvDialogListContent.layoutManager = LinearLayoutManager(context)
+        viewBinding.rvDialogListContent.layoutManager = LinearLayoutManager(context)
         val items = listDialogBuilder.items
         val adapter = listDialogBuilder.adapter
         if (items != null) {
@@ -85,8 +88,8 @@ internal class ListDialog(
     }
 
     private fun setupUsingSpecifiedAdapter(adapter: RecyclerView.Adapter<*>?, listDialogBuilder: ListDialogBuilder) {
-        rvDialogListContent.adapter = adapter
-        dblListDialogBottom.onPositiveClick(View.OnClickListener {
+        viewBinding.rvDialogListContent.adapter = adapter
+        viewBinding.dblListDialogBottom.onPositiveClick(View.OnClickListener {
             checkDismiss(listDialogBuilder)
             listDialogBuilder.positiveListener?.invoke(-1, "")
         })
@@ -102,14 +105,14 @@ internal class ListDialog(
             selectedItemIndex = size - 1
         }
 
-        rvDialogListContent.adapter = Adapter(context, items.toList())
-        dblListDialogBottom.onPositiveClick(View.OnClickListener {
+        viewBinding.rvDialogListContent.adapter = Adapter(context, items.toList())
+        viewBinding.dblListDialogBottom.onPositiveClick(View.OnClickListener {
             checkDismiss(listDialogBuilder)
             listDialogBuilder.positiveListener?.invoke(selectedItemIndex, items[selectedItemIndex])
         })
 
-        rvDialogListContent.post {
-            rvDialogListContent?.smoothScrollToPosition(selectedItemIndex)
+        viewBinding.rvDialogListContent.post {
+            viewBinding.rvDialogListContent.smoothScrollToPosition(selectedItemIndex)
         }
     }
 
@@ -132,10 +135,10 @@ internal class ListDialog(
     private inner class Adapter(
             context: Context,
             data: List<CharSequence>
-    ) : SimpleRecyclerAdapter<CharSequence>(context, data) {
+    ) : SimpleRecyclerAdapter<CharSequence, DialogListItemBinding>(context, data) {
 
         private val onClickListener = View.OnClickListener { view ->
-            setPosition(rvDialogListContent.getChildAdapterPosition(view))
+            setPosition(viewBinding.rvDialogListContent.getChildAdapterPosition(view))
         }
 
         private fun setPosition(childAdapterPosition: Int) {
@@ -155,19 +158,20 @@ internal class ListDialog(
             buttonView.isChecked = true
         }
 
-        override fun provideLayout(parent: ViewGroup, viewType: Int) = R.layout.dialog_list_item
+        override fun provideViewBinding(parent: ViewGroup, inflater: LayoutInflater) =
+                DialogListItemBinding.inflate(inflater, parent, false)
 
-        override fun bind(viewHolder: KtViewHolder, item: CharSequence) {
-            viewHolder.dialogListItemTv.text = item
+        override fun bind(viewHolder: BindingViewHolder<DialogListItemBinding>, item: CharSequence) {
+            viewHolder.vb.dialogListItemTv.text = item
             val isSelected = viewHolder.adapterPosition == selectedItemIndex
-            viewHolder.dialogListItemCb.setOnCheckedChangeListener(null)
-            viewHolder.dialogListItemCb.isChecked = isSelected
+            viewHolder.vb.dialogListItemCb.setOnCheckedChangeListener(null)
+            viewHolder.vb.dialogListItemCb.isChecked = isSelected
 
             if (isSelected) {
-                viewHolder.dialogListItemCb.setOnCheckedChangeListener(alwaysCheckedChangeListener)
+                viewHolder.vb.dialogListItemCb.setOnCheckedChangeListener(alwaysCheckedChangeListener)
             } else {
-                viewHolder.dialogListItemCb.tag = viewHolder.adapterPosition
-                viewHolder.dialogListItemCb.setOnCheckedChangeListener(onCheckedChangeListener)
+                viewHolder.vb.dialogListItemCb.tag = viewHolder.adapterPosition
+                viewHolder.vb.dialogListItemCb.setOnCheckedChangeListener(onCheckedChangeListener)
             }
             viewHolder.itemView.setOnClickListener(onClickListener)
         }

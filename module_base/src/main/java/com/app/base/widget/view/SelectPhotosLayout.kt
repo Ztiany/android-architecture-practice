@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.base.adapter.recycler.KtViewHolder
+import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.imageloader.ImageLoaderFactory
 import com.android.base.imageloader.Source
 import com.android.base.utils.android.views.dip
@@ -16,7 +16,7 @@ import com.android.base.utils.android.views.invisible
 import com.android.base.utils.android.views.use
 import com.android.base.utils.android.views.visible
 import com.app.base.R
-import kotlinx.android.synthetic.main.widget_select_photo_item_photo.*
+import com.app.base.databinding.WidgetSelectPhotoItemPhotoBinding
 import me.ztiany.widget.recyclerview.MarginDecoration
 import kotlin.math.max
 
@@ -36,6 +36,7 @@ class SelectPhotosLayout @JvmOverloads constructor(
     var onPhotoDeletedCallback: ((photos: List<Uri>) -> Unit)? = null
 
     private val addImageAdapter: AddImageAdapter
+
     private var maxImageSize = 1
 
     init {
@@ -109,7 +110,7 @@ private class AddImageAdapter(
         onAddImageListener: (Int) -> Unit,
         onClickImageListener: (view: View, photos: List<Uri>, position: Int) -> Unit,
         var onPhotoDeletedCallback: ((photos: List<Uri>) -> Unit)? = null
-) : RecyclerView.Adapter<KtViewHolder>() {
+) : RecyclerView.Adapter<BindingViewHolder<WidgetSelectPhotoItemPhotoBinding>>() {
 
     companion object {
         private val ADD = Uri.EMPTY
@@ -163,25 +164,25 @@ private class AddImageAdapter(
         return dataList.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KtViewHolder {
-        val layout = LayoutInflater.from(context).inflate(R.layout.widget_select_photo_item_photo, parent, false)
-        return KtViewHolder(layout)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<WidgetSelectPhotoItemPhotoBinding> {
+        val inflater = LayoutInflater.from(parent.context)
+        return BindingViewHolder(WidgetSelectPhotoItemPhotoBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(viewHolder: KtViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: BindingViewHolder<WidgetSelectPhotoItemPhotoBinding>, position: Int) {
         val item = dataList[position]
 
         if (item == ADD) {
-            viewHolder.widgetSelectingIvPhoto.setImageResource(R.drawable.img_add_photo)
-            viewHolder.widgetSelectingIvPhoto.setOnClickListener(_onAddImageListener)
-            viewHolder.widgetSelectingIvDelete.invisible()
+            viewHolder.vb.widgetSelectingIvPhoto.setImageResource(R.drawable.img_add_photo)
+            viewHolder.vb.widgetSelectingIvPhoto.setOnClickListener(_onAddImageListener)
+            viewHolder.vb.widgetSelectingIvDelete.invisible()
         } else {
-            imageLoader.display(viewHolder.widgetSelectingIvPhoto, Source.create(item))
-            viewHolder.widgetSelectingIvPhoto.tag = viewHolder.adapterPosition
-            viewHolder.widgetSelectingIvPhoto.setOnClickListener(_onClickImageListener)
-            viewHolder.widgetSelectingIvDelete.setOnClickListener(_onDeleteImageListener)
-            viewHolder.widgetSelectingIvDelete.tag = viewHolder.adapterPosition
-            viewHolder.widgetSelectingIvDelete.visible()
+            imageLoader.display(viewHolder.vb.widgetSelectingIvPhoto, Source.create(item))
+            viewHolder.vb.widgetSelectingIvPhoto.tag = viewHolder.adapterPosition
+            viewHolder.vb.widgetSelectingIvPhoto.setOnClickListener(_onClickImageListener)
+            viewHolder.vb.widgetSelectingIvDelete.setOnClickListener(_onDeleteImageListener)
+            viewHolder.vb.widgetSelectingIvDelete.tag = viewHolder.adapterPosition
+            viewHolder.vb.widgetSelectingIvDelete.visible()
         }
 
     }

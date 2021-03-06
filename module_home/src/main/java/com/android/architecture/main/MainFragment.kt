@@ -5,13 +5,13 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentManager
+import com.android.architecture.main.databinding.MainFragmentRootBinding
 import com.android.architecture.main.feed.FeedFragment
 import com.android.architecture.main.me.MeFragment
 import com.android.architecture.main.message.MessageFragment
-import com.android.base.app.fragment.BaseFragment
+import com.android.base.app.fragment.BaseUIFragment
 import com.android.base.app.fragment.tools.FragmentInfo
 import com.android.base.app.fragment.tools.TabManager
-import kotlinx.android.synthetic.main.main_fragment_root.*
 import timber.log.Timber
 
 /**
@@ -19,13 +19,11 @@ import timber.log.Timber
  *      Email: ztiany3@gmail.com
  *      Date : 2019-09-19 16:06
  */
-class MainFragment : BaseFragment() {
+class MainFragment : BaseUIFragment<MainFragmentRootBinding>() {
 
     interface MainFragmentChild
 
     private lateinit var tabManager: MainTabManager
-
-    override fun provideLayout() = R.layout.main_fragment_root
 
     @SuppressLint("BinaryOperationInTimber")
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +36,7 @@ class MainFragment : BaseFragment() {
         tabManager = MainTabManager(requireContext(), childFragmentManager, R.id.flMainContainer)
         tabManager.setup(savedInstanceState)
         //bottomBar
-        mainBottomBar.setOnNavigationItemSelectedListener {
+        layout.mainBottomBar.setOnNavigationItemSelectedListener {
             tabManager.selectTabById(it.itemId)
             true
         }
@@ -52,7 +50,7 @@ class MainFragment : BaseFragment() {
     fun selectTabAtPosition(pagePosition: Int) {
         try {
             if (pagePosition in 0..3/*tab count*/) {
-                mainBottomBar.selectedItemId = tabManager.getItemId(pagePosition)
+                layout.mainBottomBar.selectedItemId = tabManager.getItemId(pagePosition)
             }
         } catch (e: Exception) {
             Timber.d(e, "selectTabAtPosition page=$pagePosition")

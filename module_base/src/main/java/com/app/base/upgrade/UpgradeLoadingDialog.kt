@@ -2,8 +2,9 @@ package com.app.base.upgrade
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDialog
+import com.android.base.app.ui.viewBinding
 import com.app.base.R
-import kotlinx.android.synthetic.main.dialog_upgrade_loading.*
+import com.app.base.databinding.DialogUpgradeLoadingBinding
 
 /**
  *@author Ztiany
@@ -12,17 +13,15 @@ import kotlinx.android.synthetic.main.dialog_upgrade_loading.*
  */
 class UpgradeLoadingDialog(context: Context) : AppCompatDialog(context, R.style.ThemeDialogCommon) {
 
-    init {
-        setContentView(R.layout.dialog_upgrade_loading)
-    }
+    private val layout: DialogUpgradeLoadingBinding by viewBinding()
 
     fun notifyProgress(total: Long, progress: Long) {
         if (total == -1L) {
-            dialogUpgradePb.isIndeterminate = true
+            layout.dialogUpgradePb.isIndeterminate = true
         } else {
-            dialogUpgradePb.isIndeterminate = false
-            dialogUpgradePb.max = total.toInt()
-            dialogUpgradePb.progress = progress.toInt()
+            layout.dialogUpgradePb.isIndeterminate = false
+            layout.dialogUpgradePb.max = total.toInt()
+            layout.dialogUpgradePb.progress = progress.toInt()
         }
     }
 

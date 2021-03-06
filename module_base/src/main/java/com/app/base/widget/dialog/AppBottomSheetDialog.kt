@@ -1,20 +1,19 @@
 package com.app.base.widget.dialog
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.base.adapter.recycler.KtViewHolder
+import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.RecyclerAdapter
+import com.android.base.app.ui.viewBinding
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
 import com.android.base.utils.android.views.visibleOrInvisible
-import com.app.base.R
+import com.app.base.databinding.DialogBottomSheetBinding
+import com.app.base.databinding.DialogBottomSheetItemBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
-import kotlinx.android.synthetic.main.dialog_bottom_sheet_item.*
 
 /**
  *@author Ztiany
@@ -25,8 +24,9 @@ class AppBottomSheetDialog(
         private val builder: BottomSheetDialogBuilder
 ) : BottomSheetDialog(builder.context) {
 
+    private val vb: DialogBottomSheetBinding by viewBinding(true)
+
     init {
-        setContentView(R.layout.dialog_bottom_sheet)
         setupList()
         setupBottomAction()
         setupTitle()
@@ -34,21 +34,21 @@ class AppBottomSheetDialog(
 
     private fun setupTitle() {
         if (builder.titleText.isNotEmpty()) {
-            dialogBottomSheetTvTitle.visible()
-            dialogBottomSheetTvTitle.text = builder.titleText
+            vb.dialogBottomSheetTvTitle.visible()
+            vb.dialogBottomSheetTvTitle.text = builder.titleText
         }
     }
 
     private fun setupBottomAction() {
         if (builder.actionText.isNotEmpty()) {
-            dialogBottomSheetTvBottomAction.text = builder.actionText
-            dialogBottomSheetVDivider.visible()
+            vb.dialogBottomSheetTvBottomAction.text = builder.actionText
+            vb.dialogBottomSheetVDivider.visible()
         } else {
-            dialogBottomSheetTvBottomAction.gone()
-            dialogBottomSheetVDivider.gone()
+            vb.dialogBottomSheetTvBottomAction.gone()
+            vb.dialogBottomSheetVDivider.gone()
         }
 
-        dialogBottomSheetTvBottomAction.setOnClickListener {
+        vb.dialogBottomSheetTvBottomAction.setOnClickListener {
             dismiss()
             builder.actionListener?.invoke()
         }
@@ -57,17 +57,17 @@ class AppBottomSheetDialog(
     private fun setupList() {
         val customList = builder.customList
         if (customList != null) {
-            customList(this, dialogBottomRvList)
+            customList(this, vb.dialogBottomRvList)
         } else {
             defaultList()
         }
     }
 
     private fun defaultList() {
-        dialogBottomRvList.layoutManager = LinearLayoutManager(context)
+        vb.dialogBottomRvList.layoutManager = LinearLayoutManager(context)
         val items = builder.items
         if (items != null) {
-            dialogBottomRvList.adapter = BottomSheetDialogAdapter(context, items, builder) { position: Int, item: CharSequence ->
+            vb.dialogBottomRvList.adapter = BottomSheetDialogAdapter(context, items, builder) { position: Int, item: CharSequence ->
                 handleItemSelectedNormalMode(position, item)
             }
         }
@@ -94,7 +94,7 @@ private class BottomSheetDialogAdapter(
         items: List<CharSequence>,
         private val builder: BottomSheetDialogBuilder,
         onItemClickedListener: (Int, CharSequence) -> Unit,
-) : RecyclerAdapter<CharSequence, KtViewHolder>(context, items) {
+) : RecyclerAdapter<CharSequence, BindingViewHolder<DialogBottomSheetItemBinding>>(context, items) {
 
     private lateinit var recyclerView: RecyclerView
 
@@ -107,20 +107,19 @@ private class BottomSheetDialogAdapter(
         this.recyclerView = recyclerView
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KtViewHolder {
-        val containerView = LayoutInflater.from(context).inflate(R.layout.dialog_bottom_sheet_item, parent, false)
-        return KtViewHolder(containerView).apply {
-            dialogBottomSheetTvItem.gravity = builder.itemGravity
-            dialogBottomSheetTvItem.setTextColor(builder.itemTextColor)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<DialogBottomSheetItemBinding> {
+        return BindingViewHolder(DialogBottomSheetItemBinding.inflate(inflater, parent, false)).apply {
+            vb.dialogBottomSheetTvItem.gravity = builder.itemGravity
+            vb.dialogBottomSheetTvItem.setTextColor(builder.itemTextColor)
         }
     }
 
-    override fun onBindViewHolder(viewHolder: KtViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: BindingViewHolder<DialogBottomSheetItemBinding>, position: Int) {
         val item = getItem(position)
-        viewHolder.dialogBottomSheetTvItem.text = item
+        viewHolder.vb.dialogBottomSheetTvItem.text = item
         viewHolder.itemView.tag = item
         viewHolder.itemView.setOnClickListener(onItemClickedListener)
-        viewHolder.dialogBottomSheetTvItemSelection.visibleOrInvisible(position == builder.selectedPosition)
+        viewHolder.vb.dialogBottomSheetTvItemSelection.visibleOrInvisible(position == builder.selectedPosition)
     }
 
 }

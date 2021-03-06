@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply from: 'channel.gradle'
@@ -9,10 +8,6 @@ kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
     }
-}
-
-androidExtensions {
-    experimental = true
 }
 
 android {
