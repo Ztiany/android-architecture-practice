@@ -168,6 +168,9 @@ ext {
             glideApt                          : 'com.github.bumptech.glide:compiler:4.11.0',
             glideOkHttp                       : 'com.github.bumptech.glide:okhttp3-integration:4.11.0',
 
+            //https://github.com/coil-kt/coil
+            coil                              : "io.coil-kt:coil:1.1.1",
+
             //https://github.com/alibaba/ARouter，注意：apt arouter 应该放在  apt dagger 后面
             arouter                           : 'com.alibaba:arouter-api:1.5.0',
             arouterAnnotation                 : 'com.alibaba:arouter-compiler:1.2.2',
@@ -192,23 +195,9 @@ ext {
             xlog                              : 'com.tencent.mars:mars-xlog:1.2.4',
             //https://github.com/drewnoakes/metadata-extractor
             metadataExtractor                 : 'com.drewnoakes:metadata-extractor:2.14.0',
-    ]
 
-    debugLibraries = [
-            //https://github.com/square/leakcanary
-            debugLeakCanary   : "com.squareup.leakcanary:leakcanary-android:2.1",
-
-            //http://facebook.github.io/stetho
-            stetho            : 'com.facebook.stetho:stetho:1.5.1',
-            stethoOkhttp3     : 'com.facebook.stetho:stetho-okhttp3:1.5.1',
-
-            //https://github.com/eleme/UETool
-            ueTool            : 'me.ele:uetool:1.2.1',
-
-            //https://github.com/markzhai/AndroidPerformanceMonitor 卡顿监控
-            //http://blog.zhaiyifan.cn/2016/01/16/BlockCanaryTransparentPerformanceMonitor/
-            debugBlockCanary  : "com.github.markzhai:blockcanary-android:1.4.0",
-            releaseBlockCanary: "com.github.markzhai:blockcanary-no-op:1.4.0"
+            //https://github.com/javakam/FileOperator
+            //TODO
     ]
 
     uiLibraries = [
@@ -225,7 +214,36 @@ ext {
             //https://github.com/yshrsmz/KeyboardVisibilityEvent
             keyboardVisibilityEvent: 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2',
             //https://github.com/RuffianZhong/RWidgetHelper
-            rWidget:'com.ruffian.library:RWidgetHelper-AndroidX:0.0.8'
+            rWidget                : 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.8',
+
+            //https://github.com/B3nedikt/ViewPump
+            viewpump               : "dev.b3nedikt.viewpump:viewpump:4.0.7"
+    ]
+
+    debugLibraries = [
+            //https://github.com/square/leakcanary
+            debugLeakCanary   : "com.squareup.leakcanary:leakcanary-android:2.1",
+
+            //http://facebook.github.io/stetho
+            stetho            : 'com.facebook.stetho:stetho:1.5.1',
+            stethoOkhttp3     : 'com.facebook.stetho:stetho-okhttp3:1.5.1',
+
+            //https://github.com/eleme/UETool
+            ueTool            : 'me.ele:uetool:1.2.1',
+
+            //https://github.com/markzhai/AndroidPerformanceMonitor 卡顿监控
+            //http://blog.zhaiyifan.cn/2016/01/16/BlockCanaryTransparentPerformanceMonitor/
+            debugBlockCanary  : "com.github.markzhai:blockcanary-android:1.4.0",
+            releaseBlockCanary: "com.github.markzhai:blockcanary-no-op:1.4.0",
+
+            //https://github.com/didi/DoraemonKit
+            doraemonKit       : "com.didichuxing.doraemonkit:dokitx:3.3.5",
+
+            //https://github.com/didi/booster
+            //TODO
+
+            //https://github.com/square/radiography
+            radiography       : "com.squareup.radiography:radiography:2.3.0"
     ]
 
     testLibraries = [

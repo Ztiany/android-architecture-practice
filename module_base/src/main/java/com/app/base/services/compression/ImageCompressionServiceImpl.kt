@@ -6,7 +6,8 @@ import androidx.core.net.toFile
 import com.android.base.concurrent.DispatcherProvider
 import com.android.base.utils.common.sizeOf
 import com.app.base.AppContext
-import com.app.base.config.AppFileSystemKit
+import com.app.base.config.AppDirectory
+import com.app.base.config.AppDirectory.PICTURE_FORMAT_JPEG
 import com.app.base.debug.ifOpenDebug
 import com.app.base.debug.ifOpenLog
 import com.blankj.utilcode.util.FileUtils
@@ -72,7 +73,7 @@ class ImageCompressionServiceImpl(
         ExifUtils.copyExif(originFile.absolutePath, newFile.absolutePath)
 
         ifOpenDebug {
-            FileUtils.copy(newFile.absolutePath, AppFileSystemKit.createTempJPEGPicturePath())
+            FileUtils.copy(newFile.absolutePath, AppDirectory.createTempPicturePath(PICTURE_FORMAT_JPEG))
         }
 
         return Uri.fromFile(newFile)

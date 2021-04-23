@@ -13,11 +13,9 @@ import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
 import com.app.base.AppContext
 import com.app.base.R
-import com.app.base.config.AppFileSystemKit
+import com.app.base.config.AppDirectory
 import com.app.base.config.AppSettings
-import com.app.base.widget.dialog.LoadingDialog
 import com.app.base.widget.dialog.showConfirmDialog
-import com.blankj.utilcode.util.AppUtils
 import io.reactivex.Flowable
 import okhttp3.OkHttpClient
 import timber.log.Timber
@@ -154,7 +152,7 @@ class AppUpgradeInteractor : UpgradeInteractor {
 
     override fun checkApkFile(apkFile: File, digitalAbstract: String) = true
 
-    override fun generateAppDownloadPath(versionName: String): String = AppFileSystemKit.createAppDownloadPath(versionName)
+    override fun generateAppDownloadPath(versionName: String): String = AppDirectory.createAppDownloadPath(versionName)
 
     override fun createHttpClient(): OkHttpClient {
         return OkHttpClient()
