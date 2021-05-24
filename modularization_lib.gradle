@@ -62,8 +62,6 @@ dependencies {
     /*Hilt*/
     api androidLibraries.hiltDagger
     kapt androidLibraries.hiltDaggerApt
-    api androidLibraries.hiltViewiewModel
-    kapt androidLibraries.hiltApt
     /*ARouter*/
     kapt thirdLibraries.arouterAnnotation
     /* all jar*/

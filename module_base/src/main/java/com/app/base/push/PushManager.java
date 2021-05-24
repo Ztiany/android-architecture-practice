@@ -8,7 +8,6 @@ import com.app.base.AppContext;
 import com.app.base.data.app.AppDataSource;
 import com.app.base.data.models.User;
 import com.app.base.debug.DebugInfoDispatcher;
-import com.app.base.umeng.UMPush;
 import com.app.base.utils.ChannelKt;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +47,7 @@ public final class PushManager {
 
     public void init(Application application) {
         //初始化推送
-        mPush = new UMPush(application);
+        mPush = new DummyPush();
         mApplication = application;
         //设置消息处理器
         mPush.setChannel(ChannelKt.getAppChannel(application));

@@ -1,9 +1,12 @@
 package com.android.architecture.main.message
 
-import androidx.hilt.lifecycle.ViewModelInject
 import com.android.base.app.mvvm.RxViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MessageViewModel @ViewModelInject constructor(
-) : RxViewModel() {
+@HiltViewModel
+class MessageViewModel  @Inject constructor(
+
+):   RxViewModel() {
 
 }
