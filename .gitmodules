@@ -1,3 +1,3 @@
 [submodule "Android-Libs"]
-	path = Android-Libs
+	path = libraries
 	url = git@git.zhlh6.cn:Ztiany/Android-Libs.git
