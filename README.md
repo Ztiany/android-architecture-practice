@@ -16,7 +16,7 @@ make sure the projects in the same directory.
 
 ## 2 modules explanation
 
-[common modules](android-libs): 
+[common modules](Android-Libs): 
 
 - lib_foundation: DelegateFragment, DelegateActivity.
 - lib_base: common util classes and base classes, including BaseActivity, BaseFragment, BaseStateFragment, BaseListFragment, BaseAdapter, MVVM, MVP, MultiStateView, Dagger2, AAC, RxJava2, Kotlin, etc.

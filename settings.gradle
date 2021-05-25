@@ -16,7 +16,7 @@ def libs = [
 
 libs.forEach {
     include(":$it")
-    project(":$it").projectDir = new File("./android-libs/$it")
+    project(":$it").projectDir = new File("./Android-Libs/$it")
 }
 
 //业务基础架构
