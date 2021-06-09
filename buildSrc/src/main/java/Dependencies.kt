@@ -1,4 +1,4 @@
-object Android {
+object AndroidLibraries {
 
     private const val appcompat_version = "1.2.0"
     private const val activity_version = "1.2.0"
@@ -106,7 +106,7 @@ object Android {
     const val concurrentFuturesKtx = "androidx.concurrent:concurrent-futures-ktx:1.1.0"
 }
 
-object Kotlin {
+object KotlinLibraries {
 
     private const val kotlin_version = "1.5.0"
     private const val coroutinesVersion = "1.5.0-RC"
@@ -127,7 +127,7 @@ object Kotlin {
     const val kotlinxMetadata = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.0.5"
 }
 
-object FunctionalLibraries {
+object ThirdLibraries {
 
     private const val rxBindingVersion = "3.1.0"
     private const val autoDisposeVersion = "1.3.0"

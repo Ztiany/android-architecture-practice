@@ -91,8 +91,6 @@ ext {
             //Hilt
             hiltDagger              : 'com.google.dagger:hilt-android:2.35.1',
             hiltDaggerApt           : 'com.google.dagger:hilt-android-compiler:2.35.1',
-            hiltViewiewModel        : 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03',
-            hiltApt                 : 'androidx.hilt:hilt-compiler:1.0.0-alpha03',
             //classpath "com.google.dagger:hilt-android-gradle-plugin:2.35.1"
             //apply plugin: 'dagger.hilt.android.plugin'
 
