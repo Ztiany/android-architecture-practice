@@ -23,12 +23,15 @@ object AndroidLibraries {
     const val lifecycleCommon = "androidx.lifecycle:lifecycle-common:$lifecycle_version"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    const val lifecycleLiveDataCore = "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
+    const val lifecycleLiveDataCore =
+        "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
     const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     const val lifecycleLiveKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    const val lifecycleReactiveStreams = "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    const val lifecycleViewModelKtx =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    const val lifecycleReactiveStreams =
+        "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
     //https://android.github.io/android-ktx/core-ktx/index.html
@@ -108,17 +111,20 @@ object AndroidLibraries {
 
 object KotlinLibraries {
 
-    private const val kotlin_version = "1.5.0"
-    private const val coroutinesVersion = "1.5.0-RC"
+    const val KOTLIN_VERSION = "1.4.32"
+    const val COROUTINES_VERSION = "1.4.3"
 
     //Kotlin
-    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$KOTLIN_VERSION"
 
     //Coroutines
-    const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}"
-    const val kotlinAndroidCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}"
-    const val kotlinxCoroutinesRx2 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${coroutinesVersion}"
+    const val kotlinCoroutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${COROUTINES_VERSION}"
+    const val kotlinAndroidCoroutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${COROUTINES_VERSION}"
+    const val kotlinxCoroutinesRx2 =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${COROUTINES_VERSION}"
 
     //https://github.com/ReactiveX/RxKotlin
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
@@ -145,14 +151,18 @@ object ThirdLibraries {
     const val rxBinding = "com.jakewharton.rxbinding3:rxbinding:$rxBindingVersion"
     const val rxBindingCore = "com.jakewharton.rxbinding3:rxbinding-core:$rxBindingVersion"
     const val rxBindingCompat = "com.jakewharton.rxbinding3:rxbinding-appcompat:$rxBindingVersion"
-    const val rxBindingMaterial = "com.jakewharton.rxbinding3:rxbinding-material:3.0.0:$rxBindingVersion"
-    const val rxBindingRecyclerView = "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxBindingVersion"
+    const val rxBindingMaterial =
+        "com.jakewharton.rxbinding3:rxbinding-material:3.0.0:$rxBindingVersion"
+    const val rxBindingRecyclerView =
+        "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxBindingVersion"
 
     //https://github.com/uber/AutoDispose
     const val autoDispose = "com.uber.autodispose:autodispose:$autoDisposeVersion"
     const val autoDisposeAndroid = "com.uber.autodispose:autodispose-android:$autoDisposeVersion"
-    const val autoDisposeLifecycle = "com.uber.autodispose:autodispose-lifecycle:$autoDisposeVersion"
-    const val autoDisposeLifecycleArchcomponents = "com.uber.autodispose:autodispose-android-archcomponents:$autoDisposeVersion"
+    const val autoDisposeLifecycle =
+        "com.uber.autodispose:autodispose-lifecycle:$autoDisposeVersion"
+    const val autoDisposeLifecycleArchcomponents =
+        "com.uber.autodispose:autodispose-android-archcomponents:$autoDisposeVersion"
 
     //https://github.com/uber/RxDogTag
     const val rxDogTag = "com.uber.rxdogtag:rxdogtag:0.2.0"
@@ -239,7 +249,8 @@ object UILibraries {
     const val fotoapparat = "io.fotoapparat:fotoapparat:2.7.0"
 
     //https://github.com/yshrsmz/KeyboardVisibilityEvent
-    const val keyboardVisibilityEvent = "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2"
+    const val keyboardVisibilityEvent =
+        "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2"
 
     //https://github.com/RuffianZhong/RWidgetHelper
     const val rWidget = "com.ruffian.library:RWidgetHelper-AndroidX:0.0.8"

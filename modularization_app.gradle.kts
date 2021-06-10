@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("parcelize")
+     id("kotlin-parcelize")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
 }
@@ -87,7 +87,7 @@ android {
 
     //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
     buildFeatures {
-        enabled = true
+        viewBinding = true
     }
 
     sourceSets.getByName("main") {

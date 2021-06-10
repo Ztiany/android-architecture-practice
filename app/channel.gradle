@@ -1,8 +1,0 @@
-apply plugin: 'channel'
-
-rebuildChannel {
-    baseReleaseApk = file("build/outputs/apk/release/app-${rootProject.versionName}.apk")
-    releaseOutputDir = file("apk/${rootProject.versionName}/release/")
-    //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上）
-    isFastMode = false
-}

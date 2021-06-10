@@ -3,16 +3,20 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("channel")
 }
 
-apply {
-    //from("channel.gradle.kts")
-}
-
-kapt{
+kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.name)
     }
+}
+
+rebuildChannel {
+    baseReleaseApk = file("build/outputs/apk/release/app-release-${AppConfig.versionName}.apk")
+    releaseOutputDir = file("apk/${AppConfig.versionName}/release/")
+    //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上）
+    isFastMode = false
 }
 
 android {
@@ -21,8 +25,8 @@ android {
 
     signingConfigs {
         create("release") {
-            isV1SigningEnabled =true
-            isV2SigningEnabled =true
+            isV1SigningEnabled = true
+            isV2SigningEnabled = true
             keyAlias = AppConfig.releaseKeyAlias
             keyPassword = AppConfig.releaseKeyPassword
             storeFile = rootProject.file(AppConfig.releaseKeyFileName)
@@ -40,11 +44,11 @@ android {
         vectorDrawables.useSupportLibrary = true
         resConfigs("zh", "en")//只需要中文和英文资源
         ndk {
-            abiFilters("armeabi-v7a")
+            abiFilters.addAll(listOf("armeabi-v7a", "x86"))
         }
     }
 
-    testOptions{
+    testOptions {
         unitTests.isReturnDefaultValues = true
     }
 
@@ -62,24 +66,6 @@ android {
             signingConfig = signingConfigs.getByName("release")
             addManifestPlaceholders(mapOf("screenOrientation" to "unspecified"))
             resValue("string", "app_name", "Android 架构模板(测试)")
-            ndk {
-                abiFilters( "armeabi-v7a", "x86")
-            }
-        }
-
-        //正式发布
-        getByName("release") {
-            isMinifyEnabled = false
-            isShrinkResources = false
-            signingConfig = signingConfigs.getByName("release")
-            resValue("string", "app_name", "Android 架构模板")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            ndk {
-                abiFilters("armeabi-v7a")
-            }
         }
 
         //正式发布
@@ -87,20 +73,21 @@ android {
             isZipAlignEnabled = true
             isMinifyEnabled = false
             isShrinkResources = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"))
-            proguardFiles(getDefaultProguardFile("proguard-rules.pro"))
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
-            //manifestPlaceholders = mapOf("screenOrientation" to "portrait")
+            addManifestPlaceholders(mapOf("screenOrientation" to "portrait"))
             resValue("string", "app_name", "Android 架构模板")
         }
     }
-
 
     lintOptions {
         isAbortOnError = false
     }
 
-     compileOptions {
+    compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -111,7 +98,7 @@ android {
 
     sourceSets.getByName("main") {
         if (!AppConfig.isMultiApp) {
-            manifest{
+            manifest {
                 this.srcFile("src/app/AndroidManifest.xml")
             }
             java {
@@ -120,20 +107,15 @@ android {
             res {
                 srcDir("src/app/res")
             }
-            res.srcDir("src/app/res")
         }
     }
 
-    applicationVariants.all(object : Action<ApplicationVariant> {
-        override fun execute(variant: ApplicationVariant) {
-            variant.outputs.all(object : Action<BaseVariantOutput> {
-                override fun execute(t: BaseVariantOutput) {
-                    val output = t as BaseVariantOutputImpl
-                    output.outputFileName = "${project.name}-${versionName}.apk"
-                }
-            })
+    applicationVariants.all {
+        outputs.all {
+            val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            output.outputFileName = "${project.name}-${buildType.name}-${versionName}.apk"
         }
-    })
+    }
 
     packagingOptions {
         pickFirst("lib/x86/libc++_shared.so")
@@ -141,19 +123,17 @@ android {
         pickFirst("lib/armeabi-v7a/libc++_shared.so")
         pickFirst("lib/arm64-v8a/libc++_shared.so")
     }
-
 }
 
 dependencies {
+    testImplementation(TestLibraries.junit)
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     if (!AppConfig.isMultiApp) {
-        testImplementation(TestLibraries.junit)
-
-        implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+        //modules
         implementation(project(":module_base"))
         implementation(project(":module_home"))
         implementation(project(":module_account"))
-
         /*Hilt*/
         api(AndroidLibraries.hiltDagger)
         kapt(AndroidLibraries.hiltDaggerApt)
@@ -167,5 +147,4 @@ dependencies {
         implementation(AndroidLibraries.appcompat)
         implementation(AndroidLibraries.material)
     }
-
 }

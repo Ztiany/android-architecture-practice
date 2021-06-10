@@ -1,17 +1,16 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    kotlin("parcelize")
+    id("kotlin-parcelize")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
 }
 
-kapt{
+kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.name)
     }
 }
-
 
 android {
     compileSdkVersion(AppConfig.compileSdkVersion)
@@ -23,10 +22,10 @@ android {
         versionCode = AppConfig.versionCode
         versionName = AppConfig.versionName
         vectorDrawables.useSupportLibrary = true
-        resConfigs(listOf("en","cn"))
+        resConfigs(listOf("en", "cn"))
     }
 
-    testOptions{
+    testOptions {
         unitTests.isReturnDefaultValues = true
     }
 
@@ -57,11 +56,11 @@ android {
 
     //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
     buildFeatures {
-        enabled = true
+        viewBinding = true
     }
 
     sourceSets.getByName("main") {
-        manifest{
+        manifest {
             this.srcFile("src/library/AndroidManifest.xml")
         }
         java {
@@ -75,8 +74,10 @@ android {
 }
 
 dependencies {
+    /* all jar*/
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     //基础类库
-    implementation(project(':module_base'))
+    implementation(project(":module_base"))
     //测试
     testImplementation(TestLibraries.junit)
     /*Hilt*/
@@ -84,6 +85,4 @@ dependencies {
     kapt(AndroidLibraries.hiltDaggerApt)
     /*ARouter*/
     kapt(ThirdLibraries.arouterAnnotation)
-    /* all jar*/
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 }

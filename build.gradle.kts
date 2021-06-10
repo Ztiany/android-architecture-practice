@@ -17,7 +17,7 @@ buildscript {
         //android
         classpath("com.android.tools.build:gradle:4.1.3")
         //kotlin
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${KotlinLibraries.KOTLIN_VERSION}")
         //hilt
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.35.1")
         //channel
@@ -39,7 +39,7 @@ allprojects {
         google()
         mavenCentral()
 
-        flatDir { dirs(rootProject.projectDir.getAbsolutePath() + "/repo/aar") }
+        flatDir { dirs(rootProject.projectDir.absolutePath + "/repo/aar") }
 
         /*configurations.all {
             resolutionStrategy.force(
