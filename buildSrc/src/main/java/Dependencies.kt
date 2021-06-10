@@ -94,10 +94,10 @@ object AndroidLibraries {
     const val appcompatResources = "androidx.appcompat:appcompat-resources:$appcompat_version"
 
     //Hilt
-    const val hiltDagger = "com.google.dagger:hilt-android:2.35.1"
-    const val hiltDaggerApt = "com.google.dagger:hilt-android-compiler:2.35.1"
+    const val hiltDagger = "com.google.dagger:hilt-android:2.36"
+    const val hiltDaggerApt = "com.google.dagger:hilt-android-compiler:2.36"
 
-    //classpath "com.google.dagger:hilt-android-gradle-plugin:2.35.1"
+    //classpath "com.google.dagger:hilt-android-gradle-plugin:2.36"
     //apply plugin: 'dagger.hilt.android.plugin'
 
     //start-up

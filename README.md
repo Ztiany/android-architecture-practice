@@ -14,7 +14,7 @@ git submodule update
 
 make sure the projects in the same directory.
 
-## 2 modules explanation
+## 2 explanation
 
 [common modules](libraries): 
 

@@ -6,7 +6,7 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-kapt {
+kapt{
     arguments {
         arg("AROUTER_MODULE_NAME", project.name)
     }
@@ -19,13 +19,13 @@ android {
     defaultConfig {
         minSdkVersion(AppConfig.minSdkVersion)
         targetSdkVersion(AppConfig.targetSdkVersion)
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
+        versionCode(AppConfig.versionCode)
+        versionName(AppConfig.versionName)
         vectorDrawables.useSupportLibrary = true
-        resConfigs(listOf("en", "cn"))
+        resConfigs(listOf("en","cn"))
     }
 
-    testOptions {
+    testOptions{
         unitTests.isReturnDefaultValues = true
     }
 
@@ -60,7 +60,7 @@ android {
     }
 
     sourceSets.getByName("main") {
-        manifest {
+        manifest{
             this.srcFile("src/library/AndroidManifest.xml")
         }
         java {

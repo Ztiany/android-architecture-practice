@@ -1,12 +1,12 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-     id("kotlin-parcelize")
+    id("kotlin-parcelize")
     kotlin("kapt")
-    //id("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
 }
 
-kapt{
+kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.name)
     }
@@ -19,19 +19,23 @@ android {
     defaultConfig {
         minSdkVersion(AppConfig.minSdkVersion)
         targetSdkVersion(AppConfig.targetSdkVersion)
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
+        versionCode(AppConfig.versionCode)
+        versionName(AppConfig.versionName)
         vectorDrawables.useSupportLibrary = true
-        resConfigs(listOf("en","cn"))
+        resConfigs(listOf("en", "cn"))
 
         buildConfigField("boolean", "openDebug", "${AppConfig.isOpenDebug}")
         buildConfigField("boolean", "showDebugTools", "${AppConfig.showDebugTools}")
-        buildConfigField("boolean", "trustHttpsCertification", "${AppConfig.trustHttpsCertification}")
+        buildConfigField(
+            "boolean",
+            "trustHttpsCertification",
+            "${AppConfig.trustHttpsCertification}"
+        )
         buildConfigField("boolean", "openLog", "${AppConfig.isOpenLog}")
         buildConfigField("String", "specifiedHost", "\"${AppConfig.HOST_ENV}\"")
     }
 
-    testOptions{
+    testOptions {
         unitTests.isReturnDefaultValues = true
     }
 
@@ -134,7 +138,7 @@ dependencies {
     api(UILibraries.keyboardVisibilityEvent)
 
     //image compression
-    implementation("id.zelory:compressor:3.0.0")
+    implementation("id.zelory:compressor:3.0.1")
 
     //Channel
     implementation("com.leon.channel:helper:2.0.3")
@@ -152,5 +156,4 @@ dependencies {
         //UETool
         implementation(DebugLibraries.ueTool)
     }
-
 }

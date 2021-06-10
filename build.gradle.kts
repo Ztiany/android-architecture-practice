@@ -19,11 +19,9 @@ buildscript {
         //kotlin
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${KotlinLibraries.KOTLIN_VERSION}")
         //hilt
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.35.1")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.36")
         //channel
         classpath("com.leon.channel:plugin:2.0.3")
-        //DexCount requires Java 8 or higher, Gradle 6.0 or higher, and Android Gradle Plugin 3.4.0 or higher.
-        classpath("com.getkeepsafe.dexcount:dexcount-gradle-plugin:2.0.0")
     }
 }
 

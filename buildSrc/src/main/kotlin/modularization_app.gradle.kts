@@ -1,12 +1,12 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-     id("kotlin-parcelize")
+    id("kotlin-parcelize")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
 }
 
-kapt{
+kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.name)
     }
@@ -18,8 +18,8 @@ android {
 
     signingConfigs {
         create("release") {
-            isV1SigningEnabled =true
-            isV2SigningEnabled =true
+            isV1SigningEnabled = true
+            isV2SigningEnabled = true
             keyAlias(AppConfig.releaseKeyAlias)
             keyPassword(AppConfig.releaseKeyPassword)
             storeFile(rootProject.file(AppConfig.releaseKeyFileName))
@@ -31,15 +31,14 @@ android {
         applicationId = "me.ztiany.architecture.${project.name.toLowerCase()}"
         minSdkVersion(AppConfig.minSdkVersion)
         targetSdkVersion(AppConfig.targetSdkVersion)
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
+        versionCode(AppConfig.versionCode)
+        versionName(AppConfig.versionName)
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-       resConfigs("zh", "en")//只需要中文和英文资源
+        resConfigs("zh", "en")//只需要中文和英文资源
     }
 
-
-    testOptions{
+    testOptions {
         unitTests.isReturnDefaultValues = true
     }
 
@@ -66,9 +65,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            ndk {
-                abiFilters("armeabi-v7a")
-            }
         }
     }
 
@@ -91,7 +87,7 @@ android {
     }
 
     sourceSets.getByName("main") {
-        manifest{
+        manifest {
             this.srcFile("src/app/AndroidManifest.xml")
         }
         java {
@@ -102,22 +98,13 @@ android {
         }
     }
 
-    applicationVariants.all(object : Action<ApplicationVariant> {
-        override fun execute(variant: ApplicationVariant) {
-            variant.outputs.all(object : Action<BaseVariantOutput> {
-                override fun execute(t: BaseVariantOutput) {
-                    val output = t as BaseVariantOutputImpl
-                    output.outputFileName = "${project.name}-${versionName}.apk"
-                }
-            })
-        }
-    })
-
 }
 
 dependencies {
+    /* all jar*/
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     //基础类库
-    implementation(project(':module_base'))
+    implementation(project(":module_base"))
     //测试
     testImplementation(TestLibraries.junit)
     /*Hilt*/
@@ -125,6 +112,4 @@ dependencies {
     kapt(AndroidLibraries.hiltDaggerApt)
     /*ARouter*/
     kapt(ThirdLibraries.arouterAnnotation)
-    /* all jar*/
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 }

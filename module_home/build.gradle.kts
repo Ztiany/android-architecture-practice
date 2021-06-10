@@ -19,8 +19,8 @@ android {
     defaultConfig {
         minSdkVersion(AppConfig.minSdkVersion)
         targetSdkVersion(AppConfig.targetSdkVersion)
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
+        versionCode(AppConfig.versionCode)
+        versionName(AppConfig.versionName)
         vectorDrawables.useSupportLibrary = true
         resConfigs(listOf("en","cn"))
     }
