@@ -12,6 +12,7 @@ import com.android.architecture.main.message.MessageFragment
 import com.android.base.app.fragment.BaseUIFragment
 import com.android.base.app.fragment.tools.FragmentInfo
 import com.android.base.app.fragment.tools.TabManager
+import com.android.base.app.ui.viewBinding
 import timber.log.Timber
 
 /**
@@ -19,11 +20,15 @@ import timber.log.Timber
  *      Email: ztiany3@gmail.com
  *      Date : 2019-09-19 16:06
  */
-class MainFragment : BaseUIFragment<MainFragmentRootBinding>() {
+class MainFragment : BaseUIFragment() {
 
     interface MainFragmentChild
 
+    private val layout by viewBinding(MainFragmentRootBinding::bind)
+
     private lateinit var tabManager: MainTabManager
+
+    override fun provideLayout() = R.layout.main_fragment_root
 
     @SuppressLint("BinaryOperationInTimber")
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
@@ -60,15 +65,15 @@ class MainFragment : BaseUIFragment<MainFragmentRootBinding>() {
 }
 
 private class MainTabManager(
-        context: Context,
-        fragmentManager: FragmentManager,
-        containerId: Int
+    context: Context,
+    fragmentManager: FragmentManager,
+    containerId: Int
 ) : TabManager(context, fragmentManager, MainTabs(), containerId) {
 
     private val itemIdArray = intArrayOf(
-            R.id.main_feed,
-            R.id.main_message,
-            R.id.main_me
+        R.id.main_feed,
+        R.id.main_message,
+        R.id.main_me
     )
 
     fun getItemId(position: Int): Int {
@@ -80,26 +85,32 @@ private class MainTabManager(
 
     private class MainTabs : TabManager.Tabs() {
         init {
-            add(FragmentInfo.PageBuilder()
+            add(
+                FragmentInfo.PageBuilder()
                     .clazz(FeedFragment::class.java)
                     .tag(FeedFragment::class.java.name)
                     .toStack(false)
                     .pagerId(R.id.main_feed)
-                    .build())
+                    .build()
+            )
 
-            add(FragmentInfo.PageBuilder()
+            add(
+                FragmentInfo.PageBuilder()
                     .clazz(MessageFragment::class.java)
                     .tag(MessageFragment::class.java.name)
                     .toStack(false)
                     .pagerId(R.id.main_message)
-                    .build())
+                    .build()
+            )
 
-            add(FragmentInfo.PageBuilder()
+            add(
+                FragmentInfo.PageBuilder()
                     .clazz(MeFragment::class.java)
                     .tag(MeFragment::class.java.name)
                     .toStack(false)
                     .pagerId(R.id.main_me)
-                    .build())
+                    .build()
+            )
         }
     }
 

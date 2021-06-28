@@ -39,12 +39,12 @@ class GalleryActivity : BaseActivity() {
 
     @Parcelize
     data class GalleryInfo(
-            val photos: ArrayList<Uri>,
-            val thumbPhotos: ArrayList<Uri>?,
-            val title: String,
-            val position: Int,
-            val useTransition: Boolean,
-            val deletable: Boolean
+        val photos: ArrayList<Uri>,
+        val thumbPhotos: ArrayList<Uri>?,
+        val title: String,
+        val position: Int,
+        val useTransition: Boolean,
+        val deletable: Boolean
     ) : Parcelable
 
     class Builder {
@@ -107,16 +107,33 @@ class GalleryActivity : BaseActivity() {
 
         fun start(actFragWrapper: ActFragWrapper) {
             val intent = Intent(actFragWrapper.context, GalleryActivity::class.java).apply {
-                putExtra(KEY_FOR_BUILDER, GalleryInfo(photos, thumbPhotos, title, position, useTransition, deletable))
+                putExtra(
+                    KEY_FOR_BUILDER,
+                    GalleryInfo(photos, thumbPhotos, title, position, useTransition, deletable)
+                )
             }
 
             val share = transView
 
             if (useTransition && share != null && useTransition) {
                 if (AndroidVersion.atLeast(21)) {
-                    actFragWrapper.startActivityForResult(intent, REQUEST_CODE, ActivityOptions.makeSceneTransitionAnimation(actFragWrapper.context as Activity, share, share.transitionName).toBundle())
+                    actFragWrapper.startActivityForResult(
+                        intent,
+                        REQUEST_CODE,
+                        ActivityOptions.makeSceneTransitionAnimation(
+                            actFragWrapper.context as Activity,
+                            share,
+                            share.transitionName
+                        ).toBundle()
+                    )
                 } else {//小于5.0，使用makeScaleUpAnimation
-                    val options = ActivityOptionsCompat.makeScaleUpAnimation(share, share.width / 2, share.height / 2, 0, 0)
+                    val options = ActivityOptionsCompat.makeScaleUpAnimation(
+                        share,
+                        share.width / 2,
+                        share.height / 2,
+                        0,
+                        0
+                    )
                     actFragWrapper.startActivityForResult(intent, REQUEST_CODE, options.toBundle())
                 }
             } else {
@@ -125,7 +142,7 @@ class GalleryActivity : BaseActivity() {
         }
     }
 
-    private val layout: GalleryActivityBinding by viewBinding(true)
+    private val layout by viewBinding(GalleryActivityBinding::bind)
 
     private lateinit var galleryInfo: GalleryInfo
     private var curPosition = 0
@@ -149,9 +166,12 @@ class GalleryActivity : BaseActivity() {
         }
     }
 
+    override fun provideLayout() = R.layout.gallery_activity
+
     override fun setUpLayout(savedInstanceState: Bundle?) {
         val transUri = galleryInfo.thumbPhotos?.get(curPosition) ?: galleryInfo.photos[curPosition]
-        ImageLoaderFactory.getImageLoader().display(layout.commonGalleryIvTrans, Source.create(transUri))
+        ImageLoaderFactory.getImageLoader()
+            .display(layout.commonGalleryIvTrans, Source.create(transUri))
 
         if (galleryInfo.useTransition && AndroidVersion.atLeast(21)) {
             window.enterTransition.addListener(object : TransitionListenerAdapter {
@@ -190,11 +210,11 @@ class GalleryActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         if (menu != null && galleryInfo.deletable) {
             menu.add(R.string.delete)
-                    .setIcon(R.drawable.icon_delete)
-                    .alwaysShow()
-                    .onMenuItemClick {
-                        deleteCurrentImage()
-                    }
+                .setIcon(R.drawable.icon_delete)
+                .alwaysShow()
+                .onMenuItemClick {
+                    deleteCurrentImage()
+                }
         }
         return super.onCreateOptionsMenu(menu)
     }
@@ -296,7 +316,12 @@ class GalleryActivity : BaseActivity() {
             return Builder()
         }
 
-        fun handleResult(requestCode: Int, resultCode: Int, data: Intent?, deletedPhotos: (deleted: List<Uri>) -> Unit) {
+        fun handleResult(
+            requestCode: Int,
+            resultCode: Int,
+            data: Intent?,
+            deletedPhotos: (deleted: List<Uri>) -> Unit
+        ) {
             if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
                 val listExtra = data.getParcelableArrayListExtra<Uri>(KEY_FOR_RESULT)
                 if (!listExtra.isNullOrEmpty()) {

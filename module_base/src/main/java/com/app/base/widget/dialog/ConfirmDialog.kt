@@ -6,6 +6,7 @@ import com.android.base.utils.android.views.clearComponentDrawable
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.setLeftDrawable
 import com.android.base.utils.android.views.visible
+import com.app.base.R
 import com.app.base.databinding.DialogConfirmLayoutBinding
 import com.app.base.widget.dialog.BaseDialogBuilder.Companion.NO_ID
 
@@ -15,12 +16,13 @@ import com.app.base.widget.dialog.BaseDialogBuilder.Companion.NO_ID
  * Date : 2018-11-29 10:49
  */
 internal class ConfirmDialog(
-        builder: ConfirmDialogBuilder
+    builder: ConfirmDialogBuilder
 ) : BaseDialog(builder.context, true, builder.style) {
 
-    private val vb: DialogConfirmLayoutBinding by viewBinding(true)
+    private val vb by viewBinding(DialogConfirmLayoutBinding::bind)
 
     init {
+        setContentView(R.layout.dialog_confirm_layout)
         applyBuilder(builder)
     }
 

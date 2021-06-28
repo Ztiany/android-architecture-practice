@@ -1,5 +1,6 @@
 package com.app.base.upgrade
 
+import android.app.Dialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatDialog
 import com.android.base.app.ui.viewBinding
@@ -13,7 +14,11 @@ import com.app.base.databinding.DialogUpgradeLoadingBinding
  */
 class UpgradeLoadingDialog(context: Context) : AppCompatDialog(context, R.style.ThemeDialogCommon) {
 
-    private val layout: DialogUpgradeLoadingBinding by viewBinding()
+    private val layout by viewBinding(DialogUpgradeLoadingBinding::bind)
+
+    init {
+        setContentView(R.layout.dialog_upgrade_loading)
+    }
 
     fun notifyProgress(total: Long, progress: Long) {
         if (total == -1L) {

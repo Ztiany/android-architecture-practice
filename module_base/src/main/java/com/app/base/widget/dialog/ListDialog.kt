@@ -13,6 +13,7 @@ import com.android.base.adapter.recycler.SimpleRecyclerAdapter
 import com.android.base.app.ui.viewBinding
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
+import com.app.base.R
 import com.app.base.databinding.DialogListItemBinding
 import com.app.base.databinding.DialogListLayoutBinding
 
@@ -24,13 +25,13 @@ import com.app.base.databinding.DialogListLayoutBinding
  * Date : 2018-12-12 19:51
  */
 internal class ListDialog(
-        listDialogBuilder: ListDialogBuilder
+    listDialogBuilder: ListDialogBuilder
 ) : BaseDialog(listDialogBuilder.context, true, listDialogBuilder.style) {
 
     private var selectedItemIndex: Int = 0
     private var selectableBgId = 0
 
-    private val viewBinding by viewBinding<DialogListLayoutBinding>()
+    private val viewBinding by viewBinding(DialogListLayoutBinding::bind)
 
     private val dialogController = object : DialogController {
         override var positiveEnable: Boolean
@@ -43,7 +44,7 @@ internal class ListDialog(
     init {
         maxDialogWidthPercent = listDialogBuilder.maxWidthPercent
 
-        setContentView(viewBinding.root)
+        setContentView(R.layout.dialog_list_layout)
         getSelectedBg()
         applyListDialogBuilder(listDialogBuilder)
 
@@ -87,7 +88,10 @@ internal class ListDialog(
         setCancelable(listDialogBuilder.cancelable)
     }
 
-    private fun setupUsingSpecifiedAdapter(adapter: RecyclerView.Adapter<*>?, listDialogBuilder: ListDialogBuilder) {
+    private fun setupUsingSpecifiedAdapter(
+        adapter: RecyclerView.Adapter<*>?,
+        listDialogBuilder: ListDialogBuilder
+    ) {
         viewBinding.rvDialogListContent.adapter = adapter
         viewBinding.dblListDialogBottom.onPositiveClick(View.OnClickListener {
             checkDismiss(listDialogBuilder)
@@ -133,8 +137,8 @@ internal class ListDialog(
     }
 
     private inner class Adapter(
-            context: Context,
-            data: List<CharSequence>
+        context: Context,
+        data: List<CharSequence>
     ) : SimpleRecyclerAdapter<CharSequence, DialogListItemBinding>(context, data) {
 
         private val onClickListener = View.OnClickListener { view ->
@@ -148,27 +152,34 @@ internal class ListDialog(
             notifyItemChanged(selectedItemIndex)
         }
 
-        private val onCheckedChangeListener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                setPosition(buttonView.tag as Int)
+        private val onCheckedChangeListener =
+            CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    setPosition(buttonView.tag as Int)
+                }
             }
-        }
 
-        private val alwaysCheckedChangeListener = CompoundButton.OnCheckedChangeListener { buttonView, _ ->
-            buttonView.isChecked = true
-        }
+        private val alwaysCheckedChangeListener =
+            CompoundButton.OnCheckedChangeListener { buttonView, _ ->
+                buttonView.isChecked = true
+            }
 
         override fun provideViewBinding(parent: ViewGroup, inflater: LayoutInflater) =
-                DialogListItemBinding.inflate(inflater, parent, false)
+            DialogListItemBinding.inflate(inflater, parent, false)
 
-        override fun bind(viewHolder: BindingViewHolder<DialogListItemBinding>, item: CharSequence) {
+        override fun bind(
+            viewHolder: BindingViewHolder<DialogListItemBinding>,
+            item: CharSequence
+        ) {
             viewHolder.vb.dialogListItemTv.text = item
             val isSelected = viewHolder.adapterPosition == selectedItemIndex
             viewHolder.vb.dialogListItemCb.setOnCheckedChangeListener(null)
             viewHolder.vb.dialogListItemCb.isChecked = isSelected
 
             if (isSelected) {
-                viewHolder.vb.dialogListItemCb.setOnCheckedChangeListener(alwaysCheckedChangeListener)
+                viewHolder.vb.dialogListItemCb.setOnCheckedChangeListener(
+                    alwaysCheckedChangeListener
+                )
             } else {
                 viewHolder.vb.dialogListItemCb.tag = viewHolder.adapterPosition
                 viewHolder.vb.dialogListItemCb.setOnCheckedChangeListener(onCheckedChangeListener)

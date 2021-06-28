@@ -32,3 +32,14 @@ business modules:
 - module_base: assemble all the libs.
 - module_account: business module for login/register.
 - module_home: business module.
+
+## 3 feature planing
+
+1. Network requesting
+2. Data Storing
+3. File Operation【Scoped Storage】
+4. MVVM Templeton
+5. Dialogs
+6. MultiState Page
+7. List Page
+8. Components Communicating

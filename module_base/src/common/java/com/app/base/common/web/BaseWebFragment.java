@@ -32,6 +32,7 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import timber.log.Timber;
 
 /**
@@ -39,7 +40,7 @@ import timber.log.Timber;
  * Email: 1169654504@qq.com
  * Date : 2017-09-04 17:02
  */
-public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
+public class BaseWebFragment extends BaseUIFragment {
 
     private WebView mWebView;
     private AppTitleLayout mTitleLayout;
@@ -48,6 +49,8 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
     private WebProgress mWebProgress;
 
     private JsBridgeHandler mJsBridgeHandler;
+
+    private AppBaseWebFragmentBinding mLayout;
 
     private static final String TITLE_IS_HIDDEN_KEY = "title_is_hidden_key";
 
@@ -80,6 +83,7 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
     @Override
     protected void onViewPrepared(@NotNull View view, @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        mLayout = AppBaseWebFragmentBinding.bind(view);
         setupViews();
     }
 
@@ -163,11 +167,11 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
     private void setupViews() {
         /*Find view*/
-        mWebView = getLayout().webView;
-        mWebProgress = new WebProgress(getLayout().webPb);
-        mErrorLayout = getLayout().layoutError.getRoot();
-        mTitleLayout = getLayout().atlWebRulesTitle;
-        mCustomLayout = getLayout().webFlCustom;
+        mWebView = mLayout.webView;
+        mWebProgress = new WebProgress(mLayout.webPb);
+        mErrorLayout = mLayout.layoutError.getRoot();
+        mTitleLayout = mLayout.atlWebRulesTitle;
+        mCustomLayout = mLayout.webFlCustom;
 
         /*Title*/
         mTitleLayout.setOnNavigationOnClickListener(v -> Fragments.exitFragment(this));
@@ -204,7 +208,7 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
         }
     }
 
-    private AppWebChromeClient.AppWebChromeClientCallback appWebChromeClientCallback = new AppWebChromeClient.AppWebChromeClientCallback() {
+    private final AppWebChromeClient.AppWebChromeClientCallback appWebChromeClientCallback = new AppWebChromeClient.AppWebChromeClientCallback() {
         @Override
         public void onReceivedTitle(@NotNull String title) {
             //设置页面title
@@ -218,7 +222,7 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
         }
     };
 
-    private WebViewClient mAppWebViewClient = new AppWebViewClient() {
+    private final WebViewClient mAppWebViewClient = new AppWebViewClient() {
 
         @Override
         public boolean appShouldOverrideUrlLoading(@NotNull WebView view, @NotNull String url) {
@@ -341,11 +345,7 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
     public final void setHeaderVisible(boolean showHeader) {
         mTitleIsHidden = !showHeader;
         if (mTitleLayout != null) {
-            if (showHeader) {
-                setTitleVisible(true);
-            } else {
-                setTitleVisible(false);
-            }
+            setTitleVisible(showHeader);
         }
     }
 
@@ -363,6 +363,12 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
     public FrameLayout getCustomLayout() {
         return mCustomLayout;
+    }
+
+    @NonNull
+    @Override
+    public final Object provideLayout() {
+        return R.layout.app_base_web_fragment;
     }
 
 }
