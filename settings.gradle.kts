@@ -11,7 +11,8 @@ val libs = listOf(
     "lib_safekeyboard",
     "lib_biometrics",
     "lib_webview",
-    "lib_qrcode"
+    "lib_qrcode",
+    "lib_componentize"
 )
 
 libs.forEach {
@@ -24,7 +25,10 @@ include(":module_base")
 
 //业务模块
 include(":module_home")
+
 include(":module_account")
+include(":module_account_api")
 
 //app壳
 include(":app")
+

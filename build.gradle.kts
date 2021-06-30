@@ -17,7 +17,7 @@ buildscript {
         //android
         classpath("com.android.tools.build:gradle:4.1.3")
         //kotlin
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${KotlinLibraries.KOTLIN_VERSION}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10")
         //hilt
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.36")
         //channel
