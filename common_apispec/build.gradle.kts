@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-parcelize")
-    kotlin("kapt")
 }
 
 android {
@@ -39,11 +38,5 @@ android {
 }
 
 dependencies {
-    /*spec*/
-    api(project(":common_apispec"))
-    /*ARouter*/
-    api(ThirdLibraries.arouter)
-    kapt(ThirdLibraries.arouterAnnotation)
-    //Rx
-    api(ThirdLibraries.rxJava)
+    api(AndroidLibraries.annotations)
 }

@@ -85,11 +85,12 @@ dependencies {
     testImplementation(TestLibraries.junit)
 
     //基础组件库
+    //api(project(":lib_componentize"))//基础组件化库【包括 base/network/storage】
     api(project(":lib_base"))//基础类库
-    api(project(":lib_common_ui"))//基础UI
     api(project(":lib_network"))//基础网络库
-    api(project(":lib_permission"))//权限
     api(project(":lib_cache"))//缓存库
+    api(project(":lib_common_ui"))//基础UI
+    api(project(":lib_permission"))//权限
     api(project(":lib_media_selector"))//媒体选择器
     api(project(":lib_social"))//第三方登录
     api(project(":lib_upgrade"))//升级

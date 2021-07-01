@@ -65,7 +65,6 @@ abstract class AppContext : BaseAppContext() {
 
     override fun onCreate() {
         super.onCreate()
-
         //路由
         RouterManager.init(this)
         //调试

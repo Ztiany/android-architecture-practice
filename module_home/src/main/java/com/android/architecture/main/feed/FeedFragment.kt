@@ -6,7 +6,9 @@ import com.android.architecture.main.MainNavigator
 import com.android.architecture.main.R
 import com.android.architecture.main.databinding.MainFragmentFeedBinding
 import com.android.base.app.fragment.BaseUIFragment
+import com.app.base.app.ErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -14,6 +16,8 @@ import javax.inject.Inject
 class FeedFragment : BaseUIFragment(), MainFragment.MainFragmentChild {
 
     @Inject lateinit var mainNavigator: MainNavigator
+
+    @Inject lateinit var errorHandler: ErrorHandler
 
     override fun provideLayout() = R.layout.main_fragment_feed
 
@@ -23,7 +27,7 @@ class FeedFragment : BaseUIFragment(), MainFragment.MainFragmentChild {
     }
 
     private fun subscribeViewModel() {
-
+        Timber.d("errorHandler = " + errorHandler)
     }
 
 }

@@ -21,6 +21,7 @@ libs.forEach {
 }
 
 //业务基础架构
+include(":common_apispec")
 include(":module_base")
 
 //业务模块
