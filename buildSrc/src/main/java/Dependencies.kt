@@ -240,7 +240,7 @@ object UILibraries {
     const val multiType = "com.drakeet.multitype:multitype:4.0.0"
 
     // https://github.com/Ztiany/WrapperAdapter
-    const val wrapperAdapter = "com.github.Ztiany:WrapperAdapter:4.1.2"
+    const val wrapperAdapter = "com.github.Ztiany:LoadMoreAdapter:4.4.1"
 
     //https://github.com/hdodenhof/CircleImageView
     const val circleImageView = "de.hdodenhof:circleimageview:3.0.1"

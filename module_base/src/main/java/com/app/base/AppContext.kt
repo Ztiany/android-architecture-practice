@@ -23,7 +23,6 @@ import com.app.base.data.app.AppDataSource
 import com.app.base.data.app.StorageManager
 import com.app.base.debug.DebugTools
 import com.app.base.router.AppRouter
-import com.app.base.router.RouterManager
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.base.widget.dialog.AppLoadingView
 import com.app.base.widget.dialog.TipsManager
@@ -45,13 +44,13 @@ abstract class AppContext : BaseAppContext() {
 
     @Inject lateinit var serviceFactory: Lazy<ServiceFactory>
 
-    @Inject lateinit var appRouter: Lazy<AppRouter>
-
     @Inject lateinit var storageManager: Lazy<StorageManager>
 
     @Inject lateinit var schedulerProvider: SchedulerProvider
 
     @Inject lateinit var dispatcherProvider: DispatcherProvider
+
+    @Inject lateinit var appRouter: AppRouter
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
@@ -66,7 +65,7 @@ abstract class AppContext : BaseAppContext() {
     override fun onCreate() {
         super.onCreate()
         //路由
-        RouterManager.init(this)
+        appRouter.initRouter(this,true)
         //调试
         DebugTools.init(this)
         //给数据层设置全局数据源
@@ -136,7 +135,7 @@ abstract class AppContext : BaseAppContext() {
 
         @JvmStatic
         fun appRouter(): AppRouter {
-            return context.appRouter.get()
+            return context.appRouter
         }
 
         @JvmStatic

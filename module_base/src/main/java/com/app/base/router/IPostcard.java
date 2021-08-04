@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityOptionsCompat;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**

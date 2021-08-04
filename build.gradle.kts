@@ -31,11 +31,11 @@ allprojects {
         maven { url = uri("https://maven.aliyun.com/repository/public") }
         maven { url = uri("https://maven.aliyun.com/repository/google") }
         maven { url = uri("https://dl.google.com/dl/android/maven2/") }
-        maven { url = uri("https://dl.bintray.com/umsdk/release") }
-        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://www.jitpack.io") }
         maven { url = uri("https://kotlin.bintray.com/kotlinx") }
         google()
         mavenCentral()
+        maven { url = uri("https://dl.bintray.com/umsdk/release") }
 
         flatDir { dirs(rootProject.projectDir.absolutePath + "/repo/aar") }
 

@@ -35,11 +35,7 @@ business modules:
 
 ## 3 feature planing
 
-1. Network requesting
-2. Data Storing
-3. File Operation【Scoped Storage】
-4. MVVM Templeton
-5. Dialogs
-6. MultiState Page
-7. List Page
-8. Components Communicating
+1. lib-net：支持多 host
+2. lib_componentize：平台化、组件 API 化研究
+3. lib_base：File Operation【Scoped Storage】
+4. lib_common_ui：ShapeableDrawable 封装

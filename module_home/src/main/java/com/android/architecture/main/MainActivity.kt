@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.base.app.fragment.tools.clearBackStack
 import com.android.base.app.fragment.tools.findFragmentByTag
 import com.android.base.app.fragment.tools.inFragmentTransaction
+import com.android.base.utils.android.XAppUtils
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
@@ -13,7 +14,6 @@ import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.app.setStatusBarLightMode
 import com.app.base.data.app.AppDataSource
-import com.app.base.router.RouterManager
 import com.app.base.router.RouterPath
 import com.app.base.widget.dialog.TipsManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -107,7 +107,7 @@ class MainActivity : AppBaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        RouterManager.dispatchActivityResult(supportFragmentManager, requestCode, resultCode, data)
+        XAppUtils.dispatchActivityResult(supportFragmentManager,requestCode, resultCode, data)
     }
 
 }

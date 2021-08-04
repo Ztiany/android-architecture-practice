@@ -11,8 +11,7 @@ val libs = listOf(
     "lib_safekeyboard",
     "lib_biometrics",
     "lib_webview",
-    "lib_qrcode",
-    "lib_componentize"
+    "lib_qrcode"
 )
 
 libs.forEach {

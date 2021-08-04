@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import com.app.base.AppContext
 import com.app.base.app.AppBaseActivity
+import com.app.base.router.AppRouter
 import com.app.base.router.RouterPath
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 /**
@@ -13,7 +16,10 @@ import com.app.base.router.RouterPath
  *@author Ztiany
  *      Date : 2018-09-06 14:42
  */
+@AndroidEntryPoint
 class AppLauncherActivity : AppBaseActivity() {
+
+    @Inject lateinit var appRouter: AppRouter
 
     override fun tintStatusBar() = false
 
@@ -31,7 +37,7 @@ class AppLauncherActivity : AppBaseActivity() {
     override fun setUpLayout(savedInstanceState: Bundle?) {
         super.setUpLayout(savedInstanceState)
         window.decorView.postDelayed({
-            AppContext.appRouter().build(RouterPath.Main.PATH).withTransition(0, 0).navigation()
+            appRouter.build(RouterPath.Main.PATH).withTransition(0, 0).navigation()
             finishAfterTransition()
         }, 1000)
     }

@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
+
 import com.alibaba.android.arouter.facade.Postcard;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityOptionsCompat;
 
 /**
  * @author Ztiany
@@ -22,7 +22,7 @@ import androidx.core.app.ActivityOptionsCompat;
  */
 final class PostcardImpl implements IPostcard {
 
-    private Postcard mPostcard;
+    private final Postcard mPostcard;
 
     PostcardImpl(Postcard postcard) {
         mPostcard = postcard;
@@ -66,7 +66,7 @@ final class PostcardImpl implements IPostcard {
 
     @Override
     public Object navigation(Context context, AppNavigationCallback callback) {
-        return mPostcard.navigation(context, callback);
+        return mPostcard.navigation(context, new NavigationCallbackWrapper(callback));
     }
 
     @Override
@@ -76,7 +76,7 @@ final class PostcardImpl implements IPostcard {
 
     @Override
     public void navigation(Activity mContext, int requestCode, AppNavigationCallback callback) {
-        mPostcard.navigation(mContext, requestCode, callback);
+        mPostcard.navigation(mContext, requestCode, new NavigationCallbackWrapper(callback));
     }
 
     @Override

@@ -5,12 +5,12 @@ import android.content.res.Resources
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
+import com.alibaba.android.arouter.launcher.ARouter
 import com.android.base.app.activity.BaseActivity
 import com.android.base.utils.android.ScreenAdaptation
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.app.base.R
 import com.app.base.config.AppSettings
-import com.app.base.router.RouterManager
 
 /**
  * @author Ztiany
@@ -23,7 +23,7 @@ abstract class AppBaseActivity : BaseActivity() {
     override fun initialize(savedInstanceState: Bundle?) {
         super.initialize(savedInstanceState)
         if (hasRouterParams()) {
-            RouterManager.inject(this)
+            ARouter.getInstance().inject(this)
         }
     }
 
