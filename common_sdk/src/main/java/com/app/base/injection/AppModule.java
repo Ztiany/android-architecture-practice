@@ -1,11 +1,9 @@
-package com.app.base.di;
+package com.app.base.injection;
 
-import com.android.base.concurrent.DispatcherProvider;
-import com.android.base.concurrent.DispatcherProviders;
-import com.android.base.concurrent.SchedulerProvider;
-import com.android.base.concurrent.SchedulerProviders;
-import com.android.base.imageloader.ImageLoader;
-import com.android.base.imageloader.ImageLoaderFactory;
+import com.android.base.image.ImageLoader;
+import com.android.base.image.ImageLoaderFactory;
+import com.app.base.app.DispatcherProvider;
+import com.app.base.app.DispatcherProviders;
 import com.app.base.router.AppRouter;
 import com.app.base.router.AppRouterImpl;
 
@@ -39,14 +37,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    SchedulerProvider provideSchedulerProvider() {
-        return SchedulerProviders.newDefaultSchedulerProvider();
-    }
-
-    @Provides
-    @Singleton
     DispatcherProvider provideDispatcherProvider() {
-        return DispatcherProviders.newRxDispatchProvider();
+        return DispatcherProviders.newDefaultDispatchProvider();
     }
 
 }

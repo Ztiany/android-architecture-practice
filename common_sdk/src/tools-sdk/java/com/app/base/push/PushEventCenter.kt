@@ -1,6 +1,6 @@
 package com.app.base.push
 
-import com.android.base.app.aac.LiveBus
+import com.android.base.app.jetpack.LiveBus
 
 /**
  * @author Ztiany

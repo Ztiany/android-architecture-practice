@@ -5,20 +5,41 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.android.base.app.Sword
+import com.android.architecture.main.api.MainModule
+import com.android.base.AndroidSword
 import com.android.sdk.net.core.errorhandler.ErrorMessageFactory
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.app.base.data.protocol.ApiHelper
 import com.app.base.router.AppRouter
-import com.app.base.router.RouterPath
-import com.app.base.services.usermanager.AppDataSource
+import com.app.base.services.usermanager.UserManager
 import com.app.base.widget.dialog.TipsManager
 import com.app.base.widget.dialog.showConfirmDialog
 import java.lang.ref.WeakReference
+import javax.inject.Inject
+import javax.inject.Singleton
 
-internal class AppErrorHandler(
+/**
+ * @author Ztiany
+ * Email: ztiany3@gmail.com
+ * Date : 2018-11-08 16:02
+ */
+interface ErrorHandler {
+
+    /** 根据异常，生成一个合理的错误提示 */
+    fun generateMessage(throwable: Throwable): CharSequence
+
+    /** 直接处理异常，比如根据 [generateMessage] 方法生成的消息弹出一个 toast。 */
+    fun handleError(throwable: Throwable)
+
+    /**处理全局异常，此方法仅由数据层调用，用于统一处理全局异常*/
+    fun handleGlobalError(throwable: Throwable)
+
+}
+
+@Singleton
+internal class AppErrorHandler @Inject constructor(
     private val appRouter: AppRouter,
-    private val appDataSource: AppDataSource
+    private val userManager: UserManager
 ) : ErrorHandler {
 
     private var showingDialog: WeakReference<Dialog>? = null
@@ -37,7 +58,7 @@ internal class AppErrorHandler(
 
     override fun handleGlobalError(throwable: Throwable) {
         handler.post {
-            if (throwable is ApiErrorException && isTokenExpired(throwable) && appDataSource.userLogined()) {
+            if (throwable is ApiErrorException && isTokenExpired(throwable) && userManager.userLogined()) {
                 showReLoginDialog()
             }
         }
@@ -48,7 +69,7 @@ internal class AppErrorHandler(
     }
 
     private fun showReLoginDialog(): Boolean {
-        val currentActivity = Sword.topActivity ?: return false
+        val currentActivity = AndroidSword.topActivity ?: return false
 
         if (currentActivity is CannotShowDialogOnIt) {
             return false
@@ -70,8 +91,8 @@ internal class AppErrorHandler(
             positiveListener = {
                 showingDialog = null
                 //handle login expired
-                appRouter.build(RouterPath.Main.PATH)
-                    .withInt(RouterPath.Main.ACTION_KEY, RouterPath.Main.ACTION_RE_LOGIN)
+                appRouter.build(MainModule.PATH)
+                    .withInt(MainModule.ACTION_KEY, MainModule.ACTION_RE_LOGIN)
                     .navigation()
             }
         }

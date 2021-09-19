@@ -13,9 +13,10 @@ import com.android.sdk.permission.AutoPermission
 import com.android.sdk.permission.Permission
 import com.app.base.R
 import com.app.base.R.string
-import com.app.base.services.usermanager.AppDataSource
+import com.app.base.config.EnvironmentConfigFragment
 import com.app.base.data.storage.StorageManager
 import com.app.base.databinding.BaseFragmentDebugBinding
+import com.app.base.services.usermanager.UserManager
 import com.blankj.utilcode.util.ActivityUtils
 import dagger.hilt.android.AndroidEntryPoint
 import org.joor.Reflect
@@ -32,7 +33,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DebugFragment : BaseUIFragment() {
 
-    @Inject lateinit var appDataSource: AppDataSource
+    @Inject lateinit var userManager: UserManager
 
     @Inject lateinit var storageManager: StorageManager
 
@@ -75,7 +76,7 @@ class DebugFragment : BaseUIFragment() {
             .setPositiveButton(string.sure) { dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
                 //清除所有数据
-                appDataSource.logout()
+                userManager.logout()
                 storageManager.stableStorage().clearAll()
                 //重启
                 requireActivity().window.decorView.post { doRestart() }

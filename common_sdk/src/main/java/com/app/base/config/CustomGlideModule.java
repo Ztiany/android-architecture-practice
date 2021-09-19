@@ -2,7 +2,7 @@ package com.app.base.config;
 
 import android.content.Context;
 
-import com.android.base.imageloader.ProgressGlideModule;
+import com.android.base.image.ProgressGlideModule;
 import com.app.base.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;

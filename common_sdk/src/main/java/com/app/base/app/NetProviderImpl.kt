@@ -15,7 +15,7 @@ import com.app.base.data.protocol.configApiProtocol
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
 import com.app.base.debug.isOpenDebug
-import com.app.base.services.usermanager.AppDataSource
+import com.app.base.services.usermanager.UserManager
 import io.reactivex.*
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,7 +27,7 @@ import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
 internal fun newHttpConfig(
-    appDataSource: AppDataSource,
+    userManager: UserManager,
     appSettings: AppSettings,
     errorHandler: ErrorHandler
 ): HttpConfig {
@@ -52,7 +52,7 @@ internal fun newHttpConfig(
                 .readTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
             //Api 签名协议
-            configApiProtocol(appDataSource, builder)
+            configApiProtocol(userManager, builder)
             //调试配置
             configDebugIfNeeded(builder)
         }
@@ -87,7 +87,7 @@ internal fun newHttpConfig(
             })
 
             //HTTPS
-            ProtocolUtils.trustAllCertificationChecked(appDataSource, builder)
+            ProtocolUtils.trustAllCertificationChecked(userManager, builder)
         }
     }
 

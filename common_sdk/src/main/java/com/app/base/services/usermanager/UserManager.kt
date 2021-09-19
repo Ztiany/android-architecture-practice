@@ -8,7 +8,7 @@ import io.reactivex.Flowable
  * Email: ztiany3@gmail.com
  * Date : 2018-11-01 17:38
  */
-interface AppDataSource {
+interface UserManager {
 
     /**登录之后，保存用户数据*/
     fun saveUser(user: User)
@@ -23,6 +23,6 @@ interface AppDataSource {
     fun observableUser(): Flowable<User>
 
     /**退出登录*/
-    fun logout(askRemote: Boolean = true): Completable
+    fun logout(): Completable
 
 }

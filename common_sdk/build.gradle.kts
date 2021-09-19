@@ -63,23 +63,13 @@ android {
             srcDir("src/tools-sdk/java")
             srcDir("src/tools-web/java")
             srcDir("src/tools-gallery/java")
-
-            if (AppConfig.isOpenDebug) {
-                srcDir("src/tools-debug/java")
-            } else {
-                srcDir("src/tools-release/java")
-            }
+            srcDir("src/tools-debug/java")
         }
         res {
             srcDir("src/common/res")
             srcDir("src/tools-web/res")
             srcDir("src/tools-gallery/res")
-
-            if (AppConfig.isOpenDebug) {
-                srcDir("src/tools-debug/res")
-            } else {
-                srcDir("src/tools-release/res")
-            }
+            srcDir("src/tools-debug/res")
         }
     }
 
@@ -90,7 +80,6 @@ dependencies {
     testImplementation(TestLibraries.junit)
 
     //基础组件库
-    //api(project(":lib_componentize"))//基础组件化库【包括 base/network/storage】
     api(project(":lib_base"))//基础类库
     api(project(":lib_network"))//基础网络库
     api(project(":lib_cache"))//缓存库
@@ -102,6 +91,9 @@ dependencies {
     api(project(":lib_safekeyboard"))//安全键盘
     api(project(":lib_biometrics"))//生物识别
     api(project(":lib_qrcode"))//二维码
+
+    //业务API
+    implementation(project(":module_main_api"))
 
     //Android
     api(AndroidLibraries.multidex)

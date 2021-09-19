@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.alibaba.android.arouter.launcher.ARouter
+import com.android.base.adaption.ActivityLifecycleCallbacksAdapter
 import com.android.base.foundation.activity.ActivityDelegateOwner
 import com.android.base.foundation.fragment.FragmentDelegateOwner
-import com.android.base.interfaces.ActivityLifecycleCallbacksAdapter
 import com.android.base.utils.android.SoftKeyboardUtils
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ignoreCrash
@@ -23,7 +23,7 @@ import com.app.base.utils.supportStatusBarLightMode
  *      Email: ztiany3@gmail.com
  *      Date : 2019-11-27 10:48
  */
-class AppComponentProcessor : ActivityLifecycleCallbacksAdapter {
+class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
 
     override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
         super.onActivityPreCreated(activity, savedInstanceState)
@@ -86,13 +86,13 @@ class AppComponentProcessor : ActivityLifecycleCallbacksAdapter {
 
     private fun handleAutoInstallFragmentDelegate(fragment: Fragment) {
         if (fragment is FragmentDelegateOwner) {
-
+            //nothing to do
         }
     }
 
     private fun handleAutoInstallActivityDelegate(activity: Activity?) {
         if (activity is ActivityDelegateOwner) {
-
+            //nothing to do
         }
     }
 

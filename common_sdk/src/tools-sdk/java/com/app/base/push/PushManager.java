@@ -5,7 +5,7 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.app.base.services.usermanager.AppDataSource;
+import com.app.base.services.usermanager.UserManager;
 import com.app.base.debug.DebugInfoDispatcher;
 import com.app.base.utils.ChannelKt;
 
@@ -87,7 +87,7 @@ public final class PushManager {
     }
 
     @SuppressLint("CheckResult")
-    private void uploadPushDevice(AppDataSource appDataSource, String token) {
+    private void uploadPushDevice(UserManager userManager, String token) {
 
     }
 

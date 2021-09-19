@@ -38,8 +38,8 @@ android {
 }
 
 dependencies {
-    api(project(":common_spec"))
     /*spec*/
+    api(project(":common_spec"))
     /*ARouter*/
     api(ThirdLibraries.arouter)
     //Rx

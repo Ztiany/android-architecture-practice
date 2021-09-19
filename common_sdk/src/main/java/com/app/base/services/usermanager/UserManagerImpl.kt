@@ -2,17 +2,23 @@ package com.app.base.services.usermanager
 
 import android.content.Context
 import com.android.sdk.cache.getEntity
+import com.app.base.app.ServiceProvider
 import com.app.base.data.storage.StorageManager
-import com.app.base.utils.JsonUtils
 import com.app.base.debug.ifOpenDebug
+import com.app.base.utils.JsonUtils
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.Completable
 import io.reactivex.processors.BehaviorProcessor
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-internal class AppRepository(
-    private val context: Context,
+@Singleton
+internal class UserManagerImpl @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val serviceProvider: ServiceProvider,
     private val storageManager: StorageManager
-) : AppDataSource {
+) : UserManager {
 
     companion object {
         //cache key,  user associated
@@ -29,9 +35,9 @@ internal class AppRepository(
         currentUser = userStorage.getEntity(APP_USER_KEY) ?: User.NOT_LOGIN
 
         ifOpenDebug {
-            Timber.d("init AppDataSource start------------------------------------------------->")
+            Timber.d("${context.packageName}-init AppDataSource start------------------------------------------------->")
             Timber.d("user: %s", JsonUtils.toJson(currentUser))
-            Timber.d("init AppDataSource end<-------------------------------------------------")
+            Timber.d("${context.packageName}-init AppDataSource end<-------------------------------------------------")
         }
 
         observableUser.onNext(currentUser)
@@ -70,7 +76,7 @@ internal class AppRepository(
 
     override fun observableUser() = observableUser
 
-    override fun logout(askRemote: Boolean): Completable {
+    override fun logout(): Completable {
         clearUserData()
         return Completable.complete()
     }

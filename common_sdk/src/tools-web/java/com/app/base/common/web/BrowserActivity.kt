@@ -9,7 +9,6 @@ import com.android.base.app.activity.BaseActivity
 import com.android.base.app.fragment.tools.inFragmentTransaction
 import com.app.base.R
 import com.app.base.config.AppSettings
-import com.app.base.router.RouterPath
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -21,21 +20,21 @@ import javax.inject.Inject
  * Email: ztiany3@gmail.com
  * Date : 2018-11-01 11:29
  */
-@Route(path = RouterPath.Browser.PATH)
+@Route(path = BrowserPath.PATH)
 @AndroidEntryPoint
 class BrowserActivity : BaseActivity() {
 
-    @JvmField @Autowired(name = RouterPath.Browser.FRAGMENT_KEY) var fragmentClass: String? = null
+    @JvmField @Autowired(name = BrowserPath.FRAGMENT_KEY) var fragmentClass: String? = null
 
-    @JvmField @Autowired(name = RouterPath.Browser.SHOW_HEADER_KEY) var showHeader: Boolean = true
+    @JvmField @Autowired(name = BrowserPath.SHOW_HEADER_KEY) var showHeader: Boolean = true
 
-    @JvmField @Autowired(name = RouterPath.Browser.URL_KEY) var targetUrl: String? = null
+    @JvmField @Autowired(name = BrowserPath.URL_KEY) var targetUrl: String? = null
 
-    @JvmField @Autowired(name = RouterPath.Browser.ARGUMENTS_KEY) var bundle: Bundle? = null
+    @JvmField @Autowired(name = BrowserPath.ARGUMENTS_KEY) var bundle: Bundle? = null
 
-    @JvmField @Autowired(name = RouterPath.Browser.JS_CALL_INTERCEPTOR_CLASS_KEY) var customJsCallInterceptor: String? = null
+    @JvmField @Autowired(name = BrowserPath.JS_CALL_INTERCEPTOR_CLASS_KEY) var customJsCallInterceptor: String? = null
 
-    @JvmField @Autowired(name = RouterPath.Browser.CACHE_ENABLE) var cacheEnable: Boolean = false
+    @JvmField @Autowired(name = BrowserPath.CACHE_ENABLE) var cacheEnable: Boolean = false
 
     @Inject lateinit var appSettings: AppSettings
 
@@ -62,11 +61,11 @@ class BrowserActivity : BaseActivity() {
         Timber.d("final = $urlStr")
 
         val argument = Bundle().apply {
-            putString(RouterPath.Browser.URL_KEY, urlStr)
-            putString(RouterPath.Browser.JS_CALL_INTERCEPTOR_CLASS_KEY, customJsCallInterceptor ?: "")
-            putBoolean(RouterPath.Browser.SHOW_HEADER_KEY, showHeader)
-            putBoolean(RouterPath.Browser.CACHE_ENABLE, cacheEnable)
-            bundle?.let { putBundle(RouterPath.Browser.ARGUMENTS_KEY, it) }
+            putString(BrowserPath.URL_KEY, urlStr)
+            putString(BrowserPath.JS_CALL_INTERCEPTOR_CLASS_KEY, customJsCallInterceptor ?: "")
+            putBoolean(BrowserPath.SHOW_HEADER_KEY, showHeader)
+            putBoolean(BrowserPath.CACHE_ENABLE, cacheEnable)
+            bundle?.let { putBundle(BrowserPath.ARGUMENTS_KEY, it) }
         }
 
         if (savedInstanceState == null) {

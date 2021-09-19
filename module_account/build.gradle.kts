@@ -122,6 +122,9 @@ dependencies {
     /*Hilt*/
     api(AndroidLibraries.hiltDagger)
     kapt(AndroidLibraries.hiltDaggerApt)
+    /*auto-service*/
+    implementation(ThirdLibraries.autoService)
+    kapt(ThirdLibraries.autoServiceApt)
     /*ARouter*/
     kapt(ThirdLibraries.arouterAnnotation)
     //API

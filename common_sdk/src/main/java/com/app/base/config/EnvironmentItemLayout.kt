@@ -1,4 +1,4 @@
-package com.app.base.debug
+package com.app.base.config
 
 import android.annotation.SuppressLint
 import android.content.Context

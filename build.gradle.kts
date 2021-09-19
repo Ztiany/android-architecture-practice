@@ -41,9 +41,11 @@ allprojects {
 
         configurations.all {
             resolutionStrategy.force(
-               AndroidLibraries.activityKtx,
-               AndroidLibraries.fragmentKtx,
-               AndroidLibraries.annotations
+                AndroidLibraries.activityKtx,
+                AndroidLibraries.fragmentKtx,
+                AndroidLibraries.annotations,
+                KotlinLibraries.kotlinStdlib,
+                KotlinLibraries.kotlinCoroutines
             )
         }
 

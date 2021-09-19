@@ -1,4 +1,4 @@
-package com.app.base.debug
+package com.app.base.config
 
 import com.android.base.utils.android.cache.SpCache
 import com.android.base.utils.common.ifNonNull

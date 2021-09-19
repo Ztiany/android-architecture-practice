@@ -3,8 +3,8 @@ package com.app.base.services.compression
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.core.net.toFile
-import com.android.base.concurrent.DispatcherProvider
 import com.android.base.utils.common.sizeOf
+import com.app.base.app.DispatcherProvider
 import com.app.base.config.AppDirectory
 import com.app.base.config.AppDirectory.PICTURE_FORMAT_JPEG
 import com.app.base.debug.ifOpenDebug

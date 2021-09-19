@@ -8,8 +8,10 @@ object AndroidLibraries {
 
     /*appcompat*/
     const val appcompat = "androidx.appcompat:appcompat:$appcompat_version"
+
     /*activity*/
     const val activityKtx = "androidx.activity:activity-ktx:$activity_version"
+
     /*fragment*/
     const val fragmentKtx = "androidx.fragment:fragment-ktx:$fragment_version"
 
@@ -21,10 +23,13 @@ object AndroidLibraries {
     const val lifecycleCommon = "androidx.lifecycle:lifecycle-common:$lifecycle_version"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    const val lifecycleLiveDataCore = "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
+    const val lifecycleLiveDataCore =
+        "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
     const val lifecycleLiveKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    const val lifecycleReactiveStreams = "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    const val lifecycleViewModelKtx =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    const val lifecycleReactiveStreams =
+        "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
     const val lifecycleProcess = "androidx.lifecycle:lifecycle-process:$lifecycle_version"
 
     //https://android.github.io/android-ktx/core-ktx/index.html
@@ -129,6 +134,12 @@ object ThirdLibraries {
 
     private const val rxBindingVersion = "3.1.0"
     private const val autoDisposeVersion = "1.3.0"
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Auto_Service
+    ///////////////////////////////////////////////////////////////////////////
+    const val autoService = "com.google.auto.service:auto-service:1.0"
+    const val autoServiceApt = "com.google.auto.service:auto-service:1.0"
 
     //============================================================================
     //RxJava

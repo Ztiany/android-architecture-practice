@@ -17,9 +17,9 @@ import androidx.fragment.app.Fragment
 import com.android.base.app.activity.BaseActivity
 import com.android.base.app.ui.viewBinding
 import com.android.base.foundation.common.ActFragWrapper
-import com.android.base.imageloader.ImageLoaderFactory
-import com.android.base.imageloader.Source
-import com.android.base.interfaces.TransitionListenerAdapter
+import com.android.base.image.ImageLoaderFactory
+import com.android.base.image.Source
+import com.android.base.adaption.TransitionListenerAdapter
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.*

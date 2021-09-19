@@ -16,12 +16,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.android.base.app.fragment.BaseUIFragment;
 import com.android.base.app.fragment.tools.Fragments;
 import com.android.base.utils.android.WebViewUtils;
 import com.app.base.R;
 import com.app.base.databinding.AppBaseWebFragmentBinding;
-import com.app.base.router.RouterPath;
 import com.app.base.widget.AppTitleLayout;
 import com.blankj.utilcode.util.NetworkUtils;
 
@@ -29,9 +31,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import timber.log.Timber;
 
@@ -76,7 +75,7 @@ public class BaseWebFragment extends BaseUIFragment {
         } else {
             Bundle arguments = getArguments();
             if (arguments != null) {
-                mTitleIsHidden = !arguments.getBoolean(RouterPath.Browser.SHOW_HEADER_KEY, false);
+                mTitleIsHidden = !arguments.getBoolean(BrowserPath.SHOW_HEADER_KEY, false);
             }
         }
     }
@@ -92,7 +91,7 @@ public class BaseWebFragment extends BaseUIFragment {
         super.onActivityCreated(savedInstanceState);
         Bundle arguments = getArguments();
         if (arguments != null) {
-            String url = arguments.getString(RouterPath.Browser.URL_KEY);
+            String url = arguments.getString(BrowserPath.URL_KEY);
             if (!TextUtils.isEmpty(url)) {
                 startLoad(url);
             }
@@ -122,13 +121,13 @@ public class BaseWebFragment extends BaseUIFragment {
     private void initArguments() {
         Bundle arguments = getArguments();
         if (arguments != null) {
-            customTitle = arguments.getString(RouterPath.Browser.PAGE_TITLE, "");
+            customTitle = arguments.getString(BrowserPath.PAGE_TITLE, "");
             initCustomJsCallInterceptorIfNeed(arguments);
         }
     }
 
     private void initCustomJsCallInterceptorIfNeed(Bundle arguments) {
-        String className = arguments.getString(RouterPath.Browser.JS_CALL_INTERCEPTOR_CLASS_KEY, "");
+        String className = arguments.getString(BrowserPath.JS_CALL_INTERCEPTOR_CLASS_KEY, "");
         Timber.d("initCustomJsCallInterceptorIfNeed = %s", className);
         if (TextUtils.isEmpty(className)) {
             return;
@@ -139,7 +138,7 @@ public class BaseWebFragment extends BaseUIFragment {
                 JsCallInterceptor jsCallInterceptor = (JsCallInterceptor) newInstance;
                 mJsBridgeHandler.setJsCallInterceptor(jsCallInterceptor);
                 if (newInstance instanceof BaseCustomJsCallInterceptor) {
-                    ((BaseCustomJsCallInterceptor) newInstance).onInit(this, arguments.getBundle(RouterPath.Browser.ARGUMENTS_KEY));
+                    ((BaseCustomJsCallInterceptor) newInstance).onInit(this, arguments.getBundle(BrowserPath.ARGUMENTS_KEY));
                 }
             }
         } catch (Exception error) {
@@ -149,7 +148,7 @@ public class BaseWebFragment extends BaseUIFragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putBoolean(RouterPath.Browser.SHOW_HEADER_KEY, mTitleIsHidden);
+        outState.putBoolean(BrowserPath.SHOW_HEADER_KEY, mTitleIsHidden);
         super.onSaveInstanceState(outState);
     }
 
@@ -189,7 +188,7 @@ public class BaseWebFragment extends BaseUIFragment {
         mDefaultWebSetting.setupCache();
 
         Bundle arguments = getArguments();
-        if (arguments != null && arguments.getBoolean(RouterPath.Browser.CACHE_ENABLE, false)) {
+        if (arguments != null && arguments.getBoolean(BrowserPath.CACHE_ENABLE, false)) {
             mDefaultWebSetting.setUsingCache(true, true);
         }
 

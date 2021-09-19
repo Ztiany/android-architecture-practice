@@ -3,6 +3,7 @@ package com.android.architecture.main
 import android.content.Intent
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.android.architecture.main.api.MainModule
 import com.android.base.app.activity.BaseActivity
 import com.android.base.app.fragment.tools.clearBackStack
 import com.android.base.app.fragment.tools.findFragmentByTag
@@ -13,8 +14,7 @@ import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
 import com.app.base.app.CustomizeSystemBar
-import com.app.base.services.usermanager.AppDataSource
-import com.app.base.router.RouterPath
+import com.app.base.services.usermanager.UserManager
 import com.app.base.utils.setStatusBarLightMode
 import com.app.base.widget.dialog.TipsManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +27,7 @@ import javax.inject.Inject
  *@author Ztiany
  *      Date : 2018-09-06 14:42
  */
-@Route(path = RouterPath.Main.PATH)
+@Route(path = MainModule.PATH)
 @AndroidEntryPoint
 class MainActivity : BaseActivity(),CustomizeSystemBar {
 
@@ -37,7 +37,7 @@ class MainActivity : BaseActivity(),CustomizeSystemBar {
 
     @Inject lateinit var mainNavigator: MainNavigator
 
-    @Inject lateinit var appDataSource: AppDataSource
+    @Inject lateinit var userManager: UserManager
 
     override fun provideLayout() = R.layout.main_activity
 
@@ -76,8 +76,8 @@ class MainActivity : BaseActivity(),CustomizeSystemBar {
 
     private fun processIntent(intent: Intent) {
         //切换页面
-        if (intent.hasExtra(RouterPath.PAGE_KEY)) {
-            val page = intent.getIntExtra(RouterPath.PAGE_KEY, 0)
+        if (intent.hasExtra(MainModule.PAGE_KEY)) {
+            val page = intent.getIntExtra(MainModule.PAGE_KEY, 0)
             supportFragmentManager.clearBackStack()
             mainFragment.selectTabAtPosition(page)
             return

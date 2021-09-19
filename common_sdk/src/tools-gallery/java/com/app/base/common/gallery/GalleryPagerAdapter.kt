@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.URLUtil
-import com.android.base.imageloader.ImageLoaderFactory
-import com.android.base.imageloader.LoadListener
-import com.android.base.imageloader.Source
+import com.android.base.image.ImageLoaderFactory
+import com.android.base.image.LoadListener
+import com.android.base.image.Source
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
 import com.app.base.databinding.GalleryItemPhotoBinding

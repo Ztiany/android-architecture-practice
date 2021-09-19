@@ -11,14 +11,14 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class User(
-        /**用户id*/
-        val id: String = "",
-        /**昵称*/
-        val nickname: String = "",
-        /**头像url*/
-        val avatar: String = "",
-        /**性别*/
-        val Sex: Int = SEX_MALE,
+    /**用户id*/
+    val id: String = "",
+    /**昵称*/
+    val nickname: String = "",
+    /**头像url*/
+    val avatar: String = "",
+    /**性别*/
+    val Sex: Int = SEX_MALE,
 ) : Parcelable {
 
     companion object {

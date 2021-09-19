@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.android.base.interfaces.OnItemClickListener;
-import com.android.base.interfaces.OnTabSelectedListenerAdapter;
+import com.android.base.adaption.OnItemClickListener;
+import com.android.base.adaption.OnTabSelectedListenerAdapter;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
 import com.blankj.utilcode.util.ScreenUtils;

@@ -7,12 +7,12 @@ import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.common.otherwise
 import com.android.base.utils.common.yes
-import com.android.sdk.net.core.service.ServiceFactory
 import com.android.sdk.permission.AutoPermission
 import com.android.sdk.upgrade.UpgradeException
 import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
 import com.app.base.R
+import com.app.base.app.ServiceProvider
 import com.app.base.config.AppDirectory
 import com.app.base.config.AppSettings
 import com.app.base.widget.dialog.showConfirmDialog
@@ -22,16 +22,18 @@ import okhttp3.OkHttpClient
 import timber.log.Timber
 import java.io.File
 import java.lang.ref.WeakReference
+import javax.inject.Inject
 
 /**
  *@author Ztiany
  *      Email: ztiany3@gmail.com
  *      Date : 2019-10-30 11:26
  */
-class AppUpgradeInteractor(
-    private val appSettings: AppSettings,
-    private val serviceFactory: ServiceFactory
-) : UpgradeInteractor {
+internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
+
+    @Inject lateinit var appSettings: AppSettings
+
+    @Inject lateinit var serviceProvider: ServiceProvider
 
     private var loadingDialogReference: WeakReference<UpgradeLoadingDialog>? = null
     private var upgradeDialogReference: WeakReference<Dialog>? = null
@@ -39,7 +41,7 @@ class AppUpgradeInteractor(
     private val notificationHelper by lazy { NotificationHelper() }
 
     private val appUpdateRepository by lazy {
-        AppUpdateRepository(serviceFactory)
+        AppUpdateRepository(serviceProvider.getDefault())
     }
 
     private fun newLoadingDialogIfNeed(context: Context): Dialog {
@@ -51,22 +53,27 @@ class AppUpgradeInteractor(
 
     override fun checkUpgrade(): Flowable<UpgradeInfo> {
         return appUpdateRepository.checkNewVersion()
-                .map { buildUpgradeInfo(it) }
+            .map { buildUpgradeInfo(it) }
     }
 
     private fun buildUpgradeInfo(response: UpgradeResponse): UpgradeInfo {
         return UpgradeInfo(
-                isForce = false,
-                isNewVersion = false,
-                versionName = "",
-                downloadUrl = "",
-                description = "",
-                digitalAbstract = "",
-                raw = response
+            isForce = false,
+            isNewVersion = false,
+            versionName = "",
+            downloadUrl = "",
+            description = "",
+            digitalAbstract = "",
+            raw = response
         )
     }
 
-    override fun showUpgradeDialog(context: Context, upgradeInfo: UpgradeInfo, onCancel: () -> Unit, onConfirm: () -> Unit) {
+    override fun showUpgradeDialog(
+        context: Context,
+        upgradeInfo: UpgradeInfo,
+        onCancel: () -> Unit,
+        onConfirm: () -> Unit
+    ) {
         Timber.d("showUpgradeDialog")
         upgradeDialogReference?.get()?.dismiss()
 
@@ -89,7 +96,12 @@ class AppUpgradeInteractor(
         upgradeDialogReference = WeakReference(upgradeDialog)
     }
 
-    override fun showInstallTipsDialog(context: Context, forceUpgrade: Boolean, onCancel: () -> Unit, onConfirm: () -> Unit) {
+    override fun showInstallTipsDialog(
+        context: Context,
+        forceUpgrade: Boolean,
+        onCancel: () -> Unit,
+        onConfirm: () -> Unit
+    ) {
         if (!forceUpgrade) {
             return
         }
@@ -106,7 +118,13 @@ class AppUpgradeInteractor(
         }
     }
 
-    override fun showDownloadingFailed(context: Context, forceUpgrade: Boolean, error: UpgradeException, onCancel: () -> Unit, onConfirm: () -> Unit) {
+    override fun showDownloadingFailed(
+        context: Context,
+        forceUpgrade: Boolean,
+        error: UpgradeException,
+        onCancel: () -> Unit,
+        onConfirm: () -> Unit
+    ) {
         showConfirmDialog(context) {
             message = forceUpgrade.yes { "下载更新失败，需要重试" } otherwise { "下载更新失败，是否重试？" }
             cancelable = false
@@ -143,11 +161,11 @@ class AppUpgradeInteractor(
         if (AndroidVersion.atLeast(26)) {
             //Android8.0未知来源应用安装权限方案
             AutoPermission.with(Utils.getApp())
-                    .install()
-                    .file(file)
-                    .onDenied { Timber.d("installApk onDenied") }
-                    .onGranted { Timber.d("installApk onGranted") }
-                    .start()
+                .install()
+                .file(file)
+                .onDenied { Timber.d("installApk onDenied") }
+                .onGranted { Timber.d("installApk onGranted") }
+                .start()
         } else {
             //正常安装
             XAppUtils.installApp(Utils.getApp(), file, appSettings.appFileProviderAuthorities)
@@ -156,7 +174,8 @@ class AppUpgradeInteractor(
 
     override fun checkApkFile(apkFile: File, digitalAbstract: String) = true
 
-    override fun generateAppDownloadPath(versionName: String): String = AppDirectory.createAppDownloadPath(versionName)
+    override fun generateAppDownloadPath(versionName: String): String =
+        AppDirectory.createAppDownloadPath(versionName)
 
     override fun createHttpClient(): OkHttpClient {
         return OkHttpClient()

@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.adapter.recycler.BindingViewHolder
-import com.android.base.imageloader.ImageLoaderFactory
-import com.android.base.imageloader.Source
+import com.android.base.image.ImageLoaderFactory
+import com.android.base.image.Source
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.invisible
 import com.android.base.utils.android.views.use

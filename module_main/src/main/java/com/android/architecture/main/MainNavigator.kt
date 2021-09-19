@@ -2,7 +2,7 @@ package com.android.architecture.main
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.app.base.services.usermanager.AppDataSource
+import com.app.base.services.usermanager.UserManager
 import com.app.base.router.AppRouter
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class MainNavigator @Inject constructor(
         @ActivityContext context: Context,
         private val appRouter: AppRouter,
-        private val appDataSource: AppDataSource
+        private val userManager: UserManager
 ) {
 
     private val host = context as AppCompatActivity

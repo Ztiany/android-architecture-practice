@@ -2,23 +2,19 @@ package com.app.base
 
 import android.content.Context
 import androidx.multidex.MultiDex
-import com.android.base.app.BaseAppContext
-import com.android.base.app.ErrorClassifier
-import com.android.base.app.Sword
-import com.android.base.concurrent.DispatcherProvider
-import com.android.base.concurrent.SchedulerProvider
+import com.android.base.AndroidSword
+import com.android.base.ErrorClassifier
+import com.android.base.app.component.BaseAppContext
 import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.NetworkErrorException
 import com.android.sdk.net.core.exception.ServerErrorException
-import com.android.sdk.net.core.service.ServiceFactory
 import com.android.sdk.upgrade.AppUpgradeChecker
 import com.app.base.app.*
 import com.app.base.config.AppSettings
-import com.app.base.services.usermanager.AppDataSource
-import com.app.base.data.storage.StorageManager
 import com.app.base.debug.DebugTools
 import com.app.base.router.AppRouter
+import com.app.base.services.usermanager.UserManager
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.base.widget.dialog.AppLoadingView
 import com.blankj.utilcode.util.NetworkUtils
@@ -34,50 +30,57 @@ import javax.inject.Inject
  */
 abstract class AppContext : BaseAppContext() {
 
-    @Inject lateinit var appDataSource: AppDataSource
-    @Inject lateinit var errorHandler: ErrorHandler
-    @Inject lateinit var serviceFactory: Lazy<ServiceFactory>
-    @Inject lateinit var storageManager: Lazy<StorageManager>
-    @Inject lateinit var schedulerProvider: SchedulerProvider
-    @Inject lateinit var dispatcherProvider: DispatcherProvider
-    @Inject lateinit var appRouter: AppRouter
-    @Inject lateinit var appSettings: AppSettings
+    @Inject internal lateinit var userManager: Lazy<UserManager>
+
+    @Inject internal lateinit var errorHandler: Lazy<ErrorHandler>
+
+    @Inject internal lateinit var appRouter: Lazy<AppRouter>
+
+    @Inject internal lateinit var appSettings: Lazy<AppSettings>
+
+    @Inject internal lateinit var appUpgradeInteractor: Lazy<AppUpgradeInteractor>
 
     override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
         MultiDex.install(this)
+        super.attachBaseContext(base)
     }
 
     override fun onCreate() {
         super.onCreate()
-        //设置
-        appSettings.init()
-        //路由
-        appRouter.initRouter(this, true)
-        //初始化网络库
+        DebugTools.init(this)
+        appSettings.get().init()
+        appRouter.get().initRouter(this, true)
+        configNetworkApi()
+        configFoundation()
+        configLibraries()
+        configThirdSDK()
+    }
+
+    private fun configNetworkApi() {
         NetContext.get()
             .newBuilder()
-            .aipHandler(newApiHandler(errorHandler))
-            .httpConfig(newHttpConfig(appDataSource, appSettings, errorHandler))
+            .aipHandler(newApiHandler(errorHandler.get()))
+            .httpConfig(newHttpConfig(userManager.get(), appSettings.get(), errorHandler.get()))
             .networkChecker { NetworkUtils.isConnected() }
-            //.postTransformer(null)
+            .postTransformer(newPostTransformer())
             .errorDataAdapter(newErrorDataAdapter())
             .errorMessage(newErrorMessage())
             .exceptionFactory { null }
             .setup()
-        //调试
-        DebugTools.init(this)
+    }
+
+    private fun configFoundation() {
         //安装 Activity/Fragment 注入器
-        registerActivityLifecycleCallbacks(AppComponentProcessor())
-        //基础库配置
-        Sword.setDefaultFragmentContainerId(R.id.common_container_id) //默认的Fragment容器id
+        registerActivityLifecycleCallbacks(ComponentProcessor())
+        //lib-base 配置
+        AndroidSword.setDefaultFragmentContainerId(R.id.common_container_id) //默认的Fragment容器id
             .setDefaultFragmentAnimator(FragmentScaleAnimator())//Fragment切换动画
-            .setDefaultPageStart(appSettings.defaultPageStart)//分页开始页码
-            .setDefaultPageSize(appSettings.defaultPageSize)//默认分页大小
+            .setDefaultPageStart(appSettings.get().defaultPageStart)//分页开始页码
+            .setDefaultPageSize(appSettings.get().defaultPageSize)//默认分页大小
             .setupRxJavaErrorHandler()
             .apply {
                 //Dialog 最短展示时间
-                minimumShowingDialogMills = appSettings.minimumDialogShowTime
+                minimumShowingDialogMills = appSettings.get().minimumDialogShowTime
                 //默认的通用的LoadingDialog和Toast实现
                 loadingViewFactory = { AppLoadingView(it) }
                 //错误分类器
@@ -89,10 +92,14 @@ abstract class AppContext : BaseAppContext() {
                         throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http code*/
                 }
             }
-        //ui
+    }
+
+    private fun configLibraries() {
         MediaSelectorConfiguration.forceUseLegacyApi(true)
-        AppUpgradeChecker.installInteractor(AppUpgradeInteractor(appSettings, serviceFactory.get()))
-        //sdk
+        AppUpgradeChecker.installInteractor(appUpgradeInteractor.get())
+    }
+
+    private fun configThirdSDK() {
         //WeChatManager.initWeChatSDK(this, "", "")
         //Umeng.init(this)
         //Bugly.init(this)

@@ -2,10 +2,10 @@ package com.android.architecture.launcher
 
 import android.content.Intent
 import android.os.Bundle
+import com.android.architecture.main.api.MainModule
 import com.android.base.app.activity.BaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.router.AppRouter
-import com.app.base.router.RouterPath
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -34,7 +34,7 @@ class AppLauncherActivity : BaseActivity(), CustomizeSystemBar {
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         window.decorView.postDelayed({
-            appRouter.build(RouterPath.Main.PATH).withTransition(0, 0).navigation()
+            appRouter.build(MainModule.PATH).withTransition(0, 0).navigation()
             finishAfterTransition()
         }, 1000)
     }
