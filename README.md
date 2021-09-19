@@ -29,7 +29,7 @@ make sure the projects in the same directory.
 business modules: 
 
 - app: assemble all of the business module.
-- module_base: assemble all the libs.
+- common_sdk: assemble all the libs.
 - module_account: business module for login/register.
 - module_home: business module.
 

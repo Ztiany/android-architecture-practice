@@ -39,14 +39,13 @@ allprojects {
 
         flatDir { dirs(rootProject.projectDir.absolutePath + "/repo/aar") }
 
-        /*configurations.all {
+        configurations.all {
             resolutionStrategy.force(
-                    //choose the  latest version.
-                    //kotlin
-                    //"org.jetbrains.kotlin:kotlin-stdlib:1.4.31",
-                    //"org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+               AndroidLibraries.activityKtx,
+               AndroidLibraries.fragmentKtx,
+               AndroidLibraries.annotations
             )
-        }*/
+        }
 
     }
 }

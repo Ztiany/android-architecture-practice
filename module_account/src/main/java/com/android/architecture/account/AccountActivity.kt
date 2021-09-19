@@ -2,7 +2,7 @@ package com.android.architecture.account
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.app.base.app.AppBaseActivity
+import com.android.base.app.activity.BaseActivity
 import com.app.base.app.CannotShowExpiredDialogOnIt
 import com.app.base.router.RouterPath
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,12 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @Route(path = RouterPath.Account.PATH)
 @AndroidEntryPoint
-class AccountActivity : AppBaseActivity(), CannotShowExpiredDialogOnIt {
+class AccountActivity : BaseActivity(), CannotShowExpiredDialogOnIt {
 
     override fun provideLayout() = R.layout.app_base_activity
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
-        super.setUpLayout(savedInstanceState)
+
     }
 
 }

@@ -131,8 +131,8 @@ dependencies {
 
     if (!AppConfig.isMultiApp) {
         //modules
-        implementation(project(":module_base"))
-        implementation(project(":module_home"))
+        implementation(project(":common_sdk"))
+        implementation(project(":module_main"))
         implementation(project(":module_account"))
         /*Hilt*/
         api(AndroidLibraries.hiltDagger)

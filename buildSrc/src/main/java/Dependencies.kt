@@ -1,41 +1,34 @@
 object AndroidLibraries {
 
-    private const val appcompat_version = "1.2.0"
-    private const val activity_version = "1.2.0"
-    private const val fragment_version = "1.3.0"
-    private const val lifecycle_version = "2.3.0"
     private const val arch_version = "2.1.0"
+    private const val appcompat_version = "1.3.1"
+    private const val activity_version = "1.3.1"
+    private const val fragment_version = "1.3.6"
+    private const val lifecycle_version = "2.4.0-beta01"
 
     /*appcompat*/
     const val appcompat = "androidx.appcompat:appcompat:$appcompat_version"
-
     /*activity*/
-    const val activity = "androidx.activity:activity:$activity_version"
     const val activityKtx = "androidx.activity:activity-ktx:$activity_version"
-
     /*fragment*/
-    const val fragment = "androidx.fragment:fragment:$fragment_version"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:$fragment_version"
 
     //arch
     const val archRuntime = "androidx.arch.core:core-runtime:$arch_version"
     const val archCommon = "androidx.arch.core:core-common:$arch_version"
+
+    //lifecycle, livedata, viewmodel
     const val lifecycleCommon = "androidx.lifecycle:lifecycle-common:$lifecycle_version"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    const val lifecycleLiveDataCore =
-        "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
-    const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    const val lifecycleLiveDataCore = "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
     const val lifecycleLiveKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-    const val lifecycleViewModelKtx =
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    const val lifecycleReactiveStreams =
-        "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
-    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    const val lifecycleReactiveStreams = "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    const val lifecycleProcess = "androidx.lifecycle:lifecycle-process:$lifecycle_version"
 
     //https://android.github.io/android-ktx/core-ktx/index.html
-    const val ktx = "androidx.core:core-ktx:1.3.2"
+    const val ktx = "androidx.core:core-ktx:1.6.0"
 
     /*paging*/
     const val paging = "androidx.paging:paging-common:3.0.0-beta01"
@@ -56,14 +49,14 @@ object AndroidLibraries {
     const val persistenceFramework = "androidx.sqlite:sqlite-framework:2.1.0"
 
     //navigation
-    //classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.2"
+    //classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
     //apply plugin: 'androidx.navigation.safeargs.kotlin'
-    const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:2.3.2"
-    const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:2.3.0"
+    const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:2.3.5"
 
     //tools
-    const val annotations = "androidx.annotation:annotation:1.1.0"
-    const val exifinterface = "androidx.exifinterface:exifinterface:1.3.2"
+    const val annotations = "androidx.annotation:annotation:1.2.0"
+    const val exifinterface = "androidx.exifinterface:exifinterface:1.3.3"
     const val biometric = "androidx.biometric:biometric:1.0.1"
     const val documentfile = "androidx.documentfile:documentfile:1.0.1"
 
@@ -72,33 +65,32 @@ object AndroidLibraries {
     const val multidexInstrumentation = "androidx.multidex:multidex-instrumentation:2.0.0"
 
     /*ui component*/
-    const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0"
+    const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
     const val recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:1.0.0"
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.0"
     const val percentLayout = "androidx.percentlayout:percentlayout:1.0.0"
     const val cardView = "androidx.cardview:cardview:1.0.0"
     const val viewpager = "androidx.viewpager:viewpager:1.0.0"
     const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
     const val asyncLayoutInflater = "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0"
     const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    const val transition = "androidx.transition:transition:1.3.1"
+    const val transition = "androidx.transition:transition:1.4.1"
     const val dynamicAnimation = "androidx.dynamicanimation:dynamicanimation:1.0.0"
 
     //https://github.com/google/flexbox-layout/
     const val flexbox = "com.google.android:flexbox:2.0.1"
 
     //https://github.com/material-components/material-components-android
-    const val material = "com.google.android.material:material:1.3.0"
+    const val material = "com.google.android.material:material:1.4.0"
 
     // For loading and tinting drawables on older versions of the platform
     const val appcompatResources = "androidx.appcompat:appcompat-resources:$appcompat_version"
 
     //Hilt
-    const val hiltDagger = "com.google.dagger:hilt-android:2.36"
-    const val hiltDaggerApt = "com.google.dagger:hilt-android-compiler:2.36"
-
     //classpath "com.google.dagger:hilt-android-gradle-plugin:2.36"
     //apply plugin: 'dagger.hilt.android.plugin'
+    const val hiltDagger = "com.google.dagger:hilt-android:2.36"
+    const val hiltDaggerApt = "com.google.dagger:hilt-android-compiler:2.36"
 
     //start-up
     //https://android-developers.googleblog.com/2020/07/decrease-startup-time-with-jetpack-app.html
@@ -111,8 +103,8 @@ object AndroidLibraries {
 
 object KotlinLibraries {
 
-    const val KOTLIN_VERSION = "1.4.32"
-    const val COROUTINES_VERSION = "1.4.3"
+    const val KOTLIN_VERSION = "1.5.30"
+    const val COROUTINES_VERSION = "1.5.2"
 
     //Kotlin
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
