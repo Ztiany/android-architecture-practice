@@ -7,7 +7,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.android.architecture.main.api.MainModule
 import com.android.base.AndroidSword
-import com.android.sdk.net.core.errorhandler.ErrorMessageFactory
+import com.android.sdk.net.core.message.ErrorMessageFactory
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.app.base.data.protocol.ApiHelper
 import com.app.base.router.AppRouter

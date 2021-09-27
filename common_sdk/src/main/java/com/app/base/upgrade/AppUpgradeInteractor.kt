@@ -17,7 +17,8 @@ import com.app.base.config.AppDirectory
 import com.app.base.config.AppSettings
 import com.app.base.widget.dialog.showConfirmDialog
 import com.blankj.utilcode.util.Utils
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import okhttp3.OkHttpClient
 import timber.log.Timber
 import java.io.File
@@ -51,10 +52,6 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         return dialog
     }
 
-    override fun checkUpgrade(): Flowable<UpgradeInfo> {
-        return appUpdateRepository.checkNewVersion()
-            .map { buildUpgradeInfo(it) }
-    }
 
     private fun buildUpgradeInfo(response: UpgradeResponse): UpgradeInfo {
         return UpgradeInfo(
@@ -66,6 +63,13 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
             digitalAbstract = "",
             raw = response
         )
+    }
+
+    override fun checkUpgrade(): Flow<UpgradeInfo> {
+        return appUpdateRepository.checkNewVersion()
+            .map {
+                buildUpgradeInfo(it)
+            }
     }
 
     override fun showUpgradeDialog(

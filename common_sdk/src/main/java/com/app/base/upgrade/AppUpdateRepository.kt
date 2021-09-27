@@ -1,7 +1,8 @@
 package com.app.base.upgrade
 
 import com.android.sdk.net.core.service.ServiceFactory
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 internal data class UpgradeResponse(
     val url: String = "",
@@ -15,8 +16,8 @@ internal data class UpgradeResponse(
 
 internal class AppUpdateRepository(serviceFactory: ServiceFactory) {
 
-    fun checkNewVersion(): Flowable<UpgradeResponse> {
-        return Flowable.empty()
+    fun checkNewVersion(): Flow<UpgradeResponse> = flow {
+
     }
 
 }
