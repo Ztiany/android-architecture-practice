@@ -58,11 +58,13 @@ abstract class AppContext : BaseAppContext() {
 
     private fun configNetworkApi() {
         NetContext.get()
-            .newBuilder()
+            .commonConfig()
+            .networkChecker { NetworkUtils.isConnected() }
+            .setUp()
+            .addBuilder()
             .aipHandler(newApiHandler(errorHandler.get()))
             .httpConfig(newHttpConfig(userManager.get(), appSettings.get(), errorHandler.get()))
-            .networkChecker { NetworkUtils.isConnected() }
-            .postTransformer(newPostTransformer())
+            .rxRetrier(newPostTransformer())
             .errorDataAdapter(newErrorDataAdapter())
             .errorMessage(newErrorMessage())
             .exceptionFactory { null }
