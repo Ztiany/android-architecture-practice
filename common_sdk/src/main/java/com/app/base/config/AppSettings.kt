@@ -19,11 +19,11 @@ class AppSettings @Inject internal constructor(
     private val initialized = AtomicBoolean(false)
 
     fun baseWebUrl(): String {
-        return "http:dummy.com/api/"
+        return "https://www.wanandroid.com/"
     }
 
     fun baseApiUrl(): String {
-        return "http:dummy.com/web/"
+        return "https://www.wanandroid.com/"
     }
 
     fun init() {

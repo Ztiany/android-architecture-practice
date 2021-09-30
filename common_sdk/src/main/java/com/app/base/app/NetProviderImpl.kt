@@ -115,7 +115,7 @@ internal fun newErrorMessage(): ErrorMessage {
             return getString(R.string.error_api_code_mask_tips, exception.code)
         }
 
-        override fun unknowErrorMessage(exception: Throwable): CharSequence {
+        override fun unknownErrorMessage(exception: Throwable): CharSequence {
             return getString(R.string.error_unknow) + "：${exception.message}"
         }
     }

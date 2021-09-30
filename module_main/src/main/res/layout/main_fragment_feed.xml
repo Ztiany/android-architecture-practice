@@ -16,10 +16,12 @@
         app:atl_title="首页"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <me.ztiany.widget.outline.CornerFrameLayout
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/red"
-        app:clip_radius="20dp" />
+    <Button
+        android:id="@+id/feed_btn_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="LOAD" />
 
 </LinearLayout>

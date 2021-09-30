@@ -17,7 +17,6 @@ import com.app.base.router.AppRouter
 import com.app.base.services.usermanager.UserManager
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.base.widget.dialog.AppLoadingView
-import com.blankj.utilcode.util.NetworkUtils
 import dagger.Lazy
 import retrofit2.HttpException
 import java.io.IOException
@@ -58,15 +57,14 @@ abstract class AppContext : BaseAppContext() {
 
     private fun configNetworkApi() {
         NetContext.get()
-            .commonConfig()
-            .networkChecker { NetworkUtils.isConnected() }
+            .commonConfig(this)
+            .errorMessage(newErrorMessage())
+            .rxResultPostTransformer(newPostTransformer())
             .setUp()
             .addBuilder()
             .aipHandler(newApiHandler(errorHandler.get()))
             .httpConfig(newHttpConfig(userManager.get(), appSettings.get(), errorHandler.get()))
-            .rxRetrier(newPostTransformer())
             .errorDataAdapter(newErrorDataAdapter())
-            .errorMessage(newErrorMessage())
             .exceptionFactory { null }
             .setup()
     }

@@ -15,10 +15,10 @@ public class HttpResult<T> implements Result<T> {
         this.code = code;
     }
 
-    @SerializedName("msg")
+    @SerializedName("errorMsg")
     private String msg;
 
-    @SerializedName("ret")
+    @SerializedName("errorCode")
     private int code;
 
     @SerializedName("data")

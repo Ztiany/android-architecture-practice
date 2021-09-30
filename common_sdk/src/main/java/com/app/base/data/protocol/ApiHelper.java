@@ -12,7 +12,7 @@ public class ApiHelper {
     private static final int DATA_ERROR = -8088;
 
     /*返回成功*/
-    private static final int CODE_SUCCESS = 1;
+    private static final int CODE_SUCCESS = 0;
 
     /*Key失效*/
     private static final int KEY_INVALID = 99;
