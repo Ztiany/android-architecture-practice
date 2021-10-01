@@ -23,13 +23,10 @@ object AndroidLibraries {
     const val lifecycleCommon = "androidx.lifecycle:lifecycle-common:$lifecycle_version"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    const val lifecycleLiveDataCore =
-        "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
+    const val lifecycleLiveDataCore = "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
     const val lifecycleLiveKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    const val lifecycleViewModelKtx =
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    const val lifecycleReactiveStreams =
-        "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    const val lifecycleReactiveStreams = "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
     const val lifecycleProcess = "androidx.lifecycle:lifecycle-process:$lifecycle_version"
 
     //https://android.github.io/android-ktx/core-ktx/index.html
@@ -116,12 +113,9 @@ object KotlinLibraries {
     const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$KOTLIN_VERSION"
 
     //Coroutines
-    const val kotlinCoroutines =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${COROUTINES_VERSION}"
-    const val kotlinAndroidCoroutines =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${COROUTINES_VERSION}"
-    const val kotlinxCoroutinesRx2 =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${COROUTINES_VERSION}"
+    const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${COROUTINES_VERSION}"
+    const val kotlinAndroidCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${COROUTINES_VERSION}"
+    const val kotlinxCoroutinesRx2 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${COROUTINES_VERSION}"
 
     //https://github.com/ReactiveX/RxKotlin
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
@@ -154,18 +148,14 @@ object ThirdLibraries {
     const val rxBinding = "com.jakewharton.rxbinding3:rxbinding:$rxBindingVersion"
     const val rxBindingCore = "com.jakewharton.rxbinding3:rxbinding-core:$rxBindingVersion"
     const val rxBindingCompat = "com.jakewharton.rxbinding3:rxbinding-appcompat:$rxBindingVersion"
-    const val rxBindingMaterial =
-        "com.jakewharton.rxbinding3:rxbinding-material:3.0.0:$rxBindingVersion"
-    const val rxBindingRecyclerView =
-        "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxBindingVersion"
+    const val rxBindingMaterial = "com.jakewharton.rxbinding3:rxbinding-material:3.0.0:$rxBindingVersion"
+    const val rxBindingRecyclerView = "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxBindingVersion"
 
     //https://github.com/uber/AutoDispose
     const val autoDispose = "com.uber.autodispose:autodispose:$autoDisposeVersion"
     const val autoDisposeAndroid = "com.uber.autodispose:autodispose-android:$autoDisposeVersion"
-    const val autoDisposeLifecycle =
-        "com.uber.autodispose:autodispose-lifecycle:$autoDisposeVersion"
-    const val autoDisposeLifecycleArchcomponents =
-        "com.uber.autodispose:autodispose-android-archcomponents:$autoDisposeVersion"
+    const val autoDisposeLifecycle = "com.uber.autodispose:autodispose-lifecycle:$autoDisposeVersion"
+    const val autoDisposeLifecycleArchcomponents = "com.uber.autodispose:autodispose-android-archcomponents:$autoDisposeVersion"
 
     //https://github.com/uber/RxDogTag
     const val rxDogTag = "com.uber.rxdogtag:rxdogtag:0.2.0"
@@ -178,6 +168,7 @@ object ThirdLibraries {
     //============================================================================
     //https://github.com/square/okhttp
     const val okHttp = "com.squareup.okhttp3:okhttp:4.8.1"
+    const val okIO = "com.squareup.okio:okio:2.7.0"
     const val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:4.8.1"
 
     // https://github.com/square/retrofit

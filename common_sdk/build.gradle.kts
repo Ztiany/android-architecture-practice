@@ -91,6 +91,7 @@ dependencies {
     api(project(":lib_safekeyboard"))//安全键盘
     api(project(":lib_biometrics"))//生物识别
     api(project(":lib_qrcode"))//二维码
+    api(project(":lib_image_loader"))//图片加载
 
     //业务API
     implementation(project(":module_main_api"))
@@ -100,8 +101,6 @@ dependencies {
     api(AndroidLibraries.exifinterface)
     api(AndroidLibraries.flexbox)
     api(AndroidLibraries.ktx)
-    api(AndroidLibraries.room)
-    api(AndroidLibraries.roomKtx)
 
     /*Hilt*/
     api(AndroidLibraries.hiltDagger)
@@ -121,10 +120,6 @@ dependencies {
     /*Retrofit*/
     api(ThirdLibraries.retrofit)
     implementation(ThirdLibraries.retrofitConverterGson)
-    implementation(ThirdLibraries.retrofitRxJava2CallAdapter)
-    /*RxKotlin, RxBinding*/
-    api(ThirdLibraries.rxBindingCompat)
-    api(KotlinLibraries.rxKotlin)
 
     /*GlideAPT*/
     kapt(ThirdLibraries.glideApt)

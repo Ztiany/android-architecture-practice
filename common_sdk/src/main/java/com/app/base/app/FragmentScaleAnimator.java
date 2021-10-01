@@ -7,7 +7,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 
-import com.android.base.app.fragment.animator.FragmentAnimator;
+import com.android.base.architecture.fragment.animator.FragmentAnimator;
 
 public class FragmentScaleAnimator implements FragmentAnimator {
 

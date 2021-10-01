@@ -1,6 +1,6 @@
 package com.android.architecture.main.common
 
-import com.android.base.app.jetpack.LiveBus
+import com.android.base.foundation.jetpack.LiveBus
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 

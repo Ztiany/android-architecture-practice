@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.android.base.app.fragment.tools.Fragments;
+import com.android.base.architecture.fragment.tools.Fragments;
 import com.android.base.utils.android.compat.AndroidVersion;
 import com.android.base.utils.android.compat.SystemBarCompat;
 import com.android.base.utils.android.views.TintUtils;

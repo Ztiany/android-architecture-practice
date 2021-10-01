@@ -3,7 +3,7 @@ package com.app.base.widget.dialog;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.android.base.app.ui.LoadingView;
+import com.android.base.architecture.ui.LoadingView;
 import com.app.base.R;
 
 import org.jetbrains.annotations.NotNull;

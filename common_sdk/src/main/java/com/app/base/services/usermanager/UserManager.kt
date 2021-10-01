@@ -1,7 +1,6 @@
 package com.app.base.services.usermanager
 
-import io.reactivex.Completable
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author Ztiany
@@ -20,9 +19,9 @@ interface UserManager {
     fun user(): User
 
     /**观察用户信息，当用户信息被修改后，总是可以得到通知，这是一个全局多播的观察者，注意在不需要观察用户信息的时候取消订阅*/
-    fun observableUser(): Flowable<User>
+    fun observableUser(): Flow<User>
 
     /**退出登录*/
-    fun logout(): Completable
+    fun logout()
 
 }

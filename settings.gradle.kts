@@ -10,7 +10,9 @@ val libs = listOf(
     "lib_social",
     "lib_safekeyboard",
     "lib_biometrics",
-    "lib_qrcode"
+    "lib_qrcode",
+    "lib_image_loader",
+    "lib_rxjava2"
 )
 
 libs.forEach {

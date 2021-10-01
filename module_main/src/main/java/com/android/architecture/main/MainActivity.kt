@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.architecture.main.api.MainModule
-import com.android.base.app.activity.BaseActivity
-import com.android.base.app.fragment.tools.clearBackStack
-import com.android.base.app.fragment.tools.findFragmentByTag
-import com.android.base.app.fragment.tools.inFragmentTransaction
+import com.android.base.architecture.activity.BaseActivity
+import com.android.base.architecture.fragment.tools.clearBackStack
+import com.android.base.architecture.fragment.tools.findFragmentByTag
+import com.android.base.architecture.fragment.tools.inFragmentTransaction
 import com.android.base.utils.android.XAppUtils
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull

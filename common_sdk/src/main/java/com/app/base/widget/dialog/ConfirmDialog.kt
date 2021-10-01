@@ -1,7 +1,7 @@
 package com.app.base.widget.dialog
 
 import android.view.View
-import com.android.base.app.ui.viewBinding
+import com.android.base.architecture.ui.viewBinding
 import com.android.base.utils.android.views.clearComponentDrawable
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.setLeftDrawable

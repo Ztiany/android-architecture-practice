@@ -19,8 +19,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.android.base.app.fragment.BaseUIFragment;
-import com.android.base.app.fragment.tools.Fragments;
+import com.android.base.architecture.fragment.base.BaseUIFragment;
+import com.android.base.architecture.fragment.tools.Fragments;
 import com.android.base.utils.android.WebViewUtils;
 import com.app.base.R;
 import com.app.base.databinding.AppBaseWebFragmentBinding;
@@ -39,7 +39,7 @@ import timber.log.Timber;
  * Email: 1169654504@qq.com
  * Date : 2017-09-04 17:02
  */
-public class BaseWebFragment extends BaseUIFragment {
+public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
     private WebView mWebView;
     private AppTitleLayout mTitleLayout;
@@ -48,8 +48,6 @@ public class BaseWebFragment extends BaseUIFragment {
     private WebProgress mWebProgress;
 
     private JsBridgeHandler mJsBridgeHandler;
-
-    private AppBaseWebFragmentBinding mLayout;
 
     private static final String TITLE_IS_HIDDEN_KEY = "title_is_hidden_key";
 
@@ -82,7 +80,6 @@ public class BaseWebFragment extends BaseUIFragment {
 
     @Override
     protected void onViewPrepared(@NotNull View view, @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        mLayout = AppBaseWebFragmentBinding.bind(view);
         setupViews();
     }
 
@@ -166,11 +163,11 @@ public class BaseWebFragment extends BaseUIFragment {
 
     private void setupViews() {
         /*Find view*/
-        mWebView = mLayout.webView;
-        mWebProgress = new WebProgress(mLayout.webPb);
-        mErrorLayout = mLayout.layoutError.getRoot();
-        mTitleLayout = mLayout.atlWebRulesTitle;
-        mCustomLayout = mLayout.webFlCustom;
+        mWebView = getLayout().webView;
+        mWebProgress = new WebProgress(getLayout().webPb);
+        mErrorLayout = getLayout().layoutError.getRoot();
+        mTitleLayout = getLayout().atlWebRulesTitle;
+        mCustomLayout = getLayout().webFlCustom;
 
         /*Title*/
         mTitleLayout.setOnNavigationOnClickListener(v -> Fragments.exitFragment(this));
@@ -362,12 +359,6 @@ public class BaseWebFragment extends BaseUIFragment {
 
     public FrameLayout getCustomLayout() {
         return mCustomLayout;
-    }
-
-    @NonNull
-    @Override
-    public final Object provideLayout() {
-        return R.layout.app_base_web_fragment;
     }
 
 }

@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import com.android.base.AndroidSword
 import com.android.base.ErrorClassifier
-import com.android.base.app.component.BaseAppContext
+import com.android.base.architecture.app.BaseAppContext
 import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.NetworkErrorException
 import com.android.sdk.net.core.exception.ServerErrorException
+import com.android.sdk.net.extension.addHostConfig
+import com.android.sdk.net.extension.init
 import com.android.sdk.upgrade.AppUpgradeChecker
 import com.app.base.app.*
 import com.app.base.config.AppSettings
@@ -57,16 +59,15 @@ abstract class AppContext : BaseAppContext() {
 
     private fun configNetworkApi() {
         NetContext.get()
-            .commonConfig(this)
-            .errorMessage(newErrorMessage())
-            .rxResultPostTransformer(newPostTransformer())
-            .setUp()
-            .addBuilder()
-            .aipHandler(newApiHandler(errorHandler.get()))
-            .httpConfig(newHttpConfig(userManager.get(), appSettings.get(), errorHandler.get()))
-            .errorDataAdapter(newErrorDataAdapter())
-            .exceptionFactory { null }
-            .setup()
+            .init(this) {
+                errorMessage(newErrorMessage())
+                rxResultPostTransformer(newPostTransformer())
+            }.addHostConfig {
+                aipHandler(newApiHandler(errorHandler.get()))
+                httpConfig(newHttpConfig(userManager.get(), appSettings.get(), errorHandler.get()))
+                errorDataAdapter(newErrorDataAdapter())
+                exceptionFactory { _, _ -> null }
+            }
     }
 
     private fun configFoundation() {
@@ -77,7 +78,6 @@ abstract class AppContext : BaseAppContext() {
             .setDefaultFragmentAnimator(FragmentScaleAnimator())//Fragment切换动画
             .setDefaultPageStart(appSettings.get().defaultPageStart)//分页开始页码
             .setDefaultPageSize(appSettings.get().defaultPageSize)//默认分页大小
-            .setupRxJavaErrorHandler()
             .apply {
                 //Dialog 最短展示时间
                 minimumShowingDialogMills = appSettings.get().minimumDialogShowTime

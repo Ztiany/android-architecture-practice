@@ -6,16 +6,9 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
-import com.android.base.rx.RxKit;
-import com.app.base.R;
-
-import java.util.concurrent.TimeUnit;
-
 import androidx.appcompat.widget.AppCompatTextView;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
+
+import com.app.base.R;
 
 /**
  * Counter Button
@@ -41,8 +34,6 @@ public class CounterButton extends AppCompatTextView {
     private int mNormalTextColor;
     private int mCountingTextColor;
     private int mDisableTextColor;
-
-    private CompositeDisposable mCompositeSubscription;
 
     public CounterButton(Context context) {
         this(context, null);
@@ -101,7 +92,7 @@ public class CounterButton extends AppCompatTextView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        RxKit.disposeChecked(mCompositeSubscription);
+        //TODO: cancel the countdown.
         mStopCountingTime = System.currentTimeMillis();
     }
 
@@ -110,20 +101,18 @@ public class CounterButton extends AppCompatTextView {
         super.setEnabled(false);
         setTextColor(mCountingTextColor);
 
-        Disposable disposable = createCounter(count)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete(() -> postDelayed(this::reset, 1000))
-                .subscribe(aLong -> {
-                    setCounterText(String.valueOf(aLong));
-                    mStopCounting = aLong.intValue();
-                }, RxKit.logErrorHandler());
-
-        mCompositeSubscription = RxKit.newCompositeIfUnsubscribed(mCompositeSubscription);
-        mCompositeSubscription.add(disposable);
+        //TODO: start the countdown.
+        /*
+            onCounting:
+                setCounterText(String.valueOf(aLong));
+                mStopCounting = aLong.intValue();
+            onFinished
+                postDelayed(this::reset, 1000)
+        */
     }
 
     private void reset() {
-        RxKit.disposeChecked(mCompositeSubscription);
+        //TODO: cancel the countdown.
         mIsCounting = false;
         setEnabled(mDelayEnable);
         setText(mOriginText);
@@ -140,12 +129,6 @@ public class CounterButton extends AppCompatTextView {
             }
         }
         setText(ret);
-    }
-
-    public static Observable<Long> createCounter(final int count) {
-        return Observable.interval(0, 1, TimeUnit.SECONDS)
-                .take(count)
-                .map(aLong -> count - aLong);
     }
 
     public void clearCounter() {

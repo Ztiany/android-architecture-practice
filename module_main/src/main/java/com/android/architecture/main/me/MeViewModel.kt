@@ -1,6 +1,6 @@
 package com.android.architecture.main.me
 
-import com.android.base.app.mvvm.RxViewModel
+import androidx.lifecycle.ViewModel
 import com.app.base.services.usermanager.UserManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,6 +13,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MeViewModel @Inject constructor(
     val userManager: UserManager
-) : RxViewModel() {
+) : ViewModel() {
 
 }

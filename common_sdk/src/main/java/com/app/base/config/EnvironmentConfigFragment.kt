@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import com.android.base.app.fragment.BaseUIFragment
-import com.android.base.app.ui.viewBinding
+import com.android.base.architecture.fragment.base.BaseUIFragment
 import com.android.base.utils.android.views.views
 import com.android.base.utils.android.views.visibleOrGone
-import com.app.base.R
 import com.app.base.databinding.BaseDebugEnvironmentBinding
 
 /**
@@ -16,9 +14,7 @@ import com.app.base.databinding.BaseDebugEnvironmentBinding
  * Email: ztiany3@gmail.com
  * Date : 2019-08-13 19:17
  */
-class EnvironmentConfigFragment : BaseUIFragment() {
-
-    private val layout by viewBinding(BaseDebugEnvironmentBinding::bind)
+class EnvironmentConfigFragment : BaseUIFragment<BaseDebugEnvironmentBinding>() {
 
     companion object {
         private const val SHOW_TITLE = "show_title"
@@ -29,8 +25,6 @@ class EnvironmentConfigFragment : BaseUIFragment() {
             }
         }
     }
-
-    override fun provideLayout() = R.layout.base_debug_environment
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)

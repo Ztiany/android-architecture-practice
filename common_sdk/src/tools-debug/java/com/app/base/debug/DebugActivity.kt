@@ -1,8 +1,8 @@
 package com.app.base.debug
 
 import android.os.Bundle
-import com.android.base.app.activity.BaseActivity
-import com.android.base.app.fragment.tools.inFragmentTransaction
+import com.android.base.architecture.activity.BaseActivity
+import com.android.base.architecture.fragment.tools.inFragmentTransaction
 import com.android.base.utils.common.ifNull
 import com.app.base.R
 import dagger.hilt.android.AndroidEntryPoint

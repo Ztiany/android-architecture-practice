@@ -7,8 +7,7 @@ import com.app.base.data.storage.StorageManager
 import com.app.base.debug.ifOpenDebug
 import com.app.base.utils.JsonUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.reactivex.Completable
-import io.reactivex.processors.BehaviorProcessor
+import kotlinx.coroutines.flow.MutableStateFlow
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,7 +24,7 @@ internal class UserManagerImpl @Inject constructor(
         private const val APP_USER_KEY = "sys_user_login_key"
     }
 
-    private val observableUser = BehaviorProcessor.create<User>()
+    private val observableUser = MutableStateFlow(User.NOT_LOGIN)
 
     private var currentUser = User.NOT_LOGIN
 
@@ -40,7 +39,7 @@ internal class UserManagerImpl @Inject constructor(
             Timber.d("${context.packageName}-init AppDataSource end<-------------------------------------------------")
         }
 
-        observableUser.onNext(currentUser)
+        observableUser.value = currentUser
     }
 
     override fun saveUser(user: User) {
@@ -59,7 +58,7 @@ internal class UserManagerImpl @Inject constructor(
 
         currentUser = user
         userStorage.putEntity(APP_USER_KEY, currentUser)
-        observableUser.onNext(currentUser)
+        observableUser.value = currentUser
 
         ifOpenDebug {
             Timber.w("save new user -------------------------------------------------")
@@ -76,16 +75,14 @@ internal class UserManagerImpl @Inject constructor(
 
     override fun observableUser() = observableUser
 
-    override fun logout(): Completable {
-        clearUserData()
-        return Completable.complete()
+    override fun logout() {
     }
 
     @Synchronized
     private fun clearUserData() {
         Timber.d("start logout")
         currentUser = User.NOT_LOGIN
-        observableUser.onNext(currentUser)
+        observableUser.value = currentUser
         storageManager.clearUserAssociated()
         Timber.d("logout success")
     }

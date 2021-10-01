@@ -3,7 +3,7 @@ package com.android.architecture.launcher
 import android.content.Intent
 import android.os.Bundle
 import com.android.architecture.main.api.MainModule
-import com.android.base.app.activity.BaseActivity
+import com.android.base.architecture.activity.BaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.router.AppRouter
 import dagger.hilt.android.AndroidEntryPoint

@@ -9,10 +9,9 @@ import com.android.architecture.main.databinding.MainFragmentRootBinding
 import com.android.architecture.main.feed.FeedFragment
 import com.android.architecture.main.me.MeFragment
 import com.android.architecture.main.message.MessageFragment
-import com.android.base.app.fragment.BaseUIFragment
-import com.android.base.app.fragment.tools.FragmentInfo
-import com.android.base.app.fragment.tools.TabManager
-import com.android.base.app.ui.viewBinding
+import com.android.base.architecture.fragment.base.BaseUIFragment
+import com.android.base.architecture.fragment.tools.FragmentInfo
+import com.android.base.architecture.fragment.tools.TabManager
 import timber.log.Timber
 
 /**
@@ -20,15 +19,11 @@ import timber.log.Timber
  *      Email: ztiany3@gmail.com
  *      Date : 2019-09-19 16:06
  */
-class MainFragment : BaseUIFragment() {
+class MainFragment : BaseUIFragment<MainFragmentRootBinding>() {
 
     interface MainFragmentChild
 
-    private val layout by viewBinding(MainFragmentRootBinding::bind)
-
     private lateinit var tabManager: MainTabManager
-
-    override fun provideLayout() = R.layout.main_fragment_root
 
     @SuppressLint("BinaryOperationInTimber")
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {

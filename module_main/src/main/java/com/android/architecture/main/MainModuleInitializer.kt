@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
-import com.android.base.app.component.AppLifecycle
+import com.android.base.architecture.app.AppLifecycle
 import com.google.auto.service.AutoService
 
 @AutoService(AppLifecycle::class)

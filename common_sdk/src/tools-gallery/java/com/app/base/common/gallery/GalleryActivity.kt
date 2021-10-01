@@ -14,8 +14,8 @@ import android.view.View
 import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import com.android.base.app.activity.BaseActivity
-import com.android.base.app.ui.viewBinding
+import com.android.base.architecture.activity.BaseActivity
+import com.android.base.architecture.ui.viewBinding
 import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.image.ImageLoaderFactory
 import com.android.base.image.Source

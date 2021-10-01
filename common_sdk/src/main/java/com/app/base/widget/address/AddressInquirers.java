@@ -6,13 +6,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Ztiany
@@ -24,24 +19,21 @@ final class AddressInquirers {
     private static final String CHINA_ADDRESS_PATH = "address.json";
 
     private AddressQueryCallback mAddressQueryCallback;
-    private Disposable mDisposable;
 
     void setAddressQueryCallback(AddressQueryCallback addressQueryCallback) {
         mAddressQueryCallback = addressQueryCallback;
     }
 
     public void start() {
-        mDisposable = Observable.fromCallable(this::getAddressJson)
-                .subscribeOn(Schedulers.io())
-                .map(this::formJson)
-                .observeOn(AndroidSchedulers.mainThread())
-                .onTerminateDetach()
-                .subscribe(provinces -> {
+        /*
+            load address:
+                    this::getAddressJson
+             show address:
                     if (mAddressQueryCallback != null) {
                         List<IName> names = new ArrayList<>(provinces);
                         mAddressQueryCallback.onGetAddress(names);
                     }
-                });
+         */
     }
 
     interface AddressQueryCallback {
@@ -66,9 +58,7 @@ final class AddressInquirers {
     }
 
     void destroy() {
-        if (mDisposable != null && !mDisposable.isDisposed()) {
-            mDisposable.dispose();
-        }
+        //TODO: cancel the loading.
     }
 
 }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.RecyclerAdapter
-import com.android.base.app.ui.viewBinding
+import com.android.base.architecture.ui.viewBinding
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
 import com.android.base.utils.android.views.visibleOrInvisible

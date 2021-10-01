@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.os.Process
 import android.view.View
 import androidx.appcompat.app.AlertDialog.Builder
-import com.android.base.app.fragment.BaseUIFragment
-import com.android.base.app.fragment.tools.inFragmentTransaction
-import com.android.base.app.ui.viewBinding
+import com.android.base.architecture.fragment.base.BaseUIFragment
+import com.android.base.architecture.fragment.tools.inFragmentTransaction
 import com.android.sdk.permission.AutoPermission
 import com.android.sdk.permission.Permission
-import com.app.base.R
 import com.app.base.R.string
 import com.app.base.config.EnvironmentConfigFragment
 import com.app.base.data.storage.StorageManager
@@ -31,15 +29,11 @@ import javax.inject.Inject
  * Date : 2017-07-26 18:49
  */
 @AndroidEntryPoint
-class DebugFragment : BaseUIFragment() {
+class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
 
     @Inject lateinit var userManager: UserManager
 
     @Inject lateinit var storageManager: StorageManager
-
-    private val layout by viewBinding(BaseFragmentDebugBinding::bind)
-
-    override fun provideLayout() = R.layout.base_fragment_debug
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         initToolViews()

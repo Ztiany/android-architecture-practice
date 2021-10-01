@@ -2,9 +2,8 @@ package com.android.architecture.main.me
 
 import androidx.fragment.app.viewModels
 import com.android.architecture.main.MainNavigator
-import com.android.architecture.main.R
 import com.android.architecture.main.databinding.MainFragmentMeBinding
-import com.android.base.app.fragment.BaseUIFragment
+import com.android.base.architecture.fragment.base.BaseUIFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -14,12 +13,10 @@ import javax.inject.Inject
  *      Date : 2018-11-02 14:40
  */
 @AndroidEntryPoint
-class MeFragment : BaseUIFragment() {
+class MeFragment : BaseUIFragment<MainFragmentMeBinding>() {
 
     private val viewModel: MeViewModel by viewModels()
 
     @Inject lateinit var mainNavigator: MainNavigator
-
-    override fun provideLayout() = R.layout.main_fragment_me
 
 }

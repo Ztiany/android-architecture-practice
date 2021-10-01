@@ -2,7 +2,7 @@ package com.app.base.upgrade
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDialog
-import com.android.base.app.ui.viewBinding
+import com.android.base.architecture.ui.viewBinding
 import com.app.base.R
 import com.app.base.databinding.DialogUpgradeLoadingBinding
 

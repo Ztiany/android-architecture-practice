@@ -1,6 +1,6 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    kotlin("android")
     id("kotlin-parcelize")
 }
 
@@ -42,6 +42,4 @@ dependencies {
     api(project(":common_spec"))
     /*ARouter*/
     api(ThirdLibraries.arouter)
-    //Rx
-    api(ThirdLibraries.rxJava)
 }

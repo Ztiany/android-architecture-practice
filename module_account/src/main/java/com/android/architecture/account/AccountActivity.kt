@@ -3,7 +3,7 @@ package com.android.architecture.account
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.architecture.account.api.AccountModule
-import com.android.base.app.activity.BaseActivity
+import com.android.base.architecture.activity.BaseActivity
 import com.app.base.app.CannotShowExpiredDialogOnIt
 import dagger.hilt.android.AndroidEntryPoint
 
