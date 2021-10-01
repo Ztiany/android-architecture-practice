@@ -1,18 +1,18 @@
 val libs = listOf(
     "lib_foundation",
     "lib_base",
-    "lib_network",
-    "lib_cache",
-    "lib_common_ui",
     "lib_permission",
+    "lib_network",
+    "lib_storage",
     "lib_media_selector",
+    "lib_image_loader",
+    "lib_common_ui",
     "lib_upgrade",
-    "lib_social",
     "lib_safekeyboard",
     "lib_biometrics",
     "lib_qrcode",
-    "lib_image_loader",
-    "lib_rxjava2"
+    "lib_rxjava2",
+    "lib_social"
 )
 
 libs.forEach {

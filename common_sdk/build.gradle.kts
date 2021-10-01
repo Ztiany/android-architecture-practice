@@ -81,17 +81,16 @@ dependencies {
 
     //基础组件库
     api(project(":lib_base"))//基础类库
-    api(project(":lib_network"))//基础网络库
-    api(project(":lib_cache"))//缓存库
-    api(project(":lib_common_ui"))//基础UI
     api(project(":lib_permission"))//权限
+    api(project(":lib_storage"))//缓存库
+    api(project(":lib_network"))//基础网络库
+    api(project(":lib_image_loader"))//图片加载
+    api(project(":lib_common_ui"))//基础UI
     api(project(":lib_media_selector"))//媒体选择器
-    api(project(":lib_social"))//第三方登录
     api(project(":lib_upgrade"))//升级
     api(project(":lib_safekeyboard"))//安全键盘
     api(project(":lib_biometrics"))//生物识别
     api(project(":lib_qrcode"))//二维码
-    api(project(":lib_image_loader"))//图片加载
 
     //业务API
     implementation(project(":module_main_api"))

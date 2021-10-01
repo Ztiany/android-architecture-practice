@@ -2,7 +2,7 @@ package com.app.base.debug
 
 import android.os.Bundle
 import com.android.base.architecture.activity.BaseActivity
-import com.android.base.architecture.fragment.tools.inFragmentTransaction
+import com.android.base.architecture.fragment.tools.commit
 import com.android.base.utils.common.ifNull
 import com.app.base.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ class DebugActivity : BaseActivity() {
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         savedInstanceState.ifNull {
-            inFragmentTransaction {
+            commit {
                 addFragment(DebugFragment())
             }
         }

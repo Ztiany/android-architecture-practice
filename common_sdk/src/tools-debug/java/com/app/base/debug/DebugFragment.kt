@@ -7,7 +7,7 @@ import android.os.Process
 import android.view.View
 import androidx.appcompat.app.AlertDialog.Builder
 import com.android.base.architecture.fragment.base.BaseUIFragment
-import com.android.base.architecture.fragment.tools.inFragmentTransaction
+import com.android.base.architecture.fragment.tools.commit
 import com.android.sdk.permission.AutoPermission
 import com.android.sdk.permission.Permission
 import com.app.base.R.string
@@ -95,7 +95,7 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
             .setNegativeButton(string.cancel_) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
             .setPositiveButton("好的") { dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
-                requireActivity().inFragmentTransaction {
+                requireActivity().commit {
                     replaceToStack(fragment = EnvironmentConfigFragment.newInstance(false))
                 }
             }.show()

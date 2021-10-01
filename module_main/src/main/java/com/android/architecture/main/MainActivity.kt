@@ -7,7 +7,7 @@ import com.android.architecture.main.api.MainModule
 import com.android.base.architecture.activity.BaseActivity
 import com.android.base.architecture.fragment.tools.clearBackStack
 import com.android.base.architecture.fragment.tools.findFragmentByTag
-import com.android.base.architecture.fragment.tools.inFragmentTransaction
+import com.android.base.architecture.fragment.tools.commit
 import com.android.base.utils.android.XAppUtils
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
@@ -60,7 +60,7 @@ class MainActivity : BaseActivity(),CustomizeSystemBar {
             mainFragment = this@ifNonNull
         }.otherwise {
             mainFragment = MainFragment()
-            inFragmentTransaction {
+            commit {
                 addFragment(mainFragment)
             }
         }

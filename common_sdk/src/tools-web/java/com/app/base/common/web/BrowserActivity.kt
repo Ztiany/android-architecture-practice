@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.base.architecture.activity.BaseActivity
-import com.android.base.architecture.fragment.tools.inFragmentTransaction
+import com.android.base.architecture.fragment.tools.commit
 import com.app.base.R
 import com.app.base.config.AppSettings
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,13 +83,13 @@ class BrowserActivity : BaseActivity() {
         BaseWebFragment().apply {
             arguments = argument
         }.let {
-            inFragmentTransaction { addFragment(it) }
+            commit { addFragment(it) }
         }
     }
 
     private fun showCustomFragment(argument: Bundle, fragmentClass: String) {
         val instantiate = Fragment.instantiate(this, fragmentClass, argument)
-        inFragmentTransaction { addFragment(instantiate) }
+        commit { addFragment(instantiate) }
     }
 
 }
