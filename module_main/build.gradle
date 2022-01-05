@@ -1,0 +1,9 @@
+apply from: '../gradle/modularization_config.gradle'
+
+android {
+    resourcePrefix "main_"
+}
+
+dependencies {
+    implementation project(":module_main_api")
+}
