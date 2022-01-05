@@ -1,7 +1,7 @@
 package com.app.base.data.storage
 
 import com.android.base.utils.security.AESUtils
-import com.android.sdk.cache.Encipher
+import com.android.sdk.cache.encryption.Encipher
 import timber.log.Timber
 import java.nio.charset.Charset
 

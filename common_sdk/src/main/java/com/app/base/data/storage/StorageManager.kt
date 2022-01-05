@@ -1,8 +1,8 @@
 package com.app.base.data.storage
 
 import android.content.Context
-import com.android.sdk.cache.Encipher
-import com.android.sdk.cache.MMKVStorageFactoryImpl
+import com.android.sdk.cache.encryption.Encipher
+import com.android.sdk.cache.mmkv.MMKVStorageFactoryImpl
 import com.android.sdk.cache.Storage
 import com.android.sdk.cache.TypeFlag
 import dagger.hilt.android.qualifiers.ApplicationContext

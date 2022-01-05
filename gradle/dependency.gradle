@@ -134,34 +134,6 @@ ext {
             autoService                       : "com.google.auto.service:auto-service:1.0",
             autoServiceApt                    : "com.google.auto.service:auto-service:1.0",
 
-            //=:==========================================================================
-            //RxJava
-            //============================================================================
-            //https://github.com/ReactiveX/RxJava
-            rxJava                            : "io.reactivex.rxjava2:rxjava:2.2.19",
-
-            //https://github.com/ReactiveX/RxAndroid
-            rxAndroid                         : "io.reactivex.rxjava2:rxandroid:2.1.1",
-
-            //https://github.com/JakeWharton/RxBinding
-            rxBinding                         : "com.jakewharton.rxbinding3:rxbinding:$rxBindingVersion",
-            rxBindingCore                     : "com.jakewharton.rxbinding3:rxbinding-core:$rxBindingVersion",
-            rxBindingCompat                   : "com.jakewharton.rxbinding3:rxbinding-appcompat:$rxBindingVersion",
-            rxBindingMaterial                 : "com.jakewharton.rxbinding3:rxbinding-material:3.0.0:$rxBindingVersion",
-            rxBindingRecyclerView             : "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxBindingVersion",
-
-            //https://github.com/uber/AutoDispose
-            autoDispose                       : "com.uber.autodispose:autodispose:$autoDisposeVersion",
-            autoDisposeAndroid                : "com.uber.autodispose:autodispose-android:$autoDisposeVersion",
-            autoDisposeLifecycle              : "com.uber.autodispose:autodispose-lifecycle:$autoDisposeVersion",
-            autoDisposeLifecycleArchcomponents: "com.uber.autodispose:autodispose-android-archcomponents:$autoDisposeVersion",
-
-            //https://github.com/uber/RxDogTag
-            rxDogTag                          : "com.uber.rxdogtag:rxdogtag:0.2.0",
-
-            //RxReplay https://github.com/JakeWharton/RxRelay
-            rxReplay                          : "com.jakewharton.rxrelay2:rxrelay:2.1.1",
-
             //============================================================================
             //okHttp、retrofit、gson
             //============================================================================

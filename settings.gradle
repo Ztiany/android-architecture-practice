@@ -11,8 +11,6 @@ def libs = [
         "lib_safekeyboard",
         "lib_biometrics",
         "lib_qrcode",
-        "lib_rxjava2",
-        "lib_social"
 ]
 
 libs.forEach {
