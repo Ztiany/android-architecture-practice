@@ -1,4 +1,4 @@
-package com.android.architecture.account
+package com.android.architecture.main.initializer
 
 import android.app.Application
 import android.content.res.Configuration
@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AccountModuleInitializer @Inject constructor(
+class MainModuleInitializer @Inject constructor(
 
 ) : AppLifecycle {
 

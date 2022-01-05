@@ -1,9 +1,11 @@
 package com.app.base
 
 import android.content.Context
+import android.content.res.Configuration
 import androidx.multidex.MultiDex
 import com.android.base.AndroidSword
 import com.android.base.ErrorClassifier
+import com.android.base.architecture.app.AppLifecycle
 import com.android.base.architecture.app.BaseAppContext
 import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
 import com.android.sdk.net.NetContext
@@ -41,6 +43,8 @@ abstract class AppContext : BaseAppContext() {
 
     @Inject internal lateinit var appUpgradeInteractor: Lazy<AppUpgradeInteractor>
 
+    @Inject internal lateinit var moduleInitializers: Set<@JvmSuppressWildcards AppLifecycle>
+
     override fun attachBaseContext(base: Context) {
         MultiDex.install(this)
         super.attachBaseContext(base)
@@ -55,6 +59,9 @@ abstract class AppContext : BaseAppContext() {
         configFoundation()
         configLibraries()
         configThirdSDK()
+        moduleInitializers.forEach {
+            it.onCreate(this)
+        }
     }
 
     private fun configNetworkApi() {
@@ -103,6 +110,34 @@ abstract class AppContext : BaseAppContext() {
         //Umeng.init(this)
         //Bugly.init(this)
         //PushManager.getInstance().init(this)
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        moduleInitializers.forEach {
+            it.onLowMemory()
+        }
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        moduleInitializers.forEach {
+            it.onTrimMemory(level)
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        moduleInitializers.forEach {
+            it.onConfigurationChanged(newConfig)
+        }
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        moduleInitializers.forEach {
+            it.onTerminate()
+        }
     }
 
 }

@@ -35,7 +35,5 @@ business modules:
 
 ## 3 feature planing
 
-1. lib-net：支持多 host
-2. lib_componentize：平台化、组件 API 化研究
-3. lib_base：File Operation【Scoped Storage】
-4. lib_common_ui：ShapeableDrawable 封装
+1. lib_base：File Operation【Scoped Storage】
+2. lib_common_ui：ShapeableDrawable 封装
