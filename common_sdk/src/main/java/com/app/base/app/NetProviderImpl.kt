@@ -6,7 +6,6 @@ import com.android.sdk.net.core.provider.ApiHandler
 import com.android.sdk.net.core.provider.ErrorDataAdapter
 import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
-import com.android.sdk.net.rxjava.RxResultPostTransformer
 import com.app.base.R
 import com.app.base.config.AppSettings
 import com.app.base.data.protocol.ApiHelper
@@ -16,10 +15,8 @@ import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
 import com.app.base.debug.isOpenDebug
 import com.app.base.services.usermanager.UserManager
-import io.reactivex.*
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
-import org.reactivestreams.Publisher
 import retrofit2.Retrofit
 import timber.log.Timber
 import java.lang.reflect.Type
@@ -135,21 +132,6 @@ internal fun newErrorDataAdapter(): ErrorDataAdapter = object : ErrorDataAdapter
         return ApiHelper.isDataError(value)
     }
 }
-
-internal fun newPostTransformer(): RxResultPostTransformer<*> =
-    object : RxResultPostTransformer<Any> {
-        override fun apply(upstream: Single<Any>): SingleSource<Any> {
-            return upstream
-        }
-
-        override fun apply(upstream: Flowable<Any>): Publisher<Any> {
-            return upstream
-        }
-
-        override fun apply(upstream: Observable<Any>): ObservableSource<Any> {
-            return upstream
-        }
-    }
 
 internal fun newApiHandler(errorHandler: ErrorHandler): ApiHandler = ApiHandler { result ->
     //登录状态已过期，请重新登录、账号在其他设备登陆

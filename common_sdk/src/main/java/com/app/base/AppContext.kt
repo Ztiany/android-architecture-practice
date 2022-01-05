@@ -61,7 +61,6 @@ abstract class AppContext : BaseAppContext() {
         NetContext.get()
             .init(this) {
                 errorMessage(newErrorMessage())
-                rxResultPostTransformer(newPostTransformer())
             }.addHostConfig {
                 aipHandler(newApiHandler(errorHandler.get()))
                 httpConfig(newHttpConfig(userManager.get(), appSettings.get(), errorHandler.get()))
