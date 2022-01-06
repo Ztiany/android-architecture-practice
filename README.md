@@ -1,4 +1,4 @@
-# Android App Architecture Template
+# Android App Architecture Practice
 
 ## 1 download
 
@@ -36,4 +36,4 @@ business modules:
 ## 3 feature planing
 
 1. lib_base：File Operation【Scoped Storage】
-2. lib_common_ui：ShapeableDrawable 封装
+2. lib_common_ui：ShapeableDrawable
