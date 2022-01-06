@@ -12,8 +12,6 @@ git submodule init
 git submodule update
 ```
 
-make sure the projects in the same directory.
-
 ## 2 explanation
 
 [common modules](libraries): 
