@@ -79,6 +79,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+        //https://stackoverflow.com/questions/68045875/for-what-purpose-is-useir-used
         useIR = true
     }
 
