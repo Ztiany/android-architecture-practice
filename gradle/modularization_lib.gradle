@@ -95,8 +95,6 @@ dependencies {
     implementation AndroidLibraries.composeThemeAdapter
     implementation AndroidLibraries.composeNavigation
     implementation AndroidLibraries.composeHiltNavigation
-    implementation AndroidLibraries.composeHiltViewModel
-    implementation AndroidLibraries.composeViewModel
 
     /*Hilt*/
     api AndroidLibraries.hiltDagger
