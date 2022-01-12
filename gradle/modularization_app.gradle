@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 kapt {
     arguments {
@@ -78,6 +79,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+        useIR = true
     }
 
     sourceSets {
@@ -91,6 +93,12 @@ android {
     //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
     buildFeatures {
         viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion kotlin_version
     }
 
     android.applicationVariants.all { variant ->
@@ -99,18 +107,54 @@ android {
         }
     }
 
+    packagingOptions {
+        pickFirst "lib/x86/libc++_shared.so"
+        pickFirst "lib/x86_64/libc++_shared.so"
+        pickFirst "lib/armeabi-v7a/libc++_shared.so"
+        pickFirst "lib/arm64-v8a/libc++_shared.so"
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
 }
 
 dependencies {
     /* all jar*/
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     //基础类库
     implementation project(":common_sdk")
+
     //测试
     testImplementation TestLibraries.junit
+
+    //navigation
+    implementation AndroidLibraries.navigationFragmentKtx
+    implementation AndroidLibraries.navigationUiKtx
+
+    //compose
+    implementation AndroidLibraries.composeActivity
+    implementation AndroidLibraries.composeUI
+    implementation AndroidLibraries.composeUIUtil
+    implementation AndroidLibraries.composeUITooling
+    implementation AndroidLibraries.composeUIToolingPreview
+    implementation AndroidLibraries.composeUIConstraint
+    implementation AndroidLibraries.composeAnimation
+    implementation AndroidLibraries.composeAnimationCore
+    implementation AndroidLibraries.composeAnimationGraphics
+    implementation AndroidLibraries.composeFoundation
+    implementation AndroidLibraries.composeFoundationLayout
+    implementation AndroidLibraries.composeMaterial
+    implementation AndroidLibraries.composeThemeAdapter
+    implementation AndroidLibraries.composeNavigation
+    implementation AndroidLibraries.composeHiltNavigation
+    implementation AndroidLibraries.composeHiltViewModel
+    implementation AndroidLibraries.composeViewModel
+
     /*Hilt*/
     api AndroidLibraries.hiltDagger
     kapt AndroidLibraries.hiltDaggerApt
+
     /*ARouter*/
     kapt ThirdLibraries.arouterAnnotation
 }

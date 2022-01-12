@@ -1,125 +1,174 @@
 ext {
 
     def arch_version = "2.1.0"
-    def appcompat_version = "1.3.1"
-    def activity_version = "1.3.1"
-    def fragment_version = "1.3.6"
-    def lifecycle_version = "2.4.0-beta01"
+    def appcompat_version = "1.4.0"
+    def activity_version = "1.4.0"
+    def fragment_version = "1.4.0"
+    def lifecycle_version = "2.4.0"
+    def ktx_version = "1.7.0"
+    def paging_version = "3.1.0"
+    def room_version = "2.4.0"
+    def persistence_version = "2.2.0"
+    navigation_version = '2.3.5'
+    hilt_version = '2.40.5'
+    compose_version = '1.1.0-rc01'
+    def accompanist_version = "0.18.0"
 
     AndroidLibraries = [
-            /*appcompat*/
-            appcompat               : "androidx.appcompat:appcompat:$appcompat_version",
-
-            /*activity*/
-            activityKtx             : "androidx.activity:activity-ktx:$activity_version",
-
-            /*fragment*/
-            fragmentKtx             : "androidx.fragment:fragment-ktx:$fragment_version",
-
             //arch
-            archRuntime             : "androidx.arch.core:core-runtime:$arch_version",
-            archCommon              : "androidx.arch.core:core-common:$arch_version",
+            archRuntime                         : "androidx.arch.core:core-runtime:$arch_version",
+            archCommon                          : "androidx.arch.core:core-common:$arch_version",
+
+            /*appcompat*/
+            appcompat                           : "androidx.appcompat:appcompat:$appcompat_version",
+            /*activity*/
+            activity                            : "androidx.activity:activity:$activity_version",
+            activityKtx                         : "androidx.activity:activity-ktx:$activity_version",
+            /*fragment*/
+            fragment                            : "androidx.fragment:fragment:$fragment_version",
+            fragmentKtx                         : "androidx.fragment:fragment-ktx:$fragment_version",
 
             //lifecycle, livedata, viewmodel
-            lifecycleCommon         : "androidx.lifecycle:lifecycle-common:$lifecycle_version",
-            lifecycleCommonJava8    : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
-            lifecycleRuntimeKtx     : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
-            lifecycleLiveDataCore   : "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version",
-            lifecycleLiveKtx        : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
-            lifecycleViewModelKtx   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
-            lifecycleReactiveStreams: "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version",
-            lifecycleProcess        : "androidx.lifecycle:lifecycle-process:$lifecycle_version",
+            lifecycleCommon                     : "androidx.lifecycle:lifecycle-common:$lifecycle_version",
+            lifecycleCommonJava8                : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+            lifecycleRuntimeKtx                 : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+            lifecycleLiveDataCore               : "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version",
+            lifecycleLiveKtx                    : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+            lifecycleViewModelKtx               : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+            lifecycleReactiveStreams            : "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version",
+            lifecycleProcess                    : "androidx.lifecycle:lifecycle-process:$lifecycle_version",
 
             //https://android.github.io/android-ktx/core-ktx/index.html
-            ktx                     : "androidx.core:core-ktx:1.6.0",
-
-            /*paging*/
-            paging                  : "androidx.paging:paging-common:3.0.0-beta01",
-            pagingRuntime           : "androidx.paging:paging-runtime:3.0.0-alpha13",
-            pagingRxJava            : "androidx.paging:paging-rxjava2:3.0.0-alpha05",
-
-            /*room*/
-            room                    : "androidx.room:room-common:2.3.0-beta01",
-            roomKtx                 : "androidx.room:room-ktx:2.3.0-alpha02",
-            roomGuava               : "androidx.room:room-guava:2.3.0-alpha02",
-            roomMigration           : "androidx.room:room-migration:2.3.0-beta01",
-            roomRuntime             : "androidx.room:room-runtime:2.3.0-beta01",
-            roomRxJava              : "androidx.room:room-rxjava2:2.3.0-alpha02",
-            roomApt                 : "androidx.room:room-compiler:2.3.0-alpha02",
-
-            //persistence
-            persistence             : "androidx.sqlite:sqlite:2.1.0",
-            persistenceFramework    : "androidx.sqlite:sqlite-framework:2.1.0",
-
-            //navigation
-            //classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-            //apply plugin: 'androidx.navigation.safeargs.kotlin'
-            navigationFragmentKtx   : "androidx.navigation:navigation-fragment-ktx:2.3.5",
-            navigationUiKtx         : "androidx.navigation:navigation-ui-ktx:2.3.5",
-
-            //tools
-            annotations             : "androidx.annotation:annotation:1.2.0",
-            exifinterface           : "androidx.exifinterface:exifinterface:1.3.3",
-            biometric               : "androidx.biometric:biometric:1.0.1",
-            documentfile            : "androidx.documentfile:documentfile:1.0.1",
-
-            //multi dex
-            multidex                : "androidx.multidex:multidex:2.0.1",
-            multidexInstrumentation : "androidx.multidex:multidex-instrumentation:2.0.0",
+            ktx                                 : "androidx.core:core-ktx:$ktx_version",
 
             /*ui component*/
-            recyclerView            : "androidx.recyclerview:recyclerview:1.2.1",
-            recyclerViewSelection   : "androidx.recyclerview:recyclerview-selection:1.0.0",
-            constraintLayout        : "androidx.constraintlayout:constraintlayout:2.1.0",
-            percentLayout           : "androidx.percentlayout:percentlayout:1.0.0",
-            cardView                : "androidx.cardview:cardview:1.0.0",
-            viewpager               : "androidx.viewpager:viewpager:1.0.0",
-            viewpager2              : "androidx.viewpager2:viewpager2:1.0.0",
-            asyncLayoutInflater     : "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0",
-            swiperefreshlayout      : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
-            transition              : "androidx.transition:transition:1.4.1",
-            dynamicAnimation        : "androidx.dynamicanimation:dynamicanimation:1.0.0",
-
+            recyclerView                        : "androidx.recyclerview:recyclerview:1.2.1",
+            recyclerViewSelection               : "androidx.recyclerview:recyclerview-selection:1.1.0",
+            constraintLayout                    : "androidx.constraintlayout:constraintlayout:2.1.2",
+            percentLayout                       : "androidx.percentlayout:percentlayout:1.0.0",
+            cardView                            : "androidx.cardview:cardview:1.0.0",
+            viewpager                           : "androidx.viewpager:viewpager:1.0.0",
+            viewpager2                          : "androidx.viewpager2:viewpager2:1.0.0",
+            asyncLayoutInflater                 : "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0",
+            swiperefreshlayout                  : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+            transition                          : "androidx.transition:transition:1.4.1",
+            dynamicAnimation                    : "androidx.dynamicanimation:dynamicanimation:1.0.0",
             //https://github.com/google/flexbox-layout/
-            flexbox                 : "com.google.android:flexbox:2.0.1",
-
+            flexbox                             : "com.google.android:flexbox:2.0.1",
             //https://github.com/material-components/material-components-android
-            material                : "com.google.android.material:material:1.4.0",
-
+            material                            : "com.google.android.material:material:1.4.0",
             // For loading and tinting drawables on older versions of the platform
-            appcompatResources      : "androidx.appcompat:appcompat-resources:$appcompat_version",
+            appcompatResources                  : "androidx.appcompat:appcompat-resources:$appcompat_version",
+
+            /*paging*/
+            paging                              : "androidx.paging:paging-common:$paging_version",
+            pagingRuntime                       : "androidx.paging:paging-runtime:$paging_version",
+            pagingRxJava                        : "androidx.paging:paging-rxjava2:$paging_version",
+
+            /*room*/
+            room                                : "androidx.room:room-common:$room_version",
+            roomKtx                             : "androidx.room:room-ktx:$room_version",
+            roomGuava                           : "androidx.room:room-guava:$room_version",
+            roomMigration                       : "androidx.room:room-migration:$room_version",
+            roomRuntime                         : "androidx.room:room-runtime:$room_version",
+            roomRxJava                          : "androidx.room:room-rxjava2:$room_version",
+            roomApt                             : "androidx.room:room-compiler:$room_version",
+
+            //persistence
+            persistenceFramework                : "androidx.sqlite:sqlite-framework:$persistence_version",
+            persistenceKtx                      : "androidx.sqlite:sqlite-ktx:$persistence_version",
+
+            //navigation
+            //classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
+            //apply plugin: 'androidx.navigation.safeargs.kotlin'
+            navigationFragmentKtx               : "androidx.navigation:navigation-fragment-ktx:$navigation_version",
+            navigationUiKtx                     : "androidx.navigation:navigation-ui-ktx:$navigation_version",
+
+            //tools
+            annotations                         : "androidx.annotation:annotation:1.3.0",
+            exifinterface                       : "androidx.exifinterface:exifinterface:1.3.3",
+            biometric                           : "androidx.biometric:biometric:1.1.0",
+            documentfile                        : "androidx.documentfile:documentfile:1.0.1",
+            //https://android-developers.googleblog.com/2020/07/decrease-startup-time-with-jetpack-app.html
+            startup                             : "androidx.startup:startup-runtime:1.1.0",
+            //https://developer.android.com/jetpack/androidx/releases/concurrent
+            concurrentFutures                   : "androidx.concurrent:concurrent-futures:1.1.0",
+            concurrentFuturesKtx                : "androidx.concurrent:concurrent-futures-ktx:1.1.0",
+            //data store
+            dataStoreCore                       : "androidx.datastore:datastore-core:1.0.0",
+            dataStoreSP                         : "androidx.datastore:datastore-preferences:1.0.0",
+
+            //multi dex
+            multidex                            : "androidx.multidex:multidex:2.0.1",
+            multidexInstrumentation             : "androidx.multidex:multidex-instrumentation:2.0.0",
 
             //Hilt
-            //classpath "com.google.dagger:hilt-android-gradle-plugin:2.36"
+            //classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
             //apply plugin: 'dagger.hilt.android.plugin'
-            hiltDagger              : "com.google.dagger:hilt-android:2.36",
-            hiltDaggerApt           : "com.google.dagger:hilt-android-compiler:2.36",
+            hiltDagger                          : "com.google.dagger:hilt-android:$hilt_version",
+            hiltDaggerApt                       : "com.google.dagger:hilt-android-compiler:$hilt_version",
 
-            //start-up
-            //https://android-developers.googleblog.com/2020/07/decrease-startup-time-with-jetpack-app.html
-            startup                 : "androidx.startup:startup-runtime:1.0.0-alpha03",
 
-            //https://developer.android.com/jetpack/androidx/releases/concurrent
-            concurrentFutures       : "androidx.concurrent:concurrent-futures:1.1.0",
-            concurrentFuturesKtx    : "androidx.concurrent:concurrent-futures-ktx:1.1.0"
+            //================================================================================
+            //Compose
+            //================================================================================
+            // https://developer.android.com/jetpack/compose/interop/adding
+            // Compose 与 Activity 集成
+            composeActivity                     : "androidx.activity:activity-compose:$activity_version",
+
+            //compose ui 基础
+            composeUI                           : "androidx.compose.ui:ui:$compose_version",
+            composeUIUtil                       : "androidx.compose.ui:ui-util:$compose_version",
+            composeUITooling                    : "androidx.compose.ui:ui-tooling:$compose_version",
+            composeUIToolingPreview             : "androidx.compose.ui:ui-tooling-preview:$compose_version",
+
+            //ui 组件
+            composeUIConstraint                 : "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02",
+
+            //compose 动画
+            composeAnimation                    : "androidx.compose.animation:animation:1.1.0-alpha03",
+            composeAnimationCore                : "androidx.compose.animation:animation-core:1.1.0-alpha03",
+            composeAnimationGraphics            : "androidx.compose.animation:animation-graphics:1.1.0-alpha03",
+
+            //compose 通用组件
+            composeFoundation                   : "androidx.compose.foundation:foundation:$compose_version",
+            composeFoundationLayout             : "androidx.compose.foundation:foundation-layout:$compose_version",
+
+            //compose material 实现
+            composeMaterial                     : "androidx.compose.material:material:$compose_version",
+            composeThemeAdapter                 : "com.google.android.material:compose-theme-adapter:1.0.5",// When using a MDC theme
+
+            //Integration with ViewModels, Hilt and Navigation
+            composeNavigation                   : "androidx.navigation:navigation-compose:2.4.0-rc01",
+            composeHiltNavigation               : "androidx.hilt:hilt-navigation-compose:1.0.0-rc01",
+            composeHiltViewModel                : "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03",
+            composeViewModel                    : 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07',
+
+            //第三方扩展
+            composeAccompanistAppCompatTheme    : "com.google.accompanist:accompanist-appcompat-theme:0.16.0",// When using a AppCompat theme
+            composeAccompanistSystemUIController: "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version",
+            composeAccompanistViewPager         : "com.google.accompanist:accompanist-pager:0.20.2",
+            composeAccompanistViewPagerIndicator: "com.google.accompanist:accompanist-pager-indicators:$accompanist_version",
+            composeAccompanistSwipeRefresh      : "com.google.accompanist:accompanist-swiperefresh:$accompanist_version",
+            composeAccompanistFlowLayout        : "com.google.accompanist:accompanist-flowlayout:$accompanist_version",
+            composeAccompanistPlaceHolder       : "com.google.accompanist:accompanist-placeholder-material:$accompanist_version",
+            composeAccompanistInsets            : "com.google.accompanist:accompanist-insets:$accompanist_version",
+            composeAccompanistCoil              : "com.google.accompanist:accompanist-coil:0.15.0",
+            composeThirdCoil                    : "io.coil-kt:coil-compose:1.3.2",
     ]
 
 
-    def KOTLIN_VERSION = "1.5.30"
-    def COROUTINES_VERSION = "1.5.2"
+    kotlin_version = "1.6.0"
+    def coroutines_version = "1.6.0"
 
     KotlinLibraries = [
             //Kotlin
-            kotlinStdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION",
-            kotlinReflect          : "org.jetbrains.kotlin:kotlin-reflect:$KOTLIN_VERSION",
+            kotlinStdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            kotlinReflect          : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
 
             //Coroutines
-            kotlinCoroutines       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${COROUTINES_VERSION}",
-            kotlinAndroidCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${COROUTINES_VERSION}",
-            kotlinxCoroutinesRx2   : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${COROUTINES_VERSION}",
-
-            //https://github.com/ReactiveX/RxKotlin
-            rxKotlin               : "io.reactivex.rxjava2:rxkotlin:2.4.0",
+            kotlinCoroutines       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines_version}",
+            kotlinAndroidCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines_version}",
 
             //https://github.com/JetBrains/kotlin/tree/master/libraries/kotlinx-metadata/jvm
             kotlinxMetadata        : "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.0.5"
@@ -127,12 +176,6 @@ ext {
 
 
     ThirdLibraries = [
-            ///////////////////////////////////////////////////////////////////////////
-            // Auto_Service
-            ///////////////////////////////////////////////////////////////////////////
-            autoService               : "com.google.auto.service:auto-service:1.0",
-            autoServiceApt            : "com.google.auto.service:auto-service:1.0",
-
             //============================================================================
             //okHttp、retrofit、gson
             //============================================================================

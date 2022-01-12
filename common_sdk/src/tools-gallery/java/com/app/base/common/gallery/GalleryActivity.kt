@@ -14,12 +14,12 @@ import android.view.View
 import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
+import com.android.base.adaption.TransitionListenerAdapter
 import com.android.base.architecture.activity.BaseActivity
 import com.android.base.architecture.ui.viewBinding
 import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.image.ImageLoaderFactory
 import com.android.base.image.Source
-import com.android.base.adaption.TransitionListenerAdapter
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.*
@@ -207,8 +207,8 @@ class GalleryActivity : BaseActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if (menu != null && galleryInfo.deletable) {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (galleryInfo.deletable) {
             menu.add(R.string.delete)
                 .setIcon(R.drawable.icon_delete)
                 .alwaysShow()

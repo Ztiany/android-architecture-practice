@@ -2,6 +2,14 @@ package com.android.architecture.launcher
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Text
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.android.architecture.main.api.MainModule
 import com.android.base.architecture.activity.BaseActivity
 import com.app.base.app.CustomizeSystemBar
@@ -30,13 +38,24 @@ class AppLauncherActivity : BaseActivity(), CustomizeSystemBar {
         if (!isTaskRoot && intent.hasCategory(Intent.CATEGORY_LAUNCHER) && intent.action != null && intent.action == Intent.ACTION_MAIN) {
             finish()
         }
+
+        setContent {
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .background(Color.Blue)
+            ) {
+                Text("Android Architecture Practice", Modifier.align(Alignment.Center))
+            }
+        }
+
     }
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         window.decorView.postDelayed({
             appRouter.build(MainModule.PATH).withTransition(0, 0).navigation()
             finishAfterTransition()
-        }, 1000)
+        }, 1500)
     }
 
 }

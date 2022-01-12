@@ -18,11 +18,13 @@ buildscript {
 
     dependencies {
         //android
-        classpath "com.android.tools.build:gradle:4.1.3"
+        classpath "com.android.tools.build:gradle:7.0.4"
         //kotlin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         //hilt
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.36"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        //navigation
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
         //channel
         classpath "com.leon.channel:plugin:2.0.3"
     }
@@ -44,8 +46,12 @@ allprojects {
 
         configurations.all {
             resolutionStrategy.force(
+                    AndroidLibraries.appcompat,
+                    AndroidLibraries.activity,
                     AndroidLibraries.activityKtx,
+                    AndroidLibraries.fragment,
                     AndroidLibraries.fragmentKtx,
+                    AndroidLibraries.ktx,
                     AndroidLibraries.annotations,
                     KotlinLibraries.kotlinStdlib,
                     KotlinLibraries.kotlinCoroutines

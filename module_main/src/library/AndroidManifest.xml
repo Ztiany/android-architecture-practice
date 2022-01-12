@@ -5,11 +5,13 @@
 
         <activity
             android:name="com.android.architecture.launcher.AppLauncherActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="com.android.app.base.AppLauncherActivity" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
