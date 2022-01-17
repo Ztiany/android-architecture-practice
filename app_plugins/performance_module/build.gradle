@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion AppConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion AppConfig.minSdkVersion
+        targetSdkVersion AppConfig.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+}
+
+dependencies {
+    //测试
+    testImplementation(TestLibraries.junit)
+
+    //android
+    implementation AndroidLibraries.appcompat
+
+    //Kotlin
+    implementation KotlinLibraries.kotlinStdlib
+    implementation KotlinLibraries.kotlinReflect
+    implementation KotlinLibraries.kotlinCoroutines
+    implementation KotlinLibraries.kotlinAndroidCoroutines
+}

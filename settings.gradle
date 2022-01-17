@@ -18,6 +18,10 @@ libs.forEach {
     project(":$it").projectDir = file("${rootProject.projectDir}/libraries/$it")
 }
 
+//性能模块
+include ":performance_module"
+project(":performance_module").projectDir = file("${rootProject.projectDir}/app_plugins/performance_module")
+
 //业务基础架构
 include(":common_spec")
 include(":common_ui")
