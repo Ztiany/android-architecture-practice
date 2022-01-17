@@ -35,7 +35,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "me.ztiany.architecture.${project.name.toLowerCase()}"
+        applicationId "com.vclusters.cloud"
         minSdkVersion AppConfig.minSdkVersion
         targetSdkVersion AppConfig.targetSdkVersion
         versionCode AppConfig.versionCode
@@ -64,7 +64,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             manifestPlaceholders = [screenOrientation: "unspecified"]
-            resValue("string", "app_name", "Android 架构模板(测试)")
+            resValue("string", "app_name", "瑞驰云手机(测试)")
             ndk {
                 abiFilters 'armeabi-v7a', 'x86'
             }
@@ -76,7 +76,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue("string", "app_name", "Android 架构模板")
+            resValue("string", "app_name", "瑞驰云手机")
             ndk {
                 abiFilters 'armeabi-v7a'
             }
