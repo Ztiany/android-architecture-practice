@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--MainTab-->
-    <item name="main_feed" type="id" />
-    <item name="main_message" type="id" />
-    <item name="main_me" type="id" />
+    <!-- ============================ Main ============================ -->
+    <item name="main_cloud_phone" type="id" />
+    <item name="main_cloud_assistant" type="id" />
+    <item name="main_mine" type="id" />
+    <dimen name="main_table_height">50dp</dimen>
+
+    <!-- https://stackoverflow.com/questions/40172219/custom-textsize-of-bottomnavigationview-support-android -->
+    <style name="MainTableTextAppearanceSelected" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="MainTableTextAppearanceNormal" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
 
 </resources>

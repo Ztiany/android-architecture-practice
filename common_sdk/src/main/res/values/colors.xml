@@ -2,7 +2,7 @@
 <resources>
 
     <!-- ============================ UI设计规范 ============================ -->
-    <color name="app_main">#FF1E26</color><!--主色调-->
+    <color name="app_main">#2D60FF</color><!--主色调-->
     <color name="app_white">@color/white</color>
 
     <color name="app_tips_success">#07C160</color><!--提示：完成-->
@@ -49,7 +49,7 @@
     <color name="opacity80_white">#CCFFFFFF</color>
 
     <!-- 文字 -->
-    <color name="text_normal">#808080</color>
+    <color name="text_normal">#CCCCCC</color>
     <color name="text_link">#007AFF</color>
     <color name="text_warn">#FA5151</color>
 

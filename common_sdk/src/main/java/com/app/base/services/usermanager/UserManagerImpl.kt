@@ -71,7 +71,7 @@ internal class UserManagerImpl @Inject constructor(
         return currentUser
     }
 
-    override fun userLogined() = user().logined()
+    override fun userLogined() = user().isLogin()
 
     override fun observableUser() = observableUser
 

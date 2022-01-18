@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.architecture.account">
+    package="com.vclusters.cloud.account">
 
     <application>
 
         <!--登录注册界面-->
         <activity
-            android:name="com.android.architecture.account.AccountActivity"
+            android:name=".AccountActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 

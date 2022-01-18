@@ -43,6 +43,8 @@ abstract class AppContext : BaseAppContext() {
 
     @Inject internal lateinit var appUpgradeInteractor: Lazy<AppUpgradeInteractor>
 
+    @Inject internal lateinit var androidPlatform: Lazy<AndroidPlatform>
+
     @Inject internal lateinit var moduleInitializers: Set<@JvmSuppressWildcards AppLifecycle>
 
     override fun attachBaseContext(base: Context) {
@@ -70,7 +72,7 @@ abstract class AppContext : BaseAppContext() {
                 errorMessage(newErrorMessage())
             }.addHostConfig {
                 aipHandler(newApiHandler(errorHandler.get()))
-                httpConfig(newHttpConfig(userManager.get(), appSettings.get(), errorHandler.get()))
+                httpConfig(newHttpConfig(userManager.get(), appSettings.get(), androidPlatform.get(), errorHandler.get()))
                 errorDataAdapter(newErrorDataAdapter())
                 exceptionFactory { _, _ -> null }
             }

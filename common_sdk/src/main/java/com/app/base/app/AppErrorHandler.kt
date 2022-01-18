@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.android.architecture.main.api.MainModule
+import com.vclusters.cloud.main.api.MainModule
 import com.android.base.AndroidSword
 import com.android.sdk.net.core.message.ErrorMessageFactory
 import com.android.sdk.net.core.exception.ApiErrorException

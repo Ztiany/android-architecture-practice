@@ -4,18 +4,18 @@
     tools:ignore="MissingDefaultResource">
 
     <item
-        android:id="@id/main_feed"
-        android:icon="@drawable/main_icon_tab_discovery"
+        android:id="@id/main_cloud_phone"
+        android:icon="@drawable/main_sel_tab_phone"
         android:title="@string/main_tab_cloud_phone" />
 
     <item
-        android:id="@id/main_message"
-        android:icon="@drawable/main_icon_tab_message"
+        android:id="@id/main_cloud_assistant"
+        android:icon="@drawable/main_sel_tab_assistant"
         android:title="@string/main_tab_assistant" />
 
     <item
-        android:id="@id/main_me"
-        android:icon="@drawable/main_icon_tab_me"
+        android:id="@id/main_mine"
+        android:icon="@drawable/main_sel_tab_mine"
         android:title="@string/main_tab_mine" />
 
 </menu>

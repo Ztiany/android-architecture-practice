@@ -35,7 +35,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.vclusters.cloud"
+        applicationId "com.vclusters.cloud.phone"
         minSdkVersion AppConfig.minSdkVersion
         targetSdkVersion AppConfig.targetSdkVersion
         versionCode AppConfig.versionCode

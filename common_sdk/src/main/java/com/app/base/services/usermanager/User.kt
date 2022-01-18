@@ -1,7 +1,7 @@
 package com.app.base.services.usermanager
 
 import android.os.Parcelable
-import com.app.base.data.protocol.SEX_MALE
+import com.android.common.apispec.SEX_MALE
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -18,7 +18,9 @@ data class User(
     /**头像url*/
     val avatar: String = "",
     /**性别*/
-    val Sex: Int = SEX_MALE,
+    val sex: Int = SEX_MALE,
+    /**token*/
+    val token: String = "",
 ) : Parcelable {
 
     companion object {
@@ -27,4 +29,4 @@ data class User(
 
 }
 
-fun User?.logined() = this != null && this !== User.NOT_LOGIN
+fun User?.isLogin() = this != null && this !== User.NOT_LOGIN

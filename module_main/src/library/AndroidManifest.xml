@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.architecture.main">
+    package="com.vclusters.cloud.main">
 
     <application>
 
         <activity
-            android:name="com.android.architecture.launcher.AppLauncherActivity"
+            android:name="com.vclusters.cloud.main.launch.AppLaunchActivity"
             android:exported="true"
             android:screenOrientation="portrait">
 
@@ -18,7 +18,7 @@
         </activity>
 
         <activity
-            android:name="com.android.architecture.main.MainActivity"
+            android:name=".home.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
             android:launchMode="singleTask"

@@ -3,7 +3,6 @@
     <string name="main_tab_cloud_phone">云手机</string>
     <string name="main_tab_assistant">云助手</string>
     <string name="main_tab_mine">我的</string>
-
     <string name="main_exit_tips">再点击一次退出 APP</string>
 
 </resources>

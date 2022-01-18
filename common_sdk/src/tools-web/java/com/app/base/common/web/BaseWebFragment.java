@@ -163,11 +163,11 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
     private void setupViews() {
         /*Find view*/
-        mWebView = getLayout().webView;
-        mWebProgress = new WebProgress(getLayout().webPb);
-        mErrorLayout = getLayout().layoutError.getRoot();
-        mTitleLayout = getLayout().atlWebRulesTitle;
-        mCustomLayout = getLayout().webFlCustom;
+        mWebView = getViewBinding().webView;
+        mWebProgress = new WebProgress(getViewBinding().webPb);
+        mErrorLayout = getViewBinding().layoutError.getRoot();
+        mTitleLayout = getViewBinding().atlWebRulesTitle;
+        mCustomLayout = getViewBinding().webFlCustom;
 
         /*Title*/
         mTitleLayout.setOnNavigationOnClickListener(v -> Fragments.exitFragment(this));

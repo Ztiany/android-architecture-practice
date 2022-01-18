@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit
 internal fun newHttpConfig(
     userManager: UserManager,
     appSettings: AppSettings,
+    androidPlatform: AndroidPlatform,
     errorHandler: ErrorHandler
 ): HttpConfig {
 
@@ -49,7 +50,7 @@ internal fun newHttpConfig(
                 .readTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
             //Api 签名协议
-            configApiProtocol(userManager, builder)
+            configApiProtocol(userManager, androidPlatform, builder)
             //调试配置
             configDebugIfNeeded(builder)
         }

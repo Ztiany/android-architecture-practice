@@ -7,7 +7,7 @@ import android.os.Process
 import android.view.View
 import androidx.appcompat.app.AlertDialog.Builder
 import com.android.base.architecture.fragment.base.BaseUIFragment
-import com.android.base.architecture.fragment.tools.commit
+import com.android.base.architecture.fragment.tools.doFragmentTransaction
 import com.android.sdk.permission.AutoPermission
 import com.android.sdk.permission.Permission
 import com.app.base.R.string
@@ -58,9 +58,9 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
     }
 
     private fun initToolViews() {
-        layout.debugSwitch.setOnClickListener { showSwitchTips() }
-        layout.debugOpenUeTool.setOnClickListener { openUETool() }
-        layout.debugRestart.setOnClickListener { confirmRestart() }
+        viewBinding.debugSwitch.setOnClickListener { showSwitchTips() }
+        viewBinding.debugOpenUeTool.setOnClickListener { openUETool() }
+        viewBinding.debugRestart.setOnClickListener { confirmRestart() }
     }
 
     private fun confirmRestart() {
@@ -95,7 +95,7 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
             .setNegativeButton(string.cancel_) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
             .setPositiveButton("好的") { dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
-                requireActivity().commit {
+                requireActivity().doFragmentTransaction {
                     replaceToStack(fragment = EnvironmentConfigFragment.newInstance(false))
                 }
             }.show()

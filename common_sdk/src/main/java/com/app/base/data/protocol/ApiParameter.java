@@ -10,12 +10,20 @@ import okhttp3.RequestBody;
 
 public final class ApiParameter {
 
-    static final String HEADER_TOKEN_NAME = "Token";
-
-    static final String HEADER_PLATFORM_NAME = "Platform";
-    static final String HEADER_PLATFORM_VALUE = "android";
-
-    static final String HEADER_VERSION_NAME = "ver";
+    /*登录 token*/
+    static final String HEADER_TOKEN_KEY = "Authorization";
+    /*版本名*/
+    static final String HEADER_VERSION_NAME_KEY = "versionName";
+    /*版本号*/
+    static final String HEADER_VERSION_CODE_KEY = "versionCode";
+    /*设备唯一标识*/
+    static final String HEADER_DEVICE_ID_KEY = "devicesId";
+    /*手机品牌*/
+    static final String HEADER_BRAND_KEY = "brand";
+    /*平台标识*/
+    static final String HEADER_OS_KEY = "os";
+    /*平台标识【固定为 Android】*/
+    static final String HEADER_OS_VALUE = "android";
 
     public static final String HEADER_JSON = "Content-Type: application/json; charset=utf-8";
 
@@ -28,7 +36,7 @@ public final class ApiParameter {
 
         for (Map.Entry<String, String> entry : fieldParts.entrySet()) {
             params.put(
-                     entry.getKey(),
+                    entry.getKey(),
                     RequestBody.create(MediaType.parse("text/plain"), entry.getValue()));
         }
 

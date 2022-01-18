@@ -1,7 +1,9 @@
 package com.app.base.config
 
+import android.content.Context
 import com.android.base.utils.BaseUtils
 import com.app.base.data.storage.StorageManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -13,17 +15,18 @@ import javax.inject.Singleton
  */
 @Singleton
 class AppSettings @Inject internal constructor(
+    @ApplicationContext private val context: Context,
     storageManager: StorageManager
 ) {
 
     private val initialized = AtomicBoolean(false)
 
     fun baseWebUrl(): String {
-        return "https://www.wanandroid.com/"
+        return "http://192.168.210.199/"
     }
 
     fun baseApiUrl(): String {
-        return "https://www.wanandroid.com/"
+        return "http://192.168.210.199/api/"
     }
 
     fun init() {
@@ -50,6 +53,9 @@ class AppSettings @Inject internal constructor(
 
     val appFileProviderAuthorities: String
         get() = BaseUtils.getAppContext().packageName + ".file.provider"
+
+    /* todo: move it into native. */
+    val aesKey: String = "xgj7adwbtia-ow7x"
 
     internal fun selectSpecified(specifiedHost: String) {
         EnvironmentContext.select(API_HOST, specifiedHost)

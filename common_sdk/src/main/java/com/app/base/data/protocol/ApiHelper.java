@@ -1,20 +1,26 @@
 package com.app.base.data.protocol;
 
 
+import androidx.annotation.NonNull;
+
 import com.android.sdk.net.core.exception.ApiErrorException;
 import com.android.sdk.net.core.result.Result;
 
-import androidx.annotation.NonNull;
-
 public class ApiHelper {
 
-    /*Json解析错误*/
+    /**
+     * Json 解析错误
+     */
     private static final int DATA_ERROR = -8088;
 
-    /*返回成功*/
-    private static final int CODE_SUCCESS = 0;
+    /**
+     * 返回成功
+     */
+    private static final int CODE_SUCCESS = 200;
 
-    /*Key失效*/
+    /**
+     * Key 失效
+     */
     private static final int KEY_INVALID = 99;
 
     public static boolean isSuccess(@NonNull HttpResult<?> httpResult) {

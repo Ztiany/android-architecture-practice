@@ -3,8 +3,9 @@ package com.app.base.data.protocol;
 import androidx.annotation.RestrictTo;
 
 import com.android.sdk.net.core.https.HttpsUtils;
-import com.app.base.services.usermanager.UserManager;
+import com.app.base.app.AndroidPlatform;
 import com.app.base.debug.Debug;
+import com.app.base.services.usermanager.UserManager;
 import com.blankj.utilcode.util.AppUtils;
 
 import okhttp3.MediaType;
@@ -28,14 +29,14 @@ public class ProtocolUtils {
         }
     }
 
-    static void processHeader(UserManager userManager, Request.Builder newBuilder) {
-        //头部：X-Platform
-        newBuilder.header(ApiParameter.HEADER_PLATFORM_NAME, ApiParameter.HEADER_PLATFORM_VALUE);
-        /*头部：版本号*/
-        newBuilder.header(ApiParameter.HEADER_VERSION_NAME, AppUtils.getAppVersionName());
-        //头部：Token
+    static void processHeader(UserManager userManager, AndroidPlatform androidPlatform, Request.Builder newBuilder) {
+        newBuilder.header(ApiParameter.HEADER_OS_KEY, ApiParameter.HEADER_OS_VALUE);
+        newBuilder.header(ApiParameter.HEADER_VERSION_NAME_KEY, AppUtils.getAppVersionName());
+        newBuilder.header(ApiParameter.HEADER_VERSION_CODE_KEY, String.valueOf(AppUtils.getAppVersionCode()));
+        newBuilder.header(ApiParameter.HEADER_BRAND_KEY, android.os.Build.BRAND);
+        newBuilder.header(ApiParameter.HEADER_DEVICE_ID_KEY, androidPlatform.getDeviceId());
         if (userManager.userLogined()) {
-            newBuilder.header(ApiParameter.HEADER_TOKEN_NAME, "get token from appDataSource");
+            newBuilder.header(ApiParameter.HEADER_TOKEN_KEY, userManager.user().getToken());
         }
     }
 
