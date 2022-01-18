@@ -28,7 +28,7 @@
         android:paddingStart="20dp"
         android:paddingTop="8dp"
         android:text="@string/page_error_load_fail_tips"
-        android:textColor="@color/app_gray_level3"
+        android:textColor="@color/text_level3"
         android:textSize="14sp"/>
 
     <androidx.appcompat.widget.AppCompatButton

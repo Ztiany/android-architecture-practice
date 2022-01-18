@@ -15,7 +15,6 @@ import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import com.android.base.adaption.TransitionListenerAdapter
-import com.android.base.architecture.activity.BaseActivity
 import com.android.base.architecture.ui.viewBinding
 import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.image.ImageLoaderFactory
@@ -25,6 +24,7 @@ import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.*
 import com.android.base.utils.common.toArrayList
 import com.app.base.R
+import com.app.base.app.AppBaseActivity
 import com.app.base.databinding.GalleryActivityBinding
 import kotlinx.parcelize.Parcelize
 
@@ -35,7 +35,7 @@ import kotlinx.parcelize.Parcelize
  * Email: 1169654504@qq.com
  * Date : 2016-12-23 10:50
  */
-class GalleryActivity : BaseActivity() {
+class GalleryActivity : AppBaseActivity() {
 
     @Parcelize
     data class GalleryInfo(

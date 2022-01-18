@@ -3,7 +3,6 @@ package com.vclusters.cloud.main.home
 import android.content.Intent
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.android.base.architecture.activity.BaseActivity
 import com.android.base.architecture.fragment.tools.clearBackStack
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
 import com.android.base.architecture.fragment.tools.findFragmentByTag
@@ -12,6 +11,7 @@ import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
+import com.app.base.app.AppBaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.services.usermanager.UserManager
 import com.app.base.utils.setStatusBarLightMode
@@ -30,7 +30,7 @@ import javax.inject.Inject
  */
 @Route(path = MainModule.PATH)
 @AndroidEntryPoint
-class MainActivity : BaseActivity(),CustomizeSystemBar {
+class MainActivity : AppBaseActivity(),CustomizeSystemBar {
 
     private var clickToExit = false
 

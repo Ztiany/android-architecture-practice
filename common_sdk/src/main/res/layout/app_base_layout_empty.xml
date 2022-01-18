@@ -24,7 +24,7 @@
         android:layout_marginTop="3dp"
         android:paddingBottom="8dp"
         android:paddingEnd="20dp"
-        android:textColor="@color/app_gray_level3"
+        android:textColor="@color/text_level3"
         android:paddingStart="20dp"
         android:paddingTop="8dp"
         android:text="@string/page_error_no_data"

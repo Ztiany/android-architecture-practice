@@ -36,7 +36,7 @@ fun newAppStyleClickSpan(lifecycleOwner: LifecycleOwner, onClick: () -> Unit): C
         }
 
         override fun updateDrawState(ds: TextPaint) {
-            ds.color = Utils.getApp().getColorCompat(R.color.app_main)
+            ds.color = Utils.getApp().getColorCompat(R.color.colorPrimary)
             ds.isUnderlineText = false
         }
     }

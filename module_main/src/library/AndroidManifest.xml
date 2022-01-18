@@ -6,15 +6,14 @@
         <activity
             android:name="com.vclusters.cloud.main.launch.AppLaunchActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-
+            android:screenOrientation="portrait"
+            android:theme="@style/MainAppTheme.Launch">
             <intent-filter>
                 <action android:name="com.android.app.base.AppLauncherActivity" />
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity

@@ -7,5 +7,5 @@ interface CannotShowDialogOnIt
 /**This interface should be implemented by Activities that can not show a re-login dialog on it.*/
 interface CannotShowExpiredDialogOnIt
 
-/**This interface should be implemented by Activities who want to customize their system bar..*/
+/**This interface should be implemented by Activities who want to customize their system bar.*/
 interface CustomizeSystemBar
