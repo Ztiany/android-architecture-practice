@@ -124,7 +124,6 @@ dependencies {
 
     //基础类库
     implementation project(":common_sdk")
-    implementation project(":common_ui")
 
     //测试
     testImplementation TestLibraries.junit

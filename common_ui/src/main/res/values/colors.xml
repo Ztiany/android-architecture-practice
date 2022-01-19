@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================ Colors to apply in views ============================ -->
+    <!--主色调-->
+    <color name="colorPrimary">#2D60FF</color>
+    <!--主暗色调-->
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <!--控件-->
+    <color name="colorAccent">@color/colorPrimary</color>
+    <!--窗口背-->
+    <color name="page_bg_color">#F5F5F5</color>
+    <!--分割线-->
+    <color name="divider_color">#E5E5E5</color>
+    <!--不可用-->
+    <color name="btn_disable">#E5E5E5</color>
+    <!--按下-->
+    <color name="btn_pressed">#EAEAEA</color>
+    <!--color for tips-->
+    <color name="app_tips_success">#1A1A1A</color><!--提示：完成-->
+    <color name="app_tips_warn">#FA5151</color><!--提示：警告-->
+    <color name="app_tips_info">#10AEFF</color><!--提示：信息-->
+    <!--color for text-->
+    <color name="text_level1">#CCCCCC</color>
+    <color name="text_level2">#333333</color>
+    <color name="text_level3">#808080</color>
+    <color name="text_level4">#999999</color>
+    <color name="text_level6">#1A1A1A</color>
+    <color name="text_link">#007AFF</color>
+    <color name="text_warn">#FA5151</color>
+
+
+    <!-- ============================ Palette ============================ -->
+    <color name="translate">#00000000</color>
+    <!-- Palette black -->
+    <color name="opacity10_black">#1A000000</color>
+    <color name="opacity20_black">#33000000</color>
+    <color name="opacity30_black">#4D000000</color>
+    <color name="opacity40_black">#66000000</color>
+    <color name="opacity50_black">#80000000</color>
+    <color name="opacity60_black">#99000000</color>
+    <color name="opacity75_black">#BF000000</color>
+    <color name="opacity25_black">#40000000</color>
+    <color name="opacity80_black">#CC000000</color>
+    <!-- Palette white -->
+    <color name="opacity10_white">#1AFFFFFF</color>
+    <color name="opacity60_white">#99FFFFFF</color>
+    <color name="opacity80_white">#CCFFFFFF</color>
+
+</resources>

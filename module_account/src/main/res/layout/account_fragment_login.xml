@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <FrameLayout
+        android:id="@+id/flSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="15dp"
+        android:padding="7dp"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/ivSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:src="@drawable/icon_settings"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/view_update_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_gravity="right"
+            android:background="@drawable/shape_red_dot"
+            android:visibility="invisible" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

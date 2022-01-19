@@ -91,7 +91,13 @@ dependencies {
     api project(":lib_biometrics")//生物识别
     api project(":lib_qrcode")//二维码
 
-    //业务API
+    //UI 规范
+    api project(":common_ui")
+
+    //接口规范
+    implementation project(":common_spec")
+
+    //依赖的业务 API
     implementation project(":module_main_api")
 
     //Android
