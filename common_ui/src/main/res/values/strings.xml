@@ -79,6 +79,8 @@
     <string name="page_error_server_error">@string/error_service_error</string>
 
     <!-- ====================================表单校验提示==================================== -->
+    <!--账号-->
+    <string name="please_enter_account">请输入账号</string>
     <!--密码-->
     <string name="please_enter_password">请输入密码</string>
     <string name="please_enter_confirm_password">请确认密码</string>
@@ -105,6 +107,5 @@
     <string name="please_select_time">请选择时间</string>
 
     <!-- ====================================具体业务==================================== -->
-    <string name="real_app_name">Android 架构模板</string>
 
 </resources>

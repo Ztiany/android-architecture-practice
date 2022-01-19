@@ -14,9 +14,7 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
-        viewBinding.accountBtnLogin.setOnClickListener {
-            viewModel.login("", "")
-        }
+
     }
 
 }
