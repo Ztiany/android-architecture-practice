@@ -64,7 +64,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             manifestPlaceholders = [screenOrientation: "unspecified"]
-            resValue("string", "app_name", "瑞驰云手机(测试)")
+            resValue("string", "app_name", "瑞驰云手机")
             ndk {
                 abiFilters 'armeabi-v7a', 'x86'
             }

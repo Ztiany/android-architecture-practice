@@ -10,7 +10,6 @@ import com.app.base.services.usermanager.UserManager
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 
-@ActivityRetainedScoped
 class AccountRepository @Inject constructor(
     private val accountApi: AccountApi,
     private val androidPlatform: AndroidPlatform,

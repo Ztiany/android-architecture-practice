@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 kapt {
     arguments {
@@ -80,6 +79,10 @@ dependencies {
     implementation AndroidLibraries.navigationFragmentKtx
     implementation AndroidLibraries.navigationUiKtx
 
+    /*Hilt*/
+    api AndroidLibraries.hiltDagger
+    kapt AndroidLibraries.hiltDaggerApt
+
     //compose
     implementation AndroidLibraries.composeActivity
     implementation AndroidLibraries.composeUI
@@ -96,10 +99,6 @@ dependencies {
     implementation AndroidLibraries.composeThemeAdapter
     implementation AndroidLibraries.composeNavigation
     implementation AndroidLibraries.composeHiltNavigation
-
-    /*Hilt*/
-    api AndroidLibraries.hiltDagger
-    kapt AndroidLibraries.hiltDaggerApt
 
     /*ARouter*/
     kapt ThirdLibraries.arouterAnnotation

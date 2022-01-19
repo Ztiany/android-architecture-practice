@@ -1,5 +1,4 @@
 buildscript {
-
     apply from: './gradle/dependency.gradle'
     apply from: './gradle/configuration.gradle'
 

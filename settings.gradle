@@ -1,3 +1,5 @@
+apply from: './gradle/module_config.gradle'
+
 def libs = [
         "lib_foundation",
         "lib_base",
