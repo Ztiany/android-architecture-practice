@@ -58,7 +58,7 @@ internal class AppErrorHandler @Inject constructor(
 
     override fun handleGlobalError(throwable: Throwable) {
         handler.post {
-            if (throwable is ApiErrorException && isTokenExpired(throwable) && userManager.userLogined()) {
+            if (throwable is ApiErrorException && isTokenExpired(throwable) && userManager.isUserLogin()) {
                 showReLoginDialog()
             }
         }

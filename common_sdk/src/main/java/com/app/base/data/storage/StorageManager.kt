@@ -1,10 +1,10 @@
 package com.app.base.data.storage
 
 import android.content.Context
-import com.android.sdk.cache.encryption.Encipher
-import com.android.sdk.cache.mmkv.MMKVStorageFactoryImpl
 import com.android.sdk.cache.Storage
 import com.android.sdk.cache.TypeFlag
+import com.android.sdk.cache.encryption.Encipher
+import com.android.sdk.cache.mmkv.MMKVStorageFactoryImpl
 import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 import java.lang.ref.WeakReference
@@ -20,7 +20,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class StorageManager @Inject internal constructor(
-        @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context
 ) {
 
     companion object {
@@ -32,20 +32,21 @@ class StorageManager @Inject internal constructor(
     private val storageFactory = MMKVStorageFactoryImpl()
 
     private val _userAssociated: Storage = storageFactory
-            .newBuilder(context)
-            .storageId(USER_ASSOCIATED_CACHE_ID)
-            .build()
+        .newBuilder(context)
+        .storageId(USER_ASSOCIATED_CACHE_ID)
+        .build()
 
     private val _stable: Storage = storageFactory
-            .newBuilder(context)
-            .storageId(STABLE_CACHE_ID)
-            .build()
+        .newBuilder(context)
+        .storageId(STABLE_CACHE_ID)
+        .build()
 
     private val _userAssociatedIdList by lazy {
         _stable.getEntity<MutableList<String>>(
-                ALL_USER_ASSOCIATED_CACHE_ID_KEY,
-                object : TypeFlag<MutableList<String>>() {}.rawType)
-                ?: mutableListOf()
+            ALL_USER_ASSOCIATED_CACHE_ID_KEY,
+            object : TypeFlag<MutableList<String>>() {}.rawType
+        )
+            ?: mutableListOf()
     }
 
     private val storageCache = HashMap<String, WeakReference<Storage>>()
@@ -83,16 +84,16 @@ class StorageManager @Inject internal constructor(
         }
 
         val storage = storageFactory.newBuilder(context)
-                .storageId(storageId)
-                .encipher(encipher)
-                .build()
+            .storageId(storageId)
+            .encipher(encipher)
+            .build()
 
         storageCache[storageId] = WeakReference(storage)
 
         return storage
     }
 
-    /**仅由[AppDataSource.logout]在退出登录时调用*/
+    /**仅由[com.app.base.services.usermanager.UserManager.logout]在退出登录时调用*/
     internal fun clearUserAssociated() {
         userStorage().clearAll()
 

@@ -22,11 +22,11 @@ class AppSettings @Inject internal constructor(
     private val initialized = AtomicBoolean(false)
 
     fun baseWebUrl(): String {
-        return "http://192.168.210.199/"
+        return "http://demo.ysj.vclusters.com/"
     }
 
     fun baseApiUrl(): String {
-        return "http://192.168.210.199/api/"
+        return "http://demo.ysj.vclusters.com/api/"
     }
 
     fun init() {
@@ -89,10 +89,15 @@ class AppSettings @Inject internal constructor(
 
     private fun initEnvironment() {
         EnvironmentContext.startEdit {
-            add(API_HOST, Environment("测试", "Test", "http://www.fake.com/api/"))
-            add(H5_HOST, Environment("测试", "Test", "?"))
-            add(WX_KEY, Environment("测试", "Test", "?"))
-            add(ENV_VALUE, Environment("测试", "Test", "?"))
+            add(API_HOST, Environment("测试1", "Test1", "http://demo.ysj.vclusters.com/"))
+            add(H5_HOST, Environment("测试1", "Test1", "?"))
+            add(WX_KEY, Environment("测试1", "Test1", "?"))
+            add(ENV_VALUE, Environment("测试1", "Test1", "?"))
+
+            add(API_HOST, Environment("测试2", "Test2", "http://192.168.210.199/api/"))
+            add(H5_HOST, Environment("测试2", "Test2", "?"))
+            add(WX_KEY, Environment("测试2", "Test2", "?"))
+            add(ENV_VALUE, Environment("测试2", "Test2", "?"))
 
             add(API_HOST, Environment("生产", "Pro", "?"))
             add(H5_HOST, Environment("生产", "Pro", "?"))

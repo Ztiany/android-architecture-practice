@@ -85,7 +85,7 @@ internal fun newHttpConfig(
             })
 
             //HTTPS
-            ProtocolUtils.trustAllCertificationChecked(userManager, builder)
+            ProtocolUtils.trustAllCertificationChecked(builder)
         }
     }
 

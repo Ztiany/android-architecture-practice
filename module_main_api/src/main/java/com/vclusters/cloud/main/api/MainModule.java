@@ -6,7 +6,7 @@ public class MainModule {
 
     public static final String PAGE_KEY = "page_key";//int
 
-    public static final String ACTION_KEY = "action_key";
+    public static final String ACTION_KEY = "action_key";//int
 
     /**
      * 登录过期，重新登录

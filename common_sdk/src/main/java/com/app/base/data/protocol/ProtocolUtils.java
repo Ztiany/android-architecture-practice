@@ -1,5 +1,7 @@
 package com.app.base.data.protocol;
 
+import android.text.TextUtils;
+
 import androidx.annotation.RestrictTo;
 
 import com.android.sdk.net.core.https.HttpsUtils;
@@ -21,7 +23,7 @@ public class ProtocolUtils {
      *
      * @see <a href='https://stackoverflow.com/questions/51563859/javax-net-ssl-sslhandshakeexception-java-lang-illegalargumentexception-invalid'>javax-net-ssl-sslhandshakeexception-java-lang-illegalargumentexception-invalid</a>
      */
-    public static void trustAllCertificationChecked(UserManager userManager, OkHttpClient.Builder builder) {
+    public static void trustAllCertificationChecked(OkHttpClient.Builder builder) {
         if (Debug.trustHttpsCertification()) {
             HttpsUtils.SSLParams sslSocketFactory = HttpsUtils.getSslSocketFactory(null, null, null);
             builder.sslSocketFactory(sslSocketFactory.sSLSocketFactory, sslSocketFactory.trustManager)
@@ -35,8 +37,9 @@ public class ProtocolUtils {
         newBuilder.header(ApiParameter.HEADER_VERSION_CODE_KEY, String.valueOf(AppUtils.getAppVersionCode()));
         newBuilder.header(ApiParameter.HEADER_BRAND_KEY, android.os.Build.BRAND);
         newBuilder.header(ApiParameter.HEADER_DEVICE_ID_KEY, androidPlatform.getDeviceId());
-        if (userManager.userLogined()) {
-            newBuilder.header(ApiParameter.HEADER_TOKEN_KEY, userManager.user().getToken());
+        String userToken = userManager.getUserToken();
+        if (!TextUtils.isEmpty(userToken)) {
+            newBuilder.header(ApiParameter.HEADER_TOKEN_KEY, userToken);
         }
     }
 

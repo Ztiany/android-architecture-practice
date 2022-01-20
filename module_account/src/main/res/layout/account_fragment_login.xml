@@ -73,8 +73,12 @@
             <com.vclusters.cloud.account.widget.IconsEditText
                 android:id="@+id/account_et_phone"
                 style="@style/Account_StyleLoginEditText"
+                android:digits="@string/digits_phone"
                 android:hint="@string/please_enter_account"
+                android:imeOptions="actionNext"
                 android:inputType="phone"
+                android:maxLength="@integer/phone_length"
+                android:nextFocusDown="@id/account_et_password"
                 app:iet_enable_content_clearable="true"
                 app:iet_enable_tailing_icon="true" />
 
@@ -91,15 +95,20 @@
             <me.ztiany.widget.text.ClearableEditText
                 android:id="@+id/account_et_password"
                 style="@style/Account_StyleLoginEditText"
+                android:digits="@string/digits_password"
                 android:hint="@string/please_enter_password"
+                android:imeOptions="actionGo"
                 android:inputType="textPassword"
+                android:maxLength="@integer/password_length"
                 app:cet_enable_content_clearable="true"
                 app:cet_enable_password_visibility_toggle="true" />
 
             <Button
+                android:id="@+id/account_btn_login"
                 style="@style/Style_BtnLongRound"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
+                android:enabled="false"
                 android:text="@string/login" />
 
         </LinearLayout>

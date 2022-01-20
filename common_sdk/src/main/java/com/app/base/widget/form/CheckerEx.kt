@@ -1,6 +1,7 @@
 package com.app.base.widget.form
 
-import com.android.base.utils.common.*
+import com.android.base.utils.common.isChinaPhoneNumber
+import com.android.base.utils.common.isLengthIn
 import java.util.regex.Pattern
 
 /**是否符合手机号规范*/
@@ -13,23 +14,19 @@ fun CharSequence?.matchCellphone(): Boolean {
 }
 
 /**是否符合密码规范*/
-fun CharSequence?.matchBhPassword(): Boolean {
+fun CharSequence?.matchPassword(): Boolean {
     return if (this == null) {
         false
     } else {
-        eqBhPassword(this.toString())
+        eqPassword(this.toString())
     }
 }
 
 /**
- * 密码由8–15位的字母大小写、数字、特殊字符其中三种或以上组成，不允许空格，特殊字符包括
+ * 密码由 8–16 非特殊字符组成
  */
-private fun eqBhPassword(string: String): Boolean {
-    return isLengthIn(string, 8, 15) && !string.contains(" ") && listOf(
-            containsLowercaseLetter(string),
-            containsDigital(string),
-            containsUppercaseLetter(string),
-            /*特殊字符：.~!@#$%^&*()/|,<>?"';:_+-=[]{}*/
-            Pattern.matches("^.*[\\.~!@#$%^&*()/|,<>?\"';:_+\\-=\\[\\]{}]+.*$", string)
-    ).count { it } >= 3
+private fun eqPassword(string: String): Boolean {
+    return isLengthIn(string, 8, 16)
+            && !string.contains(" ")
+            && !Pattern.matches("^.*[\\\\.~!@#$%^&*()/|,<>?\"';:_+\\-=\\[\\]{}]+.*$", string)
 }

@@ -19,8 +19,6 @@ data class User(
     val avatar: String = "",
     /**性别*/
     val sex: Int = SEX_MALE,
-    /**token*/
-    val token: String = "",
 ) : Parcelable {
 
     companion object {

@@ -1,13 +1,15 @@
 package com.vclusters.cloud.account.data
 
 import com.android.base.utils.security.AESUtils
-import com.android.sdk.net.coroutines.CallResult
-import com.android.sdk.net.coroutines.apiCall
-import com.android.sdk.net.coroutines.onSucceeded
+import com.android.sdk.net.coroutines.executeApiCall
 import com.app.base.app.AndroidPlatform
 import com.app.base.config.AppSettings
+import com.app.base.services.usermanager.User
 import com.app.base.services.usermanager.UserManager
-import dagger.hilt.android.scopes.ActivityRetainedScoped
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import javax.inject.Inject
 
 class AccountRepository @Inject constructor(
@@ -17,19 +19,24 @@ class AccountRepository @Inject constructor(
     private val appSettings: AppSettings
 ) : AccountDataSource {
 
-    override suspend fun login(phone: String, password: String): CallResult<LoginResponse> {
+    override fun login(phone: String, password: String): Flow<User> {
         val loginRequest = LoginRequest(
-            phone = "18888888888",
-            password = AESUtils.encryptDataToBase64("123456789", AESUtils.AES, appSettings.aesKey) ?: "",
+            phone = phone,
+            password = AESUtils.encryptDataToBase64(password, AESUtils.AES, appSettings.aesKey) ?: "",
             imei = androidPlatform.getDeviceId(),
             diskName = androidPlatform.getDeviceName(),
             uuid = androidPlatform.getDeviceId(),
             mac = androidPlatform.getMAC(),
             ipAddr = androidPlatform.getIpAddress(),
         )
-        return apiCall { accountApi.login(loginRequest) }.onSucceeded {
-
+        return flow {
+            emit(executeApiCall(requireNonNullData = true) { accountApi.login(loginRequest) })
+        }.flatMapConcat {
+            Timber.d("-----------------------------")
+            userManager.saveUserToken(it.token)
+            userManager.syncUserInfo()
         }
+
     }
 
 }

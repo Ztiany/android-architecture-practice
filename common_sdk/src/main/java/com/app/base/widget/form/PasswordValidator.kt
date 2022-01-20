@@ -6,7 +6,7 @@ import com.app.base.R
 class PasswordValidator constructor(view: View) : TextValidator(view) {
 
     override fun validateTypeText(content: String): Boolean {
-        return content.matchBhPassword()
+        return content.matchPassword()
     }
 
     public override fun emptyTips(): Int {
