@@ -7,7 +7,7 @@
         <activity
             android:name=".AccountActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

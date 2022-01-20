@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <dimen name="account_label_padding">44dp</dimen>
+    <dimen name="account_label_padding">42dp</dimen>
     <dimen name="account_content_padding">40dp</dimen>
 
     <declare-styleable name="IconsEditText" tools:ignore="ResourceName">
@@ -14,5 +14,19 @@
         <!--must be a bitmap-->
         <attr name="iet_clear_drawable" format="reference" />
     </declare-styleable>
+
+    <style name="Account_StyleLoginEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/account_content_padding</item>
+        <item name="android:layout_marginEnd">@dimen/account_content_padding</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="singleLine">true</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 </resources>

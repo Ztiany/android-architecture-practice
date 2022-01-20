@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--充满一行的按钮-->
+    <style name="Style_BtnFullLine">
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
+        <item name="android:background">@drawable/sel_primary_btn_bg</item>
+        <item name="android:textColor">@color/color_primary_btn_text</item>
+    </style>
+
+    <!--长按钮-->
+    <style name="Style_BtnLong" parent="Style_BtnFullLine">
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
+    </style>
+
+    <!--长按钮 Round-->
+    <style name="Style_BtnLongRound" parent="Style_BtnLong">
+        <item name="android:background">@drawable/sel_primary_btn_bg_round30</item>
+    </style>
+
+</resources>

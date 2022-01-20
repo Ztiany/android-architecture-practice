@@ -12,7 +12,7 @@
 
             <item
                 android:state_enabled="true"
-                android:drawable="@color/white" />
+                android:drawable="@android:color/white" />
 
         </selector>
 
