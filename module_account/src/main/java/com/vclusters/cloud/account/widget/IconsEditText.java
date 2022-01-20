@@ -24,7 +24,7 @@ import me.ztiany.widget.common.Sizes;
 import timber.log.Timber;
 
 /**
- * 带两个 Icon 的 EditView，一个用于清理内容，一个用于自定义。【该 EditText 仅适用于 Account 的登录界面，不具备通用性】
+ * 带两个 Icon 的 EditText，一个用于清理内容，一个用于自定义。【该 EditText 仅适用于 Account 的登录界面，不具备通用性】
  */
 public class IconsEditText extends AppCompatEditText {
 
@@ -32,7 +32,11 @@ public class IconsEditText extends AppCompatEditText {
         void onIconClicked(IconsEditText iconsEditText, boolean pendingState);
     }
 
-    private final IconsAttrs mIconsAttrs = new IconsAttrs();
+    private Bitmap clearBitmap;
+    private Bitmap tailingOnBitmap;
+    private Bitmap tailingOffBitmap;
+    private boolean isTailingIconEnable;
+    private boolean isClearContentEnable;
     private boolean mIsTailingIconOn;
 
     private Paint mBitmapPaint;
@@ -87,28 +91,26 @@ public class IconsEditText extends AppCompatEditText {
         TypedArray typedArray = null;
         try {
             typedArray = context.obtainStyledAttributes(attrs, R.styleable.IconsEditText);
-
             BitmapDrawable clearDrawable = (BitmapDrawable) typedArray.getDrawable(R.styleable.IconsEditText_iet_clear_drawable);
             if (clearDrawable != null) {
-                mIconsAttrs.clearBitmap = clearDrawable.getBitmap();
+                clearBitmap = clearDrawable.getBitmap();
             }
-            if (mIconsAttrs.clearBitmap == null) {
-                mIconsAttrs.clearBitmap = BitmapFactory.decodeResource(getContext().getResources(), com.android.sdk.ui.R.drawable.base_ui_icon_clear);
+            if (clearBitmap == null) {
+                clearBitmap = BitmapFactory.decodeResource(getContext().getResources(), com.android.sdk.ui.R.drawable.base_ui_icon_clear);
             }
 
             BitmapDrawable passwordVisibleDrawable = (BitmapDrawable) typedArray.getDrawable(R.styleable.IconsEditText_iet_tailing_on_drawable);
             if (passwordVisibleDrawable != null) {
-                mIconsAttrs.tailingOnBitmap = passwordVisibleDrawable.getBitmap();
+                tailingOnBitmap = passwordVisibleDrawable.getBitmap();
             }
 
             BitmapDrawable passwordInvisibleDrawable = (BitmapDrawable) typedArray.getDrawable(R.styleable.IconsEditText_iet_tailing_off_drawable);
             if (passwordInvisibleDrawable != null) {
-                mIconsAttrs.tailingOffBitmap = passwordInvisibleDrawable.getBitmap();
+                tailingOffBitmap = passwordInvisibleDrawable.getBitmap();
             }
 
-            mIconsAttrs.isTailingIconEnable = typedArray.getBoolean(R.styleable.IconsEditText_iet_enable_tailing_icon, false);
-            mIconsAttrs.isClearContentEnable = typedArray.getBoolean(R.styleable.IconsEditText_iet_enable_content_clearable, true);
-
+            isTailingIconEnable = typedArray.getBoolean(R.styleable.IconsEditText_iet_enable_tailing_icon, false);
+            isClearContentEnable = typedArray.getBoolean(R.styleable.IconsEditText_iet_enable_content_clearable, true);
         } finally {
             if (typedArray != null) {
                 typedArray.recycle();
@@ -121,17 +123,17 @@ public class IconsEditText extends AppCompatEditText {
     }
 
     private Bitmap getTailingOnBitmap() {
-        if (mIconsAttrs.tailingOnBitmap == null) {
-            mIconsAttrs.tailingOnBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.icon_arrow_up);
+        if (tailingOnBitmap == null) {
+            tailingOnBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.icon_arrow_up);
         }
-        return mIconsAttrs.tailingOnBitmap;
+        return tailingOnBitmap;
     }
 
     private Bitmap getTailingOffBitmap() {
-        if (mIconsAttrs.tailingOffBitmap == null) {
-            mIconsAttrs.tailingOffBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.icon_arrow_down);
+        if (tailingOffBitmap == null) {
+            tailingOffBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.icon_arrow_down);
         }
-        return mIconsAttrs.tailingOffBitmap;
+        return tailingOffBitmap;
     }
 
     private Bitmap getPasswordBitmap() {
@@ -143,16 +145,16 @@ public class IconsEditText extends AppCompatEditText {
     }
 
     private void adjustPadding() {
-        boolean hasClearBitmap = mIconsAttrs.isClearContentEnable && !TextUtils.isEmpty(getTextValue());
+        boolean hasClearBitmap = isClearContentEnable && !TextUtils.isEmpty(getTextValue());
         int rightPadding;
 
-        if (mIconsAttrs.isTailingIconEnable) {
+        if (isTailingIconEnable) {
             rightPadding = mInitPaddingRight + getPasswordBitmap().getWidth() + mBitmapRightEdgeOffset;
             if (hasClearBitmap) {
-                rightPadding += (mBitmapMargin + mIconsAttrs.clearBitmap.getWidth());
+                rightPadding += (mBitmapMargin + clearBitmap.getWidth());
             }
         } else if (hasClearBitmap) {
-            rightPadding = mInitPaddingRight + mIconsAttrs.clearBitmap.getWidth() + mBitmapRightEdgeOffset;
+            rightPadding = mInitPaddingRight + clearBitmap.getWidth() + mBitmapRightEdgeOffset;
         } else {
             rightPadding = mInitPaddingRight;
         }
@@ -214,7 +216,7 @@ public class IconsEditText extends AppCompatEditText {
     private int detectTouchPosition(MotionEvent event) {
         float eventX = event.getX();
 
-        if (mIconsAttrs.isTailingIconEnable) {
+        if (isTailingIconEnable) {
 
             int passwordRight = getMeasuredWidth() - mInitPaddingRight - mBitmapRightEdgeOffset;
             int passwordLeft = passwordRight - getPasswordBitmap().getWidth();
@@ -222,17 +224,17 @@ public class IconsEditText extends AppCompatEditText {
                 return DOWN_POSITION_TAILING;
             }
 
-            if (mIconsAttrs.isClearContentEnable && !TextUtils.isEmpty(getTextValue())) {
+            if (isClearContentEnable && !TextUtils.isEmpty(getTextValue())) {
                 int clearRight = passwordLeft - mBitmapMargin;
-                int clearLeft = clearRight - mIconsAttrs.clearBitmap.getWidth();
+                int clearLeft = clearRight - clearBitmap.getWidth();
                 if (eventX >= clearLeft && eventX <= clearRight) {
                     return DOWN_POSITION_CLEAR;
                 }
             }
 
-        } else if (mIconsAttrs.isClearContentEnable && !TextUtils.isEmpty(getTextValue())) {
+        } else if (isClearContentEnable && !TextUtils.isEmpty(getTextValue())) {
             int clearRight = getMeasuredWidth() - mInitPaddingRight - mBitmapRightEdgeOffset;
-            int clearLeft = clearRight - mIconsAttrs.clearBitmap.getWidth();
+            int clearLeft = clearRight - clearBitmap.getWidth();
             if (eventX >= clearLeft && eventX <= clearRight) {
                 return DOWN_POSITION_CLEAR;
             }
@@ -250,21 +252,21 @@ public class IconsEditText extends AppCompatEditText {
         canvas.save();
         canvas.translate(getMeasuredWidth() - mInitPaddingRight, 0);
 
-        if (mIconsAttrs.isTailingIconEnable) {
+        if (isTailingIconEnable) {
             Bitmap passwordBitmap = getPasswordBitmap();
             canvas.translate(-(passwordBitmap.getWidth() + mBitmapRightEdgeOffset), 0);
             canvas.drawBitmap(passwordBitmap, 0, (int) ((getMeasuredHeight() - passwordBitmap.getHeight()) / 2.0F), mBitmapPaint);
         }
 
-        boolean hasClearBitmap = mIconsAttrs.isClearContentEnable && !TextUtils.isEmpty(getTextValue());
+        boolean hasClearBitmap = isClearContentEnable && !TextUtils.isEmpty(getTextValue());
 
         if (hasClearBitmap) {
-            if (mIconsAttrs.isTailingIconEnable) {
-                canvas.translate(-(mIconsAttrs.clearBitmap.getWidth() + mBitmapMargin), 0);
+            if (isTailingIconEnable) {
+                canvas.translate(-(clearBitmap.getWidth() + mBitmapMargin), 0);
             } else {
-                canvas.translate(-(mIconsAttrs.clearBitmap.getWidth() + mBitmapRightEdgeOffset), 0);
+                canvas.translate(-(clearBitmap.getWidth() + mBitmapRightEdgeOffset), 0);
             }
-            canvas.drawBitmap(mIconsAttrs.clearBitmap, 0, (int) ((getMeasuredHeight() - mIconsAttrs.clearBitmap.getHeight()) / 2.0F), mBitmapPaint);
+            canvas.drawBitmap(clearBitmap, 0, (int) ((getMeasuredHeight() - clearBitmap.getHeight()) / 2.0F), mBitmapPaint);
         }
 
         canvas.restore();
@@ -280,12 +282,9 @@ public class IconsEditText extends AppCompatEditText {
         invalidate();
     }
 
-    private static class IconsAttrs {
-        private Bitmap clearBitmap;
-        private Bitmap tailingOnBitmap;
-        private Bitmap tailingOffBitmap;
-        private boolean isTailingIconEnable;
-        private boolean isClearContentEnable;
+    public void setTailingIconEnable(boolean enable) {
+        isTailingIconEnable = enable;
+        adjustPadding();
     }
 
 }
