@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:ignore="ContentDescription">
 
     <FrameLayout
@@ -12,11 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
         android:padding="5dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
         <ImageView
@@ -41,33 +41,27 @@
         android:id="@+id/account_iv_login_logo"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/account_ic_login_logo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/account_fl_settings" />
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/account_ic_login_logo" />
 
     <ImageView
         android:id="@+id/account_iv_login_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:src="@drawable/account_ic_login_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/account_iv_login_logo" />
+        android:src="@drawable/account_ic_login_text" />
 
     <TextView
         android:id="@+id/account_tv_phone_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/account_label_padding"
-        android:text="@string/account"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/account_iv_login_text" />
+        android:text="@string/account" />
 
     <com.vclusters.cloud.account.widget.IconsEditText
         android:id="@+id/account_et_phone"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/account_content_padding"
         android:layout_marginTop="20dp"
@@ -77,9 +71,6 @@
         android:paddingBottom="20dp"
         android:textSize="14sp"
         app:iet_enable_content_clearable="true"
-        app:iet_enable_tailing_icon="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/account_tv_phone_label" />
+        app:iet_enable_tailing_icon="true" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
