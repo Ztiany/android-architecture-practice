@@ -118,7 +118,7 @@ public class IconsEditText extends AppCompatEditText {
         }
     }
 
-    public void setIconsEditTextListener(OnTailingIconClickListener onTailingIconClickListener) {
+    public void setOnTailingIconClickListener(OnTailingIconClickListener onTailingIconClickListener) {
         mOnTailingIconClickListener = onTailingIconClickListener;
     }
 
@@ -184,7 +184,9 @@ public class IconsEditText extends AppCompatEditText {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        handleTouchEvent(event);
+        if (handleTouchEvent(event)) {
+            return true;
+        }
         return super.onTouchEvent(event);
     }
 
@@ -194,7 +196,7 @@ public class IconsEditText extends AppCompatEditText {
         doDraw(canvas);
     }
 
-    public void handleTouchEvent(MotionEvent event) {
+    public boolean handleTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
             mDownPosition = detectTouchPosition(event);
@@ -211,6 +213,8 @@ public class IconsEditText extends AppCompatEditText {
                 }
             }
         }
+
+        return mDownPosition != DOWN_POSITION_NONE;
     }
 
     private int detectTouchPosition(MotionEvent event) {

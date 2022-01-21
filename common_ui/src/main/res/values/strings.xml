@@ -43,7 +43,9 @@
     <string name="album">相册</string>
     <string name="color">颜色</string>
     <string name="login">登录</string>
+    <string name="login_success">登录成功</string>
     <string name="register">注册</string>
+    <string name="register_success">注册成功</string>
     <string name="logout">安全退出</string>
     <string name="password">密码</string>
     <string name="remember_password">记住密码</string>

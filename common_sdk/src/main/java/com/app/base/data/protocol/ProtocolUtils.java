@@ -1,12 +1,11 @@
 package com.app.base.data.protocol;
 
-import android.text.TextUtils;
-
 import androidx.annotation.RestrictTo;
 
 import com.android.sdk.net.core.https.HttpsUtils;
 import com.app.base.app.AndroidPlatform;
 import com.app.base.debug.Debug;
+import com.app.base.services.usermanager.User;
 import com.app.base.services.usermanager.UserManager;
 import com.blankj.utilcode.util.AppUtils;
 
@@ -37,9 +36,9 @@ public class ProtocolUtils {
         newBuilder.header(ApiParameter.HEADER_VERSION_CODE_KEY, String.valueOf(AppUtils.getAppVersionCode()));
         newBuilder.header(ApiParameter.HEADER_BRAND_KEY, android.os.Build.BRAND);
         newBuilder.header(ApiParameter.HEADER_DEVICE_ID_KEY, androidPlatform.getDeviceId());
-        String userToken = userManager.getUserToken();
-        if (!TextUtils.isEmpty(userToken)) {
-            newBuilder.header(ApiParameter.HEADER_TOKEN_KEY, userToken);
+        User user = userManager.getUser();
+        if (user != User.Companion.getNOT_LOGIN()) {
+            newBuilder.header(ApiParameter.HEADER_TOKEN_KEY, user.getToken());
         }
     }
 

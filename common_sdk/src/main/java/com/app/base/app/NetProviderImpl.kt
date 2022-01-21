@@ -137,6 +137,6 @@ internal fun newErrorDataAdapter(): ErrorDataAdapter = object : ErrorDataAdapter
 internal fun newApiHandler(errorHandler: ErrorHandler): ApiHandler = ApiHandler { result ->
     //登录状态已过期，请重新登录、账号在其他设备登陆
     if (ApiHelper.isLoginExpired(result.code)) {
-        errorHandler.handleError(ApiErrorException(result.code, "登录过期"))
+        errorHandler.handleGlobalError(ApiErrorException(result.code, "登录过期"))
     }
 }

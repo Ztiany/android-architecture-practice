@@ -1,7 +1,7 @@
 package com.app.base.services.usermanager
 
 import android.os.Parcelable
-import com.android.common.apispec.SEX_MALE
+import com.android.common.apispec.UNAVAILABLE_FLAG
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -11,14 +11,12 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class User(
-    /**用户id*/
-    val id: String = "",
-    /**昵称*/
-    val nickname: String = "",
-    /**头像url*/
-    val avatar: String = "",
-    /**性别*/
-    val sex: Int = SEX_MALE,
+    /**用户 id*/
+    val id: Long = UNAVAILABLE_FLAG.toLong(),
+    /**用户名*/
+    val username: String = "",
+    /**鉴权标识*/
+    val token: String = ""
 ) : Parcelable {
 
     companion object {

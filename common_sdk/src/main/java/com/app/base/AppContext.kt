@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.multidex.MultiDex
 import com.android.base.AndroidSword
 import com.android.base.ErrorClassifier
+import com.android.base.ErrorConvert
 import com.android.base.architecture.app.AppLifecycle
 import com.android.base.architecture.app.BaseAppContext
 import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
@@ -91,13 +92,17 @@ abstract class AppContext : BaseAppContext() {
                 minimumShowingDialogMills = appSettings.get().minimumDialogShowTime
                 //默认的通用的LoadingDialog和Toast实现
                 loadingViewFactory = { AppLoadingView(it) }
+                //错误消息转换器
+                errorConvert = object : ErrorConvert {
+                    override fun convert(throwable: Throwable): CharSequence {
+                        return errorHandler.get().generateMessage(throwable)
+                    }
+                }
                 //错误分类器
                 errorClassifier = object : ErrorClassifier {
-                    override fun isNetworkError(throwable: Throwable) =
-                        throwable is NetworkErrorException || throwable is IOException
-
+                    override fun isNetworkError(throwable: Throwable) = throwable is NetworkErrorException || throwable is IOException
                     override fun isServerError(throwable: Throwable) =
-                        throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http code*/
+                        throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http*/
                 }
             }
     }

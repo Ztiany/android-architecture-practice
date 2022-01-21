@@ -1,24 +1,26 @@
 package com.app.base.data.protocol;
 
 
+import androidx.annotation.NonNull;
+
 import com.android.sdk.net.core.result.Result;
 import com.google.gson.annotations.SerializedName;
 
-import androidx.annotation.NonNull;
-
+@SuppressWarnings("unused")
 public class HttpResult<T> implements Result<T> {
 
     public HttpResult() {
+
     }
 
     HttpResult(int code) {
         this.code = code;
     }
 
-    @SerializedName("errorMsg")
+    @SerializedName("msg")
     private String msg;
 
-    @SerializedName("errorCode")
+    @SerializedName("status")
     private int code;
 
     @SerializedName("data")

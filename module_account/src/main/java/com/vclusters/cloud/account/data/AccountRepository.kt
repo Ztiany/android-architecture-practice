@@ -7,17 +7,20 @@ import com.app.base.config.AppSettings
 import com.app.base.services.usermanager.User
 import com.app.base.services.usermanager.UserManager
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flow
-import timber.log.Timber
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class AccountRepository @Inject constructor(
     private val accountApi: AccountApi,
     private val androidPlatform: AndroidPlatform,
     private val userManager: UserManager,
-    private val appSettings: AppSettings
+    private val appSettings: AppSettings,
+    private val historyUserStorage: HistoryUserStorage
 ) : AccountDataSource {
+
+    private val historyUsersFlow = MutableSharedFlow<List<HistoryUser>>(1)
 
     override fun login(phone: String, password: String): Flow<User> {
         val loginRequest = LoginRequest(
@@ -31,12 +34,29 @@ class AccountRepository @Inject constructor(
         )
         return flow {
             emit(executeApiCall(requireNonNullData = true) { accountApi.login(loginRequest) })
-        }.flatMapConcat {
-            Timber.d("-----------------------------")
-            userManager.saveUserToken(it.token)
-            userManager.syncUserInfo()
+        }.map {
+            val user = User(it.id, it.username, it.token)
+            userManager.saveUser(user)
+            user
         }
+    }
 
+    override suspend fun historyUserList(): Flow<List<HistoryUser>> {
+        return historyUsersFlow.also {
+            it.emit(historyUserStorage.historyUsers())
+        }
+    }
+
+    override suspend fun saveHistoryUser(historyUser: HistoryUser) {
+        historyUsersFlow.also {
+            it.emit(historyUserStorage.addHistoryUser(historyUser))
+        }
+    }
+
+    override suspend fun deleteHistoryUser(historyUser: HistoryUser) {
+        historyUsersFlow.also {
+            it.emit(historyUserStorage.deleteHistoryUser(historyUser))
+        }
     }
 
 }

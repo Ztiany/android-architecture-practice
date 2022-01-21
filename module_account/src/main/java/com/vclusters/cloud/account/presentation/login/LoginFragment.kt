@@ -11,9 +11,12 @@ import com.android.base.utils.android.views.textValue
 import com.app.base.widget.form.validateCellphone
 import com.app.base.widget.form.validatePassword
 import com.vclusters.cloud.account.AccountNavigator
+import com.vclusters.cloud.account.R
 import com.vclusters.cloud.account.databinding.AccountFragmentLoginBinding
+import com.vclusters.cloud.account.widget.IconsEditText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -46,8 +49,29 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
             loginChecked()
         }
 
+        viewBinding.accountEtPhone.setOnTailingIconClickListener { iconsEditText, pendingState ->
+            Timber.d("setOnTailingIconClickListener $pendingState")
+            if (pendingState) {
+                showHistoryUserWindow(iconsEditText)
+            } else {
+                dismissHistoryUserWindow()
+            }
+        }
+
         viewBinding.accountEtPhone.setText("19999999999")
         viewBinding.accountEtPassword.setText("123456789")
+    }
+
+    private fun dismissHistoryUserWindow() {
+
+    }
+
+    private fun showHistoryUserWindow(iconsEditText: IconsEditText) {
+        val historyUsers = viewModel.historyUsers
+        if (historyUsers.isEmpty()) {
+            return
+        }
+        showHistoryUserPopupWindow(requireContext(), viewBinding.accountEtPhone, historyUsers)
     }
 
     private fun ensureIfLoginBtnEnable() {
@@ -69,6 +93,7 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
         lifecycleScope.launch {
             handleFlowData(viewModel.loginState) {
                 onSuccess = {
+                    showMessage(R.string.login_success)
                     accountNavigator.exitAndToHomePage()
                 }
             }

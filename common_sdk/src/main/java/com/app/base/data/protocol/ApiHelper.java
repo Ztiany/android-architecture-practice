@@ -16,7 +16,7 @@ public class ApiHelper {
     /**
      * 返回成功
      */
-    private static final int CODE_SUCCESS = 200;
+    private static final int CODE_SUCCESS = 0;
 
     /**
      * Key 失效
