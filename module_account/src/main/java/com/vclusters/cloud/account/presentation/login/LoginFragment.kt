@@ -16,7 +16,6 @@ import com.vclusters.cloud.account.databinding.AccountFragmentLoginBinding
 import com.vclusters.cloud.account.widget.IconsEditText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,7 +49,6 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
         }
 
         viewBinding.accountEtPhone.setOnTailingIconClickListener { iconsEditText, pendingState ->
-            Timber.d("setOnTailingIconClickListener $pendingState")
             if (pendingState) {
                 showHistoryUserWindow(iconsEditText)
             } else {
@@ -68,6 +66,7 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
 
     private fun showHistoryUserWindow(iconsEditText: IconsEditText) {
         val historyUsers = viewModel.historyUsers
+        iconsEditText.setTailingIconState(true)
         if (historyUsers.isEmpty()) {
             return
         }

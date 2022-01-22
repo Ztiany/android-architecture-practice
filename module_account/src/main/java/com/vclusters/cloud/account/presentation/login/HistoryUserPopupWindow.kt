@@ -1,6 +1,8 @@
 package com.vclusters.cloud.account.presentation.login
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
@@ -9,7 +11,6 @@ import com.android.base.utils.android.views.measureSelfWithScreenSize
 import com.vclusters.cloud.account.R
 import com.vclusters.cloud.account.data.HistoryUser
 import com.vclusters.cloud.account.databinding.AccountLayoutHistoryUserBinding
-import timber.log.Timber
 
 private var windowHeight = 0
 
@@ -17,7 +18,9 @@ fun showHistoryUserPopupWindow(context: Context, anchor: View, historyUsers: Lis
 
     val popupWindow = PopupWindow(anchor.context)
     popupWindow.width = anchor.width
+    popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     val binding = AccountLayoutHistoryUserBinding.inflate(LayoutInflater.from(context), null, false)
+    popupWindow.isOutsideTouchable = true
     popupWindow.contentView = binding.root
 
     if (windowHeight == 0) {
@@ -27,8 +30,6 @@ fun showHistoryUserPopupWindow(context: Context, anchor: View, historyUsers: Lis
     }
 
     popupWindow.height = windowHeight
-
-    Timber.d("${anchor.width}, $windowHeight")
 
     popupWindow.showAsDropDown(anchor, 0, -(windowHeight + anchor.height))
 }

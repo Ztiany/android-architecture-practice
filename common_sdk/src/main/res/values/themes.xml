@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppRootTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge"
+    <style name="AppRootTheme" parent="Theme.MaterialComponents.Light.DarkActionBar"
         tools:override="true" />
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+    <style name="AppTheme" parent="QMUI">
         <!--main color-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

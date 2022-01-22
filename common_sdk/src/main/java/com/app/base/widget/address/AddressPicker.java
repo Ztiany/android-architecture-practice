@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.base.utils.android.adaption.OnItemClickListener;
 import com.android.base.utils.android.adaption.OnTabSelectedListenerAdapter;
-import com.android.base.utils.android.WindowUtils;
+import com.android.base.utils.android.ScreenUtils;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
 import com.google.android.material.tabs.TabLayout;
@@ -84,7 +84,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
             dialogWindow.setGravity(Gravity.BOTTOM);
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lp.height = (int) (WindowUtils.getScreenHeight() * 0.6F);
+            lp.height = (int) (ScreenUtils.getScreenHeight() * 0.6F);
             dialogWindow.setAttributes(lp);
         }
         if (Checker.isEmpty(mSource)) {

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:qmui_backgroundColor="@color/red"
+    app:qmui_backgroundColor="@color/white"
     app:qmui_borderColor="@color/divider_color"
     app:qmui_borderWidth="1dp"
     app:qmui_radius="5dp">

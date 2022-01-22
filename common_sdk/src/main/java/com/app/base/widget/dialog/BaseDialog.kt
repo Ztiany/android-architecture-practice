@@ -3,7 +3,7 @@ package com.app.base.widget.dialog
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AppCompatDialog
-import com.android.base.utils.android.WindowUtils
+import com.android.base.utils.android.ScreenUtils
 import com.app.base.R
 
 open class BaseDialog(
@@ -34,8 +34,8 @@ open class BaseDialog(
 
     override fun show() {
 
-        val screenWidth = WindowUtils.getScreenWidth()
-        val screenHeight = WindowUtils.getScreenHeight()
+        val screenWidth = ScreenUtils.getScreenWidth()
+        val screenHeight = ScreenUtils.getScreenHeight()
         val realScreenWidth = if (screenWidth < screenHeight) screenWidth else screenHeight
         val realScreenHeight = if (screenWidth < screenHeight) screenHeight else screenWidth
 
