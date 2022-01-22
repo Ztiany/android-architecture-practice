@@ -1,6 +1,7 @@
 package com.app.base.app
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -12,9 +13,10 @@ import com.app.base.data.protocol.ApiHelper
 import com.app.base.router.AppRouter
 import com.app.base.services.usermanager.UserManager
 import com.app.base.services.usermanager.isUserLogin
-import com.app.base.widget.dialog.TipsManager
+import com.app.base.widget.dialog.TipsTool
 import com.app.base.widget.dialog.showConfirmDialog
 import com.vclusters.cloud.main.api.MainModule
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -40,7 +42,8 @@ interface ErrorHandler {
 @Singleton
 internal class AppErrorHandler @Inject constructor(
     private val appRouter: AppRouter,
-    private val userManager: UserManager
+    private val userManager: UserManager,
+    @ApplicationContext private val context: Context
 ) : ErrorHandler {
 
     private var showingDialog: WeakReference<Dialog>? = null
@@ -53,7 +56,7 @@ internal class AppErrorHandler @Inject constructor(
 
     override fun handleError(throwable: Throwable) {
         if (!(throwable is ApiErrorException && ApiHelper.isLoginExpired(throwable.code))) {
-            TipsManager.showMessage(generateMessage(throwable))
+            TipsTool.showMessage(context, generateMessage(throwable))
         }
     }
 

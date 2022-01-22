@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import com.android.base.utils.android.views.getString
 import com.android.base.utils.android.views.textValue
-import com.app.base.widget.dialog.TipsManager
+import com.app.base.widget.dialog.TipsTool
 import com.google.android.material.textfield.TextInputLayout
 
 /**
@@ -65,7 +65,7 @@ fun validateSmsCode(view: View): Boolean {
 ///////////////////////////////////////////////////////////////////////////
 internal fun handleNoMatch(view: View, strId: Int) {
     val message = getString(strId)
-    TipsManager.showMessage(message)
+    TipsTool.showMessage(view.context, message)
 }
 
 internal fun handleMatch(view: View) {

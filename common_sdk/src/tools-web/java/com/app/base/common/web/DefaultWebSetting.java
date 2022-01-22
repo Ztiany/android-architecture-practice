@@ -1,17 +1,17 @@
 package com.app.base.common.web;
 
+import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
+
 import android.annotation.SuppressLint;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.android.base.utils.android.network.NetworkUtils;
 import com.android.base.utils.android.compat.AndroidVersion;
-import com.blankj.utilcode.util.NetworkUtils;
 
 import java.nio.charset.StandardCharsets;
 
 import timber.log.Timber;
-
-import static android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
 
 /**
  * @author Ztiany

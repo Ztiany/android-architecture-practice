@@ -2,12 +2,12 @@ package com.app.base.data.protocol;
 
 import androidx.annotation.RestrictTo;
 
+import com.android.base.utils.android.AppUtils;
 import com.android.sdk.net.core.https.HttpsUtils;
 import com.app.base.app.AndroidPlatform;
 import com.app.base.debug.Debug;
 import com.app.base.services.usermanager.User;
 import com.app.base.services.usermanager.UserManager;
-import com.blankj.utilcode.util.AppUtils;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;

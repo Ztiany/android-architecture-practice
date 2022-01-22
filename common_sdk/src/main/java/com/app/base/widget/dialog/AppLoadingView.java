@@ -3,13 +3,14 @@ package com.app.base.widget.dialog;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
 import com.android.base.architecture.ui.LoadingView;
 import com.app.base.R;
 
 import org.jetbrains.annotations.NotNull;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -58,7 +59,7 @@ public class AppLoadingView implements LoadingView {
 
     @Override
     public void showMessage(@NotNull CharSequence message) {
-        TipsManager.showMessage(message);
+        TipsTool.showMessage(mContext, message);
     }
 
     @Override

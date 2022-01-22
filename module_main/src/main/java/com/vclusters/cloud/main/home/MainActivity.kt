@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.base.architecture.fragment.tools.clearBackStack
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
 import com.android.base.architecture.fragment.tools.findFragmentByTag
-import com.android.base.utils.android.XAppUtils
+import com.android.base.utils.android.AppUtils
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
@@ -15,7 +15,7 @@ import com.app.base.app.AppBaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.services.usermanager.UserManager
 import com.app.base.utils.setStatusBarLightMode
-import com.app.base.widget.dialog.TipsManager
+import com.app.base.widget.dialog.TipsTool
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.api.MainModule
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +30,7 @@ import javax.inject.Inject
  */
 @Route(path = MainModule.PATH)
 @AndroidEntryPoint
-class MainActivity : AppBaseActivity(),CustomizeSystemBar {
+class MainActivity : AppBaseActivity(), CustomizeSystemBar {
 
     private var clickToExit = false
 
@@ -95,7 +95,7 @@ class MainActivity : AppBaseActivity(),CustomizeSystemBar {
         }
         if (!clickToExit) {
             clickToExit = true
-            TipsManager.showMessage(getString(R.string.main_exit_tips))
+            TipsTool.showMessage(this, getString(R.string.main_exit_tips))
             window.decorView.postDelayed({
                 clickToExit = false
             }, 1000)
@@ -104,7 +104,7 @@ class MainActivity : AppBaseActivity(),CustomizeSystemBar {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        XAppUtils.dispatchActivityResult(supportFragmentManager,requestCode, resultCode, data)
+        AppUtils.dispatchActivityResult(supportFragmentManager, requestCode, resultCode, data)
     }
 
 }

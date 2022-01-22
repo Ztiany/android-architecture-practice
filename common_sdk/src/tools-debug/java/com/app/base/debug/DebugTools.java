@@ -1,7 +1,7 @@
 package com.app.base.debug;
 
 import com.android.base.utils.android.DebugUtils;
-import com.android.base.utils.android.DevicesUtils;
+import com.android.base.utils.android.DeviceUtils;
 import com.app.base.AppContext;
 
 import org.joor.Reflect;
@@ -15,7 +15,7 @@ public class DebugTools {
     public static void init(AppContext appContext) {
         if (Debug.isOpenDebug()) {
             Timber.e("=============================Base Debug mode is activate=============================");
-            DevicesUtils.printSystemInfo();
+            DeviceUtils.printSystemInfo();
             DebugUtils.startStrictMode();
             installLogger();
             installStetho(appContext);
@@ -24,7 +24,7 @@ public class DebugTools {
 
     private static void installLogger() {
         Timber.plant(new Timber.DebugTree());
-        DevicesUtils.printSystemInfo();
+        DeviceUtils.printSystemInfo();
     }
 
     private static void installStetho(AppContext appContext) {

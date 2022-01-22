@@ -1,20 +1,17 @@
-package com.app.base.app
+package com.app.base.data.protocol
 
 import com.android.base.utils.android.views.getString
 import com.android.sdk.net.core.exception.ApiErrorException
-import com.android.sdk.net.core.provider.ApiHandler
-import com.android.sdk.net.core.provider.ErrorDataAdapter
-import com.android.sdk.net.core.provider.ErrorMessage
-import com.android.sdk.net.core.provider.HttpConfig
+import com.android.sdk.net.core.provider.*
 import com.app.base.R
+import com.app.base.app.AndroidPlatform
+import com.app.base.app.ErrorHandler
 import com.app.base.config.AppSettings
-import com.app.base.data.protocol.ApiHelper
-import com.app.base.data.protocol.ProtocolUtils
-import com.app.base.data.protocol.configApiProtocol
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
 import com.app.base.debug.isOpenDebug
 import com.app.base.services.usermanager.UserManager
+import com.app.base.utils.JsonUtils
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -89,6 +86,19 @@ internal fun newHttpConfig(
         }
     }
 
+}
+
+internal fun newErrorBodyHandler(): ErrorBodyHandler {
+    return object : ErrorBodyHandler {
+        override fun parseErrorBody(errorBody: String): ApiErrorException? {
+            val errorResult = JsonUtils.fromClass(errorBody, ErrorResult::class.java)
+            return if (errorResult == null) {
+                null
+            } else {
+                ApiErrorException(errorResult.code, errorResult.msg)
+            }
+        }
+    }
 }
 
 internal fun newErrorMessage(): ErrorMessage {

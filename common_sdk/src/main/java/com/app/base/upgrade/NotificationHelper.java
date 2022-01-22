@@ -4,12 +4,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 
-import com.app.base.AppContext;
-import com.app.base.R;
-import com.blankj.utilcode.util.AppUtils;
-import com.blankj.utilcode.util.Utils;
-
 import androidx.core.app.NotificationCompat;
+
+import com.android.base.utils.BaseUtils;
+import com.android.base.utils.android.AppUtils;
+import com.app.base.R;
 
 /**
  * @author Ztiany
@@ -25,7 +24,7 @@ class NotificationHelper {
     private NotificationCompat.Builder mBuilder;
 
     private void init() {
-        mNotificationManager = (NotificationManager) Utils.getApp().getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager = (NotificationManager) BaseUtils.getAppContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "upgrade", NotificationManager.IMPORTANCE_LOW);
@@ -34,7 +33,7 @@ class NotificationHelper {
             mNotificationManager.createNotificationChannel(channel);
         }
 
-        mBuilder = new NotificationCompat.Builder(Utils.getApp(), CHANNEL_ID)
+        mBuilder = new NotificationCompat.Builder(BaseUtils.getAppContext(), CHANNEL_ID)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentTitle(AppUtils.getAppName())
                 .setContentText("正在下载新版本")
@@ -55,11 +54,7 @@ class NotificationHelper {
         if (mNotificationManager == null) {
             init();
         }
-        if (total == -1) {
-            mBuilder.setProgress((int) total, (int) progress, true);
-        } else {
-            mBuilder.setProgress((int) total, (int) progress, false);
-        }
+        mBuilder.setProgress((int) total, (int) progress, total == -1);
         mNotificationManager.notify(ID, mBuilder.build());
     }
 

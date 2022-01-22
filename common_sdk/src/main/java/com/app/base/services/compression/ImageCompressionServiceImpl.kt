@@ -3,14 +3,14 @@ package com.app.base.services.compression
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.core.net.toFile
+import com.android.base.utils.BaseUtils
+import com.android.base.utils.common.FileUtils
 import com.android.base.utils.common.sizeOf
 import com.app.base.app.DispatcherProvider
 import com.app.base.config.AppDirectory
 import com.app.base.config.AppDirectory.PICTURE_FORMAT_JPEG
 import com.app.base.debug.ifOpenDebug
 import com.app.base.debug.ifOpenLog
-import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.Utils
 import id.zelory.compressor.Compressor
 import id.zelory.compressor.constraint.resolution
 import kotlinx.coroutines.Dispatchers
@@ -58,7 +58,7 @@ class ImageCompressionServiceImpl(
     }
 
     private suspend fun compress(originFile: File, spec: CompressionSpec, bitmapInfo: BitmapFactory.Options): Uri {
-        val newFile = Compressor.compress(Utils.getApp(), originFile, Dispatchers.Unconfined) {
+        val newFile = Compressor.compress(BaseUtils.getAppContext(), originFile, Dispatchers.Unconfined) {
             if (spec.maxLongSide > 0) {
                 val calcResolution = calcResolution(spec, bitmapInfo)
                 ifOpenLog {
@@ -73,6 +73,7 @@ class ImageCompressionServiceImpl(
         ExifUtils.copyExif(originFile.absolutePath, newFile.absolutePath)
 
         ifOpenDebug {
+
             FileUtils.copy(newFile.absolutePath, AppDirectory.createTempPicturePath(PICTURE_FORMAT_JPEG))
         }
 

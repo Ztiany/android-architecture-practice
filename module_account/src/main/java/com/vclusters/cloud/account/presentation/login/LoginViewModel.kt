@@ -41,7 +41,6 @@ class LoginViewModel @Inject constructor(
             _loginState.emit(Resource.loading())
             accountDataSource.login(phone, password)
                 .catch {
-                    Timber.d("$it")
                     _loginState.emit(Resource.error(it))
                 }.collect {
                     saveHistoryUser(phone, password)

@@ -15,8 +15,12 @@ import com.android.sdk.net.core.exception.ServerErrorException
 import com.android.sdk.net.extension.addHostConfig
 import com.android.sdk.net.extension.init
 import com.android.sdk.upgrade.AppUpgradeChecker
-import com.app.base.app.*
+import com.app.base.app.AndroidPlatform
+import com.app.base.app.ComponentProcessor
+import com.app.base.app.ErrorHandler
+import com.app.base.app.FragmentScaleAnimator
 import com.app.base.config.AppSettings
+import com.app.base.data.protocol.*
 import com.app.base.debug.DebugTools
 import com.app.base.router.AppRouter
 import com.app.base.services.usermanager.UserManager
@@ -71,6 +75,7 @@ abstract class AppContext : BaseAppContext() {
         NetContext.get()
             .init(this) {
                 errorMessage(newErrorMessage())
+                errorBodyHandler(newErrorBodyHandler())
             }.addHostConfig {
                 aipHandler(newApiHandler(errorHandler.get()))
                 httpConfig(newHttpConfig(userManager.get(), appSettings.get(), androidPlatform.get(), errorHandler.get()))

@@ -15,14 +15,13 @@ import com.app.base.config.EnvironmentConfigFragment
 import com.app.base.data.storage.StorageManager
 import com.app.base.databinding.BaseFragmentDebugBinding
 import com.app.base.services.usermanager.UserManager
-import com.blankj.utilcode.util.ActivityUtils
 import dagger.hilt.android.AndroidEntryPoint
 import org.joor.Reflect
 import javax.inject.Inject
 
 
 /**
- * 仅用于调试版本
+ * 调试工具
  *
  * @author Ztiany
  * Email: 1169654504@qq.com
@@ -53,7 +52,6 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
 
     private fun doRestart() {
         activity?.startActivity(Intent(requireActivity(), DebugActivity::class.java))
-        ActivityUtils.finishAllActivities()
         Process.killProcess(Process.myPid())
     }
 

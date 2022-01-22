@@ -1,11 +1,16 @@
 package com.app.base.utils
 
 
-import com.blankj.utilcode.constant.TimeConstants
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.getOrSet
+
+private const val MICROSECOND = 1
+private const val MICROSECOND_IN_SEC = 1000
+private const val MICROSECOND_IN_MIN = 60000
+private const val MICROSECOND_IN_HOUR = 3600000
+private const val MICROSECOND_IN_DAY = 86400000
 
 /**组合日期，默认格式为 `yyyyMMdd` */
 fun composeDate(year: Int, month: Int, day: Int, separator: String = ""): String {
@@ -80,20 +85,20 @@ fun timestampMillis() = System.currentTimeMillis()
 
 /**判断是不是今天， [wee] 用作对比，应使用 [getWeeOfToday] 来创建，这个参数用于同时进行多个时间判断时减少创建 [Calendar] 对象*/
 fun isToday(milliseconds: Long, wee: Long = getWeeOfToday()): Boolean {
-    return milliseconds >= wee && milliseconds < wee + TimeConstants.DAY
+    return milliseconds >= wee && milliseconds < wee + MICROSECOND_IN_DAY
 }
 
 /**判断是不是后天， [wee] 用作对比，应使用 [getWeeOfToday] 来创建，这个参数用于当前时间需要对比多个时间时减少创建 [Calendar] 对象*/
-fun isTheDayAfterTomorrow(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds, wee + 2 * TimeConstants.DAY)
+fun isTheDayAfterTomorrow(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds, wee + 2 * MICROSECOND_IN_DAY)
 
 /**判断是不是明天， [wee] 用作对比，应使用 [getWeeOfToday] 来创建，这个参数用于当前时间需要对比多个时间时减少创建 [Calendar] 对象*/
-fun isTomorrow(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds, wee + TimeConstants.DAY)
+fun isTomorrow(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds, wee + MICROSECOND_IN_DAY)
 
 /**判断是不是昨天， [wee] 用作对比，应使用 [getWeeOfToday] 来创建，这个参数用于当前时间需要对比多个时间时减少创建 [Calendar] 对象*/
-fun isYesterday(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds + TimeConstants.DAY, wee)
+fun isYesterday(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds + MICROSECOND_IN_DAY, wee)
 
 /**判断是不是前天， [wee] 用作对比，应使用 [getWeeOfToday] 来创建，这个参数用于当前时间需要对比多个时间时减少创建 [Calendar] 对象*/
-fun isDayBeforeYesterday(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds + TimeConstants.DAY * 2, wee)
+fun isDayBeforeYesterday(milliseconds: Long, wee: Long = getWeeOfToday()) = isToday(milliseconds + MICROSECOND_IN_DAY * 2, wee)
 
 /**判断是不是一分钟以内，[cur] 是用于对比的时间，默认是当前时间戳*/
 fun isWithinOneMinute(milliseconds: Long, cur: Long = timestampMillis()) = (cur - milliseconds) / 1000 < 60
@@ -106,8 +111,8 @@ fun isWithinHours(milliseconds: Long, cur: Long = timestampMillis(), hours: Int)
 
 /**返回时间上的分钟差，[cur] 是用于对比的时间，默认是当前时间戳*/
 fun minutesDifference(milliseconds: Long, cur: Long? = null) = ((cur
-        ?: timestampMillis()) - milliseconds) / 1000 / 60
+    ?: timestampMillis()) - milliseconds) / 1000 / 60
 
 /**返回时间上的小时差，[cur] 是用于对比的时间，默认是当前时间戳*/
 fun hoursDifference(milliseconds: Long, cur: Long? = null) = ((cur
-        ?: timestampMillis()) - milliseconds) / 1000 / 60 / 60
+    ?: timestampMillis()) - milliseconds) / 1000 / 60 / 60

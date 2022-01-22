@@ -1,12 +1,13 @@
 package com.app.base.widget.address;
 
 
-import com.blankj.utilcode.util.CloseUtils;
+import androidx.annotation.WorkerThread;
+
+import com.android.base.utils.common.Lang;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import androidx.annotation.WorkerThread;
 import okio.BufferedSource;
 import okio.Okio;
 
@@ -25,7 +26,7 @@ class IOUtils {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.closeIO(source);
+            Lang.closeIO(source);
         }
         return "";
     }

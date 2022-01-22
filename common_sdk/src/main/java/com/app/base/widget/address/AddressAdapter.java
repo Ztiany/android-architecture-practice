@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.android.base.adapter.recycler.RecyclerAdapter;
 import com.android.base.adapter.recycler.ViewHolder;
-import com.android.base.adaption.OnItemClickListener;
+import com.android.base.utils.android.adaption.OnItemClickListener;
 import com.app.base.R;
 
 import androidx.annotation.NonNull;

@@ -192,22 +192,26 @@ public class JsonUtils {
         return obj;
     }
 
+    public static boolean maybeJson(String content) {
+        return isObj(content) || isArray(content);
+    }
+
     /**
-     * 初略判断字符串是否为json array
+     * 初略判断字符串是否为 json array
      */
     private static boolean isArray(String str) {
         return str != null && !str.isEmpty() && str.startsWith("[") && str.endsWith("]");
     }
 
     /**
-     * 初略判断字符串是否为json obj
+     * 初略判断字符串是否为 json obj
      */
     private static boolean isObj(String str) {
         return str != null && !str.isEmpty() && str.startsWith("{") && str.endsWith("}");
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T fromJson(String json, Class<T> clazz) {
+    public static <T> T fromClass(String json, Class<T> clazz) {
         try {
             if (clazz == String.class) {
                 return (T) json;
@@ -262,7 +266,7 @@ public class JsonUtils {
             List<T> list = new ArrayList<>();
             for (int i = 0; i < jsonArray.size(); i++) {
                 String item = jsonArray.get(i).toString();
-                list.add(fromJson(item, cls));
+                list.add(fromClass(item, cls));
             }
             return list;
         } catch (Exception e) {

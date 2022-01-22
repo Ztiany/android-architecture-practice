@@ -10,22 +10,22 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.android.base.adaption.OnItemClickListener;
-import com.android.base.adaption.OnTabSelectedListenerAdapter;
-import com.android.base.utils.common.Checker;
-import com.app.base.R;
-import com.blankj.utilcode.util.ScreenUtils;
-import com.google.android.material.tabs.TabLayout;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.base.utils.android.adaption.OnItemClickListener;
+import com.android.base.utils.android.adaption.OnTabSelectedListenerAdapter;
+import com.android.base.utils.android.WindowUtils;
+import com.android.base.utils.common.Checker;
+import com.app.base.R;
+import com.google.android.material.tabs.TabLayout;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 
 /**
@@ -84,7 +84,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
             dialogWindow.setGravity(Gravity.BOTTOM);
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lp.height = (int) (ScreenUtils.getScreenHeight() * 0.6F);
+            lp.height = (int) (WindowUtils.getScreenHeight() * 0.6F);
             dialogWindow.setAttributes(lp);
         }
         if (Checker.isEmpty(mSource)) {

@@ -14,7 +14,7 @@ import android.view.View
 import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import com.android.base.adaption.TransitionListenerAdapter
+import com.android.base.utils.android.adaption.TransitionListenerAdapter
 import com.android.base.architecture.ui.viewBinding
 import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.image.ImageLoaderFactory

@@ -9,11 +9,11 @@ import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.android.base.utils.BaseUtils
 import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.android.views.textValue
 import com.android.base.utils.common.isLengthIn
 import com.app.base.R
-import com.blankj.utilcode.util.Utils
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import java.lang.ref.WeakReference
 
@@ -36,7 +36,7 @@ fun newAppStyleClickSpan(lifecycleOwner: LifecycleOwner, onClick: () -> Unit): C
         }
 
         override fun updateDrawState(ds: TextPaint) {
-            ds.color = Utils.getApp().getColorCompat(R.color.colorPrimary)
+            ds.color = BaseUtils.getAppContext().getColorCompat(R.color.colorPrimary)
             ds.isUnderlineText = false
         }
     }

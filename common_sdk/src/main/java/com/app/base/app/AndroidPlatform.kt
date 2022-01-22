@@ -2,11 +2,8 @@ package com.app.base.app
 
 import android.content.Context
 import android.os.Build
-import com.android.base.utils.android.DeviceIdUtil
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.DeviceUtils
-import com.blankj.utilcode.util.MetaDataUtils
-import com.blankj.utilcode.util.NetworkUtils
+import com.android.base.utils.android.*
+import com.android.base.utils.android.network.NetworkUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton

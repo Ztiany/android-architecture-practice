@@ -2,7 +2,8 @@ package com.app.base.upgrade
 
 import android.app.Dialog
 import android.content.Context
-import com.android.base.utils.android.XAppUtils
+import com.android.base.utils.BaseUtils
+import com.android.base.utils.android.AppUtils
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.common.otherwise
@@ -16,7 +17,6 @@ import com.app.base.app.ServiceProvider
 import com.app.base.config.AppDirectory
 import com.app.base.config.AppSettings
 import com.app.base.widget.dialog.showConfirmDialog
-import com.blankj.utilcode.util.Utils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import okhttp3.OkHttpClient
@@ -164,7 +164,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         Timber.d("installApk")
         if (AndroidVersion.atLeast(26)) {
             //Android8.0未知来源应用安装权限方案
-            AutoPermission.with(Utils.getApp())
+            AutoPermission.with(BaseUtils.getAppContext())
                 .install()
                 .file(file)
                 .onDenied { Timber.d("installApk onDenied") }
@@ -172,7 +172,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
                 .start()
         } else {
             //正常安装
-            XAppUtils.installApp(Utils.getApp(), file, appSettings.appFileProviderAuthorities)
+            AppUtils.installApp(BaseUtils.getAppContext(), file, appSettings.appFileProviderAuthorities)
         }
     }
 
