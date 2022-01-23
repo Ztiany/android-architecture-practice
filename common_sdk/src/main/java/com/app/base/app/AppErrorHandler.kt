@@ -7,8 +7,8 @@ import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.android.base.AndroidSword
+import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
-import com.android.sdk.net.core.message.ErrorMessageFactory
 import com.app.base.data.protocol.ApiHelper
 import com.app.base.router.AppRouter
 import com.app.base.services.usermanager.UserManager
@@ -51,7 +51,7 @@ internal class AppErrorHandler @Inject constructor(
     private val handler = Handler(Looper.getMainLooper())
 
     override fun generateMessage(throwable: Throwable): CharSequence {
-        return ErrorMessageFactory.createMessage(throwable)
+        return NetContext.get().createMessage(throwable)
     }
 
     override fun handleError(throwable: Throwable) {

@@ -16,7 +16,6 @@ import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import timber.log.Timber
-import java.lang.reflect.Type
 import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
@@ -88,8 +87,16 @@ internal fun newHttpConfig(
 
 }
 
-internal fun newErrorBodyHandler(): ErrorBodyHandler {
-    return object : ErrorBodyHandler {
+fun newPlatformInteractor(androidPlatform: AndroidPlatform): PlatformInteractor {
+    return object : PlatformInteractor {
+        override fun isConnected(): Boolean {
+            return androidPlatform.isConnected()
+        }
+    }
+}
+
+internal fun newErrorBodyParser(): ErrorBodyParser {
+    return object : ErrorBodyParser {
         override fun parseErrorBody(errorBody: String): ApiErrorException? {
             val errorResult = JsonUtils.fromClass(errorBody, ErrorResult::class.java)
             return if (errorResult == null) {
@@ -111,6 +118,10 @@ internal fun newErrorMessage(): ErrorMessage {
             return getString(R.string.error_service_data_error)
         }
 
+        override fun serverReturningNullDataErrorMessage(exception: Throwable?): CharSequence {
+            return getString(R.string.error_service_no_data_error)
+        }
+
         override fun serverErrorMessage(exception: Throwable): CharSequence {
             return getString(R.string.error_service_error)
         }
@@ -126,21 +137,6 @@ internal fun newErrorMessage(): ErrorMessage {
         override fun unknownErrorMessage(exception: Throwable): CharSequence {
             return getString(R.string.error_unknow) + "：${exception.message}"
         }
-    }
-}
-
-internal fun newErrorDataAdapter(): ErrorDataAdapter = object : ErrorDataAdapter {
-    override fun createErrorDataStub(
-        type: Type,
-        annotations: Array<Annotation>,
-        retrofit: Retrofit,
-        value: ResponseBody
-    ): Any {
-        return ApiHelper.newErrorDataStub()
-    }
-
-    override fun isErrorDataStub(value: Any): Boolean {
-        return ApiHelper.isDataError(value)
     }
 }
 

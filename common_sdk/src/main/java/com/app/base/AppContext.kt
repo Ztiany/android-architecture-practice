@@ -75,11 +75,11 @@ abstract class AppContext : BaseAppContext() {
         NetContext.get()
             .init(this) {
                 errorMessage(newErrorMessage())
-                errorBodyHandler(newErrorBodyHandler())
+                errorBodyHandler(newErrorBodyParser())
+                platformInteractor(newPlatformInteractor(androidPlatform.get()))
             }.addHostConfig {
                 aipHandler(newApiHandler(errorHandler.get()))
                 httpConfig(newHttpConfig(userManager.get(), appSettings.get(), androidPlatform.get(), errorHandler.get()))
-                errorDataAdapter(newErrorDataAdapter())
                 exceptionFactory { _, _ -> null }
             }
     }

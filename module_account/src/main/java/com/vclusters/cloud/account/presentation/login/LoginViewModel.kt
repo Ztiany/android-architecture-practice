@@ -3,6 +3,7 @@ package com.vclusters.cloud.account.presentation.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.base.foundation.data.Resource
+import com.app.base.app.DispatcherProvider
 import com.app.base.services.usermanager.User
 import com.vclusters.cloud.account.data.AccountDataSource
 import com.vclusters.cloud.account.data.HistoryUser
@@ -11,13 +12,13 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val accountDataSource: AccountDataSource,
+    private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
     var historyUsers = emptyList<HistoryUser>()
@@ -37,7 +38,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun login(phone: String, password: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcherProvider.io()) {
             _loginState.emit(Resource.loading())
             accountDataSource.login(phone, password)
                 .catch {

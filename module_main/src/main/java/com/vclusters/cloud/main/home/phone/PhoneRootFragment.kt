@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.android.base.architecture.fragment.base.BaseUIFragment
-import com.android.sdk.net.coroutines.apiCallRetry
+import com.android.sdk.net.coroutines.nullable.apiCallRetryNullable
 import com.android.sdk.net.coroutines.onFailed
 import com.android.sdk.net.coroutines.onSucceeded
 import com.app.base.app.ErrorHandler
@@ -44,7 +44,7 @@ class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>(), M
 
         viewBinding.feedBtnLoad.setOnClickListener {
             lifecycleScope.launch {
-                apiCallRetry {
+                apiCallRetryNullable {
                     api.loadFirstKT()
                 } onFailed {
                     Timber.e(it)

@@ -4,7 +4,6 @@ package com.app.base.data.protocol;
 import androidx.annotation.NonNull;
 
 import com.android.sdk.net.core.exception.ApiErrorException;
-import com.android.sdk.net.core.result.Result;
 
 public class ApiHelper {
 
@@ -37,18 +36,6 @@ public class ApiHelper {
 
     public static Exception buildAuthenticationExpiredException() {
         return new ApiErrorException(KEY_INVALID, "登录过期");
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    public static boolean isDataError(Object data) {
-        if (data instanceof Result) {
-            return ((Result) data).getCode() == DATA_ERROR;
-        }
-        return false;
-    }
-
-    public static Object newErrorDataStub() {
-        return new HttpResult<>(DATA_ERROR);
     }
 
     public static boolean isLoginExpired(int code) {
