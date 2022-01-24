@@ -167,7 +167,7 @@ internal class ListDialog(
         override fun provideViewBinding(parent: ViewGroup, inflater: LayoutInflater) =
             DialogListItemBinding.inflate(inflater, parent, false)
 
-        override fun bind(
+        override fun bindItem(
             viewHolder: BindingViewHolder<DialogListItemBinding>,
             item: CharSequence
         ) {

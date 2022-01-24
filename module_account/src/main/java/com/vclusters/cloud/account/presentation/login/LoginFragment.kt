@@ -15,13 +15,19 @@ import com.vclusters.cloud.account.R
 import com.vclusters.cloud.account.databinding.AccountFragmentLoginBinding
 import com.vclusters.cloud.account.widget.IconsEditText
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
+
+private const val IS_FILLED_HISTORY_PASSWORD = "IS_FILLED_HISTORY_PASSWORD"
 
 @AndroidEntryPoint
 class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
 
     private val viewModel: LoginViewModel by viewModels()
+
+    private var isFilledHistoryPassword = false
 
     @Inject lateinit var accountNavigator: AccountNavigator
 
@@ -36,41 +42,59 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
     }
 
     private fun setUpViews() {
-        viewBinding.accountEtPassword.addTextChangedListener {
+        viewBinding.accountEtPhone.addTextChangedListener {
             ensureIfLoginBtnEnable()
-        }
-
-        viewBinding.accountEtPassword.addTextChangedListener {
-            ensureIfLoginBtnEnable()
-        }
-
-        viewBinding.accountBtnLogin.setOnClickListener {
-            loginChecked()
         }
 
         viewBinding.accountEtPhone.setOnTailingIconClickListener { iconsEditText, pendingState ->
             if (pendingState) {
                 showHistoryUserWindow(iconsEditText)
-            } else {
-                dismissHistoryUserWindow()
             }
         }
 
-        viewBinding.accountEtPhone.setText("19999999999")
-        viewBinding.accountEtPassword.setText("123456789")
-    }
+        viewBinding.accountEtPassword.addTextChangedListener {
+            if (it.toString().isEmpty()) {
+                isFilledHistoryPassword = false
+            }
+            ensureIfLoginBtnEnable()
+        }
 
-    private fun dismissHistoryUserWindow() {
+        viewBinding.accountEtPassword.setOnShowPasswordListener {
+            if (isFilledHistoryPassword) {
+                it.setText("")
+            }
+        }
 
+        viewBinding.accountBtnLogin.setOnClickListener {
+            loginChecked()
+        }
     }
 
     private fun showHistoryUserWindow(iconsEditText: IconsEditText) {
         val historyUsers = viewModel.historyUsers
-        iconsEditText.setTailingIconState(true)
+        Timber.d(historyUsers.toString())
         if (historyUsers.isEmpty()) {
             return
         }
-        showHistoryUserPopupWindow(requireContext(), viewBinding.accountEtPhone, historyUsers)
+        iconsEditText.isTailingIconStateOn = true
+        showHistoryUserPopupWindow(requireContext(), viewBinding.accountEtPhone, historyUsers,
+            onSelected = {
+                viewBinding.accountEtPhone.setText(it.phone)
+                if (!viewBinding.accountEtPassword.isPasswordSeeable) {
+                    viewBinding.accountEtPhone.setText(it.password)
+                    isFilledHistoryPassword = true
+                }
+            },
+            onDeleted = {
+                viewModel.deleteHistoryUser(it)
+            },
+            onDismiss = {
+                lifecycleScope.launch {
+                    delay(100)
+                    iconsEditText.isTailingIconStateOn = false
+                }
+            }
+        )
     }
 
     private fun ensureIfLoginBtnEnable() {
@@ -96,6 +120,10 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
                     accountNavigator.exitAndToHomePage()
                 }
             }
+        }
+
+        viewModel.historyUserEnable.observe(this) {
+            viewBinding.accountEtPhone.setTailingIconEnable(it)
         }
     }
 

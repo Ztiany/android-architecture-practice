@@ -43,21 +43,21 @@ class AccountRepository @Inject constructor(
         }
     }
 
-    override suspend fun historyUserList(): Flow<List<HistoryUser>> {
+    override fun historyUserList(): Flow<List<HistoryUser>> {
         return historyUsersFlow.also {
-            it.emit(historyUserStorage.historyUsers())
+            it.tryEmit(historyUserStorage.historyUsers())
         }
     }
 
-    override suspend fun saveHistoryUser(historyUser: HistoryUser) {
+    override fun saveHistoryUser(historyUser: HistoryUser) {
         historyUsersFlow.also {
-            it.emit(historyUserStorage.addHistoryUser(historyUser))
+            it.tryEmit(historyUserStorage.addHistoryUser(historyUser))
         }
     }
 
-    override suspend fun deleteHistoryUser(historyUser: HistoryUser) {
+    override fun deleteHistoryUser(historyUser: HistoryUser) {
         historyUsersFlow.also {
-            it.emit(historyUserStorage.deleteHistoryUser(historyUser))
+            it.tryEmit(historyUserStorage.deleteHistoryUser(historyUser))
         }
     }
 

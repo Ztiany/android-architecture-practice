@@ -281,7 +281,7 @@ public class IconsEditText extends AppCompatEditText {
         adjustPadding();
     }
 
-    public void setTailingIconState(boolean state) {
+    public void setTailingIconStateOn(boolean state) {
         mIsTailingIconOn = state;
         invalidate();
     }
@@ -291,4 +291,7 @@ public class IconsEditText extends AppCompatEditText {
         adjustPadding();
     }
 
+    public boolean isTailingIconStateOn() {
+        return mIsTailingIconOn;
+    }
 }

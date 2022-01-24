@@ -171,7 +171,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
     private OnItemClickListener<IName> mItemClickListener = new OnItemClickListener<IName>() {
 
         @Override
-        public void onClick(@NotNull View view, IName iName) {
+        public void onClick(@NotNull View view, @NonNull IName iName) {
 
             List<IName> children = iName.getChildren();
             IName.AddressToken name = iName.getAddressToken();
