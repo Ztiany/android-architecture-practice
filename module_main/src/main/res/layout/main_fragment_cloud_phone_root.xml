@@ -25,11 +25,11 @@
         android:text="登录" />
 
     <Button
-        android:id="@+id/feed_btn_load"
+        android:id="@+id/main_btn_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:text="LOAD" />
+        android:text="切换" />
 
 </LinearLayout>

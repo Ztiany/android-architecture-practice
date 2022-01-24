@@ -37,7 +37,7 @@ class AccountRepository @Inject constructor(
         return flow {
             emit(executeApiCall { accountApi.login(loginRequest) })
         }.map {
-            val user = User(it.id, it.username, it.token)
+            val user = User(it.id, it.username, phone, it.token)
             userManager.saveUser(user)
             user
         }

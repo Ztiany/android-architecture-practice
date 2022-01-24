@@ -1,4 +1,4 @@
-package com.vclusters.cloud.account.presentation.switch
+package com.vclusters.cloud.account.presentation.switchover
 
 import android.os.Bundle
 import android.view.View
@@ -24,6 +24,7 @@ class SwitchAccountFragment : BaseUIFragment<AccountFragmentSwitchBinding>() {
     private val viewModel: LoginViewModel by viewModels()
 
     @Inject lateinit var accountNavigator: AccountNavigator
+    @Inject lateinit var mSwitchAccountAdapter: SwitchAccountAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,18 +34,22 @@ class SwitchAccountFragment : BaseUIFragment<AccountFragmentSwitchBinding>() {
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
 
-        val switchListAdapter = SwitchListAdapter(requireContext(), viewModel.historyUsers, viewModel.currentUser.username).apply {
+        //adapter
+        with(mSwitchAccountAdapter) {
             onItemSelectedListener = newOnItemClickListener<HistoryUser> {
                 viewModel.login(it.phone, it.password)
             }
             onAddAccountClickListener = View.OnClickListener {
+                accountNavigator.toAddNewAccount()
             }
+            setDataSource(viewModel.historyUsers.toMutableList())
         }
 
+        //recycler view
         with(vb.accountRvSwitchList) {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-            adapter = switchListAdapter
+            adapter = mSwitchAccountAdapter
         }
     }
 

@@ -15,6 +15,8 @@ data class User(
     val id: Long = UNAVAILABLE_FLAG.toLong(),
     /**用户名*/
     val username: String = "",
+    /**手机号*/
+    val phone: String = "",
     /**鉴权标识*/
     val token: String = ""
 ) : Parcelable {

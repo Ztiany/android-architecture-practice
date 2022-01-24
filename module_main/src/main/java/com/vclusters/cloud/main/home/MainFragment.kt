@@ -37,8 +37,8 @@ class MainFragment : BaseUIFragment<MainFragmentMainBinding>() {
         tabManager = MainTabManager(requireContext(), childFragmentManager, R.id.flMainContainer)
         tabManager.setup(savedInstanceState)
         //bottomBar
-        viewBinding.mainBottomBar.itemIconTintList = null
-        viewBinding.mainBottomBar.setOnNavigationItemSelectedListener {
+        vb.mainBottomBar.itemIconTintList = null
+        vb.mainBottomBar.setOnNavigationItemSelectedListener {
             tabManager.selectTabById(it.itemId)
             true
         }
@@ -52,7 +52,7 @@ class MainFragment : BaseUIFragment<MainFragmentMainBinding>() {
     fun selectTabAtPosition(pagePosition: Int) {
         try {
             if (pagePosition in 0..3/*tab count*/) {
-                viewBinding.mainBottomBar.selectedItemId = tabManager.getItemId(pagePosition)
+                vb.mainBottomBar.selectedItemId = tabManager.getItemId(pagePosition)
             }
         } catch (e: Exception) {
             Timber.d(e, "selectTabAtPosition page=$pagePosition")

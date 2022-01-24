@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppRootTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge"
-        tools:override="true" />
+    <style name="AppRootTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge" tools:override="true" />
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="QMUI">
@@ -16,6 +15,8 @@
         <item name="qmui_alpha_disabled">0.5</item>
         <item name="qmui_general_shadow_elevation">14dp</item>
         <item name="qmui_general_shadow_alpha">0.25</item>
+        <!--窗口默认背景-->
+        <item name="android:windowBackground">@color/page_bg_color</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

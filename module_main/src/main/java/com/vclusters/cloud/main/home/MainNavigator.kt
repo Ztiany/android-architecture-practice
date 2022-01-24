@@ -27,4 +27,10 @@ class MainNavigator @Inject constructor(
         appRouter.build(AccountModule.PATH).navigation()
     }
 
+    fun toSwitchAccount() {
+        appRouter.build(AccountModule.PATH)
+            .withInt(AccountModule.ACTION_KEY,AccountModule.ACTION_SWITCH)
+            .navigation()
+    }
+
 }

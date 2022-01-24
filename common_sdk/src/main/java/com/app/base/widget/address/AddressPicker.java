@@ -16,9 +16,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.base.utils.android.adaption.OnItemClickListener;
-import com.android.base.utils.android.adaption.OnTabSelectedListenerAdapter;
 import com.android.base.utils.android.ScreenUtils;
+import com.android.base.utils.android.adaption.OnTabSelectedListenerAdapter;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
 import com.google.android.material.tabs.TabLayout;
@@ -51,7 +50,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
     private List<IName> mSource;
     private List<IName> mCurrentSource;
 
-    private IName.AddressToken[] mAddressItems = new IName.AddressToken[FIX_ADDRESS_ITEM_COUNT];
+    private final IName.AddressToken[] mAddressItems = new IName.AddressToken[FIX_ADDRESS_ITEM_COUNT];
     private RecyclerView mRecyclerView;
 
     @Override
@@ -168,10 +167,13 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
         dismiss();
     }
 
-    private OnItemClickListener<IName> mItemClickListener = new OnItemClickListener<IName>() {
-
+    private final View.OnClickListener mItemClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(@NotNull View view, @NonNull IName iName) {
+        public void onClick(View v) {
+            IName iName = (IName) v.getTag();
+            if (iName == null) {
+                return;
+            }
 
             List<IName> children = iName.getChildren();
             IName.AddressToken name = iName.getAddressToken();

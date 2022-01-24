@@ -38,7 +38,7 @@ public class ProtocolUtils {
         newBuilder.header(ApiParameter.HEADER_DEVICE_ID_KEY, androidPlatform.getDeviceId());
         User user = userManager.getUser();
         if (user != User.Companion.getNOT_LOGIN()) {
-//            newBuilder.header(ApiParameter.HEADER_TOKEN_KEY, user.getToken());
+            newBuilder.header(ApiParameter.HEADER_TOKEN_KEY, user.getToken());
         }
     }
 

@@ -9,7 +9,7 @@
     <!--控件-->
     <color name="colorAccent">@color/colorPrimary</color>
     <!--窗口背-->
-    <color name="page_bg_color">#F5F5F5</color>
+    <color name="page_bg_color">#F6F6F6</color>
     <!--分割线-->
     <color name="divider_color">#E5E5E5</color>
     <!--不可用-->

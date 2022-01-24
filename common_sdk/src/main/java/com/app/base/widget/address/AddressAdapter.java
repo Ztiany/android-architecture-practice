@@ -6,18 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.android.base.adapter.recycler.RecyclerAdapter;
 import com.android.base.adapter.recycler.ViewHolder;
-import com.android.base.utils.android.adaption.OnItemClickListener;
 import com.app.base.R;
-
-import androidx.annotation.NonNull;
 
 class AddressAdapter extends RecyclerAdapter<IName, ViewHolder> {
 
-    private OnItemClickListener<IName> mItemClickListener;
+    private View.OnClickListener mItemClickListener;
 
-    void setItemClickListener(OnItemClickListener<IName> itemClickListener) {
+    void setItemClickListener(View.OnClickListener itemClickListener) {
         mItemClickListener = itemClickListener;
     }
 

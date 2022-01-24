@@ -1,5 +1,7 @@
 package com.app.base.widget;
 
+import static com.android.base.utils.android.views.ViewExKt.getRealContext;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -10,13 +12,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.android.base.architecture.fragment.tools.Fragments;
-import com.android.base.utils.android.compat.AndroidVersion;
-import com.android.base.utils.android.compat.SystemBarCompat;
-import com.android.base.utils.android.views.TintUtils;
-import com.android.base.utils.common.Checker;
-import com.app.base.R;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +20,15 @@ import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-import timber.log.Timber;
 
-import static com.android.base.utils.android.views.ViewExKt.getRealContext;
+import com.android.base.architecture.fragment.tools.Fragments;
+import com.android.base.utils.android.compat.AndroidVersion;
+import com.android.base.utils.android.compat.SystemBarCompat;
+import com.android.base.utils.android.views.TintUtils;
+import com.android.base.utils.common.Checker;
+import com.app.base.R;
+
+import timber.log.Timber;
 
 /**
  * @author Ztiany
@@ -63,17 +64,18 @@ public class AppTitleLayout extends LinearLayout {
         //get all attributes
         String title = typedArray.getString(R.styleable.AppTitleLayout_atl_title);
         int menuResId = typedArray.getResourceId(R.styleable.AppTitleLayout_atl_menu_id, INVALIDATE_ID);
-        boolean showCuttingLime = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_cutting_line, false);
+        boolean showCuttingLine = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_cutting_line, false);
+        int cuttingLineBg = typedArray.getColor(R.styleable.AppTitleLayout_atl_show_cutting_line_bg, ContextCompat.getColor(getContext(), R.color.divider_color));
         boolean disableNavigation = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_disable_navigation, false);
         Drawable navigationIcon = typedArray.getDrawable(R.styleable.AppTitleLayout_atl_navigation_icon);
         int iconTintColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_navigation_icon_tint, -1);
-        int titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.WHITE);
-        int menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.WHITE);
+        int titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.BLACK);
+        int menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.BLACK);
         boolean adjustForStatusBar = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_adjust_for_status, false);
         //add layout
         inflateLayout(context, adjustForStatusBar);
         //get resource
-        iniToolbar(title, showCuttingLime, titleColor);
+        iniToolbar(title, showCuttingLine, titleColor, cuttingLineBg);
         //icon
         initNavigationIcon(disableNavigation, navigationIcon, iconTintColor);
         //menu
@@ -114,10 +116,11 @@ public class AppTitleLayout extends LinearLayout {
         }
     }
 
-    private void iniToolbar(String title, boolean showCuttingLime, int titleColor) {
+    private void iniToolbar(String title, boolean showCuttingLime, int titleColor, int cuttingLineBg) {
         mToolbar = findViewById(R.id.common_toolbar);
         View cuttingLineView = findViewById(R.id.widgetAppTitleCuttingLine);
         cuttingLineView.setVisibility(showCuttingLime ? View.VISIBLE : View.GONE);
+        cuttingLineView.setBackgroundColor(cuttingLineBg);
         //nav
         mToolbar.setContentInsetStartWithNavigation(0);
         mToolbar.setNavigationOnClickListener(this::onNavigationOnClick);

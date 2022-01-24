@@ -18,6 +18,7 @@
         <attr name="atl_navigation_icon_tint" format="color|reference" />
         <attr name="atl_menu_id" format="reference" />
         <attr name="atl_show_cutting_line" format="boolean" />
+        <attr name="atl_show_cutting_line_bg" format="color|reference" />
         <attr name="atl_adjust_for_status" format="boolean" />
         <attr name="atl_menu_color" format="color|reference" />
     </declare-styleable>

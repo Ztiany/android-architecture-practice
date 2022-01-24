@@ -53,6 +53,9 @@
     <string name="photo">照片</string>
     <string name="search">搜索</string>
     <string name="please_select">请选择</string>
+    <string name="switch_success">切换成功</string>
+    <string name="switch_account">切换账号</string>
+    <string name="add_account">添加账号</string>
 
     <!-- ====================================mask==================================== -->
     <string name="currency_mask">¥%s</string><!--全局唯一货币符号-->

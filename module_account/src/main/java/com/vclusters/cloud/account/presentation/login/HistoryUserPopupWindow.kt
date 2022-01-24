@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import android.widget.PopupWindow
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.base.adapter.newOnItemClickListener
 import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.SimpleRecyclerAdapter
-import com.android.base.utils.android.adaption.OnItemClickListener
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.measureSelfWithScreenSize
 import com.vclusters.cloud.account.R
@@ -57,8 +57,13 @@ fun showHistoryUserPopupWindow(
     binding.accountRvHistoryUser.layoutManager = LinearLayoutManager(context)
     binding.accountRvHistoryUser.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     val historyUserAdapter = HistoryUserAdapter(context, historyUsers)
-    historyUserAdapter.onItemSelected = onSelected
-    historyUserAdapter.onDeleteItem = {
+
+    historyUserAdapter.onItemSelectedListener = newOnItemClickListener<HistoryUser> {
+        onSelected(it)
+        popupWindow.dismiss()
+    }
+
+    historyUserAdapter.onDeleteItemListener = newOnItemClickListener<HistoryUser> {
         if (historyUserAdapter.isEmpty()) {
             popupWindow.dismiss()
         }
@@ -68,6 +73,7 @@ fun showHistoryUserPopupWindow(
             popupWindow.update(anchor, 0, -(height + anchor.height), anchor.width, height)
         }
     }
+
     binding.accountRvHistoryUser.adapter = historyUserAdapter
 
     //show
@@ -81,21 +87,8 @@ private class HistoryUserAdapter(
     historyUsers: List<HistoryUser>
 ) : SimpleRecyclerAdapter<HistoryUser, AccountLayoutItemHistoryUserBinding>(context, historyUsers) {
 
-    var onItemSelected: ((HistoryUser) -> Unit)? = null
-    var onDeleteItem: ((HistoryUser) -> Unit)? = null
-
-    private val _onItemSelected = object : OnItemClickListener<HistoryUser>() {
-        override fun onClick(view: View, item: HistoryUser) {
-            onItemSelected?.invoke(item)
-        }
-    }
-
-    private val _onDeleteClicked = object : OnItemClickListener<HistoryUser>() {
-        override fun onClick(view: View, item: HistoryUser) {
-            remove(item)
-            onDeleteItem?.invoke(item)
-        }
-    }
+    var onItemSelectedListener: View.OnClickListener? = null
+    var onDeleteItemListener: View.OnClickListener? = null
 
     override fun provideViewBinding(parent: ViewGroup, inflater: LayoutInflater): AccountLayoutItemHistoryUserBinding {
         return AccountLayoutItemHistoryUserBinding.inflate(inflater, parent, false)
@@ -104,9 +97,9 @@ private class HistoryUserAdapter(
     override fun bindItem(viewHolder: BindingViewHolder<AccountLayoutItemHistoryUserBinding>, item: HistoryUser) {
         viewHolder.vb.accountTvPhone.text = item.phone
         viewHolder.vb.accountIvClear.tag = item
-        viewHolder.vb.accountIvClear.setOnClickListener(_onDeleteClicked)
+        viewHolder.vb.accountIvClear.setOnClickListener(onDeleteItemListener)
         viewHolder.itemView.tag = item
-        viewHolder.itemView.setOnClickListener(_onItemSelected)
+        viewHolder.itemView.setOnClickListener(onItemSelectedListener)
     }
 
 }

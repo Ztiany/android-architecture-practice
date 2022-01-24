@@ -53,6 +53,8 @@ public class IconsEditText extends AppCompatEditText {
 
     private int mInitPaddingRight;
 
+    private int extendDrawableTouchingSize = 0;
+
     private static final int DOWN_POSITION_NONE = 1;
     private static final int DOWN_POSITION_CLEAR = 2;
     private static final int DOWN_POSITION_TAILING = 3;
@@ -85,6 +87,7 @@ public class IconsEditText extends AppCompatEditText {
         mBitmapPaint.setAntiAlias(true);
         adjustPadding();
         addTextChangedListener(newWatcher());
+        extendDrawableTouchingSize = Sizes.dpToPx(getContext(), 10);
     }
 
     private void parseAttributes(Context context, AttributeSet attrs) {
@@ -224,14 +227,14 @@ public class IconsEditText extends AppCompatEditText {
 
             int passwordRight = getMeasuredWidth() - mInitPaddingRight - mBitmapRightEdgeOffset;
             int passwordLeft = passwordRight - getPasswordBitmap().getWidth();
-            if (eventX >= passwordLeft && eventX <= passwordRight) {
+            if (eventX >= passwordLeft - extendDrawableTouchingSize && eventX <= passwordRight + extendDrawableTouchingSize) {
                 return DOWN_POSITION_TAILING;
             }
 
             if (isClearContentEnable && !TextUtils.isEmpty(getTextValue())) {
                 int clearRight = passwordLeft - mBitmapMargin;
                 int clearLeft = clearRight - clearBitmap.getWidth();
-                if (eventX >= clearLeft && eventX <= clearRight) {
+                if (eventX >= clearLeft - extendDrawableTouchingSize && eventX <= clearRight + extendDrawableTouchingSize) {
                     return DOWN_POSITION_CLEAR;
                 }
             }
@@ -239,7 +242,7 @@ public class IconsEditText extends AppCompatEditText {
         } else if (isClearContentEnable && !TextUtils.isEmpty(getTextValue())) {
             int clearRight = getMeasuredWidth() - mInitPaddingRight - mBitmapRightEdgeOffset;
             int clearLeft = clearRight - clearBitmap.getWidth();
-            if (eventX >= clearLeft && eventX <= clearRight) {
+            if (eventX >= clearLeft - extendDrawableTouchingSize && eventX <= clearRight + extendDrawableTouchingSize) {
                 return DOWN_POSITION_CLEAR;
             }
         }

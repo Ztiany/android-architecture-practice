@@ -29,9 +29,9 @@ class EnvironmentConfigFragment : BaseUIFragment<BaseDebugEnvironmentBinding>() 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
 
-        viewBinding.baseToolbarDebug.visibleOrGone(arguments?.getBoolean(SHOW_TITLE, false) ?: false)
+        vb.baseToolbarDebug.visibleOrGone(arguments?.getBoolean(SHOW_TITLE, false) ?: false)
 
-        viewBinding.baseBtnDebugOneKeySwitch.setOnClickListener {
+        vb.baseBtnDebugOneKeySwitch.setOnClickListener {
             doOneKeySwitch()
         }
 
@@ -40,7 +40,7 @@ class EnvironmentConfigFragment : BaseUIFragment<BaseDebugEnvironmentBinding>() 
         allCategory.forEach { (category, list) ->
             val environmentItemLayout = EnvironmentItemLayout(requireContext())
             environmentItemLayout.bindEnvironmentList(category, list)
-            viewBinding.baseLlDebugHostContent.addView(
+            vb.baseLlDebugHostContent.addView(
                 environmentItemLayout,
                 ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -65,7 +65,7 @@ class EnvironmentConfigFragment : BaseUIFragment<BaseDebugEnvironmentBinding>() 
                     EnvironmentContext.select(category, list[which])
                 }
 
-                viewBinding.baseLlDebugHostContent.views.filterIsInstance<EnvironmentItemLayout>()
+                vb.baseLlDebugHostContent.views.filterIsInstance<EnvironmentItemLayout>()
                     .forEach {
                         it.refresh()
                     }

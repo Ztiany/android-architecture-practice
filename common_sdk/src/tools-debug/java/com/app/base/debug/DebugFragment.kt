@@ -56,9 +56,9 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
     }
 
     private fun initToolViews() {
-        viewBinding.debugSwitch.setOnClickListener { showSwitchTips() }
-        viewBinding.debugOpenUeTool.setOnClickListener { openUETool() }
-        viewBinding.debugRestart.setOnClickListener { confirmRestart() }
+        vb.debugSwitch.setOnClickListener { showSwitchTips() }
+        vb.debugOpenUeTool.setOnClickListener { openUETool() }
+        vb.debugRestart.setOnClickListener { confirmRestart() }
     }
 
     private fun confirmRestart() {

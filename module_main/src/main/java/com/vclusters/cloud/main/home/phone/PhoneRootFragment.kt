@@ -25,34 +25,22 @@ class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>(), M
 
     @Inject lateinit var errorHandler: ErrorHandler
 
-    @Inject lateinit var serviceProvider: ServiceProvider
-
-    private lateinit var api: TestAPI
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        api = serviceProvider.getDefault().create(TestAPI::class.java)
         subscribeViewModel()
     }
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
 
-        viewBinding.mainBtnLogin.setOnClickListener {
+        vb.mainBtnLogin.setOnClickListener {
             mainNavigator.toLogin()
         }
 
-        viewBinding.feedBtnLoad.setOnClickListener {
-            lifecycleScope.launch {
-                apiCallRetryNullable {
-                    api.loadFirstKT()
-                } onFailed {
-                    Timber.e(it)
-                } onSucceeded {
-                    Timber.e(it.toString())
-                }
-            }
+        vb.mainBtnSwitch.setOnClickListener {
+            mainNavigator.toSwitchAccount()
         }
+
     }
 
     private fun subscribeViewModel() {
