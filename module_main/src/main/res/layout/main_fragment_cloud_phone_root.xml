@@ -6,30 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.app.base.widget.AppTitleLayout
-        android:id="@+id/feedAtl"
-        style="@style/Style_TitleLayout"
+    <com.vclusters.cloud.main.home.phone.widget.CloudPhoneTitleBar
+        android:id="@+id/main_phone_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:atl_adjust_for_status="true"
-        app:atl_disable_navigation="true"
-        app:atl_title="首页"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/white"
+        android:paddingStart="@dimen/common_page_edge"
+        android:paddingTop="10dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="10dp"
+        app:tabs="@array/main_phone_tabs" />
 
-    <Button
-        android:id="@+id/main_btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:text="登录" />
-
-    <Button
-        android:id="@+id/main_btn_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:text="切换" />
+    <FrameLayout
+        android:id="@+id/main_fl_phone_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

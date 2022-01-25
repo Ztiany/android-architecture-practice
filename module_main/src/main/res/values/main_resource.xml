@@ -6,7 +6,7 @@
         <item name="android:windowBackground">@drawable/main_layer_launch_bg</item>
     </style>
 
-    <!-- ============================ Home ============================ -->
+    <!-- ============================ Main ============================ -->
     <item name="main_cloud_phone" type="id" />
     <item name="main_cloud_assistant" type="id" />
     <item name="main_mine" type="id" />

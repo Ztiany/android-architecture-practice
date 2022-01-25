@@ -2,19 +2,13 @@ package com.vclusters.cloud.main.home.phone
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import com.android.base.architecture.fragment.base.BaseUIFragment
-import com.android.sdk.net.coroutines.nullable.apiCallRetryNullable
-import com.android.sdk.net.coroutines.onFailed
-import com.android.sdk.net.coroutines.onSucceeded
 import com.app.base.app.ErrorHandler
-import com.app.base.app.ServiceProvider
+import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentCloudPhoneRootBinding
 import com.vclusters.cloud.main.home.MainFragment
 import com.vclusters.cloud.main.home.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -25,6 +19,10 @@ class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>(), M
 
     @Inject lateinit var errorHandler: ErrorHandler
 
+    private val tabManager by lazy {
+        PhoneTabManager(requireContext(), childFragmentManager, R.id.main_fl_phone_container)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         subscribeViewModel()
@@ -32,15 +30,20 @@ class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>(), M
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
+        tabManager.setup(savedInstanceState)
 
-        vb.mainBtnLogin.setOnClickListener {
-            mainNavigator.toLogin()
+        vb.mainPhoneTitleBar.onTabSelectedListener = {
+            tabManager.selectTabByPosition(it)
         }
 
-        vb.mainBtnSwitch.setOnClickListener {
-            mainNavigator.toSwitchAccount()
-        }
+        vb.mainPhoneTitleBar.onMessageClickListener = View.OnClickListener {
 
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        tabManager.onSaveInstanceState(outState)
     }
 
     private fun subscribeViewModel() {

@@ -13,7 +13,7 @@
         <item name="android:paddingBottom">12dp</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
         <item name="android:background">@drawable/sel_primary_btn_bg</item>
-        <item name="android:textColor">@color/color_primary_btn_text</item>
+        <item name="android:textColor">@color/color_sel_primary_btn_text</item>
     </style>
 
     <!--长按钮-->

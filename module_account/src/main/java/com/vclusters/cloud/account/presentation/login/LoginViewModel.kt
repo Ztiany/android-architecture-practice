@@ -5,12 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.base.foundation.data.Resource
+import com.android.base.foundation.data.postData
+import com.android.base.foundation.data.postError
+import com.android.base.foundation.data.postLoading
 import com.app.base.app.DispatcherProvider
 import com.app.base.services.usermanager.User
 import com.vclusters.cloud.account.data.AccountDataSource
 import com.vclusters.cloud.account.data.HistoryUser
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,8 +33,8 @@ class LoginViewModel @Inject constructor(
     val historyUserEnable: LiveData<Boolean>
         get() = _historyUserEnable
 
-    private val _loginState = MutableSharedFlow<Resource<User>>(0)
-    val loginState: SharedFlow<Resource<User>>
+    private val _loginState = MutableLiveData<Resource<User>>()
+    val loginState: LiveData<Resource<User>>
         get() = _loginState
 
     init {
@@ -43,13 +48,13 @@ class LoginViewModel @Inject constructor(
 
     fun login(phone: String, password: String) {
         viewModelScope.launch(dispatcherProvider.io()) {
-            _loginState.emit(Resource.loading())
+            _loginState.postLoading()
             accountDataSource.login(phone, password)
                 .catch {
-                    _loginState.emit(Resource.error(it))
+                    _loginState.postError(it)
                 }.collect {
                     saveHistoryUser(phone, password)
-                    _loginState.emit(Resource.success(it))
+                    _loginState.postData(it)
                 }
         }
     }

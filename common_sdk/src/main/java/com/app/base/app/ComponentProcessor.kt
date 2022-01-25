@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.alibaba.android.arouter.launcher.ARouter
-import com.android.base.utils.android.adaption.ActivityLifecycleCallbacksAdapter
 import com.android.base.foundation.activity.ActivityDelegateOwner
 import com.android.base.foundation.fragment.FragmentDelegateOwner
 import com.android.base.utils.android.SoftKeyboardUtils
+import com.android.base.utils.android.adaption.ActivityLifecycleCallbacksAdapter
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ignoreCrash
 import com.app.base.R

@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.android.base.architecture.fragment.base.BaseUIFragment
 import com.android.base.architecture.fragment.tools.exitFragment
-import com.android.base.architecture.ui.handleFlowData
+import com.android.base.architecture.ui.handleLiveData
 import com.android.base.utils.android.argument
 import com.android.base.utils.android.views.textValue
 import com.android.base.utils.android.views.visible
@@ -143,12 +143,10 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
     }
 
     private fun subscribeViewModel() {
-        lifecycleScope.launch {
-            handleFlowData(viewModel.loginState) {
-                onSuccess = {
-                    showMessage(R.string.login_success)
-                    accountNavigator.exitAndToHomePage()
-                }
+        handleLiveData(viewModel.loginState) {
+            onSuccess = {
+                showMessage(R.string.login_success)
+                accountNavigator.exitAndToHomePage()
             }
         }
 

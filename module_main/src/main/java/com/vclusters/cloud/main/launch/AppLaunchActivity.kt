@@ -7,6 +7,9 @@ import com.android.base.utils.android.compat.SystemBarCompat
 import com.app.base.app.AppBaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.router.AppRouter
+import com.app.base.services.usermanager.UserManager
+import com.app.base.services.usermanager.isLogin
+import com.vclusters.cloud.account.api.AccountModule
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.api.MainModule
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +18,7 @@ import javax.inject.Inject
 
 
 /**
- *启动页
+ * 应用启动页
  *
  *@author Ztiany
  *      Date : 2018-09-06 14:42
@@ -24,6 +27,7 @@ import javax.inject.Inject
 class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
 
     @Inject lateinit var appRouter: AppRouter
+    @Inject lateinit var userManager: UserManager
 
     override fun provideLayout() = R.layout.main_activity_launch
 
@@ -39,12 +43,23 @@ class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         lifecycleScope.launchWhenResumed {
-            delay(1500)
-            appRouter.build(MainModule.PATH).withTransition(0, 0).navigation()
+            if (userManager.user.isLogin()) {
+                toMainPage()
+            } else {
+                toLoginPage()
+            }
             finishAfterTransition()
             overridePendingTransition(0, 0)
         }
     }
 
+    private fun toLoginPage() {
+        appRouter.build(AccountModule.PATH).withTransition(0, 0).navigation()
+    }
+
+    private suspend fun toMainPage() {
+        delay(1500)
+        appRouter.build(MainModule.PATH).withTransition(0, 0).navigation()
+    }
 
 }

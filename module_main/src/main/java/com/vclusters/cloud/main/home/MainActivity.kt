@@ -7,14 +7,11 @@ import com.android.base.architecture.fragment.tools.clearBackStack
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
 import com.android.base.architecture.fragment.tools.findFragmentByTag
 import com.android.base.utils.android.AppUtils
-import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
-import com.app.base.app.CustomizeSystemBar
 import com.app.base.services.usermanager.UserManager
-import com.app.base.utils.setStatusBarLightMode
 import com.app.base.widget.dialog.TipsTool
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.api.MainModule
@@ -30,7 +27,7 @@ import javax.inject.Inject
  */
 @Route(path = MainModule.PATH)
 @AndroidEntryPoint
-class MainActivity : AppBaseActivity(), CustomizeSystemBar {
+class MainActivity : AppBaseActivity() {
 
     private var clickToExit = false
 
@@ -41,12 +38,6 @@ class MainActivity : AppBaseActivity(), CustomizeSystemBar {
     @Inject lateinit var userManager: UserManager
 
     override fun provideLayout() = R.layout.main_activity
-
-    override fun initialize(savedInstanceState: Bundle?) {
-        super.initialize(savedInstanceState)
-        SystemBarCompat.setTransparentStatusViaViewFlags(this)
-        setStatusBarLightMode()
-    }
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         initViews()

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="CloudPhoneTitleBar" tools:ignore="ResourceName">
+        <attr name="tabs" format="reference" />
+    </declare-styleable>
+
+    <array name="main_phone_tabs">
+        <item>预览</item>
+        <item>列表</item>
+    </array>
+
+    <item name="main_cloud_phone_preview" type="id" />
+    <item name="main_cloud_phone_list" type="id" />
+
+</resources>

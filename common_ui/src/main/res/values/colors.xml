@@ -12,6 +12,8 @@
     <color name="page_bg_color">#F6F6F6</color>
     <!--分割线-->
     <color name="divider_color">#E5E5E5</color>
+    <!--组件深色背景-->
+    <color name="widget_bg_color">#E5ECF9</color>
     <!--不可用-->
     <color name="btn_disable">#E5E5E5</color>
     <!--按下-->
