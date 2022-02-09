@@ -123,6 +123,10 @@ class CloudPhoneTitleBar @JvmOverloads constructor(
         onSelectedTabChanged()
     }
 
+    fun showMessageCount(count: Int) {
+        vb.mainMcvMessageCount.setMessageCount(count)
+    }
+
     private class SavedState : BaseSavedState {
 
         var position = 0

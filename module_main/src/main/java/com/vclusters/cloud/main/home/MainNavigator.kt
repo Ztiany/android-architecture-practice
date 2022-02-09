@@ -33,4 +33,8 @@ class MainNavigator @Inject constructor(
             .navigation()
     }
 
+    fun openMessageCenter() {
+
+    }
+
 }

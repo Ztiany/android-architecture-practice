@@ -22,8 +22,6 @@ import timber.log.Timber
  */
 class MainFragment : BaseUIFragment<MainFragmentMainBinding>() {
 
-    interface MainFragmentChild
-
     private lateinit var tabManager: MainTabManager
 
     @SuppressLint("BinaryOperationInTimber")
@@ -82,32 +80,9 @@ private class MainTabManager(
 
     private class MainTabs : TabManager.Tabs() {
         init {
-            add(
-                FragmentInfo.PageBuilder()
-                    .clazz(PhoneRootFragment::class.java)
-                    .tag(PhoneRootFragment::class.java.name)
-                    .toStack(false)
-                    .pagerId(R.id.main_cloud_phone)
-                    .build()
-            )
-
-            add(
-                FragmentInfo.PageBuilder()
-                    .clazz(AssistantFragment::class.java)
-                    .tag(AssistantFragment::class.java.name)
-                    .toStack(false)
-                    .pagerId(R.id.main_cloud_assistant)
-                    .build()
-            )
-
-            add(
-                FragmentInfo.PageBuilder()
-                    .clazz(MineFragment::class.java)
-                    .tag(MineFragment::class.java.name)
-                    .toStack(false)
-                    .pagerId(R.id.main_mine)
-                    .build()
-            )
+            add(FragmentInfo.PageBuilder().clazz(PhoneRootFragment::class.java).tag(PhoneRootFragment::class.java.name).pagerId(R.id.main_cloud_phone).build())
+            add(FragmentInfo.PageBuilder().clazz(AssistantFragment::class.java).tag(AssistantFragment::class.java.name).pagerId(R.id.main_cloud_assistant).build())
+            add(FragmentInfo.PageBuilder().clazz(MineFragment::class.java).tag(MineFragment::class.java.name).pagerId(R.id.main_mine).build())
         }
     }
 

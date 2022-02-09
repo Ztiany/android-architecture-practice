@@ -4,11 +4,8 @@ import com.android.sdk.net.coroutines.nonnull.executeApiCall
 import com.android.sdk.net.extension.create
 import com.app.base.app.ServiceProvider
 import com.app.base.services.usermanager.UserManager
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -26,13 +23,11 @@ internal class DeviceManagerImpl @Inject constructor(
 
     private val flowableCloudDevices = MutableStateFlow(cloudDevices)
 
-    init {
-        userManager.subscribeUser().onEach {
-
-        }.launchIn(GlobalScope)
-    }
-
     override suspend fun cloudDevices(forceSync: Boolean): List<CloudDevice> {
+        if (!forceSync && cloudDevices.isNotEmpty()) {
+            return cloudDevices
+        }
+
         val loaded = executeApiCall { cloudDeviceApi.loadCloudDevices() }
         updateCache(loaded.diskInfo)
         return loaded.diskInfo

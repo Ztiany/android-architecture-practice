@@ -27,6 +27,7 @@ import javax.inject.Inject
 class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
 
     @Inject lateinit var appRouter: AppRouter
+
     @Inject lateinit var userManager: UserManager
 
     override fun provideLayout() = R.layout.main_activity_launch

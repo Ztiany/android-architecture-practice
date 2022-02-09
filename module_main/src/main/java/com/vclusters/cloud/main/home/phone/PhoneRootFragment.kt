@@ -2,26 +2,25 @@ package com.vclusters.cloud.main.home.phone
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.android.base.architecture.fragment.base.BaseUIFragment
-import com.app.base.app.ErrorHandler
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentCloudPhoneRootBinding
-import com.vclusters.cloud.main.home.MainFragment
 import com.vclusters.cloud.main.home.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>(), MainFragment.MainFragmentChild {
+class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>() {
 
     @Inject lateinit var mainNavigator: MainNavigator
-
-    @Inject lateinit var errorHandler: ErrorHandler
 
     private val tabManager by lazy {
         PhoneTabManager(requireContext(), childFragmentManager, R.id.main_fl_phone_container)
     }
+
+    private val viewModel by viewModels<PhoneRootViewModule>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +36,7 @@ class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>(), M
         }
 
         vb.mainPhoneTitleBar.onMessageClickListener = View.OnClickListener {
-
+            mainNavigator.openMessageCenter()
         }
     }
 
@@ -47,7 +46,14 @@ class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>(), M
     }
 
     private fun subscribeViewModel() {
+        viewModel.messageCount.observe(this, {
+            vb.mainPhoneTitleBar.showMessageCount(it)
+        })
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.queryMessageCount()
     }
 
 }

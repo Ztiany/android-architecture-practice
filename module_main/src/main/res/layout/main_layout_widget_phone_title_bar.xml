@@ -19,6 +19,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
+    <View
+        android:id="@+id/main_view_message_right_top"
+        android:layout_width="1px"
+        android:layout_height="1px"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintRight_toRightOf="@id/main_iv_message"
+        app:layout_constraintTop_toTopOf="@id/main_iv_message" />
+
+    <com.app.base.widget.view.MessageCountView
+        android:id="@+id/main_mcv_message_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintCircle="@id/main_view_message_right_top" />
+
     <FrameLayout
         android:id="@+id/main_Fl_table_container"
         android:layout_width="0dp"
