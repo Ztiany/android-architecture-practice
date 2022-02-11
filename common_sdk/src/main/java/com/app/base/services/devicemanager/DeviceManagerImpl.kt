@@ -4,15 +4,16 @@ import com.android.sdk.net.coroutines.nonnull.executeApiCall
 import com.android.sdk.net.extension.create
 import com.app.base.app.ServiceProvider
 import com.app.base.services.usermanager.UserManager
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * TODO：Clear devices when user switched.
+ */
 @Singleton
 internal class DeviceManagerImpl @Inject constructor(
     private val serviceProvider: ServiceProvider,
-    userManager: UserManager
+    private val userManager: UserManager
 ) : DeviceManager {
 
     private val cloudDeviceApi by lazy {
@@ -20,8 +21,6 @@ internal class DeviceManagerImpl @Inject constructor(
     }
 
     private var cloudDevices: List<CloudDevice> = emptyList()
-
-    private val flowableCloudDevices = MutableStateFlow(cloudDevices)
 
     override suspend fun cloudDevices(forceSync: Boolean): List<CloudDevice> {
         if (!forceSync && cloudDevices.isNotEmpty()) {
@@ -33,11 +32,12 @@ internal class DeviceManagerImpl @Inject constructor(
         return loaded.diskInfo
     }
 
-    private fun updateCache(diskInfo: List<CloudDeviceImpl>) {
-        cloudDevices = diskInfo
-        flowableCloudDevices.value = cloudDevices
+    override fun getCloudDeviceById(id: Int): CloudDevice? {
+        return cloudDevices.find { it.id == id }
     }
 
-    override fun flowableCloudDevices(): Flow<List<CloudDevice>> = flowableCloudDevices
+    private fun updateCache(diskInfo: List<CloudDeviceImpl>) {
+        cloudDevices = diskInfo
+    }
 
 }

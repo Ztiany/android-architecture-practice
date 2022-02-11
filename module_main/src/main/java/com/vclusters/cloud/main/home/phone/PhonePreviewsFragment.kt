@@ -17,6 +17,7 @@ import com.android.base.utils.android.views.visible
 import com.android.base.utils.common.timing
 import com.app.base.services.devicemanager.CloudDevice
 import com.qmuiteam.qmui.kotlin.dip
+import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentPhonePreviewsBinding
 import com.vclusters.cloud.main.home.phone.widget.FadeInTransformer
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +42,10 @@ class PhonePreviewsFragment : BaseStateFragment<MainFragmentPhonePreviewsBinding
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
         setUpViews()
+
+        stateLayoutConfig
+            .setStateIcon(EMPTY, R.drawable.main_img_no_device)
+            .setStateMessage(EMPTY, "还没有云手机哦~")
     }
 
     private fun setUpViews() {

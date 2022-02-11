@@ -1,9 +1,6 @@
 package com.app.base.services.devicemanager
 
-import android.os.Parcelable
-
-
-interface CloudDevice : Parcelable {
+interface CloudDevice {
     val androidcardIp: String
     val androidcardPort: String
     val areaId: Int
@@ -37,8 +34,7 @@ interface CloudDevice : Parcelable {
     val validTime: Int
 }
 
-@kotlinx.parcelize.Parcelize
-data class CloudDeviceImpl(
+internal data class CloudDeviceImpl(
     override val androidcardIp: String = "",
     override val androidcardPort: String = "",
     override val areaId: Int = 0,

@@ -11,9 +11,7 @@
         style="@style/Style_TitleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:atl_adjust_for_status="true"
         app:atl_disable_navigation="true"
-        app:atl_title="消息通知"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:atl_title="云助手" />
 
 </LinearLayout>

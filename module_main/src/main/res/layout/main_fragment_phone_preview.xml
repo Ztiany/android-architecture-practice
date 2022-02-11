@@ -2,6 +2,7 @@
 <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="2dp"
@@ -17,12 +18,13 @@
         android:scaleType="fitXY" />
 
     <TextView
+        android:id="@+id/main_tv_phone_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/main_shape_phone_title_bg"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp"
-        android:text="R-云手机3"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        tools:text="R-云手机3" />
 
 </com.qmuiteam.qmui.widget.roundwidget.QMUIRoundFrameLayout>
