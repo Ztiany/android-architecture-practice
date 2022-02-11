@@ -12,8 +12,6 @@
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
-        <item name="android:background">@drawable/sel_primary_btn_bg</item>
-        <item name="android:textColor">@color/color_sel_primary_btn_text</item>
     </style>
 
     <!--长按钮-->
@@ -22,9 +20,36 @@
         <item name="android:layout_marginEnd">40dp</item>
     </style>
 
+    <!--中等长度按钮-->
+    <style name="Style_BtnMedium">
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingStart">60dp</item>
+        <item name="android:paddingEnd">60dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
+    </style>
+
+    <style name="Style_BtnFullLine.Primary">
+        <item name="android:background">@drawable/sel_primary_btn_bg</item>
+        <item name="android:textColor">@color/color_sel_primary_btn_text</item>
+    </style>
+
     <!--长按钮 Round-->
-    <style name="Style_BtnLongRound" parent="Style_BtnLong">
+    <style name="Style_BtnLong.PrimaryRound">
         <item name="android:background">@drawable/sel_primary_btn_bg_round30</item>
+        <item name="android:textColor">@color/color_sel_primary_btn_text</item>
+    </style>
+
+    <!--中等长度按钮 Round-->
+    <style name="Style_BtnMedium.PrimaryRound">
+        <item name="android:background">@drawable/sel_primary_btn_bg_round30</item>
+        <item name="android:textColor">@color/color_sel_primary_btn_text</item>
     </style>
 
 </resources>

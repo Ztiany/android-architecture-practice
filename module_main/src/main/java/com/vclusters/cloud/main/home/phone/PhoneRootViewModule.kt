@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.base.utils.common.ignoreCrash
 import com.app.base.app.DispatcherProvider
-import com.app.base.services.usermanager.UserManager
 import com.vclusters.cloud.main.home.phone.data.CloudPhoneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +17,6 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class PhoneRootViewModule @Inject constructor(
-    private val userManager: UserManager,
     private val cloudPhoneRepository: CloudPhoneRepository,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {

@@ -56,6 +56,8 @@
     <string name="switch_success">切换成功</string>
     <string name="switch_account">切换账号</string>
     <string name="add_account">添加账号</string>
+    <string name="reboot">重启</string>
+    <string name="factory_reset">恢复出厂</string>
 
     <!-- ====================================mask==================================== -->
     <string name="currency_mask">¥%s</string><!--全局唯一货币符号-->
@@ -79,9 +81,9 @@
     <!--错误状态布局-->
     <string name="page_error_load_fail_tips">加载失败了/(ㄒoㄒ)/~~ </string>
     <string name="page_error_retry_action_tips">重新加载</string>
-    <string name="page_error_no_data">暂无可用数据喔</string>
+    <string name="page_error_no_data">暂无相关数据</string>
     <string name="page_loading">正在努力加载数据…</string>
-    <string name="page_error_no_network">@string/error_net_error</string>
+    <string name="page_error_no_network">网络未连接</string>
     <string name="page_error_server_error">@string/error_service_error</string>
 
     <!-- ====================================表单校验提示==================================== -->

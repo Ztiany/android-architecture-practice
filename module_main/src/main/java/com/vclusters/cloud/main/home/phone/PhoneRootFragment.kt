@@ -4,17 +4,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.base.architecture.fragment.base.BaseUIFragment
+import com.android.base.utils.common.timing
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentCloudPhoneRootBinding
 import com.vclusters.cloud.main.home.MainNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 
 @AndroidEntryPoint
 class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>() {
 
     @Inject lateinit var mainNavigator: MainNavigator
+
+    private val refreshMessageCountTiming by timing(5.seconds.inWholeMilliseconds)
 
     private val tabManager by lazy {
         PhoneTabManager(requireContext(), childFragmentManager, R.id.main_fl_phone_container)
@@ -53,7 +57,9 @@ class PhoneRootFragment : BaseUIFragment<MainFragmentCloudPhoneRootBinding>() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.queryMessageCount()
+        if (refreshMessageCountTiming) {
+            viewModel.queryMessageCount()
+        }
     }
 
 }

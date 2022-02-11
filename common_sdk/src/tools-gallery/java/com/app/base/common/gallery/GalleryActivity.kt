@@ -14,19 +14,18 @@ import android.view.View
 import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import com.android.base.utils.android.adaption.TransitionListenerAdapter
-import com.android.base.architecture.ui.viewBinding
 import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.image.ImageLoaderFactory
 import com.android.base.image.Source
+import com.android.base.utils.android.adaption.TransitionListenerAdapter
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.*
-import com.android.base.utils.common.toArrayList
 import com.app.base.R
 import com.app.base.app.AppBaseActivity
 import com.app.base.databinding.GalleryActivityBinding
 import kotlinx.parcelize.Parcelize
+import kotlin.properties.Delegates
 
 /**
  * 浏览图片。
@@ -70,7 +69,7 @@ class GalleryActivity : AppBaseActivity() {
         fun setPhotos(photos: List<Uri>, thumbPhotos: List<Uri>? = null): Builder {
             this.photos.clear()
             this.photos.addAll(photos)
-            this.thumbPhotos = thumbPhotos?.toArrayList()
+            this.thumbPhotos = ArrayList(thumbPhotos ?: emptyList())
             if (!thumbPhotos.isNullOrEmpty() && thumbPhotos.size != photos.size) {
                 throw IllegalArgumentException("photos and thumbPhotos must have the same size.")
             }
@@ -142,7 +141,7 @@ class GalleryActivity : AppBaseActivity() {
         }
     }
 
-    private val layout by viewBinding(GalleryActivityBinding::bind)
+    private var layout: GalleryActivityBinding by Delegates.notNull()
 
     private lateinit var galleryInfo: GalleryInfo
     private var curPosition = 0
@@ -166,7 +165,9 @@ class GalleryActivity : AppBaseActivity() {
         }
     }
 
-    override fun provideLayout() = R.layout.gallery_activity
+    override fun provideLayout() = GalleryActivityBinding.inflate(layoutInflater).also {
+        layout = it
+    }
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         val transUri = galleryInfo.thumbPhotos?.get(curPosition) ?: galleryInfo.photos[curPosition]

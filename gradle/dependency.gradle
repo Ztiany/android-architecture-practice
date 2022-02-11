@@ -241,7 +241,7 @@ ext {
             multiType              : "com.drakeet.multitype:multitype:4.0.0",
 
             // https://github.com/Ztiany/WrapperAdapter
-            wrapperAdapter         : "com.github.Ztiany:LoadMoreAdapter:4.4.1",
+            wrapperAdapter         : "com.github.Ztiany:LoadMoreAdapter:4.4.3",
 
             //https://github.com/hdodenhof/CircleImageView
             circleImageView        : "de.hdodenhof:circleimageview:3.0.1",

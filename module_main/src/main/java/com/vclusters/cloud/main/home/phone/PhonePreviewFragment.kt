@@ -3,7 +3,7 @@ package com.vclusters.cloud.main.home.phone
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import com.android.base.adapter.pager.ViewPagerInfo
+import androidx.fragment.app.Fragment
 import com.android.base.architecture.fragment.base.BaseUIFragment
 import com.android.base.image.ImageLoader
 import com.android.base.image.Source
@@ -28,8 +28,11 @@ class PhonePreviewFragment : BaseUIFragment<MainFragmentPhonePreviewBinding>() {
     companion object {
         private const val DEVICE_ID = "device_id"
 
-        fun newPageInfo(id: Int) = ViewPagerInfo("", PhonePreviewFragment::class.java, bundleOf(DEVICE_ID to id))
+        fun newInstance(id: Int): Fragment {
+            return PhonePreviewFragment().also {
+                it.arguments = bundleOf(DEVICE_ID to id)
+            }
+        }
     }
-
 
 }

@@ -12,12 +12,14 @@
     <color name="page_bg_color">#F6F6F6</color>
     <!--分割线-->
     <color name="divider_color">#E5E5E5</color>
-    <!--组件深色背景-->
+    <!--组件线色背景-->
     <color name="widget_bg_color">#E5ECF9</color>
+    <color name="widget_bg_color_link">#E8F0FF</color>
+    <color name="widget_bg_color_warn">#FFE9E7</color>
     <!--不可用-->
     <color name="btn_disable">#E5E5E5</color>
     <!--按下-->
-    <color name="btn_pressed">#EAEAEA</color>
+    <color name="btn_pressed">#F7F7F7</color>
     <!--color for tips-->
     <color name="app_tips_success">#1A1A1A</color><!--提示：完成-->
     <color name="app_tips_warn">#FA5151</color><!--提示：警告-->
@@ -28,8 +30,8 @@
     <color name="text_level3">#808080</color>
     <color name="text_level4">#999999</color>
     <color name="text_level6">#1A1A1A</color>
-    <color name="text_link">#007AFF</color>
-    <color name="text_warn">#FA5151</color>
+    <color name="text_link">#387FFF</color>
+    <color name="text_warn">#F55F4E</color>
 
 
     <!-- ============================ Palette ============================ -->

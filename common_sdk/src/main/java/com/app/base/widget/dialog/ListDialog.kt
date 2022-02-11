@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.SimpleRecyclerAdapter
-import com.android.base.architecture.ui.viewBinding
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
-import com.app.base.R
 import com.app.base.databinding.DialogListItemBinding
 import com.app.base.databinding.DialogListLayoutBinding
 
@@ -31,7 +29,7 @@ internal class ListDialog(
     private var selectedItemIndex: Int = 0
     private var selectableBgId = 0
 
-    private val viewBinding by viewBinding(DialogListLayoutBinding::bind)
+    private val viewBinding = DialogListLayoutBinding.inflate(LayoutInflater.from(listDialogBuilder.context))
 
     private val dialogController = object : DialogController {
         override var positiveEnable: Boolean
@@ -44,7 +42,7 @@ internal class ListDialog(
     init {
         maxDialogWidthPercent = listDialogBuilder.maxWidthPercent
 
-        setContentView(R.layout.dialog_list_layout)
+        setContentView(viewBinding.root)
         getSelectedBg()
         applyListDialogBuilder(listDialogBuilder)
 

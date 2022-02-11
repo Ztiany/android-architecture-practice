@@ -1,12 +1,11 @@
 package com.app.base.widget.dialog
 
+import android.view.LayoutInflater
 import android.view.View
-import com.android.base.architecture.ui.viewBinding
 import com.android.base.utils.android.views.clearComponentDrawable
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.setLeftDrawable
 import com.android.base.utils.android.views.visible
-import com.app.base.R
 import com.app.base.databinding.DialogConfirmLayoutBinding
 import com.app.base.widget.dialog.BaseDialogBuilder.Companion.NO_ID
 
@@ -19,10 +18,10 @@ internal class ConfirmDialog(
     builder: ConfirmDialogBuilder
 ) : BaseDialog(builder.context, true, builder.style) {
 
-    private val vb by viewBinding(DialogConfirmLayoutBinding::bind)
+    private val vb = DialogConfirmLayoutBinding.inflate(LayoutInflater.from(builder.context))
 
     init {
-        setContentView(R.layout.dialog_confirm_layout)
+        setContentView(vb.root)
         applyBuilder(builder)
     }
 

@@ -1,17 +1,16 @@
 package com.app.base.widget.dialog
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.RecyclerAdapter
-import com.android.base.architecture.ui.viewBinding
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
 import com.android.base.utils.android.views.visibleOrInvisible
-import com.app.base.R
 import com.app.base.databinding.DialogBottomSheetBinding
 import com.app.base.databinding.DialogBottomSheetItemBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -25,10 +24,10 @@ class AppBottomSheetDialog(
     private val builder: BottomSheetDialogBuilder
 ) : BottomSheetDialog(builder.context) {
 
-    private val vb by viewBinding(DialogBottomSheetBinding::bind)
+    private val vb = DialogBottomSheetBinding.inflate(LayoutInflater.from(builder.context))
 
     init {
-        setContentView(R.layout.dialog_bottom_sheet)
+        setContentView(vb.root)
         setupList()
         setupBottomAction()
         setupTitle()

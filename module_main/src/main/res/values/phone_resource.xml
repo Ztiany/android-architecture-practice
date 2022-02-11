@@ -5,6 +5,14 @@
         <attr name="tabs" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="CirclePointLoadView" tools:ignore="ResourceName">
+        <attr name="cpl_leftPointColor" format="color|reference" />
+        <attr name="cpl_middlePointColor" format="color|reference" />
+        <attr name="cpl_rightPointColor" format="color|reference" />
+        <attr name="cpl_radius" format="integer|reference" />
+        <attr name="cpl_translationDistance" format="dimension|reference" />
+    </declare-styleable>
+
     <array name="main_phone_tabs">
         <item>预览</item>
         <item>列表</item>
@@ -12,5 +20,31 @@
 
     <item name="main_cloud_phone_preview" type="id" />
     <item name="main_cloud_phone_list" type="id" />
+
+    <!-- https://material.io/components/buttons/android -->
+    <style name="Main_Style_Phone_OperationBtn">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:clickable">true</item>
+        <item name="shapeAppearance">@style/Main_Style_RebootBtn_ShapeAppearance</item>
+    </style>
+
+    <style name="Main_Style_RebootBtn_ShapeAppearance" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="Main_Style_Phone_RebootBtn" parent="Main_Style_Phone_OperationBtn">
+        <item name="backgroundTint">@color/widget_bg_color_link</item>
+        <item name="android:textColor">@color/text_link</item>
+    </style>
+
+    <style name="Main_Style_Phone_ResetBtn" parent="Main_Style_Phone_OperationBtn">
+        <item name="backgroundTint">@color/widget_bg_color_warn</item>
+        <item name="android:textColor">@color/text_warn</item>
+    </style>
 
 </resources>

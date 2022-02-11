@@ -24,7 +24,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.android.base.architecture.fragment.tools.Fragments;
 import com.android.base.utils.android.compat.AndroidVersion;
 import com.android.base.utils.android.compat.SystemBarCompat;
-import com.android.base.utils.android.views.TintUtils;
+import com.android.base.utils.android.views.TintKit;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
 
@@ -105,13 +105,13 @@ public class AppTitleLayout extends LinearLayout {
             if (iconTintColor == -1) {
                 mToolbar.setNavigationIcon(navigationIcon);
             } else {
-                mToolbar.setNavigationIcon(TintUtils.tint(navigationIcon.mutate(), iconTintColor));
+                mToolbar.setNavigationIcon(TintKit.tint(navigationIcon.mutate(), iconTintColor));
             }
         } else {
             if (iconTintColor == -1) {
                 mToolbar.setNavigationIcon(R.drawable.icon_back);
             } else {
-                mToolbar.setNavigationIcon(TintUtils.tint(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.icon_back)).mutate(), iconTintColor));
+                mToolbar.setNavigationIcon(TintKit.tint(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.icon_back)).mutate(), iconTintColor));
             }
         }
     }

@@ -1,8 +1,8 @@
 package com.app.base.upgrade
 
 import android.content.Context
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatDialog
-import com.android.base.architecture.ui.viewBinding
 import com.app.base.R
 import com.app.base.databinding.DialogUpgradeLoadingBinding
 
@@ -13,10 +13,10 @@ import com.app.base.databinding.DialogUpgradeLoadingBinding
  */
 class UpgradeLoadingDialog(context: Context) : AppCompatDialog(context, R.style.ThemeDialogCommon) {
 
-    private val layout by viewBinding(DialogUpgradeLoadingBinding::bind)
+    private var layout = DialogUpgradeLoadingBinding.inflate(LayoutInflater.from(context))
 
     init {
-        setContentView(R.layout.dialog_upgrade_loading)
+        setContentView(layout.root)
     }
 
     fun notifyProgress(total: Long, progress: Long) {

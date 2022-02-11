@@ -17,4 +17,12 @@ class CloudPhoneRepository @Inject constructor(
         return executeApiCall { cloudPhoneApi.queryMessageCount() }
     }
 
+    suspend fun rebootCloudDevice(userCardId: String) {
+        executeApiCall { cloudPhoneApi.rebootCloudDevice(userCardId) }
+    }
+
+    suspend fun resetCloudDevice(userCardId: String) {
+        executeApiCall { cloudPhoneApi.resetCloudDevice(userCardId) }
+    }
+
 }

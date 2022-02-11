@@ -1,6 +1,6 @@
 package com.vclusters.cloud.account.data
 
-import com.android.base.utils.common.removeWhen
+import com.android.base.utils.common.removeFirstWhen
 import com.android.base.utils.security.AESUtils
 import com.android.sdk.cache.getEntity
 import com.app.base.config.AppSettings
@@ -34,7 +34,7 @@ class HistoryUserStorage @Inject constructor(
 
     fun deleteHistoryUser(user: HistoryUser): List<HistoryUser> {
         return historyUsers().toMutableList().also {
-            it.removeWhen { ele ->
+            it.removeFirstWhen { ele ->
                 ele.phone == user.phone
             }
             storage.putEntity(HISTORY_USER_KEY, it)
