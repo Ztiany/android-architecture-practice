@@ -35,12 +35,12 @@ public class CirclePointLoadView extends RelativeLayout {
     private static final long ANIMATION_DURATION = 400;
     private int radius;
 
-    private boolean isAnimationRunning = false;
-
     private CircleItemPointView leftView;
     private CircleItemPointView middleView;
     private CircleItemPointView rightView;
+
     private AnimatorSet spreadAnimation;
+    private AnimatorSet closedAnimation;
 
     public CirclePointLoadView(Context context) {
         this(context, null);
@@ -71,46 +71,6 @@ public class CirclePointLoadView extends RelativeLayout {
         addView(middleView);
     }
 
-    /**
-     * 展开动画
-     */
-    private void spreadAnimation() {
-        ObjectAnimator leftTranslationAnimator = ObjectAnimator.ofFloat(leftView, "translationX", 0, -translationDistance);
-        ObjectAnimator rightTranslationAnimator = ObjectAnimator.ofFloat(rightView, "translationX", 0, translationDistance);
-        spreadAnimation = new AnimatorSet();
-        spreadAnimation.setDuration(ANIMATION_DURATION);
-        spreadAnimation.playTogether(leftTranslationAnimator, rightTranslationAnimator);
-        spreadAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                closedAnimation();
-            }
-        });
-        spreadAnimation.start();
-    }
-
-    private void closedAnimation() {
-        ObjectAnimator leftTranslationAnimator = ObjectAnimator.ofFloat(leftView, "translationX", -translationDistance, 0);
-        ObjectAnimator rightTranslationAnimator = ObjectAnimator.ofFloat(rightView, "translationX", translationDistance, 0);
-        AnimatorSet closedAnimation = new AnimatorSet();
-        closedAnimation.setInterpolator(new AccelerateInterpolator());
-        closedAnimation.setDuration(ANIMATION_DURATION);
-        closedAnimation.playTogether(leftTranslationAnimator, rightTranslationAnimator);
-        closedAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                int leftColor = leftView.getColor();
-                int rightColor = rightView.getColor();
-                int middleColor = middleView.getColor();
-                middleView.changeColor(leftColor);
-                rightView.changeColor(middleColor);
-                leftView.changeColor(rightColor);
-                spreadAnimation();
-            }
-        });
-        closedAnimation.start();
-    }
-
     public CircleItemPointView createView(Context context) {
         CircleItemPointView itemPointView = new CircleItemPointView(context);
         LayoutParams params = new LayoutParams(Sizes.dpToPx(context, radius), Sizes.dpToPx(context, radius));
@@ -136,45 +96,69 @@ public class CirclePointLoadView extends RelativeLayout {
     }
 
     public void startLoad() {
-        if (spreadAnimation == null) {
+        if (spreadAnimation == null || closedAnimation != null || !spreadAnimation.isRunning() && !closedAnimation.isRunning()) {
             spreadAnimation();
-            isAnimationRunning = true;
         }
     }
 
     public void stopLoad() {
-        clearAnimation();
-        isAnimationRunning = false;
+        stopAnimation();
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (isAnimationRunning) {
-            startLoad();
+    private void stopAnimation() {
+        if (spreadAnimation != null) {
+            spreadAnimation.cancel();
+        }
+        if (closedAnimation != null) {
+            closedAnimation.cancel();
         }
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        clearAnimation();
+        stopAnimation();
     }
 
-    public void setLeftColor(int leftColor) {
-        this.leftColor = leftColor;
+    private void spreadAnimation() {
+        if (spreadAnimation == null) {
+            ObjectAnimator leftTranslationAnimator = ObjectAnimator.ofFloat(leftView, "translationX", 0, -translationDistance);
+            ObjectAnimator rightTranslationAnimator = ObjectAnimator.ofFloat(rightView, "translationX", 0, translationDistance);
+            spreadAnimation = new AnimatorSet();
+            spreadAnimation.setDuration(ANIMATION_DURATION);
+            spreadAnimation.playTogether(leftTranslationAnimator, rightTranslationAnimator);
+            spreadAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    closedAnimation();
+                }
+            });
+        }
+        spreadAnimation.start();
     }
 
-    public void setMiddleColor(int middleColor) {
-        this.middleColor = middleColor;
-    }
-
-    public void setRightColor(int rightColor) {
-        this.rightColor = rightColor;
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
+    private void closedAnimation() {
+        if (closedAnimation == null) {
+            ObjectAnimator leftTranslationAnimator = ObjectAnimator.ofFloat(leftView, "translationX", -translationDistance, 0);
+            ObjectAnimator rightTranslationAnimator = ObjectAnimator.ofFloat(rightView, "translationX", translationDistance, 0);
+            closedAnimation = new AnimatorSet();
+            closedAnimation.setInterpolator(new AccelerateInterpolator());
+            closedAnimation.setDuration(ANIMATION_DURATION);
+            closedAnimation.playTogether(leftTranslationAnimator, rightTranslationAnimator);
+            closedAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    int leftColor = leftView.getColor();
+                    int rightColor = rightView.getColor();
+                    int middleColor = middleView.getColor();
+                    middleView.changeColor(leftColor);
+                    rightView.changeColor(middleColor);
+                    leftView.changeColor(rightColor);
+                    spreadAnimation();
+                }
+            });
+        }
+        closedAnimation.start();
     }
 
     public static class CircleItemPointView extends View {
@@ -221,6 +205,5 @@ public class CirclePointLoadView extends RelativeLayout {
         }
 
     }
-
 
 }

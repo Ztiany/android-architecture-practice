@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.android.base.adapter.pager2.SimpleFragmentStateAdapter
 import com.android.base.architecture.fragment.state.BaseStateFragment
-import com.android.base.architecture.ui.collectFlowOnLifecycle
+import com.android.base.architecture.ui.collectFlowOnViewLifecycleRepeat
 import com.android.base.architecture.ui.handleSateResource
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.recyclerView
@@ -34,18 +34,15 @@ class PhonePreviewsFragment : BaseStateFragment<MainFragmentPhonePreviewsBinding
 
     private lateinit var pagerAdapter: SimpleFragmentStateAdapter<CloudDevice>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        subscribeViewModel()
-    }
-
-    override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
-        super.onViewPrepared(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setUpViews()
 
         stateLayoutConfig
             .setStateIcon(EMPTY, R.drawable.main_img_no_device)
             .setStateMessage(EMPTY, "还没有云手机哦~")
+
+        subscribeViewModel()
     }
 
     private fun setUpViews() {
@@ -74,13 +71,12 @@ class PhonePreviewsFragment : BaseStateFragment<MainFragmentPhonePreviewsBinding
         }
     }
 
-
     private fun subscribeViewModel() {
-        viewModel.announcement.observe(this) {
+        collectFlowOnViewLifecycleRepeat(data = viewModel.announcement) {
             vb.mainAnnouncementView.setAnnouncements(it)
         }
 
-        collectFlowOnLifecycle(data = phoneViewModel.devicesState) {
+        collectFlowOnViewLifecycleRepeat(data = phoneViewModel.devicesState) {
             handleSateResource(it, onResult = { devices ->
                 showDevices(devices)
             })
