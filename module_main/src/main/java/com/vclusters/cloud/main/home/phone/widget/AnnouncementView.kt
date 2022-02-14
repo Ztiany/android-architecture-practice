@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.vclusters.cloud.main.databinding.MainLayoutWidgetAnnouncementBinding
+import com.vclusters.cloud.main.databinding.MainWidgetAnnouncementBinding
 
 private const val INTERVAL = 5000L
 
@@ -12,7 +12,7 @@ class AnnouncementView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
 
-    private val vb: MainLayoutWidgetAnnouncementBinding = MainLayoutWidgetAnnouncementBinding.inflate(LayoutInflater.from(context), this)
+    private val vb = MainWidgetAnnouncementBinding.inflate(LayoutInflater.from(context), this)
 
     private var announcements = emptyList<String>()
     private var currentIndex = 0

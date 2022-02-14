@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/btn_pressed">
+    android:color="#F8F8F8">
 
     <item>
 
@@ -8,7 +8,7 @@
 
             <item
                 android:state_enabled="false"
-                android:drawable="@color/btn_disable" />
+                android:drawable="@color/widget_disable" />
 
             <item
                 android:state_enabled="true"

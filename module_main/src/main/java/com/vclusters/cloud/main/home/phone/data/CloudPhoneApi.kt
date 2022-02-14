@@ -12,10 +12,10 @@ interface CloudPhoneApi {
     @GET("public/v1/announce/count")
     suspend fun queryMessageCount(): HttpResult<Int>
 
-    @GET("api/wsi/v1/config/reset")
-    suspend fun resetCloudDevice(@Query("userCardId") userCardId: String): HttpResult<Unit>
+    @GET("wsi/v1/config/reset")
+    suspend fun resetCloudDevice(@Query("userCardId") deviceId: String): HttpResult<Any?>
 
-    @GET("api/wsi/v1/config/reboot")
-    suspend fun rebootCloudDevice(@Query("userCardId") userCardId: String): HttpResult<Unit>
+    @GET("wsi/v1/config/reboot")
+    suspend fun rebootCloudDevice(@Query("userCardId") deviceId: String): HttpResult<Any?>
 
 }

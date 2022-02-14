@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.base.utils.common.ignoreCrash
-import com.app.base.app.DispatcherProvider
 import com.vclusters.cloud.main.home.phone.data.CloudPhoneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class PhoneRootViewModule @Inject constructor(
     private val cloudPhoneRepository: CloudPhoneRepository,
-    private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
     private val _messageCount = MutableLiveData<Int>()
@@ -26,7 +24,7 @@ class PhoneRootViewModule @Inject constructor(
         get() = _messageCount
 
     fun queryMessageCount() {
-        viewModelScope.launch(dispatcherProvider.io()) {
+        viewModelScope.launch {
             ignoreCrash {
                 _messageCount.postValue(cloudPhoneRepository.messageCount())
             }

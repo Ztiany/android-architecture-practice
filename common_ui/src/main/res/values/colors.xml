@@ -6,36 +6,38 @@
     <color name="colorPrimary">#2D60FF</color>
     <!--主暗色调-->
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <!--控件-->
+    <!--控件选中的颜色-->
     <color name="colorAccent">@color/colorPrimary</color>
-    <!--窗口背-->
+    <!--窗口背景-->
     <color name="page_bg_color">#F6F6F6</color>
     <!--分割线-->
     <color name="divider_color">#E5E5E5</color>
-    <!--组件线色背景-->
-    <color name="widget_bg_color">#E5ECF9</color>
-    <color name="widget_bg_color_link">#E8F0FF</color>
+
+    <!--组件背景-->
+    <color name="widget_disable">#E5E5E5</color>
+    <color name="widget_bg_color_link1">#E5ECF9</color>
+    <color name="widget_bg_color_link2">#E8F0FF</color>
     <color name="widget_bg_color_warn">#FFE9E7</color>
-    <!--不可用-->
-    <color name="btn_disable">#E5E5E5</color>
-    <!--按下-->
-    <color name="btn_pressed">#F7F7F7</color>
+
     <!--color for tips-->
     <color name="app_tips_success">#1A1A1A</color><!--提示：完成-->
-    <color name="app_tips_warn">#FA5151</color><!--提示：警告-->
     <color name="app_tips_info">#10AEFF</color><!--提示：信息-->
+    <color name="app_tips_warn">#FA5151</color><!--提示：警告-->
+
     <!--color for text-->
     <color name="text_level1">#CCCCCC</color>
     <color name="text_level2">#333333</color>
     <color name="text_level3">#808080</color>
     <color name="text_level4">#999999</color>
     <color name="text_level6">#1A1A1A</color>
-    <color name="text_link">#387FFF</color>
+    <color name="text_link1">#387FFF</color>
+    <color name="text_link2">#3666F2</color>
     <color name="text_warn">#F55F4E</color>
-
 
     <!-- ============================ Palette ============================ -->
     <color name="translate">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <!-- Palette black -->
     <color name="opacity10_black">#1A000000</color>
     <color name="opacity20_black">#33000000</color>

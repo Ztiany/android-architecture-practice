@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,6 +13,65 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:atl_disable_navigation="true"
-        app:atl_title="云助手" />
+        app:atl_title="@string/main_cloud_assistant" />
+
+    <com.android.base.widget.SimpleMultiStateView
+        style="@style/SimpleMultiStateView_Default"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/common_page_edge"
+            android:layout_marginVertical="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/main_save_position" />
+
+                <FrameLayout
+                    android:id="@+id/main_fl_chose_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_rect_white_round10"
+                    android:backgroundTint="@color/color_sel_white"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="12dp">
+
+                    <TextView
+                        android:id="@+id/main_tv_phone_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|end"
+                        android:src="@drawable/icon_arrow_down"
+                        tools:ignore="ContentDescription" />
+
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_rv_assistant_features"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </com.android.base.widget.SimpleMultiStateView>
 
 </LinearLayout>

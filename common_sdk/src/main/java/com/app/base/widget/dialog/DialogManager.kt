@@ -209,7 +209,7 @@ open class BaseDialogBuilder(val context: Context) {
             }
         }
     var negativeText: CharSequence? = context.getText(R.string.cancel_)
-    @ColorInt var negativeColor: Int = context.getColorCompat(R.color.text_level1)
+    @ColorInt var negativeColor: Int = context.getColorCompat(R.color.text_level2)
 
     fun disableNegative() {
         negativeText = null

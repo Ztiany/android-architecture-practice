@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/sel_selectable_item_white_bg_round10">
+    android:background="@drawable/shape_rect_white_round10"
+    android:backgroundTint="@color/color_sel_white">
 
     <TextView
         android:id="@+id/main_tv_phone_name"

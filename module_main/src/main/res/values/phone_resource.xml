@@ -38,8 +38,8 @@
     </style>
 
     <style name="Main_Style_Phone_RebootBtn" parent="Main_Style_Phone_OperationBtn">
-        <item name="backgroundTint">@color/widget_bg_color_link</item>
-        <item name="android:textColor">@color/text_link</item>
+        <item name="backgroundTint">@color/widget_bg_color_link2</item>
+        <item name="android:textColor">@color/text_link1</item>
     </style>
 
     <style name="Main_Style_Phone_ResetBtn" parent="Main_Style_Phone_OperationBtn">

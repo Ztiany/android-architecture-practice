@@ -5,5 +5,5 @@ data class HomeAnnouncements(
 )
 
 data class HomeAnnouncement(
-    val title: String = ""
+    val content: String = ""
 )

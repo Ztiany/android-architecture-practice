@@ -14,7 +14,7 @@ import androidx.core.content.res.use
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.measureSelf
 import com.vclusters.cloud.main.R
-import com.vclusters.cloud.main.databinding.MainLayoutWidgetPhoneTitleBarBinding
+import com.vclusters.cloud.main.databinding.MainWidgetPhoneTitleBarBinding
 import org.jetbrains.annotations.NotNull
 
 typealias OnTabSelectedListener = (position: Int) -> Unit
@@ -23,7 +23,7 @@ class CloudPhoneTitleBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
 
-    private val vb = MainLayoutWidgetPhoneTitleBarBinding.inflate(LayoutInflater.from(getContext()), this)
+    private val vb = MainWidgetPhoneTitleBarBinding.inflate(LayoutInflater.from(getContext()), this)
 
     private var selectedIndex = 0
 

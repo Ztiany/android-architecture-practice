@@ -5,4 +5,16 @@
     <string name="main_tab_mine">我的</string>
     <string name="main_exit_tips">再点击一次退出 APP</string>
 
+    <string name="main_reboot_phone_tips_part1">是否重启</string>
+    <string name="main_reboot_phone_tips_part2">云手机？重启期间云手机将不可操作。</string>
+
+    <string name="main_reset_phone_tips">恢复出厂将清除云手机上的所有数据，建议谨慎使用。</string>
+    <string name="main_rebooting_tips">正在重启…</string>
+    <string name="main_rebooted_ips">操作成功，20 秒后可以使用</string>
+    <string name="main_resetting_tips">正在恢复出厂…</string>
+    <string name="main_reset_success_tips">云手机将恢复出厂设置，期间不可进行操作</string>
+
+    <string name="main_save_position">保存位置</string>
+    <string name="main_cloud_assistant">云助手</string>
+
 </resources>

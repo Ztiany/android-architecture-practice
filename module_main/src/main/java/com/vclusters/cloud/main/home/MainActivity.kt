@@ -2,6 +2,7 @@ package com.vclusters.cloud.main.home
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.base.architecture.fragment.tools.clearBackStack
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
@@ -16,6 +17,8 @@ import com.app.base.widget.dialog.TipsTool
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.api.MainModule
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -74,6 +77,25 @@ class MainActivity : AppBaseActivity() {
             mainFragment.selectTabAtPosition(page)
             return
         }
+
+        //其他行为
+        if (intent.hasExtra(MainModule.ACTION_KEY)) {
+            val action = intent.getIntExtra(MainModule.ACTION_KEY, 0)
+            //用户需要重新登录，登录之前需要清空用户之前的数据
+            if (action == MainModule.ACTION_RE_LOGIN) {
+                //back to main
+                supportFragmentManager.clearBackStack()
+                postRun {
+                    mainFragment.selectTabAtPosition(0)
+                    userManager.logout()
+                    //jump to login activity
+                    mainNavigator.toLogin()
+                    //finish self
+                    supportFinishAfterTransition()
+                }
+            }
+        }
+
     }
 
     override fun superOnBackPressed() {
@@ -96,6 +118,13 @@ class MainActivity : AppBaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         AppUtils.dispatchActivityResult(supportFragmentManager, requestCode, resultCode, data)
+    }
+
+    private fun postRun(delaMillis: Long = 0, action: () -> Unit) {
+        lifecycleScope.launch {
+            delay(delaMillis)
+            action()
+        }
     }
 
 }

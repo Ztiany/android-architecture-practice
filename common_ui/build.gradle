@@ -31,4 +31,6 @@ android {
 
 dependencies {
     implementation AndroidLibraries.annotations
+
+    api project(":lib_common_ui")//基础UI
 }

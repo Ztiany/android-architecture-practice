@@ -1,4 +1,4 @@
-package com.vclusters.cloud.main.home.phone
+package com.vclusters.cloud.main.home.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,6 @@ import com.android.base.foundation.data.Resource
 import com.android.base.foundation.data.emitData
 import com.android.base.foundation.data.emitError
 import com.android.base.foundation.data.emitLoading
-import com.app.base.app.DispatcherProvider
 import com.app.base.services.devicemanager.CloudDevice
 import com.app.base.services.devicemanager.DeviceManager
 import com.vclusters.cloud.main.home.phone.data.CloudPhoneRepository
@@ -20,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class PhoneViewModel @Inject constructor(
     private val deviceManager: DeviceManager,
-    private val dispatcherProvider: DispatcherProvider,
     private val cloudPhoneRepository: CloudPhoneRepository
 ) : ViewModel() {
 
@@ -46,7 +44,7 @@ class PhoneViewModel @Inject constructor(
     }
 
     fun loadCloudDevices() {
-        viewModelScope.launch(dispatcherProvider.io()) {
+        viewModelScope.launch() {
             _devicesState.emitLoading()
             try {
                 _devicesState.emitData(deviceManager.cloudDevices())
@@ -57,38 +55,38 @@ class PhoneViewModel @Inject constructor(
         }
     }
 
-    fun rebootCloudDevice(cardId: Int) {
+    fun rebootCloudDevice(deviceId: Int) {
         viewModelScope.launch {
             _rebootDeviceState.emitLoading()
             try {
-                cloudPhoneRepository.rebootCloudDevice(cardId)
-                _rebootDeviceState.emitData(cardId)
-                startCountDown(_rebootCountDown, cardId)
+                cloudPhoneRepository.rebootCloudDevice(deviceId)
+                _rebootDeviceState.emitData(deviceId)
+                startCountDown(_rebootCountDown, deviceId)
             } catch (e: Exception) {
                 _rebootDeviceState.emitError(e)
             }
         }
     }
 
-    fun resetCloudDevice(cardId: Int) {
+    fun resetCloudDevice(deviceId: Int) {
         viewModelScope.launch {
-            _rebootDeviceState.emitLoading()
+            _resetDeviceState.emitLoading()
             try {
-                cloudPhoneRepository.resetCloudDevice(cardId)
-                _rebootDeviceState.emitData(cardId)
-                startCountDown(_resetCountDown, cardId)
+                cloudPhoneRepository.resetCloudDevice(deviceId)
+                _resetDeviceState.emitData(deviceId)
+                startCountDown(_resetCountDown, deviceId)
             } catch (e: Exception) {
-                _rebootDeviceState.emitError(e)
+                _resetDeviceState.emitError(e)
             }
         }
     }
 
-    private fun startCountDown(flow: MutableSharedFlow<Int>, cardId: Int) {
-        rebootingPoneCardIdList.add(cardId)
+    private fun startCountDown(flow: MutableSharedFlow<Int>, deviceId: Int) {
+        rebootingPoneCardIdList.add(deviceId)
         viewModelScope.launch {
             delay(15 * 1000)
-            rebootingPoneCardIdList.remove(cardId)
-            flow.emit(cardId)
+            rebootingPoneCardIdList.remove(deviceId)
+            flow.emit(deviceId)
         }
     }
 

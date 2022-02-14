@@ -8,12 +8,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MainModuleInitializer @Inject constructor(
-
-) : AppLifecycle {
+class MainModuleInitializer @Inject constructor() : AppLifecycle {
 
     override fun onCreate(application: Application) {
-        Timber.d("MainModuleInitializer-onCreate() called with: application = $application")
+        Timber.d("onCreate() called with: application = $application")
     }
 
     override fun onTerminate() {
@@ -26,6 +24,7 @@ class MainModuleInitializer @Inject constructor(
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
+
     }
 
 }

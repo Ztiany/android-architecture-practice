@@ -14,11 +14,16 @@ import com.android.base.architecture.fragment.list.BaseListFragment
 import com.android.base.architecture.ui.collectFlowOnViewLifecycleRepeat
 import com.android.base.architecture.ui.handleFlowDataWithViewLifecycle
 import com.android.base.architecture.ui.handleListResource
+import com.android.base.utils.android.text.SpanUtils
+import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.android.views.invisible
 import com.android.base.utils.android.views.visible
 import com.app.base.services.devicemanager.CloudDevice
+import com.app.base.widget.dialog.showConfirmDialog
+import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentPhoneListBinding
 import com.vclusters.cloud.main.databinding.MainItemPhoneBinding
+import com.vclusters.cloud.main.home.common.PhoneViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.widget.common.dip
 import me.ztiany.widget.recyclerview.MarginDecoration
@@ -44,6 +49,11 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
     }
 
     private fun setUpViews() {
+        stateLayoutConfig
+            .setStateIcon(EMPTY, R.drawable.main_img_no_device)
+            .setStateMessage(EMPTY, "还没有云手机哦~")
+            .setStateAction(EMPTY, getString(R.string.refresh))
+
         dataManager = phoneListAdapter
         with(vb.baseListLayout) {
             addItemDecoration(MarginDecoration(0, 0, 0, dip(5)))
@@ -57,19 +67,33 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
             showMessage("进入云手机")
         }
         phoneListAdapter.onRebootPhoneListener = newOnItemClickListener<CloudDevice> {
-            doRebootPhone(it.cardId)
+            doRebootPhone(it)
         }
         phoneListAdapter.onResetPhoneListener = newOnItemClickListener<CloudDevice> {
-            doResetPhone(it.cardId)
+            doResetPhone(it)
         }
     }
 
-    private fun doRebootPhone(cardId: Int) {
-        viewModel.rebootCloudDevice(cardId)
+    private fun doRebootPhone(cloudDevice: CloudDevice) {
+        showConfirmDialog {
+            message = SpanUtils().append(getString(R.string.main_reboot_phone_tips_part1))
+                .append(cloudDevice.diskName)
+                .setForegroundColor(getColorCompat(R.color.text_link2))
+                .append(getString(R.string.main_reboot_phone_tips_part2))
+                .create()
+            positiveListener = {
+                viewModel.rebootCloudDevice(cloudDevice.id)
+            }
+        }
     }
 
-    private fun doResetPhone(cardId: Int) {
-        viewModel.resetCloudDevice(cardId)
+    private fun doResetPhone(cloudDevice: CloudDevice) {
+        showConfirmDialog {
+            message = getString(R.string.main_reset_phone_tips)
+            positiveListener = {
+                viewModel.resetCloudDevice(cloudDevice.id)
+            }
+        }
     }
 
     private fun subscribeViewModel() {
@@ -86,14 +110,18 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
         }
 
         handleFlowDataWithViewLifecycle(data = viewModel.rebootDeviceState) {
+            loadingMessage = getString(R.string.main_rebooting_tips)
             onData = {
                 notifyItem(it)
+                showMessage(R.string.main_rebooted_ips)
             }
         }
 
         handleFlowDataWithViewLifecycle(data = viewModel.resetDeviceState) {
+            loadingMessage = getString(R.string.main_resetting_tips)
             onData = {
                 notifyItem(it)
+                showMessage(R.string.main_reset_success_tips)
             }
         }
     }
@@ -103,9 +131,9 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
         viewModel.loadCloudDevices()
     }
 
-    private fun notifyItem(cardId: Int) {
+    private fun notifyItem(phoneId: Int) {
         phoneListAdapter.getList().indexOfFirst {
-            it.cardId == cardId
+            it.id == phoneId
         }.let {
             phoneListAdapter.notifyItemChanged(it)
         }
@@ -130,7 +158,7 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
             mainBtnReboot.setOnClickListener(onRebootPhoneListener)
             mainBtnReset.setOnClickListener(onResetPhoneListener)
 
-            if (viewModel.isDeviceRebooting(item.cardId)) {
+            if (viewModel.isDeviceRebooting(item.id)) {
                 mainPhoneOperationGroup.invisible()
                 mainPhoneOperatingView.visible()
                 mainPhoneOperatingView.startLoad()

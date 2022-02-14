@@ -1,6 +1,7 @@
 package com.vclusters.cloud.main.home;
 
 import com.app.base.app.ServiceProvider;
+import com.vclusters.cloud.main.home.assistant.data.AssistantApi;
 import com.vclusters.cloud.main.home.phone.data.CloudPhoneApi;
 
 import dagger.Module;
@@ -20,6 +21,11 @@ public class MainInjectionModule {
     @Provides
     static CloudPhoneApi provideCloudPhoneApi(ServiceProvider serviceProvider) {
         return serviceProvider.getDefault().create(CloudPhoneApi.class);
+    }
+
+    @Provides
+    static AssistantApi provideAssistantApi(ServiceProvider serviceProvider) {
+        return serviceProvider.getDefault().create(AssistantApi.class);
     }
 
 }

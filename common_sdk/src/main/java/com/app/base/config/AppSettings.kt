@@ -22,11 +22,11 @@ class AppSettings @Inject internal constructor(
     private val initialized = AtomicBoolean(false)
 
     fun baseWebUrl(): String {
-        return "http://demo.ysj.vclusters.com/"
+        return "http://192.168.210.199/"
     }
 
     fun baseApiUrl(): String {
-        return "http://demo.ysj.vclusters.com/api/"
+        return "http://192.168.210.199/api/"
     }
 
     fun init() {

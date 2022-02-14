@@ -84,7 +84,6 @@ dependencies {
     api project(":lib_storage")//缓存库
     api project(":lib_network")//基础网络库
     api project(":lib_image_loader")//图片加载
-    api project(":lib_common_ui")//基础UI
     api project(":lib_media_selector")//媒体选择器
     api project(":lib_upgrade")//升级
     api project(":lib_safekeyboard")//安全键盘

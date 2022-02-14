@@ -19,6 +19,7 @@ import com.app.base.services.devicemanager.CloudDevice
 import com.qmuiteam.qmui.kotlin.dip
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentPhonePreviewsBinding
+import com.vclusters.cloud.main.home.common.PhoneViewModel
 import com.vclusters.cloud.main.home.phone.widget.FadeInTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.time.Duration.Companion.minutes
@@ -41,6 +42,7 @@ class PhonePreviewsFragment : BaseStateFragment<MainFragmentPhonePreviewsBinding
         stateLayoutConfig
             .setStateIcon(EMPTY, R.drawable.main_img_no_device)
             .setStateMessage(EMPTY, "还没有云手机哦~")
+            .setStateAction(EMPTY, getString(R.string.refresh))
 
         subscribeViewModel()
     }

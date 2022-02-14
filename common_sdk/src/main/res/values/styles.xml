@@ -3,6 +3,8 @@
 
     <!--状态布局-->
     <style name="SimpleMultiStateView_Default" parent="Base_SimpleMultiStateView">
+        <!--fixed id-->
+        <item name="android:id">@id/base_state_layout</item>
         <!--empty-->
         <item name="msv_emptyImg">@drawable/img_page_no_data</item>
         <item name="msv_emptyView">@layout/app_base_layout_empty</item>
