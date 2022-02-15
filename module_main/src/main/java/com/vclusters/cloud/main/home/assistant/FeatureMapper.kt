@@ -3,7 +3,7 @@ package com.vclusters.cloud.main.home.assistant
 import android.content.Context
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.home.assistant.data.AssistantFeatureConfig
-import dagger.hilt.android.qualifiers.ActivityContext
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 internal const val FEATURE_PHOTO = "photograph"
@@ -63,9 +63,8 @@ private val featureFactories: Map<String, FeatureFactory> = mapOf(
     },
 )
 
-
 class FeatureMapper @Inject constructor(
-    @ActivityContext private val context: Context
+    @ApplicationContext private val context: Context
 ) {
 
     fun mapperConfigs(configs: List<AssistantFeatureConfig>): List<AssistantFeature> {

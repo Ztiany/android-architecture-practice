@@ -8,5 +8,5 @@ data class AssistantFeature(
     val desc: String = "",
     val hasArrow: Boolean = true,
     val hasSwitch: Boolean = false,
-    val switched: Boolean = false
+    val switchStateOn: Boolean = false
 )

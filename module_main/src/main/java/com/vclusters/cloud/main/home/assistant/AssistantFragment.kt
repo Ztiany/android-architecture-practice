@@ -29,7 +29,7 @@ class AssistantFragment : BaseStateFragment<MainFragmentAssistantBinding>() {
 
     private val assistantFeaturePresenter by lazy(LazyThreadSafetyMode.NONE) {
         AssistantFeaturePresenter(featureAdapter, vb) { phoneId, featureId ->
-            false
+            true
         }
     }
 
@@ -86,7 +86,7 @@ class AssistantFragment : BaseStateFragment<MainFragmentAssistantBinding>() {
 
     override fun onResume() {
         super.onResume()
-        if (refreshConfigTiming) {
+        if (featureAdapter.isEmpty() || refreshConfigTiming) {
             viewModel.loadAssistantFeatureConfigs()
         }
     }

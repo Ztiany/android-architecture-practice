@@ -41,6 +41,7 @@ class AssistantFeatureAdapter(
             mainTvFeatureDesc.visibleOrGone(item.desc.isNotEmpty())
             mainIvArrow.visibleOrGone(item.hasArrow)
             mainSwitchFeature.visibleOrGone(item.hasSwitch)
+            mainSwitchFeature.setCheckedImmediatelyNoEvent(item.switchStateOn)
         }
     }
 
