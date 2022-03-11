@@ -15,7 +15,6 @@ import com.app.base.R;
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-05-02 14:37
  */
 class TipsDialog extends AppCompatDialog {

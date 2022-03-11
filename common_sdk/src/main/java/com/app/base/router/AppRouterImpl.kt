@@ -7,7 +7,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-11-04 13:45
  */
 internal class AppRouterImpl : AppRouter {

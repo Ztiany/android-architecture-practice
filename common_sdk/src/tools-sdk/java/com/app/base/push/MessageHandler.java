@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-03-09 11:31
  */
 public interface MessageHandler {

@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
  * 仅用于调试版本
  *
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date
  */
 @AndroidEntryPoint

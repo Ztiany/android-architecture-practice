@@ -24,7 +24,6 @@ import javax.inject.Inject
  * 调试工具
  *
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-07-26 18:49
  */
 @AndroidEntryPoint

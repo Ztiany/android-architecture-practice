@@ -8,7 +8,6 @@ import timber.log.Timber
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-12-20 15:43
  */
 internal abstract class AppWebViewClient : WebViewClient() {

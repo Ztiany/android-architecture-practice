@@ -15,7 +15,6 @@ private const val IMAGE_TYPE = "image"
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-12-20 15:40
  */
 internal class AppWebChromeClient(

@@ -15,7 +15,6 @@ import timber.log.Timber;
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-12-20 15:55
  */
 public class DefaultWebSetting {

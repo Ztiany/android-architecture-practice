@@ -4,15 +4,14 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.widget.TextView;
 
-import com.app.base.R;
-
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDialog;
+
+import com.app.base.R;
 
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-05-02 14:37
  */
 public class LoadingDialog extends AppCompatDialog {

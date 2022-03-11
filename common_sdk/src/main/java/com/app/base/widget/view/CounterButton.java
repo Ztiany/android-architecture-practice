@@ -14,7 +14,6 @@ import com.app.base.R;
  * Counter Button
  *
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-04-27 11:33
  */
 public class CounterButton extends AppCompatTextView {

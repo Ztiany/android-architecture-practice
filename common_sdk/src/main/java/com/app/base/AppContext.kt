@@ -25,7 +25,7 @@ import com.app.base.debug.DebugTools
 import com.app.base.router.AppRouter
 import com.app.base.services.usermanager.UserManager
 import com.app.base.upgrade.AppUpgradeInteractor
-import com.app.base.widget.dialog.AppLoadingView
+import com.app.base.widget.dialog.AppLoadingViewHost
 import dagger.Lazy
 import retrofit2.HttpException
 import java.io.IOException
@@ -96,7 +96,7 @@ abstract class AppContext : BaseAppContext() {
                 //Dialog 最短展示时间
                 minimumShowingDialogMills = appSettings.get().minimumDialogShowTime
                 //默认的通用的LoadingDialog和Toast实现
-                loadingViewFactory = { AppLoadingView(it) }
+                sLoadingViewHostFactory = { AppLoadingViewHost(it) }
                 //错误消息转换器
                 errorConvert = object : ErrorConvert {
                     override fun convert(throwable: Throwable): CharSequence {

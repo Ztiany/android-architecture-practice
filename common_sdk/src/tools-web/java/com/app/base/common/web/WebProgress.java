@@ -12,7 +12,6 @@ import timber.log.Timber;
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-09-06 11:47
  */
 class WebProgress {

@@ -32,7 +32,6 @@ import java.util.List;
  *
  * @author Ztiany
  * @version 1.0
- * Email: 1169654504@qq.com
  */
 public class AddressPicker extends DialogFragment implements AddressInquirers.AddressQueryCallback {
 

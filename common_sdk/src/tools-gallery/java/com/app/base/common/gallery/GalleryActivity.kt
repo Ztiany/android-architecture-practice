@@ -31,7 +31,6 @@ import kotlin.properties.Delegates
  * 浏览图片。
  *
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2016-12-23 10:50
  */
 class GalleryActivity : AppBaseActivity() {

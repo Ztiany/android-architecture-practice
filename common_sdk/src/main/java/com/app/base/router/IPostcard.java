@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-06-22 14:50
  */
 public interface IPostcard {

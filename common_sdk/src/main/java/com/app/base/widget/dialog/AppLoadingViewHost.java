@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import com.android.base.architecture.ui.LoadingView;
+import com.android.base.architecture.ui.loading.LoadingViewHost;
 import com.app.base.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -14,12 +14,12 @@ import org.jetbrains.annotations.NotNull;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
-public class AppLoadingView implements LoadingView {
+public class AppLoadingViewHost implements LoadingViewHost {
 
     private final Context mContext;
     private LoadingDialog mLoadingDialog;
 
-    public AppLoadingView(Context context) {
+    public AppLoadingViewHost(Context context) {
         mContext = context;
     }
 

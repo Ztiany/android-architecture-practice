@@ -6,7 +6,6 @@ import com.alibaba.android.arouter.facade.template.IProvider
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-11-04 13:44
  */
 interface AppRouter {

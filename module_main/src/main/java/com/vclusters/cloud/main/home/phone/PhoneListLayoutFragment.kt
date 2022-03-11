@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.adapter.newOnItemClickListener
 import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.SimpleRecyclerAdapter
-import com.android.base.architecture.fragment.list.BaseListFragment
+import com.android.base.architecture.fragment.list.BaseListLayoutFragment
 import com.android.base.architecture.ui.collectFlowOnViewLifecycleRepeat
 import com.android.base.architecture.ui.handleFlowDataWithViewLifecycle
 import com.android.base.architecture.ui.handleListResource
@@ -29,7 +29,7 @@ import me.ztiany.widget.common.dip
 import me.ztiany.widget.recyclerview.MarginDecoration
 
 @AndroidEntryPoint
-class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBinding>() {
+class PhoneListLayoutFragment : BaseListLayoutFragment<CloudDevice, MainFragmentPhoneListBinding>() {
 
     private val viewModel by activityViewModels<PhoneViewModel>()
 

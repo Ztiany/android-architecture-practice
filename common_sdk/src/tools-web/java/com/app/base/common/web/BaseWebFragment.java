@@ -36,7 +36,6 @@ import timber.log.Timber;
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
  * Date : 2017-09-04 17:02
  */
 public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
