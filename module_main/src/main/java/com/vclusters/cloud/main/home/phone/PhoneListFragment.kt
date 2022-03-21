@@ -49,17 +49,17 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
     }
 
     private fun setUpViews() {
-        stateLayoutConfig
-            .setStateIcon(EMPTY, R.drawable.main_img_no_device)
-            .setStateMessage(EMPTY, "还没有云手机哦~")
-            .setStateAction(EMPTY, getString(R.string.refresh))
-
         with(vb.baseListLayout) {
             addItemDecoration(MarginDecoration(0, 0, 0, dip(5)))
             layoutManager = LinearLayoutManager(requireContext())
         }
 
         setUpList(phoneListAdapter, vb.baseListLayout)
+
+        stateLayoutConfig
+            .setStateIcon(EMPTY, R.drawable.main_img_no_device)
+            .setStateMessage(EMPTY, "还没有云手机哦~")
+            .setStateAction(EMPTY, getString(R.string.refresh))
     }
 
     private fun setUpListener() {
