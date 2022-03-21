@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.adapter.newOnItemClickListener
 import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.SimpleRecyclerAdapter
-import com.android.base.architecture.fragment.list.BaseListLayoutFragment
+import com.android.base.architecture.fragment.list.BaseListFragment
 import com.android.base.architecture.ui.collectFlowOnViewLifecycleRepeat
 import com.android.base.architecture.ui.handleFlowDataWithViewLifecycle
 import com.android.base.architecture.ui.handleListResource
@@ -29,7 +29,7 @@ import me.ztiany.widget.common.dip
 import me.ztiany.widget.recyclerview.MarginDecoration
 
 @AndroidEntryPoint
-class PhoneListLayoutFragment : BaseListLayoutFragment<CloudDevice, MainFragmentPhoneListBinding>() {
+class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBinding>() {
 
     private val viewModel by activityViewModels<PhoneViewModel>()
 
@@ -54,12 +54,12 @@ class PhoneListLayoutFragment : BaseListLayoutFragment<CloudDevice, MainFragment
             .setStateMessage(EMPTY, "还没有云手机哦~")
             .setStateAction(EMPTY, getString(R.string.refresh))
 
-        dataManager = phoneListAdapter
         with(vb.baseListLayout) {
             addItemDecoration(MarginDecoration(0, 0, 0, dip(5)))
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = phoneListAdapter
         }
+
+        setUpList(phoneListAdapter, vb.baseListLayout)
     }
 
     private fun setUpListener() {

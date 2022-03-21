@@ -36,8 +36,8 @@ class PhoneTabManager(
 
             add(
                 FragmentInfo.PageBuilder()
-                    .clazz(PhoneListLayoutFragment::class.java)
-                    .tag(PhoneListLayoutFragment::class.java.name)
+                    .clazz(PhoneListFragment::class.java)
+                    .tag(PhoneListFragment::class.java.name)
                     .pagerId(R.id.main_cloud_phone_list)
                     .build()
             )
