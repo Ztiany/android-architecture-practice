@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.android.base.adapter.pager2.SimpleFragmentStateAdapter
 import com.android.base.architecture.fragment.state.BaseStateFragment
-import com.android.base.architecture.ui.collectFlowOnViewLifecycleRepeat
+import com.android.base.architecture.ui.collectFlowOnViewLifecycle
 import com.android.base.architecture.ui.handleSateResource
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.recyclerView
@@ -74,11 +74,11 @@ class PhonePreviewsFragment : BaseStateFragment<MainFragmentPhonePreviewsBinding
     }
 
     private fun subscribeViewModel() {
-        collectFlowOnViewLifecycleRepeat(data = viewModel.announcement) {
+        collectFlowOnViewLifecycle(data = viewModel.announcement) {
             vb.mainAnnouncementView.setAnnouncements(it)
         }
 
-        collectFlowOnViewLifecycleRepeat(data = phoneViewModel.devicesState) {
+        collectFlowOnViewLifecycle(data = phoneViewModel.devicesState) {
             handleSateResource(it, onResult = { devices ->
                 showDevices(devices)
             })

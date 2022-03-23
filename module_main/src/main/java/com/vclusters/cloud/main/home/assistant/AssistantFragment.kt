@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.adapter.newCheckedChangeListener
 import com.android.base.adapter.newOnItemClickListener
 import com.android.base.architecture.fragment.state.BaseStateFragment
-import com.android.base.architecture.ui.collectFlowOnViewLifecycleRepeat
+import com.android.base.architecture.ui.collectFlowOnViewLifecycle
 import com.android.base.architecture.ui.handleSateResource
 import com.android.base.utils.common.timing
 import com.vclusters.cloud.main.databinding.MainFragmentAssistantBinding
@@ -73,13 +73,13 @@ class AssistantFragment : BaseStateFragment<MainFragmentAssistantBinding>() {
     )
 
     private fun subscribeViewModel() {
-        collectFlowOnViewLifecycleRepeat(data = phoneViewModel.devicesState) {
+        collectFlowOnViewLifecycle(data = phoneViewModel.devicesState) {
             handleSateResource(it, onResult = { devices ->
                 assistantFeaturePresenter.showDevices(devices)
             })
         }
 
-        collectFlowOnViewLifecycleRepeat(data = viewModel.assistantFeatureConfigs) {
+        collectFlowOnViewLifecycle(data = viewModel.assistantFeatureConfigs) {
             assistantFeaturePresenter.showFeatures(it)
         }
     }

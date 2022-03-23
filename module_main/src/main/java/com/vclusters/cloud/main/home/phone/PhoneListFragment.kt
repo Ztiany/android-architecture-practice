@@ -11,7 +11,7 @@ import com.android.base.adapter.newOnItemClickListener
 import com.android.base.adapter.recycler.BindingViewHolder
 import com.android.base.adapter.recycler.SimpleRecyclerAdapter
 import com.android.base.architecture.fragment.list.BaseListFragment
-import com.android.base.architecture.ui.collectFlowOnViewLifecycleRepeat
+import com.android.base.architecture.ui.collectFlowOnViewLifecycle
 import com.android.base.architecture.ui.handleFlowDataWithViewLifecycle
 import com.android.base.architecture.ui.handleListResource
 import com.android.base.utils.android.text.SpanUtils
@@ -37,10 +37,7 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
         PhoneListAdapter(requireContext())
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        subscribeViewModel()
-    }
+    override fun provideListImplementation(view: View, savedInstanceState: Bundle?) = setUpList(phoneListAdapter, vb.baseListLayout)
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
@@ -48,13 +45,16 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
         setUpViews()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeViewModel()
+    }
+
     private fun setUpViews() {
         with(vb.baseListLayout) {
             addItemDecoration(MarginDecoration(0, 0, 0, dip(5)))
             layoutManager = LinearLayoutManager(requireContext())
         }
-
-        setUpList(phoneListAdapter, vb.baseListLayout)
 
         stateLayoutConfig
             .setStateIcon(EMPTY, R.drawable.main_img_no_device)
@@ -97,15 +97,15 @@ class PhoneListFragment : BaseListFragment<CloudDevice, MainFragmentPhoneListBin
     }
 
     private fun subscribeViewModel() {
-        collectFlowOnViewLifecycleRepeat(data = viewModel.devicesState) {
+        collectFlowOnViewLifecycle(data = viewModel.devicesState) {
             handleListResource(it)
         }
 
-        collectFlowOnViewLifecycleRepeat(data = viewModel.rebootCountDown) {
+        collectFlowOnViewLifecycle(data = viewModel.rebootCountDown) {
             notifyItem(it)
         }
 
-        collectFlowOnViewLifecycleRepeat(data = viewModel.resetCountDown) {
+        collectFlowOnViewLifecycle(data = viewModel.resetCountDown) {
             notifyItem(it)
         }
 
