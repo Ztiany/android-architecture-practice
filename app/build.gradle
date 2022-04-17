@@ -64,7 +64,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             manifestPlaceholders = [screenOrientation: "unspecified"]
-            resValue("string", "app_name", "瑞驰云手机")
+            resValue("string", "app_name", "Android Arch")
             ndk {
                 abiFilters 'armeabi-v7a', 'x86'
             }
@@ -76,7 +76,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue("string", "app_name", "瑞驰云手机")
+            resValue("string", "app_name", "Android Arch")
             ndk {
                 abiFilters 'armeabi-v7a'
             }
