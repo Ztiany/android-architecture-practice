@@ -13,12 +13,14 @@ import com.android.sdk.upgrade.UpgradeException
 import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
 import com.app.base.R
+import com.app.base.app.DispatcherProvider
 import com.app.base.app.ServiceProvider
 import com.app.base.config.AppDirectory
 import com.app.base.config.AppSettings
+import com.app.base.injection.ApplicationScope
 import com.app.base.widget.dialog.showConfirmDialog
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.*
 import okhttp3.OkHttpClient
 import timber.log.Timber
 import java.io.File
@@ -30,7 +32,10 @@ import javax.inject.Inject
  *      Email: ztiany3@gmail.com
  *      Date : 2019-10-30 11:26
  */
-internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
+internal class AppUpgradeInteractor @Inject constructor(
+    @ApplicationScope private val scope: CoroutineScope,
+    private val dispatcherProvider: DispatcherProvider
+) : UpgradeInteractor {
 
     @Inject lateinit var appSettings: AppSettings
 
@@ -65,11 +70,21 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         )
     }
 
-    override fun checkUpgrade(): Flow<UpgradeInfo> {
-        return appUpdateRepository.checkNewVersion()
+    override fun checkUpgrade(onStart: () -> Unit, onError: (Throwable) -> Unit, onSuccess: (UpgradeInfo) -> Unit) {
+        onStart()
+        appUpdateRepository.checkNewVersion()
             .map {
                 buildUpgradeInfo(it)
             }
+            .flowOn(dispatcherProvider.io())
+            .catch {
+                onError(it)
+            }
+            .onEach {
+                onSuccess(it)
+            }
+            .flowOn(dispatcherProvider.ui())
+            .launchIn(scope)
     }
 
     override fun showUpgradeDialog(
