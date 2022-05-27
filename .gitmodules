@@ -1,3 +1,3 @@
 [submodule "Android-Libs"]
 	path = libraries
-	url = git@gitee.com:novice_abc/rc-android-cloud-new-client-libs.git
+	url = git@github.com:Ztiany/android-architecture-libs.git

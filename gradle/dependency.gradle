@@ -214,6 +214,7 @@ ext {
             rxJava2                              : "io.reactivex.rxjava2:rxjava:2.2.19",
             //https://github.com/ReactiveX/RxAndroid
             rxAndroid2                           : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            supportOptional                      : "com.github.dmstocking:support-optional:1.2",
             //https://github.com/uber/AutoDispose
             rx2AutoDispose                       : "com.uber.autodispose:autodispose:$autoDisposeVersion",
             rx2AutoDisposeAndroid                : "com.uber.autodispose:autodispose-android:$autoDisposeVersion",
