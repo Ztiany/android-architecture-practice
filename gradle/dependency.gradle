@@ -278,9 +278,6 @@ ext {
             //https://github.com/hdodenhof/CircleImageView
             circleImageView        : "de.hdodenhof:circleimageview:3.0.1",
 
-            //https://github.com/Fotoapparat/Fotoapparat
-            fotoapparat            : "io.fotoapparat:fotoapparat:2.7.0",
-
             //https://github.com/yshrsmz/KeyboardVisibilityEvent
             keyboardVisibilityEvent: "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2",
 

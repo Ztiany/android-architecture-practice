@@ -11,9 +11,6 @@ def libs = [
         "lib_image_loader",
         "lib_common_ui",
         "lib_upgrade",
-        "lib_safekeyboard",
-        "lib_biometrics",
-        "lib_qrcode",
 ]
 
 libs.forEach {
