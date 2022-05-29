@@ -4,8 +4,8 @@ import com.android.base.utils.security.AESUtils
 import com.android.sdk.net.coroutines.nonnull.executeApiCall
 import com.app.base.app.AndroidPlatform
 import com.app.base.config.AppSettings
-import com.app.base.services.usermanager.User
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.User
+import com.app.base.component.usermanager.UserManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flow

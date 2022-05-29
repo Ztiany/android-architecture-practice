@@ -1,7 +1,7 @@
 package com.vclusters.cloud.main.home.mine
 
 import androidx.lifecycle.ViewModel
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

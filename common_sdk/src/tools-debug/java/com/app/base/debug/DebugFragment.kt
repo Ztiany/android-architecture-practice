@@ -14,7 +14,7 @@ import com.app.base.R.string
 import com.app.base.config.EnvironmentConfigFragment
 import com.app.base.data.storage.StorageManager
 import com.app.base.databinding.BaseFragmentDebugBinding
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.joor.Reflect
 import javax.inject.Inject

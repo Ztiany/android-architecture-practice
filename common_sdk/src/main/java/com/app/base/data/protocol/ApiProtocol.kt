@@ -1,7 +1,7 @@
 package com.app.base.data.protocol
 
 import com.app.base.app.AndroidPlatform
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response

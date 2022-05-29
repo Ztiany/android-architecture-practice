@@ -6,6 +6,8 @@ import com.app.base.app.DispatcherProvider;
 import com.app.base.app.DispatcherProviders;
 import com.app.base.router.AppRouter;
 import com.app.base.router.AppRouterImpl;
+import com.app.base.services.AppServiceManager;
+import com.app.base.services.AppServiceManagerImpl;
 
 import javax.inject.Singleton;
 
@@ -33,6 +35,12 @@ public class AppModule {
     @Singleton
     AppRouter provideAppRouter() {
         return new AppRouterImpl();
+    }
+
+    @Provides
+    @Singleton
+    AppServiceManager provideAppServiceManager() {
+        return new AppServiceManagerImpl();
     }
 
     @Provides

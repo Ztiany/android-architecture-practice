@@ -12,7 +12,7 @@ import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import com.app.base.widget.dialog.TipsTool
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.api.MainModule

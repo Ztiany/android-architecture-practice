@@ -1,4 +1,4 @@
-package com.app.base.services.usermanager
+package com.app.base.component.usermanager
 
 import kotlinx.coroutines.flow.Flow
 

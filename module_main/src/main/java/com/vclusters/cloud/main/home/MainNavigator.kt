@@ -3,7 +3,7 @@ package com.vclusters.cloud.main.home
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.app.base.router.AppRouter
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import com.vclusters.cloud.account.api.AccountModule
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped

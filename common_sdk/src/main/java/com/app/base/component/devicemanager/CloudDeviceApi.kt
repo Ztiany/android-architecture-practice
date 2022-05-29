@@ -1,4 +1,4 @@
-package com.app.base.services.devicemanager
+package com.app.base.component.devicemanager
 
 import com.app.base.data.protocol.HttpResult
 import retrofit2.http.GET

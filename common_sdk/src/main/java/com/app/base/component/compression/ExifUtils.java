@@ -1,4 +1,4 @@
-package com.app.base.services.compression;
+package com.app.base.component.compression;
 
 import java.io.IOException;
 

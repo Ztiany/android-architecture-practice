@@ -1,4 +1,4 @@
-package com.app.base.services.devicemanager
+package com.app.base.component.devicemanager
 
 internal data class CloudDevicesResponse(
     /** 无用字段 */

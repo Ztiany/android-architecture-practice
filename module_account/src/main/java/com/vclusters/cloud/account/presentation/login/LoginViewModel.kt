@@ -9,7 +9,7 @@ import com.android.base.foundation.data.postData
 import com.android.base.foundation.data.postError
 import com.android.base.foundation.data.postLoading
 import com.app.base.app.DispatcherProvider
-import com.app.base.services.usermanager.User
+import com.app.base.component.usermanager.User
 import com.vclusters.cloud.account.data.AccountDataSource
 import com.vclusters.cloud.account.data.HistoryUser
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -83,7 +83,6 @@ class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
         }, true)
     }
 
-
     private fun handleAutoInstallFragmentDelegate(fragment: Fragment) {
         if (fragment is FragmentDelegateOwner) {
             //nothing to do

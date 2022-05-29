@@ -1,4 +1,4 @@
-package com.app.base.services.devicemanager
+package com.app.base.component.devicemanager
 
 import android.text.TextUtils
 import com.app.base.R

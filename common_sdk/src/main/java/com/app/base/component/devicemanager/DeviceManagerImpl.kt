@@ -1,4 +1,4 @@
-package com.app.base.services.devicemanager
+package com.app.base.component.devicemanager
 
 import com.android.sdk.net.coroutines.nonnull.executeApiCall
 import com.android.sdk.net.extension.create

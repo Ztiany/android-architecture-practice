@@ -15,7 +15,7 @@ import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.recyclerView
 import com.android.base.utils.android.views.visible
 import com.android.base.utils.common.timing
-import com.app.base.services.devicemanager.CloudDevice
+import com.app.base.component.devicemanager.CloudDevice
 import com.qmuiteam.qmui.kotlin.dip
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentPhonePreviewsBinding

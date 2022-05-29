@@ -1,4 +1,4 @@
-package com.app.base.services.devicemanager
+package com.app.base.component.devicemanager
 
 interface DeviceManager {
 

@@ -11,8 +11,8 @@ import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.app.base.data.protocol.ApiHelper
 import com.app.base.router.AppRouter
-import com.app.base.services.usermanager.UserManager
-import com.app.base.services.usermanager.isUserLogin
+import com.app.base.component.usermanager.UserManager
+import com.app.base.component.usermanager.isUserLogin
 import com.app.base.widget.dialog.TipsTool
 import com.app.base.widget.dialog.showConfirmDialog
 import com.vclusters.cloud.main.api.MainModule

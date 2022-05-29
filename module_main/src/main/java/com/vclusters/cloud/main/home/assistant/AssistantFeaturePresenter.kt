@@ -3,7 +3,7 @@ package com.vclusters.cloud.main.home.assistant
 import android.app.Activity
 import android.os.Bundle
 import com.android.base.utils.android.views.realContext
-import com.app.base.services.devicemanager.CloudDevice
+import com.app.base.component.devicemanager.CloudDevice
 import com.app.base.widget.dialog.showBottomSheetListDialog
 import com.vclusters.cloud.main.databinding.MainFragmentAssistantBinding
 

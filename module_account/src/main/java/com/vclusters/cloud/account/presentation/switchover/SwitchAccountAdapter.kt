@@ -8,7 +8,7 @@ import com.android.base.adapter.recycler.RecyclerAdapter
 import com.android.base.utils.android.views.getString
 import com.android.base.utils.android.views.invisible
 import com.android.base.utils.android.views.visibleOrInvisible
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import com.app.base.utils.hidePhoneNumber
 import com.vclusters.cloud.account.R
 import com.vclusters.cloud.account.data.HistoryUser

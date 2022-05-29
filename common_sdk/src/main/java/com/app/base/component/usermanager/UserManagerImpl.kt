@@ -1,4 +1,4 @@
-package com.app.base.services.usermanager
+package com.app.base.component.usermanager
 
 import com.android.sdk.cache.getEntity
 import com.app.base.data.storage.StorageManager

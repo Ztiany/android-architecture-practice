@@ -18,7 +18,7 @@ import com.android.base.utils.android.text.SpanUtils
 import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.android.views.invisible
 import com.android.base.utils.android.views.visible
-import com.app.base.services.devicemanager.CloudDevice
+import com.app.base.component.devicemanager.CloudDevice
 import com.app.base.widget.dialog.showConfirmDialog
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.databinding.MainFragmentPhoneListBinding

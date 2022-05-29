@@ -23,7 +23,7 @@ import com.app.base.config.AppSettings
 import com.app.base.data.protocol.*
 import com.app.base.debug.DebugTools
 import com.app.base.router.AppRouter
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.base.widget.dialog.AppLoadingViewHost
 import dagger.Lazy
@@ -88,14 +88,15 @@ abstract class AppContext : BaseAppContext() {
         //安装 Activity/Fragment 注入器
         registerActivityLifecycleCallbacks(ComponentProcessor())
         //lib-base 配置
-        AndroidSword.setDefaultFragmentContainerId(R.id.common_container_id) //默认的Fragment容器id
+        AndroidSword
+            .setDefaultFragmentContainerId(R.id.common_container_id) //默认的Fragment容器id
             .setDefaultFragmentAnimator(FragmentScaleAnimator())//Fragment切换动画
             .setDefaultPageStart(appSettings.get().defaultPageStart)//分页开始页码
             .setDefaultPageSize(appSettings.get().defaultPageSize)//默认分页大小
             .apply {
                 //Dialog 最短展示时间
                 minimumShowingDialogMills = appSettings.get().minimumDialogShowTime
-                //默认的通用的LoadingDialog和Toast实现
+                //默认的通用的 LoadingDialog 和 Toast 实现
                 sLoadingViewHostFactory = { AppLoadingViewHost(it) }
                 //错误消息转换器
                 errorConvert = object : ErrorConvert {
@@ -107,7 +108,7 @@ abstract class AppContext : BaseAppContext() {
                 errorClassifier = object : ErrorClassifier {
                     override fun isNetworkError(throwable: Throwable) = throwable is NetworkErrorException || throwable is IOException
                     override fun isServerError(throwable: Throwable) =
-                        throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http*/
+                        throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http internal error*/
                 }
             }
     }

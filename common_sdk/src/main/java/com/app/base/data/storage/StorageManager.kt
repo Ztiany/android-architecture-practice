@@ -93,7 +93,7 @@ class StorageManager @Inject internal constructor(
         return storage
     }
 
-    /**仅由[com.app.base.services.usermanager.UserManager.logout]在退出登录时调用*/
+    /**仅由[com.app.base.component.usermanager.UserManager.logout]在退出登录时调用*/
     internal fun clearUserAssociated() {
         userStorage().clearAll()
 

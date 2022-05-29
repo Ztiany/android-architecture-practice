@@ -6,8 +6,8 @@ import com.android.base.foundation.data.Resource
 import com.android.base.foundation.data.emitData
 import com.android.base.foundation.data.emitError
 import com.android.base.foundation.data.emitLoading
-import com.app.base.services.devicemanager.CloudDevice
-import com.app.base.services.devicemanager.DeviceManager
+import com.app.base.component.devicemanager.CloudDevice
+import com.app.base.component.devicemanager.DeviceManager
 import com.vclusters.cloud.main.home.phone.data.CloudPhoneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

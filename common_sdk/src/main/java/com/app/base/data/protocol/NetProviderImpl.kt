@@ -10,7 +10,7 @@ import com.app.base.config.AppSettings
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
 import com.app.base.debug.isOpenDebug
-import com.app.base.services.usermanager.UserManager
+import com.app.base.component.usermanager.UserManager
 import com.app.base.utils.JsonUtils
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor

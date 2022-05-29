@@ -7,8 +7,8 @@ import com.android.base.utils.android.compat.SystemBarCompat
 import com.app.base.app.AppBaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.router.AppRouter
-import com.app.base.services.usermanager.UserManager
-import com.app.base.services.usermanager.isLogin
+import com.app.base.component.usermanager.UserManager
+import com.app.base.component.usermanager.isLogin
 import com.vclusters.cloud.account.api.AccountModule
 import com.vclusters.cloud.main.R
 import com.vclusters.cloud.main.api.MainModule

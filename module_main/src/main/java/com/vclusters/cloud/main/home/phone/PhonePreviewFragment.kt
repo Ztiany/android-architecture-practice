@@ -9,8 +9,8 @@ import com.android.base.image.ImageLoader
 import com.android.base.image.Source
 import com.android.base.utils.android.argument
 import com.android.base.utils.android.views.dip
-import com.app.base.services.devicemanager.DeviceManager
-import com.app.base.services.devicemanager.defaultScreenBg
+import com.app.base.component.devicemanager.DeviceManager
+import com.app.base.component.devicemanager.defaultScreenBg
 import com.app.base.utils.setRoundCornerSize
 import com.vclusters.cloud.main.databinding.MainFragmentPhonePreviewBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.app.base.services.compression
+package com.app.base.component.compression
 
 import android.graphics.BitmapFactory
 import android.net.Uri

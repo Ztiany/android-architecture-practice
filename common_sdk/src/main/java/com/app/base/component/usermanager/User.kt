@@ -1,4 +1,4 @@
-package com.app.base.services.usermanager
+package com.app.base.component.usermanager
 
 import android.os.Parcelable
 import com.android.common.apispec.UNAVAILABLE_FLAG
