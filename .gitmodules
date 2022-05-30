@@ -1,3 +1,0 @@
-[submodule "Android-Libs"]
-	path = libraries
-	url = git@github.com:Ztiany/android-architecture-libs.git
