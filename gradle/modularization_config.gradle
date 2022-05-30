@@ -1,5 +1,0 @@
-if (AppConfig.isMultiApp) {
-    apply from: "${rootProject.projectDir}/gradle/modularization_app.gradle"
-} else {
-    apply from: "${rootProject.projectDir}/gradle/modularization_lib.gradle"
-}

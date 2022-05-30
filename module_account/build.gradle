@@ -1,4 +1,4 @@
-apply from: '../gradle/modularization_config.gradle'
+apply from: '../gradle/modularization_lib.gradle'
 
 android {
     resourcePrefix "account"

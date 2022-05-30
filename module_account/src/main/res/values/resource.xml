@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <dimen name="account_label_padding">42dp</dimen>
     <dimen name="account_content_padding">40dp</dimen>
-
-    <declare-styleable name="IconsEditText" tools:ignore="ResourceName">
-        <attr name="iet_enable_tailing_icon" format="boolean" />
-        <attr name="iet_enable_content_clearable" format="boolean" />
-        <!--must be a bitmap-->
-        <attr name="iet_tailing_off_drawable" format="reference" />
-        <!--must be a bitmap-->
-        <attr name="iet_tailing_on_drawable" format="reference" />
-        <!--must be a bitmap-->
-        <attr name="iet_clear_drawable" format="reference" />
-    </declare-styleable>
 
     <style name="Account_StyleLoginEditText">
         <item name="android:layout_width">match_parent</item>

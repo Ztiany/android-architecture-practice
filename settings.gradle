@@ -1,9 +1,11 @@
 apply from: './gradle/module_config.gradle'
 
+//基础模块
 def libs = [
-        "lib_utils",
         "lib_foundation",
         "lib_base",
+        "lib_rxjava2",
+        "lib_utils",
         "lib_permission",
         "lib_network",
         "lib_storage",
@@ -15,7 +17,6 @@ def libs = [
 
 libs.forEach {
     include(":$it")
-    project(":$it").projectDir = file("${rootProject.projectDir}/libraries/$it")
 }
 
 //性能模块
@@ -27,13 +28,16 @@ include(":common_spec")
 include(":common_ui")
 include(":common_sdk")
 
-//业务模块
+//主业务模块
 include(":module_main")
 include(":module_main_api")
+include(":module_main_app")
 
+//账户业务模块
 include(":module_account")
 include(":module_account_api")
+include(":module_account_app")
 
-//app壳
+//APP 壳
 include(":app")
 

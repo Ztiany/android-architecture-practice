@@ -1,14 +1,13 @@
 package com.app.base.component.compression;
 
+import androidx.exifinterface.media.ExifInterface;
+
 import java.io.IOException;
 
-import androidx.exifinterface.media.ExifInterface;
 import timber.log.Timber;
 
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2020-09-23 16:07
  */
 class ExifUtils {
 

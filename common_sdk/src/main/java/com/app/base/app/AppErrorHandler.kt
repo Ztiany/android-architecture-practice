@@ -15,7 +15,7 @@ import com.app.base.component.usermanager.UserManager
 import com.app.base.component.usermanager.isUserLogin
 import com.app.base.widget.dialog.TipsTool
 import com.app.base.widget.dialog.showConfirmDialog
-import com.vclusters.cloud.main.api.MainModule
+import me.ztiany.architecture.main.api.MainModule
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.lang.ref.WeakReference
 import javax.inject.Inject

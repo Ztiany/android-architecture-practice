@@ -22,11 +22,9 @@ import kotlin.math.roundToInt
 
 /**
  *@author Ztiany
- *      Email: ztiany3@gmail.com
- *      Date : 2020-09-23 15:40
  */
 class ImageCompressionServiceImpl(
-        private val dispatcherProvider: DispatcherProvider
+    private val dispatcherProvider: DispatcherProvider
 ) : ImageCompressionService {
 
     override suspend fun compressImages(spec: CompressionSpec, list: List<Uri>): List<Uri> {
@@ -73,7 +71,6 @@ class ImageCompressionServiceImpl(
         ExifUtils.copyExif(originFile.absolutePath, newFile.absolutePath)
 
         ifOpenDebug {
-
             FileUtils.copy(newFile.absolutePath, AppDirectory.createTempPicturePath(PICTURE_FORMAT_JPEG))
         }
 

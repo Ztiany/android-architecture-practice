@@ -30,7 +30,7 @@
         android:layout_marginEnd="15dp"
         android:background="?selectableItemBackgroundBorderless"
         android:padding="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         tools:visibility="visible">
 
         <ImageView
@@ -46,7 +46,7 @@
             android:layout_height="8dp"
             android:layout_gravity="end"
             android:background="@drawable/shape_red_dot"
-            android:visibility="invisible"
+            android:visibility="visible"
             tools:visibility="visible" />
 
     </FrameLayout>
@@ -61,12 +61,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/account_ic_login_logo" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -85,7 +79,7 @@
                 android:text="@string/account"
                 app:drawableStartCompat="@drawable/account_ic_phone" />
 
-            <com.vclusters.cloud.account.widget.IconsEditText
+            <me.ztiany.widget.text.ClearableEditText
                 android:id="@+id/account_et_phone"
                 style="@style/Account_StyleLoginEditText"
                 android:digits="@string/digits_phone"
@@ -94,8 +88,7 @@
                 android:inputType="phone"
                 android:maxLength="@integer/phone_length"
                 android:nextFocusDown="@id/account_et_password"
-                app:iet_enable_content_clearable="true"
-                app:iet_enable_tailing_icon="true" />
+                app:cet_enable_content_clearable="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,7 +116,7 @@
                 style="@style/Style_BtnLong.PrimaryRound"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
-                android:enabled="false"
+                android:enabled="true"
                 android:text="@string/login" />
 
         </LinearLayout>

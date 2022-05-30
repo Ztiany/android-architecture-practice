@@ -1,4 +1,6 @@
-<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<?xml version ="1.0" encoding ="utf-8"?>
+
+<!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
 <network-security-config>
 
     <base-config cleartextTrafficPermitted="true" />
@@ -14,6 +16,5 @@
                 src="user" />
         </trust-anchors>
     </debug-overrides>
-
 
 </network-security-config>

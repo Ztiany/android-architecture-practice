@@ -7,6 +7,6 @@
         <bitmap
             android:layout_width="match_parent"
             android:gravity="center"
-            android:src="@drawable/icon_logo_big" />
+            android:src="@drawable/icon_logo" />
     </item>
 </layer-list>

@@ -3,7 +3,6 @@ ext {
     def ENV_AUTO = "Auto"
 
     AppConfig = [
-            isMultiApp             : false,
             minSdkVersion          : 21,
             targetSdkVersion       : 30,
             compileSdkVersion      : 31,
