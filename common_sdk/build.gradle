@@ -6,12 +6,6 @@ plugins {
     id "dagger.hilt.android.plugin"
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.name)
-    }
-}
-
 android {
     compileSdkVersion AppConfig.compileSdkVersion
     buildToolsVersion AppConfig.buildToolsVersion
@@ -105,10 +99,6 @@ dependencies {
     /*Hilt*/
     api AndroidLibraries.hiltDagger
     kapt AndroidLibraries.hiltDaggerApt
-
-    /*ARouter*/
-    api ThirdLibraries.arouter
-    kapt ThirdLibraries.arouterAnnotation
 
     /*OkHttp*/
     implementation ThirdLibraries.okHttp

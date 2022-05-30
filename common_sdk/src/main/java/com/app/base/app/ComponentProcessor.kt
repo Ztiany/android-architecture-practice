@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.alibaba.android.arouter.launcher.ARouter
 import com.android.base.foundation.activity.ActivityDelegateOwner
 import com.android.base.foundation.fragment.FragmentDelegateOwner
 import com.android.base.utils.android.SoftKeyboardUtils
@@ -33,8 +32,6 @@ class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         //common ui bar
         configActivityBar(activity)
-        //Router params
-        ARouter.getInstance().inject(activity)
         //inject
         if (activity is FragmentActivity) {
             injectFragmentLifecycle(activity)

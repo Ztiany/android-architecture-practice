@@ -1,5 +1,10 @@
 package me.ztiany.architecture.account.api
 
-interface AccountModuleNavigator {
+import android.content.Context
+import com.android.common.router.Navigator
+
+interface AccountModuleNavigator : Navigator {
+
+    fun openAccount(context: Context)
 
 }

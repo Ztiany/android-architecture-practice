@@ -7,16 +7,17 @@ import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.android.base.AndroidSword
+import com.android.base.utils.android.AppUtils
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
-import com.app.base.data.protocol.ApiHelper
-import com.app.base.router.AppRouter
 import com.app.base.component.usermanager.UserManager
 import com.app.base.component.usermanager.isUserLogin
+import com.app.base.data.protocol.ApiHelper
+import com.app.base.router.AppRouter
 import com.app.base.widget.dialog.TipsTool
 import com.app.base.widget.dialog.showConfirmDialog
-import me.ztiany.architecture.main.api.MainModule
 import dagger.hilt.android.qualifiers.ApplicationContext
+import me.ztiany.architecture.main.api.MainModuleNavigator
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -95,9 +96,9 @@ internal class AppErrorHandler @Inject constructor(
             positiveListener = {
                 showingDialog = null
                 //handle login expired
-                appRouter.build(MainModule.PATH)
-                    .withInt(MainModule.ACTION_KEY, MainModule.ACTION_RE_LOGIN)
-                    .navigation()
+                AppUtils.getTopActivity()?.let {
+                    appRouter.get(MainModuleNavigator::class.java)?.exitAndLogin(it)
+                }
             }
         }
 

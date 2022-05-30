@@ -11,9 +11,9 @@ import com.app.base.component.usermanager.isUserLogin
 import com.app.base.router.AppRouter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import me.ztiany.architecture.account.api.AccountModule
+import me.ztiany.architecture.account.api.AccountModuleNavigator
 import me.ztiany.architecture.main.R
-import me.ztiany.architecture.main.api.MainModule
+import me.ztiany.architecture.main.api.MainModuleNavigator
 import javax.inject.Inject
 
 /**
@@ -54,12 +54,13 @@ class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
     }
 
     private fun toLoginPage() {
-        appRouter.build(AccountModule.PATH).withTransition(0, 0).navigation()
+        appRouter.get(AccountModuleNavigator::class.java)?.openAccount(this)
+        overridePendingTransition(0, 0)
     }
 
     private suspend fun toMainPage() {
         delay(1500)
-        appRouter.build(MainModule.PATH).withTransition(0, 0).navigation()
+        appRouter.get(MainModuleNavigator::class.java)?.openMain(this)
     }
 
 }

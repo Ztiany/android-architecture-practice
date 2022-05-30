@@ -178,7 +178,7 @@ public class AppUtils {
     }
 
     /**
-     * Activity 分发结果给 Fragment【特定场景下才需要，比如 ARouter 不支持 Fragment.startActivityForResult()】
+     * Activity 分发结果给 Fragment【特定场景下才需要，比如 [ARouter](https://github.com/alibaba/ARouter) 不支持 Fragment.startActivityForResult()】
      */
     public static void dispatchActivityResult(FragmentManager fragmentManager, int requestCode, int resultCode, Intent data) {
         List<Fragment> fragments = fragmentManager.getFragments();

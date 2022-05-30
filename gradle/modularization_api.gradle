@@ -3,12 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
 android {
     compileSdkVersion AppConfig.compileSdkVersion
     buildToolsVersion AppConfig.buildToolsVersion
@@ -33,6 +27,4 @@ android {
 dependencies {
     /*spec*/
     api project(":common_spec")
-    /*ARouter*/
-    api ThirdLibraries.arouter
 }

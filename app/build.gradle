@@ -6,12 +6,6 @@ plugins {
     id "channel"
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.name)
-    }
-}
-
 /*rebuildChannel {
     baseReleaseApk file("build/outputs/apk/release/app-release-${AppConfig.versionName}.apk")
     releaseOutputDir file("apk/${AppConfig.versionName}/release/")
@@ -120,6 +114,4 @@ dependencies {
     /*Hilt*/
     api AndroidLibraries.hiltDagger
     kapt AndroidLibraries.hiltDaggerApt
-    /*ARouter*/
-    kapt ThirdLibraries.arouterAnnotation
 }

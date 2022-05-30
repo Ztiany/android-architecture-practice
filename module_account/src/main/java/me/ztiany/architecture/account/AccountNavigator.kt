@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.app.base.router.AppRouter
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
-import me.ztiany.architecture.main.api.MainModule
+import me.ztiany.architecture.main.api.MainModuleNavigator
 import javax.inject.Inject
 
 @ActivityScoped
@@ -17,7 +17,7 @@ class AccountNavigator @Inject constructor(
     private val host = context as AppCompatActivity
 
     fun exitAndToHomePage() {
-        appRouter.build(MainModule.PATH).navigation()
+        appRouter.get(MainModuleNavigator::class.java)?.openMain(host)
         host.supportFinishAfterTransition()
     }
 

@@ -6,7 +6,7 @@ import com.app.base.component.usermanager.UserManager
 import com.app.base.router.AppRouter
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
-import me.ztiany.architecture.account.api.AccountModule
+import me.ztiany.architecture.account.api.AccountModuleNavigator
 import javax.inject.Inject
 
 /**
@@ -24,7 +24,7 @@ class MainNavigator @Inject constructor(
     private val host = context as AppCompatActivity
 
     fun toLogin() {
-        appRouter.build(AccountModule.PATH).navigation()
+        appRouter.get(AccountModuleNavigator::class.java)?.openAccount(host)
     }
 
 }

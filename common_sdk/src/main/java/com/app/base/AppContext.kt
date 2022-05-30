@@ -1,5 +1,6 @@
 package com.app.base
 
+import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import androidx.multidex.MultiDex
@@ -19,17 +20,18 @@ import com.app.base.app.AndroidPlatform
 import com.app.base.app.ComponentProcessor
 import com.app.base.app.ErrorHandler
 import com.app.base.app.FragmentScaleAnimator
+import com.app.base.component.usermanager.UserManager
 import com.app.base.config.AppSettings
 import com.app.base.data.protocol.*
 import com.app.base.debug.DebugTools
 import com.app.base.router.AppRouter
-import com.app.base.component.usermanager.UserManager
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.base.widget.dialog.AppLoadingViewHost
 import dagger.Lazy
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 /**
  * @author Ztiany
@@ -58,10 +60,10 @@ abstract class AppContext : BaseAppContext() {
     }
 
     override fun onCreate() {
+        application = this
         super.onCreate()
         DebugTools.init(this)
         appSettings.get().init()
-        appRouter.get().initRouter(this, true)
         configNetworkApi()
         configFoundation()
         configLibraries()
@@ -150,6 +152,14 @@ abstract class AppContext : BaseAppContext() {
         super.onTerminate()
         moduleInitializers.forEach {
             it.onTerminate()
+        }
+    }
+
+    companion object {
+        private var application by Delegates.notNull<Application>()
+
+        fun get(): Application {
+            return application
         }
     }
 

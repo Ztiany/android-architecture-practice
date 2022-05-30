@@ -3,8 +3,6 @@ package com.app.base.common.web
 import android.os.Bundle
 import android.webkit.URLUtil
 import androidx.fragment.app.Fragment
-import com.alibaba.android.arouter.facade.annotation.Autowired
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
 import com.app.base.R
 import com.app.base.app.AppBaseActivity
@@ -20,21 +18,26 @@ import javax.inject.Inject
  * Email: ztiany3@gmail.com
  * Date : 2018-11-01 11:29
  */
-@Route(path = BrowserPath.PATH)
 @AndroidEntryPoint
 class BrowserActivity : AppBaseActivity() {
 
-    @JvmField @Autowired(name = BrowserPath.FRAGMENT_KEY) var fragmentClass: String? = null
+    //BrowserPath.FRAGMENT_KEY
+    private val fragmentClass: String? = null
 
-    @JvmField @Autowired(name = BrowserPath.SHOW_HEADER_KEY) var showHeader: Boolean = true
+    // BrowserPath.SHOW_HEADER_KEY
+    private val showHeader: Boolean = true
 
-    @JvmField @Autowired(name = BrowserPath.URL_KEY) var targetUrl: String? = null
+    //BrowserPath.URL_KEY
+    private val targetUrl: String? = null
 
-    @JvmField @Autowired(name = BrowserPath.ARGUMENTS_KEY) var bundle: Bundle? = null
+    //BrowserPath.ARGUMENTS_KEY
+    private val bundle: Bundle? = null
 
-    @JvmField @Autowired(name = BrowserPath.JS_CALL_INTERCEPTOR_CLASS_KEY) var customJsCallInterceptor: String? = null
+    //BrowserPath.JS_CALL_INTERCEPTOR_CLASS_KEY
+    private val customJsCallInterceptor: String? = null
 
-    @JvmField @Autowired(name = BrowserPath.CACHE_ENABLE) var cacheEnable: Boolean = false
+    //name = BrowserPath.CACHE_ENABLE
+    private val cacheEnable: Boolean = false
 
     @Inject lateinit var appSettings: AppSettings
 

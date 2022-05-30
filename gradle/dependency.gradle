@@ -214,6 +214,7 @@ ext {
             rxJava2                              : "io.reactivex.rxjava2:rxjava:2.2.19",
             //https://github.com/ReactiveX/RxAndroid
             rxAndroid2                           : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            //https://github.com/dmstocking/support-optional
             supportOptional                      : "com.github.dmstocking:support-optional:1.2",
             //https://github.com/uber/AutoDispose
             rx2AutoDispose                       : "com.uber.autodispose:autodispose:$autoDisposeVersion",
@@ -232,10 +233,16 @@ ext {
             rx2BindingRecyclerView               : "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxBindingVersion",
 
 
-            //https://github.com/alibaba/ARouter，注意：apt arouter 应该放在  apt dagger 后面
-            arouter                              : "com.alibaba:arouter-api:1.5.0",
-            arouterAnnotation                    : "com.alibaba:arouter-compiler:1.2.2",
+            ///////////////////////////////////////////////////////////////////////////
+            // Auto Service
+            ///////////////////////////////////////////////////////////////////////////
+            autoService                          : "com.google.auto.service:auto-service:1.0",
+            autoServiceApt                       : "com.google.auto.service:auto-service:1.0",
 
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Others
+            ///////////////////////////////////////////////////////////////////////////
             //https://github.com/tencent/mmkv, https://mp.weixin.qq.com/s/kTr1GVDCAhs5K7Hq3322FA
             mmkv                                 : "com.tencent:mmkv:1.2.2",
 
