@@ -3,16 +3,13 @@ buildscript {
     apply from: './gradle/configuration.gradle'
 
     repositories {
-        //remote
+        mavenCentral()
+        google()
         maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url "https://dl.google.com/dl/android/maven2/" }
         maven { url "https://jitpack.io" }
         maven { url "https://kotlin.bintray.com/kotlinx" }
-        google()
-        mavenCentral()
-        //local
-        maven { url = uri("repo") }
     }
 
     dependencies {
@@ -26,7 +23,6 @@ buildscript {
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
         //channel
         classpath "com.leon.channel:plugin:2.0.3"
-
         // for publishing
         classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
     }
@@ -35,14 +31,14 @@ buildscript {
 allprojects {
 
     repositories {
+        mavenCentral()
+        google()
         maven { url "https://maven.aliyun.com/repository/central" }
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url "https://dl.google.com/dl/android/maven2/" }
         maven { url "https://www.jitpack.io" }
         maven { url "https://kotlin.bintray.com/kotlinx" }
-        google()
-        mavenCentral()
         maven { url "https://dl.bintray.com/umsdk/release" }
 
         configurations.all {

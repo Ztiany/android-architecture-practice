@@ -3,7 +3,7 @@ package com.android.sdk.permission.impl.andpermission
 import com.android.sdk.permission.utils.HostWrapper
 import com.android.sdk.permission.api.PermissionRequest
 import com.android.sdk.permission.utils.toAndPermission
-import com.android.sdk.permission.impl.selfstudy.IPermissionUIProvider
+import com.android.sdk.permission.impl.easypermission.IPermissionUIProvider
 
 /**
  *@author Ztiany

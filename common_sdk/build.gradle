@@ -74,19 +74,18 @@ dependencies {
 
     //基础组件库
     api project(":lib_base")//基础类库
+    api project(":lib_bus")//EventBus
     api project(":lib_permission")//权限
-    api project(":lib_storage")//缓存库
-    api project(":lib_network")//基础网络库
-    api project(":lib_image_loader")//图片加载
-    api project(":lib_media_selector")//媒体选择器
-    api project(":lib_upgrade")//升级
+    api project(":lib_storage")//存储库
+    api project(":lib_network")//网络库
+    api project(":lib_image_loader")//图片加载库
+    api project(":lib_media_selector")//媒体选择库
+    api project(":lib_upgrade")//升级库
 
     //UI 规范
     api project(":common_ui")
-
     //接口规范
     implementation project(":common_spec")
-
     //依赖的业务 API
     implementation project(":module_main_api")
 
@@ -121,10 +120,8 @@ dependencies {
 
     //image compression
     implementation "id.zelory:compressor:3.0.1"
-
     //Channel
     implementation "com.leon.channel:helper:2.0.3"
-
     //Bugly
     implementation "com.tencent.bugly:crashreport:3.4.4"
 

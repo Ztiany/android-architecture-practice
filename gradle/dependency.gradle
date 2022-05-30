@@ -280,7 +280,7 @@ ext {
             multiType              : "com.drakeet.multitype:multitype:4.0.0",
 
             // https://github.com/Ztiany/WrapperAdapter
-            wrapperAdapter         : "com.github.Ztiany:LoadMoreAdapter:4.4.3",
+            wrapperAdapter         : "io.github.ztiany:loadmore-adapter:4.5.0",
 
             //https://github.com/hdodenhof/CircleImageView
             circleImageView        : "de.hdodenhof:circleimageview:3.0.1",

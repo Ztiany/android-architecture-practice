@@ -1,4 +1,4 @@
-package com.android.sdk.permission.impl.selfstudy;
+package com.android.sdk.permission.impl.easypermission;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,9 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import androidx.appcompat.app.AlertDialog;
 
-import static com.android.sdk.permission.impl.selfstudy.PermissionUtils.createPermissionAskAgainText;
-import static com.android.sdk.permission.impl.selfstudy.PermissionUtils.createPermissionDeniedTip;
-import static com.android.sdk.permission.impl.selfstudy.PermissionUtils.createPermissionRationaleText;
+import static com.android.sdk.permission.impl.easypermission.PermissionUtils.createPermissionAskAgainText;
+import static com.android.sdk.permission.impl.easypermission.PermissionUtils.createPermissionDeniedTip;
+import static com.android.sdk.permission.impl.easypermission.PermissionUtils.createPermissionRationaleText;
 
 
 class DefaultPermissionUIProvider implements IPermissionUIProvider {

@@ -50,7 +50,7 @@ abstract class RxPresenter<V : IBaseView> : AbstractPresenter<V>(), AutoDisposeL
     }
 
     final override fun requestScope(): CompletableSource {
-        return LifecycleScopes.resolveScopeFromLifecycle<LifecycleEvent>(this)
+        return LifecycleScopes.resolveScopeFromLifecycle(this)
     }
 
     companion object {

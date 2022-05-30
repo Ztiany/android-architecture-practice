@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    //support
+    //androidx
     implementation AndroidLibraries.appcompat
     implementation AndroidLibraries.material
     implementation AndroidLibraries.documentfile

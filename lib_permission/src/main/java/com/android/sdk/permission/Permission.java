@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * copy from https://github.com/yanzhenjie/AndPermission
+ * This class is copied from <a href='https://github.com/yanzhenjie/AndPermission'>AndPermission</a>.
  */
 public final class Permission {
 

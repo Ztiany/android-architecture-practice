@@ -1,4 +1,4 @@
-package com.android.sdk.permission.impl.selfstudy;
+package com.android.sdk.permission.impl.easypermission;
 
 import java.util.List;
 

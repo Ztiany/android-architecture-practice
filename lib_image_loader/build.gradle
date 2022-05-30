@@ -31,10 +31,10 @@ dependencies {
     testImplementation TestLibraries.junit
 
     //AndroidSupport
-    api AndroidLibraries.activityKtx
-    api AndroidLibraries.fragmentKtx
-    api AndroidLibraries.appcompat
-    compileOnly AndroidLibraries.annotations
+    implementation AndroidLibraries.activityKtx
+    implementation AndroidLibraries.fragmentKtx
+    implementation AndroidLibraries.appcompat
+    implementation AndroidLibraries.annotations
 
     //Log
     api ThirdLibraries.timber

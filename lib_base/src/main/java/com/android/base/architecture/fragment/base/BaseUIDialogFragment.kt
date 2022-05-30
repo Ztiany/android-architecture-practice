@@ -22,7 +22,7 @@ abstract class BaseUIDialogFragment<VB : ViewBinding> : BaseDialogFragment(), Lo
 
     private var recentShowingDialogTime: Long = 0
 
-    private var mLoadingViewHost: LoadingViewHost? = null
+    private var loadingViewHost: LoadingViewHost? = null
 
     private val reuseView by lazy { ReusableView() }
 
@@ -90,12 +90,12 @@ abstract class BaseUIDialogFragment<VB : ViewBinding> : BaseDialogFragment(), Lo
     }
 
     private fun loadingView(): LoadingViewHost {
-        val loadingViewImpl = mLoadingViewHost
+        val loadingViewImpl = loadingViewHost
         return if (loadingViewImpl != null) {
             loadingViewImpl
         } else {
-            mLoadingViewHost = onCreateLoadingView() ?: AndroidSword.sLoadingViewHostFactory?.invoke(requireContext())
-            mLoadingViewHost ?: throw NullPointerException("you need to config LoadingViewFactory in Sword or implement onCreateLoadingView.")
+            loadingViewHost = onCreateLoadingView() ?: AndroidSword.sLoadingViewHostFactory?.invoke(requireContext())
+            loadingViewHost ?: throw NullPointerException("you need to config LoadingViewFactory in Sword or implement onCreateLoadingView.")
         }
     }
 
@@ -120,7 +120,7 @@ abstract class BaseUIDialogFragment<VB : ViewBinding> : BaseDialogFragment(), Lo
     }
 
     override fun dismissLoadingDialog() {
-        mLoadingViewHost?.dismissLoadingDialog()
+        loadingViewHost?.dismissLoadingDialog()
     }
 
     override fun dismissLoadingDialog(minimumMills: Long, onDismiss: (() -> Unit)?) {
@@ -128,7 +128,7 @@ abstract class BaseUIDialogFragment<VB : ViewBinding> : BaseDialogFragment(), Lo
     }
 
     override fun isLoadingDialogShowing(): Boolean {
-        return mLoadingViewHost != null && loadingView().isLoadingDialogShowing()
+        return loadingViewHost != null && loadingView().isLoadingDialogShowing()
     }
 
     override fun showMessage(message: CharSequence) {

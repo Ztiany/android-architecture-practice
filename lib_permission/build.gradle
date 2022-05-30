@@ -30,9 +30,11 @@ android {
 }
 
 dependencies {
-    implementation ThirdLibraries.andPermission
     implementation AndroidLibraries.fragmentKtx
-    implementation ThirdLibraries.timber
-    implementation KotlinLibraries.kotlinStdlib
     implementation AndroidLibraries.lifecycleCommonJava8
+
+    implementation KotlinLibraries.kotlinStdlib
+
+    implementation ThirdLibraries.andPermission
+    implementation ThirdLibraries.timber
 }

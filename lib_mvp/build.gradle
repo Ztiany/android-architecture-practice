@@ -32,17 +32,16 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':lib_resource')
     testImplementation TestLibraries.junit
 
     implementation AndroidLibraries.annotations
     implementation AndroidLibraries.fragmentKtx
 
-    implementation ThirdLibraries.rxJava2
-    implementation ThirdLibraries.rxAndroid2
-    implementation ThirdLibraries.rx2AutoDispose
-    implementation ThirdLibraries.rx2AutoDisposeAndroid
-    implementation ThirdLibraries.rx2AutoDisposeLifecycle
+    api ThirdLibraries.rxJava2
+    api ThirdLibraries.rxAndroid2
+    api ThirdLibraries.rx2AutoDispose
+    api ThirdLibraries.rx2AutoDisposeAndroid
+    api ThirdLibraries.rx2AutoDisposeLifecycle
 
     implementation KotlinLibraries.kotlinStdlib
 

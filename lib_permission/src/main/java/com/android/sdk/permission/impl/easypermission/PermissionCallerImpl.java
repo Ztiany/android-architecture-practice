@@ -1,4 +1,4 @@
-package com.android.sdk.permission.impl.selfstudy;
+package com.android.sdk.permission.impl.easypermission;
 
 import android.content.Intent;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 import timber.log.Timber;
 
-import static com.android.sdk.permission.impl.selfstudy.PermissionCode.REQUEST_PERMISSION_FOR_SETTING;
+import static com.android.sdk.permission.impl.easypermission.PermissionCode.REQUEST_PERMISSION_FOR_SETTING;
 
 
 class PermissionCallerImpl implements EasyPermissions.PermissionCaller {

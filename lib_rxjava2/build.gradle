@@ -32,7 +32,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':lib_resource')
     testImplementation TestLibraries.junit
 
     implementation AndroidLibraries.annotations
@@ -42,10 +41,10 @@ dependencies {
     implementation AndroidLibraries.lifecycleLiveDataCore
     implementation AndroidLibraries.lifecycleViewModelKtx
 
-    api project(":lib_resource")
+    implementation project(":lib_resource")
 
-    implementation ThirdLibraries.rxJava2
-    implementation ThirdLibraries.rxAndroid2
+    api ThirdLibraries.rxJava2
+    api ThirdLibraries.rxAndroid2
 
     implementation ThirdLibraries.rx2AutoDispose
     implementation ThirdLibraries.rx2AutoDisposeAndroid

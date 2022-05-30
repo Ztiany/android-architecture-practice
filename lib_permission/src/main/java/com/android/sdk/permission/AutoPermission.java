@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment;
 
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2020-09-22 16:21
  */
 public class AutoPermission {
 

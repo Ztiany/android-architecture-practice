@@ -5,6 +5,8 @@ plugins {
     id "kotlin-kapt"
 }
 
+apply plugin: "com.vanniktech.maven.publish"
+
 android {
     compileSdkVersion AppConfig.compileSdkVersion
     buildToolsVersion AppConfig.buildToolsVersion
@@ -42,10 +44,9 @@ dependencies {
     //测试
     testImplementation TestLibraries.junit
 
-    api project(":lib_utils")
     api project(":lib_foundation")
     api project(":lib_resource")
-    api project(":lib_bus")
+    api project(":lib_utils")
 
     //AndroidSupport
     api AndroidLibraries.activityKtx
@@ -57,7 +58,7 @@ dependencies {
     api AndroidLibraries.swiperefreshlayout
     api AndroidLibraries.material
     api AndroidLibraries.viewpager2
-    compileOnly AndroidLibraries.annotations
+    api AndroidLibraries.annotations
 
     //AAC
     api AndroidLibraries.archRuntime

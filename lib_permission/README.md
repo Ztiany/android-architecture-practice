@@ -1,7 +1,7 @@
-# Permission 封装
+# Lib Permission
 
-Wrap [AndPermission](https://github.com/yanzhenjie/AndPermission)
+Wrap [AndPermission](https://github.com/yanzhenjie/AndPermission) and [EasyPermission](https://github.com/googlesamples/easypermissions).
 
 Other Options：
 
-- [PermissonX](https://mp.weixin.qq.com/s/pD9RXHgFxiRTMllP3BUZhw)
+- [PermissionX](https://mp.weixin.qq.com/s/pD9RXHgFxiRTMllP3BUZhw)

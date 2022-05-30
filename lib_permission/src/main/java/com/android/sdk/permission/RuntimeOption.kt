@@ -5,7 +5,7 @@ import com.android.sdk.permission.api.PermissionRequest
 import com.android.sdk.permission.api.SettingRequest
 import com.android.sdk.permission.impl.andpermission.AndPermissionRequest
 import com.android.sdk.permission.impl.andpermission.AndSettingRequest
-import com.android.sdk.permission.impl.selfstudy.InternalPermissionRequester
+import com.android.sdk.permission.impl.easypermission.InternalPermissionRequester
 import com.android.sdk.permission.utils.HostWrapper
 
 class RuntimeOption(private val hostWrapper: HostWrapper) {
