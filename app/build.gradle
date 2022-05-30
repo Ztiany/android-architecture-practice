@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.vclusters.cloud.phone"
+        applicationId "me.ztiany.architecture.app"
         minSdkVersion AppConfig.minSdkVersion
         targetSdkVersion AppConfig.targetSdkVersion
         versionCode AppConfig.versionCode
