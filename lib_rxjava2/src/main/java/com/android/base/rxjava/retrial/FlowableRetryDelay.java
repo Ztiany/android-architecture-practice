@@ -1,6 +1,5 @@
 package com.android.base.rxjava.retrial;
 
-
 import androidx.annotation.Nullable;
 
 import org.reactivestreams.Publisher;
@@ -16,7 +15,10 @@ public class FlowableRetryDelay implements Function<Flowable<Throwable>, Publish
 
     private final int mMaxRetries;
     private final long mRetryDelayMillis;
-    @Nullable private RetryChecker mRetryChecker;
+
+    @Nullable
+    private final RetryChecker mRetryChecker;
+
     private int mRetryCount = 0;
 
     @SuppressWarnings("unused")
@@ -33,7 +35,7 @@ public class FlowableRetryDelay implements Function<Flowable<Throwable>, Publish
     @Override
     public Publisher<?> apply(Flowable<Throwable> throwableFlowable) {
         return throwableFlowable.flatMap((Function<Throwable, Publisher<?>>) throwable -> {
-            if (mRetryChecker != null && !mRetryChecker.verify(throwable)) {
+            if (mRetryChecker != null && !mRetryChecker.doRetry(throwable)) {
                 return Flowable.error(throwable);
             }
             mRetryCount++;

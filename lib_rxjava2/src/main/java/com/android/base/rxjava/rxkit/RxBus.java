@@ -11,6 +11,7 @@ import io.reactivex.processors.PublishProcessor;
 
 /**
  * 不要跨大范围的使用 RxBus，比较推荐的模式为针对特定模块定义特定的事件分发类：
+ *
  * <pre>
  *     {@code
  *      public class FooEvents{

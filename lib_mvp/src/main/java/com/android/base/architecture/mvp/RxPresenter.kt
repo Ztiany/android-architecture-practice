@@ -1,7 +1,7 @@
 package com.android.base.architecture.mvp
 
 import androidx.annotation.CallSuper
-import com.android.base.rxjava.autodispose.AutoDisposeLifecycleScopeProviderEx
+import com.android.base.rxjava.auto.AutoDisposeLifecycleScopeProviderEx
 import com.uber.autodispose.lifecycle.CorrespondingEventsFunction
 import com.uber.autodispose.lifecycle.LifecycleEndedException
 import com.uber.autodispose.lifecycle.LifecycleScopes

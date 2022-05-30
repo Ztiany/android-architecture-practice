@@ -1,4 +1,4 @@
-package com.android.base.rxjava.autodispose
+package com.android.base.rxjava.auto
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,12 +10,12 @@ fun <T> ObservableSubscribeProxy<T>.toResourceLiveData(): LiveData<Resource<T>> 
     val mutableLiveData = MutableLiveData<Resource<T>>()
     mutableLiveData.value = Resource.loading()
     subscribe(
-            {
-                mutableLiveData.postValue(Resource.success(it))
-            },
-            {
-                mutableLiveData.postValue(Resource.error(it))
-            }
+        {
+            mutableLiveData.postValue(Resource.success(it))
+        },
+        {
+            mutableLiveData.postValue(Resource.error(it))
+        }
     )
     return mutableLiveData
 }
@@ -24,12 +24,12 @@ fun <T> ObservableSubscribeProxy<Optional<T>>.optionalToResourceLiveData(): Live
     val mutableLiveData = MutableLiveData<Resource<T>>()
     mutableLiveData.value = Resource.loading()
     subscribe(
-            {
-                mutableLiveData.postValue(Resource.success(it.orElse(null)))
-            },
-            {
-                mutableLiveData.postValue(Resource.error(it))
-            }
+        {
+            mutableLiveData.postValue(Resource.success(it.orElse(null)))
+        },
+        {
+            mutableLiveData.postValue(Resource.error(it))
+        }
     )
     return mutableLiveData
 }
@@ -38,12 +38,12 @@ fun <T> FlowableSubscribeProxy<T>.toResourceLiveData(): LiveData<Resource<T>> {
     val mutableLiveData = MutableLiveData<Resource<T>>()
     mutableLiveData.value = Resource.loading()
     subscribe(
-            {
-                mutableLiveData.postValue(Resource.success(it))
-            },
-            {
-                mutableLiveData.postValue(Resource.error(it))
-            }
+        {
+            mutableLiveData.postValue(Resource.success(it))
+        },
+        {
+            mutableLiveData.postValue(Resource.error(it))
+        }
     )
     return mutableLiveData
 }
@@ -52,12 +52,12 @@ fun <T> FlowableSubscribeProxy<Optional<T>>.optionalToResourceLiveData(): LiveDa
     val mutableLiveData = MutableLiveData<Resource<T>>()
     mutableLiveData.value = Resource.loading()
     subscribe(
-            {
-                mutableLiveData.postValue(Resource.success(it.orElse(null)))
-            },
-            {
-                mutableLiveData.postValue(Resource.error(it))
-            }
+        {
+            mutableLiveData.postValue(Resource.success(it.orElse(null)))
+        },
+        {
+            mutableLiveData.postValue(Resource.error(it))
+        }
     )
     return mutableLiveData
 }
@@ -66,12 +66,12 @@ fun CompletableSubscribeProxy.toResourceLiveData(): LiveData<Resource<Any>> {
     val mutableLiveData = MutableLiveData<Resource<Any>>()
     mutableLiveData.value = Resource.loading()
     subscribe(
-            {
-                mutableLiveData.postValue(Resource.success())
-            },
-            {
-                mutableLiveData.postValue(Resource.error(it))
-            }
+        {
+            mutableLiveData.postValue(Resource.noData())
+        },
+        {
+            mutableLiveData.postValue(Resource.error(it))
+        }
     )
     return mutableLiveData
 }

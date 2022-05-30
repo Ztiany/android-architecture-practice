@@ -1,6 +1,6 @@
 @file:JvmName("AutoDisposeUtils")
 
-package com.android.base.rxjava.autodispose
+package com.android.base.rxjava.auto
 
 import android.view.View
 import androidx.lifecycle.Lifecycle
@@ -132,46 +132,46 @@ fun <T> MaybeSubscribeProxy<T>.subscribed(): Disposable = this.subscribe(RxKit.l
 fun CompletableSubscribeProxy.subscribed(): Disposable = this.subscribe(RxKit.logCompletedHandler(), RxKit.logErrorHandler())
 
 fun <T> ObservableSubscribeProxy<T>.subscribeIgnoreError(action: (T) -> Unit): Disposable = this.subscribe(
-        {
-            action(it)
-        },
-        {
-            Timber.e(it, "Kotlin Extends ignoreError: ")
-        }
+    {
+        action(it)
+    },
+    {
+        Timber.e(it, "Kotlin Extends ignoreError: ")
+    }
 )
 
 fun <T> FlowableSubscribeProxy<T>.subscribeIgnoreError(action: (T) -> Unit): Disposable = this.subscribe(
-        {
-            action(it)
-        },
-        {
-            Timber.e(it, "Kotlin Extends ignoreError: ")
-        }
+    {
+        action(it)
+    },
+    {
+        Timber.e(it, "Kotlin Extends ignoreError: ")
+    }
 )
 
 fun <T> SingleSubscribeProxy<T>.subscribeIgnoreError(action: (T) -> Unit): Disposable = this.subscribe(
-        {
-            action(it)
-        },
-        {
-            Timber.e(it, "Kotlin Extends ignoreError: ")
-        }
+    {
+        action(it)
+    },
+    {
+        Timber.e(it, "Kotlin Extends ignoreError: ")
+    }
 )
 
 fun <T> MaybeSubscribeProxy<T>.subscribeIgnoreError(action: (T) -> Unit): Disposable = this.subscribe(
-        {
-            action(it)
-        },
-        {
-            Timber.e(it, "Kotlin Extends ignoreError: ")
-        }
+    {
+        action(it)
+    },
+    {
+        Timber.e(it, "Kotlin Extends ignoreError: ")
+    }
 )
 
 fun CompletableSubscribeProxy.subscribeIgnoreError(action: () -> Unit): Disposable = this.subscribe(
-        {
-            action()
-        },
-        {
-            Timber.e(it, "Kotlin Extends ignoreError: ")
-        }
+    {
+        action()
+    },
+    {
+        Timber.e(it, "Kotlin Extends ignoreError: ")
+    }
 )

@@ -36,25 +36,18 @@ dependencies {
     testImplementation TestLibraries.junit
 
     implementation AndroidLibraries.annotations
-
-    compileOnly AndroidLibraries.fragmentKtx
-
-    implementation AndroidLibraries.lifecycleLiveDataCore
-    implementation AndroidLibraries.lifecycleViewModelKtx
-
-    api project(":lib_resource")
+    implementation AndroidLibraries.fragmentKtx
 
     implementation ThirdLibraries.rxJava2
     implementation ThirdLibraries.rxAndroid2
-
     implementation ThirdLibraries.rx2AutoDispose
     implementation ThirdLibraries.rx2AutoDisposeAndroid
     implementation ThirdLibraries.rx2AutoDisposeLifecycle
-    implementation ThirdLibraries.rx2AutoDisposeLifecycleArchcomponents
 
     implementation KotlinLibraries.kotlinStdlib
 
-    implementation ThirdLibraries.timber
+    implementation project(":lib_rxjava2")
+    implementation project(":lib_foundation")
 
-    implementation ThirdLibraries.supportOptional
+    implementation ThirdLibraries.timber
 }

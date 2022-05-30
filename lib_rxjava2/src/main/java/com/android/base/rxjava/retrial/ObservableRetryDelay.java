@@ -1,6 +1,5 @@
 package com.android.base.rxjava.retrial;
 
-
 import androidx.annotation.Nullable;
 
 import java.util.Date;
@@ -15,7 +14,10 @@ public class ObservableRetryDelay implements Function<Observable<Throwable>, Obs
 
     private final int mMaxRetries;
     private final long mRetryDelayMillis;
-    @Nullable private RetryChecker mRetryChecker;
+
+    @Nullable
+    private final RetryChecker mRetryChecker;
+
     private int mRetryCount = 0;
 
     @SuppressWarnings("unused")
@@ -32,7 +34,7 @@ public class ObservableRetryDelay implements Function<Observable<Throwable>, Obs
     @Override
     public ObservableSource<?> apply(Observable<Throwable> throwableObservable) {
         return throwableObservable.flatMap((Function<Throwable, ObservableSource<?>>) throwable -> {
-            if (mRetryChecker != null && !mRetryChecker.verify(throwable)) {
+            if (mRetryChecker != null && !mRetryChecker.doRetry(throwable)) {
                 return Observable.error(throwable);
             }
             mRetryCount++;

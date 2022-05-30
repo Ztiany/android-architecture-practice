@@ -25,11 +25,7 @@ import io.reactivex.schedulers.Schedulers;
  * Email: ztiany3@gmail.com
  * Date : 2018-08-10 00:03
  */
-public final class ThreadTransformer<T> implements ObservableTransformer<T, T>,
-        FlowableTransformer<T, T>,
-        SingleTransformer<T, T>,
-        MaybeTransformer<T, T>,
-        CompletableTransformer {
+public final class ThreadTransformer<T> implements ObservableTransformer<T, T>, FlowableTransformer<T, T>, SingleTransformer<T, T>, MaybeTransformer<T, T>, CompletableTransformer {
 
     public static <T> ThreadTransformer<T> newInstance(int type) {
         return new ThreadTransformer<>(type);
@@ -82,4 +78,5 @@ public final class ThreadTransformer<T> implements ObservableTransformer<T, T>,
             return Schedulers.newThread();
         }
     }
+
 }

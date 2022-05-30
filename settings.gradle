@@ -7,6 +7,7 @@ def libs = [
         "lib_bus",
         "lib_base",
         "lib_rxjava2",
+        "lib_mvp",
         "lib_utils",
         "lib_permission",
         "lib_network",

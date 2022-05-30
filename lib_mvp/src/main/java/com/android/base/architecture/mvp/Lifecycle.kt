@@ -3,8 +3,6 @@ package com.android.base.architecture.mvp
 
 /**
  * @author Ztiany
- * Email: 1169654504@qq.com
- * Date : 2017-04-18 16:23
  */
 interface Lifecycle {
 
