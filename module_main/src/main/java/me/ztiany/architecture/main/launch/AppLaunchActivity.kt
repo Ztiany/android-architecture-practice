@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.android.base.utils.android.compat.SystemBarCompat
+import com.android.base.utils.common.ifNonNull
+import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.component.usermanager.UserManager
@@ -20,7 +22,6 @@ import javax.inject.Inject
  * 应用启动页
  *
  *@author Ztiany
- *      Date : 2018-09-06 14:42
  */
 @AndroidEntryPoint
 class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
@@ -44,6 +45,7 @@ class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
     override fun setUpLayout(savedInstanceState: Bundle?) {
         lifecycleScope.launchWhenResumed {
             if (userManager.isUserLogin()) {
+                delay(1500)
                 toMainPage()
             } else {
                 toLoginPage()
@@ -54,13 +56,17 @@ class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
     }
 
     private fun toLoginPage() {
-        appRouter.get(AccountModuleNavigator::class.java)?.openAccount(this)
-        overridePendingTransition(0, 0)
+        appRouter.get(AccountModuleNavigator::class.java).ifNonNull {
+            openAccount(this@AppLaunchActivity)
+            overridePendingTransition(0, 0)
+        } otherwise {
+            toMainPage()
+        }
     }
 
-    private suspend fun toMainPage() {
-        delay(1500)
+    private fun toMainPage() {
         appRouter.get(MainModuleNavigator::class.java)?.openMain(this)
+        overridePendingTransition(0, 0)
     }
 
 }

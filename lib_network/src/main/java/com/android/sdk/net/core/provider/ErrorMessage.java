@@ -4,8 +4,6 @@ import com.android.sdk.net.core.exception.ApiErrorException;
 
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2018-11-08 16:01
  */
 public interface ErrorMessage {
 

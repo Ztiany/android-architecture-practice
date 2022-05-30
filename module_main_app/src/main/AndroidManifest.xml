@@ -15,15 +15,6 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:replace="android:theme,android:label,android:allowBackup">
 
-        <activity
-            android:name=".MainDebugActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
     </application>
 
 </manifest>

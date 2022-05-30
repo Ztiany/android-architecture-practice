@@ -1,6 +1,5 @@
 package com.android.base.foundation.data
 
-
 /**
  * @author Ztiany
  */

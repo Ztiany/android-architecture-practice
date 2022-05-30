@@ -34,8 +34,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation AndroidLibraries.activityKtx
-    implementation AndroidLibraries.fragmentKtx
+    compileOnly AndroidLibraries.activityKtx
+    compileOnly AndroidLibraries.fragmentKtx
+
     implementation KotlinLibraries.kotlinStdlib
-    implementation ThirdLibraries.timber
 }
