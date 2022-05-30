@@ -3,6 +3,8 @@ apply from: './gradle/module_config.gradle'
 //基础模块
 def libs = [
         "lib_foundation",
+        "lib_resource",
+        "lib_bus",
         "lib_base",
         "lib_rxjava2",
         "lib_utils",

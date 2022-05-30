@@ -1,5 +1,4 @@
-package com.android.base.foundation.jetpack;
-
+package com.android.base.foundation.livedata;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +26,7 @@ public class SingleLiveData<T> extends MediatorLiveData<T> {
 
     @Override
     public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer) {
-        super.observe(owner,  getOrNewObserver(observer, mVersion));
+        super.observe(owner, getOrNewObserver(observer, mVersion));
     }
 
     @Override

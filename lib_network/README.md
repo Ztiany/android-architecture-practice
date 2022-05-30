@@ -1,6 +1,6 @@
-# An android library makes http requesting easy
+# Lib Network
 
-> 针对常规的 Http 请求进行封装，如果对大批量文件下载和上传有需求，则应该选择其他开源库。
+> An android library makes http requesting easy. It is not for massive uploading or downloading.
 
 ## 1 Explanation
 

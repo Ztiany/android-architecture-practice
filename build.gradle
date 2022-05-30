@@ -26,10 +26,14 @@ buildscript {
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
         //channel
         classpath "com.leon.channel:plugin:2.0.3"
+
+        // for publishing
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
     }
 }
 
 allprojects {
+
     repositories {
         maven { url "https://maven.aliyun.com/repository/central" }
         maven { url "https://maven.aliyun.com/repository/public" }
@@ -56,6 +60,13 @@ allprojects {
         }
 
     }
+
+    plugins.withId("com.vanniktech.maven.publish") {
+        mavenPublish {
+            sonatypeHost = "S01"
+        }
+    }
+
 }
 
 task clean(type: Delete) {

@@ -24,10 +24,7 @@ import io.reactivex.Single;
 import io.reactivex.SingleSource;
 import io.reactivex.SingleTransformer;
 
-public class HttpResultTransformer<Upstream, Downstream, T extends Result<Upstream>> implements
-        ObservableTransformer<T, Downstream>,
-        FlowableTransformer<T, Downstream>,
-        SingleTransformer<T, Downstream> {
+public class HttpResultTransformer<Upstream, Downstream, T extends Result<Upstream>> implements ObservableTransformer<T, Downstream>, FlowableTransformer<T, Downstream>, SingleTransformer<T, Downstream> {
 
     private final boolean mRequireNonNullData;
 

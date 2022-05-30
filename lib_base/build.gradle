@@ -44,6 +44,8 @@ dependencies {
 
     api project(":lib_utils")
     api project(":lib_foundation")
+    api project(":lib_resource")
+    api project(":lib_bus")
 
     //AndroidSupport
     api AndroidLibraries.activityKtx

@@ -34,8 +34,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation AndroidLibraries.activityKtx
-    implementation AndroidLibraries.fragmentKtx
+    implementation AndroidLibraries.lifecycleLiveDataCore
+    implementation AndroidLibraries.lifecycleLiveKtx
+
     implementation KotlinLibraries.kotlinStdlib
+    implementation KotlinLibraries.kotlinCoroutines
+
     implementation ThirdLibraries.timber
 }

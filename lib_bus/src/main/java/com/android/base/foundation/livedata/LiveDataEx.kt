@@ -1,4 +1,4 @@
-package com.android.base.foundation.jetpack
+package com.android.base.foundation.livedata
 
 import androidx.lifecycle.MutableLiveData
 

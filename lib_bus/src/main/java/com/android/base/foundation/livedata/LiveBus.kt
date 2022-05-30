@@ -1,4 +1,4 @@
-package com.android.base.foundation.jetpack
+package com.android.base.foundation.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +16,7 @@ abstract class LiveBus {
     @Synchronized
     fun <T> getSender(eventName: String): MutableLiveData<T> {
         var liveData = eventMap[eventName]
-        if (liveData == null) {
+        if (null == liveData) {
             liveData = SingleLiveData<T>()
             eventMap[eventName] = liveData
         }
@@ -26,7 +26,7 @@ abstract class LiveBus {
     @Synchronized
     fun <T> getReceiver(eventName: String): LiveData<T> {
         var liveData = eventMap[eventName]
-        if (liveData == null) {
+        if (null == liveData) {
             liveData = SingleLiveData<T>()
             eventMap[eventName] = liveData
         }
@@ -35,7 +35,7 @@ abstract class LiveBus {
 
     @Synchronized
     fun <T> destroy(eventName: String): Boolean {
-        return eventMap.remove(eventName) != null
+        return null != eventMap.remove(eventName)
     }
 
 }
