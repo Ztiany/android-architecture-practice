@@ -15,7 +15,7 @@ import com.android.sdk.upgrade.UpgradeInteractor
 import com.app.base.R
 import com.app.base.app.DispatcherProvider
 import com.app.base.app.ServiceProvider
-import com.app.base.config.AppDirectory
+import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppSettings
 import com.app.base.injection.ApplicationScope
 import com.app.base.widget.dialog.showConfirmDialog
@@ -194,7 +194,7 @@ internal class AppUpgradeInteractor @Inject constructor(
     override fun checkApkFile(apkFile: File, digitalAbstract: String) = true
 
     override fun generateAppDownloadPath(versionName: String): String =
-        AppDirectory.createAppDownloadPath(versionName)
+        AppPrivateDirectories.createAppDownloadPath(versionName)
 
     override fun createHttpClient(): OkHttpClient {
         return OkHttpClient()

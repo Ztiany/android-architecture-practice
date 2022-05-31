@@ -3,6 +3,8 @@ package com.app.base.config;
 import android.annotation.SuppressLint;
 import android.os.Environment;
 
+import androidx.annotation.NonNull;
+
 import com.android.base.utils.BaseUtils;
 
 import java.io.File;
@@ -12,20 +14,13 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 
-import androidx.annotation.NonNull;
 import timber.log.Timber;
 
 /**
- * todo 适配 AndroidQ ScopedStorage.
- *
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2018-11-01 14:24
  */
-public class AppDirectory {
+public class AppPrivateDirectories {
 
-    private static final String APP_NAME = "APP_NAME";
-    public static final String SDCARD_FOLDER_NAME = "APP_NAME";
 
     private static final String TEMP_PICTURE = "temp-pictures";
     private static final String TEMP_FILES = "temp-files";
@@ -113,64 +108,6 @@ public class AppDirectory {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // sd card public
-    ///////////////////////////////////////////////////////////////////////////
-
-    /**
-     * 获取 DCIM 存储图片的路径。
-     *
-     * @return /storage/sdcard0/DCIM/APP_NAME/xxx.png
-     */
-    @NonNull
-    public static String createDCIMPicturePath(String format) {
-        String path = getSDCardPublicDirectoryPath(Environment.DIRECTORY_DCIM).toString() + File.separator + APP_NAME + File.separator;
-        File file = new File(path + createTempFileName(format));
-        makeParentPath(file, "createDCIMPictureStorePath() called mkdirs: ");
-        return file.getAbsolutePath();
-    }
-
-    /**
-     * 获取公共的外部存储目录。
-     *
-     * @param type {@link Environment#DIRECTORY_DOWNLOADS}, {@link Environment#DIRECTORY_DCIM}, ect
-     * @return DIRECTORY_DCIM = /storage/sdcard0/DCIM , DIRECTORY_DOWNLOADS =  /storage/sdcard0/Download ...ect
-     */
-    public static File getSDCardPublicDirectoryPath(@NonNull String type) {
-        String state = Environment.getExternalStorageState();
-        File dir;
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            dir = Environment.getExternalStoragePublicDirectory(type);
-        } else {
-            dir = new File(BaseUtils.getAppContext().getFilesDir(), type);
-        }
-        makePath(dir, "getExternalStoragePublicDirectory");
-        return dir;
-    }
-
-    /**
-     * 获取 APP 在 SD 卡上的外部存储目录。
-     */
-    public static String getSDCardPublicAppStoragePath() {
-        String path = getSDCardRootPath() + File.separator + SDCARD_FOLDER_NAME;
-        makePath(new File(path), "getAppSDCardExternalStorePath");
-        return path;
-    }
-
-    /**
-     * 获取 SD 卡根目录
-     *
-     * @return /storage/emulated/0/
-     */
-    public static File getSDCardRootPath() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return Environment.getExternalStorageDirectory();
-        } else {
-            return BaseUtils.getAppContext().getFilesDir();
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
     // Tools
     ///////////////////////////////////////////////////////////////////////////
 
@@ -210,7 +147,7 @@ public class AppDirectory {
     /**
      * 根据日期生成一个临时文件名，格式由 format 制定。
      */
-    private static String createTempFileName(String format) {
+    public static String createTempFileName(String format) {
         String tempFileName = Objects.requireNonNull(SDF_HOLDER.get()).format(new Date()) + "_" + UUID.randomUUID().toString();
         return tempFileName + format;
     }

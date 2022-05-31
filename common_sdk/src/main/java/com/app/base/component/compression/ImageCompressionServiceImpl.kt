@@ -7,8 +7,8 @@ import com.android.base.utils.BaseUtils
 import com.android.base.utils.common.FileUtils
 import com.android.base.utils.common.sizeOf
 import com.app.base.app.DispatcherProvider
-import com.app.base.config.AppDirectory
-import com.app.base.config.AppDirectory.PICTURE_FORMAT_JPEG
+import com.app.base.config.AppPrivateDirectories
+import com.app.base.config.AppPrivateDirectories.PICTURE_FORMAT_JPEG
 import com.app.base.debug.ifOpenDebug
 import com.app.base.debug.ifOpenLog
 import id.zelory.compressor.Compressor
@@ -71,7 +71,7 @@ class ImageCompressionServiceImpl(
         ExifUtils.copyExif(originFile.absolutePath, newFile.absolutePath)
 
         ifOpenDebug {
-            FileUtils.copy(newFile.absolutePath, AppDirectory.createTempPicturePath(PICTURE_FORMAT_JPEG))
+            FileUtils.copy(newFile.absolutePath, AppPrivateDirectories.createTempPicturePath(PICTURE_FORMAT_JPEG))
         }
 
         return Uri.fromFile(newFile)
