@@ -4,22 +4,21 @@
 
 ## 1 应用内多媒体文件选择
 
-### 版本1：基于 boxing 封装
+### 基于 boxing 封装
 
-版本 1 基于 boxing 封装，由于内部存在一些 bug，后改为本地依赖并对 bug 进行了修复。
-
-使用注意，配置好 FileProvider：
-
-```xml
-
-<external-files-path name="app_external" path="/" />
-```
+由于 boxing 内部存在一些 bug，且官方不再维护，后改为本地依赖并对 bug 进行了修复。
 
 原始 boxing 库存在以下问题：
 
 1. [RotatePhotoView](https://github.com/ChenSiLiang/RotatePhotoView) 依赖混乱导致的崩溃。
-2. [Android Q SQLiteException](https://github.com/bilibili/boxing/issues/154) 问题。
+2. [Android 10 SQLiteException](https://github.com/bilibili/boxing/issues/154) 崩溃问题，解决方案可以参考  [replacement-for-group-by-in-contentresolver-query-in-android-q-android-10-a](https://stackoverflow.com/questions/60623594/replacement-for-group-by-in-contentresolver-query-in-android-q-android-10-a) 和 [https://stackoverflow.com/questions/56823336/query-mediastore-on-android-q](https://stackoverflow.com/questions/56823336/query-mediastore-on-android-q) 。
 3. 没有适配 Android 10 的 ScopedStorage。
+
+另外，使用时需要配置好 FileProvider：
+
+```xml
+<external-files-path name="app_external" path="/" />
+```
 
 ### 其他可选方案
 
