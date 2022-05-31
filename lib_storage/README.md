@@ -1,6 +1,6 @@
-# 缓存库
+# Lib Storage
 
-目前使用的核心缓存库：
+目前使用的核心存储库：
 
 - 微信：MMKV
 - DiskLruCache

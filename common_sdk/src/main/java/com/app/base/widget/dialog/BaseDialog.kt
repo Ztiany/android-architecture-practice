@@ -7,15 +7,10 @@ import com.android.base.utils.android.ScreenUtils
 import com.app.base.R
 
 open class BaseDialog(
-        context: Context,
-        private val limitHeight: Boolean = false,
-        style: Int = R.style.ThemeDialogCommon_Transparent_Floating
+    context: Context,
+    private val limitHeight: Boolean = false,
+    style: Int = R.style.ThemeDialogCommon_Transparent_Floating
 ) : AppCompatDialog(context, style) {
-
-    companion object {
-        const val DEFAULT_WIDTH_SIZE_PERCENT = 0.75F
-        const val DEFAULT_HEIGHT_SIZE_PERCENT = 0.8F
-    }
 
     private lateinit var onLayoutChangeListener: View.OnLayoutChangeListener
 
@@ -29,8 +24,23 @@ open class BaseDialog(
         }
     }
 
-    protected open var maxDialogWidthPercent = DEFAULT_WIDTH_SIZE_PERCENT
-    protected open var maxDialogHeightPercent = DEFAULT_HEIGHT_SIZE_PERCENT
+    protected open val maxDialogWidthPercent: Float
+        get() {
+            return if (ScreenUtils.getScreenWidth() < ScreenUtils.getScreenHeight()) {
+                0.75F
+            } else {
+                0.4F
+            }
+        }
+
+    protected open val maxDialogHeightPercent: Float
+        get() {
+            return if (ScreenUtils.getScreenWidth() < ScreenUtils.getScreenHeight()) {
+                0.7F
+            } else {
+                0.8F
+            }
+        }
 
     override fun show() {
 

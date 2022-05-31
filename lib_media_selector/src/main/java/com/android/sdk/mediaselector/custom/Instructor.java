@@ -3,19 +3,18 @@ package com.android.sdk.mediaselector.custom;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.Nullable;
+
 import com.android.sdk.mediaselector.common.CropOptions;
 import com.bilibili.boxing.BoxingMediaLoader;
 import com.bilibili.boxing.model.callback.MediaFilter;
 
 import org.jetbrains.annotations.NotNull;
 
-import androidx.annotation.Nullable;
 import timber.log.Timber;
 
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2020-08-11 10:08
  */
 public class Instructor implements Parcelable {
 

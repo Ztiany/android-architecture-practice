@@ -48,13 +48,16 @@ dependencies {
     implementation AndroidLibraries.lifecycleRuntimeKtx
     implementation KotlinLibraries.kotlinStdlib
     implementation KotlinLibraries.kotlinCoroutines
+
     //foundation
-    implementation project(":lib_foundation")
+    implementation project(':lib_arch_delegate')
+
     /*imageLoader*/
     implementation ThirdLibraries.glide
     implementation ThirdLibraries.timber
+
     /*image crop*/
-    implementation("com.github.yalantis:ucrop:2.2.4") {
+    implementation("com.github.yalantis:ucrop:2.2.8") {
         exclude group: "com.squareup.okhttp3"
     }
 }

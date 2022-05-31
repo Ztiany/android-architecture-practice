@@ -72,9 +72,9 @@ dependencies {
     //测试
     testImplementation(TestLibraries.junit)
 
-    //基础组件库
-    api project(":lib_base")//基础类库
-    api project(":lib_bus")//EventBus
+    //基础库
+    api project(':lib_arch_base')//基础组件库
+    api project(':lib_event_bus')//EventBus
     api project(":lib_permission")//权限
     api project(":lib_storage")//存储库
     api project(":lib_network")//网络库

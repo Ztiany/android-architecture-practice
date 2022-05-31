@@ -1,9 +1,7 @@
 package me.ztiany.widget.compat;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.webkit.WebView;
 
@@ -24,7 +22,6 @@ public class LollipopFixedWebView extends WebView {
         super(getFixedContext(context), attrs, defStyleAttr);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public LollipopFixedWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(getFixedContext(context), attrs, defStyleAttr, defStyleRes);
     }

@@ -12,7 +12,7 @@ import com.android.base.utils.android.network.NetworkStateKt;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * 依赖 Context 的其他工具类都由 BaseUtils 提供
+ * 依赖 Context 的其他工具类都由 BaseUtils 提供。
  */
 public class BaseUtils {
 

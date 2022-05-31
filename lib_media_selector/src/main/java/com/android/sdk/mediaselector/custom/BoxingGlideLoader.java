@@ -21,6 +21,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.bilibili.boxing.loader.IBoxingCallback;
 import com.bilibili.boxing.loader.IBoxingMediaLoader;
 import com.bumptech.glide.Glide;
@@ -29,9 +32,6 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * use https://github.com/bumptech/glide as media loader.

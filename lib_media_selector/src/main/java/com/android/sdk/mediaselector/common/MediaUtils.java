@@ -13,19 +13,18 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2017-08-09 10:54
  */
 public class MediaUtils {
 
@@ -73,7 +72,7 @@ public class MediaUtils {
     // UCrop
     ///////////////////////////////////////////////////////////////////////////
 
-    public static void toUCrop(Context context, Fragment fragment, String srcPath, CropOptions cropConfig, int requestCode) {
+    public static void toUCrop(Context context, @Nullable Fragment fragment, String srcPath, CropOptions cropConfig, int requestCode) {
 
         Uri srcUri = new Uri.Builder()
                 .scheme("file")
@@ -105,7 +104,7 @@ public class MediaUtils {
                     .start(context, fragment, requestCode);
         } else {
             if (!(context instanceof AppCompatActivity)) {
-                throw new IllegalArgumentException("the context must be instance of AppCompatActivity");
+                throw new IllegalArgumentException("the context must be the instance of AppCompatActivity.");
             }
             UCrop.of(srcUri, targetUri)
                     .withOptions(crop)

@@ -17,7 +17,6 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.android.views.getString
 import com.app.base.R
@@ -45,7 +44,10 @@ fun createLoadingDialog(context: Context, autoShow: Boolean = false): Dialog {
 @IntDef(TipsDialogBuilder.TYPE_SUCCESS, TipsDialogBuilder.TYPE_FAILURE, TipsDialogBuilder.TYPE_WARNING)
 annotation class TipsType
 
-class TipsDialogBuilder(private val actFragWrapper: ActFragWrapper) {
+class TipsDialogBuilder internal constructor(
+    val activity: Activity?,
+    val fragment: Fragment?
+) {
 
     companion object {
         const val TYPE_SUCCESS = 1
@@ -53,48 +55,46 @@ class TipsDialogBuilder(private val actFragWrapper: ActFragWrapper) {
         const val TYPE_WARNING = 3
     }
 
+    val context: Context
+        get() = activity ?: (fragment?.requireContext() ?: throw IllegalStateException("never happen."))
+
     /*消息*/
     @StringRes
     var messageId = BaseDialogBuilder.NO_ID
         set(value) {
-            message = actFragWrapper.context.getText(value)
+            message = context.getText(value)
         }
-    var message: CharSequence = "debug：请设置message"
+    var message: CharSequence = "debug：请设置 message"
 
     @TipsType var type = TYPE_SUCCESS
 
     var onDismiss: (() -> Unit)? = null
 
-    var autoDismissMillisecond: Long = 1500
+    var autoDismissMillisecond: Long = 2000
 }
 
-fun showTipsDialog(actFragWrapper: ActFragWrapper, builder: TipsDialogBuilder.() -> Unit): Dialog {
-    val tipsDialogBuilder = TipsDialogBuilder(actFragWrapper)
+private fun showTipsDialog(activity: Activity?, fragment: Fragment?, builder: TipsDialogBuilder.() -> Unit): Dialog {
+    val tipsDialogBuilder = TipsDialogBuilder(activity, fragment)
     builder(tipsDialogBuilder)
-    return showTipsDialogImpl(actFragWrapper, tipsDialogBuilder)
+    return showTipsDialogImpl(tipsDialogBuilder)
 }
 
 fun Fragment.showTipsDialog(builder: TipsDialogBuilder.() -> Unit): Dialog {
-    return showTipsDialog(ActFragWrapper.create(this), builder)
+    return showTipsDialog(null, this, builder)
 }
-
 
 fun FragmentActivity.showTipsDialog(builder: TipsDialogBuilder.() -> Unit): Dialog {
-    return showTipsDialog(ActFragWrapper.create(this), builder)
+    return showTipsDialog(this, null, builder)
 }
 
-private fun showTipsDialogImpl(actFragWrapper: ActFragWrapper, tipsDialogBuilder: TipsDialogBuilder): Dialog {
-    val tipsDialog = TipsDialog(actFragWrapper.context)
+private fun showTipsDialogImpl(tipsDialogBuilder: TipsDialogBuilder): Dialog {
+    val tipsDialog = TipsDialog(tipsDialogBuilder.context)
 
     tipsDialog.setMessage(tipsDialogBuilder.message)
     tipsDialog.setCancelable(false)
     tipsDialog.setTipsType(tipsDialogBuilder.type)
 
-    val lifecycleOwner: LifecycleOwner = if (actFragWrapper.fragment != null) {
-        actFragWrapper.fragment
-    } else {
-        actFragWrapper.context as FragmentActivity
-    }
+    val lifecycleOwner: LifecycleOwner = tipsDialogBuilder.fragment ?: tipsDialogBuilder.context as FragmentActivity
 
     lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onDestroy(owner: LifecycleOwner) {
@@ -150,7 +150,7 @@ class ListDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     var negativeListener: (() -> Unit)? = null
 
     /**对话框最长高度（相对于屏幕高度）*/
-    var maxWidthPercent = BaseDialog.DEFAULT_WIDTH_SIZE_PERCENT
+    var maxWidthPercent =  0.75F
 
     var onDialogPreparedListener: ((dialog: Dialog, dialogController: DialogController) -> Unit)? = null
 

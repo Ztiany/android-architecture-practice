@@ -41,15 +41,15 @@ dependencies {
     implementation AndroidLibraries.lifecycleLiveDataCore
     implementation AndroidLibraries.lifecycleViewModelKtx
 
-    implementation project(":lib_resource")
+    implementation project(':lib_ui_state')
 
     api ThirdLibraries.rxJava2
     api ThirdLibraries.rxAndroid2
 
-    implementation ThirdLibraries.rx2AutoDispose
-    implementation ThirdLibraries.rx2AutoDisposeAndroid
-    implementation ThirdLibraries.rx2AutoDisposeLifecycle
-    implementation ThirdLibraries.rx2AutoDisposeLifecycleArchcomponents
+    api ThirdLibraries.rx2AutoDispose
+    api ThirdLibraries.rx2AutoDisposeAndroid
+    api ThirdLibraries.rx2AutoDisposeLifecycle
+    api ThirdLibraries.rx2AutoDisposeLifecycleArchcomponents
 
     implementation KotlinLibraries.kotlinStdlib
 

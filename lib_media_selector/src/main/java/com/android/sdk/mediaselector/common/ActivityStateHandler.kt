@@ -5,8 +5,6 @@ import android.os.Bundle
 
 /**
  *@author Ztiany
- *      Email: ztiany3@gmail.com
- *      Date : 2020-08-11 11:17
  */
 interface ActivityStateHandler {
 

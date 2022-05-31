@@ -8,23 +8,23 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.android.sdk.mediaselector.common.*
+import com.android.sdk.mediaselector.common.MediaUtils
+import com.android.sdk.mediaselector.common.ResultListener
+import com.android.sdk.mediaselector.common.copySingleToInternal
+import com.android.sdk.mediaselector.common.newUriList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.File
-import java.util.*
 
 /**
- * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2020-08-06 18:07
- *
  *  refer:
  *
  * - [action-open-document-with-storage-access-framework-returns-duplicate-results](https://stackoverflow.com/questions/39804530/action-open-document-with-storage-access-framework-returns-duplicate-results)
  * - [document-provider](https://developer.android.com/guide/topics/providers/document-provider?hl=zh-cn)
+ *
+ * @author Ztiany
  */
 @RequiresApi(Build.VERSION_CODES.O)
 internal class AndroidQSystemMediaSelector : BaseSystemMediaSelector {

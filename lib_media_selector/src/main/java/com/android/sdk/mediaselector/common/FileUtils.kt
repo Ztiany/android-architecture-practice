@@ -5,16 +5,11 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.provider.OpenableColumns
-import android.util.Log
 import androidx.annotation.RequiresApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.File
-import java.lang.Exception
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.ArrayList
 
 /**
  *@author Ztiany

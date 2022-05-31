@@ -9,7 +9,6 @@ import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import com.android.base.foundation.common.ActFragWrapper
 import com.android.sdk.mediaselector.common.*
 import timber.log.Timber
 import java.io.File
@@ -23,8 +22,6 @@ private const val INSTRUCTOR_KEY = "system_instructor_key"
 
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2020-08-06 18:12
  */
 internal abstract class BaseSystemMediaSelector : SystemMediaSelector {
 
@@ -51,7 +48,7 @@ internal abstract class BaseSystemMediaSelector : SystemMediaSelector {
         actFragWrapper = ActFragWrapper.create(fragment)
     }
 
-    protected fun startActivityForResult(intent: Intent?, code: Int) {
+    protected fun startActivityForResult(intent: Intent, code: Int) {
         actFragWrapper.startActivityForResult(intent, code, null)
     }
 
@@ -79,7 +76,8 @@ internal abstract class BaseSystemMediaSelector : SystemMediaSelector {
     ///////////////////////////////////////////////////////////////////////////
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode != REQUEST_CAMERA && requestCode != REQUEST_ALBUM &&
-                requestCode != REQUEST_FILE && requestCode != REQUEST_UCROP) {
+            requestCode != REQUEST_FILE && requestCode != REQUEST_UCROP
+        ) {
             return
         }
 
@@ -103,11 +101,12 @@ internal abstract class BaseSystemMediaSelector : SystemMediaSelector {
 
     protected fun toCrop(src: String) {
         MediaUtils.toUCrop(
-                actFragWrapper.context,
-                actFragWrapper.fragment,
-                src,
-                currentInstructor.cropOptions,
-                REQUEST_UCROP)
+            actFragWrapper.context,
+            actFragWrapper.fragment,
+            src,
+            currentInstructor.cropOptions,
+            REQUEST_UCROP
+        )
     }
 
     private fun processUCropResult(data: Intent?) {

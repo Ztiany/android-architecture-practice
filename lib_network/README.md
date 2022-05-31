@@ -17,3 +17,10 @@
 ### 2.3 API for Kotlin Coroutines
 
 - [ ] TODO
+
+## 3 Installation
+
+```groovy
+// https://mvnrepository.com/artifact/io.github.ztiany/android-simple-http
+implementation 'io.github.ztiany:android-simple-http:1.0.0'
+```

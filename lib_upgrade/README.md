@@ -1,6 +1,8 @@
-# A library for checking app upgrade
+# Lib Upgrade
 
-usage: 
+A library for checking app upgrade.
+
+usage:
 
 ```kotlin
 AppUpgradeChecker.installInteractor(AppUpgradeInteractor())
@@ -12,24 +14,24 @@ AppUpgradeChecker.checkAppUpgrade()
 //usage, when click to check new version:
 
 AppUpgradeChecker.checkAppUpgrade(false).observe(this) {
-                     if (it.isDownloading) {
-                            showMessage("正在下载更新")
-                            return@observe
-                     }
-                     if (it.isLoading) {
-                            showLoadingDialog(false)
-                     } else {
-                            dismissLoadingDialog()
-                     }
-                     val error = it.error
-                     if (error != null) {
-                            handleError(error)
-                     }
-                     val upgradeInfo = it.upgradeInfo
-                     if (upgradeInfo != null && !upgradeInfo.isNewVersion) {
-                            showMessage("已是最新版本")
-                     }
-                 }
+    if (it.isDownloading) {
+        showMessage("正在下载更新")
+        return@observe
+    }
+    if (it.isLoading) {
+        showLoadingDialog(false)
+    } else {
+        dismissLoadingDialog()
+    }
+    val error = it.error
+    if (error != null) {
+        handleError(error)
+    }
+    val upgradeInfo = it.upgradeInfo
+    if (upgradeInfo != null && !upgradeInfo.isNewVersion) {
+        showMessage("已是最新版本")
+    }
+}
 ```
 
 example of AppUpgradeInteractor implementation:
@@ -51,22 +53,27 @@ class AppUpgradeInteractor : UpgradeInteractor {
 
     override fun checkUpgrade(): Flowable<UpgradeInfo> {
         return AppContext.commonService().checkAppUpgrade()
-                .map { buildUpgradeInfo(it) }
+            .map { buildUpgradeInfo(it) }
     }
 
     private fun buildUpgradeInfo(response: UpgradeResponse): UpgradeInfo {
         return UpgradeInfo(
-                isForce = response.isforce,
-                isNewVersion = AppUtils.getAppVersionCode() < response.versionCode,
-                versionName = response.version,
-                downloadUrl = response.url,
-                description = response.content,
-                digitalAbstract = "",
-                raw = response
+            isForce = response.isforce,
+            isNewVersion = AppUtils.getAppVersionCode() < response.versionCode,
+            versionName = response.version,
+            downloadUrl = response.url,
+            description = response.content,
+            digitalAbstract = "",
+            raw = response
         )
     }
 
-    override fun showUpgradeDialog(context: Context, upgradeInfo: UpgradeInfo, onCancel: () -> Unit, onConfirm: () -> Unit) {
+    override fun showUpgradeDialog(
+        context: Context,
+        upgradeInfo: UpgradeInfo,
+        onCancel: () -> Unit,
+        onConfirm: () -> Unit
+    ) {
         Timber.d("showUpgradeDialog")
         upgradeDialogReference?.get()?.dismiss()
         val upgradeDialog = UpgradeDialog(context) {
@@ -79,7 +86,12 @@ class AppUpgradeInteractor : UpgradeInteractor {
         upgradeDialogReference = WeakReference(upgradeDialog)
     }
 
-    override fun showInstallTipsDialog(context: Context, force: Boolean, onCancel: () -> Unit, onConfirm: () -> Unit) {
+    override fun showInstallTipsDialog(
+        context: Context,
+        force: Boolean,
+        onCancel: () -> Unit,
+        onConfirm: () -> Unit
+    ) {
         if (!force) {
             return
         }
@@ -96,7 +108,12 @@ class AppUpgradeInteractor : UpgradeInteractor {
         }
     }
 
-    override fun showDownloadingFailed(context: Context, force: Boolean, onCancel: () -> Unit, onConfirm: () -> Unit) {
+    override fun showDownloadingFailed(
+        context: Context,
+        force: Boolean,
+        onCancel: () -> Unit,
+        onConfirm: () -> Unit
+    ) {
         showConfirmDialog(context) {
             message = force.yes { "下载更新失败，需要重试" } otherwise { "下载更新失败，是否重试？" }
             cancelable = false
@@ -134,11 +151,11 @@ class AppUpgradeInteractor : UpgradeInteractor {
         if (AndroidVersion.atLeast(26)) {
             //Android8.0未知来源应用安装权限方案
             AndPermission.with(AppContext.get())
-                    .install()
-                    .file(file)
-                    .onDenied { Timber.d("installApk onDenied") }
-                    .onGranted { Timber.d("installApk onGranted") }
-                    .start()
+                .install()
+                .file(file)
+                .onDenied { Timber.d("installApk onDenied") }
+                .onGranted { Timber.d("installApk onGranted") }
+                .start()
         } else {
             //正常安装
             XAppUtils.installApp(AppContext.get(), file, AppSettings.appFileProviderAuthorities())
@@ -147,7 +164,8 @@ class AppUpgradeInteractor : UpgradeInteractor {
 
     override fun checkApkFile(apkFile: File, digitalAbstract: String) = true
 
-    override fun generateAppDownloadPath(versionName: String): String = DirectoryManager.createAppDownloadPath(versionName)
+    override fun generateAppDownloadPath(versionName: String): String =
+        DirectoryManager.createAppDownloadPath(versionName)
 
 }
 ```

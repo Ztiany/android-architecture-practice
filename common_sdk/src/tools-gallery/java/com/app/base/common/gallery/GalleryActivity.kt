@@ -14,7 +14,6 @@ import android.view.View
 import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import com.android.base.foundation.common.ActFragWrapper
 import com.android.base.image.ImageLoaderFactory
 import com.android.base.image.Source
 import com.android.base.utils.android.adaption.TransitionListenerAdapter
@@ -28,10 +27,7 @@ import kotlinx.parcelize.Parcelize
 import kotlin.properties.Delegates
 
 /**
- * 浏览图片。
- *
  * @author Ztiany
- * Date : 2016-12-23 10:50
  */
 class GalleryActivity : AppBaseActivity() {
 
@@ -103,7 +99,7 @@ class GalleryActivity : AppBaseActivity() {
             start(ActFragWrapper.create(activity))
         }
 
-        fun start(actFragWrapper: ActFragWrapper) {
+        private fun start(actFragWrapper: ActFragWrapper) {
             val intent = Intent(actFragWrapper.context, GalleryActivity::class.java).apply {
                 putExtra(
                     KEY_FOR_BUILDER,
@@ -170,8 +166,7 @@ class GalleryActivity : AppBaseActivity() {
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         val transUri = galleryInfo.thumbPhotos?.get(curPosition) ?: galleryInfo.photos[curPosition]
-        ImageLoaderFactory.getImageLoader()
-            .display(layout.commonGalleryIvTrans, Source.create(transUri))
+        ImageLoaderFactory.getImageLoader().display(layout.commonGalleryIvTrans, Source.create(transUri))
 
         if (galleryInfo.useTransition && AndroidVersion.atLeast(21)) {
             window.enterTransition.addListener(object : TransitionListenerAdapter {

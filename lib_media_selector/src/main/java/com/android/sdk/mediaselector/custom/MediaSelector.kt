@@ -3,13 +3,19 @@ package com.android.sdk.mediaselector.custom
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.sdk.mediaselector.common.*
+import com.android.base.delegate.activity.ActivityDelegateOwner
+import com.android.base.delegate.fragment.FragmentDelegateOwner
+import com.android.sdk.mediaselector.common.ActivityStateHandler
+import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
+import com.android.sdk.mediaselector.common.ResultListener
+import com.android.sdk.mediaselector.common.autoCallback
 import timber.log.Timber
 
 /**
+ * If your activity has implemented [ActivityDelegateOwner], you don't call methods in [ActivityStateHandler].
+ * And the same if your fragment has implemented [FragmentDelegateOwner].
+ *
  *@author Ztiany
- *      Email: ztiany3@gmail.com
- *      Date : 2020-08-11 10:07
  */
 interface MediaSelector : ActivityStateHandler {
 
@@ -17,6 +23,11 @@ interface MediaSelector : ActivityStateHandler {
 
 }
 
+/**
+ * If your activity has implemented [ActivityDelegateOwner], you don't call methods in [ActivityStateHandler].
+ *
+ *@author Ztiany
+ */
 fun newMediaSelector(activity: AppCompatActivity, resultListener: ResultListener): MediaSelector {
     return if (Build.VERSION.SDK_INT < 29 || MediaSelectorConfiguration.isForceUseLegacyApi()) {
         Timber.d("newSystemMediaSelector LegacySystemMediaSelector")
@@ -31,6 +42,11 @@ fun newMediaSelector(activity: AppCompatActivity, resultListener: ResultListener
     }
 }
 
+/**
+ * If your fragment has implemented [FragmentDelegateOwner], you don't call methods in [ActivityStateHandler].
+ *
+ *@author Ztiany
+ */
 fun newMediaSelector(fragment: Fragment, resultListener: ResultListener): MediaSelector {
     return if (Build.VERSION.SDK_INT < 29 || MediaSelectorConfiguration.isForceUseLegacyApi()) {
         Timber.d("newSystemMediaSelector LegacySystemMediaSelector")

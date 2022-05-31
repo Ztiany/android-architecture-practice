@@ -9,7 +9,7 @@ import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import com.android.base.foundation.common.ActFragWrapper
+import com.android.sdk.mediaselector.common.ActFragWrapper
 import com.android.sdk.mediaselector.common.MediaUtils
 import com.android.sdk.mediaselector.common.ResultListener
 import com.android.sdk.mediaselector.common.newUriList

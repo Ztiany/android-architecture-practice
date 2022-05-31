@@ -9,12 +9,9 @@ import com.android.sdk.mediaselector.common.ResultListener
 import com.android.sdk.mediaselector.common.newUriList
 import com.bilibili.boxing.model.entity.BaseMedia
 import java.io.File
-import java.util.*
 
 /**
  *@author Ztiany
- *      Email: ztiany3@gmail.com
- *      Date : 2020-08-11 10:49
  */
 internal class LegacyMediaSelector : BaseMediaSelector {
 

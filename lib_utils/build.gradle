@@ -44,10 +44,10 @@ dependencies {
     compileOnly AndroidLibraries.viewpager2
 
     //Kotlin
-    api KotlinLibraries.kotlinStdlib
-    api KotlinLibraries.kotlinReflect
-    api KotlinLibraries.kotlinCoroutines
-    api KotlinLibraries.kotlinAndroidCoroutines
+    compileOnly KotlinLibraries.kotlinStdlib
+    compileOnly KotlinLibraries.kotlinReflect
+    compileOnly KotlinLibraries.kotlinCoroutines
+    compileOnly KotlinLibraries.kotlinAndroidCoroutines
 
     //Log
     api ThirdLibraries.timber

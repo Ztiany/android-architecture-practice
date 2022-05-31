@@ -19,8 +19,6 @@ import com.app.base.databinding.DialogListLayoutBinding
  * 列表对话框
  *
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2018-12-12 19:51
  */
 internal class ListDialog(
     listDialogBuilder: ListDialogBuilder
@@ -39,9 +37,9 @@ internal class ListDialog(
             }
     }
 
-    init {
-        maxDialogWidthPercent = listDialogBuilder.maxWidthPercent
+    override val maxDialogHeightPercent = listDialogBuilder.maxWidthPercent
 
+    init {
         setContentView(viewBinding.root)
         getSelectedBg()
         applyListDialogBuilder(listDialogBuilder)

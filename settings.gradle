@@ -1,26 +1,20 @@
 apply from: './gradle/module_config.gradle'
 
 //基础模块
-def libs = [
-        "lib_foundation",
-        "lib_resource",
-        "lib_bus",
-        "lib_base",
-        "lib_rxjava2",
-        "lib_mvp",
-        "lib_utils",
-        "lib_permission",
-        "lib_network",
-        "lib_storage",
-        "lib_media_selector",
-        "lib_image_loader",
-        "lib_common_ui",
-        "lib_upgrade",
-]
-
-libs.forEach {
-    include(":$it")
-}
+include("lib_utils")
+include("lib_arch_delegate")
+include("lib_ui_state")
+include("lib_arch_base")
+include("lib_event_bus")
+include("lib_common_ui")
+include("lib_network")
+include("lib_storage")
+include("lib_permission")
+include("lib_media_selector")
+include("lib_image_loader")
+include("lib_rxjava2")
+include("lib_arch_mvp")
+include("lib_upgrade")
 
 //性能模块
 include ":performance_module"

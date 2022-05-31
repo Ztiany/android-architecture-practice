@@ -3,18 +3,16 @@ package com.android.sdk.mediaselector.common;
 import android.content.Context;
 import android.os.Environment;
 
+import androidx.annotation.RestrictTo;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-import androidx.annotation.RestrictTo;
-
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2020-08-07 09:57
  */
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 public class StorageUtils {
