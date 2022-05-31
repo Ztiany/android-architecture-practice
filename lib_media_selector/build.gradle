@@ -50,7 +50,7 @@ dependencies {
     implementation KotlinLibraries.kotlinCoroutines
 
     //foundation
-    implementation project(':lib_arch_delegate')
+    compileOnly 'io.github.ztiany:android-arch-delegate:1.0.0'
 
     /*imageLoader*/
     implementation ThirdLibraries.glide
