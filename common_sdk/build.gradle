@@ -79,7 +79,6 @@ dependencies {
     api project(":lib_storage")//存储库
     api project(":lib_network")//网络库
     api project(":lib_image_loader")//图片加载库
-    api project(":lib_media_selector")//媒体选择库
     api project(":lib_upgrade")//升级库
 
     //UI 规范
@@ -112,6 +111,9 @@ dependencies {
 
     /*GlideAPT*/
     kapt ThirdLibraries.glideApt
+
+    /*媒体选择库*/
+    api ThirdLibraries.mediaSelector
 
     /*UI*/
     api UILibraries.qmui

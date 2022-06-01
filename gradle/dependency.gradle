@@ -173,10 +173,22 @@ ext {
             kotlinxMetadata        : "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.0.5"
     ]
 
-
     def rxBindingVersion = "3.1.0"
     def autoDisposeVersion = "1.3.0"
     ThirdLibraries = [
+            //============================================================================
+            //Mine
+            //============================================================================
+            archDelegate                         : 'io.github.ztiany:android-arch-delegate:1.0.0',
+            mediaSelector                        : 'io.github.ztiany:android-media-selector:1.1.0',
+            simpleHttp                           : 'io.github.ztiany:android-simple-http:1.0.0',
+            simpleBus                            : 'io.github.ztiany:android-simple-bus:1.0.0',
+            uiState                              : 'io.github.ztiany:android-ui-state:1.0.0',
+            archMVP                              : 'io.github.ztiany:android-arch-mvp:1.0.1',
+            rxJava2Kit                           : 'io.github.ztiany:android-rxjava2-kit:1.0.2',
+            // https://github.com/Ztiany/WrapperAdapter
+            wrapperAdapter         : "io.github.ztiany:loadmore-adapter:4.5.0",
+
             //============================================================================
             //OkHttp、Retrofit、Gson
             //============================================================================
@@ -278,9 +290,6 @@ ext {
 
             //https://github.com/drakeet/MultiType
             multiType              : "com.drakeet.multitype:multitype:4.0.0",
-
-            // https://github.com/Ztiany/WrapperAdapter
-            wrapperAdapter         : "io.github.ztiany:loadmore-adapter:4.5.0",
 
             //https://github.com/hdodenhof/CircleImageView
             circleImageView        : "de.hdodenhof:circleimageview:3.0.1",
