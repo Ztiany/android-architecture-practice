@@ -6,12 +6,9 @@ include("lib_ui_state")
 include("lib_arch_base")
 include("lib_event_bus")
 include("lib_common_ui")
-include("lib_network")
 include("lib_storage")
 include("lib_permission")
 include("lib_image_loader")
-include("lib_rxjava2")
-include("lib_arch_mvp")
 include("lib_upgrade")
 
 //性能模块

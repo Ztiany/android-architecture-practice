@@ -157,8 +157,8 @@ ext {
     ]
 
 
-    kotlin_version = "1.6.0"
-    def coroutines_version = "1.6.0"
+    kotlin_version = "1.6.10"
+    def coroutines_version = "1.6.1"
 
     KotlinLibraries = [
             //Kotlin
@@ -181,11 +181,11 @@ ext {
             //============================================================================
             archDelegate                         : 'io.github.ztiany:android-arch-delegate:1.0.1',
             mediaSelector                        : 'io.github.ztiany:android-media-selector:1.1.0',
-            simpleHttp                           : 'io.github.ztiany:android-simple-http:1.0.0',
+            simpleHttp                           : 'io.github.ztiany:android-simple-http:1.0.1',
             simpleBus                            : 'io.github.ztiany:android-simple-bus:1.0.0',
             uiState                              : 'io.github.ztiany:android-ui-state:1.0.0',
             archMVP                              : 'io.github.ztiany:android-arch-mvp:1.0.1',
-            rxJava2Kit                           : 'io.github.ztiany:android-rxjava2-kit:1.0.2',
+            rxJava2Kit                           : 'io.github.ztiany:android-rxjava2-kit:1.0.3',
             // https://github.com/Ztiany/WrapperAdapter
             wrapperAdapter         : "io.github.ztiany:loadmore-adapter:4.5.0",
 
@@ -204,7 +204,7 @@ ext {
             retrofitRxJava2CallAdapter           : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
 
             //https://github.com/google/gson/blob/master/UserGuide.md#TOC-Overview
-            gson                                 : "com.google.code.gson:gson:2.8.6",
+            gson                                 : "com.google.code.gson:gson:2.9.0",
 
 
             //============================================================================

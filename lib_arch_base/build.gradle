@@ -46,8 +46,8 @@ dependencies {
 
     //基础库
     api ThirdLibraries.archDelegate
+    api ThirdLibraries.uiState
     api project(":lib_utils")
-    api project(':lib_ui_state')
 
     //AndroidX
     api AndroidLibraries.activityKtx
