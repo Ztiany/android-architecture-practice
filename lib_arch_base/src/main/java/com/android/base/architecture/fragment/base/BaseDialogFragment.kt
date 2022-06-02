@@ -10,9 +10,9 @@ import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.android.base.architecture.activity.BackHandlerHelper
 import com.android.base.architecture.activity.OnBackPressListener
-import com.android.base.architecture.fragment.delegates.FragmentDelegates
 import com.android.base.delegate.fragment.FragmentDelegate
 import com.android.base.delegate.fragment.FragmentDelegateOwner
+import com.android.base.delegate.helper.FragmentDelegates
 import timber.log.Timber
 
 /**

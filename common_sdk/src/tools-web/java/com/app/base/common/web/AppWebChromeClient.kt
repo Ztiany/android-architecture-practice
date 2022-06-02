@@ -106,7 +106,7 @@ internal class AppWebChromeClient(
         if (!TextUtils.isEmpty(acceptType) && acceptType?.contains(IMAGE_TYPE) == true) {
             takeImages()
         } else {
-            systemMediaSelector.takeFileFromSystem().setMimeType(acceptType).start()
+            systemMediaSelector.takeFileFromSystem().mimeType(acceptType).start()
         }
     }
 
@@ -118,7 +118,7 @@ internal class AppWebChromeClient(
                             .permission(Manifest.permission.CAMERA)
                             .onDenied { returnEmptyFile() }
                             .onGranted {
-                                systemMediaSelector.takePhotoFromCamera().setNeedCrop().start()
+                                systemMediaSelector.takePhotoByCamera().crop().start()
                             }
                             .start()
                 },
@@ -128,7 +128,7 @@ internal class AppWebChromeClient(
                             .permission(Manifest.permission.READ_EXTERNAL_STORAGE)
                             .onDenied { returnEmptyFile() }
                             .onGranted {
-                                systemMediaSelector.takePhotoFromSystem().setNeedCrop().start()
+                                systemMediaSelector.takePhotoFromSystem().crop().start()
                             }
                             .start()
                 },

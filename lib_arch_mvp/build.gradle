@@ -45,8 +45,7 @@ dependencies {
 
     implementation KotlinLibraries.kotlinStdlib
 
-    implementation project(':lib_arch_delegate')
-    implementation project(":lib_rxjava2")
-
+    implementation ThirdLibraries.archDelegate
+    implementation ThirdLibraries.rxJava2Kit
     implementation ThirdLibraries.timber
 }

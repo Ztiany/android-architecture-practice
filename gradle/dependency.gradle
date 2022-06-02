@@ -179,7 +179,7 @@ ext {
             //============================================================================
             //Mine
             //============================================================================
-            archDelegate                         : 'io.github.ztiany:android-arch-delegate:1.0.0',
+            archDelegate                         : 'io.github.ztiany:android-arch-delegate:1.0.1',
             mediaSelector                        : 'io.github.ztiany:android-media-selector:1.1.0',
             simpleHttp                           : 'io.github.ztiany:android-simple-http:1.0.0',
             simpleBus                            : 'io.github.ztiany:android-simple-bus:1.0.0',

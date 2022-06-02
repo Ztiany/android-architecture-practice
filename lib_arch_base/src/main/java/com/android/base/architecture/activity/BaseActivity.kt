@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.android.base.delegate.activity.ActivityDelegate
 import com.android.base.delegate.activity.ActivityDelegateOwner
 import com.android.base.delegate.activity.ActivityState
+import com.android.base.delegate.helper.ActivityDelegates
 import com.android.base.utils.android.compat.AndroidVersion
 import timber.log.Timber
 
@@ -19,7 +20,6 @@ import timber.log.Timber
  * 2. [onBackPressed] 事件分发，优先交给 [Fragment] 处理。
  *
  * @author Ztiany
- * Date : 2016-05-04 15:40
  */
 abstract class BaseActivity : AppCompatActivity(), ActivityDelegateOwner {
 

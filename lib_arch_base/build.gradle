@@ -45,9 +45,9 @@ dependencies {
     testImplementation TestLibraries.junit
 
     //基础库
+    api ThirdLibraries.archDelegate
     api project(":lib_utils")
     api project(':lib_ui_state')
-    api project(':lib_arch_delegate')
 
     //AndroidX
     api AndroidLibraries.activityKtx
