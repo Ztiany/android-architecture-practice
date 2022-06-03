@@ -184,10 +184,13 @@ ext {
             simpleHttp                           : 'io.github.ztiany:android-simple-http:1.0.1',
             simpleBus                            : 'io.github.ztiany:android-simple-bus:1.0.0',
             uiState                              : 'io.github.ztiany:android-ui-state:1.0.0',
+            storage                              : 'io.github.ztiany:android-storage:1.0.0',
+            permission                           : 'io.github.ztiany:android-permission:1.0.0',
+            imageLoader                          : 'io.github.ztiany:android-image-loader:1.0.0',
             archMVP                              : 'io.github.ztiany:android-arch-mvp:1.0.1',
             rxJava2Kit                           : 'io.github.ztiany:android-rxjava2-kit:1.0.3',
             // https://github.com/Ztiany/WrapperAdapter
-            wrapperAdapter         : "io.github.ztiany:loadmore-adapter:4.5.0",
+            wrapperAdapter                       : "io.github.ztiany:loadmore-adapter:4.5.0",
 
             //============================================================================
             //OkHttp、Retrofit、Gson
@@ -256,7 +259,7 @@ ext {
             // Others
             ///////////////////////////////////////////////////////////////////////////
             //https://github.com/tencent/mmkv, https://mp.weixin.qq.com/s/kTr1GVDCAhs5K7Hq3322FA
-            mmkv                                 : "com.tencent:mmkv:1.2.2",
+            mmkv                                 : "com.tencent:mmkv:1.2.13",
 
             //https://github.com/JakeWharton/timber
             timber                               : "com.jakewharton.timber:timber:4.7.1",

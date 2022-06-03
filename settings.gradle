@@ -1,19 +1,8 @@
 apply from: './gradle/module_config.gradle'
 
 //基础模块
-include("lib_utils")
-include("lib_ui_state")
-include("lib_arch_base")
-include("lib_event_bus")
-include("lib_common_ui")
-include("lib_storage")
-include("lib_permission")
-include("lib_image_loader")
-include("lib_upgrade")
-
-//性能模块
-include ":performance_module"
-project(":performance_module").projectDir = file("${rootProject.projectDir}/app_plugins/performance_module")
+include("common_utils")
+include("common_arch")
 
 //业务基础架构
 include(":common_spec")

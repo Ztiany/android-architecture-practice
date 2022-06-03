@@ -59,6 +59,8 @@ android {
             java.srcDirs += "src/tools-gallery/java"
             res.srcDirs += "src/tools-gallery/res"
 
+            java.srcDirs += "src/tools-upgrade/java"
+
             java.srcDirs += "src/tools-debug/java"
             res.srcDirs += "src/tools-debug/res"
 
@@ -72,18 +74,15 @@ dependencies {
     //测试
     testImplementation(TestLibraries.junit)
 
-    //基础库
-    api project(':lib_arch_base')//基础组件库
-    api project(':lib_event_bus')//EventBus
-    api project(":lib_permission")//权限
-    api project(":lib_storage")//存储库
-    api project(":lib_image_loader")//图片加载库
-    api project(":lib_upgrade")//升级库
-
+    //通用工具
+    api project(":common_utils")
+    //通用架构
+    api project(':common_arch')
     //UI 规范
     api project(":common_ui")
     //接口规范
-    implementation project(":common_spec")
+    api project(":common_spec")
+
     //依赖的业务 API
     implementation project(":module_main_api")
 
@@ -110,6 +109,7 @@ dependencies {
     implementation ThirdLibraries.retrofitConverterGson
 
     /*GlideAPT*/
+    api ThirdLibraries.imageLoader
     kapt ThirdLibraries.glideApt
 
     /*媒体选择库*/
@@ -120,8 +120,13 @@ dependencies {
     api UILibraries.circleImageView
     api UILibraries.keyboardVisibilityEvent
 
-    //image compression
+    /*Utils*/
+    api ThirdLibraries.jOOR
+    api ThirdLibraries.simpleBus
+    api ThirdLibraries.storage
+    api ThirdLibraries.permission
     implementation "id.zelory:compressor:3.0.1"
+
     //Channel
     implementation "com.leon.channel:helper:2.0.3"
     //Bugly

@@ -27,10 +27,33 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
+    buildFeatures {
+        viewBinding true
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs += "src/androidx/java"
+            res.srcDirs += "src/androidx/res"
+
+            java.srcDirs += "src/github/java"
+            res.srcDirs += "src/github/res"
+        }
+    }
+
 }
 
 dependencies {
+    implementation AndroidLibraries.appcompat
     implementation AndroidLibraries.annotations
+    implementation AndroidLibraries.viewpager
+    implementation AndroidLibraries.recyclerView
+    implementation AndroidLibraries.material
+    implementation AndroidLibraries.ktx
 
-    api project(":lib_common_ui")//基础UI
+    implementation KotlinLibraries.kotlinStdlib
+
+    implementation ThirdLibraries.timber
 }

@@ -1,19 +1,20 @@
 package com.app.base.widget.dialog;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.StringRes;
 
-import com.android.base.utils.android.views.Resources;
+import com.android.base.utils.android.views.ResourceEx;
 import com.google.android.material.snackbar.Snackbar;
 
 
 public class TipsTool {
 
     public static void showMessage(Context context, @StringRes int msgId) {
-        showMessage(context, Resources.getText(msgId));
+        showMessage(context, ResourceEx.getText(msgId));
     }
 
     public static void showMessage(Context context, CharSequence message) {

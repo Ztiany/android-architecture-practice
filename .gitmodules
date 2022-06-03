@@ -1,0 +1,6 @@
+[submodule "android-common-utils"]
+	path = common_utils
+	url = git@github.com:Ztiany/android-common-utils.git
+[submodule "android-arch-base"]
+	path = common-arch
+	url = git@github.com:Ztiany/android-arch-base.git

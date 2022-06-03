@@ -1,6 +1,7 @@
 package com.app.base.widget;
 
-import static com.android.base.utils.android.views.ViewExKt.getRealContext;
+
+import static com.android.base.utils.android.views.ViewEx.getRealContext;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -6,8 +6,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.android.base.AndroidSword
 import com.android.base.utils.android.AppUtils
+import com.android.base.utils.android.currentActivity
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.app.base.component.usermanager.UserManager
@@ -74,7 +74,7 @@ internal class AppErrorHandler @Inject constructor(
     }
 
     private fun showReLoginDialog(): Boolean {
-        val currentActivity = AndroidSword.topActivity ?: return false
+        val currentActivity = currentActivity() ?: return false
 
         if (currentActivity is CannotShowDialogOnIt) {
             return false

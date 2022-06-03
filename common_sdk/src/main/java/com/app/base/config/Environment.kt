@@ -1,7 +1,7 @@
 package com.app.base.config
 
 import com.android.base.utils.BaseUtils
-import com.android.base.utils.android.cache.SpCache
+import com.android.base.utils.android.storage.SpCache
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ifNull
 import com.android.base.utils.common.otherwise

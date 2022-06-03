@@ -19,6 +19,7 @@ import com.android.base.image.Source
 import com.android.base.utils.android.adaption.TransitionListenerAdapter
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.compat.SystemBarCompat
+import com.android.base.utils.android.finishWithAnimation
 import com.android.base.utils.android.views.*
 import com.app.base.R
 import com.app.base.app.AppBaseActivity

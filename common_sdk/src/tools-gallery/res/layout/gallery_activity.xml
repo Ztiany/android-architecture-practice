@@ -26,9 +26,10 @@
                 android:transitionName="@string/transition_photo"
                 tools:ignore="ContentDescription,UnusedAttribute" />
 
-            <me.ztiany.widget.viewpager.BannerViewPager
+            <com.android.common.ui.banner.BannerViewPager
                 android:id="@+id/commonGalleryVp"
                 android:layout_width="match_parent"
+
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 app:zvp_item_transition_name="@string/transition_photo" />

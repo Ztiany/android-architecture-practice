@@ -79,7 +79,7 @@
                 android:text="@string/account"
                 app:drawableStartCompat="@drawable/account_ic_phone" />
 
-            <me.ztiany.widget.text.ClearableEditText
+            <com.android.common.ui.text.ClearableEditText
                 android:id="@+id/account_et_phone"
                 style="@style/Account_StyleLoginEditText"
                 android:digits="@string/digits_phone"
@@ -100,7 +100,7 @@
                 android:text="@string/password"
                 app:drawableStartCompat="@drawable/account_ic_password" />
 
-            <me.ztiany.widget.text.ClearableEditText
+            <com.android.common.ui.text.ClearableEditText
                 android:id="@+id/account_et_password"
                 style="@style/Account_StyleLoginEditText"
                 android:digits="@string/digits_password"

@@ -9,6 +9,7 @@ import com.android.base.ErrorClassifier
 import com.android.base.ErrorConvert
 import com.android.base.architecture.app.AppLifecycle
 import com.android.base.architecture.app.BaseAppContext
+import com.android.base.utils.BaseUtils
 import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.NetworkErrorException
@@ -62,6 +63,7 @@ abstract class AppContext : BaseAppContext() {
     override fun onCreate() {
         application = this
         super.onCreate()
+        BaseUtils.init(this)
         DebugTools.init(this)
         appSettings.get().init()
         configNetworkApi()

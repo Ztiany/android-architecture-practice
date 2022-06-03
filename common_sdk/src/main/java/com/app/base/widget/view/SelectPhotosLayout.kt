@@ -17,7 +17,7 @@ import com.android.base.utils.android.views.use
 import com.android.base.utils.android.views.visible
 import com.app.base.R
 import com.app.base.databinding.WidgetSelectPhotoItemPhotoBinding
-import me.ztiany.widget.recyclerview.MarginDecoration
+import com.android.common.ui.recyclerview.MarginDecoration
 import kotlin.math.max
 
 /**
