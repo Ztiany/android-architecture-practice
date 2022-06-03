@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.base.foundation.data.Resource
-import com.android.base.foundation.data.postData
-import com.android.base.foundation.data.postError
-import com.android.base.foundation.data.postLoading
+import com.android.base.architecture.data.postData
+import com.android.base.architecture.data.postError
+import com.android.base.architecture.data.postLoading
 import com.app.base.app.DispatcherProvider
 import com.app.base.component.usermanager.User
 import dagger.hilt.android.lifecycle.HiltViewModel
