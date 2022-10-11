@@ -34,9 +34,11 @@ internal class AppServiceManagerImpl : AppServiceManager {
     }
 
     private fun tryNotifyServiceRegistered(name: String) {
-        val service = tryGetService(name) ?: return
-        onServices.remove(name)?.forEach {
-            it(service)
+        onServices.remove(name)?.let {
+            val service = tryGetService(name) ?: return
+            it.forEach { onService ->
+                onService(service)
+            }
         }
     }
 
