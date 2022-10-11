@@ -1,12 +1,13 @@
 apply from: './gradle/module_config.gradle'
 
 //基础模块
-include("common_utils")
-include("common_arch")
+include("base_utils")
+include("base_arch")
+include(':base_ui')
 
 //业务基础架构
-include(":common_spec")
-include(":common_ui")
+include(':common_sdk_api')
+include(':common_sdk_ui')
 include(":common_sdk")
 
 //主业务模块

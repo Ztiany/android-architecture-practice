@@ -1,0 +1,20 @@
+package com.app.base.component.router
+
+import com.android.common.api.router.AppRouter
+import com.android.common.api.router.Navigator
+import java.util.*
+
+/**
+ * @author Ztiany
+ */
+internal class AppRouterImpl : AppRouter {
+
+    override fun <T : Navigator> get(clazz: Class<T>): T? {
+        return ServiceLoader.load(clazz).firstOrNull()
+    }
+
+    override fun <T : Navigator> require(clazz: Class<T>): T {
+        return ServiceLoader.load(clazz).firstOrNull() ?: throw NullPointerException("implementation of $clazz not found.")
+    }
+
+}

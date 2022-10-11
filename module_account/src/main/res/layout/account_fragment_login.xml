@@ -79,7 +79,7 @@
                 android:text="@string/account"
                 app:drawableStartCompat="@drawable/account_ic_phone" />
 
-            <com.android.common.ui.text.ClearableEditText
+            <com.android.base.ui.text.ClearableEditText
                 android:id="@+id/account_et_phone"
                 style="@style/Account_StyleLoginEditText"
                 android:digits="@string/digits_phone"
@@ -87,8 +87,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="phone"
                 android:maxLength="@integer/phone_length"
-                android:nextFocusDown="@id/account_et_password"
-                app:cet_enable_content_clearable="false" />
+                android:nextFocusDown="@id/account_et_password" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,7 +99,7 @@
                 android:text="@string/password"
                 app:drawableStartCompat="@drawable/account_ic_password" />
 
-            <com.android.common.ui.text.ClearableEditText
+            <com.android.base.ui.text.ClearableEditText
                 android:id="@+id/account_et_password"
                 style="@style/Account_StyleLoginEditText"
                 android:digits="@string/digits_password"

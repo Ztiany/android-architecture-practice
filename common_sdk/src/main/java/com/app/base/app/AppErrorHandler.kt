@@ -13,7 +13,7 @@ import com.android.sdk.net.core.exception.ApiErrorException
 import com.app.base.component.usermanager.UserManager
 import com.app.base.component.usermanager.isUserLogin
 import com.app.base.data.protocol.ApiHelper
-import com.app.base.router.AppRouter
+import com.android.common.api.router.AppRouter
 import com.app.base.widget.dialog.TipsTool
 import com.app.base.widget.dialog.showConfirmDialog
 import dagger.hilt.android.qualifiers.ApplicationContext

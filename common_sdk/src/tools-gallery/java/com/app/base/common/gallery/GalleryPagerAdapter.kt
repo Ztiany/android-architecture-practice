@@ -12,7 +12,7 @@ import com.android.base.image.LoadListener
 import com.android.base.image.Source
 import com.android.base.utils.android.views.gone
 import com.android.base.utils.android.views.visible
-import com.android.common.ui.banner.BannerViewPagerAdapter
+import com.android.base.ui.banner.BannerViewPagerAdapter
 import com.app.base.databinding.GalleryItemPhotoBinding
 import uk.co.senab.photoview.PhotoViewAttacher
 import java.lang.ref.WeakReference

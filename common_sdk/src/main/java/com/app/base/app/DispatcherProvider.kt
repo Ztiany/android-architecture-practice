@@ -23,7 +23,7 @@ interface DispatcherProvider {
 
 }
 
-private class DefaultDispatcherProvider : DispatcherProvider {
+internal class DefaultDispatcherProvider : DispatcherProvider {
 
     override fun io(): CoroutineDispatcher {
         return Dispatchers.IO
@@ -39,6 +39,3 @@ private class DefaultDispatcherProvider : DispatcherProvider {
 
 }
 
-fun newDefaultDispatchProvider(): DispatcherProvider {
-    return DefaultDispatcherProvider()
-}

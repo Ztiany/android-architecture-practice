@@ -10,7 +10,7 @@ import com.app.base.app.AppBaseActivity
 import com.app.base.app.CustomizeSystemBar
 import com.app.base.component.usermanager.UserManager
 import com.app.base.component.usermanager.isUserLogin
-import com.app.base.router.AppRouter
+import com.android.common.api.router.AppRouter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import me.ztiany.architecture.account.api.AccountModuleNavigator

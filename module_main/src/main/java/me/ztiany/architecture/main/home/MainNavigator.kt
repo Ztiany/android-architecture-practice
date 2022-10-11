@@ -3,7 +3,7 @@ package me.ztiany.architecture.main.home
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.app.base.component.usermanager.UserManager
-import com.app.base.router.AppRouter
+import com.android.common.api.router.AppRouter
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
 import me.ztiany.architecture.account.api.AccountModuleNavigator

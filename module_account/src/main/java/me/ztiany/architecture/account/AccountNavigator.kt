@@ -2,7 +2,7 @@ package me.ztiany.architecture.account
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.app.base.router.AppRouter
+import com.android.common.api.router.AppRouter
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
 import me.ztiany.architecture.main.api.MainModuleNavigator

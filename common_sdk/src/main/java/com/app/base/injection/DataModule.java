@@ -2,8 +2,8 @@ package com.app.base.injection;
 
 import com.app.base.app.AppErrorHandler;
 import com.app.base.app.ErrorHandler;
-import com.app.base.app.ServiceProvider;
-import com.app.base.app.ServiceProviderImpl;
+import com.android.common.api.network.ApiServiceFactoryProvider;
+import com.app.base.app.ApiServiceFactoryProviderImpl;
 import com.app.base.component.usermanager.UserManager;
 import com.app.base.component.usermanager.UserManagerImpl;
 
@@ -27,7 +27,7 @@ public class DataModule {
     }
 
     @Provides
-    public ServiceProvider provideServiceFactory(ServiceProviderImpl serviceProvider) {
+    public ApiServiceFactoryProvider provideServiceFactory(ApiServiceFactoryProviderImpl serviceProvider) {
         return serviceProvider;
     }
 

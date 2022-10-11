@@ -1,7 +1,7 @@
 package me.ztiany.architecture.main.api
 
 import android.content.Context
-import com.android.common.router.Navigator
+import com.android.common.api.router.Navigator
 
 interface MainModuleNavigator : Navigator {
 

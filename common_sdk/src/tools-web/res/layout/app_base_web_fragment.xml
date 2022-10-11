@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.android.common.ui.compat.LollipopFixedWebView
+        <com.android.base.ui.compat.LollipopFixedWebView
             android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

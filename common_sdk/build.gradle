@@ -74,14 +74,15 @@ dependencies {
     //测试
     testImplementation(TestLibraries.junit)
 
-    //通用工具
-    api project(":common_utils")
     //通用架构
-    api project(':common_arch')
-    //UI 规范
-    api project(":common_ui")
-    //接口规范
-    api project(":common_spec")
+    api project(':base_arch')
+    //通用工具
+    api project(":base_utils")
+
+    //SDK API 规范
+    api project(':common_sdk_ui')
+    //SDK UI 规范
+    api project(':common_sdk_api')
 
     //依赖的业务 API
     implementation project(":module_main_api")

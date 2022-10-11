@@ -14,7 +14,7 @@ import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
 import com.app.base.R
 import com.app.base.app.DispatcherProvider
-import com.app.base.app.ServiceProvider
+import com.android.common.api.network.ApiServiceFactoryProvider
 import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppSettings
 import com.app.base.injection.ApplicationScope
@@ -39,7 +39,7 @@ internal class AppUpgradeInteractor @Inject constructor(
 
     @Inject lateinit var appSettings: AppSettings
 
-    @Inject lateinit var serviceProvider: ServiceProvider
+    @Inject lateinit var apiServiceFactoryProvider: ApiServiceFactoryProvider
 
     private var loadingDialogReference: WeakReference<UpgradeLoadingDialog>? = null
     private var upgradeDialogReference: WeakReference<Dialog>? = null
@@ -47,7 +47,7 @@ internal class AppUpgradeInteractor @Inject constructor(
     private val notificationHelper by lazy { NotificationHelper() }
 
     private val appUpdateRepository by lazy {
-        AppUpdateRepository(serviceProvider.getDefault())
+        AppUpdateRepository(apiServiceFactoryProvider.getDefault())
     }
 
     private fun newLoadingDialogIfNeed(context: Context): Dialog {

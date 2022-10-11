@@ -26,5 +26,5 @@ android {
 
 dependencies {
     /*spec*/
-    api project(":common_spec")
+    api project(":common_sdk_api")
 }

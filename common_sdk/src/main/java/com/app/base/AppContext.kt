@@ -25,7 +25,7 @@ import com.app.base.component.usermanager.UserManager
 import com.app.base.config.AppSettings
 import com.app.base.data.protocol.*
 import com.app.base.debug.DebugTools
-import com.app.base.router.AppRouter
+import com.android.common.api.router.AppRouter
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.base.widget.dialog.AppLoadingViewHost
 import dagger.Lazy

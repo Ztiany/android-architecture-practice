@@ -5,7 +5,7 @@ ext {
     AppConfig = [
             minSdkVersion          : 21,
             targetSdkVersion       : 30,
-            compileSdkVersion      : 31,
+            compileSdkVersion      : 32,
             buildToolsVersion      : "30.0.3",
             versionCode            : 1,
             versionName            : "1.0.0",

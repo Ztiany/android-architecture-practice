@@ -6,6 +6,8 @@ import androidx.core.net.toFile
 import com.android.base.utils.BaseUtils
 import com.android.base.utils.common.FileUtils
 import com.android.base.utils.common.sizeOf
+import com.android.common.api.compression.CompressionSpec
+import com.android.common.api.compression.ImageCompressionService
 import com.app.base.app.DispatcherProvider
 import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppPrivateDirectories.PICTURE_FORMAT_JPEG

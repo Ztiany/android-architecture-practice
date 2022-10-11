@@ -1,6 +1,6 @@
 package me.ztiany.architecture.account.data
 
-import com.android.common.apispec.UNAVAILABLE_FLAG
+import com.android.common.api.protocol.UNAVAILABLE_FLAG
 
 data class LoginResponse(
     val id: Long = UNAVAILABLE_FLAG.toLong(),

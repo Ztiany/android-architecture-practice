@@ -2,12 +2,12 @@ package com.app.base.injection;
 
 import com.android.base.image.ImageLoader;
 import com.android.base.image.ImageLoaderFactory;
+import com.app.base.app.DefaultDispatcherProvider;
 import com.app.base.app.DispatcherProvider;
-import com.app.base.app.DispatcherProviders;
-import com.app.base.router.AppRouter;
-import com.app.base.router.AppRouterImpl;
-import com.app.base.services.AppServiceManager;
-import com.app.base.services.AppServiceManagerImpl;
+import com.android.common.api.router.AppRouter;
+import com.app.base.component.router.AppRouterImpl;
+import com.android.common.api.services.AppServiceManager;
+import com.app.base.component.services.AppServiceManagerImpl;
 
 import javax.inject.Singleton;
 
@@ -46,7 +46,7 @@ public class AppModule {
     @Provides
     @Singleton
     DispatcherProvider provideDispatcherProvider() {
-        return DispatcherProviders.newDefaultDispatchProvider();
+        return new DefaultDispatcherProvider();
     }
 
 }

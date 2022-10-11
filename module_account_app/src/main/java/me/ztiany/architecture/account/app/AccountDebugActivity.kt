@@ -2,7 +2,7 @@ package me.ztiany.architecture.account.app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.app.base.router.AppRouter
+import com.android.common.api.router.AppRouter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
