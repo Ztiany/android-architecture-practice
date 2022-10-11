@@ -251,7 +251,7 @@ ext {
 
     UILibraries = [
             //qmui：https://qmuiteam.com/
-            qmui                   : "com.qmuiteam:qmui:2.0.0-alpha10",
+            qmui                   : "com.qmuiteam:qmui:2.1.0",
 
             //https://github.com/drakeet/MultiType
             multiType              : "com.drakeet.multitype:multitype:4.0.0",
