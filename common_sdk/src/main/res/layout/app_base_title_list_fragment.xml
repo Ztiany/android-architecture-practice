@@ -5,15 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/app_base_layout_toolbar"/>
+    <include layout="@layout/app_base_layout_toolbar" />
 
-    <com.android.base.widget.SimpleMultiStateView
-        style="@style/SimpleMultiStateView_Default">
+    <com.android.base.widget.SimpleMultiStateView style="@style/SimpleMultiStateView_Default">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/base_list_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </com.android.base.widget.SimpleMultiStateView>
 

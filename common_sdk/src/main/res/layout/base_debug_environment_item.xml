@@ -17,7 +17,7 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="请求环境"/>
+        tools:text="请求环境" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:textColor="@color/red"
             android:textSize="10sp"
             tools:ignore="SmallSp"
-            tools:text="正式"/>
+            tools:text="正式" />
 
         <Button
             android:id="@+id/baseBtnDebugSwitch"
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="切换"
-            tools:ignore="HardcodedText"/>
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
