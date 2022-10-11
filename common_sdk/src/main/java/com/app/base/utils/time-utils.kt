@@ -110,9 +110,7 @@ fun isWithinOneHour(milliseconds: Long, cur: Long = timestampMillis()) = (cur - 
 fun isWithinHours(milliseconds: Long, cur: Long = timestampMillis(), hours: Int) = (cur - milliseconds) / 1000 / 60 / 60 < hours
 
 /**返回时间上的分钟差，[cur] 是用于对比的时间，默认是当前时间戳*/
-fun minutesDifference(milliseconds: Long, cur: Long? = null) = ((cur
-    ?: timestampMillis()) - milliseconds) / 1000 / 60
+fun minutesDifference(milliseconds: Long, cur: Long? = null) = ((cur ?: timestampMillis()) - milliseconds) / 1000 / 60
 
 /**返回时间上的小时差，[cur] 是用于对比的时间，默认是当前时间戳*/
-fun hoursDifference(milliseconds: Long, cur: Long? = null) = ((cur
-    ?: timestampMillis()) - milliseconds) / 1000 / 60 / 60
+fun hoursDifference(milliseconds: Long, cur: Long? = null) = ((cur ?: timestampMillis()) - milliseconds) / 1000 / 60 / 60
