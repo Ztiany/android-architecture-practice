@@ -2,11 +2,13 @@ package com.app.base.injection;
 
 import com.android.base.image.ImageLoader;
 import com.android.base.image.ImageLoaderFactory;
+import com.android.common.api.router.AppRouter;
+import com.android.common.api.services.AppService;
+import com.android.common.api.services.AppServiceManager;
 import com.app.base.app.DefaultDispatcherProvider;
 import com.app.base.app.DispatcherProvider;
-import com.android.common.api.router.AppRouter;
 import com.app.base.component.router.AppRouterImpl;
-import com.android.common.api.services.AppServiceManager;
+import com.app.base.component.services.AppServiceKey;
 import com.app.base.component.services.AppServiceManagerImpl;
 
 import javax.inject.Singleton;
@@ -15,6 +17,7 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
+import dagger.multibindings.IntoMap;
 
 /**
  * @author Ztiany
@@ -39,14 +42,22 @@ public class AppModule {
 
     @Provides
     @Singleton
-    AppServiceManager provideAppServiceManager() {
-        return new AppServiceManagerImpl();
+    AppServiceManager provideAppServiceManager(AppServiceManagerImpl appServiceManager) {
+        return appServiceManager;
     }
 
     @Provides
     @Singleton
     DispatcherProvider provideDispatcherProvider() {
         return new DefaultDispatcherProvider();
+    }
+
+    @Provides
+    @Singleton
+    @IntoMap
+    @AppServiceKey(DummyAppService.class)
+    public AppService provideDummyAppService() {
+        return new DummyAppServiceImpl();
     }
 
 }
