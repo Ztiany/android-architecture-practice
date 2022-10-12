@@ -1,6 +1,7 @@
 package com.app.base.data.protocol
 
 import com.android.base.utils.android.views.getString
+import com.android.common.api.usermanager.UserManager
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.android.sdk.net.core.provider.*
 import com.app.base.R
@@ -10,7 +11,6 @@ import com.app.base.config.AppSettings
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
 import com.app.base.debug.isOpenDebug
-import com.app.base.component.usermanager.UserManager
 import com.app.base.utils.JsonUtils
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor

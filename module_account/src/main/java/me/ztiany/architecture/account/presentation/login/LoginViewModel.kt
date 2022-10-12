@@ -8,8 +8,8 @@ import com.android.base.foundation.data.Resource
 import com.android.base.architecture.data.postData
 import com.android.base.architecture.data.postError
 import com.android.base.architecture.data.postLoading
+import com.android.common.api.usermanager.User
 import com.app.base.app.DispatcherProvider
-import com.app.base.component.usermanager.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import me.ztiany.architecture.account.data.AccountDataSource

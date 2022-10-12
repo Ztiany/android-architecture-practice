@@ -183,11 +183,16 @@ ext {
             simpleBus                 : 'io.github.ztiany:android-simple-bus:1.0.0',
             uiState                   : 'io.github.ztiany:android-ui-state:1.0.1',
             storage                   : 'io.github.ztiany:android-storage:1.0.0',
-            permission                : 'io.github.ztiany:android-permission:1.0.0',
             imageLoader               : 'io.github.ztiany:android-image-loader:1.0.0',
             wrapperAdapter            : "io.github.ztiany:android-loadmore-adapter:1.0.0",
             archMVP                   : 'io.github.ztiany:android-arch-mvp:1.0.1',
             rxJava2Kit                : 'io.github.ztiany:android-rxjava2-kit:1.0.3',
+            //permission                : 'io.github.ztiany:android-permission:1.0.0',
+
+            // ============================================================================
+            //Permission
+            //============================================================================
+            permissionx               : 'com.guolindev.permissionx:permissionx:1.7.1',
 
             //============================================================================
             //OkHttp、Retrofit、Gson

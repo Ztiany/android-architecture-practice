@@ -8,9 +8,9 @@ import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.app.CustomizeSystemBar
-import com.app.base.component.usermanager.UserManager
-import com.app.base.component.usermanager.isUserLogin
 import com.android.common.api.router.AppRouter
+import com.android.common.api.usermanager.UserManager
+import com.android.common.api.usermanager.isUserLogin
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import me.ztiany.architecture.account.api.AccountModuleNavigator
@@ -56,7 +56,7 @@ class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
     }
 
     private fun toLoginPage() {
-        appRouter.get(AccountModuleNavigator::class.java).ifNonNull {
+        appRouter.getNavigator(AccountModuleNavigator::class.java).ifNonNull {
             openAccount(this@AppLaunchActivity)
             overridePendingTransition(0, 0)
         } otherwise {
@@ -65,7 +65,7 @@ class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
     }
 
     private fun toMainPage() {
-        appRouter.get(MainModuleNavigator::class.java)?.openMain(this)
+        appRouter.getNavigator(MainModuleNavigator::class.java)?.openMain(this)
         overridePendingTransition(0, 0)
     }
 

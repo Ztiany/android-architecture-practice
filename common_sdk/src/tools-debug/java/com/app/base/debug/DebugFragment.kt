@@ -1,5 +1,6 @@
 package com.app.base.debug
 
+import android.Manifest
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -8,17 +9,15 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog.Builder
 import com.android.base.architecture.fragment.base.BaseUIFragment
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
-import com.android.sdk.permission.AutoPermission
-import com.android.sdk.permission.Permission
+import com.android.common.api.usermanager.UserManager
 import com.app.base.R.string
 import com.app.base.config.EnvironmentConfigFragment
 import com.app.base.data.storage.StorageManager
 import com.app.base.databinding.BaseFragmentDebugBinding
-import com.app.base.component.usermanager.UserManager
+import com.permissionx.guolindev.PermissionX
 import dagger.hilt.android.AndroidEntryPoint
 import org.joor.Reflect
 import javax.inject.Inject
-
 
 /**
  * 调试工具
@@ -39,14 +38,14 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
     }
 
     private fun requestNecessaryPermission() {
-        AutoPermission.with(this)
-            .runtime()
-            .permission(Permission.WRITE_EXTERNAL_STORAGE)
-            .onDenied {
-                showMessage("需要权限")
-                requireActivity().supportFinishAfterTransition()
+        PermissionX.init(this)
+            .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .request { allGranted, _, _ ->
+                if (!allGranted) {
+                    showMessage("需要权限")
+                    requireActivity().supportFinishAfterTransition()
+                }
             }
-            .start()
     }
 
     private fun doRestart() {

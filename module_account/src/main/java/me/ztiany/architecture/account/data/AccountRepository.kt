@@ -1,7 +1,7 @@
 package me.ztiany.architecture.account.data
 
-import com.app.base.component.usermanager.User
-import com.app.base.component.usermanager.UserManager
+import com.android.common.api.usermanager.User
+import com.android.common.api.usermanager.UserManager
 import com.app.base.config.AppSettings
 import kotlinx.coroutines.delay
 import javax.inject.Inject

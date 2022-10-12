@@ -8,3 +8,23 @@ interface AppServiceManager {
     fun <T : AppService> requireService(clazz: Class<T>): T
 
 }
+
+inline fun <reified T : AppService> AppServiceManager.getService(): T? {
+    return getService(T::class.java)
+}
+
+inline fun <reified T : AppService> AppServiceManager.requireService(): T {
+    return requireService(T::class.java)
+}
+
+inline fun <reified T : AppService> AppServiceManager.withService(
+    onLost: () -> Unit = {},
+    onService: T.() -> Unit
+) {
+    val service = getService(T::class.java)
+    if (service != null) {
+        onService(service)
+    } else {
+        onLost()
+    }
+}

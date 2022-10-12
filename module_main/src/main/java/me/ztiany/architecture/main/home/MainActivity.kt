@@ -9,8 +9,8 @@ import com.android.base.architecture.fragment.tools.findFragmentByTag
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
+import com.android.common.api.usermanager.UserManager
 import com.app.base.app.AppBaseActivity
-import com.app.base.component.usermanager.UserManager
 import com.app.base.widget.dialog.TipsTool
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay

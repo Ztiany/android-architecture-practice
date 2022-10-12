@@ -1,6 +1,6 @@
 package me.ztiany.architecture.account.data
 
-import com.app.base.component.usermanager.User
+import com.android.common.api.usermanager.User
 
 interface AccountDataSource {
 

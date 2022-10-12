@@ -17,7 +17,7 @@ class AccountNavigator @Inject constructor(
     private val host = context as AppCompatActivity
 
     fun exitAndToHomePage() {
-        appRouter.get(MainModuleNavigator::class.java)?.openMain(host)
+        appRouter.getNavigator(MainModuleNavigator::class.java)?.openMain(host)
         host.supportFinishAfterTransition()
     }
 

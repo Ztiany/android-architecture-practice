@@ -8,7 +8,7 @@ import android.webkit.*
 import com.android.sdk.mediaselector.common.ResultListener
 import com.android.sdk.mediaselector.system.SystemMediaSelector
 import com.android.sdk.mediaselector.system.newSystemMediaSelector
-import com.android.sdk.permission.AutoPermission
+import com.permissionx.guolindev.PermissionX
 import timber.log.Timber
 
 private const val IMAGE_TYPE = "image"
@@ -18,7 +18,7 @@ private const val IMAGE_TYPE = "image"
  * Date : 2017-12-20 15:40
  */
 internal class AppWebChromeClient(
-        private val host: BaseWebFragment
+    private val host: BaseWebFragment
 ) : WebChromeClient() {
 
     private var appWebChromeClientCallback: AppWebChromeClientCallback? = null
@@ -111,30 +111,27 @@ internal class AppWebChromeClient(
     }
 
     private fun takeImages() {
-        showTakeMediaDialog(host,
-                {
-                    AutoPermission.with(host)
-                            .runtime()
-                            .permission(Manifest.permission.CAMERA)
-                            .onDenied { returnEmptyFile() }
-                            .onGranted {
-                                systemMediaSelector.takePhotoByCamera().crop().start()
-                            }
-                            .start()
-                },
-                {
-                    AutoPermission.with(host)
-                            .runtime()
-                            .permission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                            .onDenied { returnEmptyFile() }
-                            .onGranted {
-                                systemMediaSelector.takePhotoFromSystem().crop().start()
-                            }
-                            .start()
-                },
-                {
-                    returnEmptyFile()
-                })
+        showTakeMediaDialog(host, {
+            PermissionX.init(host).permissions(Manifest.permission.CAMERA)
+                .request { allGranted, _, _ ->
+                    if (allGranted) {
+                        systemMediaSelector.takePhotoByCamera().crop().start()
+                    } else {
+                        returnEmptyFile()
+                    }
+                }
+        }, {
+            PermissionX.init(host).permissions(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .request { allGranted, _, _ ->
+                    if (allGranted) {
+                        systemMediaSelector.takePhotoFromSystem().crop().start()
+                    } else {
+                        returnEmptyFile()
+                    }
+                }
+        }, {
+            returnEmptyFile()
+        })
     }
 
     private fun returnFile(uris: List<Uri>) {

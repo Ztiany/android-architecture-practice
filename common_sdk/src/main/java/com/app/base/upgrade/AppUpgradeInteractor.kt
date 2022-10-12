@@ -1,14 +1,16 @@
 package com.app.base.upgrade
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import com.android.base.utils.BaseUtils
 import com.android.base.utils.android.AppUtils
 import com.android.base.utils.android.compat.AndroidVersion
+import com.android.base.utils.android.onTopActivity
 import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.common.otherwise
 import com.android.base.utils.common.yes
-import com.android.sdk.permission.AutoPermission
 import com.android.sdk.upgrade.UpgradeException
 import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
@@ -19,6 +21,7 @@ import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppSettings
 import com.app.base.injection.ApplicationScope
 import com.app.base.widget.dialog.showConfirmDialog
+import com.permissionx.guolindev.PermissionX
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import okhttp3.OkHttpClient
@@ -179,12 +182,19 @@ internal class AppUpgradeInteractor @Inject constructor(
         Timber.d("installApk")
         if (AndroidVersion.atLeast(26)) {
             //Android8.0未知来源应用安装权限方案
-            AutoPermission.with(BaseUtils.getAppContext())
-                .install()
-                .file(file)
-                .onDenied { Timber.d("installApk onDenied") }
-                .onGranted { Timber.d("installApk onGranted") }
-                .start()
+            onTopActivity {
+                PermissionX.init(it as FragmentActivity)
+                    .permissions(Manifest.permission.REQUEST_INSTALL_PACKAGES)
+                    .onExplainRequestReason { scope, deniedList ->
+                        val message = "PermissionX需要您同意以下权限才能正常使用"
+                        scope.showRequestReasonDialog(deniedList, message, "Allow", "Deny")
+                    }
+                    .request { allGranted, _, _ ->
+                        if (allGranted) {
+                            AppUtils.installApp(BaseUtils.getAppContext(), file, appSettings.appFileProviderAuthorities)
+                        }
+                    }
+            }
         } else {
             //正常安装
             AppUtils.installApp(BaseUtils.getAppContext(), file, appSettings.appFileProviderAuthorities)

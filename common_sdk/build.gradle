@@ -125,7 +125,7 @@ dependencies {
     api ThirdLibraries.jOOR
     api ThirdLibraries.simpleBus
     api ThirdLibraries.storage
-    api ThirdLibraries.permission
+    api ThirdLibraries.permissionx
     implementation "id.zelory:compressor:3.0.1"
 
     //Channel

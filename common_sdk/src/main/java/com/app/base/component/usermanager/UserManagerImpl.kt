@@ -1,5 +1,7 @@
 package com.app.base.component.usermanager
 
+import com.android.common.api.usermanager.User
+import com.android.common.api.usermanager.UserManager
 import com.android.sdk.cache.getEntity
 import com.app.base.data.storage.StorageManager
 import com.app.base.debug.ifOpenDebug

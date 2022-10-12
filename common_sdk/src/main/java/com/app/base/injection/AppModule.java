@@ -3,11 +3,13 @@ package com.app.base.injection;
 import com.android.base.image.ImageLoader;
 import com.android.base.image.ImageLoaderFactory;
 import com.android.common.api.router.AppRouter;
+import com.android.common.api.router.AppNavigator;
 import com.android.common.api.services.AppService;
 import com.android.common.api.services.AppServiceManager;
 import com.app.base.app.DefaultDispatcherProvider;
 import com.app.base.app.DispatcherProvider;
 import com.app.base.component.router.AppRouterImpl;
+import com.app.base.component.router.AppRouterKey;
 import com.app.base.component.services.AppServiceKey;
 import com.app.base.component.services.AppServiceManagerImpl;
 
@@ -35,13 +37,11 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
-    AppRouter provideAppRouter() {
-        return new AppRouterImpl();
+    AppRouter provideAppRouter(AppRouterImpl appRouter) {
+        return appRouter;
     }
 
     @Provides
-    @Singleton
     AppServiceManager provideAppServiceManager(AppServiceManagerImpl appServiceManager) {
         return appServiceManager;
     }
@@ -58,6 +58,14 @@ public class AppModule {
     @AppServiceKey(DummyAppService.class)
     public AppService provideDummyAppService() {
         return new DummyAppServiceImpl();
+    }
+
+    @Provides
+    @Singleton
+    @IntoMap
+    @AppRouterKey(DummyNavigator.class)
+    public AppNavigator provideDummyNavigator() {
+        return new DummyNavigatorImpl();
     }
 
 }

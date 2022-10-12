@@ -10,10 +10,10 @@ import com.android.base.utils.android.AppUtils
 import com.android.base.utils.android.currentActivity
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
-import com.app.base.component.usermanager.UserManager
-import com.app.base.component.usermanager.isUserLogin
 import com.app.base.data.protocol.ApiHelper
 import com.android.common.api.router.AppRouter
+import com.android.common.api.usermanager.UserManager
+import com.android.common.api.usermanager.isUserLogin
 import com.app.base.widget.dialog.TipsTool
 import com.app.base.widget.dialog.showConfirmDialog
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -97,7 +97,7 @@ internal class AppErrorHandler @Inject constructor(
                 showingDialog = null
                 //handle login expired
                 AppUtils.getTopActivity()?.let {
-                    appRouter.get(MainModuleNavigator::class.java)?.exitAndLogin(it)
+                    appRouter.getNavigator(MainModuleNavigator::class.java)?.exitAndLogin(it)
                 }
             }
         }

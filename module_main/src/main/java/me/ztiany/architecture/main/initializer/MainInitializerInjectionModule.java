@@ -1,12 +1,19 @@
 package me.ztiany.architecture.main.initializer;
 
 import com.android.base.architecture.app.AppLifecycle;
+import com.android.common.api.router.AppNavigator;
+import com.app.base.component.router.AppRouterKey;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
+import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
+import me.ztiany.architecture.main.api.MainModuleNavigator;
+import me.ztiany.architecture.main.apiimpl.MainModuleNavigatorImpl;
 
 /**
  * @author Ztiany
@@ -22,5 +29,14 @@ public class MainInitializerInjectionModule {
     public AppLifecycle provideMainModuleInitializer(MainModuleInitializer mainModuleInitializer) {
         return mainModuleInitializer;
     }
+
+    @Provides
+    @Singleton
+    @IntoMap
+    @AppRouterKey(MainModuleNavigator.class)
+    public AppNavigator provideMainModuleNavigator() {
+        return new MainModuleNavigatorImpl();
+    }
+
 
 }

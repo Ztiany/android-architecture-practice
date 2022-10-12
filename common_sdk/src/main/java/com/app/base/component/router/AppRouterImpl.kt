@@ -1,20 +1,27 @@
 package com.app.base.component.router
 
 import com.android.common.api.router.AppRouter
-import com.android.common.api.router.Navigator
-import java.util.*
+import com.android.common.api.router.AppNavigator
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 
 /**
  * @author Ztiany
  */
-internal class AppRouterImpl : AppRouter {
+@Singleton
+internal class AppRouterImpl @Inject constructor(
+    private val appRouterMap: Map<Class<out AppNavigator>, @JvmSuppressWildcards Provider<AppNavigator>>
+) : AppRouter {
 
-    override fun <T : Navigator> get(clazz: Class<T>): T? {
-        return ServiceLoader.load(clazz).firstOrNull()
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : AppNavigator> getNavigator(clazz: Class<T>): T? {
+        return appRouterMap[clazz]?.get() as? T
     }
 
-    override fun <T : Navigator> require(clazz: Class<T>): T {
-        return ServiceLoader.load(clazz).firstOrNull() ?: throw NullPointerException("implementation of $clazz not found.")
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : AppNavigator> requireNavigator(clazz: Class<T>): T {
+        return appRouterMap[clazz]?.get() as? T ?: throw NullPointerException("The navigator you required is not provided.")
     }
 
 }

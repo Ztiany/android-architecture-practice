@@ -61,8 +61,4 @@ dependencies {
     /*Hilt*/
     api AndroidLibraries.hiltDagger
     kapt AndroidLibraries.hiltDaggerApt
-
-    /*Auto Service*/
-    implementation ThirdLibraries.autoService
-    kapt ThirdLibraries.autoServiceApt
 }

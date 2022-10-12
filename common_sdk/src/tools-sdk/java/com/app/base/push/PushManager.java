@@ -5,7 +5,7 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.app.base.component.usermanager.UserManager;
+import com.android.common.api.usermanager.UserManager;
 import com.app.base.debug.DebugInfoDispatcher;
 import com.app.base.utils.ChannelKt;
 

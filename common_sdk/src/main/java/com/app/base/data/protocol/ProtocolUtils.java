@@ -3,11 +3,11 @@ package com.app.base.data.protocol;
 import androidx.annotation.RestrictTo;
 
 import com.android.base.utils.android.AppUtils;
+import com.android.common.api.usermanager.User;
+import com.android.common.api.usermanager.UserManager;
 import com.android.sdk.net.core.https.HttpsUtils;
 import com.app.base.app.AndroidPlatform;
 import com.app.base.debug.Debug;
-import com.app.base.component.usermanager.User;
-import com.app.base.component.usermanager.UserManager;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
