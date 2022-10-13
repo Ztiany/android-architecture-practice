@@ -27,6 +27,6 @@ class AppCoroutineModule {
     @Singleton
     @ApplicationScope
     @Provides
-    fun providesCoroutineScope(dispatcherProvider: DispatcherProvider): CoroutineScope = CoroutineScope(SupervisorJob() + dispatcherProvider.computation())
+    fun providesCoroutineScope(dispatcherProvider: DispatcherProvider): CoroutineScope = CoroutineScope(SupervisorJob() + dispatcherProvider.ui())
 
 }
