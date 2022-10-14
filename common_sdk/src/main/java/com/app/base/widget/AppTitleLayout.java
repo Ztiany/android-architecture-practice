@@ -18,11 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.ActionMenuView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.android.base.architecture.fragment.tools.Fragments;
+import com.android.base.ui.compat.Toolbar;
 import com.android.base.utils.android.compat.AndroidVersion;
 import com.android.base.utils.android.compat.SystemBarCompat;
 import com.android.base.utils.android.views.TintKit;
@@ -73,10 +73,11 @@ public class AppTitleLayout extends LinearLayout {
         int titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.BLACK);
         int menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.BLACK);
         boolean adjustForStatusBar = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_adjust_for_status, false);
+        boolean titleCentered = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_title_centered, false);
         //add layout
         inflateLayout(context, adjustForStatusBar);
         //get resource
-        iniToolbar(title, showCuttingLine, titleColor, cuttingLineBg);
+        iniToolbar(title, titleCentered, showCuttingLine, titleColor, cuttingLineBg);
         //icon
         initNavigationIcon(disableNavigation, navigationIcon, iconTintColor);
         //menu
@@ -117,13 +118,14 @@ public class AppTitleLayout extends LinearLayout {
         }
     }
 
-    private void iniToolbar(String title, boolean showCuttingLime, int titleColor, int cuttingLineBg) {
+    private void iniToolbar(String title, boolean titleCentered, boolean showCuttingLime, int titleColor, int cuttingLineBg) {
         mToolbar = findViewById(R.id.common_toolbar);
         View cuttingLineView = findViewById(R.id.widgetAppTitleCuttingLine);
         cuttingLineView.setVisibility(showCuttingLime ? View.VISIBLE : View.GONE);
         cuttingLineView.setBackgroundColor(cuttingLineBg);
         //nav
         mToolbar.setContentInsetStartWithNavigation(0);
+        mToolbar.setTitleCentered(titleCentered);
         mToolbar.setNavigationOnClickListener(this::onNavigationOnClick);
         if (getBackground() != null) {
             mToolbar.setBackground(getBackground());

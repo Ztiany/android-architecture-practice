@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.appcompat.R
+import com.google.android.material.appbar.MaterialToolbar
 
 /**
  * This Toolbar doesn't consume touch events.
@@ -12,12 +13,19 @@ import androidx.appcompat.R
  *@author Ztiany
  */
 class Toolbar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.toolbarStyle
-) : androidx.appcompat.widget.Toolbar(context, attrs, defStyleAttr) {
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = com.google.android.material.R.style.Widget_MaterialComponents_Toolbar
+) : MaterialToolbar(context, attrs, defStyleAttr) {
+
+    var noHandleTouchEvent = true
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent?): Boolean {
-        return false
+        if (noHandleTouchEvent) {
+            return false
+        }
+        return super.onTouchEvent(ev)
     }
 
 }

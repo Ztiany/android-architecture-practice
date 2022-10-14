@@ -13,6 +13,7 @@
     <declare-styleable name="AppTitleLayout">
         <attr name="atl_title" format="string|reference" />
         <attr name="atl_title_color" format="color|reference" />
+        <attr name="atl_title_centered" format="boolean" />
         <attr name="atl_navigation_icon" format="reference" />
         <attr name="atl_disable_navigation" format="boolean" />
         <attr name="atl_navigation_icon_tint" format="color|reference" />
