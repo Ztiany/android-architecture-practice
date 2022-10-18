@@ -5,7 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import androidx.fragment.app.FragmentActivity
 import com.android.base.utils.BaseUtils
-import com.android.base.utils.android.AppUtils
+import com.blankj.utilcode.util.AppUtils
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.onTopActivity
 import com.android.base.utils.android.views.getColorCompat

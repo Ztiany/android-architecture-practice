@@ -5,8 +5,8 @@ import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.base.utils.BaseUtils
-import com.android.base.utils.android.AppUtils
-import com.android.base.utils.android.ServiceUtils
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.ServiceUtils
 import java.io.File
 
 /**

@@ -4,7 +4,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.core.net.toFile
 import com.android.base.utils.BaseUtils
-import com.android.base.utils.common.FileUtils
+import com.blankj.utilcode.util.FileUtils
 import com.android.base.utils.common.sizeOf
 import com.android.common.api.compression.CompressionSpec
 import com.android.common.api.compression.ImageCompressionService

@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
 import com.android.base.architecture.fragment.base.BaseUIFragment;
 import com.android.base.architecture.fragment.tools.Fragments;
 import com.android.base.utils.android.network.NetworkUtils;
-import com.android.base.utils.android.WebViewUtils;
+import com.android.base.utils.android.views.WebViewUtils;
 import com.app.base.R;
 import com.app.base.databinding.AppBaseWebFragmentBinding;
 import com.app.base.widget.AppTitleLayout;

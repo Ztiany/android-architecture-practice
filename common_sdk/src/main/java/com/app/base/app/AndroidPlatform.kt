@@ -2,10 +2,9 @@ package com.app.base.app
 
 import android.content.Context
 import android.os.Build
-import com.android.base.utils.android.AppUtils
-import com.android.base.utils.android.DeviceIdUtils
-import com.android.base.utils.android.DeviceUtils
-import com.android.base.utils.android.MetaDataUtils
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.DeviceUtils
+import com.blankj.utilcode.util.MetaDataUtils
 import com.android.base.utils.android.network.NetworkUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -27,7 +26,7 @@ class AndroidPlatform @Inject internal constructor(
 
     fun getManifestValue(key: String): String = MetaDataUtils.getMetaDataInApp(key)
 
-    fun getDeviceId(): String = DeviceIdUtils.getDeviceId(context)
+    fun getDeviceId(): String = AndroidDeviceId.get(context)
 
     fun getIpAddress(): String = NetworkUtils.getIPAddress(true)
 

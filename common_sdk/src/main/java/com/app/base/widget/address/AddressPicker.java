@@ -16,7 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.base.utils.android.ScreenUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.android.base.utils.android.adaption.OnTabSelectedListenerAdapter;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;

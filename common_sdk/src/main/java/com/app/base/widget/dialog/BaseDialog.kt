@@ -3,7 +3,7 @@ package com.app.base.widget.dialog
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AppCompatDialog
-import com.android.base.utils.android.ScreenUtils
+import com.blankj.utilcode.util.ScreenUtils
 import com.app.base.R
 
 open class BaseDialog(

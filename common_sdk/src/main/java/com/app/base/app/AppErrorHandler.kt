@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.android.base.utils.android.AppUtils
+import com.blankj.utilcode.util.AppUtils
 import com.android.base.utils.android.currentActivity
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException

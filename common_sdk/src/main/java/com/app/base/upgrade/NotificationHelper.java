@@ -7,7 +7,7 @@ import android.content.Context;
 import androidx.core.app.NotificationCompat;
 
 import com.android.base.utils.BaseUtils;
-import com.android.base.utils.android.AppUtils;
+import com.blankj.utilcode.util.AppUtils;
 import com.app.base.R;
 
 /**
