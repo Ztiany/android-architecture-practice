@@ -9,7 +9,7 @@ import me.ztiany.architecture.main.api.MainModuleNavigator
 import javax.inject.Inject
 
 @ActivityScoped
-class AccountNavigator @Inject constructor(
+class AccountInternalNavigator @Inject constructor(
     @ActivityContext context: Context,
     private val appRouter: AppRouter
 ) {

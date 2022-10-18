@@ -1,4 +1,4 @@
-package me.ztiany.architecture.account.initializer;
+package me.ztiany.architecture.account;
 
 import com.android.common.api.router.AppNavigator;
 import com.app.base.component.router.AppRouterKey;
@@ -11,14 +11,14 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import dagger.multibindings.IntoMap;
 import me.ztiany.architecture.account.api.AccountModuleNavigator;
-import me.ztiany.architecture.account.apiimpl.AccountModuleNavigatorImpl;
+import me.ztiany.architecture.account.AccountModuleNavigatorImpl;
 
 /**
  * @author Ztiany
  */
 @Module
 @InstallIn(SingletonComponent.class)
-public class AccountInitializerInjectionModule {
+public class AccountModule {
 
     @Provides
     @Singleton

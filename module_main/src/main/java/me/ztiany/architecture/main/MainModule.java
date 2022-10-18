@@ -1,4 +1,4 @@
-package me.ztiany.architecture.main.initializer;
+package me.ztiany.architecture.main;
 
 import com.android.base.architecture.app.AppLifecycle;
 import com.android.common.api.router.AppNavigator;
@@ -13,7 +13,6 @@ import dagger.hilt.components.SingletonComponent;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
 import me.ztiany.architecture.main.api.MainModuleNavigator;
-import me.ztiany.architecture.main.apiimpl.MainModuleNavigatorImpl;
 
 /**
  * @author Ztiany
@@ -22,7 +21,7 @@ import me.ztiany.architecture.main.apiimpl.MainModuleNavigatorImpl;
  */
 @Module
 @InstallIn(SingletonComponent.class)
-public class MainInitializerInjectionModule {
+public class MainModule {
 
     @Provides
     @IntoSet
@@ -37,6 +36,5 @@ public class MainInitializerInjectionModule {
     public AppNavigator provideMainModuleNavigator() {
         return new MainModuleNavigatorImpl();
     }
-
 
 }

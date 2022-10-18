@@ -1,4 +1,4 @@
-package me.ztiany.architecture.main.initializer
+package me.ztiany.architecture.main
 
 import android.app.Application
 import android.content.res.Configuration

@@ -7,7 +7,7 @@ import com.android.base.architecture.fragment.base.BaseUIFragment
 import com.android.base.architecture.ui.handleLiveData
 import com.android.base.utils.android.views.textValue
 import dagger.hilt.android.AndroidEntryPoint
-import me.ztiany.architecture.account.AccountNavigator
+import me.ztiany.architecture.account.AccountInternalNavigator
 import me.ztiany.architecture.account.R
 import me.ztiany.architecture.account.databinding.AccountFragmentLoginBinding
 import javax.inject.Inject
@@ -18,7 +18,7 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
 
     private val viewModel: LoginViewModel by viewModels()
 
-    @Inject lateinit var accountNavigator: AccountNavigator
+    @Inject lateinit var accountInternalNavigator: AccountInternalNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class LoginFragment : BaseUIFragment<AccountFragmentLoginBinding>() {
         handleLiveData(viewModel.loginState) {
             onSuccess = {
                 showMessage(R.string.login_success)
-                accountNavigator.exitAndToHomePage()
+                accountInternalNavigator.exitAndToHomePage()
             }
         }
     }

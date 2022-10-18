@@ -17,14 +17,15 @@ internal class UserManagerImpl @Inject constructor(
 ) : UserManager {
 
     companion object {
-        private const val APP_USER_KEY = "APP_USER_KEY"
+        private const val APP_USER_KEY = "app_user_key"
+        private const val APP_USER_STORAGE_ID = "app_user_storage_id"
     }
 
     private var currentUser = User.NOT_LOGIN
 
     private val observableUser: MutableStateFlow<User>
 
-    private val userStorage = storageManager.userStorage()
+    private val userStorage = storageManager.newStorage(APP_USER_STORAGE_ID)
 
     init {
         currentUser = userStorage.getEntity(APP_USER_KEY) ?: User.NOT_LOGIN
@@ -51,7 +52,7 @@ internal class UserManagerImpl @Inject constructor(
     override fun logout() {
         Timber.d("start logout")
         currentUser = User.NOT_LOGIN
-        storageManager.clearUserAssociated()
+        userStorage.clearAll()
         onUserUpdated()
         Timber.d("logout success")
     }

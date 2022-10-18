@@ -182,7 +182,7 @@ ext {
             simpleHttp                : 'io.github.ztiany:android-simple-http:1.0.1',
             simpleBus                 : 'io.github.ztiany:android-simple-bus:1.0.0',
             uiState                   : 'io.github.ztiany:android-ui-state:1.0.1',
-            storage                   : 'io.github.ztiany:android-storage:1.0.0',
+            storage                   : 'io.github.ztiany:android-storage:1.0.2',
             imageLoader               : 'io.github.ztiany:android-image-loader:1.0.0',
             wrapperAdapter            : "io.github.ztiany:android-loadmore-adapter:1.0.0",
             archMVP                   : 'io.github.ztiany:android-arch-mvp:1.0.1',

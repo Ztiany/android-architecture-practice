@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.base.architecture.data.*
 import com.android.base.foundation.data.Resource
-import com.android.base.architecture.data.postData
-import com.android.base.architecture.data.postError
-import com.android.base.architecture.data.postLoading
 import com.android.common.api.usermanager.User
 import com.app.base.app.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,14 +24,14 @@ class LoginViewModel @Inject constructor(
         get() = _loginState
 
     fun login(phone: String, password: String) {
-        _loginState.postLoading()
+        _loginState.setLoading()
 
         viewModelScope.launch(dispatcherProvider.io()) {
             try {
                 val login = accountDataSource.login(phone, password)
-                _loginState.postData(login)
+                _loginState.setData(login)
             } catch (e: Exception) {
-                _loginState.postError(e)
+                _loginState.setError(e)
             }
         }
     }

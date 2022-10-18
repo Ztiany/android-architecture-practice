@@ -16,9 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.ztiany.architecture.main.R
-import me.ztiany.architecture.main.apiimpl.ACTION_KEY
-import me.ztiany.architecture.main.apiimpl.ACTION_RE_LOGIN
-import me.ztiany.architecture.main.apiimpl.PAGE_KEY
+import me.ztiany.architecture.main.ACTION_KEY
+import me.ztiany.architecture.main.ACTION_RE_LOGIN
+import me.ztiany.architecture.main.PAGE_KEY
 import javax.inject.Inject
 
 

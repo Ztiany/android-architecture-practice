@@ -36,7 +36,7 @@ class AppSettings @Inject internal constructor(
     }
 
     val storage by lazy {
-        storageManager.newStorage("AppSettings", false)
+        storageManager.newStorage("AppSettings")
     }
 
     val defaultPageStart

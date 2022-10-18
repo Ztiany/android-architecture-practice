@@ -67,7 +67,7 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
                 dialog.dismiss()
                 //清除所有数据
                 userManager.logout()
-                storageManager.stableStorage().clearAll()
+                storageManager.stable().clearAll()
                 //重启
                 requireActivity().window.decorView.post { doRestart() }
             }.show()
