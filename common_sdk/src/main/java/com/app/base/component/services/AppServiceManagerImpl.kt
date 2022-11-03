@@ -21,4 +21,8 @@ internal class AppServiceManagerImpl @Inject constructor(
         return appServiceMap[clazz]?.get() as? T ?: throw NullPointerException("The service you required is not provided.")
     }
 
+    override fun <T : AppService> hasService(clazz: Class<T>): Boolean {
+        return appServiceMap[clazz]?.get() != null
+    }
+
 }

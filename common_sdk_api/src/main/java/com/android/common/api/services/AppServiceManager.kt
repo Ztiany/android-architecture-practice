@@ -7,6 +7,8 @@ interface AppServiceManager {
 
     fun <T : AppService> requireService(clazz: Class<T>): T
 
+    fun <T : AppService> hasService(clazz: Class<T>): Boolean
+
 }
 
 inline fun <reified T : AppService> AppServiceManager.getService(): T? {
@@ -15,6 +17,10 @@ inline fun <reified T : AppService> AppServiceManager.getService(): T? {
 
 inline fun <reified T : AppService> AppServiceManager.requireService(): T {
     return requireService(T::class.java)
+}
+
+inline fun <reified T : AppService> AppServiceManager.hasService(): Boolean {
+    return hasService(T::class.java)
 }
 
 inline fun <reified T : AppService> AppServiceManager.withService(
