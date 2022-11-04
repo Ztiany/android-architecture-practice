@@ -9,7 +9,7 @@ import android.util.AttributeSet
 import androidx.annotation.DrawableRes
 import androidx.core.view.TintableBackgroundView
 
-/** don't forget calling "AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)" before use this ButtonView.*/
+/** Don't forget calling "AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)" before use this ButtonView.*/
 @SuppressLint("RestrictedApi")
 class TintableToggleButton @JvmOverloads constructor(
     context: Context,

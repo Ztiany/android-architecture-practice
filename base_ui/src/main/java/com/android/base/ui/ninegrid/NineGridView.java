@@ -1,4 +1,4 @@
-package com.lzy.ninegrid;
+package com.android.base.ui.ninegrid;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -40,7 +40,7 @@ public class NineGridView extends ViewGroup {
     // 宫格高度
     private int gridHeight;
 
-    private List<ImageView> imageViews;
+    private final List<ImageView> imageViews;
     private List<Image> mImageInfo;
     private NineGridViewAdapter mAdapter;
 

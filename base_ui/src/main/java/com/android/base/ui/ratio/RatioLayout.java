@@ -53,4 +53,5 @@ public class RatioLayout extends FrameLayout {
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
+
 }

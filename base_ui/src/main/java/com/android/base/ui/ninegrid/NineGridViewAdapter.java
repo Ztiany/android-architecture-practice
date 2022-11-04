@@ -1,13 +1,13 @@
-package com.lzy.ninegrid;
+package com.android.base.ui.ninegrid;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import java.util.List;
 import java.util.Objects;
-
-import androidx.appcompat.widget.AppCompatImageView;
 
 public abstract class NineGridViewAdapter {
 

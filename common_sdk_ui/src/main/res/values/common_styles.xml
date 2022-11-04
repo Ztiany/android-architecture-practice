@@ -52,12 +52,4 @@
         <item name="android:textColor">@color/color_sel_primary_btn_text</item>
     </style>
 
-    <style name="Style_SwitchBtnDefault">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="kswThumbMargin">1dp</item>
-        <item name="kswBackColor">@color/color_switch_bg</item>
-        <item name="kswThumbColor">@color/color_switch_thumb</item>
-    </style>
-
 </resources>

@@ -6,21 +6,20 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
+import androidx.annotation.IntDef
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.use
 import com.android.base.ui.R
-import com.android.base.ui.shape.Direction
 
 /**
  *@author Ztiany
  *      Email: ztiany3@gmail.com
- *      Date : 2019-01-16 10:09
  */
 class TriangleView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
-    private val mPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     @Suppress var bottomColor: Int = 0
         set(value) {
@@ -46,7 +45,7 @@ class TriangleView @JvmOverloads constructor(
             invalidate()
         }
 
-    @Direction var direction: Int = 0
+    @TriangleDirection var direction: Int = 0
         set(value) {
             field = value
             invalidate()
@@ -73,12 +72,12 @@ class TriangleView @JvmOverloads constructor(
             }
             triangleSolidColor = it.getColor(R.styleable.TriangleView_tv_triangle_solid_color, Color.TRANSPARENT)
             strokeWidth = it.getDimension(R.styleable.TriangleView_tv_triangle_stroke_width, 0F)
-            direction = it.getInt(R.styleable.TriangleView_tv_triangle_direction, Direction.TOP)
+            direction = it.getInt(R.styleable.TriangleView_tv_triangle_direction, TriangleDirection.TOP)
             trianglePercent = it.getFloat(R.styleable.TriangleView_tv_triangle_angle_percent, 0.5F)
         }
 
-        mPaint.strokeWidth = strokeWidth
-        mPaint.strokeCap = Paint.Cap.ROUND
+        paint.strokeWidth = strokeWidth
+        paint.strokeCap = Paint.Cap.ROUND
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -87,10 +86,10 @@ class TriangleView @JvmOverloads constructor(
             return
         }
         when (direction) {
-            Direction.TOP -> drawTopTriangle(canvas)
-            Direction.BOTTOM -> drawBottomTriangle(canvas)
-            Direction.LEFT -> drawLeftTriangle(canvas)
-            Direction.RIGHT -> drawRightTriangle(canvas)
+            TriangleDirection.TOP -> drawTopTriangle(canvas)
+            TriangleDirection.BOTTOM -> drawBottomTriangle(canvas)
+            TriangleDirection.LEFT -> drawLeftTriangle(canvas)
+            TriangleDirection.RIGHT -> drawRightTriangle(canvas)
         }
     }
 
@@ -107,17 +106,17 @@ class TriangleView @JvmOverloads constructor(
             mTrianglePath.lineTo(drawingWidth, drawingHeight)
             mTrianglePath.lineTo(0F, trianglePoint)
             mTrianglePath.close()
-            mPaint.style = Paint.Style.FILL
-            mPaint.color = triangleSolidColor
-            canvas.drawPath(mTrianglePath, mPaint)
+            paint.style = Paint.Style.FILL
+            paint.color = triangleSolidColor
+            canvas.drawPath(mTrianglePath, paint)
         }
         //draw stroke
         if (strokeWidth != 0F) {
-            mPaint.color = strokeColor
-            canvas.drawLine(0F, trianglePoint, drawingWidth, 0F, mPaint)
-            canvas.drawLine(0F, trianglePoint, drawingWidth, drawingHeight, mPaint)
-            mPaint.color = bottomColor
-            canvas.drawLine(drawingWidth - haftStroke, 0F, drawingWidth - haftStroke, drawingHeight, mPaint)
+            paint.color = strokeColor
+            canvas.drawLine(0F, trianglePoint, drawingWidth, 0F, paint)
+            canvas.drawLine(0F, trianglePoint, drawingWidth, drawingHeight, paint)
+            paint.color = bottomColor
+            canvas.drawLine(drawingWidth - haftStroke, 0F, drawingWidth - haftStroke, drawingHeight, paint)
         }
     }
 
@@ -134,17 +133,17 @@ class TriangleView @JvmOverloads constructor(
             mTrianglePath.lineTo(0F, drawingHeight)
             mTrianglePath.lineTo(drawingWidth, trianglePoint)
             mTrianglePath.close()
-            mPaint.style = Paint.Style.FILL
-            mPaint.color = triangleSolidColor
-            canvas.drawPath(mTrianglePath, mPaint)
+            paint.style = Paint.Style.FILL
+            paint.color = triangleSolidColor
+            canvas.drawPath(mTrianglePath, paint)
         }
         //draw stroke
         if (strokeWidth != 0F) {
-            mPaint.color = strokeColor
-            canvas.drawLine(0F, 0F, drawingWidth, trianglePoint, mPaint)
-            canvas.drawLine(drawingWidth, trianglePoint, 0F, drawingHeight, mPaint)
-            mPaint.color = bottomColor
-            canvas.drawLine(haftStroke, 0F, haftStroke, drawingHeight, mPaint)
+            paint.color = strokeColor
+            canvas.drawLine(0F, 0F, drawingWidth, trianglePoint, paint)
+            canvas.drawLine(drawingWidth, trianglePoint, 0F, drawingHeight, paint)
+            paint.color = bottomColor
+            canvas.drawLine(haftStroke, 0F, haftStroke, drawingHeight, paint)
         }
     }
 
@@ -161,17 +160,17 @@ class TriangleView @JvmOverloads constructor(
             mTrianglePath.lineTo(trianglePoint, drawingHeight)
             mTrianglePath.lineTo(drawingWidth, 0F)
             mTrianglePath.close()
-            mPaint.style = Paint.Style.FILL
-            mPaint.color = triangleSolidColor
-            canvas.drawPath(mTrianglePath, mPaint)
+            paint.style = Paint.Style.FILL
+            paint.color = triangleSolidColor
+            canvas.drawPath(mTrianglePath, paint)
         }
         //draw stroke
         if (strokeWidth != 0F) {
-            mPaint.color = strokeColor
-            canvas.drawLine(0F, 0F, trianglePoint, drawingHeight, mPaint)
-            canvas.drawLine(trianglePoint, drawingHeight, drawingWidth, 0F, mPaint)
-            mPaint.color = bottomColor
-            canvas.drawLine(0F, haftStroke, drawingWidth, haftStroke, mPaint)
+            paint.color = strokeColor
+            canvas.drawLine(0F, 0F, trianglePoint, drawingHeight, paint)
+            canvas.drawLine(trianglePoint, drawingHeight, drawingWidth, 0F, paint)
+            paint.color = bottomColor
+            canvas.drawLine(0F, haftStroke, drawingWidth, haftStroke, paint)
         }
     }
 
@@ -188,20 +187,31 @@ class TriangleView @JvmOverloads constructor(
             mTrianglePath.lineTo(drawingWidth, drawingHeight)
             mTrianglePath.lineTo(trianglePoint, 0F)
             mTrianglePath.close()
-            mPaint.style = Paint.Style.FILL
-            mPaint.color = triangleSolidColor
-            canvas.drawPath(mTrianglePath, mPaint)
+            paint.style = Paint.Style.FILL
+            paint.color = triangleSolidColor
+            canvas.drawPath(mTrianglePath, paint)
         }
         //draw stroke
         if (strokeWidth != 0F) {
-            mPaint.color = strokeColor
-            canvas.drawLine(0F, drawingHeight, trianglePoint, 0F, mPaint)
-            canvas.drawLine(trianglePoint, 0F, drawingWidth, drawingHeight, mPaint)
-            mPaint.color = bottomColor
-            canvas.drawLine(drawingWidth, drawingHeight - haftStroke, 0F, drawingHeight - haftStroke, mPaint)
+            paint.color = strokeColor
+            canvas.drawLine(0F, drawingHeight, trianglePoint, 0F, paint)
+            canvas.drawLine(trianglePoint, 0F, drawingWidth, drawingHeight, paint)
+            paint.color = bottomColor
+            canvas.drawLine(drawingWidth, drawingHeight - haftStroke, 0F, drawingHeight - haftStroke, paint)
         }
     }
 
     private fun needDrawSolid() = triangleSolidColor != Color.TRANSPARENT
 
+}
+
+@IntDef(TriangleDirection.TOP, TriangleDirection.BOTTOM, TriangleDirection.LEFT, TriangleDirection.RIGHT)
+@Retention(AnnotationRetention.SOURCE)
+annotation class TriangleDirection {
+    companion object {
+        const val TOP = 1
+        const val BOTTOM = 2
+        const val LEFT = 3
+        const val RIGHT = 4
+    }
 }

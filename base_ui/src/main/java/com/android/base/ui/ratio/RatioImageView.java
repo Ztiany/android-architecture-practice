@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
-
 public class RatioImageView extends AppCompatImageView {
 
     private final RatioHelper mRatioHelper;
@@ -34,4 +33,5 @@ public class RatioImageView extends AppCompatImageView {
         int[] measure = mRatioHelper.measure(widthMeasureSpec, heightMeasureSpec);
         super.onMeasure(measure[0], measure[1]);
     }
+
 }

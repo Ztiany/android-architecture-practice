@@ -2,13 +2,21 @@ package com.peter.viewgrouptutorial.drawable
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Rect
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.DisplayMetrics
+import android.util.Log
 import android.util.TypedValue
+import androidx.annotation.IntDef
 import java.lang.ref.WeakReference
 
-/** 参考 [又一个减少冗余 Drawable 资源的解决方案](https://mp.weixin.qq.com/s/qxMoI7UTw3WtiRR6oIDGKA)。*/
+/**
+ * 参考
+ *
+ * - [又一个减少冗余 Drawable 资源的解决方案](https://mp.weixin.qq.com/s/qxMoI7UTw3WtiRR6oIDGKA)
+ * - [CodeGradientDrawable](https://github.com/lizijin/zijiexiaozhan/blob/main/app/src/main/java/com/peter/viewgrouptutorial/drawable/CodeGradientDrawable.kt)
+ */
 class CodeGradientDrawable private constructor(
     theme: Resources.Theme,
     shapeType: Int,
@@ -21,18 +29,23 @@ class CodeGradientDrawable private constructor(
     height: Int
 ) : GradientDrawable() {
 
-    companion object {
+    /*
+    当将该 Drawable 设置为某个 View 的背景时，该 Drawable 的 setBounds 方法将会被调用，然后 Drawable 的绘制区域也会发生变化，
+    而如果启动缓存机制的话，多个 View 可能共享同一个  Drawable，而如果不同 View 的 Size 不同，或者 View 的 Size 动态变化，都会导致
+    Drawable 的共享出现问题，此问题貌似无法解决，因此暂时禁用缓存。
+     */
+    /*companion object {
         private val sCache = HashMap<Int, WeakReference<CodeGradientDrawable>>()
-    }
+    }*/
 
     init {
         applyTheme(theme)
-
         shape = shapeType
 
         solidColor?.let {
             color = it
         }
+
         gradient?.let {
             with(it) {
                 setGradientCenter(this.centerX, this.centerY)
@@ -130,28 +143,22 @@ class CodeGradientDrawable private constructor(
         }
 
         @JvmOverloads
-        fun size(width: Int, widthUnit: Int = DP_UNIT, height: Int, heightUnit: Int = DP_UNIT) =
-            apply {
-                this.width = getDimensionPixelSize(widthUnit, width.toFloat(), metrics)
-                this.height = getDimensionPixelSize(heightUnit, height.toFloat(), metrics)
-            }
+        fun size(width: Int, height: Int, @UnixValue unit: Int = DP_UNIT) = apply {
+            this.width = getDimensionPixelSize(unit, width.toFloat(), metrics)
+            this.height = getDimensionPixelSize(unit, height.toFloat(), metrics)
+        }
 
         fun build(): CodeGradientDrawable {
-            synchronized(sCache) {
+            return CodeGradientDrawable(
+                theme, shape, gradient?.build(), corner?.build(), solidColor, stroke?.build(), padding?.build(), width, height
+            )
+            /*synchronized(sCache) {
                 val key = hashCode()
                 val cached = sCache[key]?.get()
                 if (cached == null) {
                     println("CodeGradientDrawable is null $this")
                     val drawable = CodeGradientDrawable(
-                        theme,
-                        shape,
-                        gradient?.build(),
-                        corner?.build(),
-                        solidColor,
-                        stroke?.build(),
-                        padding?.build(),
-                        width,
-                        height
+                        theme, shape, gradient?.build(), corner?.build(), solidColor, stroke?.build(), padding?.build(), width, height
                     )
                     sCache[key] = WeakReference(drawable)
                     return drawable
@@ -159,8 +166,7 @@ class CodeGradientDrawable private constructor(
                     println("CodeGradientDrawable not null $this")
                     return cached
                 }
-            }
-
+            }*/
         }
 
         override fun equals(other: Any?): Boolean {
@@ -201,7 +207,6 @@ class CodeGradientDrawable private constructor(
     }
 }
 
-
 class Gradient private constructor(
     internal val centerX: Float,
     internal val centerY: Float,
@@ -218,8 +223,7 @@ class Gradient private constructor(
         private var useLevel: Boolean = false
         private var gradientType: Int = GradientDrawable.LINEAR_GRADIENT
         private var gradientRadius: Float = 0.5f
-        private var orientation: GradientDrawable.Orientation =
-            GradientDrawable.Orientation.LEFT_RIGHT
+        private var orientation: GradientDrawable.Orientation = GradientDrawable.Orientation.LEFT_RIGHT
         private lateinit var gradientColors: IntArray
         private val metrics = context.resources.displayMetrics
 
@@ -241,10 +245,9 @@ class Gradient private constructor(
         }
 
         @JvmOverloads
-        fun gradientRadius(gradientRadius: Float, gradientRadiusUnit: Int = DP_UNIT): Builder =
-            apply {
-                this.gradientRadius = getDimension(gradientRadiusUnit, gradientRadius, metrics)
-            }
+        fun gradientRadius(gradientRadius: Float, @UnixValue gradientRadiusUnit: Int = DP_UNIT): Builder = apply {
+            this.gradientRadius = getDimension(gradientRadiusUnit, gradientRadius, metrics)
+        }
 
         fun gradientColors(colors: IntArray): Builder = apply {
             this.gradientColors = colors
@@ -252,13 +255,7 @@ class Gradient private constructor(
 
         internal fun build(): Gradient {
             return Gradient(
-                centerX,
-                centerY,
-                useLevel,
-                gradientType,
-                gradientRadius,
-                orientation,
-                gradientColors
+                centerX, centerY, useLevel, gradientType, gradientRadius, orientation, gradientColors
             )
         }
 
@@ -297,8 +294,7 @@ class Gradient private constructor(
 }
 
 class Corner private constructor(
-    internal val radius: Float,
-    internal val radii: FloatArray? = null
+    internal val radius: Float, internal val radii: FloatArray? = null
 ) {
 
     class Builder constructor(context: Context) {
@@ -308,42 +304,35 @@ class Corner private constructor(
         private val metrics = context.resources.displayMetrics
 
         @JvmOverloads
-        fun radius(radius: Float, radiusUnit: Int = DP_UNIT) = apply {
+        fun radius(radius: Float, @UnixValue radiusUnit: Int = DP_UNIT) = apply {
             this.radius = getDimensionPixelSize(radiusUnit, radius, metrics).toFloat()
         }
 
         @JvmOverloads
         fun radii(
             topLeftRadius: Float = 0f,
-            topLeftRadiusUnit: Int = DP_UNIT,
             topRightRadius: Float = 0f,
-            topRightRadiusUnit: Int = DP_UNIT,
             bottomRightRadius: Float = 0f,
-            bottomRightRadiusUnit: Int = DP_UNIT,
             bottomLeftRadius: Float = 0f,
-            bottomLeftRadiusUnit: Int = DP_UNIT,
+            @UnixValue radiusUnit: Int = DP_UNIT,
         ) = apply {
 
             val radii = FloatArray(8)
 
-            val newTopLeftRadius =
-                getDimensionPixelSize(topLeftRadiusUnit, topLeftRadius, metrics).toFloat()
+            val newTopLeftRadius = getDimensionPixelSize(radiusUnit, topLeftRadius, metrics).toFloat()
             radii[0] = newTopLeftRadius
             radii[1] = newTopLeftRadius
 
-            val newTopRightRadius =
-                getDimensionPixelSize(topRightRadiusUnit, topRightRadius, metrics).toFloat()
+            val newTopRightRadius = getDimensionPixelSize(radiusUnit, topRightRadius, metrics).toFloat()
             radii[2] = newTopRightRadius
             radii[3] = newTopRightRadius
 
-            val newBottomRightRadius =
-                getDimensionPixelSize(bottomRightRadiusUnit, bottomRightRadius, metrics).toFloat()
+            val newBottomRightRadius = getDimensionPixelSize(radiusUnit, bottomRightRadius, metrics).toFloat()
 
             radii[4] = newBottomRightRadius
             radii[5] = newBottomRightRadius
 
-            val newBottomLeftRadius =
-                getDimensionPixelSize(bottomLeftRadiusUnit, bottomLeftRadius, metrics).toFloat()
+            val newBottomLeftRadius = getDimensionPixelSize(radiusUnit, bottomLeftRadius, metrics).toFloat()
 
             radii[6] = newBottomLeftRadius
             radii[7] = newBottomLeftRadius
@@ -383,10 +372,7 @@ class Corner private constructor(
 }
 
 class Stroke private constructor(
-    internal val width: Int,
-    internal val colorStateList: CodeColorStateList,
-    internal val dashWidth: Float,
-    internal val dashGap: Float
+    internal val width: Int, internal val colorStateList: CodeColorStateList, internal val dashWidth: Float, internal val dashGap: Float
 ) {
 
     class Builder constructor(context: Context) {
@@ -397,28 +383,20 @@ class Stroke private constructor(
         private val metrics = context.resources.displayMetrics
 
         @JvmOverloads
-        fun setStroke(width: Float, widthUnit: Int = DP_UNIT, colorStateList: CodeColorStateList) =
-            apply {
-                this.width = getDimensionPixelSize(widthUnit, width, metrics)
-                this.colorStateList = colorStateList
-            }
+        fun setStroke(width: Float, @UnixValue widthUnit: Int = DP_UNIT, colorStateList: CodeColorStateList) = apply {
+            this.width = getDimensionPixelSize(widthUnit, width, metrics)
+            this.colorStateList = colorStateList
+        }
 
         @JvmOverloads
         fun setStroke(
-            width: Float,
-            widthUnit: Int = DP_UNIT,
-            colorStateList: CodeColorStateList,
-            dashWidth: Float,
-            dashWidthUnit: Int = DP_UNIT,
-            dashGap: Float,
-            dashGapUnit: Int
-        ) =
-            apply {
-                this.width = getDimensionPixelSize(widthUnit, width, metrics)
-                this.colorStateList = colorStateList
-                this.dashWidth = getDimension(dashWidthUnit, dashWidth, metrics)
-                this.dashGap = getDimension(dashGapUnit, dashGap, metrics)
-            }
+            width: Float, colorStateList: CodeColorStateList, dashWidth: Float, dashGap: Float, @UnixValue unit: Int = DP_UNIT
+        ) = apply {
+            this.width = getDimensionPixelSize(unit, width, metrics)
+            this.colorStateList = colorStateList
+            this.dashWidth = getDimension(unit, dashWidth, metrics)
+            this.dashGap = getDimension(unit, dashGap, metrics)
+        }
 
         internal fun build(): Stroke {
             return Stroke(width, colorStateList, dashWidth, dashGap)
@@ -453,11 +431,9 @@ class Stroke private constructor(
 }
 
 class Padding private constructor(
-    internal val top: Int,
-    internal val bottom: Int,
-    internal val left: Int,
-    internal val right: Int
+    internal val top: Int, internal val bottom: Int, internal val left: Int, internal val right: Int
 ) {
+
     class Builder constructor(context: Context) {
         private var top: Int = 0
         private var bottom: Int = 0
@@ -468,18 +444,15 @@ class Padding private constructor(
         @JvmOverloads
         fun setPadding(
             top: Int = 0,
-            topUnit: Int = DP_UNIT,
             bottom: Int = 0,
-            bottomUnit: Int = DP_UNIT,
             left: Int = 0,
-            leftUnit: Int = DP_UNIT,
             right: Int = 0,
-            rightUnit: Int = DP_UNIT,
+            @UnixValue unit: Int = DP_UNIT,
         ) = apply {
-            this.top = getDimensionPixelSize(topUnit, top.toFloat(), metrics)
-            this.bottom = getDimensionPixelSize(bottomUnit, bottom.toFloat(), metrics)
-            this.left = getDimensionPixelSize(leftUnit, left.toFloat(), metrics)
-            this.right = getDimensionPixelSize(rightUnit, right.toFloat(), metrics)
+            this.top = getDimensionPixelSize(unit, top.toFloat(), metrics)
+            this.bottom = getDimensionPixelSize(unit, bottom.toFloat(), metrics)
+            this.left = getDimensionPixelSize(unit, left.toFloat(), metrics)
+            this.right = getDimensionPixelSize(unit, right.toFloat(), metrics)
         }
 
         internal fun build(): Padding {
@@ -517,12 +490,14 @@ class Padding private constructor(
 const val PX_UNIT = 0
 const val DP_UNIT = 1
 
+@IntDef(value = [PX_UNIT, DP_UNIT])
+@Retention(AnnotationRetention.SOURCE)
+annotation class UnixValue
+
 // copy from  #TypedValue.complexToDimensionPixelSize
-fun getDimensionPixelSize(unit: Int, value: Float, metrics: DisplayMetrics): Int {
+private fun getDimensionPixelSize(unit: Int, value: Float, metrics: DisplayMetrics): Int {
     val f = TypedValue.applyDimension(
-        unit,
-        value,
-        metrics
+        unit, value, metrics
     )
     val res = (if (f >= 0) f + 0.5f else f - 0.5f).toInt()
     if (res != 0) return res
@@ -530,10 +505,8 @@ fun getDimensionPixelSize(unit: Int, value: Float, metrics: DisplayMetrics): Int
     return if (value > 0) 1 else -1
 }
 
-fun getDimension(unit: Int, value: Float, metrics: DisplayMetrics): Float {
+private fun getDimension(@UnixValue unit: Int, value: Float, metrics: DisplayMetrics): Float {
     return TypedValue.applyDimension(
-        unit,
-        value,
-        metrics
+        unit, value, metrics
     )
 }

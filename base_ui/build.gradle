@@ -46,14 +46,15 @@ android {
 }
 
 dependencies {
+    //androidx
     implementation AndroidLibraries.appcompat
     implementation AndroidLibraries.annotations
     implementation AndroidLibraries.viewpager
     implementation AndroidLibraries.recyclerView
     implementation AndroidLibraries.material
     implementation AndroidLibraries.ktx
-
+    //kotlin
     implementation KotlinLibraries.kotlinStdlib
-
+    //log
     implementation ThirdLibraries.timber
 }

@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentActivity
 import com.android.base.utils.BaseUtils
 import com.blankj.utilcode.util.AppUtils
 import com.android.base.utils.android.compat.AndroidVersion
-import com.android.base.utils.android.onTopActivity
 import com.android.base.utils.android.views.getColorCompat
 import com.android.base.utils.common.otherwise
 import com.android.base.utils.common.yes
@@ -182,7 +181,7 @@ internal class AppUpgradeInteractor @Inject constructor(
         Timber.d("installApk")
         if (AndroidVersion.atLeast(26)) {
             //Android8.0未知来源应用安装权限方案
-            onTopActivity {
+            AppUtils.getTopActivity()?.let {
                 PermissionX.init(it as FragmentActivity)
                     .permissions(Manifest.permission.REQUEST_INSTALL_PACKAGES)
                     .onExplainRequestReason { scope, deniedList ->

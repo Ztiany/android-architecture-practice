@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * RecyclerView滑动时隐藏toolbar
+ * RecyclerView 滑动时隐藏 Toolbar
  */
 public abstract class HidingScrollListener extends RecyclerView.OnScrollListener {
 

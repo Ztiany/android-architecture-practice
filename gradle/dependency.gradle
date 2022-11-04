@@ -274,7 +274,10 @@ ext {
             viewpump               : "dev.b3nedikt.viewpump:viewpump:4.0.7",
 
             //https://github.com/jaredrummler/HtmlDsl
-            htmlDSL                : "com.jaredrummler:html-dsl:1.0.0"
+            htmlDSL                : "com.jaredrummler:html-dsl:1.0.0",
+
+            //https://github.com/kyleduo/SwitchButton
+            switchButton           : "com.kyleduo.switchbutton:library:2.1.0"
     ]
 
 

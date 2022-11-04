@@ -1,11 +1,17 @@
 package com.peter.viewgrouptutorial.drawable
 
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.util.SparseArray
 import androidx.annotation.ColorInt
 import java.lang.ref.WeakReference
 
-/** 参考 [又一个减少冗余 Drawable 资源的解决方案](https://mp.weixin.qq.com/s/qxMoI7UTw3WtiRR6oIDGKA)。*/
+/**
+ * 参考
+ *
+ * - [又一个减少冗余 Drawable 资源的解决方案](https://mp.weixin.qq.com/s/qxMoI7UTw3WtiRR6oIDGKA)
+ * - [CodeColorStateList](https://github.com/lizijin/zijiexiaozhan/blob/main/app/src/main/java/com/peter/viewgrouptutorial/drawable/CodeColorStateList.kt)
+ */
 class CodeColorStateList private constructor(
     private val states: Array<out IntArray>,
     private val colors: IntArray
@@ -34,8 +40,8 @@ class CodeColorStateList private constructor(
                 }
 
                 // Prune the cache before adding new ColorItems.
-                val N: Int = sCache.size()
-                for (i in N - 1 downTo 0) {
+                val n: Int = sCache.size()
+                for (i in n - 1 downTo 0) {
                     if (sCache.valueAt(i).get() == null) {
                         sCache.removeAt(i)
                     }
@@ -98,7 +104,7 @@ class SelectorColorItem private constructor(val color: Int, val states: MutableL
 
     class Builder {
 
-        private var color: Int = -1
+        private var color: Int = Color.WHITE
         private var states: MutableList<Int> = arrayListOf()
 
         fun color(color: Int): Builder = apply {
@@ -120,8 +126,6 @@ class SelectorColorItem private constructor(val color: Int, val states: MutableL
         }
 
         internal fun build(): SelectorColorItem {
-            if (color == -1) throw IllegalArgumentException("must call color method")
-
             /** 两个SelectorColorItem添加state的内容相同，添加顺序不同，会被认为是相同
              * @see CodeColorStateList.equals(other: Any?)
              */

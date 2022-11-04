@@ -15,7 +15,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.android.base.ui.R;
 
-
 /**
  * 支持无限轮播的 ViewPager
  *

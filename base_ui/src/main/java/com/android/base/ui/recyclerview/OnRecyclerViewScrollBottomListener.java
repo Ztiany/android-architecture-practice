@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
- * RecyclerView多布局通用滑动底部监听器
+ * RecyclerView 多布局通用滑动底部监听器
  */
 @SuppressWarnings("all")
 public abstract class OnRecyclerViewScrollBottomListener extends RecyclerView.OnScrollListener {
