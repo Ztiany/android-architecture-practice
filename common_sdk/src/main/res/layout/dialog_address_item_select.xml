@@ -2,7 +2,7 @@
 <com.android.base.ui.shape.ShapeRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/StyleShapeable_Selector_WhiteRectangle"
+    style="@style/StyleShapeable_Selector_WhiteRectangular"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">

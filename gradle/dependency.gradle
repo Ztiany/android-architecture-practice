@@ -272,7 +272,7 @@ ext {
             switchButton           : "com.kyleduo.switchbutton:library:2.1.0",
 
             //https://github.com/Ztiany/android-drawable-view
-            drawableView           : 'io.github.ztiany:android-drawable-view:1.0.4',
+            drawableView           : 'io.github.ztiany:android-drawable-view:1.0.5',
 
             //https://github.com/getActivity/ToastUtils
             toastUtils             : 'com.github.getActivity:ToastUtils:11.0'

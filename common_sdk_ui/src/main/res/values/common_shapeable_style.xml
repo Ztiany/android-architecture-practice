@@ -12,13 +12,8 @@
         <item name="cornerSizeTopRight">10dp</item>
     </style>
 
-    <style name="StyleShapeable_Rectangle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">0dp</item>
-    </style>
-
     <style name="StyleBtnFullLine.Shapeable_Selector_Black">
-        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangle</item>
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangular</item>
         <item name="msd_backgroundColor_disabled">@color/widget_btn_black_disable</item>
         <item name="msd_backgroundColor_pressed">@color/widget_btn_black_press</item>
         <item name="msd_backgroundColor_normal">@color/widget_btn_black_normal</item>
@@ -41,8 +36,8 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="StyleShapeable_Selector_WhiteRectangle">
-        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangle</item>
+    <style name="StyleShapeable_Selector_WhiteRectangular">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangular</item>
         <item name="msd_backgroundColor_disabled">@color/widget_white_disable</item>
         <item name="msd_backgroundColor_pressed">@color/widget_white_pressed</item>
         <item name="msd_backgroundColor_normal">@color/widget_white_normal</item>

@@ -42,14 +42,14 @@
         <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
     </style>
 
-    <style name="StyleDrawableView_SelectorDrawable_Primary">
+    <style name="StyleCodeDrawable_SelectorDrawable_Primary">
         <item name="cdv_drawable_type">selector</item>
         <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryGradient</item>
         <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimarySolid</item>
         <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabled</item>
     </style>
 
-    <style name="StyleDrawableView_SelectorDrawable_PrimaryRounded10">
+    <style name="StyleCodeDrawable_SelectorDrawable_PrimaryRounded10">
         <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryGradientRounded10</item>
         <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimarySolidRounded10</item>
         <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabledRounded10</item>
@@ -57,27 +57,27 @@
 
     <!-- ================================================= CodeDrawableView Primary Styles ===================================================== -->
     <style name="StyleBtnFullLine.CodeDrawable_PrimaryGradient">
-        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_Primary</item>
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_Primary</item>
         <item name="etv_text_color_normal">@color/white</item>
         <item name="etv_text_color_disabled">@color/text_level3</item>
     </style>
 
     <style name="StyleBtnLong.CodeDrawable_PrimaryGradientRounded10">
-        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_PrimaryRounded10</item>
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
         <item name="etv_text_color_normal">@color/white</item>
         <item name="etv_text_color_disabled">@color/text_level3</item>
     </style>
 
     <!--中等长度按钮 Round-->
     <style name="StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10">
-        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_PrimaryRounded10</item>
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
         <item name="etv_text_color_normal">@color/white</item>
         <item name="etv_text_color_disabled">@color/text_level3</item>
     </style>
 
     <!--短按钮 Round-->
     <style name="StyleBtnShort.CodeDrawable_PrimaryGradientRounded10">
-        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_PrimaryRounded10</item>
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
         <item name="etv_text_color_normal">@color/white</item>
         <item name="etv_text_color_disabled">@color/text_level3</item>
     </style>
