@@ -27,9 +27,9 @@
         android:textColor="@color/text_level3"
         android:textSize="14sp" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.peter.viewgrouptutorial.drawable.DButton
         android:id="@id/base_retry_btn"
-        style="@style/Style_BtnMedium.PrimaryRound"
+        style="@style/StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10"
         android:layout_marginTop="10dp"
         android:text="@string/page_error_retry_action_tips" />
 

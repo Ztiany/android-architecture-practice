@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.android.base.ui.shape.ShapeRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/StyleShapeable_Selector_WhiteRectangle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/sel_selectable_item_white_bg"
     android:orientation="horizontal">
 
     <TextView
@@ -22,4 +22,4 @@
         android:layout_below="@id/dialog_address_tv_province"
         android:background="#EFEFEF" />
 
-</RelativeLayout>
+</com.android.base.ui.shape.ShapeRelativeLayout>

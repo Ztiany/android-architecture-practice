@@ -223,14 +223,6 @@ ext {
             //https://github.com/coil-kt/coil
             coil                      : "io.coil-kt:coil:1.1.1",
 
-
-            ///////////////////////////////////////////////////////////////////////////
-            // Auto Service
-            ///////////////////////////////////////////////////////////////////////////
-            autoService               : "com.google.auto.service:auto-service:1.0",
-            autoServiceApt            : "com.google.auto.service:auto-service:1.0",
-
-
             ///////////////////////////////////////////////////////////////////////////
             // Others
             ///////////////////////////////////////////////////////////////////////////
@@ -277,7 +269,13 @@ ext {
             htmlDSL                : "com.jaredrummler:html-dsl:1.0.0",
 
             //https://github.com/kyleduo/SwitchButton
-            switchButton           : "com.kyleduo.switchbutton:library:2.1.0"
+            switchButton           : "com.kyleduo.switchbutton:library:2.1.0",
+
+            //https://github.com/Ztiany/android-drawable-view
+            drawableView           : 'io.github.ztiany:android-drawable-view:1.0.4',
+
+            //https://github.com/getActivity/ToastUtils
+            toastUtils             : 'com.github.getActivity:ToastUtils:11.0'
     ]
 
 

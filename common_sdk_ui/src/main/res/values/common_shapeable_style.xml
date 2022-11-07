@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+     （1）以下 Style，仅适用于  com.com.android.base.ui.shape 包下的 View，当然也可以参考代码自行扩展该包下的 View。
+     （2）com.com.android.base.ui.shape 下的 View 不支持渐变背景，如果需要渐变，可以所以使用 common_drawable_style.xml 中定义的 style。
+     -->
+
+    <style name="StyleShapeable_TopRounded10">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+    </style>
+
+    <style name="StyleShapeable_Rectangle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <style name="StyleBtnFullLine.Shapeable_Selector_Black">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangle</item>
+        <item name="msd_backgroundColor_disabled">@color/widget_btn_black_disable</item>
+        <item name="msd_backgroundColor_pressed">@color/widget_btn_black_press</item>
+        <item name="msd_backgroundColor_normal">@color/widget_btn_black_normal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="StyleBtnLong.Shapeable_Selector_BlackRounded10">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rounded10</item>
+        <item name="msd_backgroundColor_disabled">@color/widget_btn_black_disable</item>
+        <item name="msd_backgroundColor_pressed">@color/widget_btn_black_press</item>
+        <item name="msd_backgroundColor_normal">@color/widget_btn_black_normal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="StyleBtnMedium.Shapeable_Selector_BlackRounded10">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rounded10</item>
+        <item name="msd_backgroundColor_disabled">@color/widget_btn_black_disable</item>
+        <item name="msd_backgroundColor_pressed">@color/widget_btn_black_press</item>
+        <item name="msd_backgroundColor_normal">@color/widget_btn_black_normal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="StyleShapeable_Selector_WhiteRectangle">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangle</item>
+        <item name="msd_backgroundColor_disabled">@color/widget_white_disable</item>
+        <item name="msd_backgroundColor_pressed">@color/widget_white_pressed</item>
+        <item name="msd_backgroundColor_normal">@color/widget_white_normal</item>
+    </style>
+
+    <style name="StyleShapeable_Selector_WhiteRounded10">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rounded10</item>
+        <item name="msd_backgroundColor_disabled">@color/widget_white_disable</item>
+        <item name="msd_backgroundColor_pressed">@color/widget_white_pressed</item>
+        <item name="msd_backgroundColor_normal">@color/widget_white_normal</item>
+    </style>
+
+</resources>

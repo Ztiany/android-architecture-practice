@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 以下 Style，仅适用于 com.peter.viewgrouptutorial.drawable 包下的 View，当然也可以参考代码自行扩展该包下的 View。 -->
+
+    <!-- ================================================= CodeDrawableView Primary Base Styles ===================================================== -->
+    <style name="StyleCodeDrawable_Shape_GradientStyle_Primary">
+        <item name="cgd_gradient_start_color">@color/colorPrimary</item>
+        <item name="cgd_gradient_end_color">#56C4FF</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryGradient">
+        <item name="cgd_shape_gradient_style">@style/StyleCodeDrawable_Shape_GradientStyle_Primary</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryGradientRounded10">
+        <item name="cgd_shape_gradient_style">@style/StyleCodeDrawable_Shape_GradientStyle_Primary</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimarySolid">
+        <item name="cgd_shape_solid">@color/colorPrimary</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimarySolidRounded10">
+        <item name="cgd_shape_solid">@color/colorPrimary</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryDisabled">
+        <item name="cgd_shape_solid">#FFEED9</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryDisabledRounded10">
+        <item name="cgd_shape_solid">#FFEED9</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+    </style>
+
+    <style name="StyleDrawableView_SelectorDrawable_Primary">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryGradient</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimarySolid</item>
+        <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabled</item>
+    </style>
+
+    <style name="StyleDrawableView_SelectorDrawable_PrimaryRounded10">
+        <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryGradientRounded10</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimarySolidRounded10</item>
+        <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabledRounded10</item>
+    </style>
+
+    <!-- ================================================= CodeDrawableView Primary Styles ===================================================== -->
+    <style name="StyleBtnFullLine.CodeDrawable_PrimaryGradient">
+        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_Primary</item>
+        <item name="etv_text_color_normal">@color/white</item>
+        <item name="etv_text_color_disabled">@color/text_level3</item>
+    </style>
+
+    <style name="StyleBtnLong.CodeDrawable_PrimaryGradientRounded10">
+        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_PrimaryRounded10</item>
+        <item name="etv_text_color_normal">@color/white</item>
+        <item name="etv_text_color_disabled">@color/text_level3</item>
+    </style>
+
+    <!--中等长度按钮 Round-->
+    <style name="StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10">
+        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_PrimaryRounded10</item>
+        <item name="etv_text_color_normal">@color/white</item>
+        <item name="etv_text_color_disabled">@color/text_level3</item>
+    </style>
+
+    <!--短按钮 Round-->
+    <style name="StyleBtnShort.CodeDrawable_PrimaryGradientRounded10">
+        <item name="cdv_selector_appearance">@style/StyleDrawableView_SelectorDrawable_PrimaryRounded10</item>
+        <item name="etv_text_color_normal">@color/white</item>
+        <item name="etv_text_color_disabled">@color/text_level3</item>
+    </style>
+
+</resources>

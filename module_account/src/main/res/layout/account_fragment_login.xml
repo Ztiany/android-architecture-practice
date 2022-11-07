@@ -110,9 +110,9 @@
                 app:cet_enable_content_clearable="true"
                 app:cet_enable_password_visibility_toggle="true" />
 
-            <Button
+            <com.peter.viewgrouptutorial.drawable.DButton
                 android:id="@+id/account_btn_login"
-                style="@style/Style_BtnLong.PrimaryRound"
+                style="@style/StyleBtnLong.CodeDrawable_PrimaryGradientRounded10"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"
                 android:enabled="true"

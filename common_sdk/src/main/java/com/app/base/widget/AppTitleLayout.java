@@ -3,6 +3,7 @@ package com.app.base.widget;
 
 import static com.android.base.utils.android.views.ViewEx.getRealContext;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
@@ -28,6 +30,7 @@ import com.android.base.utils.android.compat.SystemBarCompat;
 import com.android.base.utils.android.views.TintKit;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
+import com.google.android.material.internal.ToolbarUtils;
 
 import timber.log.Timber;
 
@@ -216,6 +219,12 @@ public class AppTitleLayout extends LinearLayout {
                 break;
             }
         }
+    }
+
+    @SuppressLint("RestrictedApi")
+    @Nullable
+    public View findMenuView(@IdRes int menuId) {
+        return ToolbarUtils.getActionMenuItemView(getToolbar(), menuId);
     }
 
 }

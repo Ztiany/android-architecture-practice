@@ -55,6 +55,8 @@ dependencies {
     implementation AndroidLibraries.ktx
     //kotlin
     implementation KotlinLibraries.kotlinStdlib
+    //third
+    api UILibraries.drawableView
     //log
     implementation ThirdLibraries.timber
 }

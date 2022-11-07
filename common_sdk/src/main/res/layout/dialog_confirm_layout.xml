@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.com.android.base.ui.shape.ShapeableLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_rect_white_round10"
     android:orientation="vertical"
+    app:msd_backgroundColor_normal="@color/white"
+    app:shapeAppearance="@style/StyleShapeable_Rounded10"
     tools:ignore="ContentDescription">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,4 +80,4 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp" />
 
-</LinearLayout>
+</com.com.android.base.ui.shape.ShapeableLinearLayout>
