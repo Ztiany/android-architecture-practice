@@ -155,7 +155,7 @@ class GalleryActivity : AppBaseActivity() {
         curPosition = galleryInfo.position
         initializedPositionPhoto = galleryInfo.photos[curPosition]
 
-        SystemBarCompat.setTranslucentSystemBar(this, true, false)
+        SystemBarCompat.setExtendsToSystemBar(this, true, false)
         if (AndroidVersion.atLeast(21)) {
             window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
         }

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * 分发 windowInsets 到每一个子 View。
+ * 分发 WindowInsets 到每一个子 View 的 FrameLayout。
  */
 public class WindowInsetsFrameLayout extends FrameLayout {
 

@@ -75,10 +75,11 @@ public class AppTitleLayout extends LinearLayout {
         int iconTintColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_navigation_icon_tint, -1);
         int titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.BLACK);
         int menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.BLACK);
-        boolean adjustForStatusBar = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_adjust_for_status, false);
+        boolean fitStatusInsetFor19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fits_status_inset_for19, false);
+        boolean fitStatusInsetAfter19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fits_status_inset_after19, false);
         boolean titleCentered = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_title_centered, false);
         //add layout
-        inflateLayout(context, adjustForStatusBar);
+        inflateLayout(context, fitStatusInsetFor19, fitStatusInsetAfter19);
         //get resource
         iniToolbar(title, titleCentered, showCuttingLine, titleColor, cuttingLineBg);
         //icon
@@ -87,9 +88,9 @@ public class AppTitleLayout extends LinearLayout {
         initMenu(menuResId, menuColor);
     }
 
-    private void inflateLayout(@NonNull Context context, boolean adjustForStatusBar) {
+    private void inflateLayout(@NonNull Context context, boolean fitStatusInsetFor19, boolean fitStatusInsetAfter19) {
         mOriginalTopPadding = getPaddingTop();
-        adjustForStatusBar(adjustForStatusBar);
+        fitStatusInset(fitStatusInsetFor19, fitStatusInsetAfter19);
         setOrientation(VERTICAL);
         inflate(context, R.layout.widget_title_layout, this);
     }
@@ -138,14 +139,14 @@ public class AppTitleLayout extends LinearLayout {
         mToolbar.setTitleTextColor(titleColor);
     }
 
-    public void adjustForStatusBar(boolean adjustForStatusBar) {
+    public void fitStatusInset(boolean fitStatusInsetFor19, boolean fitStatusInsetAfter19) {
+        FragmentActivity realContext = getRealContext(this);
+        if (realContext == null) {
+            return;
+        }
         //adjust for status bar
-        if (AndroidVersion.atLeast(19)) {
-            if (adjustForStatusBar) {
-                setPadding(getPaddingLeft(), mOriginalTopPadding + SystemBarCompat.getStatusBarHeight(getContext()), getPaddingRight(), getPaddingBottom());
-            } else {
-                setPadding(getPaddingLeft(), mOriginalTopPadding, getPaddingRight(), getPaddingBottom());
-            }
+        if ((fitStatusInsetFor19 && AndroidVersion.at(19)) || (fitStatusInsetAfter19 && AndroidVersion.above(20))) {
+            setPadding(getPaddingLeft(), mOriginalTopPadding + SystemBarCompat.getStatusBarHeight(realContext), getPaddingRight(), getPaddingBottom());
         }
     }
 

@@ -34,7 +34,7 @@ class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SystemBarCompat.setTransparentSystemBarViaViewFlags(this)
+        SystemBarCompat.setExtendsToSystemBar(this, true)
         //https://medium.com/@elye.project/three-important-yet-unbeknown-android-app-launcher-behaviors-part-2-139a4d88157
         //https://issuetracker.google.com/issues/72299534
         if (!isTaskRoot && intent.hasCategory(Intent.CATEGORY_LAUNCHER) && intent.action != null && intent.action == Intent.ACTION_MAIN) {

@@ -10,8 +10,8 @@
         style="@style/Style_TitleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:atl_adjust_for_status="false"
         app:atl_disable_navigation="true"
+        app:atl_fits_status_inset_for19="true"
         app:atl_title="Interface"
         app:layout_constraintTop_toTopOf="parent" />
 

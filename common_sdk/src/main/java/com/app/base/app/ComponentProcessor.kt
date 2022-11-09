@@ -42,7 +42,7 @@ class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
         if (activity is CustomizeSystemBar) {
             return
         }
-        SystemBarCompat.setTranslucentStatusOn19(activity)
+        SystemBarCompat.setExtendsToSystemBarOnlyFor19(activity, true, false)
         activity.setStatusBarLightMode()
         if (supportStatusBarLightMode) {
             SystemBarCompat.setStatusBarColor(

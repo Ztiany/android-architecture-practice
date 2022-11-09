@@ -20,7 +20,8 @@
         <attr name="atl_menu_id" format="reference" />
         <attr name="atl_show_cutting_line" format="boolean" />
         <attr name="atl_show_cutting_line_bg" format="color|reference" />
-        <attr name="atl_adjust_for_status" format="boolean" />
+        <attr name="atl_fits_status_inset_for19" format="boolean" />
+        <attr name="atl_fits_status_inset_after19" format="boolean" />
         <attr name="atl_menu_color" format="color|reference" />
     </declare-styleable>
 
