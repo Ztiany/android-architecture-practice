@@ -146,7 +146,7 @@ public class AppTitleLayout extends LinearLayout {
         }
         //adjust for status bar
         if ((fitStatusInsetFor19 && AndroidVersion.at(19)) || (fitStatusInsetAfter19 && AndroidVersion.above(20))) {
-            setPadding(getPaddingLeft(), mOriginalTopPadding + SystemBarCompat.getStatusBarHeight(realContext), getPaddingRight(), getPaddingBottom());
+            setPadding(getPaddingLeft(), mOriginalTopPadding + SystemBarCompat.getStatusBarHeightIgnoreVisibility(realContext), getPaddingRight(), getPaddingBottom());
         }
     }
 
