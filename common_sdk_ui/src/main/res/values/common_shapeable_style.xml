@@ -2,8 +2,8 @@
 <resources>
 
     <!--
-     （1）以下 Style，仅适用于  com.com.android.base.ui.shape 包下的 View，当然也可以参考代码自行扩展该包下的 View。
-     （2）com.com.android.base.ui.shape 下的 View 不支持渐变背景，如果需要渐变，可以所以使用 common_drawable_style.xml 中定义的 style。
+     （1）以下 Style，仅适用于  com.android.base.ui.shape. 包下的 View，当然也可以参考代码自行扩展该包下的 View。
+     （2）com.android.base.ui.shape 下的 View 不支持渐变背景，如果需要渐变，可以所以使用 common_drawable_style.xml 中定义的 style。
      -->
 
     <style name="StyleShapeable_TopRounded10">

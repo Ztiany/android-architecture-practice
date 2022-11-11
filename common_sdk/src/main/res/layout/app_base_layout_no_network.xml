@@ -30,7 +30,7 @@
         android:textColor="@color/text_level3"
         android:textSize="14sp" />
 
-    <com.peter.viewgrouptutorial.drawable.DButton
+    <com.android.base.ui.drawable.DButton
         android:id="@id/base_retry_btn"
         style="@style/StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10"
         android:layout_marginTop="10dp"

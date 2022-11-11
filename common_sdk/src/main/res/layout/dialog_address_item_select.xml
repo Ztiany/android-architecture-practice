@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.base.ui.shape.ShapeRelativeLayout
+<com.android.base.ui.shape.ShapeableRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/StyleShapeable_Selector_WhiteRectangular"
@@ -22,4 +22,4 @@
         android:layout_below="@id/dialog_address_tv_province"
         android:background="#EFEFEF" />
 
-</com.android.base.ui.shape.ShapeRelativeLayout>
+</com.android.base.ui.shape.ShapeableRelativeLayout>

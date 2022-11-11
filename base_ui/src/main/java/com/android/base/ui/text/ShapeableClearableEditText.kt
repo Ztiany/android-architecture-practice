@@ -3,17 +3,17 @@ package com.android.base.ui.text
 import android.content.Context
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
-import com.com.android.base.ui.shape.EnhancedShapeable
-import com.com.android.base.ui.shape.EnhancedTextView
-import com.com.android.base.ui.shape.MaterialShapeDrawableHelper
-import com.com.android.base.ui.shape.ShapeTextColorHelper
+import com.android.base.ui.common.TextColorView
+import com.android.base.ui.shape.EnhancedShapeable
+import com.android.base.ui.shape.MaterialShapeDrawableHelper
+import com.android.base.ui.shape.ShapeTextColorHelper
 import com.google.android.material.shape.ShapeAppearanceModel
 
 class ShapeableClearableEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     @AttrRes defStyleAttr: Int = android.R.attr.editTextStyle
-) : ClearableEditText(context, attrs, defStyleAttr), EnhancedShapeable, EnhancedTextView {
+) : ClearableEditText(context, attrs, defStyleAttr), EnhancedShapeable, TextColorView {
 
     private val mdHelper = MaterialShapeDrawableHelper(context, attrs, defStyleAttr)
 

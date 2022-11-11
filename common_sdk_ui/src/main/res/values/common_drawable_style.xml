@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- 以下 Style，仅适用于 com.peter.viewgrouptutorial.drawable 包下的 View，当然也可以参考代码自行扩展该包下的 View。 -->
+    <!-- 以下 Style，仅适用于 com.android.base.ui.drawable.DButton 包下的 View，当然也可以参考代码自行扩展该包下的 View。 -->
 
     <!-- ================================================= CodeDrawableView Primary Base Styles ===================================================== -->
     <style name="StyleCodeDrawable_Shape_GradientStyle_Primary">
@@ -58,28 +58,28 @@
     <!-- ================================================= CodeDrawableView Primary Styles ===================================================== -->
     <style name="StyleBtnFullLine.CodeDrawable_PrimaryGradient">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_Primary</item>
-        <item name="etv_text_color_normal">@color/white</item>
-        <item name="etv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">@color/white</item>
+        <item name="dtv_text_color_disabled">@color/text_level3</item>
     </style>
 
     <style name="StyleBtnLong.CodeDrawable_PrimaryGradientRounded10">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
-        <item name="etv_text_color_normal">@color/white</item>
-        <item name="etv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">@color/white</item>
+        <item name="dtv_text_color_disabled">@color/text_level3</item>
     </style>
 
     <!--中等长度按钮 Round-->
     <style name="StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
-        <item name="etv_text_color_normal">@color/white</item>
-        <item name="etv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">@color/white</item>
+        <item name="dtv_text_color_disabled">@color/text_level3</item>
     </style>
 
     <!--短按钮 Round-->
     <style name="StyleBtnShort.CodeDrawable_PrimaryGradientRounded10">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
-        <item name="etv_text_color_normal">@color/white</item>
-        <item name="etv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">@color/white</item>
+        <item name="dtv_text_color_disabled">@color/text_level3</item>
     </style>
 
 </resources>
