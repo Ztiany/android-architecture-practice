@@ -4,3 +4,6 @@
 [submodule "android-arch-base"]
 	path = base_arch
 	url = git@github.com:Ztiany/android-arch-base.git
+[submodule "android-ui-base"]
+	path = base_ui
+	url = git@github.com:Ztiany/android-ui-base.git
