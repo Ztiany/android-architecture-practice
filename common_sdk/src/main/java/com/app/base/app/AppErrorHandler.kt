@@ -10,13 +10,13 @@ import com.blankj.utilcode.util.AppUtils
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.app.base.data.protocol.ApiHelper
-import com.android.common.api.router.AppRouter
-import com.android.common.api.usermanager.UserManager
-import com.android.common.api.usermanager.isUserLogin
+import com.app.common.api.router.AppRouter
+import com.app.common.api.usermanager.UserManager
+import com.app.common.api.usermanager.isUserLogin
 import com.app.base.widget.dialog.TipsTool
 import com.app.base.widget.dialog.showConfirmDialog
 import dagger.hilt.android.qualifiers.ApplicationContext
-import me.ztiany.architecture.main.api.MainModuleNavigator
+import com.biyun.cg.box.main.api.MainModuleNavigator
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -1,9 +1,9 @@
 package com.app.base.injection;
 
-import com.android.common.api.usermanager.UserManager;
+import com.app.common.api.usermanager.UserManager;
 import com.app.base.app.AppErrorHandler;
 import com.app.base.app.ErrorHandler;
-import com.android.common.api.network.ApiServiceFactoryProvider;
+import com.app.common.api.network.ApiServiceFactoryProvider;
 import com.app.base.app.ApiServiceFactoryProviderImpl;
 import com.app.base.component.usermanager.UserManagerImpl;
 

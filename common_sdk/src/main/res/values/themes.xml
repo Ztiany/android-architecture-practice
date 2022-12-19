@@ -5,18 +5,18 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="QMUI">
         <!--main color-->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <!--text-->
+        <item name="colorPrimary">@color/color_main</item>
+        <item name="android:statusBarColor">@color/color_status_bar</item>
+        <item name="android:windowBackground">@color/page_bg_color</item>
+        <!--text style-->
         <item name="android:textAllCaps">false</item>
         <!--qmui-->
         <item name="qmui_alpha_pressed">0.5</item>
         <item name="qmui_alpha_disabled">0.5</item>
         <item name="qmui_general_shadow_elevation">14dp</item>
         <item name="qmui_general_shadow_alpha">0.25</item>
-        <!--窗口默认背景-->
-        <item name="android:windowBackground">@color/page_bg_color</item>
+        <!--自定义颜色-->
+        <item name="app_color_main">@color/color_main</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

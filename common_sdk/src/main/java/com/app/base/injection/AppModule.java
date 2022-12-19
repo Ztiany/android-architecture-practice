@@ -2,10 +2,10 @@ package com.app.base.injection;
 
 import com.android.base.image.ImageLoader;
 import com.android.base.image.ImageLoaderFactory;
-import com.android.common.api.router.AppRouter;
-import com.android.common.api.router.AppNavigator;
-import com.android.common.api.services.AppService;
-import com.android.common.api.services.AppServiceManager;
+import com.app.common.api.router.AppRouter;
+import com.app.common.api.router.AppNavigator;
+import com.app.common.api.services.AppService;
+import com.app.common.api.services.AppServiceManager;
 import com.app.base.app.DefaultDispatcherProvider;
 import com.app.base.app.DispatcherProvider;
 import com.app.base.component.router.AppRouterImpl;

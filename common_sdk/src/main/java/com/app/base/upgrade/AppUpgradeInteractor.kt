@@ -15,7 +15,7 @@ import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
 import com.app.base.R
 import com.app.base.app.DispatcherProvider
-import com.android.common.api.network.ApiServiceFactoryProvider
+import com.app.common.api.network.ApiServiceFactoryProvider
 import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppSettings
 import com.app.base.injection.ApplicationScope

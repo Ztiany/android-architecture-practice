@@ -18,7 +18,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "me.ztiany.architcture.${project.name.toLowerCase()}"
+        applicationId "com.biyun.cg.box.${project.name.toLowerCase()}"
         minSdkVersion AppConfig.minSdkVersion
         targetSdkVersion AppConfig.targetSdkVersion
         versionCode AppConfig.versionCode

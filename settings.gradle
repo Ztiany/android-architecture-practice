@@ -10,16 +10,16 @@ include(':common_sdk_api')
 include(':common_sdk_ui')
 include(":common_sdk")
 
+
 //主业务模块
-include(":module_main")
-include(":module_main_api")
-include(":module_main_app")
+include(":module_main:main")
+include(":module_main:api")
+include(":module_main:app")
 
 //账户业务模块
-include(":module_account")
-include(":module_account_api")
-include(":module_account_app")
+include(":module_account:main")
+include(":module_account:api")
+include(":module_account:app")
 
 //APP 壳
 include(":app")
-

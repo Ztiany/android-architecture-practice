@@ -1,8 +1,0 @@
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,ExtraTranslation">
-
-    <string name="main_tab_business">Business</string>
-    <string name="main_tab_android">Android</string>
-    <string name="main_tab_interface">Interface</string>
-    <string name="main_exit_tips">再点击一次退出 APP</string>
-
-</resources>

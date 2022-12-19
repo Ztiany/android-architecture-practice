@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "me.ztiany.architecture.app"
+        applicationId "com.biyun.cg.box"
         minSdkVersion AppConfig.minSdkVersion
         targetSdkVersion AppConfig.targetSdkVersion
         versionCode AppConfig.versionCode
@@ -53,7 +53,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             manifestPlaceholders = [screenOrientation: "unspecified"]
-            resValue("string", "app_name", "Android Architecture Practice")
+            resValue("string", "app_name", "游戏盒子")
             ndk {
                 abiFilters 'armeabi-v7a', 'x86'
             }
@@ -65,7 +65,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue("string", "app_name", "Android Architecture Practice")
+            resValue("string", "app_name", "游戏盒子")
             ndk {
                 abiFilters 'armeabi-v7a'
             }
@@ -108,8 +108,8 @@ dependencies {
 
     //modules
     implementation project(":common_sdk")
-    implementation project(":module_main")
-    implementation project(":module_account")
+    implementation project(":module_main:main")
+    implementation project(":module_account:main")
 
     /*Hilt*/
     api AndroidLibraries.hiltDagger

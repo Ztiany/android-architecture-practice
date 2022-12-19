@@ -1,0 +1,11 @@
+apply from: "${rootProject.projectDir}/gradle/modularization_app.gradle"
+
+android {
+    resourcePrefix "main_"
+}
+
+dependencies {
+    implementation project(":module_main:main")
+    implementation project(":module_main:api")
+    implementation project(":module_account:api")
+}

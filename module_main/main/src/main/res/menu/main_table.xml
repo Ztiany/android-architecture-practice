@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <item
+        android:id="@id/main_table_game"
+        android:icon="@drawable/main_sel_tab_game"
+        android:title="@string/main_tab_game" />
+
+    <item
+        android:id="@id/main_table_welfare"
+        android:icon="@drawable/main_sel_tab_welfare"
+        android:title="@string/main_tab_welfare" />
+
+    <item
+        android:id="@id/main_table_mine"
+        android:icon="@drawable/main_sel_tab_mine"
+        android:title="@string/main_tab_mine" />
+
+</menu>

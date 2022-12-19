@@ -1,7 +1,7 @@
 package com.app.base.data.protocol
 
 import com.android.base.utils.android.views.getString
-import com.android.common.api.usermanager.UserManager
+import com.app.common.api.usermanager.UserManager
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.android.sdk.net.core.provider.*
 import com.app.base.R

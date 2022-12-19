@@ -1,7 +1,7 @@
 package com.app.base.injection
 
-import com.android.common.api.router.AppNavigator
-import com.android.common.api.services.AppService
+import com.app.common.api.router.AppNavigator
+import com.app.common.api.services.AppService
 
 interface DummyAppService : AppService
 class DummyAppServiceImpl : DummyAppService

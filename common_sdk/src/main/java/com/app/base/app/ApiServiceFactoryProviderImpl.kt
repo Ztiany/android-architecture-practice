@@ -1,6 +1,6 @@
 package com.app.base.app
 
-import com.android.common.api.network.ApiServiceFactoryProvider
+import com.app.common.api.network.ApiServiceFactoryProvider
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.service.ServiceFactory
 import javax.inject.Inject

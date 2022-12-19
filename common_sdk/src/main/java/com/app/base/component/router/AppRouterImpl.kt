@@ -1,7 +1,7 @@
 package com.app.base.component.router
 
-import com.android.common.api.router.AppRouter
-import com.android.common.api.router.AppNavigator
+import com.app.common.api.router.AppRouter
+import com.app.common.api.router.AppNavigator
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

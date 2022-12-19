@@ -24,8 +24,8 @@ import com.app.base.app.FragmentScaleAnimator
 import com.app.base.config.AppSettings
 import com.app.base.data.protocol.*
 import com.app.base.debug.DebugTools
-import com.android.common.api.router.AppRouter
-import com.android.common.api.usermanager.UserManager
+import com.app.common.api.router.AppRouter
+import com.app.common.api.usermanager.UserManager
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.base.widget.dialog.AppLoadingViewHost
 import dagger.Lazy

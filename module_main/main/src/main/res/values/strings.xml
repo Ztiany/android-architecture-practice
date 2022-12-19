@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,ExtraTranslation">
+
+    <string name="main_tab_game">云游戏</string>
+    <string name="main_tab_welfare">福利社区</string>
+    <string name="main_tab_mine">我的</string>
+    <string name="main_exit_tips">再点击一次退出 APP</string>
+    <string name="main_popular">热门</string>
+
+</resources>

@@ -3,8 +3,8 @@ package com.app.base.data.protocol;
 import androidx.annotation.RestrictTo;
 
 import com.blankj.utilcode.util.AppUtils;
-import com.android.common.api.usermanager.User;
-import com.android.common.api.usermanager.UserManager;
+import com.app.common.api.usermanager.User;
+import com.app.common.api.usermanager.UserManager;
 import com.android.sdk.net.core.https.HttpsUtils;
 import com.app.base.app.AndroidPlatform;
 import com.app.base.debug.Debug;

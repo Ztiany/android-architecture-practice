@@ -2,12 +2,27 @@
 <resources>
 
     <!-- ============================ Colors to apply in views ============================ -->
+    <attr name="app_color_main" format="color" />
+    <attr name="app_color_status_bar" format="color" />
+
+    <attr name="app_color_text_level1" format="color" />
+    <attr name="app_color_text_level2" format="color" />
+    <attr name="app_color_text_level3" format="color" />
+    <attr name="app_color_text_level4" format="color" />
+    <attr name="app_color_text_level5" format="color" />
+    <attr name="app_color_text_level6" format="color" />
+    <attr name="app_color_text_stress" format="color" />
+    <attr name="app_color_text_link" format="color" />
+    <attr name="app_color_text_variant1" format="color" />
+    <attr name="app_color_text_variant2" format="color" />
+
+
     <!--主色调-->
-    <color name="colorPrimary">#2D60FF</color>
+    <color name="colorPrimary">#7AFFB5</color>
+    <color name="color_main">#7AFFB5</color>
     <!--主暗色调-->
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <!--控件选中的颜色-->
-    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="color_status_bar">#FFFFFF</color>
     <!--窗口背景-->
     <color name="page_bg_color">#F6F6F6</color>
     <!--分割线-->
@@ -22,9 +37,15 @@
     <color name="widget_white_pressed">#E5E5E5</color>
     <color name="widget_white_normal">@color/white</color>
 
-    <color name="widget_bg_color_link1">#E5ECF9</color>
-    <color name="widget_bg_color_link2">#E8F0FF</color>
-    <color name="widget_bg_color_warn">#FFE9E7</color>
+    <color name="widget_line">#E0E0E0</color>
+
+    <!--组件渐变背景-->
+    <color name="color_gradient_primary_start">#7AFFB5</color>
+    <color name="color_gradient_primary_middle">#64D3E6</color>
+    <color name="color_gradient_primary_end">#C9A2FE</color>
+    <color name="color_gradient_primary_weak">#ECFCFF</color>
+    <color name="color_gradient_second_start">#FF4178</color>
+    <color name="color_gradient_second_end">#FB7E4D</color>
 
     <!--color for tips-->
     <color name="app_tips_success">#1A1A1A</color><!--提示：完成-->
@@ -34,12 +55,19 @@
     <!--color for text-->
     <color name="text_level1">#CCCCCC</color>
     <color name="text_level2">#333333</color>
+    <color name="text_level2_5">#666666</color>
     <color name="text_level3">#808080</color>
     <color name="text_level4">#999999</color>
-    <color name="text_level6">#1A1A1A</color>
-    <color name="text_link1">#387FFF</color>
-    <color name="text_link2">#3666F2</color>
-    <color name="text_warn">#F55F4E</color>
+    <color name="text_level5">#A7A7A7</color>
+    <color name="text_level6">#000000</color>
+    <color name="text_stress">#F44766</color>
+    <color name="text_link">#90B5F7</color>
+
+    <color name="text_variant1">#64D3E6</color>
+    <color name="text_variant1_bg">#EAFFF4</color>
+    <color name="text_variant2">#00D6E9</color>
+    <color name="text_variant2_bg">#EAFFF4</color>
+    <color name="text_variant2_stroke">#00D6E9</color>
 
     <!-- ============================ Palette ============================ -->
     <color name="translate">#00000000</color>

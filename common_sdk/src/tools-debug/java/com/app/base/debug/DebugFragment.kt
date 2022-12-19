@@ -9,7 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog.Builder
 import com.android.base.architecture.fragment.base.BaseUIFragment
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
-import com.android.common.api.usermanager.UserManager
+import com.app.common.api.usermanager.UserManager
 import com.app.base.R.string
 import com.app.base.config.EnvironmentConfigFragment
 import com.app.base.data.storage.StorageManager

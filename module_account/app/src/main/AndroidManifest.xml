@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.biyun.cg.box.account.app">
+
+    <application
+        android:name="com.biyun.cg.box.account.app.AccountAppContext"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="账户模块"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:replace="android:theme,android:label,android:allowBackup">
+
+        <activity
+            android:name="com.biyun.cg.box.account.app.AccountDebugActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================ Launch ============================ -->
+    <style name="MainAppTheme.Launch" parent="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@drawable/main_launch_bg</item>
+    </style>
+
+    <!-- ============================ Main ============================ -->
+    <item name="main_table_game" type="id" />
+    <item name="main_table_welfare" type="id" />
+    <item name="main_table_mine" type="id" />
+    <dimen name="main_table_height">50dp</dimen>
+
+    <!-- https://stackoverflow.com/questions/40172219/custom-textsize-of-bottomnavigationview-support-android -->
+    <style name="MainTableTextAppearanceSelected" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="MainTableTextAppearanceNormal" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Main_StyleCodeDrawable_Shape_GradientStyle_Popular">
+        <item name="cgd_gradient_start_color">#FF4178</item>
+        <item name="cgd_gradient_end_color">#FB7E4D</item>
+    </style>
+
+    <style name="Main_StyleCodeDrawable_Shape_CornerStyle_Popular">
+        <item name="cgd_corner_top_left">10dp</item>
+        <item name="cgd_corner_bottom_right">10dp</item>
+    </style>
+
+    <style name="Main_StyleCodeDrawable_Shape_PopularBg">
+        <item name="cdv_drawable_type">gradient</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_gradient_style">@style/Main_StyleCodeDrawable_Shape_GradientStyle_Popular</item>
+        <item name="cgd_shape_corner_style">@style/Main_StyleCodeDrawable_Shape_CornerStyle_Popular</item>
+    </style>
+
+</resources>
