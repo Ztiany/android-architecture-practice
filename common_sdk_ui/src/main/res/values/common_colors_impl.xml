@@ -10,7 +10,7 @@
     <!--状态栏-->
     <color name="color_status_bar">#FFFFFF</color>
     <!--窗口背景-->
-    <color name="page_bg_color">#F6F6F6</color>
+    <color name="page_bg_color">#F3F6FB</color>
     <!--分割线-->
     <color name="divider_color">#E0E0E0</color>
 

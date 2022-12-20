@@ -12,6 +12,13 @@
         <item name="cornerSizeTopRight">10dp</item>
     </style>
 
+    <style name="StyleShapeable_BottomRounded10">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+    </style>
+
+
     <style name="StyleBtnFullLine.Shapeable_Selector_Deepest">
         <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangular</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
@@ -31,7 +38,7 @@
     <style name="StyleBtnMedium.Shapeable_Selector_DeepestRounded10">
         <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity80</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
         <item name="msd_backgroundColor_normal">?app_color_deepest</item>
         <item name="android:textColor">?app_color_lightest</item>
     </style>
@@ -39,14 +46,28 @@
     <style name="StyleShapeable_Selector_LightestRectangular">
         <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rectangular</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity80</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 
     <style name="StyleShapeable_Selector_LightestRounded10">
         <item name="shapeAppearanceOverlay">@style/StyleShapeable_Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity90</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+    </style>
+
+    <style name="StyleShapeable_Selector_LightestTopRounded10">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_TopRounded10</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+    </style>
+
+    <style name="StyleShapeable_Selector_LightestBottomRounded10">
+        <item name="shapeAppearanceOverlay">@style/StyleShapeable_BottomRounded10</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 

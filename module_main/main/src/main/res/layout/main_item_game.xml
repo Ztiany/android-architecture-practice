@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context=".home.MainActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/main_tv_game_cover"
@@ -24,7 +25,7 @@
         android:paddingHorizontal="6dp"
         android:paddingVertical="3dp"
         android:text="@string/main_popular"
-        android:textColor="@color/white"
+        android:textColor="?app_color_lightest"
         android:textSize="10sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:textColor="@color/text_level1"
+        android:textColor="?app_color_text_level1"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -46,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:textColor="@color/text_level3"
+        android:textColor="?app_color_text_level3"
         android:textSize="10sp"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -59,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:textColor="@color/text_stress"
+        android:textColor="?app_color_text_stress"
         android:textSize="10sp"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintLeft_toRightOf="@id/main_tv_trying"

@@ -6,11 +6,15 @@ import androidx.lifecycle.lifecycleScope
 import com.android.base.architecture.fragment.tools.clearBackStack
 import com.android.base.architecture.fragment.tools.doFragmentTransaction
 import com.android.base.architecture.fragment.tools.findFragmentByTag
+import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
 import com.app.common.api.usermanager.UserManager
 import com.app.base.app.AppBaseActivity
+import com.app.base.app.CustomizeSystemBar
+import com.app.base.utils.setStatusBarDarkMode
+import com.app.base.utils.setStatusBarLightMode
 import com.app.base.widget.dialog.TipsTool
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -28,7 +32,7 @@ import javax.inject.Inject
  *@author Ztiany
  */
 @AndroidEntryPoint
-class MainActivity : AppBaseActivity() {
+class MainActivity : AppBaseActivity(), CustomizeSystemBar {
 
     private var clickToExit = false
 
@@ -37,6 +41,12 @@ class MainActivity : AppBaseActivity() {
     @Inject lateinit var mainNavigator: MainNavigator
 
     @Inject lateinit var userManager: UserManager
+
+    override fun initialize(savedInstanceState: Bundle?) {
+        super.initialize(savedInstanceState)
+        SystemBarCompat.setExtendsToSystemBar(this, true)
+        setStatusBarLightMode()
+    }
 
     override fun provideLayout() = R.layout.main_activity
 

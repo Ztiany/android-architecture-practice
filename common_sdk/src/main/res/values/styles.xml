@@ -46,6 +46,7 @@
         <item name="android:elevation">1.5dp</item>
         <item name="atl_navigation_icon_tint">@color/black</item>
         <item name="atl_title_color">@color/black</item>
+        <item name="atl_title_centered">true</item>
         <item name="android:background">@color/white</item>
         <item name="atl_navigation_icon">@drawable/icon_back</item>
         <item name="android:layout_width">match_parent</item>

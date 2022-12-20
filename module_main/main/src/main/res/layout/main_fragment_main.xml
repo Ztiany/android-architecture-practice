@@ -20,8 +20,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/mainBottomBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/main_table_height"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:background="?app_color_lightest"
         app:itemIconSize="22dp"
         app:itemTextAppearanceActive="@style/MainTableTextAppearanceSelected"
         app:itemTextAppearanceInactive="@style/MainTableTextAppearanceNormal"

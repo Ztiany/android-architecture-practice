@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.android.base.ui.banner.BannerViewPager
+            android:id="@+id/main_banner"
             android:layout_width="match_parent"
             android:layout_height="376dp"
             android:background="@color/black"
@@ -18,83 +19,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_rv_games"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/red" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/black" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/white" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/green" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/red" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/black" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/white" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/green" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/red" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/black" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/white" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/green" />
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <!--    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/main_rv_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

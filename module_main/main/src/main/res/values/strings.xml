@@ -4,6 +4,13 @@
     <string name="main_tab_welfare">福利社区</string>
     <string name="main_tab_mine">我的</string>
     <string name="main_exit_tips">再点击一次退出 APP</string>
+
+    <string name="main_welfare">福利</string>
     <string name="main_popular">热门</string>
+    <string name="main_signing_welfare">签到福利</string>
+    <string name="main_sign_immediately">立即签到</string>
+    <string name="main_recharge_record">充值记录</string>
+    <string name="main_settings">设置</string>
+    <string name="main_help_feedback">帮助与反馈</string>
 
 </resources>

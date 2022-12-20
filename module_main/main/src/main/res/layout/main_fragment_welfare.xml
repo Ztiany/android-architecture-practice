@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,11 +7,58 @@
     android:orientation="vertical">
 
     <com.app.base.widget.AppTitleLayout
-        android:id="@+id/meAtl"
+        android:id="@+id/main_title"
         style="@style/Style_TitleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:atl_disable_navigation="true"
-        app:atl_title="Android" />
+        app:atl_fits_status_inset_after19="true"
+        app:atl_title="@string/main_welfare"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/main_welfare_banner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/common_page_edge"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/main_img_welfare"
+        app:layout_constraintDimensionRatio="2.15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:shapeAppearanceOverlay="@style/StyleShapeable_Rounded10" />
+
+    <com.android.base.ui.shape.ShapeableFrameLayout
+        style="@style/StyleShapeable_Selector_LightestRounded10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/common_page_edge"
+        android:layout_marginTop="10dp"
+        android:padding="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_welfare_banner">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="@string/main_signing_welfare"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/main_icon_welfare" />
+
+        <com.android.base.ui.drawable.DTextView
+            android:id="@+id/main_tv_sign"
+            style="@style/StyleBtnWrap.CodeDrawable_PrimaryGradientRounded5"
+            android:layout_gravity="center_vertical|end"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:text="@string/main_sign_immediately"
+            android:textSize="12sp" />
+
+    </com.android.base.ui.shape.ShapeableFrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
