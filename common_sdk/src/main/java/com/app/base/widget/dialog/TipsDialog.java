@@ -56,12 +56,12 @@ class TipsDialog extends AppCompatDialog {
             break;
             case TipsDialogBuilder.TYPE_FAILURE: {
                 mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_tips_failed, 0, 0);
-                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.app_tips_warn));
+                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.text_stress));
             }
             break;
             case TipsDialogBuilder.TYPE_WARNING: {
                 mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_tips_failed, 0, 0);
-                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.app_tips_warn));
+                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.text_stress));
             }
             break;
         }

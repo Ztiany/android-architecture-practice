@@ -25,7 +25,7 @@
         android:paddingEnd="20dp"
         android:paddingBottom="8dp"
         android:text="@string/page_error_load_fail_tips"
-        android:textColor="@color/text_level3"
+        android:textColor="@color/text_level2"
         android:textSize="14sp" />
 
     <com.android.base.ui.drawable.DButton

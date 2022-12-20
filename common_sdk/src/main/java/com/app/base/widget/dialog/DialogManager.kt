@@ -196,7 +196,7 @@ open class BaseDialogBuilder(val context: Context) {
             }
         }
     var positiveText: CharSequence? = context.getText(R.string.sure)
-    @ColorInt var positiveColor: Int = context.getColorCompat(R.color.colorPrimary)
+    @ColorInt var positiveColor: Int = context.getColorCompat(R.color.color_main)
 
     /**否认按钮*/
     @StringRes
@@ -209,7 +209,7 @@ open class BaseDialogBuilder(val context: Context) {
             }
         }
     var negativeText: CharSequence? = context.getText(R.string.cancel_)
-    @ColorInt var negativeColor: Int = context.getColorCompat(R.color.text_level2)
+    @ColorInt var negativeColor: Int = context.getColorCompat(R.color.text_level1)
 
     fun disableNegative() {
         negativeText = null
@@ -278,7 +278,7 @@ class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
             }
         }
     var neutralText: CharSequence? = null
-    @ColorInt var neutralColor: Int = context.getColorCompat(R.color.text_level1)
+    @ColorInt var neutralColor: Int = context.getColorCompat(R.color.text_level4)
 
     ///////////////////////////////////////////////////////////////////////////
     // checkbox

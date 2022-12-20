@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- 以下 Style，仅适用于 com.android.base.ui.drawable.DButton 包下的 View，当然也可以参考代码自行扩展该包下的 View。 -->
+    <!-- 以下 Style，仅适用于 com.android.base.ui.drawable 包下的 View，当然也可以参考代码自行扩展该包下的 View。 -->
 
-    <!-- ================================================= CodeDrawableView Primary Base Styles ===================================================== -->
+    <!-- ==================================================================================== ===================================================== -->
+    <!--  主色按钮  -->
+    <!-- ==================================================================================== ===================================================== -->
+    <!--internal-->
     <style name="StyleCodeDrawable_Shape_GradientStyle_Primary">
-        <item name="cgd_gradient_start_color">@color/colorPrimary</item>
-        <item name="cgd_gradient_end_color">#56C4FF</item>
+        <item name="cgd_gradient_start_color">?app_color_main</item>
+        <item name="cgd_gradient_end_color">?app_color_main_variant</item>
     </style>
 
     <style name="StyleCodeDrawable_ShapeDrawable_PrimaryGradient">
@@ -20,24 +23,24 @@
         <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
     </style>
 
-    <style name="StyleCodeDrawable_ShapeDrawable_PrimarySolid">
-        <item name="cgd_shape_solid">@color/colorPrimary</item>
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryPressed">
+        <item name="cgd_shape_solid">?app_color_main</item>
         <item name="cgd_shape">rectangle</item>
     </style>
 
-    <style name="StyleCodeDrawable_ShapeDrawable_PrimarySolidRounded10">
-        <item name="cgd_shape_solid">@color/colorPrimary</item>
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryPressedRounded10">
+        <item name="cgd_shape_solid">?app_color_main</item>
         <item name="cgd_shape">rectangle</item>
         <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
     </style>
 
     <style name="StyleCodeDrawable_ShapeDrawable_PrimaryDisabled">
-        <item name="cgd_shape_solid">#FFEED9</item>
+        <item name="cgd_shape_solid">#CCCCCC</item>
         <item name="cgd_shape">rectangle</item>
     </style>
 
     <style name="StyleCodeDrawable_ShapeDrawable_PrimaryDisabledRounded10">
-        <item name="cgd_shape_solid">#FFEED9</item>
+        <item name="cgd_shape_solid">#CCCCCC</item>
         <item name="cgd_shape">rectangle</item>
         <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
     </style>
@@ -45,41 +48,194 @@
     <style name="StyleCodeDrawable_SelectorDrawable_Primary">
         <item name="cdv_drawable_type">selector</item>
         <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryGradient</item>
-        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimarySolid</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimaryPressed</item>
         <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabled</item>
     </style>
 
     <style name="StyleCodeDrawable_SelectorDrawable_PrimaryRounded10">
         <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryGradientRounded10</item>
-        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimarySolidRounded10</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimaryPressedRounded10</item>
         <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabledRounded10</item>
     </style>
 
-    <!-- ================================================= CodeDrawableView Primary Styles ===================================================== -->
+    <!--public-->
     <style name="StyleBtnFullLine.CodeDrawable_PrimaryGradient">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_Primary</item>
-        <item name="dtv_text_color_normal">@color/white</item>
-        <item name="dtv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
     <style name="StyleBtnLong.CodeDrawable_PrimaryGradientRounded10">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
-        <item name="dtv_text_color_normal">@color/white</item>
-        <item name="dtv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
     <!--中等长度按钮 Round-->
     <style name="StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
-        <item name="dtv_text_color_normal">@color/white</item>
-        <item name="dtv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
     <!--短按钮 Round-->
     <style name="StyleBtnShort.CodeDrawable_PrimaryGradientRounded10">
         <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryRounded10</item>
-        <item name="dtv_text_color_normal">@color/white</item>
-        <item name="dtv_text_color_disabled">@color/text_level3</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+
+    <!-- ==================================================================================== ===================================================== -->
+    <!--  次主色按钮  -->
+    <!-- ==================================================================================== ===================================================== -->
+    <!--internal-->
+    <style name="StyleCodeDrawable_Shape_StrokeStyle_PrimaryVariant">
+        <item name="cgd_stroke_dash_color">?app_color_text_variant1_stroke</item>
+        <item name="cgd_stroke_width">1dp</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryVariant">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/StyleCodeDrawable_Shape_StrokeStyle_PrimaryVariant</item>
+        <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryVariantRounded10">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/StyleCodeDrawable_Shape_StrokeStyle_PrimaryVariant</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+        <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryVariantPressed">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape_stroke_style">@style/StyleCodeDrawable_Shape_StrokeStyle_PrimaryVariant</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_PrimaryVariantPressedRounded10">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+        <item name="cgd_shape_stroke_style">@style/StyleCodeDrawable_Shape_StrokeStyle_PrimaryVariant</item>
+    </style>
+
+    <style name="StyleCodeDrawable_SelectorDrawable_PrimaryVariant">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryVariant</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimaryVariantPressed</item>
+        <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabled</item>
+    </style>
+
+    <style name="StyleCodeDrawable_SelectorDrawable_PrimaryVariantRounded10">
+        <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_PrimaryVariantRounded10</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_PrimaryVariantPressedRounded10</item>
+        <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_PrimaryDisabledRounded10</item>
+    </style>
+
+    <!--public-->
+    <style name="StyleBtnFullLine.CodeDrawable_PrimaryVariant">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryVariant</item>
+        <item name="dtv_text_color_normal">?app_color_text_variant1</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="StyleBtnLong.CodeDrawable_PrimaryVariantRounded10">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryVariantRounded10</item>
+        <item name="dtv_text_color_normal">?app_color_text_variant1</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--中等长度按钮 Round-->
+    <style name="StyleBtnMedium.CodeDrawable_PrimaryVariantRounded10">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryVariantRounded10</item>
+        <item name="dtv_text_color_normal">?app_color_text_variant1</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--短按钮 Round-->
+    <style name="StyleBtnShort.CodeDrawable_PrimaryVariantRounded10">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_PrimaryVariantRounded10</item>
+        <item name="dtv_text_color_normal">?app_color_text_variant1</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!-- ==================================================================================== ===================================================== -->
+    <!--  深色按钮  -->
+    <!-- ==================================================================================== ===================================================== -->
+    <!--internal-->
+    <style name="StyleCodeDrawable_ShapeDrawable_Deepest">
+        <item name="cgd_shape_solid">?attr/app_color_deepest</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_DeepestRounded10">
+        <item name="cgd_shape_solid">?attr/app_color_deepest</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_DeepestPressed">
+        <item name="cgd_shape_solid">?app_color_deepest_opacity80</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_DeepestPressedRounded10">
+        <item name="cgd_shape_solid">?app_color_deepest_opacity80</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_DeepestDisabled">
+        <item name="cgd_shape_solid">?app_color_disable</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="StyleCodeDrawable_ShapeDrawable_DeepestDisabledRounded10">
+        <item name="cgd_shape_solid">?app_color_disable</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/StyleCodeDrawable_Shape_CornerStyle_Rounded10</item>
+    </style>
+
+    <style name="StyleCodeDrawable_SelectorDrawable_Deepest">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_Deepest</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_DeepestPressed</item>
+        <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_DeepestDisabled</item>
+    </style>
+
+    <style name="StyleCodeDrawable_SelectorDrawable_DeepestRounded10">
+        <item name="csd_selector_state_normal">@style/StyleCodeDrawable_ShapeDrawable_DeepestRounded10</item>
+        <item name="csd_selector_state_pressed">@style/StyleCodeDrawable_ShapeDrawable_DeepestPressedRounded10</item>
+        <item name="csd_selector_state_disabled">@style/StyleCodeDrawable_ShapeDrawable_DeepestDisabledRounded10</item>
+    </style>
+
+    <!--public-->
+    <style name="StyleBtnFullLine.CodeDrawable_Deepest">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_Deepest</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="StyleBtnLong.CodeDrawable_DeepestRounded10">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_DeepestRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--中等长度按钮 Round-->
+    <style name="StyleBtnMedium.CodeDrawable_DeepestRounded10">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_DeepestRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--短按钮 Round-->
+    <style name="StyleBtnShort.CodeDrawable_DeepestRounded10">
+        <item name="cdv_selector_appearance">@style/StyleCodeDrawable_SelectorDrawable_DeepestRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
 </resources>

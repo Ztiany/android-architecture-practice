@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================ 颜色实现  ============================ -->
+
+    <!--品牌色-->
+    <color name="color_main">#7AFFB5</color>
+    <!--次级品牌色-->
+    <color name="color_main_variant">#64D3E6</color>
+    <!--状态栏-->
+    <color name="color_status_bar">#FFFFFF</color>
+    <!--窗口背景-->
+    <color name="page_bg_color">#F6F6F6</color>
+    <!--分割线-->
+    <color name="divider_color">#E0E0E0</color>
+
+    <!--color for text-->
+    <color name="text_level1">#333333</color>
+    <color name="text_level2">#666666</color>
+    <color name="text_level3">#999999</color>
+    <color name="text_level4">#CCCCCC</color>
+    <color name="text_stress">#F44766</color>
+    <color name="text_link">#90B5F7</color>
+    <color name="text_variant1">#00D6E9</color>
+    <color name="text_variant1_bg">#EAFFF4</color>
+    <color name="text_variant1_stroke">@color/color_main_variant</color>
+    <color name="text_variant2">@color/color_main_variant</color>
+    <color name="text_variant2_bg">#EAFFF4</color>
+    <color name="text_variant2_stroke">@color/text_variant2_bg</color>
+
+</resources>

@@ -31,7 +31,7 @@
 
     <!--下拉刷新通用颜色-->
     <array name="swipe_refresh_color">
-        <item>@color/colorPrimary</item>
+        <item>@color/color_main</item>
     </array>
 
     <style name="Style_SwipeRefreshLayout">

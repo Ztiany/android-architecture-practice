@@ -22,7 +22,7 @@
         android:layout_below="@id/dialog_address_tv_title"
         app:tabGravity="fill"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/colorPrimary" />
+        app:tabSelectedTextColor="@color/color_main" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dialog_address_rv_content"

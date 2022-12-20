@@ -42,7 +42,7 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="@string/confirm"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/color_main"
             android:textSize="14sp"
             android:visibility="gone" />
 

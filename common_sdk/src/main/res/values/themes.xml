@@ -6,6 +6,7 @@
     <style name="AppTheme" parent="QMUI">
         <!--main color-->
         <item name="colorPrimary">@color/color_main</item>
+        <item name="colorPrimaryVariant">@color/color_main_variant</item>
         <item name="android:statusBarColor">@color/color_status_bar</item>
         <item name="android:windowBackground">@color/page_bg_color</item>
         <!--text style-->
@@ -15,8 +16,37 @@
         <item name="qmui_alpha_disabled">0.5</item>
         <item name="qmui_general_shadow_elevation">14dp</item>
         <item name="qmui_general_shadow_alpha">0.25</item>
-        <!--自定义颜色-->
+        <!--custom colors-->
         <item name="app_color_main">@color/color_main</item>
+        <item name="app_color_main_variant">@color/color_main_variant</item>
+        <item name="app_color_divider">@color/divider_color</item>
+        <item name="app_color_disable">#CCCCCC</item>
+
+        <item name="app_color_deepest">@color/black</item>
+        <item name="app_color_deepest_opacity10">@color/opacity10_black</item>
+        <item name="app_color_deepest_opacity20">@color/opacity20_black</item>
+        <item name="app_color_deepest_opacity50">@color/opacity50_black</item>
+        <item name="app_color_deepest_opacity80">@color/opacity80_black</item>
+        <item name="app_color_deepest_opacity90">@color/opacity90_black</item>
+        <item name="app_color_lightest">@color/white</item>
+        <item name="app_color_lightest_opacity10">@color/opacity10_white</item>
+        <item name="app_color_lightest_opacity20">@color/opacity20_white</item>
+        <item name="app_color_lightest_opacity50">@color/opacity50_white</item>
+        <item name="app_color_lightest_opacity80">@color/opacity80_white</item>
+        <item name="app_color_lightest_opacity90">@color/opacity90_black</item>
+
+        <item name="app_color_text_level1">@color/text_level1</item>
+        <item name="app_color_text_level2">@color/text_level2</item>
+        <item name="app_color_text_level3">@color/text_level3</item>
+        <item name="app_color_text_level4">@color/text_level4</item>
+        <item name="app_color_text_stress">@color/text_stress</item>
+        <item name="app_color_text_link">@color/text_link</item>
+        <item name="app_color_text_variant1">@color/text_variant1</item>
+        <item name="app_color_text_variant1_bg">@color/text_variant1_bg</item>
+        <item name="app_color_text_variant1_stroke">@color/text_variant1_stroke</item>
+        <item name="app_color_text_variant2">@color/text_variant2</item>
+        <item name="app_color_text_variant2_bg">@color/text_variant2_bg</item>
+        <item name="app_color_text_variant2_stroke">@color/text_variant2_stroke</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -111,6 +141,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
+        <item name="android:statusBarColor">@color/color_status_bar</item>
     </style>
 
     <style name="ThemeDialogCommon.Transparent">

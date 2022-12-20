@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="translate">#00000000</color>
+
+    <color name="black">#000000</color>
+    <color name="opacity10_black">#1A000000</color>
+    <color name="opacity20_black">#33000000</color>
+    <color name="opacity25_black">#40000000</color>
+    <color name="opacity30_black">#4D000000</color>
+    <color name="opacity40_black">#66000000</color>
+    <color name="opacity50_black">#80000000</color>
+    <color name="opacity60_black">#99000000</color>
+    <color name="opacity70_black">#B3000000</color>
+    <color name="opacity75_black">#BF000000</color>
+    <color name="opacity80_black">#CC000000</color>
+    <color name="opacity90_black">#E6000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="opacity10_white">#1AFFFFFF</color>
+    <color name="opacity20_white">#33FFFFFF</color>
+    <color name="opacity50_white">#80FFFFFF</color>
+    <color name="opacity60_white">#99FFFFFF</color>
+    <color name="opacity80_white">#CCFFFFFF</color>
+    <color name="opacity90_white">#E6FFFFFF</color>
+
+</resources>

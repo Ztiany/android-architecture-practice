@@ -15,4 +15,73 @@
         app:atl_title="Interface"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.android.base.ui.drawable.DButton
+        android:id="@+id/a"
+        style="@style/StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="你好"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/meAtl" />
+
+    <com.android.base.ui.drawable.DButton
+        android:id="@+id/b"
+        style="@style/StyleBtnMedium.CodeDrawable_PrimaryVariantRounded10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="你好"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/a" />
+
+    <com.android.base.ui.drawable.DButton
+        android:id="@+id/c"
+        style="@style/StyleBtnMedium.CodeDrawable_PrimaryGradientRounded10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:enabled="false"
+        android:text="你好"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/b" />
+
+    <com.android.base.ui.drawable.DButton
+        android:id="@+id/d"
+        style="@style/StyleBtnMedium.CodeDrawable_PrimaryVariantRounded10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:enabled="false"
+        android:text="你好"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/c" />
+
+    <com.android.base.ui.drawable.DButton
+        android:id="@+id/e"
+        style="@style/StyleBtnMedium.CodeDrawable_DeepestRounded10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="你好"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/d" />
+
+    <com.android.base.ui.drawable.DButton
+        android:id="@+id/f"
+        style="@style/StyleBtnMedium.CodeDrawable_DeepestRounded10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:enabled="false"
+        android:text="你好"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/e" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

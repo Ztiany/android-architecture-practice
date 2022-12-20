@@ -18,7 +18,7 @@
         android:background="?selectableItemBackgroundBorderless"
         android:padding="5dp"
         android:text="@string/cancel_"
-        android:textColor="@color/text_level6"
+        android:textColor="?app_color_deepest"
         android:visibility="gone" />
 
     <FrameLayout

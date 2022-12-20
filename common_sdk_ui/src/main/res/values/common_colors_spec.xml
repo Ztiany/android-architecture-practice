@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================ 颜色规范  ============================ -->
+    <attr name="app_color_main" format="color" />
+    <attr name="app_color_main_variant" format="color" />
+    <attr name="app_color_divider" format="color" />
+    <attr name="app_color_disable" format="color" />
+
+    <attr name="app_color_deepest" format="color" />
+    <attr name="app_color_deepest_opacity90" format="color" />
+    <attr name="app_color_deepest_opacity80" format="color" />
+    <attr name="app_color_deepest_opacity50" format="color" />
+    <attr name="app_color_deepest_opacity20" format="color" />
+    <attr name="app_color_deepest_opacity10" format="color" />
+    <attr name="app_color_lightest" format="color" />
+    <attr name="app_color_lightest_opacity90" format="color" />
+    <attr name="app_color_lightest_opacity80" format="color" />
+    <attr name="app_color_lightest_opacity50" format="color" />
+    <attr name="app_color_lightest_opacity20" format="color" />
+    <attr name="app_color_lightest_opacity10" format="color" />
+
+    <attr name="app_color_text_level1" format="color" />
+    <attr name="app_color_text_level2" format="color" />
+    <attr name="app_color_text_level3" format="color" />
+    <attr name="app_color_text_level4" format="color" />
+
+    <attr name="app_color_text_stress" format="color" />
+    <attr name="app_color_text_link" format="color" />
+
+    <attr name="app_color_text_variant1" format="color" />
+    <attr name="app_color_text_variant1_bg" format="color" />
+    <attr name="app_color_text_variant1_stroke" format="color" />
+    <attr name="app_color_text_variant2" format="color" />
+    <attr name="app_color_text_variant2_bg" format="color" />
+    <attr name="app_color_text_variant2_stroke" format="color" />
+
+</resources>
