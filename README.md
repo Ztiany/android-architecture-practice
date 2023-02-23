@@ -1,4 +1,4 @@
-# 臂云云游戏：游戏盒子项目
+# android-architecture-practice
 
 download:
 
