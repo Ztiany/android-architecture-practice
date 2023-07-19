@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--状态布局-->
+    <style name="AppStyle.SimpleMultiStateView" parent="BaseArchStyle.SimpleMultiStateView">
+        <!--fixed id-->
+        <item name="android:id">@id/base_state_layout</item>
+        <!--empty-->
+        <item name="msv_emptyImg">@drawable/img_page_no_data</item>
+        <item name="msv_emptyView">@layout/app_base_layout_empty</item>
+        <item name="msv_emptyText">@string/page_error_no_data</item>
+        <!--error-->
+        <item name="msv_errorImg">@drawable/img_page_error</item>
+        <item name="msv_errorView">@layout/app_base_layout_error</item>
+        <item name="msv_errorText">@string/page_error_load_fail_tips</item>
+        <item name="msv_errorAction">@string/page_error_retry_action_tips</item>
+        <!--net error-->
+        <item name="msv_net_errorImg">@drawable/img_page_net_error</item>
+        <item name="msv_net_errorView">@layout/app_base_layout_no_network</item>
+        <item name="msv_net_errorText">@string/page_error_no_network</item>
+        <item name="msv_net_errorAction">@string/page_error_retry_action_tips</item>
+        <!--server error-->
+        <item name="msv_server_errorImg">@drawable/img_page_error</item>
+        <item name="msv_server_errorView">@layout/app_base_layout_server_error</item>
+        <item name="msv_server_errorText">@string/page_error_server_error</item>
+        <item name="msv_server_errorAction">@string/page_error_retry_action_tips</item>
+        <!--loading/request-->
+        <item name="msv_loadingView">@layout/app_base_layout_loading</item>
+        <item name="msv_requestingView">@layout/app_base_layout_loading</item>
+    </style>
+
+    <!--下拉刷新通用颜色-->
+    <array name="swipe_refresh_color">
+        <item>@color/color_main</item>
+    </array>
+
+    <style name="Style_SwipeRefreshLayout">
+        <item name="android:id">@id/base_refresh_layout</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="srl_color_scheme">@array/swipe_refresh_color</item>
+    </style>
+
+    <!--白色标题栏-->
+    <style name="Style_TitleLayout">
+        <item name="android:elevation">0.5dp</item>
+        <item name="atl_navigation_icon_tint">?app_color_deepest</item>
+        <item name="atl_title_color">?app_color_text_level1</item>
+        <item name="atl_title_centered">true</item>
+        <item name="android:background">?app_color_lightest</item>
+        <item name="atl_navigation_icon">@drawable/icon_back</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

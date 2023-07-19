@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp">
+
+        <com.android.base.ui.drawable.DTextView
+            android:id="@+id/tvDialogNegative"
+            style="@style/Widget.App.Button.Medium.DView.PrimaryVariantRounded10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="0dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            android:text="@string/cancel"
+            android:textColor="#808080"
+            android:textSize="14sp"
+            android:visibility="visible" />
+
+        <View
+            android:id="@+id/viewDialogBtnLeftDivider"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <com.android.base.ui.drawable.DTextView
+            android:id="@+id/tvDialogNeutral"
+            style="@style/Widget.App.Button.Medium.DView.PrimaryVariantRounded10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="0dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            android:text="@string/confirm"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/viewDialogBtnRightDivider"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.android.base.ui.drawable.DTextView
+            android:id="@+id/tvDialogPositive"
+            style="@style/Widget.App.Button.Medium.DView.PrimaryGradientRounded10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="0dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            android:text="@string/confirm"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewBottomDivider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_separate_width"
+        android:background="#EFEFEF"
+        android:visibility="invisible" />
+
+</merge>

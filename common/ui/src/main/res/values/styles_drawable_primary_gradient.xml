@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        （1）以下 Style，仅适用于 com.android.base.ui.drawable 包下的 View，当然也可以参考该包下的相关类的代码对其他 View 进行扩展以支持下面定义的 Style。
+        （2）如果没有渐变需求，推荐使用 styles_shapeable_deepest.xml 中定义的 Style。
+     -->
+
+    <!-- ==================================================================================== ===================================================== -->
+    <!--  主色按钮  -->
+    <!-- ==================================================================================== ===================================================== -->
+
+    <!-- common -->
+    <style name="Widget.App.Button.FullLine.DView" parent="Widget.App.Button.FullLine" />
+
+    <style name="Widget.App.Button.Long.DView" parent="Widget.App.Button.Long" />
+
+    <style name="Widget.App.Button.Medium.DView" parent="Widget.App.Button.Medium" />
+
+    <style name="Widget.App.Button.Short.DView" parent="Widget.App.Button.Short" />
+
+    <style name="Widget.App.Button.Wrap.DView" parent="Widget.App.Button.Wrap" />
+
+    <!--internal-->
+    <style name="GradientAppearance.App.Primary" parent="">
+        <item name="gradient_style_start_color">?app_color_main_variant</item>
+        <item name="gradient_style_end_color">?app_color_main</item>
+    </style>
+
+    <style name="Widget.App.DView.Gradient.Deepest" parent="">
+        <item name="cgd_shape_gradient_style">@style/GradientAppearance.App.Primary</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="Widget.App.DView.Gradient.DeepestRounded10" parent="">
+        <item name="cgd_shape_gradient_style">@style/GradientAppearance.App.Primary</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Gradient.DeepestRounded5" parent="">
+        <item name="cgd_shape_gradient_style">@style/GradientAppearance.App.Primary</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded5</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryPressed" parent="">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryPressedRounded10" parent="">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryPressedRounded5" parent="">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded5</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryDisabled" parent="">
+        <item name="cgd_shape_solid">#CCCCCC</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryDisabledRounded10" parent="">
+        <item name="cgd_shape_solid">#CCCCCC</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryDisabledRounded5" parent="">
+        <item name="cgd_shape_solid">#CCCCCC</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded5</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.PrimaryGradient" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.Deepest</item>
+        <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressed</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabled</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.PrimaryGradientRounded5" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.DeepestRounded5</item>
+        <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressedRounded5</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded5</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.PrimaryGradientRounded10" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.DeepestRounded10</item>
+        <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressedRounded10</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded10</item>
+    </style>
+
+    <!--public-->
+
+    <style name="Widget.App.Button.FullLine.DView.PrimaryGradient">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradient</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="Widget.App.Button.Long.DView.PrimaryGradientRounded10">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--中等长度按钮 Round-->
+    <style name="Widget.App.Button.Medium.DView.PrimaryGradientRounded10">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--短按钮 Round-->
+    <style name="Widget.App.Button.Short.DView.PrimaryGradientRounded5">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded5</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="Widget.App.Button.Short.DView.PrimaryGradientRounded10">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.DView.PrimaryGradientRounded5">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded5</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.DView.PrimaryGradientRounded10">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+</resources>

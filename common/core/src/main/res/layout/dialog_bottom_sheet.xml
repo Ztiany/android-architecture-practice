@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO: 去掉 qmui 的组件。-->
+<com.qmuiteam.qmui.widget.roundwidget.QMUIRoundLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flLevelDialogFunctionsRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:qmui_backgroundColor="@color/white"
+    app:qmui_radiusTopLeft="15dp"
+    app:qmui_radiusTopRight="15dp"
+    tools:ignore="ResourceName">
+
+    <TextView
+        android:id="@+id/dialogBottomSheetTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_page_edge"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="分享"
+        tools:visibility="visible" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dialogBottomRvList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        tools:listitem="@layout/dialog_bottom_sheet_item" />
+
+    <View
+        android:id="@+id/dialogBottomSheetVDivider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#F3F3F3" />
+
+    <TextView
+        android:id="@+id/dialogBottomSheetTvBottomAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textSize="14sp"
+        android:text="@string/cancel"
+        android:textColor="#333333" />
+
+</com.qmuiteam.qmui.widget.roundwidget.QMUIRoundLinearLayout>

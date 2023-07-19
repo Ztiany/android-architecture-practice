@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:id="@+id/account_tv_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="140dp"
+        android:text="@string/account_login_title1"
+        android:textColor="?app_color_deepest"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/account_tv_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:text="@string/account_login_title2"
+        android:textColor="?app_color_deepest"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account_tv_title1" />
+
+    <TextView
+        android:id="@+id/account_tv_country_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="24dp"
+        android:paddingVertical="24dp"
+        android:text="+86"
+        android:textColor="?app_color_deepest"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account_tv_title2" />
+
+    <com.android.base.ui.text.ClearableEditText
+        android:id="@+id/account_et_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="28dp"
+        android:digits="@string/digits_phone"
+        android:ellipsize="end"
+        android:hint="@string/please_enter_mobile_phone_number"
+        android:inputType="number"
+        android:maxLength="11"
+        android:paddingVertical="24dp"
+        android:paddingStart="60dp"
+        android:paddingEnd="0dp"
+        android:singleLine="true"
+        android:textColor="?app_color_deepest"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/account_tv_country_code"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/account_tv_country_code" />
+
+    <TextView
+        android:id="@+id/account_tv_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="24dp"
+        android:paddingVertical="24dp"
+        android:text="@string/validate_code"
+        android:textColor="?app_color_deepest"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account_et_phone" />
+
+    <EditText
+        android:id="@+id/account_et_sms"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="28dp"
+        android:digits="@string/digits_phone"
+        android:ellipsize="end"
+        android:hint="@string/please_enter_validate_code"
+        android:inputType="number"
+        android:maxLength="6"
+        android:paddingVertical="24dp"
+        android:paddingStart="60dp"
+        android:paddingEnd="0dp"
+        android:singleLine="true"
+        android:textColor="?app_color_deepest"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/account_tv_sms"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/account_tv_sms" />
+
+    <com.app.base.widget.view.CounterButton
+        android:id="@+id/account_tv_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="30dp"
+        android:paddingVertical="24dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:ccb_count="60"
+        app:ccb_counter_tag="app_sms_login"
+        app:ccb_text="@string/obtain_validate_code"
+        app:ccb_text_hint_format="%sS"
+        app:ccb_text_normal_color="?app_color_text_stress"
+        app:layout_constraintBottom_toBottomOf="@id/account_et_sms"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/account_et_sms" />
+
+    <com.android.base.ui.drawable.DButton
+        android:id="@+id/account_btn_login"
+        style="@style/Widget.App.Button.Long.DView.PrimaryGradientRounded10"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/account_get_in_app"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account_tv_sms" />
+
+    <View
+        android:id="@+id/account_view_check_agreement_dummy"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/account_selector_agreement_checkbox"
+        android:padding="3dp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_btn_login" />
+
+    <TextView
+        android:id="@+id/account_tv_agreement"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="top"
+        android:textColor="?app_color_text_level3"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toRightOf="@+id/account_view_check_agreement_dummy"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_btn_login"
+        tools:text="新用户登录即完成注册，且表示您已阅读并同《用户使用协议》、《用户使用协议》和《运营商认证服务协议》" />
+
+    <TextView
+        android:id="@+id/account_tv_agreement_dummy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="top"
+        android:text="新"
+        android:textColor="?app_color_text_level3"
+        android:textSize="10sp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toRightOf="@+id/account_view_check_agreement_dummy"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_btn_login"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/account_view_check_agreement"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/account_selector_agreement_checkbox"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="@id/account_tv_agreement_dummy"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/account_tv_agreement_dummy" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

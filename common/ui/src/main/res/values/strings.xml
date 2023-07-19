@@ -1,0 +1,124 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- ====================================通用词==================================== -->
+    <string name="confirm">确认</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="tips">提示</string>
+    <string name="avatar">头像</string>
+    <string name="share">分享</string>
+    <string name="female">女</string>
+    <string name="male">男</string>
+    <string name="sex_secrecy">保密</string>
+    <string name="save">保存</string>
+    <string name="complete">完成</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="retry">重试</string>
+    <string name="refresh">刷新</string>
+    <string name="add">添加</string>
+    <string name="none">无</string>
+    <string name="submit">提交</string>
+    <string name="email">邮箱</string>
+    <string name="username">用户名</string>
+    <string name="nickname">昵称</string>
+    <string name="time">时间</string>
+    <string name="date">日期</string>
+    <string name="remark">备注</string>
+    <string name="name">姓名</string>
+    <string name="title">标题</string>
+    <string name="mobile_phone_number">手机号</string>
+    <string name="validate_code">验证码</string>
+    <string name="obtain_validate_code">获取验证码</string>
+    <string name="validate_code_send_success">验证码发送成功</string>
+    <string name="default_">默认</string>
+    <string name="sex">性别</string>
+    <string name="check_detail">查看详情</string>
+    <string name="account">账号</string>
+    <string name="input_account">请输入账号</string>
+    <string name="input_psw">请输入密码</string>
+    <string name="input_mid">请输入MID</string>
+    <string name="psw">密码</string>
+    <string name="camera">相机</string>
+    <string name="album">相册</string>
+    <string name="color">颜色</string>
+    <string name="login">登录</string>
+    <string name="login_success">登录成功</string>
+    <string name="register">注册</string>
+    <string name="register_success">注册成功</string>
+    <string name="logout">安全退出</string>
+    <string name="password">密码</string>
+    <string name="remember_password">记住密码</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="photo">照片</string>
+    <string name="search">搜索</string>
+    <string name="please_select">请选择</string>
+    <string name="switch_success">切换成功</string>
+    <string name="switch_account">切换账号</string>
+    <string name="add_account">添加账号</string>
+    <string name="reboot">重启</string>
+    <string name="factory_reset">恢复出厂</string>
+    <string name="settings">设置</string>
+    <string name="allow">允许</string>
+    <string name="deny">拒绝</string>
+
+    <!-- ====================================mask==================================== -->
+    <string name="currency_symbol">¥</string><!--全局唯一货币符号-->
+    <string name="currency_symbol_mask">¥%s</string><!--全局唯一货币符号-->
+    <string name="brackets_mask">(%s)</string>
+
+    <!-- ====================================对话框==================================== -->
+    <string name="dialog_loading">请稍等…</string>
+
+    <!-- ====================================错误提示==================================== -->
+    <!--错误提示 toast-->
+    <string name="error_net_error">网络连接失败，请检查网络喔</string>
+    <string name="error_service_error">服务器开小差了，请稍后重试喔</string><!--error code 500-600-->
+    <string name="error_request_error">请求失败，code(400–500)！</string><!--error code 400-500-->
+    <string name="error_service_data_error">服务器数据异常</string><!--解析数据出错-->
+    <string name="error_service_no_data_error">服务器未返回数据</string><!--解析数据出错-->
+    <string name="error_api_code_mask_tips">请求错误！，错误码为(%d)</string><!--响应码错误-->
+    <string name="error_unknown">未知错误</string>
+    <!--错误提示 dialog-->
+    <string name="load_error_retry_tips">数据加载失败，是否重试？</string>
+    <string name="submit_error_retry_tips">数据提交失败，是否重试？</string>
+    <!--错误状态布局-->
+    <string name="page_error_load_fail_tips">加载失败了/(ㄒoㄒ)/~~ </string>
+    <string name="page_error_retry_action_tips">重新加载</string>
+    <string name="page_error_no_data">暂无相关数据</string>
+    <string name="page_loading">正在努力加载数据…</string>
+    <string name="page_error_no_network">网络未连接</string>
+    <string name="page_error_server_error">@string/error_service_error</string>
+
+    <!-- ====================================表单校验提示==================================== -->
+    <!--账号-->
+    <string name="please_enter_account">请输入账号</string>
+    <!--密码-->
+    <string name="please_enter_password">请输入密码</string>
+    <string name="please_enter_confirm_password">请确认密码</string>
+    <string name="password_too_wrong_format_tips">请输入至少 8 位密码</string>
+    <string name="enter_the_password_twice_inconsistent">两次密码输入不一致</string>
+    <!--邮箱-->
+    <string name="please_enter_email">请输入邮箱</string>
+    <string name="email_wrong_format">邮箱格式错误</string>
+    <!--手机号-->
+    <string name="please_enter_mobile_phone_number">请输入 11 位手机号码</string>
+    <string name="mobile_phone_number_wrong_format">手机号格式错误</string>
+    <!--验证码-->
+    <string name="please_enter_validate_code">请输入验证码</string>
+    <string name="validate_code_length_error">验证码错误</string>
+    <string name="please_enter_image_validate_code">请输入图形验证码</string>
+    <!--身份证-->
+    <string name="please_enter_paperwork_code">请输入证件号码</string>
+    <string name="please_enter_legitimate_paperwork_code">身份证格式不正确</string>
+    <!--联系人-->
+    <string name="please_enter_name">请填写联系人</string>
+    <string name="please_enter_legitimate_name">请输入合法姓名</string>
+    <!--选择时间-->
+    <string name="please_select_date">请选择日期</string>
+    <string name="please_select_time">请选择时间</string>
+
+    <!-- ====================================具体业务==================================== -->
+    <string name="game_box">游戏盒子</string>
+    <string name="get_bck_game">返回游戏</string>
+</resources>

@@ -1,0 +1,80 @@
+buildscript {
+    apply from: './gradle/dependency.gradle'
+    apply from: './gradle/configuration.gradle'
+
+    repositories {
+        mavenCentral()
+        google()
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://dl.google.com/dl/android/maven2/" }
+        maven { url "https://jitpack.io" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+    }
+
+    dependencies {
+        //android
+        classpath "com.android.tools.build:gradle:7.3.1"
+        //kotlin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        //hilt
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        //navigation
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
+        //channel
+        classpath "com.leon.channel:plugin:2.0.3"
+        // for publishing
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
+    }
+}
+
+allprojects {
+
+    repositories {
+        mavenCentral()
+        google()
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://dl.google.com/dl/android/maven2/" }
+        maven { url "https://www.jitpack.io" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+
+        configurations.all {
+            resolutionStrategy.force(
+                    AndroidLibraries.appcompat,
+                    AndroidLibraries.activity,
+                    AndroidLibraries.activityKtx,
+                    AndroidLibraries.fragment,
+                    AndroidLibraries.fragmentKtx,
+                    AndroidLibraries.ktx,
+                    AndroidLibraries.annotations,
+                    KotlinLibraries.kotlinStdlib,
+                    KotlinLibraries.kotlinCoroutines
+            )
+        }
+
+    }
+
+    tasks.withType(Javadoc).all {
+        //乱码问题
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+        //javadoc 编译不通过问题
+        enabled = false
+    }
+
+    plugins.withId("com.vanniktech.maven.publish") {
+        mavenPublish {
+            sonatypeHost = "S01"
+        }
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

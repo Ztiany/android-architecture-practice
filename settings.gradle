@@ -1,0 +1,28 @@
+apply from: './gradle/module_config.gradle'
+
+//基础模块
+include("base:core")
+include("base:activity")
+include("base:adapter")
+include("base:fragment")
+include("base:mvi")
+include("base:utils")
+include(':base:view')
+include(':base:viewbinding')
+
+//业务基础架构
+include(':common:api')
+include(':common:ui')
+include(":common:core")
+
+//主业务模块
+include(":module_main:main")
+include(":module_main:api")
+include(":module_main:app")
+
+//账户业务模块
+include(":module_account:main")
+include(":module_account:api")
+
+//APP 壳
+include(":app")

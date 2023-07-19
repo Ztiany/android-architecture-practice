@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- ==================================================================================== ===================================================== -->
+    <!--  深色按钮，使用说明参考 styles_drawable_primary_gradient.xml   -->
+    <!-- ==================================================================================== ===================================================== -->
+
+    <!--internal-->
+    <style name="Widget.App.DView.Shape.Deepest" parent="">
+        <item name="cgd_shape_solid">?attr/app_color_deepest</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.DeepestRounded10" parent="">
+        <item name="cgd_shape_solid">?attr/app_color_deepest</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.DeepestPressed" parent="">
+        <item name="cgd_shape_solid">?app_color_deepest_opacity80</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.DeepestPressedRounded10" parent="">
+        <item name="cgd_shape_solid">?app_color_deepest_opacity80</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.DeepestDisabled" parent="">
+        <item name="cgd_shape_solid">?app_color_disable</item>
+        <item name="cgd_shape">rectangle</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.DeepestDisabledRounded10" parent="">
+        <item name="cgd_shape_solid">?app_color_disable</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.Deepest" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Shape.Deepest</item>
+        <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.DeepestPressed</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.DeepestDisabled</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.DeepestRounded10" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Shape.DeepestRounded10</item>
+        <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.DeepestPressedRounded10</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.DeepestDisabledRounded10</item>
+    </style>
+
+    <!--public-->
+
+    <style name="Widget.App.Button.FullLine.DView.Deepest">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.Deepest</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="Widget.App.Button.FullLine.DView.DeepestRounded10">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.DeepestRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--中等长度按钮 Round-->
+    <style name="Widget.App.Button.Medium.DView.DeepestRounded10">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.DeepestRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <!--短按钮 Round-->
+    <style name="Widget.App.Button.Short.DView.DeepestRounded10">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.DeepestRounded10</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+</resources>

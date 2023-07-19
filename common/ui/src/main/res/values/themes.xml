@@ -1,0 +1,216 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- TODO：重新规范 style 和 theme 命名。-->
+
+    <style name="AppRootTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge" tools:override="true" />
+
+    <!--
+    Base application theme.
+
+    colorPrimaryVariant:
+                        In Material Design, colorPrimaryVariant is a theme attribute that is used to specify a darker shade of the primary color defined by colorPrimary.
+
+                        It is typically used as an alternative to colorPrimary for indicating the selected state of UI elements such as buttons, tabs, and progress bars.
+
+                        By default, colorPrimaryVariant inherits its value from the colorPrimary attribute, but it can be overridden in the theme definition to provide a different shade of
+                         the primary color. This can be useful for creating visual contrast between different UI elements, while still maintaining a consistent color scheme throughout the app.
+
+                        For example, if the primary color is blue, the colorPrimaryVariant might be a darker shade of blue that is used to indicate the selected state of a button or tab.
+                        This creates a visual hierarchy that helps users understand which elements are interactive and which are not.
+
+                        Overall, colorPrimaryVariant is a useful tool for creating a visually appealing and consistent UI design that adheres to Material Design guidelines.
+
+    colorSecondary:
+                        "colorSecondary" serves as a complementary color to the primary color and helps create visual contrast and hierarchy within the design.
+
+                        The "colorSecondary" is typically used to emphasize secondary elements or provide additional visual variations. It can be applied to secondary buttons, labels, or other interface elements that require visual differentiation from the primary elements.
+
+                        Here are some common use cases for "colorSecondary" in Material Design:
+
+                                Secondary Actions: "colorSecondary" can be used to highlight secondary actions, such as secondary buttons or secondary navigation elements, to differentiate them from primary actions.
+                                Accent Colors: In certain scenarios, "colorSecondary" can serve as an accent color to draw attention to specific elements, interactions, or status indicators within the user interface.
+                                Visual Hierarchy: By using "colorSecondary" strategically, you can establish a visual hierarchy within the design. It helps guide users' attention and distinguish between primary and secondary elements.
+
+                        The specific usage and application of "colorSecondary" may vary depending on the design and context. It provides flexibility to create visually appealing interfaces while adhering to the principles of Material Design.
+
+    colorSurface:
+                   "colorSurface" represents the background color of surfaces in the user interface. It is primarily used to define the color of components such as cards, dialogs, sheets, and containers.
+
+                    The "colorSurface" is a neutral color that helps create a clear distinction between the foreground (text, icons, and interactive elements) and the background surfaces. It provides a consistent and cohesive visual appearance throughout the application.
+
+                    Here are some key aspects and uses of "colorSurface":
+
+                            Background Surfaces: "colorSurface" is applied to surfaces that serve as the background for various UI components. This includes cards, panels, sheets, and other containers.
+                            Contrast and Legibility: The choice of "colorSurface" should ensure sufficient contrast with the foreground elements to maintain good legibility and readability. It helps ensure that the text and other interactive content are easily discernible on the background surface.
+                            Visual Depth and Layering: By adjusting the shade or tone of "colorSurface," you can create visual depth and layering within the interface. This can help users understand the hierarchy of elements and establish a sense of spatial organization.
+                            Theming and Customization: "colorSurface" can be customized to match the application's branding or theme. It allows designers to create unique visual styles while maintaining the overall Material Design principles.
+
+                Overall, "colorSurface" defines the background color of surfaces in Material Design. It provides a consistent backdrop for UI components and helps ensure legibility and visual hierarchy within the interface.
+    -->
+    <style name="AppTheme" parent="QMUI">
+        <!--main color-->
+        <item name="colorPrimary">@color/color_main</item>
+        <item name="colorPrimaryVariant">@color/color_main_variant</item>
+        <item name="colorControlActivated">@color/color_main</item>
+
+        <!--system ui-->
+        <item name="android:statusBarColor">@color/color_status_bar</item>
+        <item name="android:navigationBarColor">@color/page_bg_color</item>
+        <item name="android:windowBackground">@color/page_bg_color</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        <!--text style-->
+        <item name="android:textAllCaps">false</item>
+
+        <!-- custom toolbar attributes -->
+        <!-- 设置显示在 toolbar 上菜单文字的颜色 -->
+        <item name="actionMenuTextColor">@android:color/holo_red_dark</item>
+        <!-- 设置 toolbar 弹出菜单的字体大小和溢出菜单文字大小-->
+        <item name="android:textSize">14sp</item>
+
+        <!--qmui-->
+        <item name="qmui_alpha_pressed">0.5</item>
+        <item name="qmui_alpha_disabled">0.5</item>
+        <item name="qmui_general_shadow_elevation">14dp</item>
+        <item name="qmui_general_shadow_alpha">0.25</item>
+
+        <!--custom colors-->
+        <item name="app_color_main">@color/color_main</item>
+        <item name="app_color_main_variant">@color/color_main_variant</item>
+        <item name="app_color_divider">@color/divider_color</item>
+        <item name="app_color_disable">#CCCCCC</item>
+
+        <item name="app_color_deepest">@color/black</item>
+        <item name="app_color_deepest_opacity10">@color/opacity10_black</item>
+        <item name="app_color_deepest_opacity20">@color/opacity20_black</item>
+        <item name="app_color_deepest_opacity50">@color/opacity50_black</item>
+        <item name="app_color_deepest_opacity80">@color/opacity80_black</item>
+        <item name="app_color_deepest_opacity90">@color/opacity90_black</item>
+        <item name="app_color_lightest">@color/white</item>
+        <item name="app_color_lightest_opacity10">@color/opacity10_white</item>
+        <item name="app_color_lightest_opacity20">@color/opacity20_white</item>
+        <item name="app_color_lightest_opacity50">@color/opacity50_white</item>
+        <item name="app_color_lightest_opacity80">@color/opacity80_white</item>
+        <item name="app_color_lightest_opacity90">@color/opacity90_black</item>
+
+        <item name="app_color_text_level1">@color/text_level1</item>
+        <item name="app_color_text_level2">@color/text_level2</item>
+        <item name="app_color_text_level3">@color/text_level3</item>
+        <item name="app_color_text_level4">@color/text_level4</item>
+        <item name="app_color_text_level5">@color/text_level5</item>
+        <item name="app_color_text_stress">@color/text_stress</item>
+        <item name="app_color_text_link">@color/text_link</item>
+        <item name="app_color_text_variant1">@color/text_variant1</item>
+        <item name="app_color_text_variant1_bg">@color/text_variant1_bg</item>
+        <item name="app_color_text_variant1_stroke">@color/text_variant1_stroke</item>
+        <item name="app_color_text_variant2">@color/text_variant2</item>
+        <item name="app_color_text_variant2_bg">@color/text_variant2_bg</item>
+        <item name="app_color_text_variant2_stroke">@color/text_variant2_stroke</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Transparent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.FullScreen" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--Dialog-->
+    <style name="AppTheme.Dialog.Common" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
+
+        <item name="android:statusBarColor">@color/color_status_bar</item>
+        <item name="android:navigationBarColor">@color/page_bg_color</item>
+        <item name="android:windowBackground">@color/page_bg_color</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Common.Transparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Common.Floating">
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Common.Transparent.Floating">
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Tips" parent="AppTheme.Dialog.Common.Transparent.Floating">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- 全屏的 Dialog 效果-->
+    <style name="AppTheme.Dialog.FullScreen" parent="android:Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
+        <item name="android:statusBarColor">@color/color_status_bar</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
+    </style>
+
+    <!-- 全屏的 Dialog 效果：不能继承已有的  dialog theme。-->
+    <style name="AppTheme.Dialog.FullScreenWithSystemBar" parent="">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowIsFloating">false</item>
+
+        <item name="android:statusBarColor">@color/color_status_bar</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+    </style>
+
+    <!--Anim-->
+    <style name="AppAnimation.BottomIn" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/bottom_out</item>
+    </style>
+
+    <style name="AppAnimation.TopIn" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/top_in</item>
+        <item name="android:windowExitAnimation">@anim/top_out</item>
+    </style>
+
+    <style name="AppAnimation.FadeIn" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="AppAnimation.DialogFadeIn" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+
+    <style name="AppAnimation.ScaleIn" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/scale_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_out</item>
+    </style>
+
+    <style name="AppAnimation.FragmentScaleIn" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/window_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/window_scale_out</item>
+    </style>
+
+</resources>

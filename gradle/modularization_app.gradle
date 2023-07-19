@@ -1,0 +1,111 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion AppConfig.compileSdkVersion
+    buildToolsVersion AppConfig.buildToolsVersion
+
+    signingConfigs {
+        release {
+            keyAlias AppConfig.releaseKeyAlias
+            keyPassword AppConfig.releaseKeyPassword
+            storeFile rootProject.file(AppConfig.releaseKeyFileName)
+            storePassword AppConfig.releaseKeyPassword
+        }
+    }
+
+    defaultConfig {
+        applicationId "me.ztiany.wan.${project.name.toLowerCase()}"
+        minSdkVersion AppConfig.minSdkVersion
+        targetSdkVersion AppConfig.targetSdkVersion
+        versionCode AppConfig.versionCode
+        versionName AppConfig.versionName
+
+        multiDexEnabled true
+
+        vectorDrawables.useSupportLibrary = true
+        resConfigs "zh", "en"//只需要中文和英文资源
+    }
+
+    buildTypes {
+        //测试
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [screenOrientation: "unspecified"]
+        }
+
+        //正式发布
+        release {
+            zipAlignEnabled true
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                abiFilters 'armeabi-v7a'
+            }
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = ["-Xcontext-receivers"]
+    }
+
+    //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
+    buildFeatures {
+        viewBinding true
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${project.name}-${variant.versionName}.apk"
+        }
+    }
+
+    packagingOptions {
+        pickFirst "lib/x86/libc++_shared.so"
+        pickFirst "lib/x86_64/libc++_shared.so"
+        pickFirst "lib/armeabi-v7a/libc++_shared.so"
+        pickFirst "lib/arm64-v8a/libc++_shared.so"
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //基础类库
+    implementation project(":common:core")
+
+    //测试
+    testImplementation TestLibraries.junit
+
+    //navigation
+    implementation AndroidLibraries.navigationFragmentKtx
+    implementation AndroidLibraries.navigationUiKtx
+
+    /*Hilt*/
+    api AndroidLibraries.hiltDagger
+    kapt AndroidLibraries.hiltDaggerApt
+}

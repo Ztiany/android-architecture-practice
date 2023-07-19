@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@id/base_retry_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_page_net_error"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@id/base_retry_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="8dp"
+        android:text="@string/page_error_no_network"
+        android:textColor="@color/text_level2"
+        android:textSize="14sp" />
+
+    <com.android.base.ui.drawable.DButton
+        android:id="@id/base_retry_btn"
+        style="@style/Widget.App.Button.Medium.DView.PrimaryGradientRounded10"
+        android:layout_marginTop="10dp"
+        android:text="@string/page_error_retry_action_tips" />
+
+</LinearLayout>

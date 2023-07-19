@@ -1,0 +1,28 @@
+ext {
+
+    def ENV_AUTO = "Auto"
+    def ENV_TEST = "Test"
+    def ENV_RELEASE = "Pro"
+
+    AppConfig = [
+            minSdkVersion     : 23,
+            targetSdkVersion  : 30,
+            compileSdkVersion : 33,
+            buildToolsVersion : "30.0.3",
+            versionCode       : 1,
+            versionName       : "1.0.0",
+
+            releaseKeyAlias   : "hm",
+            releaseKeyPassword: "666666",
+            releaseKeyFileName: "Android.jks",
+
+            enableProguard    : false,
+            httpsTrustAll     : false,
+
+            isOpenDebug       : false,
+            showDebugTools    : false,
+            isOpenLog         : true,
+
+            HOST_ENV          : ENV_AUTO
+    ]
+}

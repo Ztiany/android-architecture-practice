@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.base.ui.shape.ShapeableRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.App.ShapeableView.Selector.LightestRectangular"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/dialog_address_tv_province"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="14sp"
+        tools:text="湖南" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_separate_width"
+        android:layout_below="@id/dialog_address_tv_province"
+        android:background="#EFEFEF" />
+
+</com.android.base.ui.shape.ShapeableRelativeLayout>

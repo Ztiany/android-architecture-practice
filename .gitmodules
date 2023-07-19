@@ -1,0 +1,24 @@
+[submodule "android-common-utils"]
+	path = base/utils
+	url = git@github.com:Ztiany/android-common-utils.git
+[submodule "android-arch-core"]
+	path = base/core
+	url = git@github.com:Ztiany/android-arch-core.git
+[submodule "android-ui-base"]
+	path = base/view
+	url = git@github.com:Ztiany/android-ui-base.git
+[submodule "android-arch-activity"]
+	path = base/activity
+	url = https://github.com/Ztiany/android-arch-activity.git
+[submodule "android-arch-adapter"]
+	path = base/adapter
+	url = https://github.com/Ztiany/android-arch-adapter.git
+[submodule "android-arch-fragment"]
+	path = base/fragment
+	url = https://github.com/Ztiany/android-arch-fragment.git
+[submodule "android-arch-viewbinding"]
+	path = base/viewbinding
+	url = https://github.com/Ztiany/android-arch-viewbinding.git
+[submodule "android-arch-mvi"]
+	path = base/mvi
+	url = https://github.com/Ztiany/android-arch-mvi.git

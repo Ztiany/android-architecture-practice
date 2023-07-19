@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <com.android.base.ui.compat.MaterialToolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/atl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?actionBarSize"
+        app:titleMarginStart="0dp"
+        app:titleTextAppearance="@style/TextAppearance.App.Toolbar.Title"
+        tools:ignore="PrivateResource,UnusedAttribute" />
+
+    <View
+        android:id="@+id/widgetAppTitleCuttingLine"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="bottom"
+        android:background="?app_color_divider" />
+
+</merge>

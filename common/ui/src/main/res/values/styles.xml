@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="TextAppearance.App.TabLayout" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="TextAppearance.App.Toolbar.Title" parent="">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!--充满一行的按钮-->
+    <style name="Widget.App.Button.Base" parent="">
+        <item name="android:clickable">true</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
+    </style>
+
+    <style name="Widget.App.Button.FullLine" parent="Widget.App.Button.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <!--长按钮-->
+    <style name="Widget.App.Button.Long" parent="Widget.App.Button.FullLine">
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
+    </style>
+
+    <!--中等长度按钮-->
+    <style name="Widget.App.Button.Medium" parent="Widget.App.Button.Base">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingStart">60dp</item>
+        <item name="android:paddingEnd">60dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--短按钮-->
+    <style name="Widget.App.Button.Short" parent="Widget.App.Button.Base">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingStart">36dp</item>
+        <item name="android:paddingEnd">36dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--自包含按钮-->
+    <style name="Widget.App.Button.Wrap" parent="Widget.App.Button.Base">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--开关-->
+    <style name="Widget.App.Switch" parent="">
+        <item name="kswBackColor">@color/color_switch_bg</item>
+        <item name="kswThumbColor">@color/color_switch_thumb</item>
+    </style>
+
+</resources>

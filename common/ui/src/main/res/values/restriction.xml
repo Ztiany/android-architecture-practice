@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digits_phone">0123456789</string>
+    <string name="digits_password">0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM</string>
+    <integer name="phone_length">11</integer>
+    <integer name="password_length">16</integer>
+</resources>
