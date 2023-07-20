@@ -12,7 +12,7 @@ class FeedListController : ListEpoxyController<FeedItem>() {
                 }
 
                 is ArticleVO -> {
-                    //TODO
+                    bindArticle(it)
                 }
             }
         }
@@ -23,6 +23,18 @@ class FeedListController : ListEpoxyController<FeedItem>() {
             id(bannerVO.id)
             bannerList(bannerVO.list.map { it.imagePath })
         }
+    }
+
+    private fun bindArticle(articleVO: ArticleVO) {
+        articleItemView {
+            id(articleVO.id)
+            author("ztiany")
+            updateTime("2021-10-10")
+            title("每日一问：Android 12 中的新特性")
+            category("Android")
+            collected(false)
+        }
+
     }
 
 }

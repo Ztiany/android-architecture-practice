@@ -17,7 +17,7 @@ class BannerItemView @JvmOverloads constructor(
     private val vb = MainItemBannerBinding.inflate(LayoutInflater.from(context), this)
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        //banner size: 900 * 500
+        //banner size: 900w * 500h
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
         val heightSize = (widthSize * 500F / 900F).toInt()
         super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY))
