@@ -14,11 +14,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MainModuleInitializer @Inject constructor(
+internal class MainModuleInitializer @Inject constructor(
     private val serviceFactoryProvider: ApiServiceFactoryProvider,
     private val userManager: UserManager,
     @ApplicationScope private val scope: CoroutineScope,
-    private val dispatcherProvider: DispatcherProvider
+    private val dispatcherProvider: DispatcherProvider,
 ) : AppLifecycle {
 
     override fun onCreate(application: Application) {

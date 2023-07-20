@@ -17,12 +17,12 @@
         app:zvp_enable_looper="true"
         app:zvp_pager_number_id="@id/main_banner_indicator">
 
-        <me.ztiany.wan.main.home.feed.BannerPagerIndicatorView
+        <me.ztiany.wan.main.presentation.feed.BannerPagerIndicatorView
             android:id="@+id/main_banner_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:padding="2dp" />
 
     </com.android.base.ui.banner.BannerViewPager>
