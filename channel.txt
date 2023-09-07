@@ -3,4 +3,3 @@ oppo
 huawei
 xiaomi
 appbao
-applestore
