@@ -45,15 +45,6 @@ open class AppBaseDialog(
         }
 
     override fun show() {
-        window?.run {
-            if (fixWidth) {
-                attributes = attributes.also {
-                    val realScreenWidth = ScreenUtils.getScreenWidth()
-                    it.width = (realScreenWidth * maxDialogWidthPercent).toInt()
-                }
-            }
-        }
-
         if (limitHeight && !::onLayoutChangeListener.isInitialized) {
             onLayoutChangeListener = View.OnLayoutChangeListener { v, _, _, _, _, _, _, _, _ ->
                 val realScreenHeight = ScreenUtils.getScreenHeight()
@@ -68,7 +59,21 @@ open class AppBaseDialog(
         }
 
         showCompat {
+            adjustWidth()
             super.show()
+            //如果在 onCreate 中调用 setContentView，会导致设置的 window.attributes 失效。而调用 show 会触发 onCreate 方法的调用。
+            adjustWidth()
+        }
+    }
+
+    private fun adjustWidth() {
+        window?.run {
+            if (fixWidth) {
+                attributes = attributes.also {
+                    val realScreenWidth = ScreenUtils.getScreenWidth()
+                    it.width = (realScreenWidth * maxDialogWidthPercent).toInt()
+                }
+            }
         }
     }
 
