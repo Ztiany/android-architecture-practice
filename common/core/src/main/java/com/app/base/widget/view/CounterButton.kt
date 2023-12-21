@@ -67,7 +67,11 @@ class CounterButton @JvmOverloads constructor(
             isCounting = remainingCount > 0
         }
 
-        setTextColor(normalTextColor)
+        if (isEnabled) {
+            setTextColor(normalTextColor)
+        } else {
+            setTextColor(disableTextColor)
+        }
         originText = text
         delayEnable = isEnabled
     }
@@ -157,7 +161,11 @@ class CounterButton @JvmOverloads constructor(
             counterStorage.putLong(counterTag, 0)
             counterStorage.putInt(stopCountingTag, 0)
         }
-        setTextColor(normalTextColor)
+        if (isEnabled) {
+            setTextColor(normalTextColor)
+        } else {
+            setTextColor(disableTextColor)
+        }
     }
 
     private fun setCounterText(text: String) {
