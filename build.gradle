@@ -38,7 +38,7 @@ allprojects {
         maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
         maven { url "https://www.jitpack.io" }
 
-        configurations.all {
+        configurations.configureEach {
             resolutionStrategy.force(
                     AndroidLibraries.appcompat,
                     AndroidLibraries.activity,
@@ -47,6 +47,7 @@ allprojects {
                     AndroidLibraries.fragmentKtx,
                     AndroidLibraries.ktx,
                     AndroidLibraries.annotations,
+                    AndroidLibraries.constraintLayout,
                     KotlinLibraries.kotlinStdlib,
                     KotlinLibraries.kotlinCoroutines
             )
@@ -73,6 +74,6 @@ allprojects {
 
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
