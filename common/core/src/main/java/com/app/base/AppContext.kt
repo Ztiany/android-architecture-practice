@@ -38,6 +38,7 @@ import com.app.base.debug.DebugTools
 import com.app.base.widget.dialog.AppLoadingViewHost
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
+import com.app.apm.APM
 import dagger.Lazy
 import retrofit2.HttpException
 import java.io.IOException
@@ -74,6 +75,7 @@ abstract class AppContext : BaseAppContext() {
         Log.d("AppContext", "onCreate")
         BaseUtils.init(this)
         DebugTools.init(this)
+        APM.init(this).start()
         appSettings.get().init()
         configNetworkApi()
         configFoundation()

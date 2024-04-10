@@ -87,6 +87,9 @@ dependencies {
     //SDK UI 规范
     api project(':common:api')
 
+    //性能监控
+    implementation project(':apm:core')
+
     //依赖的业务 API
     implementation project(":module_main:api")
 
