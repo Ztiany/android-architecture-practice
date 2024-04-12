@@ -20,13 +20,13 @@ include(":common:core")
 
 
 //主业务模块
-include(":module_main:main")
-include(":module_main:api")
-include(":module_main:app")
+include(":feature:main:main")
+include(":feature:main:api")
+include(":feature:main:app")
 
 //账户业务模块
-include(":module_account:main")
-include(":module_account:api")
+include(":feature:account:main")
+include(":feature:account:api")
 
 //APP 壳
 include(":app")

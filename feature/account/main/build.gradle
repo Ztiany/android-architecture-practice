@@ -5,6 +5,6 @@ android {
 }
 
 dependencies {
-    implementation project(":module_main:api")
-    implementation project(":module_account:api")
+    implementation project(":feature:main:api")
+    implementation project(":feature:account:api")
 }

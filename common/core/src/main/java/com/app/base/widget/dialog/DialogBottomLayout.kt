@@ -9,8 +9,8 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.content.res.use
-import com.android.base.utils.android.views.gone
-import com.android.base.utils.android.views.visible
+import com.android.base.utils.android.views.beGone
+import com.android.base.utils.android.views.beVisible
 import com.app.base.R
 import com.app.base.databinding.DialogCommonBottomBinding
 import com.app.base.databinding.DialogCommonBottomNonfullBinding
@@ -21,7 +21,7 @@ import com.app.base.databinding.DialogCommonBottomNonfullBinding
  *@author Ztiany
  */
 class DialogBottomLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private lateinit var tvPositive: TextView
@@ -80,11 +80,11 @@ class DialogBottomLayout @JvmOverloads constructor(
 
     fun negativeText(text: CharSequence?) {
         if (text.isNullOrEmpty()) {
-            tvNegative.gone()
-            viewBtnLeftDivider.gone()
+            tvNegative.beGone()
+            viewBtnLeftDivider.beGone()
         } else {
-            tvNegative.visible()
-            viewBtnLeftDivider.visible()
+            tvNegative.beVisible()
+            viewBtnLeftDivider.beVisible()
             tvNegative.text = text
         }
     }
@@ -111,11 +111,11 @@ class DialogBottomLayout @JvmOverloads constructor(
 
     fun neutralText(text: CharSequence?) {
         if (text.isNullOrEmpty()) {
-            tvNeutral.gone()
-            viewBtnRightDivider.gone()
+            tvNeutral.beGone()
+            viewBtnRightDivider.beGone()
         } else {
-            tvNeutral.visible()
-            viewBtnRightDivider.visible()
+            tvNeutral.beVisible()
+            viewBtnRightDivider.beVisible()
             tvNeutral.text = text
         }
     }

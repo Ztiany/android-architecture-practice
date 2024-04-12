@@ -6,19 +6,19 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import com.android.base.utils.android.views.dip
-import com.android.base.utils.android.views.inflater
-import com.android.base.utils.android.views.setPaddingAll
+import com.android.base.utils.android.views.layoutInflater
+import com.android.base.utils.android.views.setPaddings
 import com.app.base.databinding.BaseDebugEnvironmentItemBinding
 
 class EnvironmentItemLayout @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val viewBinding = BaseDebugEnvironmentItemBinding.inflate(inflater(), this)
+    private val viewBinding = BaseDebugEnvironmentItemBinding.inflate(layoutInflater(), this)
 
     init {
         orientation = VERTICAL
-        setPaddingAll(dip(10))
+        setPaddings(dip(10))
     }
 
     private lateinit var list: List<Environment>

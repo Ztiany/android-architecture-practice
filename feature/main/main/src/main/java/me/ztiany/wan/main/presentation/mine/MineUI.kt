@@ -56,10 +56,10 @@ internal class MineUIPresenter(
     }
 
     private fun bindEntranceInfo(entrance: Entrance, entranceView: View, first: Boolean, last: Boolean) {
-        val entranceTv = entranceView.find<TextView>(R.id.main_tv_entrance_name)
+        val entranceTv = entranceView.findChild<TextView>(R.id.main_tv_entrance_name)
         entranceTv.setText(entrance.name)
         entranceTv.setCompoundDrawablesWithIntrinsicBounds(entrance.icon, 0, 0, 0)
-        entranceView.find<View>(R.id.main_view_entrance_divider).beVisibleOrGone(!last)
+        entranceView.findChild<View>(R.id.main_view_entrance_divider).beVisibleOrGone(!last)
 
         if (first) {
             (entranceView as EnhancedShapeable).shapeAppearanceModel = ShapeAppearanceModel.builder()

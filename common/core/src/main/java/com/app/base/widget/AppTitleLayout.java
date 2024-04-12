@@ -33,7 +33,7 @@ import com.android.base.utils.android.compat.AndroidVersion;
 import com.android.base.utils.android.compat.SystemBarCompat;
 import com.android.base.utils.android.views.SizeEx;
 import com.android.base.utils.android.views.TintKit;
-import com.android.base.utils.android.views.ViewEx;
+import com.android.base.utils.android.views.ViewLayoutParamsEx;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
 import com.google.android.material.internal.ToolbarUtils;
@@ -102,7 +102,7 @@ public class AppTitleLayout extends LinearLayout {
         child.setTextSize(18);
         child.setText(title);
         child.setTextColor(titleColor);
-        ViewGroup.LayoutParams layoutParams = ViewEx.newMWLayoutParams();
+        ViewGroup.LayoutParams layoutParams = ViewLayoutParamsEx.newMWLayoutParams();
         layoutParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
         addView(child, layoutParams);
 
@@ -233,6 +233,7 @@ public class AppTitleLayout extends LinearLayout {
         setMenuColor(color, "");
     }
 
+    @SuppressLint("RestrictedApi")
     public void setMenuColor(@ColorInt int color, String target) {
         View view;
         View innerView;

@@ -17,7 +17,7 @@ class TextItemLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val viewBinding = WidgetTextItemBinding.inflate(inflater(), this)
+    private val viewBinding = WidgetTextItemBinding.inflate(layoutInflater(), this)
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.TextItemLayout).use(::fillAttributes)

@@ -109,8 +109,8 @@ dependencies {
 
     //modules
     implementation project(":common:core")
-    implementation project(":module_main:main")
-    implementation project(":module_account:main")
+    implementation project(":feature:main:main")
+    implementation project(":feature:account:main")
 
     /*Hilt*/
     api AndroidLibraries.hiltDagger

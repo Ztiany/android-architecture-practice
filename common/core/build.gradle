@@ -91,7 +91,7 @@ dependencies {
     implementation project(':apm:core')
 
     //依赖的业务 API
-    implementation project(":module_main:api")
+    implementation project(":feature:main:api")
 
     //Android
     api AndroidLibraries.multidex

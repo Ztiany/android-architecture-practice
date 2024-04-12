@@ -18,7 +18,7 @@ import com.app.base.databinding.DialogBottomSheetItemBinding
  *@author Ztiany
  */
 class BottomSheetDialog(
-    private val builder: BottomSheetDialogBuilder
+    private val builder: BottomSheetDialogBuilder,
 ) : com.google.android.material.bottomsheet.BottomSheetDialog(builder.context) {
 
     private val vb = DialogBottomSheetBinding.inflate(LayoutInflater.from(builder.context))
@@ -88,9 +88,11 @@ class BottomSheetDialog(
             super.show()
         }
         //https://stackoverflow.com/questions/37104960/bottomsheetdialog-with-transparent-background
-        findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.setBackgroundResource(
-            android.R.color.transparent
-        )
+        findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.apply {
+            post {
+                background = android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT)
+            }
+        }
     }
 
 }
@@ -115,7 +117,7 @@ private class BottomSheetDialogAdapter(
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): BindingViewHolder<DialogBottomSheetItemBinding> {
         return BindingViewHolder(
             DialogBottomSheetItemBinding.inflate(
@@ -131,7 +133,7 @@ private class BottomSheetDialogAdapter(
 
     override fun onBindViewHolder(
         viewHolder: BindingViewHolder<DialogBottomSheetItemBinding>,
-        position: Int
+        position: Int,
     ) {
         val item = getItem(position)
         viewHolder.vb.dialogBottomSheetTvItem.text = item
