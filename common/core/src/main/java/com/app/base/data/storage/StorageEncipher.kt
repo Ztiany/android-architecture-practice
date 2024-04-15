@@ -1,6 +1,7 @@
 package com.app.base.data.storage
 
 import com.android.base.utils.security.AESUtils
+import com.android.base.utils.security.GeneralPassword
 import com.android.sdk.cache.encryption.Encipher
 import timber.log.Timber
 import java.nio.charset.Charset
@@ -10,7 +11,7 @@ import java.nio.charset.Charset
  */
 object StorageEncipher : Encipher {
 
-    private const val PASSWORD = "123456789987654321()"
+    private val PASSWORD = GeneralPassword("123456789987654321()")
 
     override fun encrypt(origin: String?): String? {
         Timber.d("encrypt %s", origin)
