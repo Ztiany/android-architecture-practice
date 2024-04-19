@@ -56,7 +56,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.AppTheme_Dialog_Common_Floating);
-        mAddressInquirers = new AddressInquirers();
+        mAddressInquirers = new AddressInquirers(requireContext());
         mAddressInquirers.setAddressQueryCallback(this);
         mAddressAdapter = new AddressAdapter(getContext());
         mAddressAdapter.setItemClickListener(mItemClickListener);

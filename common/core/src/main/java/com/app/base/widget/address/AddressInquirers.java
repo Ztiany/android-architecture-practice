@@ -1,5 +1,9 @@
 package com.app.base.widget.address;
 
+import android.content.Context;
+
+import androidx.annotation.NonNull;
+
 import com.android.base.utils.BaseUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,6 +22,12 @@ final class AddressInquirers {
     private static final String CHINA_ADDRESS_PATH = "address.json";
 
     private AddressQueryCallback mAddressQueryCallback;
+
+    private final Context mContext;
+
+    public AddressInquirers(@NonNull Context context) {
+        mContext = context;
+    }
 
     void setAddressQueryCallback(AddressQueryCallback addressQueryCallback) {
         mAddressQueryCallback = addressQueryCallback;
@@ -41,7 +51,7 @@ final class AddressInquirers {
 
     private String getAddressJson() {
         try {
-            return IOUtils.convertToString(BaseUtils.getAssets().open(CHINA_ADDRESS_PATH));
+            return IOUtils.convertToString(mContext.getAssets().open(CHINA_ADDRESS_PATH));
         } catch (IOException e) {
             e.printStackTrace();
             return "";
