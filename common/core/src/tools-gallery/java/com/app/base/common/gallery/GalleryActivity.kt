@@ -24,11 +24,11 @@ import com.android.base.utils.android.views.alwaysShow
 import com.android.base.utils.android.views.beInvisible
 import com.android.base.utils.android.views.beVisible
 import com.android.base.utils.android.views.onMenuItemClick
-import com.app.base.R
 import com.app.base.app.AppBaseActivity
 import com.app.base.databinding.GalleryActivityBinding
 import kotlinx.parcelize.Parcelize
 import kotlin.properties.Delegates
+import com.app.base.ui.R as UI_R
 
 /**
  * @author Ztiany
@@ -42,7 +42,7 @@ class GalleryActivity : AppBaseActivity() {
         val title: String,
         val position: Int,
         val useTransition: Boolean,
-        val deletable: Boolean
+        val deletable: Boolean,
     ) : Parcelable
 
     class Builder {
@@ -208,8 +208,8 @@ class GalleryActivity : AppBaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (galleryInfo.deletable) {
-            menu.add(R.string.delete)
-                .setIcon(R.drawable.icon_delete)
+            menu.add(UI_R.string.delete)
+                .setIcon(UI_R.drawable.icon_delete)
                 .alwaysShow()
                 .onMenuItemClick {
                     deleteCurrentImage()
@@ -299,8 +299,9 @@ class GalleryActivity : AppBaseActivity() {
                 layout.commonGalleryIvTrans.beVisible()
                 supportFinishAfterTransition()
             }
+
             scale -> this.finishWithAnimation(0, 0)
-            else -> this.finishWithAnimation(0, R.anim.gallery_scale_out)
+            else -> this.finishWithAnimation(0, UI_R.anim.gallery_scale_out)
         }
     }
 
@@ -319,7 +320,7 @@ class GalleryActivity : AppBaseActivity() {
             requestCode: Int,
             resultCode: Int,
             data: Intent?,
-            deletedPhotos: (deleted: List<Uri>) -> Unit
+            deletedPhotos: (deleted: List<Uri>) -> Unit,
         ) {
             if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
                 val listExtra = data.getParcelableArrayListExtra<Uri>(KEY_FOR_RESULT)

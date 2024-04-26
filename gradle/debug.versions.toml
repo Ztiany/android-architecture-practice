@@ -1,0 +1,25 @@
+# Migirate to version catalog: https://developer.android.com/build/migrate-to-catalogs
+[versions]
+booster = "4.16.3"
+
+
+[libraries]
+# https://github.com/square/leakcanary
+squareup-leakcanary-debug = "com.squareup.leakcanary:leakcanary-android:2.1"
+
+# http://facebook.github.io/stetho
+facebook-stetho = "com.facebook.stetho:stetho:1.5.1"
+facebook-stetho-okhttp3 = "com.facebook.stetho:stetho-okhttp3:1.5.1"
+
+# https://github.com/didi/DoraemonKit
+didi-doraemonKit = "com.didichuxing.doraemonkit:dokitx:3.3.5"
+
+# https://github.com/didi/booster
+# todo
+
+# https://github.com/square/radiography
+square-radiography = "com.squareup.radiography:radiography:2.3.0"
+
+
+[plugins]
+didiBooster = { id = 'com.didiglobal.booster', version.ref = "booster" }

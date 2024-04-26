@@ -23,11 +23,11 @@ class ToastDialog extends AppCompatDialog {
     private TextView mMessageTv;
 
     ToastDialog(Context context) {
-        super(context, R.style.AppTheme_Dialog_Tips);
+        super(context, com.app.base.ui.R.style.AppTheme_Dialog_Tips);
         Window window = getWindow();
         assert window != null;
         WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.windowAnimations = R.style.AppAnimation_FadeIn;
+        attributes.windowAnimations = com.app.base.ui.R.style.AppAnimation_FadeIn;
         setView();
     }
 
@@ -51,14 +51,14 @@ class ToastDialog extends AppCompatDialog {
     public void setTipsType(@TipsType int type) {
         switch (type) {
             case ToastDialogBuilder.TYPE_SUCCESS: {
-                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_tips_success, 0, 0);
-                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.R.drawable.icon_tips_success, 0, 0);
+                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), com.app.base.ui.R.color.white));
             }
             break;
             case ToastDialogBuilder.TYPE_FAILURE:
             case ToastDialogBuilder.TYPE_WARNING: {
-                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_tips_failed, 0, 0);
-                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), R.color.text_stress));
+                mMessageTv.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.R.drawable.icon_tips_failed, 0, 0);
+                mMessageTv.setTextColor(ContextCompat.getColor(getContext(), com.app.base.ui.R.color.text_stress));
             }
             break;
         }

@@ -1,16 +1,9 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
-
 android {
-    compileSdkVersion AppConfig.compileSdkVersion
-    buildToolsVersion AppConfig.buildToolsVersion
+    compileSdk AppConfig.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion AppConfig.minSdkVersion
-        targetSdkVersion AppConfig.targetSdkVersion
+        minSdk AppConfig.minSdkVersion
+        targetSdk AppConfig.compileSdkVersion
         versionCode AppConfig.versionCode
         versionName AppConfig.versionName
 
@@ -27,12 +20,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = ["-Xcontext-receivers"]
     }
 
@@ -40,7 +33,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
 }
 
 dependencies {
@@ -59,5 +51,5 @@ dependencies {
 
     /*Hilt*/
     api AndroidLibraries.hiltDagger
-    kapt AndroidLibraries.hiltDaggerApt
+    ksp AndroidLibraries.hiltDaggerApt
 }

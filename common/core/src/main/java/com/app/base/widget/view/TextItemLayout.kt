@@ -6,15 +6,23 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.use
-import com.android.base.utils.android.views.*
+import com.android.base.utils.android.views.beGone
+import com.android.base.utils.android.views.beVisible
+import com.android.base.utils.android.views.beVisibleOrGone
+import com.android.base.utils.android.views.dip
+import com.android.base.utils.android.views.getColorCompat
+import com.android.base.utils.android.views.getDimensionPixelSize
+import com.android.base.utils.android.views.layoutInflater
+import com.android.base.utils.android.views.textValue
 import com.app.base.R
 import com.app.base.databinding.WidgetTextItemBinding
+import com.app.base.ui.R as UI_R
 
 /**
  *@author Ztiany
  */
 class TextItemLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val viewBinding = WidgetTextItemBinding.inflate(layoutInflater(), this)
@@ -47,7 +55,7 @@ class TextItemLayout @JvmOverloads constructor(
         val visibleBottomLine = typedArray.getBoolean(R.styleable.TextItemLayout_til_show_bottom_line, false)
         if (visibleBottomLine) {
             viewBinding.widgetTextItemLine.beVisible()
-            val bottomLineColor = typedArray.getColor(R.styleable.TextItemLayout_til_bottom_line_color, getColorCompat(R.color.divider_color))
+            val bottomLineColor = typedArray.getColor(R.styleable.TextItemLayout_til_bottom_line_color, getColorCompat(UI_R.color.divider_color))
             viewBinding.widgetTextItemLine.setBackgroundColor(bottomLineColor)
             val bottomLineAlignTitle = typedArray.getBoolean(R.styleable.TextItemLayout_til_bottom_line_align_title, false)
             val bottomLineHeight = typedArray.getDimension(R.styleable.TextItemLayout_til_bottom_line_height, 1F)
@@ -65,14 +73,14 @@ class TextItemLayout @JvmOverloads constructor(
             ConstraintSet.START,
             ConstraintSet.PARENT_ID,
             ConstraintSet.START,
-            getDimensionPixelSize(R.dimen.common_page_edge)
+            getDimensionPixelSize(UI_R.dimen.common_page_edge)
         )
         constraintSet.connect(
             viewBinding.widgetTextItemTvTitle.id,
             ConstraintSet.END,
             ConstraintSet.PARENT_ID,
             ConstraintSet.END,
-            getDimensionPixelSize(R.dimen.common_page_edge)
+            getDimensionPixelSize(UI_R.dimen.common_page_edge)
         )
         constraintSet.applyTo(this)
     }

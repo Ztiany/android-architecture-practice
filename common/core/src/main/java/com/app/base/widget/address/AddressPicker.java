@@ -16,10 +16,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blankj.utilcode.util.ScreenUtils;
 import com.android.base.utils.android.adaption.OnTabSelectedListenerAdapter;
 import com.android.base.utils.common.Checker;
 import com.app.base.R;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -55,7 +55,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.AppTheme_Dialog_Common_Floating);
+        setStyle(DialogFragment.STYLE_NO_TITLE, com.app.base.ui.R.style.AppTheme_Dialog_Common_Floating);
         mAddressInquirers = new AddressInquirers(requireContext());
         mAddressInquirers.setAddressQueryCallback(this);
         mAddressAdapter = new AddressAdapter(getContext());
@@ -108,7 +108,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
 
     private void addTab() {
         TabLayout.Tab tab = mTabLayout.newTab();
-        tab.setText(R.string.please_select);
+        tab.setText(com.app.base.ui.R.string.please_select);
         mTabLayout.addTab(tab);
         tab.setTag(mCurrentSource);
         tab.select();
@@ -150,7 +150,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
             for (int i = FIX_ADDRESS_ITEM_COUNT - 1; i >= index; i--) {
                 mAddressItems[i] = null;
             }
-            tab.setText(R.string.please_select);
+            tab.setText(com.app.base.ui.R.string.please_select);
             showNext(false);
         }
     };
@@ -199,7 +199,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
 
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            dialogWindow.setWindowAnimations(R.style.AppAnimation_BottomIn);
+            dialogWindow.setWindowAnimations(com.app.base.ui.R.style.AppAnimation_BottomIn);
             dialogWindow.setAttributes(lp);
         }
 

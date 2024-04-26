@@ -1,5 +1,5 @@
 @file:JvmName("DialogManager")
-//TODO: 拆分各种对话框的逻辑到各自的文件中。
+
 package com.app.base.widget.dialog
 
 import android.app.Activity
@@ -17,10 +17,12 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.utils.android.views.getString
-import com.app.base.R
 import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import com.app.base.ui.R as UI_R
+
+//TODO: 拆分各种对话框的逻辑到各自的文件中。
 
 ///////////////////////////////////////////////////////////////////////////
 // Loading
@@ -29,7 +31,7 @@ import kotlinx.coroutines.launch
 fun createLoadingDialog(context: Context, autoShow: Boolean = false): LoadingDialogInterface {
     val loadingDialog = LoadingDialog(context)
     loadingDialog.setCanceledOnTouchOutside(false)
-    loadingDialog.setMessage(R.string.dialog_loading)
+    loadingDialog.setMessage(UI_R.string.dialog_loading)
     if (autoShow) {
         loadingDialog.show()
     }
@@ -45,7 +47,7 @@ annotation class TipsType
 
 class ToastDialogBuilder internal constructor(
     val activity: Activity?,
-    val fragment: Fragment?
+    val fragment: Fragment?,
 ) {
 
     companion object {
@@ -132,7 +134,7 @@ class ListDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     var titleSize = 16F
 
     /**标题的字体颜色*/
-    var titleColor = MaterialColors.getColor(context, R.attr.app_color_text_level1, "app_color_text_level1 not provided.")
+    var titleColor = MaterialColors.getColor(context, UI_R.attr.app_color_text_level1, "app_color_text_level1 not provided.")
 
     @ArrayRes
     var itemsId: Int = NO_ID
@@ -179,7 +181,7 @@ open class BaseDialogBuilder(val context: Context) {
     }
 
     /**样式*/
-    var style: Int = R.style.AppTheme_Dialog_Common_Transparent_Floating
+    var style: Int = UI_R.style.AppTheme_Dialog_Common_Transparent_Floating
 
     /**确认按钮*/
     @StringRes
@@ -191,8 +193,8 @@ open class BaseDialogBuilder(val context: Context) {
                 context.getText(value)
             }
         }
-    var positiveText: CharSequence? = context.getText(R.string.sure)
-    @ColorInt var positiveColor: Int = MaterialColors.getColor(context, R.attr.app_color_deepest, "app_color_deepest not provided.")
+    var positiveText: CharSequence? = context.getText(UI_R.string.sure)
+    @ColorInt var positiveColor: Int = MaterialColors.getColor(context, UI_R.attr.app_color_deepest, "app_color_deepest not provided.")
 
     /**否认按钮*/
     @StringRes
@@ -204,8 +206,8 @@ open class BaseDialogBuilder(val context: Context) {
                 context.getText(value)
             }
         }
-    var negativeText: CharSequence? = context.getText(R.string.cancel)
-    @ColorInt var negativeColor: Int = MaterialColors.getColor(context, R.attr.app_color_text_variant1, "app_color_text_variant1 not provided.")
+    var negativeText: CharSequence? = context.getText(UI_R.string.cancel)
+    @ColorInt var negativeColor: Int = MaterialColors.getColor(context, UI_R.attr.app_color_text_variant1, "app_color_text_variant1 not provided.")
 
     fun disableNegative() {
         negativeText = null
@@ -235,7 +237,7 @@ class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     var titleSize = 18F
 
     /**标题的字体颜色*/
-    var titleColor = MaterialColors.getColor(context, R.attr.app_color_deepest, "app_color_deepest not provided.")
+    var titleColor = MaterialColors.getColor(context, UI_R.attr.app_color_deepest, "app_color_deepest not provided.")
 
     ///////////////////////////////////////////////////////////////////////////
     // message
@@ -251,7 +253,7 @@ class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     var messageSize = 14F
 
     /**消息的字体颜色*/
-    var messageColor = MaterialColors.getColor(context, R.attr.app_color_text_level2, "app_color_text_level2 not provided.")
+    var messageColor = MaterialColors.getColor(context, UI_R.attr.app_color_text_level2, "app_color_text_level2 not provided.")
 
     /**消息对其方式*/
     var messageGravity: Int = Gravity.CENTER
@@ -270,7 +272,7 @@ class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
             }
         }
     var neutralText: CharSequence? = null
-    @ColorInt var neutralColor: Int = MaterialColors.getColor(context, R.attr.app_color_text_variant1, "app_color_text_variant1 not provided.")
+    @ColorInt var neutralColor: Int = MaterialColors.getColor(context, UI_R.attr.app_color_text_variant1, "app_color_text_variant1 not provided.")
 
     ///////////////////////////////////////////////////////////////////////////
     // checkbox
@@ -322,7 +324,7 @@ class BottomSheetDialogBuilder(val context: Context) {
         }
 
     /**default is the text defined by [R.string.cancel]，if set it empty than the action view will be hidden.*/
-    var actionText: CharSequence = getString(R.string.cancel)
+    var actionText: CharSequence = getString(UI_R.string.cancel)
     fun noBottomAction() {
         actionText = ""
     }
@@ -337,7 +339,7 @@ class BottomSheetDialogBuilder(val context: Context) {
         }
 
     var itemGravity: Int = Gravity.CENTER
-    var itemTextColor: Int = MaterialColors.getColor(context, R.attr.app_color_text_level1, "app_color_text_level1 not provided.")
+    var itemTextColor: Int = MaterialColors.getColor(context, UI_R.attr.app_color_text_level1, "app_color_text_level1 not provided.")
     var itemSelectedListener: ((which: Int, item: CharSequence) -> Unit)? = null
     var itemSelectedListener2: ((dialog: Dialog, which: Int, item: CharSequence) -> Unit)? = null
     var actionListener: (() -> Unit)? = null

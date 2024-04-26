@@ -1,0 +1,34 @@
+[versions]
+
+
+[libraries]
+# qmui：https://qmuiteam.com/
+qmuiteam-qmui = "com.qmuiteam:qmui:2.1.0"
+
+# https://github.com/drakeet/MultiType
+drakeet-multitype = "com.drakeet.multitype:multitype:4.0.0"
+
+# https://github.com/airbnb/epoxy
+airbnb-epoxy = "com.airbnb.android:epoxy:5.1.1"
+airbnb-epoxy-apt = "com.airbnb.android:epoxy-processor:5.1.1"
+
+# https://github.com/yshrsmz/KeyboardVisibilityEvent
+yslibrary-keyboard-visibility-event = "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3"
+
+# https://github.com/B3nedikt/ViewPump
+b3nedikt-viewpump = "dev.b3nedikt.viewpump:viewpump:4.0.7"
+
+# https://github.com/jaredrummler/HtmlDsl
+jaredrummler-htmldsl = "com.jaredrummler:html-dsl:1.0.0"
+
+# https://github.com/kyleduo/SwitchButton
+kyleduo-switchbutton = "com.kyleduo.switchbutton:library:2.1.0"
+
+# https://github.com/Ztiany/android-drawable-view
+ztiany-drawableView = "io.github.ztiany:android-drawable-view:1.1.7"
+
+# https://github.com/getActivity/ToastUtils
+getactivity-toastutils = "com.github.getActivity:ToastUtils:11.0"
+
+
+[plugins]

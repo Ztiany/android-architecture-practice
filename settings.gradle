@@ -1,4 +1,56 @@
-apply from: './gradle/module_config.gradle'
+pluginManagement {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven { url "https://jitpack.io" }
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven { url "https://jitpack.io" }
+        google()
+        mavenCentral()
+    }
+    versionCatalogs {
+        /*androix {
+            from files('gradle/androix.versions.toml')
+        }
+          compose {
+            from files('gradle/compose.versions.toml')
+        }
+        kotlin {
+            from files('gradle/kotlin.versions.toml')
+        }
+        kit {
+            from files('gradle/kit.versions.toml')
+        }
+        ui {
+            from files('gradle/ui.versions.toml')
+        }
+        debug {
+            from files('gradle/debug.versions.toml')
+        }
+        test {
+            from files('gradle/test.versions.toml')
+        }*/
+    }
+}
 
 //基础模块
 include("base:core")

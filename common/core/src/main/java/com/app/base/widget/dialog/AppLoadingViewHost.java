@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.android.base.fragment.ui.LoadingViewHost;
-import com.app.base.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +29,7 @@ public class AppLoadingViewHost implements LoadingViewHost {
     public Dialog showLoadingDialog(@NotNull CharSequence message, boolean cancelable) {
         initDialog();
         if (TextUtils.isEmpty(message)) {
-            mLoadingDialog.setMessage(R.string.dialog_loading);
+            mLoadingDialog.setMessage(com.app.base.ui.R.string.dialog_loading);
         } else {
             mLoadingDialog.setMessage(message);
         }

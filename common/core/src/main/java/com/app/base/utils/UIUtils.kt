@@ -15,6 +15,7 @@ import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.textValue
 import com.android.base.utils.common.isLengthIn
 import com.app.base.R
+import com.app.base.ui.R as UI_R
 import com.google.android.material.color.MaterialColors
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import java.lang.ref.WeakReference
@@ -42,7 +43,7 @@ fun newAppStyleClickSpan(lifecycleOwner: LifecycleOwner, context: Context, onCli
 
         override fun updateDrawState(ds: TextPaint) {
             contextReference.get()?.let {
-                ds.color = MaterialColors.getColor(it, R.attr.app_color_text_link, Color.BLACK)
+                ds.color = MaterialColors.getColor(it, UI_R.attr.app_color_text_link, Color.BLACK)
             }
             ds.isUnderlineText = false
         }
@@ -74,7 +75,7 @@ var supportStatusBarLightMode: Boolean = false
 fun Activity.setNavigatorBarColorLightest() {
     SystemBarCompat.setNavigationBarColor(
         this,
-        MaterialColors.getColor(this, R.attr.app_color_lightest, "app_color_lightest not provided.")
+        MaterialColors.getColor(this, UI_R.attr.app_color_lightest, "app_color_lightest not provided.")
     )
 }
 

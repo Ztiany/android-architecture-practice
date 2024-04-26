@@ -7,7 +7,6 @@ import com.android.sdk.net.core.provider.ErrorBodyParser
 import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
 import com.android.sdk.net.core.provider.PlatformInteractor
-import com.app.base.R
 import com.app.base.app.AndroidPlatform
 import com.app.base.app.ErrorHandler
 import com.app.base.config.AppSettings
@@ -22,12 +21,13 @@ import retrofit2.Retrofit
 import timber.log.Timber
 import java.net.Proxy
 import java.util.concurrent.TimeUnit
+import com.app.base.ui.R as UI_R
 
 internal fun newHttpConfig(
     userManager: UserManager,
     appSettings: AppSettings,
     androidPlatform: AndroidPlatform,
-    errorHandler: ErrorHandler
+    errorHandler: ErrorHandler,
 ): HttpConfig {
 
     return object : HttpConfig {
@@ -39,7 +39,7 @@ internal fun newHttpConfig(
 
         override fun configRetrofit(
             okHttpClient: OkHttpClient,
-            builder: Retrofit.Builder
+            builder: Retrofit.Builder,
         ): Boolean {
             return false
         }
@@ -114,31 +114,31 @@ internal fun newErrorBodyParser(errorHandler: ErrorHandler): ErrorBodyParser {
 internal fun newErrorMessage(): ErrorMessage {
     return object : ErrorMessage {
         override fun netErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_net_error)
+            return getString(UI_R.string.error_net_error)
         }
 
         override fun serverDataErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_service_data_error)
+            return getString(UI_R.string.error_service_data_error)
         }
 
         override fun serverReturningNullEntityErrorMessage(exception: Throwable?): CharSequence {
-            return getString(R.string.error_service_no_data_error)
+            return getString(UI_R.string.error_service_no_data_error)
         }
 
         override fun serverInternalErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_service_error)
+            return getString(UI_R.string.error_service_error)
         }
 
         override fun clientRequestErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_request_error)
+            return getString(UI_R.string.error_request_error)
         }
 
         override fun apiErrorMessage(exception: ApiErrorException): CharSequence {
-            return getString(R.string.error_api_code_mask_tips, exception.code)
+            return getString(UI_R.string.error_api_code_mask_tips, exception.code)
         }
 
         override fun unknownErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_unknown) + "：${exception.message}"
+            return getString(UI_R.string.error_unknown) + "：${exception.message}"
         }
     }
 }

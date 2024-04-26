@@ -13,12 +13,12 @@ import com.android.base.utils.android.views.textValue
 import com.app.base.utils.newAppStyleClickSpan
 import com.app.base.widget.form.validateCellphone
 import com.app.base.widget.form.validateSmsCode
-import me.ztiany.wan.account.AccountInternalNavigator
 import com.blankj.utilcode.util.SpanUtils
 import dagger.hilt.android.AndroidEntryPoint
-import me.ztiany.wan.account.R
+import me.ztiany.wan.account.AccountInternalNavigator
 import me.ztiany.wan.account.databinding.AccountFragmentSmsBinding
 import javax.inject.Inject
+import com.app.base.ui.R as UI_R
 
 @AndroidEntryPoint
 class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
@@ -84,7 +84,7 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
 
     private fun checkAgreement(): Boolean {
         if (!vb.accountViewCheckAgreement.isSelected) {
-            showMessage(getString(R.string.account_agreement_tips))
+            showMessage(getString(me.ztiany.wan.account.R.string.account_agreement_tips))
         }
         return vb.accountViewCheckAgreement.isSelected
     }
@@ -98,13 +98,13 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
         handleLiveData(viewModel.smsCodeState) {
             onSuccess {
                 vb.accountTvCounter.startCounter()
-                showMessage(R.string.validate_code_send_success)
+                showMessage(UI_R.string.validate_code_send_success)
             }
         }
 
         handleLiveData(viewModel.loginState) {
             onSuccess {
-                showMessage(R.string.login_success)
+                showMessage(UI_R.string.login_success)
                 vb.accountTvCounter.clearWhenDetach()
                 navigator.exitAndToHomePage()
             }

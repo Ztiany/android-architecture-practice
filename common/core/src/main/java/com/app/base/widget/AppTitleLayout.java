@@ -73,7 +73,10 @@ public class AppTitleLayout extends LinearLayout {
         String title = typedArray.getString(R.styleable.AppTitleLayout_atl_title);
         int menuResId = typedArray.getResourceId(R.styleable.AppTitleLayout_atl_menu_id, INVALIDATE_ID);
         boolean showCuttingLine = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_cutting_line, false);
-        int cuttingLineBg = typedArray.getColor(R.styleable.AppTitleLayout_atl_show_cutting_line_bg, ContextCompat.getColor(getContext(), R.color.divider_color));
+        int cuttingLineBg = typedArray.getColor(
+                R.styleable.AppTitleLayout_atl_show_cutting_line_bg,
+                ContextCompat.getColor(getContext(), com.app.base.ui.R.color.divider_color)
+        );
         boolean disableNavigation = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_disable_navigation, false);
         Drawable navigationIcon = typedArray.getDrawable(R.styleable.AppTitleLayout_atl_navigation_icon);
         int iconTintColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_navigation_icon_tint, -1);
@@ -122,10 +125,11 @@ public class AppTitleLayout extends LinearLayout {
             }
         } else {
             if (iconTintColor == -1) {
-                child.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.icon_back, 0, 0, 0);
+                child.setCompoundDrawablesRelativeWithIntrinsicBounds(com.app.base.ui.R.drawable.icon_back, 0, 0, 0);
             } else {
-                Drawable drawable = TintKit.tintDrawable(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.icon_back)).mutate(), iconTintColor);
-                child.setCompoundDrawablesRelative(drawable, null, null, null);
+                Drawable drawable = ContextCompat.getDrawable(getContext(), com.app.base.ui.R.drawable.icon_back);
+                Drawable tintedDrawable = TintKit.tintDrawable(Checker.requireNonNull(drawable).mutate(), iconTintColor);
+                child.setCompoundDrawablesRelative(tintedDrawable, null, null, null);
             }
         }
     }
@@ -157,9 +161,9 @@ public class AppTitleLayout extends LinearLayout {
             }
         } else {
             if (iconTintColor == -1) {
-                mMaterialToolbar.setNavigationIcon(R.drawable.icon_back);
+                mMaterialToolbar.setNavigationIcon(com.app.base.ui.R.drawable.icon_back);
             } else {
-                mMaterialToolbar.setNavigationIcon(TintKit.tintDrawable(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.icon_back)).mutate(), iconTintColor));
+                mMaterialToolbar.setNavigationIcon(TintKit.tintDrawable(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), com.app.base.ui.R.drawable.icon_back)).mutate(), iconTintColor));
             }
         }
     }
@@ -188,7 +192,12 @@ public class AppTitleLayout extends LinearLayout {
         }
         //adjust for status bar
         if ((fitStatusInsetFor19 && AndroidVersion.at(19)) || (fitStatusInsetAfter19 && AndroidVersion.above(20))) {
-            setPadding(getPaddingLeft(), mOriginalTopPadding + SystemBarCompat.getStatusBarHeightIgnoreVisibility(realContext), getPaddingRight(), getPaddingBottom());
+            setPadding(
+                    getPaddingLeft(),
+                    mOriginalTopPadding + SystemBarCompat.getStatusBarHeightIgnoreVisibility(realContext),
+                    getPaddingRight(),
+                    getPaddingBottom()
+            );
         }
     }
 

@@ -30,6 +30,7 @@ import timber.log.Timber
 import java.io.File
 import java.lang.ref.WeakReference
 import javax.inject.Inject
+import com.app.base.ui.R as UI_R
 
 
 /**
@@ -94,7 +95,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         context: Context,
         upgradeInfo: UpgradeInfo,
         onCancel: () -> Unit,
-        onConfirm: () -> Unit
+        onConfirm: () -> Unit,
     ) {
         Timber.d("showUpgradeDialog")
         upgradeDialogReference?.get()?.dismiss()
@@ -113,7 +114,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         context: Context,
         forceUpgrade: Boolean,
         onCancel: () -> Unit,
-        onConfirm: () -> Unit
+        onConfirm: () -> Unit,
     ) {
         if (!forceUpgrade) {
             return
@@ -126,14 +127,14 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
                 it.dismiss()
                 onCancel()
             }
-            positiveId = R.string.confirm
+            positiveId = UI_R.string.confirm
             positiveListener = { onConfirm() }
             autoDismiss = false
         }
     }
 
     override fun showDownloadingFailed(
-        context: Context, forceUpgrade: Boolean, error: UpgradeException, onCancel: () -> Unit, onConfirm: () -> Unit
+        context: Context, forceUpgrade: Boolean, error: UpgradeException, onCancel: () -> Unit, onConfirm: () -> Unit,
     ) {
         showConfirmDialog(context) {
             message = forceUpgrade.yes {
@@ -142,7 +143,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
                 context.getString(R.string.upgrade_download_failed_retry)
             }
             cancelable = false
-            negativeText = forceUpgrade.yes { null } otherwise { context.getString(R.string.cancel) }
+            negativeText = forceUpgrade.yes { null } otherwise { context.getString(UI_R.string.cancel) }
             negativeListener = { onCancel() }
             positiveListener = { onConfirm() }
         }
@@ -181,7 +182,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
                 PermissionX.init(it as FragmentActivity).permissions(Manifest.permission.REQUEST_INSTALL_PACKAGES)
                     .onExplainRequestReason { scope, deniedList ->
                         val message = it.getString(R.string.upgrade_permission)
-                        scope.showRequestReasonDialog(deniedList, message, it.getString(R.string.allow), it.getString(R.string.deny))
+                        scope.showRequestReasonDialog(deniedList, message, it.getString(UI_R.string.allow), it.getString(UI_R.string.deny))
                     }.request { allGranted, _, _ ->
                         Timber.d("installApk allGranted = $allGranted")
                         if (allGranted) {

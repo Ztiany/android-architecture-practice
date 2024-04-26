@@ -1,7 +1,7 @@
 package com.app.base.widget.form
 
 import android.view.View
-import com.app.base.R
+import com.app.base.ui.R as UI_R
 
 class IdentityCodeValidator constructor(view: View) : TextValidator(view) {
 
@@ -10,11 +10,11 @@ class IdentityCodeValidator constructor(view: View) : TextValidator(view) {
     }
 
     public override fun emptyTips(): Int {
-        return R.string.please_enter_paperwork_code
+        return UI_R.string.please_enter_paperwork_code
     }
 
     public override fun noMatchTips(): Int {
-        return R.string.please_enter_legitimate_paperwork_code
+        return UI_R.string.please_enter_legitimate_paperwork_code
     }
 
 }

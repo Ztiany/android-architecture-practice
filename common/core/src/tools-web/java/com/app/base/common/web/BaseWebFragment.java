@@ -22,7 +22,6 @@ import androidx.annotation.Nullable;
 import com.android.base.fragment.base.BaseUIFragment;
 import com.android.base.fragment.tool.Fragments;
 import com.android.base.utils.android.views.WebViewUtils;
-import com.app.base.R;
 import com.app.base.databinding.AppBaseWebFragmentBinding;
 import com.app.base.widget.AppTitleLayout;
 import com.blankj.utilcode.util.NetworkUtils;
@@ -271,18 +270,18 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
         mErrorLayout.setVisibility(View.VISIBLE);
 
         if (!NetworkUtils.isConnected()) {
-            mErrorLayout.<ImageView>findViewById(R.id.base_retry_icon).setImageResource(R.drawable.base_img_no_network);
-            mErrorLayout.<TextView>findViewById(R.id.base_retry_tv).setText(R.string.error_net_error);
+            mErrorLayout.<ImageView>findViewById(com.android.base.fragment.R.id.base_retry_icon).setImageResource(com.android.base.fragment.R.drawable.base_img_no_network);
+            mErrorLayout.<TextView>findViewById(com.android.base.fragment.R.id.base_retry_tv).setText(com.app.base.ui.R.string.error_net_error);
         } else {
-            mErrorLayout.<ImageView>findViewById(R.id.base_retry_icon).setImageResource(R.drawable.base_img_error);
-            mErrorLayout.<TextView>findViewById(R.id.base_retry_tv).setText(R.string.error_service_error);
+            mErrorLayout.<ImageView>findViewById(com.android.base.fragment.R.id.base_retry_icon).setImageResource(com.android.base.fragment.R.drawable.base_img_error);
+            mErrorLayout.<TextView>findViewById(com.android.base.fragment.R.id.base_retry_tv).setText(com.app.base.ui.R.string.error_service_error);
         }
 
         boolean titleIsHidden = mTitleIsHidden;
 
         setTitleVisible(true);
 
-        mErrorLayout.findViewById(R.id.base_retry_btn).setOnClickListener(view1 -> {
+        mErrorLayout.findViewById(com.android.base.fragment.R.id.base_retry_btn).setOnClickListener(view1 -> {
             Timber.d("onLoadError() called retry: url = [" + mCurrentUrl + "]");
             if (titleIsHidden) {
                 setTitleVisible(false);

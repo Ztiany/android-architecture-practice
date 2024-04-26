@@ -10,6 +10,7 @@ import com.android.base.ui.banner.IPagerNumberView
 import com.android.base.utils.android.views.dip
 import com.google.android.material.color.MaterialColors
 import me.ztiany.wan.main.R
+import com.app.base.ui.R as UI_R
 import kotlin.math.roundToInt
 
 class BannerPagerIndicatorView @JvmOverloads constructor(
@@ -23,9 +24,9 @@ class BannerPagerIndicatorView @JvmOverloads constructor(
     private var rectWidth = 0
     private var rectHeight = 0
 
-    private val bgColor = MaterialColors.getColor(this, R.attr.app_color_deepest_opacity20)
-    private val circleColor = MaterialColors.getColor(this, R.attr.app_color_lightest_opacity50)
-    private val rectColor = MaterialColors.getColor(this, R.attr.app_color_lightest)
+    private val bgColor = MaterialColors.getColor(this, UI_R.attr.app_color_deepest_opacity20)
+    private val circleColor = MaterialColors.getColor(this, UI_R.attr.app_color_lightest_opacity50)
+    private val rectColor = MaterialColors.getColor(this, UI_R.attr.app_color_lightest)
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL

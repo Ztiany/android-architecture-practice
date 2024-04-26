@@ -4,16 +4,16 @@ import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
 import com.android.base.utils.android.views.beVisibleOrInvisible
-import com.app.base.R
 import com.app.base.databinding.DialogUpgradeLoadingBinding
+import com.app.base.ui.R as UI_R
 
 /**
  *@author Ztiany
  */
 internal class UpgradeLoadingDialog(
     context: Context,
-    forceUpgrade: Boolean
-) : Dialog(context, R.style.AppTheme_Dialog_FullScreenWithSystemBar) {
+    forceUpgrade: Boolean,
+) : Dialog(context, UI_R.style.AppTheme_Dialog_FullScreenWithSystemBar) {
 
     private var layout = DialogUpgradeLoadingBinding.inflate(LayoutInflater.from(context))
 

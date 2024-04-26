@@ -1,8 +1,17 @@
-apply from: "${rootProject.projectDir}/gradle/modularization_app.gradle"
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
+    id 'dagger.hilt.android.plugin'
+}
 
 android {
+    namespace "me.ztiany.wan.main.app"
     resourcePrefix "main_"
 }
+
+apply from: "${rootProject.projectDir}/gradle/modularization_app.gradle"
 
 dependencies {
     implementation project(":feature:main:main")

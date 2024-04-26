@@ -1,0 +1,75 @@
+[versions]
+compose = '1.4.3'
+accompanist = "0.30.1"
+activity = "1.7.1"
+lifecycle = "2.6.1"
+
+[libraries]
+# https://developer.android.com/jetpack/compose/interop/adding
+
+# compose ui 基础
+ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+ui-graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "compose" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+
+# compose ui tool (debugImplementation)
+ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+
+# ui 组件
+ui-constraint = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+# compose 动画
+animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
+animation-core = { module = "androidx.compose.animation:animation-core", version.ref = "compose" }
+animation-graphics = { module = "androidx.compose.animation:animation-graphics", version.ref = "compose" }
+
+# compose 通用组件
+foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+foundation-layout = { module = "androidx.compose.foundation:foundation-layout", version.ref = "compose" }
+
+# compose material2 实现
+material = { module = "androidx.compose.material:material", version.ref = "compose" }
+# https://github.com/material-components/material-components-android-compose-theme-adapter#compose-material
+material-theme-adapter = "com.google.android.material:compose-theme-adapter:1.2.1" # When using a MDC theme
+
+# compose material3 实现
+material3 = "androidx.compose.material3:material3:1.1.0"
+material3-window-size = "androidx.compose.material3:material3-window-size-class:1.1.0"
+# https://github.com/material-components/material-components-android-compose-theme-adapter#compose-material
+material3-theme-adapter = "com.google.android.material:compose-theme-adapter-3:1.1.1"
+
+# compose material icons
+material-icon-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+
+# integration with viewmodels, hilt and navigation
+activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+navigation = "androidx.navigation:navigation-compose:2.5.3"
+hilt-navigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+# 第三方扩展
+# https://github.com/google/accompanist
+accompanist-systemui-controller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
+accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
+accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
+accompanist-insets-ui = { module = "com.google.accompanist:accompanist-insets-ui", version.ref = "accompanist" }
+
+accompanist-materialplaceholder = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
+accompanist-material3-placeholder = { module = "com.google.accompanist:accompanist-placeholder-material3", version.ref = "accompanist" }
+accompanist-viewpager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
+accompanist-viewpager-indicator = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
+
+# When using a AppCompat theme
+accompanist-appcompat-themeadapter = { module = "com.google.accompanist:accompanist-appcompat-theme", version.ref = "accompanist" }
+# When using a Material theme
+accompanist-material2-themeadapter = { module = "com.google.accompanist:accompanist-themeadapter-material", version.ref = "accompanist" }
+# When using a Material3 theme
+accompanist-material3-themeadapter = { module = "com.google.accompanist:accompanist-themeadapter-material3", version.ref = "accompanist" }
+
+# https://github.com/coil-kt/coil
+coil = "io.coil-kt:coil-compose:2.2.2"
+
+
+[plugins]

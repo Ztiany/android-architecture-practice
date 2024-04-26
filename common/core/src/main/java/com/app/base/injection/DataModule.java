@@ -14,7 +14,6 @@ import dagger.hilt.components.SingletonComponent;
 
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
  * Date : 2018-11-01 11:06
  */
 @Module

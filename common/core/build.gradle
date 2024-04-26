@@ -3,16 +3,17 @@ plugins {
     id "kotlin-android"
     id "kotlin-parcelize"
     id "kotlin-kapt"
+    id 'com.google.devtools.ksp'
     id "dagger.hilt.android.plugin"
 }
 
 android {
-    compileSdkVersion AppConfig.compileSdkVersion
-    buildToolsVersion AppConfig.buildToolsVersion
+    namespace "com.app.base"
+    compileSdk AppConfig.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion AppConfig.minSdkVersion
-        targetSdkVersion AppConfig.targetSdkVersion
+        minSdk AppConfig.minSdkVersion
+        targetSdk AppConfig.compileSdkVersion
         versionCode AppConfig.versionCode
         versionName AppConfig.versionName
 
@@ -23,7 +24,7 @@ android {
         buildConfigField("boolean", "showDebugTools", "${AppConfig.showDebugTools}")
         buildConfigField("boolean", "trustAllHttpsCertification", "${AppConfig.httpsTrustAll}")
         buildConfigField("boolean", "openLog", "${AppConfig.isOpenLog}")
-        buildConfigField("String", "specifiedHost", "\"${AppConfig.HOST_ENV}\"")
+        buildConfigField("String", "specifiedHost", "\"${AppConfig.hostENV}\"")
     }
 
     testOptions {
@@ -35,18 +36,19 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = ["-Xcontext-receivers"]
     }
 
     //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 
     sourceSets {
@@ -102,7 +104,7 @@ dependencies {
 
     /*Hilt*/
     api AndroidLibraries.hiltDagger
-    kapt AndroidLibraries.hiltDaggerApt
+    ksp AndroidLibraries.hiltDaggerApt
 
     /*网络库*/
     implementation ThirdLibraries.okHttp
@@ -133,8 +135,6 @@ dependencies {
     api ThirdLibraries.permissionx
     implementation "id.zelory:compressor:3.0.1"
 
-    //Channel
-    implementation "com.leon.channel:helper:2.0.3"
     //Bugly
     implementation "com.tencent.bugly:crashreport:3.4.4"
 

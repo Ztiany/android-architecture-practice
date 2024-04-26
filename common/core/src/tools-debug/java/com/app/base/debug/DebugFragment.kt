@@ -9,7 +9,6 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog.Builder
 import com.android.base.fragment.base.BaseUIFragment
 import com.android.base.fragment.tool.doFragmentTransaction
-import com.app.base.R
 import com.app.base.config.EnvironmentConfigFragment
 import com.app.base.data.storage.StorageManager
 import com.app.base.databinding.BaseFragmentDebugBinding
@@ -18,6 +17,7 @@ import com.permissionx.guolindev.PermissionX
 import dagger.hilt.android.AndroidEntryPoint
 import org.joor.Reflect
 import javax.inject.Inject
+import com.app.base.ui.R as UI_R
 
 /**
  * 调试工具
@@ -62,8 +62,8 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
     private fun confirmRestart() {
         Builder(requireContext())
             .setMessage("当前环境的登录状态、缓存数据、快捷登录将会清空，确定要重启吗？")
-            .setNegativeButton(R.string.cancel) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
-            .setPositiveButton(R.string.sure) { dialog: DialogInterface, _: Int ->
+            .setNegativeButton(UI_R.string.cancel) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
+            .setPositiveButton(UI_R.string.sure) { dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
                 //清除所有数据
                 userManager.logout()
@@ -88,7 +88,7 @@ class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
     private fun showSwitchTips() {
         Builder(requireContext())
             .setMessage("切换接口环境后，需要手动重启应用方能生效哦。（H5环境不需要重启）")
-            .setNegativeButton(R.string.cancel) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
+            .setNegativeButton(UI_R.string.cancel) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
             .setPositiveButton("好的") { dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
                 requireActivity().doFragmentTransaction {

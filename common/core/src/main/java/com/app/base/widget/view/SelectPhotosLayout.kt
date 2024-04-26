@@ -19,12 +19,13 @@ import com.android.base.utils.android.views.use
 import com.app.base.R
 import com.app.base.databinding.WidgetSelectPhotoItemPhotoBinding
 import kotlin.math.max
+import com.app.base.ui.R as UI_R
 
 /**
  * @author Ztiany
  */
 class SelectPhotosLayout @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
     var selectPhotosLayoutCallback: ((residueSize: Int) -> Unit)? = null
@@ -46,15 +47,15 @@ class SelectPhotosLayout @JvmOverloads constructor(
         require(maxImageSize >= 1) { "imageSize must > 1" }
 
         addImageAdapter = AddImageAdapter(context, maxImageSize,
-                onAddImageListener = {
-                    selectPhotosLayoutCallback?.invoke(it)
-                },
-                onClickImageListener = { view, photos, index ->
-                    onPhotoClickCallback?.invoke(view, photos, index)
-                },
-                onPhotoDeletedCallback = {
-                    onPhotoDeletedCallback?.invoke(it)
-                }
+            onAddImageListener = {
+                selectPhotosLayoutCallback?.invoke(it)
+            },
+            onClickImageListener = { view, photos, index ->
+                onPhotoClickCallback?.invoke(view, photos, index)
+            },
+            onPhotoDeletedCallback = {
+                onPhotoDeletedCallback?.invoke(it)
+            }
         )
 
         setupRecyclerView()
@@ -103,11 +104,11 @@ class SelectPhotosLayout @JvmOverloads constructor(
 }
 
 private class AddImageAdapter(
-        private val context: Context,
-        private val maxImageSize: Int,
-        onAddImageListener: (Int) -> Unit,
-        onClickImageListener: (view: View, photos: List<Uri>, position: Int) -> Unit,
-        var onPhotoDeletedCallback: ((photos: List<Uri>) -> Unit)? = null
+    private val context: Context,
+    private val maxImageSize: Int,
+    onAddImageListener: (Int) -> Unit,
+    onClickImageListener: (view: View, photos: List<Uri>, position: Int) -> Unit,
+    var onPhotoDeletedCallback: ((photos: List<Uri>) -> Unit)? = null,
 ) : RecyclerView.Adapter<BindingViewHolder<WidgetSelectPhotoItemPhotoBinding>>() {
 
     companion object {
@@ -171,7 +172,7 @@ private class AddImageAdapter(
         val item = dataList[position]
 
         if (item == ADD) {
-            viewHolder.vb.widgetSelectingIvPhoto.setImageResource(R.drawable.img_add_photo)
+            viewHolder.vb.widgetSelectingIvPhoto.setImageResource(UI_R.drawable.img_add_photo)
             viewHolder.vb.widgetSelectingIvPhoto.setOnClickListener(_onAddImageListener)
             viewHolder.vb.widgetSelectingIvDelete.beInvisible()
         } else {

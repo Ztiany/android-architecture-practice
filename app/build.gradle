@@ -1,21 +1,13 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    id "kotlin-kapt"
+    id 'com.google.devtools.ksp'
     id "dagger.hilt.android.plugin"
-    id "channel"
 }
 
-/*rebuildChannel {
-    baseReleaseApk file("build/outputs/apk/release/app-release-${AppConfig.versionName}.apk")
-    releaseOutputDir file("apk/${AppConfig.versionName}/release/")
-    //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上）
-    isFastMode false
-}*/
-
 android {
-    compileSdkVersion AppConfig.compileSdkVersion
-    buildToolsVersion AppConfig.buildToolsVersion
+    namespace "me.ztiany.wan.app"
+    compileSdk AppConfig.compileSdkVersion
 
     signingConfigs {
         create("release") {
@@ -30,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId "me.ztiany.android.play"
-        minSdkVersion AppConfig.minSdkVersion
-        targetSdkVersion AppConfig.targetSdkVersion
+        minSdk AppConfig.minSdkVersion
+        targetSdk AppConfig.compileSdkVersion
         versionCode AppConfig.versionCode
         versionName AppConfig.versionName
 
@@ -77,17 +69,17 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = ["-Xcontext-receivers"]
     }
 
-    android.applicationVariants.all { variant ->
-        variant.outputs.all {
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
             outputFileName = "${project.name}-${variant.versionName}.apk"
         }
     }
@@ -114,5 +106,5 @@ dependencies {
 
     /*Hilt*/
     api AndroidLibraries.hiltDagger
-    kapt AndroidLibraries.hiltDaggerApt
+    ksp AndroidLibraries.hiltDaggerApt
 }

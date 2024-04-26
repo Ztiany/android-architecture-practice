@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AccountActivity : AppBaseActivity(), CannotShowExpiredDialogOnIt {
 
-    override fun provideLayout() = R.layout.app_base_activity
+    override fun provideLayout() = com.app.base.R.layout.app_base_activity
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         SystemBarCompat.setStatusBarColor(

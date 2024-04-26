@@ -1,62 +1,61 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    apply from: './gradle/dependency.gradle'
-    apply from: './gradle/configuration.gradle'
+    apply from: "gradle/dependency.gradle"
 
-    repositories {
-        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
-        maven { url "https://maven.aliyun.com/repository/public" }
-        maven { url "https://maven.aliyun.com/repository/central" }
-        maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
-        maven { url "https://jitpack.io" }
-        mavenCentral()
-        google()
-    }
+    def ENV_AUTO = "Auto"
+    def ENV_TEST = "Test"
+    def ENV_RELEASE = "Pro"
 
-    dependencies {
-        //android
-        classpath "com.android.tools.build:gradle:7.3.1"
-        //kotlin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        //hilt
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-        //navigation
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
-        //channel
-        classpath "com.leon.channel:plugin:2.0.3"
-        // for publishing
-        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
+    ext {
+        AppConfig = [
+                minSdkVersion     : 23,
+                targetSdkVersion  : 30,
+                compileSdkVersion : 33,
+                buildToolsVersion : "30.0.3",
+                versionCode       : 1,
+                versionName       : "1.0.0",
+                releaseKeyAlias   : "hm",
+                releaseKeyPassword: "666666",
+                releaseKeyFileName: "Android.jks",
+                enableProguard    : false,
+                httpsTrustAll     : false,
+                isOpenDebug       : false,
+                showDebugTools    : false,
+                isOpenLog         : true,
+                HOST_ENV          : ENV_AUTO
+        ]
     }
 }
 
+plugins {
+    id 'com.android.application' version '8.3.1' apply false
+    // To generate Java language code suitable for Java or mixed Java and Kotlin modules add:
+    //id "androidx.navigation.safeargs" version '2.5.3' apply false
+    //  to generate Kotlin code suitable for Kotlin-only modules add:
+    id "androidx.navigation.safeargs.kotlin" version '2.5.3' apply false
+    id "org.jetbrains.kotlin.android" version '1.9.23' apply false
+    id "com.google.dagger.hilt.android" version '2.48' apply false
+    id "com.google.devtools.ksp" version "1.9.23-1.0.20" apply false
+}
+
 allprojects {
-
-    repositories {
-        mavenCentral()
-        google()
-        maven { url "https://maven.aliyun.com/repository/public" }
-        maven { url "https://maven.aliyun.com/repository/central" }
-        maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
-        maven { url "https://www.jitpack.io" }
-
-        configurations.configureEach {
-            resolutionStrategy.force(
-                    AndroidLibraries.appcompat,
-                    AndroidLibraries.activity,
-                    AndroidLibraries.activityKtx,
-                    AndroidLibraries.fragment,
-                    AndroidLibraries.fragmentKtx,
-                    AndroidLibraries.ktx,
-                    AndroidLibraries.annotations,
-                    AndroidLibraries.constraintLayout,
-                    KotlinLibraries.kotlinStdlib,
-                    KotlinLibraries.kotlinCoroutines
-            )
-        }
-
+    configurations.configureEach {
+        resolutionStrategy.force(
+                AndroidLibraries.appcompat,
+                AndroidLibraries.activity,
+                AndroidLibraries.activityKtx,
+                AndroidLibraries.fragment,
+                AndroidLibraries.fragmentKtx,
+                AndroidLibraries.ktx,
+                AndroidLibraries.annotations,
+                AndroidLibraries.constraintLayout,
+                KotlinLibraries.kotlinStdlib,
+                KotlinLibraries.kotlinCoroutines
+        )
     }
 
-    tasks.withType(Javadoc).all {
-        //乱码问题
+    tasks.withType(Javadoc).configureEach {
+        // 乱码问题
         options {
             encoding "UTF-8"
             charSet 'UTF-8'
@@ -71,7 +70,6 @@ allprojects {
             sonatypeHost = "S01"
         }
     }
-
 }
 
 tasks.register('clean', Delete) {
