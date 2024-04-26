@@ -9,16 +9,26 @@
 	url = git@github.com:Ztiany/android-ui-base.git
 [submodule "android-arch-activity"]
 	path = base/activity
-	url = https://github.com/Ztiany/android-arch-activity.git
+	url = git@github.com:Ztiany/android-arch-activity.git
 [submodule "android-arch-adapter"]
 	path = base/adapter
-	url = https://github.com/Ztiany/android-arch-adapter.git
+	url = git@github.com:Ztiany/android-arch-adapter.git
 [submodule "android-arch-fragment"]
 	path = base/fragment
-	url = https://github.com/Ztiany/android-arch-fragment.git
+	url = git@github.com:Ztiany/android-arch-fragment.git
 [submodule "android-arch-viewbinding"]
 	path = base/viewbinding
-	url = https://github.com/Ztiany/android-arch-viewbinding.git
+	url = git@github.com:Ztiany/android-arch-viewbinding.git
 [submodule "android-arch-mvi"]
 	path = base/mvi
-	url = https://github.com/Ztiany/android-arch-mvi.git
+	url = git@github.com:Ztiany/android-arch-mvi.git
+[submodule "base/activity"]
+	url = git@github.com:Ztiany/android-arch-activity.git
+[submodule "base/adapter"]
+	url = git@github.com:Ztiany/android-arch-adapter.git
+[submodule "base/fragment"]
+	url = git@github.com:Ztiany/android-arch-fragment.git
+[submodule "base/mvi"]
+	url = git@github.com:Ztiany/android-arch-mvi.git
+[submodule "base/viewbinding"]
+	url = git@github.com:Ztiany/android-arch-viewbinding.git
