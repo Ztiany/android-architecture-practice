@@ -1,8 +1,8 @@
 plugins {
-    id "com.android.application"
-    id "kotlin-android"
-    id 'com.google.devtools.ksp'
-    id "dagger.hilt.android.plugin"
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.google.hilt)
 }
 
 android {
@@ -26,8 +26,6 @@ android {
         targetSdk AppConfig.compileSdkVersion
         versionCode AppConfig.versionCode
         versionName AppConfig.versionName
-
-        multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
         resConfigs "zh", "en"//只需要中文和英文资源
@@ -96,7 +94,7 @@ android {
 }
 
 dependencies {
-    testImplementation(TestLibraries.junit)
+    testImplementation(libs.test.junit)
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //modules
@@ -105,6 +103,6 @@ dependencies {
     implementation project(":feature:account:main")
 
     /*Hilt*/
-    api AndroidLibraries.hiltDagger
-    ksp AndroidLibraries.hiltDaggerApt
+    api libs.google.hilt
+    ksp libs.google.hilt.compiler
 }

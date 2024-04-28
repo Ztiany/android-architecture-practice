@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
-import androidx.multidex.MultiDex
 import com.android.base.app.AndroidSword
 import com.android.base.app.ErrorClassifier
 import com.android.base.app.ErrorConvert
@@ -65,7 +64,6 @@ abstract class AppContext : BaseAppContext() {
     @Inject internal lateinit var moduleInitializers: Set<@JvmSuppressWildcards AppLifecycle>
 
     override fun attachBaseContext(base: Context) {
-        MultiDex.install(this)
         super.attachBaseContext(base)
     }
 

@@ -1,7 +1,7 @@
 plugins {
-    id "com.android.library"
-    id "kotlin-android"
-    id "kotlin-parcelize"
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.parcelize)
 }
 
 android {
@@ -33,12 +33,12 @@ android {
 
 dependencies {
     //androidx
-    implementation AndroidLibraries.annotations
+    implementation libs.androidx.annotations
     //Kotlin
-    api KotlinLibraries.kotlinStdlib
-    api KotlinLibraries.kotlinReflect
-    api KotlinLibraries.kotlinCoroutines
-    api KotlinLibraries.kotlinAndroidCoroutines
+    api libs.kotlin.stdlib
+    api libs.kotlin.reflect
+    api libs.kotlinx.coroutines
+    api libs.kotlinx.coroutines.android
     // log
-    implementation ThirdLibraries.timber
+    implementation libs.jakewharton.timber
 }

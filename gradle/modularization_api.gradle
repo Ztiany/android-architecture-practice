@@ -21,7 +21,7 @@ android {
 
 dependencies {
     // AndroidX
-    implementation AndroidLibraries.annotations
+    implementation libs.androidx.annotations
     // API
     api project(":common:api")
 }

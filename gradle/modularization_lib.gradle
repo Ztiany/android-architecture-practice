@@ -43,13 +43,13 @@ dependencies {
     implementation project(":common:core")
 
     //测试
-    testImplementation TestLibraries.junit
+    testImplementation libs.test.junit
 
     //navigation
-    implementation AndroidLibraries.navigationFragmentKtx
-    implementation AndroidLibraries.navigationUiKtx
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
 
     /*Hilt*/
-    api AndroidLibraries.hiltDagger
-    ksp AndroidLibraries.hiltDaggerApt
+    api libs.google.hilt
+    ksp libs.google.hilt.compiler
 }

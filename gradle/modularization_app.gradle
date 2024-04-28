@@ -17,8 +17,6 @@ android {
         versionCode AppConfig.versionCode
         versionName AppConfig.versionName
 
-        multiDexEnabled true
-
         vectorDrawables.useSupportLibrary = true
         resConfigs "zh", "en"//只需要中文和英文资源
     }
@@ -91,13 +89,13 @@ dependencies {
     implementation project(":common:core")
 
     //测试
-    testImplementation TestLibraries.junit
+    testImplementation libs.test.junit
 
     //navigation
-    implementation AndroidLibraries.navigationFragmentKtx
-    implementation AndroidLibraries.navigationUiKtx
+    implementation libs.androidx.navigation.ui.ktx
+    implementation libs.androidx.navigation.fragment.ktx
 
     /*Hilt*/
-    api AndroidLibraries.hiltDagger
-    ksp AndroidLibraries.hiltDaggerApt
+    api libs.google.hilt
+    ksp libs.google.hilt.compiler
 }

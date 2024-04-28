@@ -1,10 +1,10 @@
 plugins {
-    id "com.android.library"
-    id "kotlin-android"
-    id "kotlin-parcelize"
-    id "kotlin-kapt"
-    id 'com.google.devtools.ksp'
-    id "dagger.hilt.android.plugin"
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.parcelize)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.google.hilt)
 }
 
 android {
@@ -76,7 +76,7 @@ android {
 
 dependencies {
     //测试
-    testImplementation(TestLibraries.junit)
+    testImplementation(libs.test.junit)
 
     //通用架构
     api project(':base:core')
@@ -96,43 +96,43 @@ dependencies {
     implementation project(":feature:main:api")
 
     //Android
-    api AndroidLibraries.multidex
-    api AndroidLibraries.exifinterface
-    api AndroidLibraries.flexbox
-    api AndroidLibraries.ktx
-    api AndroidLibraries.percentLayout
+    api libs.androidx.ktx
+    api libs.androidx.exifinterface
+    api libs.androidx.percentlayout
+    api libs.google.ui.flexbox
 
     /*Hilt*/
-    api AndroidLibraries.hiltDagger
-    ksp AndroidLibraries.hiltDaggerApt
+    api libs.google.hilt
+    ksp libs.google.hilt.compiler
 
     /*网络库*/
-    implementation ThirdLibraries.okHttp
-    implementation ThirdLibraries.okHttpLogging
-    api ThirdLibraries.simpleHttp
+    implementation libs.square.okhttp
+    implementation libs.square.okhttp.logging
+    api libs.ztiany.simplehttp
 
     /*Gson*/
-    api ThirdLibraries.gson
+    api libs.google.gson
 
     /*Retrofit*/
-    api ThirdLibraries.retrofit
-    implementation ThirdLibraries.retrofitConverterGson
+    api libs.square.retrofit
+    implementation libs.square.retrofit.converter.gson
 
     /*GlideAPT*/
-    api ThirdLibraries.imageLoader
-    kapt ThirdLibraries.glideApt
+    api libs.ztiany.imageloader
+    kapt libs.bumptech.glide.ksp
 
     /*媒体选择库*/
-    api ThirdLibraries.mediaSelector
+    api libs.ztiany.mediaselector
 
     /*UI*/
-    api UILibraries.keyboardVisibilityEvent
+    api libs.yslibrary.keyboardvisibilityevent
 
     /*Utils*/
-    api ThirdLibraries.jOOR
-    api ThirdLibraries.simpleBus
-    api ThirdLibraries.storage
-    api ThirdLibraries.permissionx
+    api libs.jooq.joor
+    api libs.ztiany.simplebus
+    api libs.ztiany.storage
+    api libs.guolin.permissionx
+
     implementation "id.zelory:compressor:3.0.1"
 
     //Bugly
@@ -141,11 +141,9 @@ dependencies {
     //Debug
     if (AppConfig.isOpenDebug) {
         //Stetho
-        implementation DebugLibraries.stetho
-        implementation DebugLibraries.stethoOkhttp3
+        implementation libs.facebook.stetho
+        implementation libs.facebook.stetho.okhttp3
         //LeakCanary
-        implementation DebugLibraries.debugLeakCanary
-        //UETool
-        implementation DebugLibraries.ueTool
+        implementation libs.squareup.leakcanary.debug
     }
 }

@@ -1,6 +1,6 @@
 plugins {
-    id "com.android.library"
-    id "kotlin-android"
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
@@ -32,10 +32,10 @@ android {
 
 dependencies {
     // Android
-    implementation AndroidLibraries.annotations
+    implementation libs.androidx.annotations
 
     //通用 UI
-    api UILibraries.qmui
+    api libs.qmuiteam.qmui
+    api libs.kyleduo.switchbutton
     api project(":base:view")
-    api UILibraries.switchButton
 }
