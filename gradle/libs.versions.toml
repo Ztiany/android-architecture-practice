@@ -1,0 +1,339 @@
+# Migirate to version catalog: https://developer.android.com/build/migrate-to-catalogs
+[versions]
+agp = "8.3.1"
+junit = "4.13.2"
+kotlin = "1.9.23"
+coroutines = "1.8.0"
+ksp = "1.9.23-1.0.20"
+compose = '1.4.3'
+accompanist = "0.30.1"
+desugar = "2.0.4"
+arch = "2.2.0"
+appcompat = "1.6.1"
+activity = "1.7.1"
+fragment = "1.5.7"
+lifecycle = "2.6.1"
+ktx = "1.10.1"
+room = "2.5.1"
+paging = "3.1.0"
+persistence = "2.3.1"
+recyclerview = "1.3.0"
+recyclerview_selection = "1.1.0"
+constraintlayout = "2.1.4"
+percentlayout = "1.0.0"
+cardview = "1.0.0"
+viewpager = "1.0.0"
+viewpager2 = "1.0.0"
+async_layout = "1.0.0"
+dynamicanimation = "1.0.0"
+swiperefresh = "1.2.0-alpha01"
+transition = "1.4.1"
+navigation = '2.5.3'
+hilt = '2.48'
+annotations = "1.6.0"
+exifinterface = "1.3.6"
+biometric = "1.1.0"
+documentfile = "1.0.1"
+startup = "1.1.1"
+concurrent = "1.1.0"
+datastore = "1.0.0"
+retrofit = "2.9.0"
+booster = "4.16.3"
+
+
+[libraries]
+# ======================================================
+# androidx
+# ======================================================
+# arch
+androidx-arch-runtime = { module = "androidx.arch.core:core-runtime", version.ref = "arch" }
+androidx-arch-common = { module = "androidx.arch.core:core-common", version.ref = "arch" }
+
+# appcompat
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+# For loading and tinting drawables on older versions of the platform
+androidx-appcompat-resources = { module = "androidx.appcompat:appcompat-resources", version.ref = "appcompat" }
+
+# activity
+androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
+
+# fragment
+androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "fragment" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+
+# lifecycle, livedata, viewmodel
+androidx-lifecycle-common = { module = "androidx.lifecycle:lifecycle-common", version.ref = "lifecycle" }
+androidx-lifecycle-common-java8 = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-livedata-core = { module = "androidx.lifecycle:lifecycle-livedata-core", version.ref = "lifecycle" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-reactivestreams = { module = "androidx.lifecycle:lifecycle-reactivestreams", version.ref = "lifecycle" }
+androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle" }
+
+# ktx: https://android.github.io/android-ktx/core-ktx/index.html
+androidx-ktx = { module = "androidx.core:core-ktx", version.ref = "ktx" }
+
+# androidx ui component
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-recyclerview-selection = { module = "androidx.recyclerview:recyclerview-selection", version.ref = "recyclerview_selection" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-percentlayout = { module = "androidx.percentlayout:percentlayout", version.ref = "percentlayout" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+androidx-viewpager = { module = "androidx.viewpager:viewpager", version.ref = "viewpager" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
+androidx-asynclayoutinflater = { module = "androidx.asynclayoutinflater:asynclayoutinflater", version.ref = "async_layout" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefresh" }
+androidx-transition = { module = "androidx.transition:transition", version.ref = "transition" }
+androidx-dynamicAnimation = { module = "androidx.dynamicanimation:dynamicanimation", version.ref = "dynamicanimation" }
+
+# paging
+androidx-paging = { module = "androidx.paging:paging-common", version.ref = "paging" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
+androidx-paging-rxjava = { module = "androidx.paging:paging-rxjava2", version.ref = "paging" }
+
+# room
+androidx-room = { module = "androidx.room:room-common", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-guava = { module = "androidx.room:room-guava", version.ref = "room" }
+androidx-room-migration = { module = "androidx.room:room-migration", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-rxjava = { module = "androidx.room:room-rxjava2", version.ref = "room" }
+androidx-room-apt = { module = "androidx.room:room-compiler", version.ref = "room" }
+
+# persistence
+androidx-persistence-framework = { module = "androidx.sqlite:sqlite-framework", version.ref = "persistence" }
+androidx-persistence-ktx = { module = "androidx.sqlite:sqlite-ktx", version.ref = "persistence" }
+
+# navigation
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+
+# tools
+androidx-annotations = { module = "androidx.annotation:annotation", version.ref = "annotations" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
+androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
+# https://android-developers.googleblog.com/2020/07/decrease-startup-time-with-jetpack-app.html
+androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
+# https://developer.android.com/jetpack/androidx/releases/concurrent
+androidx-concurrent-futures = { module = "androidx.concurrent:concurrent-futures", version.ref = "concurrent" }
+androidx-concurrent-futures-ktx = { module = "androidx.concurrent:concurrent-futures-ktx", version.ref = "concurrent" }
+
+# data store
+androidx-datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
+androidx-datastore-sp = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+# google
+# hilt
+google-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+google-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+# usage: coreLibraryDesugaring(androidx.desugar.jdklibs). refers to <https://developer.android.com/studio/write/java8-support> for more details.
+google-desugar-jdklibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
+# ui component
+# material https://github.com/material-components/material-components-android
+google-ui-material = "com.google.android.material:material:1.9.0"
+# flexbox https://github.com/google/flexbox-layout/
+google-ui-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
+
+# ======================================================
+# kotlin
+# ======================================================
+# kotlin
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+# Coroutines
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+# Metadata: https://github.com/JetBrains/kotlin/tree/master/libraries/kotlinx-metadata/jvm
+kotlinx-metadata = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0"
+
+# ======================================================
+# compose
+# ======================================================
+# https://developer.android.com/jetpack/compose/interop/adding
+# compose ui 基础
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+
+# compose ui tool (debugImplementation)
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+
+# ui 组件
+compose-ui-constraint = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+# compose 动画
+compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
+compose-animation-core = { module = "androidx.compose.animation:animation-core", version.ref = "compose" }
+compose-animation-graphics = { module = "androidx.compose.animation:animation-graphics", version.ref = "compose" }
+
+# compose 通用组件
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout", version.ref = "compose" }
+
+# compose material2 实现
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+# https://github.com/material-components/material-components-android-compose-theme-adapter#compose-material
+compose-material-theme-adapter = "com.google.android.material:compose-theme-adapter:1.2.1" # When using a MDC theme
+
+# compose material3 实现
+compose-material3 = "androidx.compose.material3:material3:1.1.0"
+compose-material3-window-size = "androidx.compose.material3:material3-window-size-class:1.1.0"
+# https://github.com/material-components/material-components-android-compose-theme-adapter#compose-material
+compose-material3-theme-adapter = "com.google.android.material:compose-theme-adapter-3:1.1.1"
+
+# compose material icons
+compose-material-icon-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+
+# integration with viewmodels, hilt and navigation
+compose-ctivity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+compose-iewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+compose-avigation = "androidx.navigation:navigation-compose:2.5.3"
+compose-ilt-navigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+# 第三方扩展
+# https://github.com/google/accompanist
+compose-accompanist-systemui-controller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+compose-accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
+compose-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
+compose-accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
+compose-accompanist-insets-ui = { module = "com.google.accompanist:accompanist-insets-ui", version.ref = "accompanist" }
+
+compose-accompanist-materialplaceholder = { module = "com.google.accompanist:accompanist-placeholder-material", version.ref = "accompanist" }
+compose-accompanist-material3-placeholder = { module = "com.google.accompanist:accompanist-placeholder-material3", version.ref = "accompanist" }
+compose-accompanist-viewpager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
+compose-accompanist-viewpager-indicator = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
+
+# When using a AppCompat theme
+compose-accompanist-appcompat-themeadapter = { module = "com.google.accompanist:accompanist-appcompat-theme", version.ref = "accompanist" }
+# When using a Material theme
+compose-accompanist-material2-themeadapter = { module = "com.google.accompanist:accompanist-themeadapter-material", version.ref = "accompanist" }
+# When using a Material3 theme
+compose-accompanist-material3-themeadapter = { module = "com.google.accompanist:accompanist-themeadapter-material3", version.ref = "accompanist" }
+
+
+# ======================================================
+# functional libraries
+# ======================================================
+ztiany-loadmoreadapter = "io.github.ztiany:android-loadmore-adapter:1.0.10"
+ztiany-mediaselector = "io.github.ztiany:android-media-selector:1.1.0"
+ztiany-archdelegate = "io.github.ztiany:android-arch-delegate:1.0.5"
+ztiany-simplehttp = "io.github.ztiany:android-simple-http:1.1.6"
+ztiany-simplebus = "io.github.ztiany:android-simple-bus:1.0.0"
+ztiany-uistate = "io.github.ztiany:android-ui-state:1.2.1"
+ztiany-storage = "io.github.ztiany:android-storage:1.0.2"
+ztiany-imageloader = "io.github.ztiany:android-image-loader:1.0.0"
+ztiany-archmvp = "io.github.ztiany:android-arch-mvp:1.0.1"
+ztiany-rxjava2kit = "io.github.ztiany:android-rxjava2-kit:1.0.3"
+
+# https://github.com/google/auto/blob/main/service/README.md
+google-auto-service = "com.google.auto.service:auto-service:1.0"
+
+# https://github.com/guolindev/PermissionX
+guolin-permissionx = "com.guolindev.permissionx:permissionx:1.7.1"
+
+# https://github.com/square/okhttp
+square-okhttp = "com.squareup.okhttp3:okhttp:4.12.0"
+square-okhttp-logging = "com.squareup.okhttp3:logging-interceptor:4.8.1"
+
+# https://github.com/square/okio
+square-okio = "com.squareup.okio:okio:3.7.0"
+
+# https://github.com/square/retrofit
+square-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+square-retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+square-retrofit-calladapter-rxjava = { module = "com.squareup.retrofit2:adapter-rxjava", version.ref = "retrofit" }
+square-retrofit-calladapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "retrofit" }
+
+# https://github.com/google/gson/blob/master/UserGuide.md#TOC-Overview
+google-gson = "com.google.code.gson:gson:2.10.1"
+
+# Choose one of the following: glide or coil. don't use them together.
+# https://github.com/bumptech/glide
+bumptech-glide = "com.github.bumptech.glide:glide:4.14.2"
+bumptech-glide-ksp = "com.github.bumptech.glide:ksp:4.14.2"
+bumptech-glide-apt = "com.github.bumptech.glide:compiler:4.14.2"
+bumptech-glide-okhttp = "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+
+# https://github.com/coil-kt/coil
+coil-compose = "io.coil-kt:coil-compose:2.2.2"
+
+# https://github.com/JakeWharton/timber
+jakewharton-timber = "com.jakewharton.timber:timber:4.7.1"
+
+# https://github.com/jOOQ/jOOR
+jooq-joor = "org.jooq:joor-java-6:0.9.7"
+
+# ======================================================
+# ui libraries
+# ======================================================
+# qmui：https://qmuiteam.com/
+qmuiteam-qmui = "com.qmuiteam:qmui:2.1.0"
+
+# https://github.com/drakeet/MultiType
+drakeet-multitype = "com.drakeet.multitype:multitype:4.0.0"
+
+# https://github.com/airbnb/epoxy
+airbnb-epoxy = "com.airbnb.android:epoxy:5.1.1"
+airbnb-epoxy-apt = "com.airbnb.android:epoxy-processor:5.1.1"
+
+# https://github.com/yshrsmz/KeyboardVisibilityEvent
+yslibrary-keyboardvisibilityevent = "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3"
+
+# https://github.com/B3nedikt/ViewPump
+b3nedikt-viewpump = "dev.b3nedikt.viewpump:viewpump:4.0.7"
+
+# https://github.com/jaredrummler/HtmlDsl
+jaredrummler-htmldsl = "com.jaredrummler:html-dsl:1.0.0"
+
+# https://github.com/kyleduo/SwitchButton
+kyleduo-switchbutton = "com.kyleduo.switchbutton:library:2.1.0"
+
+# https://github.com/Ztiany/android-drawable-view
+ztiany-drawableView = "io.github.ztiany:android-drawable-view:1.1.7"
+
+# https://github.com/getActivity/ToastUtils
+getactivity-toastutils = "com.github.getActivity:ToastUtils:11.0"
+
+# ======================================================
+# test
+# ======================================================
+# test
+test-junit = { module = "junit:junit", version.ref = "junit" }
+
+# ======================================================
+# debug libraries
+# ======================================================
+# https://github.com/square/leakcanary
+squareup-leakcanary-debug = "com.squareup.leakcanary:leakcanary-android:2.1"
+
+# http://facebook.github.io/stetho
+facebook-stetho = "com.facebook.stetho:stetho:1.5.1"
+facebook-stetho-okhttp3 = "com.facebook.stetho:stetho-okhttp3:1.5.1"
+
+# https://github.com/didi/DoraemonKit
+didi-doraemonKit = "com.didichuxing.doraemonkit:dokitx:3.3.5"
+
+# https://github.com/didi/booster
+# todo
+
+# https://github.com/square/radiography
+square-radiography = "com.squareup.radiography:radiography:2.3.0"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+# To generate Java language code suitable for Java or mixed Java and Kotlin modules add:
+androidx-navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
+#  to generate Kotlin code suitable for Kotlin-only modules add:
+androidx-navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+didi-booster = { id = 'com.didiglobal.booster', version.ref = "booster" }
+vanniktech-maven-publisher = { id = "com.vanniktech.maven.publish", version = "0.28.0" }
