@@ -16,5 +16,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "build-system"
 include(":convention")
