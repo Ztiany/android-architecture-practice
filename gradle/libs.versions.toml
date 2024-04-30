@@ -1,6 +1,6 @@
 # Migirate to version catalog: https://developer.android.com/build/migrate-to-catalogs
 [versions]
-agp = "8.3.1"
+agp = "8.3.2"
 junit = "4.13.2"
 kotlin = "1.9.23"
 coroutines = "1.8.0"
@@ -42,6 +42,16 @@ booster = "4.16.3"
 
 
 [libraries]
+# ======================================================
+# androidx
+# ======================================================
+
+# Dependencies of the included build-logic
+build-android-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+build-kotlin-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+build-ksp-plugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+build-room-plugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+
 # ======================================================
 # androidx
 # ======================================================
@@ -136,6 +146,7 @@ google-desugar-jdklibs = { module = "com.android.tools:desugar_jdk_libs", versio
 google-ui-material = "com.google.android.material:material:1.9.0"
 # flexbox https://github.com/google/flexbox-layout/
 google-ui-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
+
 
 # ======================================================
 # kotlin
@@ -324,6 +335,9 @@ didi-doraemonKit = "com.didichuxing.doraemonkit:dokitx:3.3.5"
 square-radiography = "com.squareup.radiography:radiography:2.3.0"
 
 [plugins]
+# ======================================================
+# official plugins
+# ======================================================
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 # To generate Java language code suitable for Java or mixed Java and Kotlin modules add:
@@ -335,5 +349,17 @@ google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+
+# ======================================================
+# Plugins defined by this project
+# ======================================================
+app-modularization-application = { id = "com.app.modularization.application", version = "unspecified" }
+app-modularization-library = { id = "com.app.modularization.library", version = "unspecified" }
+app-modularization-api = { id = "com.app.modularization.api", version = "unspecified" }
+app-common-library = { id = "com.app.common.library", version = "unspecified" }
+
+# ======================================================
+# third plugins
+# ======================================================
 didi-booster = { id = 'com.didiglobal.booster', version.ref = "booster" }
 vanniktech-maven-publisher = { id = "com.vanniktech.maven.publish", version = "0.28.0" }

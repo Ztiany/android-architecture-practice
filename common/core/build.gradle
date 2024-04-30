@@ -14,11 +14,10 @@ android {
     defaultConfig {
         minSdk AppConfig.minSdkVersion
         targetSdk AppConfig.compileSdkVersion
-        versionCode AppConfig.versionCode
-        versionName AppConfig.versionName
 
         vectorDrawables.useSupportLibrary = true
-        resConfigs "zh", "en"//只需要中文和英文资源
+        resourceConfigurations += ['zh', 'en']
+//只需要中文和英文资源
 
         buildConfigField("boolean", "openDebug", "${AppConfig.isOpenDebug}")
         buildConfigField("boolean", "showDebugTools", "${AppConfig.showDebugTools}")
@@ -31,9 +30,6 @@ android {
         unitTests.returnDefaultValues = true
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -70,6 +66,9 @@ android {
 
             java.srcDirs += "src/tools-sdk/java"
         }
+    }
+    lint {
+        abortOnError false
     }
 
 }

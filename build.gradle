@@ -33,6 +33,12 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.kapt) apply false
     alias(libs.plugins.google.hilt) apply false
     alias(libs.plugins.google.ksp) apply false
+
+    alias(libs.plugins.app.modularization.application) apply false
+    alias(libs.plugins.app.modularization.library) apply false
+    alias(libs.plugins.app.modularization.api) apply false
+    alias(libs.plugins.app.common.library) apply false
+
     alias(libs.plugins.vanniktech.maven.publisher) apply false
 }
 

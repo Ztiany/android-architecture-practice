@@ -11,13 +11,7 @@ android {
     defaultConfig {
         minSdk AppConfig.minSdkVersion
         targetSdk AppConfig.compileSdkVersion
-        versionCode AppConfig.versionCode
-        versionName AppConfig.versionName
         consumerProguardFiles("consumer-rules.pro")
-    }
-
-    lintOptions {
-        abortOnError false
     }
 
     compileOptions {
@@ -28,6 +22,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
         freeCompilerArgs = ["-Xcontext-receivers"]
+    }
+
+    lint {
+        abortOnError false
     }
 }
 
