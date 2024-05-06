@@ -5,9 +5,8 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.app.common.api.usermanager.UserManager;
 import com.app.base.debug.DebugInfoDispatcher;
-import com.app.base.utils.ChannelKt;
+import com.app.common.api.usermanager.UserManager;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,12 +43,12 @@ public final class PushManager {
         return PUSH_MANAGER;
     }
 
-    public void init(Application application) {
+    public void init(Application application, String channel) {
         //初始化推送
         mPush = new DummyPush();
         mApplication = application;
         //设置消息处理器
-        mPush.setChannel(ChannelKt.getAppChannel(application));
+        mPush.setChannel(channel);
         mPush.setMessageHandler(mMessageHandler);
         //注册推送
         doRegister();

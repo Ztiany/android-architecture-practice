@@ -1,17 +1,20 @@
 package com.app.base.bugly;
 
+import static com.blankj.utilcode.util.CloseUtils.closeIO;
+
 import android.app.Application;
 import android.text.TextUtils;
 
+import androidx.annotation.RestrictTo;
+
 import com.app.base.debug.Debug;
-import com.app.base.utils.ChannelKt;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import androidx.annotation.RestrictTo;
+import timber.log.Timber;
 
 /**
  * @author Ztiany
@@ -24,7 +27,7 @@ public class Bugly {
     private static final String KEY_DEBUG = "?";
     private static final String KEY_RELEASE = "?";
 
-    public static void init(Application application) {
+    public static void init(Application application, String channel) {
         // 获取当前包名
         String packageName = application.getPackageName();
         // 获取当前进程名
@@ -33,7 +36,7 @@ public class Bugly {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(application);
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
         //设置渠道
-        strategy.setAppChannel(ChannelKt.getAppChannel(application));
+        strategy.setAppChannel(channel);
         //延迟初始化 10s
         strategy.setAppReportDelay(10000);
         //初始化
@@ -61,15 +64,9 @@ public class Bugly {
             }
             return processName;
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            Timber.e(throwable, "getProcessName");
         } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
+           closeIO(reader);
         }
         return null;
     }

@@ -2,14 +2,12 @@ package com.app.base
 
 import android.accounts.NetworkErrorException
 import android.app.Application
-import android.content.Context
 import android.content.res.Configuration
-import android.util.Log
-import com.android.base.app.AndroidSword
-import com.android.base.app.ErrorClassifier
-import com.android.base.app.ErrorConvert
-import com.android.base.app.AppLifecycle
-import com.android.base.app.BaseAppContext
+import com.android.base.core.AndroidSword
+import com.android.base.core.ErrorClassifier
+import com.android.base.core.ErrorConvert
+import com.android.base.core.AppLifecycle
+import com.android.base.core.BaseAppContext
 import com.android.base.fragment.defaultFragmentAnimator
 import com.android.base.fragment.defaultFragmentContainerId
 import com.android.base.fragment.defaultPageSize
@@ -63,14 +61,9 @@ abstract class AppContext : BaseAppContext() {
 
     @Inject internal lateinit var moduleInitializers: Set<@JvmSuppressWildcards AppLifecycle>
 
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-    }
-
     override fun onCreate() {
         application = this
         super.onCreate()
-        Log.d("AppContext", "onCreate")
         BaseUtils.init(this)
         DebugTools.init(this)
         APM.init(this).start()

@@ -357,6 +357,7 @@ app-modularization-application = { id = "com.app.modularization.application", ve
 app-modularization-library = { id = "com.app.modularization.library", version = "unspecified" }
 app-modularization-api = { id = "com.app.modularization.api", version = "unspecified" }
 app-common-library = { id = "com.app.common.library", version = "unspecified" }
+app-final-application = { id = "com.app.final.application", version = "unspecified" }
 
 # ======================================================
 # third plugins

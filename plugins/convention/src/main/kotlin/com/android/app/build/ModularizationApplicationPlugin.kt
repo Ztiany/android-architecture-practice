@@ -27,12 +27,12 @@ class ModularizationApplicationPlugin : Plugin<Project> {
 
     private fun ApplicationExtension.configureAndroidApplication(project: Project) {
         defaultConfig {
-            applicationId = "${BuildConfig.applicationId}.${getName().lowercase()}"
+            applicationId = "${BuildConfig.APPLICATION_ID}.${getName().lowercase()}"
 
-            targetSdk = BuildConfig.targetSdkVersion
+            targetSdk = BuildConfig.TARGET_SDK_VERSION
 
-            versionCode = BuildConfig.versionCode
-            versionName = BuildConfig.versionName
+            versionCode = BuildConfig.VERSION_CODE
+            versionName = BuildConfig.VERSION_NAME
         }
 
         packaging {
@@ -48,10 +48,10 @@ class ModularizationApplicationPlugin : Plugin<Project> {
 
         signingConfigs {
             create("release") {
-                storeFile = project.rootProject.file(BuildConfig.Signing.releaseKeyFileName)
-                storePassword = BuildConfig.Signing.releaseKeyPassword
-                keyAlias = BuildConfig.Signing.releaseKeyAlias
-                keyPassword = BuildConfig.Signing.releaseKeyPassword
+                storeFile = project.rootProject.file(BuildConfig.Signing.RELEASE_KEY_FILE_NAME)
+                storePassword = BuildConfig.Signing.RELEASE_KEY_PASSWORD
+                keyAlias = BuildConfig.Signing.RELEASE_KEY_ALIAS
+                keyPassword = BuildConfig.Signing.RELEASE_KEY_PASSWORD
             }
         }
 

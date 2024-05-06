@@ -1,6 +1,6 @@
 package me.ztiany.wan.main.injection;
 
-import com.android.base.app.AppLifecycle;
+import com.android.base.core.AppLifecycle;
 import com.app.base.component.router.AppRouterKey;
 import com.app.common.api.router.AppNavigator;
 

@@ -1,33 +1,33 @@
 package com.android.app.build
 
 object BuildConfig {
+    const val APPLICATION_ID = "me.ztiany.android"
 
-    const val applicationId = "me.ztiany.android"
+    const val MIN_SDK_VERSION = 23
+    const val TARGET_SDK_VERSION = 30
+    const val COMPILE_SDK_VERSION = 33
 
-    const val minSdkVersion = 23
-    const val targetSdkVersion = 30
-    const val compileSdkVersion = 33
+    const val VERSION_CODE = 1
+    const val VERSION_NAME = "1.0.0"
 
-    const val versionCode = 1
-    const val versionName = "1.0.0"
+    object Env {
+        const val HTTPS_TRUST_ALL = false
+        const val OPEN_DEBUG = false
+        const val SHOW_DEBUG_TOOLS = false
+        const val OPEN_LOG = true
 
-    const val enableProguard = false
-    const val httpsTrustAll = false
-    const val isOpenDebug = false
-    const val showDebugTools = false
-    const val isOpenLog = true
-
-    /**
-     *  - def ENV_AUTO = "Auto"
-     *  - def ENV_TEST = "Test"
-     *  - def ENV_RELEASE = "Pro"
-     */
-    const val HOST_ENV = "Auto"
+        /**
+         *  - ENV_AUTO = "Auto"
+         *  - ENV_TEST = "Test"
+         *  - ENV_RELEASE = "Pro"
+         */
+        const val HOST_ENV = "Auto"
+    }
 
     object Signing {
-        const val releaseKeyAlias = "hm"
-        const val releaseKeyPassword = "666666"
-        const val releaseKeyFileName = "Android.jks"
+        const val RELEASE_KEY_ALIAS = "hm"
+        const val RELEASE_KEY_PASSWORD = "666666"
+        const val RELEASE_KEY_FILE_NAME = "Android.jks"
     }
 
     object PluginId {

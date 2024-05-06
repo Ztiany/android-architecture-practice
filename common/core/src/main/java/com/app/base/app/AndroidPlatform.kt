@@ -37,4 +37,10 @@ class AndroidPlatform @Inject internal constructor(
     /** 获取设备名 */
     fun getDeviceName(): String = Build.MODEL
 
+    fun getAppChannel(): String {
+        //val channel = ChannelReaderUtil.getChannel(context)
+        //return if (channel.isNullOrEmpty()) "DEV" else channel
+        return "DEV"
+    }
+
 }

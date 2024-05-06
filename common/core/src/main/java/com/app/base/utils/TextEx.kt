@@ -1,6 +1,6 @@
 package com.app.base.utils
 
-/**超过[maxSize] 显示 [maxSize] 个字符 + [replace]*/
+/**超过 [maxSize] 显示 [maxSize] 个字符 + [replace]*/
 fun CharSequence?.foldText(maxSize: Int, replace: String = "..."): CharSequence {
     return if (this == null || this.length <= maxSize) {
         ""
@@ -9,7 +9,7 @@ fun CharSequence?.foldText(maxSize: Int, replace: String = "..."): CharSequence 
     }
 }
 
-/**超过[maxSize] 显示 [maxSize] 个字符 + [replace]*/
+/**超过 [maxSize] 显示 [maxSize] 个字符 + [replace]*/
 fun String?.foldText(maxSize: Int, replace: String = "..."): String {
     return if (this.isNullOrEmpty() || this.length <= maxSize) {
         this ?: ""

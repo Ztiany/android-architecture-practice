@@ -44,7 +44,6 @@ public class JsonUtils {
                 jsonObject.put(entry.getKey(), entry.getValue());
             }
         } catch (JSONException e) {
-            e.printStackTrace();
             Timber.e(e, "JsonUtils create Params Error ");
         }
         return jsonObject.toString();
@@ -62,7 +61,6 @@ public class JsonUtils {
                 jsonObject.put(params[2 * i], params[2 * i + 1]);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
             Timber.e(e, "JsonUtils create Params Error");
         }
         return jsonObject.toString();
@@ -198,14 +196,14 @@ public class JsonUtils {
      * 初略判断字符串是否为 json array
      */
     private static boolean isArray(String str) {
-        return str != null && !str.isEmpty() && str.startsWith("[") && str.endsWith("]");
+        return str != null && str.startsWith("[") && str.endsWith("]");
     }
 
     /**
      * 初略判断字符串是否为 json obj
      */
     private static boolean isObj(String str) {
-        return str != null && !str.isEmpty() && str.startsWith("{") && str.endsWith("}");
+        return str != null && str.startsWith("{") && str.endsWith("}");
     }
 
     @SuppressWarnings("unchecked")
@@ -258,7 +256,7 @@ public class JsonUtils {
                 throw new JsonParseException(json + " 不是 array，无法解析为数组");
             }
             JsonArray jsonArray = element.getAsJsonArray();
-            if (jsonArray.size() == 0) {
+            if (jsonArray.isEmpty()) {
                 return Collections.emptyList();
             }
             List<T> list = new ArrayList<>();

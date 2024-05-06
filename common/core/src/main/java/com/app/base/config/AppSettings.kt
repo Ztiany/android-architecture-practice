@@ -15,7 +15,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class AppSettings @Inject internal constructor(
-    @ApplicationContext private val context: Context, storageManager: StorageManager
+    @ApplicationContext private val context: Context,
+    storageManager: StorageManager,
 ) {
 
     private val initialized = AtomicBoolean(false)

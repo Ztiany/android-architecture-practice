@@ -46,10 +46,15 @@ gradlePlugin {
             id = "com.app.modularization.api"
             implementationClass = "com.android.app.build.ModularizationAPIPlugin"
         }
-        // common plugins
+        // common plugin
         register("CommonLibraryPlugin") {
             id = "com.app.common.library"
             implementationClass = "com.android.app.build.CommonLibraryPlugin"
+        }
+        // final app plugin
+        register("FinalApplicationPlugin") {
+            id = "com.app.final.application"
+            implementationClass = "com.android.app.build.FinalApplicationPlugin"
         }
     }
 }

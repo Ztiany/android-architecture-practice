@@ -38,10 +38,10 @@ fun CommonExtension<*, *, *, *, *, *>.configureAndroidModuleCommonOptions(
     isApplication: Boolean,
     enableViewBinding: Boolean,
 ) {
-    compileSdk = BuildConfig.compileSdkVersion
+    compileSdk = BuildConfig.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdk = BuildConfig.minSdkVersion
+        minSdk = BuildConfig.MIN_SDK_VERSION
 
         vectorDrawables.useSupportLibrary = true
         resourceConfigurations += listOf("zh", "en")
@@ -50,14 +50,14 @@ fun CommonExtension<*, *, *, *, *, *>.configureAndroidModuleCommonOptions(
     testOptions {
         unitTests.isIncludeAndroidResources = true
         if (!isApplication) {
-            targetSdk = BuildConfig.targetSdkVersion
+            targetSdk = BuildConfig.TARGET_SDK_VERSION
         }
     }
 
     lint {
         abortOnError = false
         if (!isApplication) {
-            targetSdk = BuildConfig.targetSdkVersion
+            targetSdk = BuildConfig.TARGET_SDK_VERSION
         }
     }
 
