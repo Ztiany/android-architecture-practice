@@ -3,9 +3,9 @@
 /local.properties
 /.idea
 .DS_Store
-/build
-/plugins/*/build
-/buildSrc/build
+/build/
+/plugins/*/build/
+/buildSrc/build/
 /captures
 .externalNativeBuild
 *.hprof
