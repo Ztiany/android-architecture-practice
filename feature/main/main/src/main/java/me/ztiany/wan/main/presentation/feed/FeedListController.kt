@@ -1,6 +1,6 @@
 package me.ztiany.wan.main.presentation.feed
 
-import com.android.base.fragment.epoxy.ListEpoxyController
+import com.android.base.fragment.list.paging.ListEpoxyController
 
 class FeedListController : ListEpoxyController<FeedItem>() {
 

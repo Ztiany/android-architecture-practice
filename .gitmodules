@@ -19,16 +19,3 @@
 [submodule "android-arch-viewbinding"]
 	path = base/viewbinding
 	url = git@github.com:Ztiany/android-arch-viewbinding.git
-[submodule "android-arch-mvi"]
-	path = base/mvi
-	url = git@github.com:Ztiany/android-arch-mvi.git
-[submodule "base/activity"]
-	url = git@github.com:Ztiany/android-arch-activity.git
-[submodule "base/adapter"]
-	url = git@github.com:Ztiany/android-arch-adapter.git
-[submodule "base/fragment"]
-	url = git@github.com:Ztiany/android-arch-fragment.git
-[submodule "base/mvi"]
-	url = git@github.com:Ztiany/android-arch-mvi.git
-[submodule "base/viewbinding"]
-	url = git@github.com:Ztiany/android-arch-viewbinding.git

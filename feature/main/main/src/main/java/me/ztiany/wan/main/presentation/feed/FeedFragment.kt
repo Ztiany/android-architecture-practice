@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.base.fragment.epoxy.BaseEpoxyListFragment
-import com.android.base.fragment.epoxy.handleListStateWithViewLifecycle
+import com.android.base.fragment.list.paging.BaseEpoxyListFragment
+import com.android.base.fragment.list.paging.handleListStateWithViewLifecycle
 import com.android.base.fragment.ui.ListLayoutHost
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.qmuiteam.qmui.kotlin.dip

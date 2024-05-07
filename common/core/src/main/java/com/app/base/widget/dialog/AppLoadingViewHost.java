@@ -9,11 +9,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.android.base.fragment.ui.LoadingViewHost;
+import com.android.base.fragment.ui.Message;
 
 import org.jetbrains.annotations.NotNull;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import timber.log.Timber;
 
 public class AppLoadingViewHost implements LoadingViewHost {
 
@@ -83,12 +85,20 @@ public class AppLoadingViewHost implements LoadingViewHost {
 
     @Override
     public void dismissLoadingDialog(long minimumMills, @Nullable Function0<Unit> onDismiss) {
-        throw new UnsupportedOperationException("the method should be implemented by implementer of LoadingView");
+        throw new UnsupportedOperationException("the method should be implemented by implementer of LoadingViewHost");
     }
 
     @Override
     public boolean isLoadingDialogShowing() {
         return mLoadingDialog != null && mLoadingDialog.isShowing();
+    }
+
+    /*
+     TODO: implement this method.
+     */
+    @Override
+    public void showMessage(@NonNull Message message) {
+        Timber.d("showMessage(Message %s) is not implemented.", message);
     }
 
 }

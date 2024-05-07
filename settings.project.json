@@ -1,0 +1,44 @@
+[
+  {
+    "moduleName": "android-arch-activity",
+    "useLocal": false,
+    "localPath": ":base:activity",
+    "remotePath": "com.android.base:android-arch-activity:1.0.0"
+  },
+  {
+    "moduleName": "android-arch-adapter",
+    "useLocal": false,
+    "localPath": ":base:adapter",
+    "remotePath": "com.android.base:android-arch-adapter:1.0.0"
+  },
+  {
+    "moduleName": "android-arch-core",
+    "useLocal": false,
+    "localPath": ":base:core",
+    "remotePath": "com.android.base:android-arch-core:1.0.0"
+  },
+  {
+    "moduleName": "android-arch-fragment",
+    "useLocal": false,
+    "localPath": ":base:fragment",
+    "remotePath": "com.android.base:android-arch-fragment:1.0.0"
+  },
+  {
+    "moduleName": "android-arch-utils",
+    "useLocal": false,
+    "localPath": ":base:utils",
+    "remotePath": "com.android.base:android-arch-utils:1.0.0"
+  },
+  {
+    "moduleName": "android-arch-view",
+    "useLocal": false,
+    "localPath": ":base:view",
+    "remotePath": "com.android.base:android-arch-view:1.0.0"
+  },
+  {
+    "moduleName": "android-arch-viewbinding",
+    "useLocal": false,
+    "localPath": ":base:viewbinding",
+    "remotePath": "com.android.base:android-arch-viewbinding:1.0.0"
+  }
+]

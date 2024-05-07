@@ -16,6 +16,7 @@ import com.app.base.widget.form.validateSmsCode
 import com.blankj.utilcode.util.SpanUtils
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.account.AccountInternalNavigator
+import me.ztiany.wan.account.R
 import me.ztiany.wan.account.databinding.AccountFragmentSmsBinding
 import javax.inject.Inject
 import com.app.base.ui.R as UI_R
@@ -84,7 +85,7 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
 
     private fun checkAgreement(): Boolean {
         if (!vb.accountViewCheckAgreement.isSelected) {
-            showMessage(getString(me.ztiany.wan.account.R.string.account_agreement_tips))
+            showMessage(getString(R.string.account_agreement_tips))
         }
         return vb.accountViewCheckAgreement.isSelected
     }

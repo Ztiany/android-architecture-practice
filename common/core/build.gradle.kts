@@ -51,10 +51,10 @@ dependencies {
     testImplementation(libs.test.junit)
 
     // 通用架构
-    api(project(":base:core"))
-    api(project(":base:fragment"))
+    api(libs.base.arch.core)
+    api(libs.base.arch.fragment)
     // 通用工具
-    api(project(":base:utils"))
+    api(libs.base.arch.utils)
     // SDK API 规范
     api(project(":common:ui"))
     // SDK UI 规范

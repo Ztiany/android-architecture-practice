@@ -38,15 +38,23 @@ startup = "1.1.1"
 concurrent = "1.1.0"
 datastore = "1.0.0"
 retrofit = "2.9.0"
-booster = "4.16.3"
 
 
 [libraries]
 # ======================================================
-# androidx
+# base modules
 # ======================================================
+base-arch-core = { group = "com.android.base", name = "android-arch-core", version = "1.0.0" }
+base-arch-activity = { group = "com.android.base", name = "android-arch-activity", version = "1.0.0" }
+base-arch-fragment = { group = "com.android.base", name = "android-arch-fragment", version = "1.0.0" }
+base-arch-adapter = { group = "com.android.base", name = "android-arch-adapter", version = "1.0.0" }
+base-arch-utils = { group = "com.android.base", name = "android-arch-utils", version = "1.0.0" }
+base-arch-view = { group = "com.android.base", name = "android-arch-view", version = "1.0.0" }
+base-arch-viewbinding = { group = "com.android.base", name = "android-arch-viewbinding", version = "1.0.0" }
 
-# Dependencies of the included build-logic
+# ======================================================
+# dependencies of the included build-logic
+# ======================================================
 build-android-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 build-kotlin-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 build-ksp-plugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
@@ -334,6 +342,7 @@ didi-doraemonKit = "com.didichuxing.doraemonkit:dokitx:3.3.5"
 # https://github.com/square/radiography
 square-radiography = "com.squareup.radiography:radiography:2.3.0"
 
+
 [plugins]
 # ======================================================
 # official plugins
@@ -362,5 +371,4 @@ app-final-application = { id = "com.app.final.application", version = "unspecifi
 # ======================================================
 # third plugins
 # ======================================================
-didi-booster = { id = 'com.didiglobal.booster', version.ref = "booster" }
 vanniktech-maven-publisher = { id = "com.vanniktech.maven.publish", version = "0.28.0" }

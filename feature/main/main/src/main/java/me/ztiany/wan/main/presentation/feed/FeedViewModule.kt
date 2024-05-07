@@ -1,7 +1,7 @@
 package me.ztiany.wan.main.presentation.feed
 
 import androidx.lifecycle.ViewModel
-import com.android.base.fragment.epoxy.ListStateHelper
+import com.android.base.fragment.list.paging.ListStateHelper
 import com.android.base.fragment.vm.startListJob
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ensureActive

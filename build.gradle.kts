@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    println("buildscript in rootProject is called.")
+    println("======== buildscript in rootProject is running =======")
 }
 
 plugins {
@@ -35,5 +35,16 @@ allprojects {
             libs.kotlin.stdlib,
             libs.kotlinx.coroutines
         )
+    }
+}
+
+tasks.register("publishAllBaseProjectToMavenLocal") {
+    group = "publishing"
+    subprojects {
+        parent?.name?.let { parentName ->
+            if (parentName == "base") {
+                dependsOn(tasks.named("publishToMavenLocal"))
+            }
+        }
     }
 }
