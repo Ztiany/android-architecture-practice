@@ -24,6 +24,8 @@ plugins {
 allprojects {
     configurations.configureEach {
         resolutionStrategy.force(
+            // Force the version of the following dependencies
+            // androidx
             libs.androidx.appcompat,
             libs.androidx.activity,
             libs.androidx.activity.ktx,
@@ -32,6 +34,9 @@ allprojects {
             libs.androidx.ktx,
             libs.androidx.annotations,
             libs.androidx.constraintlayout,
+            // google material
+            libs.google.ui.material,
+            // kotlin
             libs.kotlin.stdlib,
             libs.kotlinx.coroutines
         )

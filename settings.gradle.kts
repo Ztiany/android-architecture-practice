@@ -44,7 +44,7 @@ class DependencySubstitutionPlugin : Plugin<Settings> {
     /**
      * Force using local substitution.
      */
-    private val forceSubstitution: Boolean = false
+    private val forceSubstitution: Boolean = true
 
     class Module(map: Map<String, Any>) {
         val useLocal: Boolean by map

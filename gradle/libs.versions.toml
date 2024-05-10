@@ -312,7 +312,7 @@ jaredrummler-htmldsl = "com.jaredrummler:html-dsl:1.0.0"
 kyleduo-switchbutton = "com.kyleduo.switchbutton:library:2.1.0"
 
 # https://github.com/Ztiany/android-drawable-view
-ztiany-drawableView = "io.github.ztiany:android-drawable-view:1.1.7"
+ztiany-drawableView = "io.github.ztiany:android-drawable-view:1.2.0"
 
 # https://github.com/getActivity/ToastUtils
 getactivity-toastutils = "com.github.getActivity:ToastUtils:11.0"
