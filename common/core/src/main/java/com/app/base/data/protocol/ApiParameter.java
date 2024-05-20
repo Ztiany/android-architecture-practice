@@ -37,7 +37,11 @@ public final class ApiParameter {
     public static final String HEADER_JSON = "Content-Type: application/json; charset=utf-8";
 
     /**
-     * 生成表单请求体。
+     * 生成表单请求体。如何上传 URI？参考：
+     *<ul>
+     *     <li><a href="https://github.com/square/okhttp/issues/3585">okhttp/issues/3585</a></li>
+     *     <li><a href="https://github.com/liangjingkanji/Net/issues/189">net/issues/189</a></li>
+     *</ul>
      */
     public static Map<String, RequestBody> buildMultiPartRequestBody(Map<String, String> fieldParts, Map<String, File> fileParts) {
 
