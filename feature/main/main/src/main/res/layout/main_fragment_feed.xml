@@ -9,7 +9,7 @@
     tools:msv_viewState="content">
 
     <com.android.base.fragment.widget.ScrollChildSwipeRefreshLayout
-        style="@style/Style_SwipeRefreshLayout"
+        style="@style/Widget.App.SwipeRefreshLayout"
         app:srl_target_id="@id/main_rv_articles">
 
         <com.android.base.ui.recyclerview.ShapeableRecyclerView

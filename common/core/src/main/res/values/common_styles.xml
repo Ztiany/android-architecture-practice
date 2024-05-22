@@ -34,7 +34,7 @@
         <item>@color/color_main</item>
     </array>
 
-    <style name="Style_SwipeRefreshLayout">
+    <style name="Widget.App.SwipeRefreshLayout" parent="">
         <item name="android:id">@id/base_refresh_layout</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -42,7 +42,7 @@
     </style>
 
     <!--白色标题栏-->
-    <style name="Style_TitleLayout">
+    <style name="Widget.App.TitleLayout" parent="">
         <item name="android:elevation">0.5dp</item>
         <item name="atl_navigation_icon_tint">?app_color_deepest</item>
         <item name="atl_title_color">?app_color_text_level1</item>

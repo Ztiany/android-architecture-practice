@@ -23,9 +23,9 @@ private class Entrance(
 )
 
 private fun buildEntranceList() = listOf(
-    Entrance(R.id.main_entrance_recharge_record, R.string.main_recharge_record, R.drawable.main_icon_recharge_record),
+    Entrance(R.id.main_entrance_recharge_record, R.string.main_share_article, R.drawable.main_icon_recharge_record),
+    Entrance(R.id.main_entrance_feedback, R.string.main_feedback, R.drawable.main_icon_feedback),
     Entrance(R.id.main_entrance_settings, R.string.main_settings, R.drawable.main_icon_settings),
-    Entrance(R.id.main_entrance_feedback, R.string.main_help_feedback, R.drawable.main_icon_feedback),
 )
 
 internal class MineUIPresenter(

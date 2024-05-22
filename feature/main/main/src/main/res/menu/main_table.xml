@@ -9,9 +9,9 @@
         android:title="@string/main_tab_home" />
 
     <item
-        android:id="@id/main_table_welfare"
-        android:icon="@drawable/main_sel_tab_welfare"
-        android:title="@string/main_tab_treasure" />
+        android:id="@id/main_table_box"
+        android:icon="@drawable/main_sel_tab_box"
+        android:title="@string/main_tab_box" />
 
     <item
         android:id="@id/main_table_mine"

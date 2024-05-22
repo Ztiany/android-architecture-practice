@@ -27,6 +27,9 @@ class AppCoroutineModule {
     @Singleton
     @ApplicationScope
     @Provides
-    fun providesCoroutineScope(dispatcherProvider: DispatcherProvider): CoroutineScope = CoroutineScope(SupervisorJob() + dispatcherProvider.ui())
+    fun providesCoroutineScope(dispatcherProvider: DispatcherProvider): CoroutineScope = CoroutineScope(
+        // Here is no CoroutineExceptionHandler, cause We have installed a Thread.setDefaultUncaughtExceptionHandler in the App class.
+        SupervisorJob() + dispatcherProvider.ui()
+    )
 
 }

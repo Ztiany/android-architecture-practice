@@ -10,7 +10,7 @@
 
     <!-- ============================ Main ============================ -->
     <item name="main_table_game" type="id" />
-    <item name="main_table_welfare" type="id" />
+    <item name="main_table_box" type="id" />
     <item name="main_table_mine" type="id" />
 
     <item name="main_entrance_recharge_record" type="id" />

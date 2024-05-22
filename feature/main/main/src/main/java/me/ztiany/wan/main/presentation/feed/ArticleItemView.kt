@@ -21,6 +21,7 @@ class ArticleItemView @JvmOverloads constructor(
     @ModelProp lateinit var title: String
     @ModelProp lateinit var category: String
     @ModelProp lateinit var updateTime: String
+
     var collected: Boolean = false
         @ModelProp set
 

@@ -1,22 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,ExtraTranslation">
 
     <string name="main_tab_home">首页</string>
-    <string name="main_tab_treasure">百宝箱</string>
+    <string name="main_tab_box">百宝箱</string>
     <string name="main_tab_mine">我的</string>
     <string name="main_exit_tips">再点击一次退出 APP</string>
-
-    <string name="main_welfare">福利</string>
-    <string name="main_popular">热门</string>
-    <string name="main_signing_welfare">签到福利</string>
-    <string name="main_sign_immediately">立即签到</string>
-    <string name="main_recharge_record">充值记录</string>
-    <string name="main_settings">@string/settings</string>
-    <string name="main_help_feedback">帮助与反馈</string>
-    <string name="main_trying_number">体验人数：</string>
-    <string name="main_brief_introduction">简介</string>
-    <string name="main_relative_recommendation">相关推荐</string>
-    <string name="main_check_more">查看更多 &gt;</string>
-    <string name="main_cloud_trial">秒玩</string>
-    <string name="main_recommendation_title">大家都在玩</string>
+    <string name="main_open_box">打开</string>
+    <string name="main_share_article">分享文章</string>
+    <string name="main_settings">功能设置</string>
+    <string name="main_feedback">使用反馈</string>
 
 </resources>

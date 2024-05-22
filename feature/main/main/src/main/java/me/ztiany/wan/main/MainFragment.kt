@@ -64,7 +64,7 @@ private class MainTabManager(
 
     private val itemIdArray = intArrayOf(
         R.id.main_table_game,
-        R.id.main_table_welfare,
+        R.id.main_table_box,
         R.id.main_table_mine,
     )
 
@@ -78,7 +78,7 @@ private class MainTabManager(
     private class MainTabs : Tabs() {
         init {
             add(FragmentInfo.PageBuilder().clazz(FeedFragment::class.java).tag(FeedFragment::class.java.name).pagerId(R.id.main_table_game).build())
-            add(FragmentInfo.PageBuilder().clazz(BoxFragment::class.java).tag(BoxFragment::class.java.name).pagerId(R.id.main_table_welfare).build())
+            add(FragmentInfo.PageBuilder().clazz(BoxFragment::class.java).tag(BoxFragment::class.java.name).pagerId(R.id.main_table_box).build())
             add(FragmentInfo.PageBuilder().clazz(MineFragment::class.java).tag(MineFragment::class.java.name).pagerId(R.id.main_table_mine).build())
         }
     }

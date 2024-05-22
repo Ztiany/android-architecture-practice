@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation,MissingTranslation">
     <string name="account_login_title1">Hello！</string>
-    <string name="account_login_title2">欢迎来到游戏盒子</string>
+    <string name="account_login_title2">欢迎来到玩安卓</string>
     <string name="account_get_in_app">进入应用</string>
     <string name="account_agreement_tips">请选择同意用户协议</string>
 </resources>

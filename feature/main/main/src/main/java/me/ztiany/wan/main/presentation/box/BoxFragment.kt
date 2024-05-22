@@ -9,11 +9,11 @@ import com.app.base.utils.setStatusBarLightMode
 import com.app.base.widget.dialog.showConfirmDialog
 import me.ztiany.wan.main.MainScopeNavigator
 import dagger.hilt.android.AndroidEntryPoint
-import me.ztiany.wan.main.databinding.MainFragmentWelfareBinding
+import me.ztiany.wan.main.databinding.MainFragmentBoxBinding
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BoxFragment : BaseUIFragment<MainFragmentWelfareBinding>() {
+class BoxFragment : BaseUIFragment<MainFragmentBoxBinding>() {
 
     private val viewModel by viewModels<BoxViewModel>()
 

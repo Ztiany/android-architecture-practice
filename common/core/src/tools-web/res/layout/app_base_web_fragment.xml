@@ -7,7 +7,7 @@
 
     <com.app.base.widget.AppTitleLayout
         android:id="@+id/atlWebRulesTitle"
-        style="@style/Style_TitleLayout"
+        style="@style/Widget.App.TitleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
