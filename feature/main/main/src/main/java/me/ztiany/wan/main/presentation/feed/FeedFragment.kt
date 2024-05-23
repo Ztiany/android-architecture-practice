@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.fragment.list.epoxy.BaseEpoxyListFragment
-import com.android.base.fragment.list.epoxy.handleListStateWithViewLifecycle
+import com.android.base.fragment.list.handleListStateWithViewLifecycle
 import com.android.base.fragment.ui.ListLayoutHost
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.qmuiteam.qmui.kotlin.dip

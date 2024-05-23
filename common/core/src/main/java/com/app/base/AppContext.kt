@@ -102,6 +102,10 @@ abstract class AppContext : BaseAppContext() {
                 override fun isServerError(throwable: Throwable) =
                     throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http internal error*/
             }
+
+            //Dialog 最短展示时间
+            minimalDialogDisplayTime = appSettings.get().minimumDialogShowTime
+
             fragmentModule {
                 //分页开始页码
                 defaultPageStart = appSettings.get().defaultPageStart
@@ -114,10 +118,6 @@ abstract class AppContext : BaseAppContext() {
                 //默认的通用的 LoadingDialog 和 Toast 实现
                 loadingViewHostFactory = { AppLoadingViewHost(it) }
             }
-
-            //Dialog 最短展示时间
-            minimalDialogDisplayTime = appSettings.get().minimumDialogShowTime
-
         }
     }
 
