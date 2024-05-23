@@ -221,11 +221,11 @@ public class JsonUtils {
     }
 
     /**
-     * 带有类型参数的泛型类型，应该使用下面方式，比如你想解析 List&lt;Foo&gt; 、 Map&lt;String,Foo&gt;、HttpResult&lt;Foo&gt; 等泛型类型。
+     * 带有类型参数的泛型类型，应该使用下面方式，比如你想解析 List&lt;Foo&gt; 、 Map&lt;String,Foo&gt;、ApiResult&lt;Foo&gt; 等泛型类型。
      * <pre>{@code
      *         List<Foo> listFoo = fromType(json,new TypeToken<List<Foo>>(){}.getType());
      *         Map<String, Foo> mapFoo = fromType(json,new TypeToken<Map<String, Foo>>(){}.getType());
-     *         HttpResult<Foo> httpResult = fromType(json,new TypeToken<HttpResult<Foo>>(){}.getType());
+     *         ApiResult<Foo> httpResult = fromType(json,new TypeToken<ApiResult<Foo>>(){}.getType());
      * }
      * </pre>
      */

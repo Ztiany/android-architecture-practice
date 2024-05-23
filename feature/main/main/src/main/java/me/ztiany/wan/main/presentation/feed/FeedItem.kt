@@ -1,5 +1,6 @@
 package me.ztiany.wan.main.presentation.feed
 
+import com.android.base.fragment.list.paging3.IntIdentity
 import me.ztiany.wan.main.data.Article
 import me.ztiany.wan.main.data.Banner
 import javax.inject.Inject
@@ -12,18 +13,35 @@ data class BannerVO(
 ) : FeedItem
 
 data class ArticleVO(
-    val id: Int,
+    override val id: Int,
     val isTop: Boolean = false,
-) : FeedItem
+    val isCollected: Boolean = false,
+    val author: String,
+    val title: String,
+    val url: String,
+    val category: String,
+    val updateTime: String,
+) : FeedItem, IntIdentity
 
 class ArticleVOMapper @Inject constructor() {
 
-    fun mapBanner(bannerList: List<Banner>): FeedItem {
+    fun mapBanner(bannerList: List<Banner>): BannerVO {
         return BannerVO(list = bannerList)
     }
 
-    fun mapArticle(articleList: List<Article>): List<FeedItem> {
-        return articleList.map { ArticleVO(it.id) }
+    fun mapArticles(articleList: List<Article>): List<ArticleVO> {
+        return articleList.map { mapArticle(it) }
+    }
+
+    fun mapArticle(article: Article): ArticleVO {
+        return ArticleVO(
+            article.id,
+            author = article.author,
+            title = article.title,
+            url = article.link,
+            category = "${article.superChapterName}:${article.chapterName}",
+            updateTime = article.niceDate
+        )
     }
 
 }

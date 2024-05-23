@@ -27,8 +27,8 @@ public class ApiHelper {
      */
     public static final int TOKEN_INVALIDATE = 401;
 
-    public static boolean isSuccess(@NonNull HttpResult<?> httpResult) {
-        return httpResult.getCode() == CODE_SUCCESS;
+    public static boolean isSuccess(@NonNull ApiResult<?> apiResult) {
+        return apiResult.getCode() == CODE_SUCCESS;
     }
 
     public static boolean isAuthenticationExpired(Throwable throwable) {

@@ -3,8 +3,9 @@
 ## UI 层
 
 - Paging3
-- FragmentFactory
 - OnBackPressedDispatcher
+- Banner by ViewPager2
+- StatusInsetsViewForAPI19
 - MultiStateView 添加 OnStateViewCreatedListener
 
 ## 网络层

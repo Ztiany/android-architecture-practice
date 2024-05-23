@@ -11,6 +11,7 @@ android {
 dependencies {
     implementation(project(":feature:main:api"))
     implementation(project(":feature:account:api"))
+    implementation(libs.androidx.paging.runtime)
 
     kapt(libs.airbnb.epoxy.apt)
 }

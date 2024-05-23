@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:includeFontPadding="false"
-        android:text="登录开启云游戏畅玩之旅"
+        android:text="登录开启安卓学习之旅"
         android:textColor="?app_color_text_level2"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/main_fl_avatar"

@@ -9,7 +9,7 @@
     </style>
 
     <!-- ============================ Main ============================ -->
-    <item name="main_table_game" type="id" />
+    <item name="main_table_home" type="id" />
     <item name="main_table_box" type="id" />
     <item name="main_table_mine" type="id" />
 
@@ -33,6 +33,11 @@
         <item name="cgd_gradient_end_color">#FB7E4D</item>
         <item name="cgd_corner_top_left">10dp</item>
         <item name="cgd_corner_bottom_right">10dp</item>
+    </style>
+
+    <style name="Main.TabLayout.TextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

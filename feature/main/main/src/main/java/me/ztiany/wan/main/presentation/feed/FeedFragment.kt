@@ -9,8 +9,8 @@ import com.android.base.fragment.list.epoxy.handleListStateWithViewLifecycle
 import com.android.base.fragment.ui.ListLayoutHost
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.qmuiteam.qmui.kotlin.dip
-import me.ztiany.wan.main.MainScopeNavigator
 import dagger.hilt.android.AndroidEntryPoint
+import me.ztiany.wan.main.MainScopeNavigator
 import me.ztiany.wan.main.databinding.MainFragmentFeedBinding
 import javax.inject.Inject
 

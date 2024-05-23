@@ -4,15 +4,11 @@ import android.accounts.NetworkErrorException
 import android.app.Application
 import android.content.res.Configuration
 import com.android.base.core.AndroidSword
-import com.android.base.core.ErrorClassifier
-import com.android.base.core.ErrorConvert
 import com.android.base.core.AppLifecycle
 import com.android.base.core.BaseAppContext
-import com.android.base.fragment.defaultFragmentAnimator
-import com.android.base.fragment.defaultFragmentContainerId
-import com.android.base.fragment.defaultPageSize
-import com.android.base.fragment.defaultPageStart
-import com.android.base.fragment.loadingViewHostFactory
+import com.android.base.core.ErrorClassifier
+import com.android.base.core.ErrorConvert
+import com.android.base.fragment.fragmentModule
 import com.android.base.utils.BaseUtils
 import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
 import com.android.sdk.net.NetContext
@@ -21,6 +17,7 @@ import com.android.sdk.net.extension.init
 import com.android.sdk.net.extension.setDefaultHostConfig
 import com.android.sdk.upgrade.AppUpgradeChecker
 import com.android.sdk.upgrade.impl.AppUpgradeInteractor
+import com.app.apm.APM
 import com.app.base.app.AndroidPlatform
 import com.app.base.app.ComponentProcessor
 import com.app.base.app.ErrorHandler
@@ -35,7 +32,6 @@ import com.app.base.debug.DebugTools
 import com.app.base.widget.dialog.AppLoadingViewHost
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
-import com.app.apm.APM
 import dagger.Lazy
 import retrofit2.HttpException
 import java.io.IOException
@@ -94,18 +90,6 @@ abstract class AppContext : BaseAppContext() {
         registerActivityLifecycleCallbacks(ComponentProcessor())
         //lib-base 配置
         with(AndroidSword) {
-            //默认的 Fragment 容器 id
-            defaultFragmentContainerId = R.id.common_container_id
-            //默认的 Fragment 转场动画
-            defaultFragmentAnimator = FragmentScaleAnimator()
-            //Dialog 最短展示时间
-            minimalDialogDisplayTime = appSettings.get().minimumDialogShowTime
-            //默认的通用的 LoadingDialog 和 Toast 实现
-            loadingViewHostFactory = { AppLoadingViewHost(it) }
-            //分页开始页码
-            defaultPageStart = appSettings.get().defaultPageStart
-            //默认分页大小
-            defaultPageSize = appSettings.get().defaultPageSize
             //错误消息转换器
             errorConvert = object : ErrorConvert {
                 override fun convert(throwable: Throwable): CharSequence {
@@ -118,6 +102,22 @@ abstract class AppContext : BaseAppContext() {
                 override fun isServerError(throwable: Throwable) =
                     throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http internal error*/
             }
+            fragmentModule {
+                //分页开始页码
+                defaultPageStart = appSettings.get().defaultPageStart
+                //默认分页大小
+                defaultPageSize = appSettings.get().defaultPageSize
+                //默认的 Fragment 容器 id
+                defaultFragmentContainerId = R.id.common_container_id
+                //默认的 Fragment 转场动画
+                defaultFragmentAnimator = FragmentScaleAnimator()
+                //默认的通用的 LoadingDialog 和 Toast 实现
+                loadingViewHostFactory = { AppLoadingViewHost(it) }
+            }
+
+            //Dialog 最短展示时间
+            minimalDialogDisplayTime = appSettings.get().minimumDialogShowTime
+
         }
     }
 

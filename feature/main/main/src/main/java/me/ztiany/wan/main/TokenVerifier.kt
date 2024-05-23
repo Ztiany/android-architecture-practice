@@ -3,7 +3,7 @@ package me.ztiany.wan.main
 import com.android.sdk.net.coroutines.nullable.executeApiCallNullable
 import com.app.base.app.DispatcherProvider
 import com.app.base.data.protocol.ApiHelper
-import com.app.base.data.protocol.HttpResult
+import com.app.base.data.protocol.ApiResult
 import com.app.common.api.network.ApiServiceFactoryProvider
 import com.app.common.api.usermanager.User
 import com.app.common.api.usermanager.UserManager
@@ -86,6 +86,6 @@ internal class TokenVerifier(
 private interface TokenVerifyApi {
 
     @GET("client/user/operation/verifyToken")
-    suspend fun verifyToken(): HttpResult<Unit>
+    suspend fun verifyToken(): ApiResult<Unit>
 
 }

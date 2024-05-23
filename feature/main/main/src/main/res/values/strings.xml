@@ -8,5 +8,7 @@
     <string name="main_share_article">分享文章</string>
     <string name="main_settings">功能设置</string>
     <string name="main_feedback">使用反馈</string>
+    <string name="main_recommend">推荐</string>
+    <string name="main_square">广场</string>
 
 </resources>

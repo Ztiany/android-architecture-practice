@@ -32,15 +32,14 @@ class FeedViewModule @Inject constructor(
 
     fun refresh() = startListJob {
         stateHelper.updateToRefreshing()
-
         try {
             val bannerList = homeRepository.loadBanner()
             val topArticles = homeRepository.loadTopArticles()
             val articles = homeRepository.loadArticles(stateHelper.paging.start, stateHelper.paging.size)
             buildList {
                 add(articleVOMapper.mapBanner(bannerList))
-                addAll(articleVOMapper.mapArticle(topArticles))
-                addAll(articleVOMapper.mapArticle(articles))
+                addAll(articleVOMapper.mapArticles(topArticles))
+                addAll(articleVOMapper.mapArticles(articles))
             }.apply {
                 stateHelper.replaceListAndUpdate(this, stateHelper.paging.hasMore(articles.size))
             }
@@ -56,7 +55,7 @@ class FeedViewModule @Inject constructor(
 
         try {
             val articles = homeRepository.loadArticles(stateHelper.paging.next, stateHelper.paging.size)
-            articleVOMapper.mapArticle(articles).apply {
+            articleVOMapper.mapArticles(articles).apply {
                 stateHelper.appendListAndUpdate(this)
             }
         } catch (e: Exception) {

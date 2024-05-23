@@ -1,6 +1,6 @@
 package com.android.sdk.upgrade.impl
 
-import com.app.base.data.protocol.HttpResult
+import com.app.base.data.protocol.ApiResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,6 +10,6 @@ internal interface AppUpgradeApi {
     suspend fun loadNewVersionInfo(
         @Query("packageName") packageName:String,
         @Query("versionNumber") versionNumber:String,
-    ): HttpResult<UpgradeResponse>
+    ): ApiResult<UpgradeResponse>
 
 }
