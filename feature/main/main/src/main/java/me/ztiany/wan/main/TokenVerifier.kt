@@ -1,6 +1,6 @@
 package me.ztiany.wan.main
 
-import com.android.sdk.net.coroutines.nullable.executeApiCallNullable
+import com.android.sdk.net.coroutines.executeApiCallNullable
 import com.app.base.app.DispatcherProvider
 import com.app.base.data.protocol.ApiHelper
 import com.app.base.data.protocol.ApiResult
@@ -8,12 +8,16 @@ import com.app.common.api.network.ApiServiceFactoryProvider
 import com.app.common.api.usermanager.User
 import com.app.common.api.usermanager.UserManager
 import com.app.common.api.usermanager.isLogin
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.http.GET
 import timber.log.Timber
-import java.util.*
+import java.util.Date
 
 private const val VERIFY_INTERVAL = 5 * 1000L
 
@@ -21,14 +25,14 @@ internal class TokenVerifier(
     private val userManager: UserManager,
     private val serviceFactoryProvider: ApiServiceFactoryProvider,
     private val scope: CoroutineScope,
-    private val dispatcherProvider: DispatcherProvider
+    private val dispatcherProvider: DispatcherProvider,
 ) {
 
     private var job: Job? = null
     private var previousUser: User = User.NOT_LOGIN
 
     private val tokenVerifyApi by lazy {
-        serviceFactoryProvider.getDefault().create(TokenVerifyApi::class.java)
+        serviceFactoryProvider.getDefault().createDefault(TokenVerifyApi::class.java)
     }
 
     fun start() {

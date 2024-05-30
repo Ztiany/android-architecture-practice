@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.base.adapter.recycler.BindingViewHolder
-import com.android.base.adapter.recycler.RecyclerAdapter
+import com.android.base.adapter.recycler.ViewBindingViewHolder
+import com.android.base.adapter.recycler.segment.BaseRecyclerAdapter
 import com.android.base.utils.android.views.beGone
 import com.android.base.utils.android.views.beVisible
 import com.android.base.utils.android.views.beVisibleOrInvisible
@@ -102,7 +102,7 @@ private class BottomSheetDialogAdapter(
     items: List<CharSequence>,
     private val builder: BottomSheetDialogBuilder,
     onItemClickedListener: (Int, CharSequence) -> Unit,
-) : RecyclerAdapter<CharSequence, BindingViewHolder<DialogBottomSheetItemBinding>>(context, items) {
+) : BaseRecyclerAdapter<CharSequence, ViewBindingViewHolder<DialogBottomSheetItemBinding>>(context, items) {
 
     private lateinit var recyclerView: RecyclerView
 
@@ -118,8 +118,8 @@ private class BottomSheetDialogAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): BindingViewHolder<DialogBottomSheetItemBinding> {
-        return BindingViewHolder(
+    ): ViewBindingViewHolder<DialogBottomSheetItemBinding> {
+        return ViewBindingViewHolder(
             DialogBottomSheetItemBinding.inflate(
                 inflater,
                 parent,
@@ -132,7 +132,7 @@ private class BottomSheetDialogAdapter(
     }
 
     override fun onBindViewHolder(
-        viewHolder: BindingViewHolder<DialogBottomSheetItemBinding>,
+        viewHolder: ViewBindingViewHolder<DialogBottomSheetItemBinding>,
         position: Int,
     ) {
         val item = getItem(position)

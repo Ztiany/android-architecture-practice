@@ -9,7 +9,7 @@ import com.android.base.utils.android.InstallUtils
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.common.otherwise
 import com.android.base.utils.common.yes
-import com.android.sdk.net.extension.create
+import com.android.sdk.net.extension.createDefault
 import com.android.sdk.upgrade.UpgradeException
 import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
@@ -55,7 +55,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
 
     private val appUpgradeRepository by lazy {
         AppUpgradeRepository(
-            apiServiceFactoryProvider.getDefault().create(),
+            apiServiceFactoryProvider.getDefault().createDefault(),
             dispatcherProvider,
             androidPlatform
         )

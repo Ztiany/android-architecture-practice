@@ -21,6 +21,9 @@ internal class ApiServiceFactoryProviderImpl @Inject constructor() : ApiServiceF
     }
 
     override fun get(flag: String): ServiceFactory {
+        if (flag.isEmpty()) {
+            throw IllegalArgumentException("flag can't be empty.")
+        }
         return NetContext.get().serviceFactory(flag)
     }
 

@@ -17,7 +17,7 @@ public class AccountInjectionModule {
 
     @Provides
     static AccountApi provideAccountApi(ApiServiceFactoryProvider apiServiceFactoryProvider) {
-        return apiServiceFactoryProvider.getDefault().create(AccountApi.class);
+        return apiServiceFactoryProvider.getDefault().createDefault(AccountApi.class);
     }
 
     @Provides

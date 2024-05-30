@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.base.adapter.recycler.BindingViewHolder
-import com.android.base.adapter.recycler.SimpleRecyclerAdapter
+import com.android.base.adapter.recycler.ViewBindingViewHolder
+import com.android.base.adapter.recycler.segment.SimpleRecyclerAdapter
 import com.android.base.utils.android.views.beGone
 import com.android.base.utils.android.views.beVisible
 import com.app.base.databinding.DialogListItemBinding
@@ -160,7 +160,7 @@ internal class ListDialog(
             DialogListItemBinding.inflate(inflater, parent, false)
 
         override fun bindItem(
-            viewHolder: BindingViewHolder<DialogListItemBinding>,
+            viewHolder: ViewBindingViewHolder<DialogListItemBinding>,
             item: CharSequence
         ) {
             viewHolder.vb.dialogListItemTv.text = item

@@ -4,17 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import com.android.base.adapter.recycler.BindingViewHolder
-import com.android.base.fragment.list.paging3.IntIdentityDiffCallback
+import com.android.base.adapter.recycler.ViewBindingViewHolder
+import com.android.base.fragment.list.paging3.IntIdentityItemDiffCallback
 import me.ztiany.wan.main.databinding.MainItemArticleBinding
 import me.ztiany.wan.main.presentation.feed.ArticleVO
 
 
 internal class SquareAdapter(
     private val context: Context,
-) : PagingDataAdapter<ArticleVO, BindingViewHolder<MainItemArticleBinding>>(IntIdentityDiffCallback()) {
+) : PagingDataAdapter<ArticleVO, ViewBindingViewHolder<MainItemArticleBinding>>(IntIdentityItemDiffCallback()) {
 
-    override fun onBindViewHolder(holder: BindingViewHolder<MainItemArticleBinding>, position: Int) {
+    override fun onBindViewHolder(holder: ViewBindingViewHolder<MainItemArticleBinding>, position: Int) {
         val item = getItem(position)
         if (item != null) {
             holder.vb.mainTvAuthor.text = item.author
@@ -24,8 +24,8 @@ internal class SquareAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<MainItemArticleBinding> {
-        return BindingViewHolder(MainItemArticleBinding.inflate(LayoutInflater.from(context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewBindingViewHolder<MainItemArticleBinding> {
+        return ViewBindingViewHolder(MainItemArticleBinding.inflate(LayoutInflater.from(context), parent, false))
     }
 
 }

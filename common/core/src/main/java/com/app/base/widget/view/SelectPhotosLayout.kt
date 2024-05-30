@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.base.adapter.recycler.BindingViewHolder
+import com.android.base.adapter.recycler.ViewBindingViewHolder
 import com.android.base.image.ImageLoaderFactory
 import com.android.base.image.Source
 import com.android.base.ui.recyclerview.MarginDecoration
@@ -109,7 +109,7 @@ private class AddImageAdapter(
     onAddImageListener: (Int) -> Unit,
     onClickImageListener: (view: View, photos: List<Uri>, position: Int) -> Unit,
     var onPhotoDeletedCallback: ((photos: List<Uri>) -> Unit)? = null,
-) : RecyclerView.Adapter<BindingViewHolder<WidgetSelectPhotoItemPhotoBinding>>() {
+) : RecyclerView.Adapter<ViewBindingViewHolder<WidgetSelectPhotoItemPhotoBinding>>() {
 
     companion object {
         private val ADD = Uri.EMPTY
@@ -163,12 +163,12 @@ private class AddImageAdapter(
         return dataList.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<WidgetSelectPhotoItemPhotoBinding> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewBindingViewHolder<WidgetSelectPhotoItemPhotoBinding> {
         val inflater = LayoutInflater.from(parent.context)
-        return BindingViewHolder(WidgetSelectPhotoItemPhotoBinding.inflate(inflater, parent, false))
+        return ViewBindingViewHolder(WidgetSelectPhotoItemPhotoBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(viewHolder: BindingViewHolder<WidgetSelectPhotoItemPhotoBinding>, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewBindingViewHolder<WidgetSelectPhotoItemPhotoBinding>, position: Int) {
         val item = dataList[position]
 
         if (item == ADD) {

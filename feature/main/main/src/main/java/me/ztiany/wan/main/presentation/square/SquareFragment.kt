@@ -6,15 +6,15 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.fragment.list.paging3.BasePagingFragment
 import com.android.base.fragment.list.paging3.handlePagingDataWithViewLifecycle
+import com.android.base.fragment.list.paging3.withDefaultLoadStateFooter
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.android.base.utils.common.unsafeLazy
 import com.qmuiteam.qmui.kotlin.dip
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.main.databinding.MainFragmentFeedBinding
-import me.ztiany.wan.main.presentation.feed.ArticleVO
 
 @AndroidEntryPoint
-class SquareFragment : BasePagingFragment<ArticleVO, MainFragmentFeedBinding>() {
+class SquareFragment : BasePagingFragment<MainFragmentFeedBinding>() {
 
     private val viewModel by viewModels<SquareViewModel>()
 
@@ -26,7 +26,7 @@ class SquareFragment : BasePagingFragment<ArticleVO, MainFragmentFeedBinding>() 
         with(vb.mainRvArticles) {
             addItemDecoration(MarginDecoration(top = dip(10)))
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = squareAdapter
+            adapter = squareAdapter.withDefaultLoadStateFooter()
         }
     }
 

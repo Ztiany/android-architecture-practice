@@ -18,7 +18,7 @@ class IntKeyPagingSource<S, SC : ServiceContext<S>, V : Any>(
         Timber.d("getRefreshKey: anchorPosition=${state.anchorPosition}")
 
         return state.anchorPosition?.let { anchorPosition ->
-             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }?.also {
             Timber.d("getRefreshKey: $it")
@@ -33,6 +33,7 @@ class IntKeyPagingSource<S, SC : ServiceContext<S>, V : Any>(
         }
 
         val page = params.key ?: pageStart
+
         return try {
             val data = load(serviceContext, page, params.loadSize)
             LoadResult.Page(
