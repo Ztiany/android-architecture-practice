@@ -27,18 +27,18 @@
         <item name="gradient_style_end_color">?app_color_main</item>
     </style>
 
-    <style name="Widget.App.DView.Gradient.Deepest" parent="">
+    <style name="Widget.App.DView.Gradient.PrimaryNormal" parent="">
         <item name="cgd_shape_gradient_style">@style/GradientAppearance.App.Primary</item>
         <item name="cgd_shape">rectangle</item>
     </style>
 
-    <style name="Widget.App.DView.Gradient.DeepestRounded10" parent="">
+    <style name="Widget.App.DView.Gradient.PrimaryNormalRounded10" parent="">
         <item name="cgd_shape_gradient_style">@style/GradientAppearance.App.Primary</item>
         <item name="cgd_shape">rectangle</item>
         <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
     </style>
 
-    <style name="Widget.App.DView.Gradient.DeepestRounded5" parent="">
+    <style name="Widget.App.DView.Gradient.PrimaryNormalRounded5" parent="">
         <item name="cgd_shape_gradient_style">@style/GradientAppearance.App.Primary</item>
         <item name="cgd_shape">rectangle</item>
         <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded5</item>
@@ -80,21 +80,21 @@
 
     <style name="Widget.App.DView.Selector.PrimaryGradient" parent="">
         <item name="cdv_drawable_type">selector</item>
-        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.Deepest</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.PrimaryNormal</item>
         <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressed</item>
         <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabled</item>
     </style>
 
     <style name="Widget.App.DView.Selector.PrimaryGradientRounded5" parent="">
         <item name="cdv_drawable_type">selector</item>
-        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.DeepestRounded5</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.PrimaryNormalRounded5</item>
         <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressedRounded5</item>
         <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded5</item>
     </style>
 
     <style name="Widget.App.DView.Selector.PrimaryGradientRounded10" parent="">
         <item name="cdv_drawable_type">selector</item>
-        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.DeepestRounded10</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.PrimaryNormalRounded10</item>
         <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressedRounded10</item>
         <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded10</item>
     </style>
