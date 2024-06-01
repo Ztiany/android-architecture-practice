@@ -4,4 +4,6 @@
     <string name="digits_password">0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM</string>
     <integer name="phone_length">11</integer>
     <integer name="password_length">16</integer>
+    <string name="digits_pure_number">0123456789</string>
+    <integer name="invitation_code_length">6</integer>
 </resources>

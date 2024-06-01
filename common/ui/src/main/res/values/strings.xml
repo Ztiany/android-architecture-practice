@@ -94,9 +94,12 @@
     <!--账号-->
     <string name="please_enter_account">请输入账号</string>
     <!--密码-->
-    <string name="please_enter_password">请输入密码</string>
-    <string name="please_enter_confirm_password">请确认密码</string>
-    <string name="password_too_wrong_format_tips">请输入至少 8 位密码</string>
+    <string name="please_enter_password">请输入登录密码</string>
+    <string name="please_enter_old_password">请输入原密码</string>
+    <string name="please_enter_new_password">请输入新密码</string>
+    <string name="please_enter_confirm_password">请再次确认新密码</string>
+    <string name="password_format_tips">请输入至少 8 位密码</string>
+    <string name="new_password_format_tips">新密码不符合要求</string>
     <string name="enter_the_password_twice_inconsistent">两次密码输入不一致</string>
     <!--邮箱-->
     <string name="please_enter_email">请输入邮箱</string>

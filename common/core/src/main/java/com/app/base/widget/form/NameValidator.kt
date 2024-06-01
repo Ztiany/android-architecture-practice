@@ -4,9 +4,9 @@ import android.view.View
 import com.android.base.utils.common.isChineseName
 import com.app.base.ui.R as UI_R
 
-class NameValidator(view: View) : TextValidator(view) {
+internal class NameValidator(view: View) : TextValidator(view) {
 
-    override fun validateTypeText(content: String): Boolean {
+    override fun simpleValidateTypeText(content: String): Boolean {
         return isChineseName(content)
     }
 
@@ -14,7 +14,7 @@ class NameValidator(view: View) : TextValidator(view) {
         return UI_R.string.please_enter_name
     }
 
-    public override fun noMatchTips(): Int {
+    public override fun noMatchTips(reason: Int): Int {
         return UI_R.string.please_enter_legitimate_name
     }
 
