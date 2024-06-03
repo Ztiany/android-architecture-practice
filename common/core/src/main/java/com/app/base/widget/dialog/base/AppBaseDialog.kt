@@ -1,9 +1,10 @@
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.base
 
 import android.app.Dialog
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AppCompatDialog
+import com.app.base.widget.dialog.showCompat
 import com.blankj.utilcode.util.ScreenUtils
 import com.app.base.ui.R as UI_R
 

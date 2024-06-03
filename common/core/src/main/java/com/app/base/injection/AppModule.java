@@ -4,14 +4,14 @@ import com.android.base.image.ImageLoader;
 import com.android.base.image.ImageLoaderFactory;
 import com.app.common.api.router.AppRouter;
 import com.app.common.api.router.AppNavigator;
-import com.app.common.api.services.AppService;
-import com.app.common.api.services.AppServiceManager;
+import com.app.common.api.appservice.AppService;
+import com.app.common.api.appservice.AppServiceManager;
 import com.app.base.app.DefaultDispatcherProvider;
 import com.app.base.app.DispatcherProvider;
 import com.app.base.component.router.AppRouterImpl;
 import com.app.base.component.router.AppRouterKey;
-import com.app.base.component.services.AppServiceKey;
-import com.app.base.component.services.AppServiceManagerImpl;
+import com.app.base.component.appservice.AppServiceKey;
+import com.app.base.component.appservice.AppServiceManagerImpl;
 
 import javax.inject.Singleton;
 

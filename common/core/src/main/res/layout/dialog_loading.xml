@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:minWidth="240dp"
@@ -10,15 +12,17 @@
         android:id="@+id/dialog_loading_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dialog_loading" />
+        android:text="@string/dialog_loading"
+        android:textColor="?app_color_main"
+        tools:textColor="@color/color_main" />
 
     <ProgressBar
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp" />
 
 </LinearLayout>

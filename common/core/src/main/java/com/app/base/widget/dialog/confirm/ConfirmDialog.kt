@@ -1,4 +1,4 @@
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.confirm
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +8,14 @@ import com.android.base.utils.android.views.clearComponentDrawable
 import com.android.base.utils.android.views.setLeftDrawable
 import com.app.base.databinding.DialogConfirmLayoutBinding
 import com.app.base.widget.dialog.BaseDialogBuilder.Companion.NO_ID
+import com.app.base.widget.dialog.ConfirmDialogBuilder
+import com.app.base.widget.dialog.base.AppBaseDialog
 
 /**
  * @author Ztiany
  */
 internal class ConfirmDialog(
-    builder: ConfirmDialogBuilder
+    builder: ConfirmDialogBuilder,
 ) : AppBaseDialog(builder.context, limitHeight = true, style = builder.style), ConfirmDialogInterface {
 
     private val vb = DialogConfirmLayoutBinding.inflate(LayoutInflater.from(builder.context))
@@ -58,6 +60,7 @@ internal class ConfirmDialog(
         if (builder.checkBoxText.isNotEmpty()) {
             vb.cbConfirmDialogCheckBox.beVisible()
             vb.cbConfirmDialogCheckBox.text = builder.checkBoxText
+            vb.cbConfirmDialogCheckBox.textSize = builder.checkBoxTextSize
             vb.cbConfirmDialogCheckBox.isChecked = builder.checkBoxChecked
         } else {
             vb.cbConfirmDialogCheckBox.beGone()

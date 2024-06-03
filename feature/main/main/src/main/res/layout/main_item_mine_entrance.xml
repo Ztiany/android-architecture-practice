@@ -36,7 +36,7 @@
     <View
         android:id="@+id/main_view_entrance_divider"
         android:layout_width="0dp"
-        android:layout_height="@dimen/common_separate_width"
+        android:layout_height="@dimen/common_divider_width"
         android:layout_marginHorizontal="20dp"
         android:background="?app_color_divider"
         app:layout_constraintBottom_toBottomOf="parent"

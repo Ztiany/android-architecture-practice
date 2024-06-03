@@ -1,4 +1,6 @@
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.confirm
+
+import com.app.base.widget.dialog.base.AppDialogInterface
 
 interface ConfirmDialogInterface : AppDialogInterface {
 

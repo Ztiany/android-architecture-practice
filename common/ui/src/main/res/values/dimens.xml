@@ -3,7 +3,7 @@
     <!-- ============================ common size ============================ -->
     <dimen name="common_page_edge">15dp</dimen>  <!--边距-->
     <dimen name="common_page_edge_big">28dp</dimen>  <!--边距-->
-    <dimen name="common_separate_width">1px</dimen><!--分割线宽度-->
+    <dimen name="common_divider_width">1px</dimen><!--分割线宽度-->
     <!-- ============================ common size ============================ -->
 
 </resources>

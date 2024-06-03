@@ -1,4 +1,4 @@
-package com.app.common.api.services
+package com.app.common.api.appservice
 
 /** A class that manages all the app services. */
 interface AppServiceManager {

@@ -1,4 +1,4 @@
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.list
 
 import android.content.Context
 import android.util.TypedValue
@@ -14,6 +14,8 @@ import com.android.base.utils.android.views.beGone
 import com.android.base.utils.android.views.beVisible
 import com.app.base.databinding.DialogListItemBinding
 import com.app.base.databinding.DialogListLayoutBinding
+import com.app.base.widget.dialog.ListDialogBuilder
+import com.app.base.widget.dialog.base.AppBaseDialog
 
 /**
  * 列表对话框。
@@ -21,7 +23,7 @@ import com.app.base.databinding.DialogListLayoutBinding
  * @author Ztiany
  */
 internal class ListDialog(
-    listDialogBuilder: ListDialogBuilder
+    listDialogBuilder: ListDialogBuilder,
 ) : AppBaseDialog(listDialogBuilder.context, limitHeight = true, style = listDialogBuilder.style), ListDialogInterface {
 
     private var selectedItemIndex: Int = 0
@@ -82,7 +84,7 @@ internal class ListDialog(
 
     private fun setupUsingSpecifiedAdapter(
         adapter: RecyclerView.Adapter<*>?,
-        listDialogBuilder: ListDialogBuilder
+        listDialogBuilder: ListDialogBuilder,
     ) {
         viewBinding.rvDialogListContent.adapter = adapter
         viewBinding.dblListDialogBottom.onPositiveClick(View.OnClickListener {
@@ -130,7 +132,7 @@ internal class ListDialog(
 
     private inner class Adapter(
         context: Context,
-        data: List<CharSequence>
+        data: List<CharSequence>,
     ) : SimpleRecyclerAdapter<CharSequence, DialogListItemBinding>(context, data) {
 
         private val onClickListener = View.OnClickListener { view ->
@@ -161,7 +163,7 @@ internal class ListDialog(
 
         override fun bindItem(
             viewHolder: ViewBindingViewHolder<DialogListItemBinding>,
-            item: CharSequence
+            item: CharSequence,
         ) {
             viewHolder.vb.dialogListItemTv.text = item
             val isSelected = viewHolder.adapterPosition == selectedItemIndex

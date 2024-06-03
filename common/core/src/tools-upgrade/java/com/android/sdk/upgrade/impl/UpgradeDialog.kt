@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.app.base.R
 import com.app.base.databinding.DialogUpgradeContentBinding
-import com.app.base.widget.dialog.AppBaseDialog
+import com.app.base.widget.dialog.base.AppBaseDialog
 
 internal class UpgradeDialog(
     context: Context,

@@ -17,6 +17,14 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.utils.android.views.getString
+import com.app.base.widget.dialog.bottomsheet.BottomSheetDialog
+import com.app.base.widget.dialog.confirm.ConfirmDialog
+import com.app.base.widget.dialog.confirm.ConfirmDialogInterface
+import com.app.base.widget.dialog.list.ListDialog
+import com.app.base.widget.dialog.list.ListDialogInterface
+import com.app.base.widget.dialog.loading.LoadingDialog
+import com.app.base.widget.dialog.loading.LoadingDialogInterface
+import com.app.base.widget.dialog.tip.TipDialog
 import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -42,10 +50,10 @@ fun createLoadingDialog(context: Context, autoShow: Boolean = false): LoadingDia
 ///////////////////////////////////////////////////////////////////////////
 // Toast
 ///////////////////////////////////////////////////////////////////////////
-@IntDef(ToastDialogBuilder.TYPE_SUCCESS, ToastDialogBuilder.TYPE_FAILURE, ToastDialogBuilder.TYPE_WARNING)
+@IntDef(TipDialogBuilder.TYPE_SUCCESS, TipDialogBuilder.TYPE_FAILURE, TipDialogBuilder.TYPE_WARNING)
 annotation class TipsType
 
-class ToastDialogBuilder internal constructor(
+class TipDialogBuilder internal constructor(
     val activity: Activity?,
     val fragment: Fragment?,
 ) {
@@ -61,11 +69,11 @@ class ToastDialogBuilder internal constructor(
 
     /*消息*/
     @StringRes
-    var messageId = BaseDialogBuilder.NO_ID
+    var messageResId = BaseDialogBuilder.NO_ID
         set(value) {
             message = context.getText(value)
         }
-    var message: CharSequence = "debug：请设置 message"
+    var message: CharSequence = "debug：请设置 message。"
 
     @TipsType var type = TYPE_SUCCESS
 
@@ -74,47 +82,47 @@ class ToastDialogBuilder internal constructor(
     var autoDismissMillisecond: Long = 2000
 }
 
-private fun showToastDialog(activity: Activity?, fragment: Fragment?, builder: ToastDialogBuilder.() -> Unit): Dialog {
-    val toastDialogBuilder = ToastDialogBuilder(activity, fragment)
-    builder(toastDialogBuilder)
-    return showTipsDialogImpl(toastDialogBuilder)
+private fun showToastDialog(activity: Activity?, fragment: Fragment?, builder: TipDialogBuilder.() -> Unit): Dialog {
+    val tipDialogBuilder = TipDialogBuilder(activity, fragment)
+    builder(tipDialogBuilder)
+    return showTipsDialogImpl(tipDialogBuilder)
 }
 
-fun Fragment.showToastDialog(builder: ToastDialogBuilder.() -> Unit): Dialog {
+fun Fragment.showToastDialog(builder: TipDialogBuilder.() -> Unit): Dialog {
     return showToastDialog(null, this, builder)
 }
 
-fun FragmentActivity.showToastDialog(builder: ToastDialogBuilder.() -> Unit): Dialog {
+fun FragmentActivity.showToastDialog(builder: TipDialogBuilder.() -> Unit): Dialog {
     return showToastDialog(this, null, builder)
 }
 
-private fun showTipsDialogImpl(toastDialogBuilder: ToastDialogBuilder): Dialog {
-    val toastDialog = ToastDialog(toastDialogBuilder.context)
+private fun showTipsDialogImpl(tipDialogBuilder: TipDialogBuilder): Dialog {
+    val tipDialog = TipDialog(tipDialogBuilder.context)
 
-    toastDialog.setMessage(toastDialogBuilder.message)
-    toastDialog.setCancelable(false)
-    toastDialog.setTipsType(toastDialogBuilder.type)
+    tipDialog.setMessage(tipDialogBuilder.message)
+    tipDialog.setCancelable(false)
+    tipDialog.setTipsType(tipDialogBuilder.type)
 
-    val lifecycleOwner: LifecycleOwner = toastDialogBuilder.fragment ?: toastDialogBuilder.context as FragmentActivity
+    val lifecycleOwner: LifecycleOwner = tipDialogBuilder.fragment ?: tipDialogBuilder.context as FragmentActivity
 
     lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onDestroy(owner: LifecycleOwner) {
-            toastDialog.dismiss()
+            tipDialog.dismiss()
         }
     })
 
-    toastDialog.setOnDismissListener {
-        toastDialogBuilder.onDismiss?.invoke()
+    tipDialog.setOnDismissListener {
+        tipDialogBuilder.onDismiss?.invoke()
     }
 
-    toastDialog.show()
+    tipDialog.show()
 
     lifecycleOwner.lifecycleScope.launch {
-        delay(toastDialogBuilder.autoDismissMillisecond)
-        toastDialog.dismiss()
+        delay(tipDialogBuilder.autoDismissMillisecond)
+        tipDialog.dismiss()
     }
 
-    return toastDialog
+    return tipDialog
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -122,22 +130,22 @@ private fun showTipsDialogImpl(toastDialogBuilder: ToastDialogBuilder): Dialog {
 ///////////////////////////////////////////////////////////////////////////
 class ListDialogBuilder(context: Context) : BaseDialogBuilder(context) {
 
-    /**标题id*/
+    /** 标题id */
     @StringRes
-    var titleId: Int = NO_ID
+    var titleResId: Int = NO_ID
         set(value) {
             title = context.getText(value)
         }
     var title: CharSequence? = null
 
-    /**标题的字体大小，单位为 sp*/
+    /** 标题的字体大小，单位为 sp */
     var titleSize = 16F
 
-    /**标题的字体颜色*/
+    /** 标题的字体颜色 */
     var titleColor = MaterialColors.getColor(context, UI_R.attr.app_color_text_level1, "app_color_text_level1 not provided.")
 
     @ArrayRes
-    var itemsId: Int = NO_ID
+    var itemArrayResId: Int = NO_ID
         set(value) {
             items = context.resources.getTextArray(value)
         }
@@ -150,7 +158,7 @@ class ListDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     var positiveListener: ((which: Int, item: CharSequence) -> Unit)? = null
     var negativeListener: (() -> Unit)? = null
 
-    /**对话框最长高度（相对于屏幕高度）*/
+    /** 对话框最长高度（相对于屏幕高度）*/
     var maxWidthPercent = 0.75F
 }
 
@@ -180,12 +188,12 @@ open class BaseDialogBuilder(val context: Context) {
         internal const val NO_ID = 0
     }
 
-    /**样式*/
+    /** 样式 */
     var style: Int = UI_R.style.AppTheme_Dialog_Common_Transparent_Floating
 
-    /**确认按钮*/
+    /** 确认按钮 */
     @StringRes
-    var positiveId: Int = NO_ID
+    var positiveResId: Int = NO_ID
         set(value) {
             positiveText = if (value == NO_ID) {
                 null
@@ -196,9 +204,9 @@ open class BaseDialogBuilder(val context: Context) {
     var positiveText: CharSequence? = context.getText(UI_R.string.sure)
     @ColorInt var positiveColor: Int = MaterialColors.getColor(context, UI_R.attr.app_color_deepest, "app_color_deepest not provided.")
 
-    /**否认按钮*/
+    /** 否认按钮 */
     @StringRes
-    var negativeId: Int = NO_ID
+    var negativeResId: Int = NO_ID
         set(value) {
             negativeText = if (value == NO_ID) {
                 null
@@ -213,7 +221,7 @@ open class BaseDialogBuilder(val context: Context) {
         negativeText = null
     }
 
-    /**选择后，自动 dismiss*/
+    /** 选择后，自动 dismiss */
     var autoDismiss: Boolean = true
 
     var cancelable: Boolean = true
@@ -225,45 +233,45 @@ class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     ///////////////////////////////////////////////////////////////////////////
     // title
     ///////////////////////////////////////////////////////////////////////////
-    /**标题id*/
+    /** 标题 id */
     @StringRes
-    var titleId: Int = NO_ID
+    var titleResId: Int = NO_ID
         set(value) {
             title = context.getText(value)
         }
     var title: CharSequence? = null
 
-    /**标题的字体大小，单位为 sp*/
+    /** 标题的字体大小，单位为 sp */
     var titleSize = 18F
 
-    /**标题的字体颜色*/
+    /** 标题的字体颜色 */
     var titleColor = MaterialColors.getColor(context, UI_R.attr.app_color_deepest, "app_color_deepest not provided.")
 
     ///////////////////////////////////////////////////////////////////////////
     // message
     ///////////////////////////////////////////////////////////////////////////
     @StringRes
-    var messageId = NO_ID
+    var messageResId = NO_ID
         set(value) {
             message = context.getText(value)
         }
-    var message: CharSequence = "debug：请设置message"
+    var message: CharSequence = "debug：请设置 message。"
 
-    /**消息的字体大小，单位为 sp*/
+    /** 消息的字体大小，单位为 sp */
     var messageSize = 14F
 
-    /**消息的字体颜色*/
+    /** 消息的字体颜色 */
     var messageColor = MaterialColors.getColor(context, UI_R.attr.app_color_text_level2, "app_color_text_level2 not provided.")
 
-    /**消息对其方式*/
+    /** 消息对其方式 */
     var messageGravity: Int = Gravity.CENTER
 
     ///////////////////////////////////////////////////////////////////////////
     //中间的按钮
     ///////////////////////////////////////////////////////////////////////////
-    /**中间的按钮*/
+    /** 中间的按钮 */
     @StringRes
-    var neutralId: Int = NO_ID
+    var neutralResId: Int = NO_ID
         set(value) {
             neutralText = if (value == NO_ID) {
                 null
@@ -278,11 +286,14 @@ class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     // checkbox
     ///////////////////////////////////////////////////////////////////////////
     @StringRes
-    var checkBoxId = NO_ID
+    var checkBoxResId = NO_ID
         set(value) {
             checkBoxText = context.getText(value)
         }
     var checkBoxText: CharSequence = ""
+
+    /**  CheckBox 的字体大小，单位为 sp */
+    var checkBoxTextSize = 14F
     var checkBoxChecked = false
 
     //确认与取消
@@ -317,23 +328,32 @@ fun Activity.showConfirmDialog(builder: ConfirmDialogBuilder.() -> Unit): Confir
 ///////////////////////////////////////////////////////////////////////////
 class BottomSheetDialogBuilder(val context: Context) {
 
-    /**default is [R.string.cancel]*/
-    var actionTextId = BaseDialogBuilder.NO_ID
+    /** default is [com.app.base.ui.R.string.cancel] */
+    @StringRes
+    var actionResId = BaseDialogBuilder.NO_ID
         set(value) {
             actionText = context.getText(value)
         }
 
-    /**default is the text defined by [R.string.cancel]，if set it empty than the action view will be hidden.*/
+    /** default is the text defined by [com.app.base.ui.R.string.cancel]，if set it empty than the action view will be hidden . */
     var actionText: CharSequence = getString(UI_R.string.cancel)
-    fun noBottomAction() {
+
+    /**  default is 14SP */
+    var actionSize: Float = 14F
+
+    fun noAction() {
         actionText = ""
     }
 
-    /**default is ""，it means the title view is hidden by default*/
+    /** default is "", it means the title view is hidden by default. */
     var titleText: CharSequence = ""
 
-    /**default is empty*/
-    var titleTextId = BaseDialogBuilder.NO_ID
+    /**  default is 16SP */
+    var titleSize: Float = 16F
+
+    /** default is empty*/
+    @StringRes
+    var titleResId = BaseDialogBuilder.NO_ID
         set(value) {
             titleText = context.getText(value)
         }
@@ -347,10 +367,10 @@ class BottomSheetDialogBuilder(val context: Context) {
 
     var selectedPosition: Int = -1
 
-    /**if you want to apply your own list style, you can provide a [customList] callback, then other properties(like [items]) will not be effective.*/
+    /** if you want to apply your own list style, you can provide a [customList] callback, then other properties(like [items]) will not be effective . */
     var customList: ((dialog: Dialog, list: RecyclerView) -> Unit)? = null
 
-    /**选择后，自动 dismiss*/
+    /** 选择后，自动 dismiss */
     var autoDismiss: Boolean = true
 }
 
@@ -370,5 +390,3 @@ fun Fragment.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> U
 fun Activity.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> Unit): Dialog {
     return showBottomSheetListDialog(this, builder)
 }
-
-

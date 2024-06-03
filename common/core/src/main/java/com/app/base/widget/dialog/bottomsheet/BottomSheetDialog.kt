@@ -1,4 +1,4 @@
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.bottomsheet
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -13,6 +13,8 @@ import com.android.base.utils.android.views.beVisible
 import com.android.base.utils.android.views.beVisibleOrInvisible
 import com.app.base.databinding.DialogBottomSheetBinding
 import com.app.base.databinding.DialogBottomSheetItemBinding
+import com.app.base.widget.dialog.BottomSheetDialogBuilder
+import com.app.base.widget.dialog.showCompat
 
 /**
  *@author Ztiany
@@ -26,20 +28,22 @@ class BottomSheetDialog(
     init {
         setContentView(vb.root)
         setupList()
-        setupBottomAction()
         setupTitle()
+        setupBottomAction()
     }
 
     private fun setupTitle() {
         if (builder.titleText.isNotEmpty()) {
             vb.dialogBottomSheetTvTitle.beVisible()
             vb.dialogBottomSheetTvTitle.text = builder.titleText
+            vb.dialogBottomSheetTvTitle.textSize = builder.titleSize
         }
     }
 
     private fun setupBottomAction() {
         if (builder.actionText.isNotEmpty()) {
             vb.dialogBottomSheetTvBottomAction.text = builder.actionText
+            vb.dialogBottomSheetTvBottomAction.textSize = builder.actionSize
             vb.dialogBottomSheetVDivider.beVisible()
         } else {
             vb.dialogBottomSheetTvBottomAction.beGone()

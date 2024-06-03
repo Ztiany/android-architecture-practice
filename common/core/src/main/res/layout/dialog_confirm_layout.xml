@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_weight="1"
-    app:msd_backgroundColor_normal="@color/white"
+    app:msd_backgroundColor_normal="?app_color_lightest"
     app:shapeAppearance="@style/ShapeAppearance.Rounded10">
 
     <TextView
@@ -18,8 +17,6 @@
         android:layout_marginEnd="24dp"
         android:drawablePadding="5dp"
         android:gravity="center"
-        android:textColor="#333333"
-        android:textSize="14sp"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constrainedWidth="true"
@@ -42,8 +39,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:textColor="#808080"
-        android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/dblDialogBottom"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -73,8 +68,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="3dp"
-            android:textColor="#666666"
-            android:textSize="14sp"
             tools:text="账号已在其他设备登录，请重新登录，请重新登录，请重新登录，请重新登录，请重新登录，请重新登录，请重新登录" />
 
     </ScrollView>

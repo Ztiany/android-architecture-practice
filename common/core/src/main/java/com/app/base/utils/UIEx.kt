@@ -79,20 +79,26 @@ fun newAppStyleClickSpan(lifecycleOwner: LifecycleOwner, context: Context, onCli
 }
 
 @SuppressLint("SetTextI18n")
-fun EditText.enableIfMatchLength(target: View, min: Int, max: Int = Int.MAX_VALUE) {
-    val textValue = textValue()
-    target.isEnabled = isLengthIn(textValue, min, max)
+fun EditText.enableTargetViewIfMatchLength(target: View, min: Int, max: Int = Int.MAX_VALUE) {
+    target.isEnabled = isLengthIn(textValue(), min, max)
     addTextChangedListener {
         target.isEnabled = isLengthIn(textValue(), min, max)
     }
 }
 
 @SuppressLint("SetTextI18n")
-fun EditText.enableIfAtLength(target: View, length: Int) {
-    val textValue = textValue()
-    target.isEnabled = isLengthIn(textValue, length, length)
+fun EditText.enableTargetViewIfAtLength(target: View, length: Int) {
+    target.isEnabled = isLengthIn(textValue(), length, length)
     addTextChangedListener {
         target.isEnabled = isLengthIn(textValue(), length, length)
+    }
+}
+
+@SuppressLint("SetTextI18n")
+fun EditText.enableTargetViewIfNotEmpty(target: View, length: Int) {
+    target.isEnabled = textValue().isNotEmpty()
+    addTextChangedListener {
+        target.isEnabled = textValue().isNotEmpty()
     }
 }
 

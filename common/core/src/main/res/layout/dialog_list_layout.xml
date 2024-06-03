@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:msd_backgroundColor_normal="@color/white"
+    app:msd_backgroundColor_normal="?app_color_lightest"
     app:shapeAppearance="@style/ShapeAppearance.Rounded10">
 
     <TextView
@@ -14,8 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:textColor="#333333"
-        android:textSize="16sp"
         android:visibility="gone"
         tools:text="添加为禁止使用"
         tools:visibility="visible" />

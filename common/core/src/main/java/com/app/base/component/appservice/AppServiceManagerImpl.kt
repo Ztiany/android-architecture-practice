@@ -1,8 +1,8 @@
-package com.app.base.component.services
+package com.app.base.component.appservice
 
 import android.util.Log
-import com.app.common.api.services.AppService
-import com.app.common.api.services.AppServiceManager
+import com.app.common.api.appservice.AppService
+import com.app.common.api.appservice.AppServiceManager
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

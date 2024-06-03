@@ -50,7 +50,7 @@
     <View
         android:id="@+id/widgetTextItemLine"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_separate_width"
+        android:layout_height="@dimen/common_divider_width"
         android:background="@color/divider_color"
         app:layout_constraintBottom_toBottomOf="parent" />
 

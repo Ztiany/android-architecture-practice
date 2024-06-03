@@ -74,7 +74,7 @@
     <View
         android:id="@+id/viewBottomDivider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_separate_width"
+        android:layout_height="@dimen/common_divider_width"
         android:background="#EFEFEF"
         android:visibility="invisible" />
 

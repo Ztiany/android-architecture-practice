@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
 import com.app.base.databinding.DialogTipsBinding
 import com.app.base.widget.dialog.TipsType
-import com.app.base.widget.dialog.ToastDialogBuilder
+import com.app.base.widget.dialog.TipDialogBuilder
 import com.app.base.widget.dialog.showCompat
 
 /**
  * @author Ztiany
  */
-internal class ToastDialog(context: Context) : AppCompatDialog(context, com.app.base.ui.R.style.AppTheme_Dialog_Tips) {
+internal class TipDialog(context: Context) : AppCompatDialog(context, com.app.base.ui.R.style.AppTheme_Dialog_Tips) {
 
     private val vb = DialogTipsBinding.inflate(LayoutInflater.from(context))
 
@@ -39,12 +39,12 @@ internal class ToastDialog(context: Context) : AppCompatDialog(context, com.app.
 
     fun setTipsType(@TipsType type: Int) {
         when (type) {
-            ToastDialogBuilder.TYPE_SUCCESS -> {
+            TipDialogBuilder.TYPE_SUCCESS -> {
                 vb.dialogTipsTvMessage.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.R.drawable.icon_tips_success, 0, 0)
                 vb.dialogTipsTvMessage.setTextColor(ContextCompat.getColor(context, com.app.base.ui.R.color.white))
             }
 
-            ToastDialogBuilder.TYPE_FAILURE, ToastDialogBuilder.TYPE_WARNING -> {
+            TipDialogBuilder.TYPE_FAILURE, TipDialogBuilder.TYPE_WARNING -> {
                 vb.dialogTipsTvMessage.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.R.drawable.icon_tips_failed, 0, 0)
                 vb.dialogTipsTvMessage.setTextColor(ContextCompat.getColor(context, com.app.base.ui.R.color.text_stress))
             }
@@ -53,7 +53,7 @@ internal class ToastDialog(context: Context) : AppCompatDialog(context, com.app.
 
     override fun show() {
         this.showCompat {
-            super@ToastDialog.show()
+            super@TipDialog.show()
         }
     }
 

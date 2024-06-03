@@ -9,27 +9,29 @@ import com.android.base.fragment.ui.Message
 import com.app.base.ui.R
 import com.app.base.widget.dialog.loading.LoadingDialog
 import timber.log.Timber
-import kotlin.jvm.functions.Function0
 
-class AppLoadingViewHost(private val mContext: Context) : LoadingViewHost {
-    private var mLoadingDialog: LoadingDialog? = null
+internal class AppLoadingViewHost(private val context: Context) : LoadingViewHost {
+
+    private var loadingDialog: LoadingDialog? = null
 
     override fun showLoadingDialog(message: CharSequence, cancelable: Boolean): Dialog {
-        initDialog()
+        val dialog = initLoadingDialog()
         if (TextUtils.isEmpty(message)) {
-            mLoadingDialog!!.setMessage(R.string.dialog_loading)
+            dialog.setMessage(R.string.dialog_loading)
         } else {
-            mLoadingDialog!!.setMessage(message)
+            dialog.setMessage(message)
         }
-        mLoadingDialog!!.setCancelable(cancelable)
-        if (!mLoadingDialog!!.isShowing) {
-            mLoadingDialog!!.show()
+        dialog.setCancelable(cancelable)
+        if (!dialog.isShowing) {
+            dialog.show()
         }
-        return mLoadingDialog!!
+        return dialog.apply {
+            loadingDialog = this
+        }
     }
 
     override fun showLoadingDialog(@StringRes messageId: Int, cancelable: Boolean): Dialog {
-        return showLoadingDialog(mContext.getText(messageId), cancelable)
+        return showLoadingDialog(context.getText(messageId), cancelable)
     }
 
     override fun showLoadingDialog(): Dialog {
@@ -41,31 +43,36 @@ class AppLoadingViewHost(private val mContext: Context) : LoadingViewHost {
     }
 
     override fun dismissLoadingDialog() {
-        if (mLoadingDialog != null && mLoadingDialog!!.isShowing) {
-            mLoadingDialog!!.dismiss()
+        loadingDialog?.let {
+            if (it.isShowing) {
+                it.dismiss()
+            }
         }
     }
 
-    override fun showMessage(message: CharSequence) {
-        ToastKit.showMessage(mContext, message)
-    }
-
-    override fun showMessage(@StringRes messageId: Int) {
-        showMessage(mContext.getText(messageId))
-    }
-
-    private fun initDialog() {
-        if (mLoadingDialog == null) {
-            mLoadingDialog = createLoadingDialog(mContext, false) as LoadingDialog
-        }
-    }
-
-    override fun dismissLoadingDialog(minimumMills: Long, onDismiss: Function0<Unit>?) {
+    override fun dismissLoadingDialog(minimumMills: Long, onDismiss: (() -> Unit)?) {
         throw UnsupportedOperationException("the method should be implemented by implementer of LoadingViewHost")
     }
 
+    override fun showMessage(message: CharSequence) {
+        ToastKit.showMessage(context, message)
+    }
+
+    override fun showMessage(@StringRes messageId: Int) {
+        showMessage(context.getText(messageId))
+    }
+
+    private fun initLoadingDialog(): LoadingDialog {
+        var loadingDialog = loadingDialog
+        if (loadingDialog == null) {
+            val dialogInterface = createLoadingDialog(context, false)
+            loadingDialog = dialogInterface as LoadingDialog
+        }
+        return loadingDialog
+    }
+
     override fun isLoadingDialogShowing(): Boolean {
-        return mLoadingDialog != null && mLoadingDialog!!.isShowing
+        return loadingDialog?.isShowing == true
     }
 
     /*
@@ -74,4 +81,5 @@ class AppLoadingViewHost(private val mContext: Context) : LoadingViewHost {
     override fun showMessage(message: Message) {
         Timber.d("showMessage(Message %s) is not implemented.", message)
     }
+
 }

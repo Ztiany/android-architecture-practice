@@ -3,43 +3,42 @@ package com.app.base.widget.dialog.loading
 import android.app.Dialog
 import android.content.Context
 import android.text.TextUtils
-import android.widget.TextView
+import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDialog
-import com.app.base.R
+import com.app.base.databinding.DialogLoadingBinding
 import com.app.base.widget.dialog.showCompat
 
 /**
  * @author Ztiany
  */
-class LoadingDialog(context: Context?) : AppCompatDialog(context!!), LoadingDialogInterface {
-    private var mMessageTv: TextView? = null
+internal class LoadingDialog(context: Context) : AppCompatDialog(context), LoadingDialogInterface {
+
+    private val vb = DialogLoadingBinding.inflate(LayoutInflater.from(context))
 
     init {
         setView()
     }
 
     private fun setView() {
-        setContentView(R.layout.dialog_loading)
-        mMessageTv = findViewById(R.id.dialog_loading_tv_title)
+        setContentView(vb.root)
     }
 
     fun setMessage(message: CharSequence?) {
         if (!TextUtils.isEmpty(message)) {
-            mMessageTv!!.text = message
+            vb.dialogLoadingTvTitle.text = message
         }
     }
 
     fun setMessage(@StringRes messageId: Int) {
         if (messageId != 0) {
-            mMessageTv!!.setText(messageId)
+            vb.dialogLoadingTvTitle.setText(messageId)
         }
     }
 
     override fun show() {
         this.showCompat {
             super@LoadingDialog.show()
-            Unit
         }
     }
 
@@ -49,4 +48,5 @@ class LoadingDialog(context: Context?) : AppCompatDialog(context!!), LoadingDial
     override fun updateMessage(message: CharSequence) {
         setMessage(message)
     }
+
 }

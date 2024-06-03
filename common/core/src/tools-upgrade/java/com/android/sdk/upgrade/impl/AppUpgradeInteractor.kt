@@ -120,14 +120,14 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
             return
         }
         showConfirmDialog(context) {
-            messageId = R.string.upgrade_do_install
+            messageResId = R.string.upgrade_do_install
             cancelable = false
             negativeText = null
             negativeListener = {
                 it.dismiss()
                 onCancel()
             }
-            positiveId = UI_R.string.confirm
+            positiveResId = UI_R.string.confirm
             positiveListener = { onConfirm() }
             autoDismiss = false
         }

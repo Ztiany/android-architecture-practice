@@ -27,7 +27,7 @@
 
         <View
             android:id="@+id/viewDialogBtnLeftDivider"
-            android:layout_width="@dimen/common_separate_width"
+            android:layout_width="@dimen/common_divider_width"
             android:layout_height="match_parent"
             android:background="#EFEFEF"
             android:visibility="visible" />
@@ -48,7 +48,7 @@
 
         <View
             android:id="@+id/viewDialogBtnRightDivider"
-            android:layout_width="@dimen/common_separate_width"
+            android:layout_width="@dimen/common_divider_width"
             android:layout_height="match_parent"
             android:background="#EFEFEF"
             android:visibility="gone" />
@@ -70,7 +70,7 @@
     <View
         android:id="@+id/viewBottomDivider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_separate_width"
+        android:layout_height="@dimen/common_divider_width"
         android:background="#EFEFEF" />
 
 </merge>

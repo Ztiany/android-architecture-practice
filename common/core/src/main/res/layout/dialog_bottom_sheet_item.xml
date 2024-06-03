@@ -30,7 +30,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_separate_width"
+        android:layout_height="@dimen/common_divider_width"
         android:layout_gravity="bottom"
         android:background="#E5E5E5" />
 
