@@ -2,7 +2,7 @@
 
     <!-- TODO：重新规范 style 和 theme 命名。-->
 
-    <style name="AppRootTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge" tools:override="true" />
+    <style name="AppRootTheme" parent="Theme.Material3.Light.NoActionBar" tools:override="true" />
 
     <!--
     Base application theme.
@@ -108,19 +108,9 @@
         <item name="app_color_text_variant2_stroke">@color/text_variant2_stroke</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar.Transparent">
+    <style name="AppTheme.Transparent">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-    </style>
-
-    <style name="AppTheme.FullScreen" parent="AppTheme.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
     </style>
 
     <!--Dialog-->

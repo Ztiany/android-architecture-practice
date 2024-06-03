@@ -7,6 +7,7 @@
 - Banner by ViewPager2
 - StatusInsetsViewForAPI19
 - MultiStateView 添加 OnStateViewCreatedListener
+- Dialog API 2.0（DSL）
 
 ## 网络层
 

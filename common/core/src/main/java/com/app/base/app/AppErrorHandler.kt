@@ -12,7 +12,7 @@ import com.app.base.data.protocol.ApiHelper
 import com.app.base.widget.dialog.confirm.ConfirmDialogInterface
 import com.app.base.widget.dialog.ToastKit
 import com.app.base.widget.dialog.base.onDismiss
-import com.app.base.widget.dialog.showConfirmDialog
+import com.app.base.widget.dialog.confirm.showConfirmDialog
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
 import com.app.common.api.usermanager.isUserLogin

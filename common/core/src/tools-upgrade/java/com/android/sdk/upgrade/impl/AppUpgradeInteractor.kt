@@ -19,7 +19,7 @@ import com.app.base.app.DispatcherProvider
 import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppSettings
 import com.app.base.injection.ApplicationScope
-import com.app.base.widget.dialog.showConfirmDialog
+import com.app.base.widget.dialog.confirm.showConfirmDialog
 import com.app.common.api.network.ApiServiceFactoryProvider
 import com.blankj.utilcode.util.ActivityUtils
 import com.permissionx.guolindev.PermissionX

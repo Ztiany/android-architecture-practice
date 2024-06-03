@@ -7,8 +7,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.ContextCompat
 import com.app.base.databinding.DialogTipsBinding
-import com.app.base.widget.dialog.TipsType
-import com.app.base.widget.dialog.TipDialogBuilder
 import com.app.base.widget.dialog.showCompat
 
 /**
@@ -19,9 +17,7 @@ internal class TipDialog(context: Context) : AppCompatDialog(context, com.app.ba
     private val vb = DialogTipsBinding.inflate(LayoutInflater.from(context))
 
     init {
-        val window = window!!
-        val attributes = window.attributes
-        attributes.windowAnimations = com.app.base.ui.R.style.AppAnimation_FadeIn
+        window?.attributes?.windowAnimations = com.app.base.ui.R.style.AppAnimation_FadeIn
         setContentView(vb.root)
     }
 
@@ -37,7 +33,7 @@ internal class TipDialog(context: Context) : AppCompatDialog(context, com.app.ba
         }
     }
 
-    fun setTipsType(@TipsType type: Int) {
+    fun setTipsType(@TipType type: Int) {
         when (type) {
             TipDialogBuilder.TYPE_SUCCESS -> {
                 vb.dialogTipsTvMessage.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.R.drawable.icon_tips_success, 0, 0)

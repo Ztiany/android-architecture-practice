@@ -2,7 +2,7 @@
 <resources>
 
     <!-- ============================ Launch ============================ -->
-    <style name="MainAppTheme.Launch" parent="AppTheme.NoActionBar">
+    <style name="MainAppTheme.Launch" parent="AppTheme">
         <item name="android:windowBackground">@drawable/main_launch_bg</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

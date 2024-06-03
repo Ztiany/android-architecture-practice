@@ -29,7 +29,7 @@ import com.app.base.data.protocol.newErrorMessage
 import com.app.base.data.protocol.newHttpConfig
 import com.app.base.data.protocol.newPlatformInteractor
 import com.app.base.debug.DebugTools
-import com.app.base.widget.dialog.AppLoadingViewHost
+import com.app.base.widget.dialog.loading.AppLoadingViewHost
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
 import dagger.Lazy

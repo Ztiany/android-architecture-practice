@@ -13,8 +13,8 @@ import com.android.base.utils.android.views.beVisible
 import com.android.base.utils.android.views.beVisibleOrInvisible
 import com.app.base.databinding.DialogBottomSheetBinding
 import com.app.base.databinding.DialogBottomSheetItemBinding
-import com.app.base.widget.dialog.BottomSheetDialogBuilder
 import com.app.base.widget.dialog.showCompat
+import kotlin.math.roundToInt
 
 /**
  *@author Ztiany
@@ -30,6 +30,20 @@ class BottomSheetDialog(
         setupList()
         setupTitle()
         setupBottomAction()
+
+        setCancelable(builder.cancelable)
+        with(behavior) {
+            maxWidth = adjustMaxWidthForLandScape()
+            skipCollapsed = true
+        }
+    }
+
+    private fun adjustMaxWidthForLandScape(): Int {
+        val displayMetrics = context.resources.displayMetrics
+        if (displayMetrics.heightPixels > displayMetrics.widthPixels) {
+            return displayMetrics.widthPixels
+        }
+        return (displayMetrics.heightPixels * 0.9F).roundToInt()
     }
 
     private fun setupTitle() {

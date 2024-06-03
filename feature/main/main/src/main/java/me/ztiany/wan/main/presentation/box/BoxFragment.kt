@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import com.android.base.fragment.base.BaseUIFragment
 import com.android.base.utils.android.views.onDebouncedClick
 import com.app.base.utils.setStatusBarLightMode
-import com.app.base.widget.dialog.showConfirmDialog
+import com.app.base.widget.dialog.confirm.showConfirmDialog
 import me.ztiany.wan.main.MainScopeNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.main.databinding.MainFragmentBoxBinding

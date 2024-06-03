@@ -1,4 +1,4 @@
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.loading
 
 import android.app.Dialog
 import android.content.Context
@@ -7,7 +7,7 @@ import androidx.annotation.StringRes
 import com.android.base.fragment.ui.LoadingViewHost
 import com.android.base.fragment.ui.Message
 import com.app.base.ui.R
-import com.app.base.widget.dialog.loading.LoadingDialog
+import com.app.base.widget.dialog.ToastKit
 import timber.log.Timber
 
 internal class AppLoadingViewHost(private val context: Context) : LoadingViewHost {

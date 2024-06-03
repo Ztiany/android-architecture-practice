@@ -35,7 +35,7 @@
         <activity
             android:name=".common.gallery.GalleryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar.Transparent" />
+            android:theme="@style/AppTheme.Transparent" />
 
         <!--内置浏览器-->
         <activity

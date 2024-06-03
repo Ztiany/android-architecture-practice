@@ -14,7 +14,6 @@ import com.android.base.utils.android.views.beGone
 import com.android.base.utils.android.views.beVisible
 import com.app.base.databinding.DialogListItemBinding
 import com.app.base.databinding.DialogListLayoutBinding
-import com.app.base.widget.dialog.ListDialogBuilder
 import com.app.base.widget.dialog.base.AppBaseDialog
 
 /**

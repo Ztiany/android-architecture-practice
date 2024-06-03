@@ -9,7 +9,7 @@
         android:label="主模块"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
+        android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:replace="android:theme,android:label,android:allowBackup">
 

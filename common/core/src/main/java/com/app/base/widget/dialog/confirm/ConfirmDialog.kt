@@ -8,7 +8,6 @@ import com.android.base.utils.android.views.clearComponentDrawable
 import com.android.base.utils.android.views.setLeftDrawable
 import com.app.base.databinding.DialogConfirmLayoutBinding
 import com.app.base.widget.dialog.BaseDialogBuilder.Companion.NO_ID
-import com.app.base.widget.dialog.ConfirmDialogBuilder
 import com.app.base.widget.dialog.base.AppBaseDialog
 
 /**
