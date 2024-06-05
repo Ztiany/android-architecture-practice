@@ -2,31 +2,31 @@
 <resources>
 
     <!--状态布局-->
-    <style name="AppStyle.SimpleMultiStateView" parent="BaseArchStyle.SimpleMultiStateView">
+    <style name="AppStyle.SimpleMultiStateLayout" parent="BaseArchStyle.SimpleMultiStateLayout">
         <!--fixed id-->
         <item name="android:id">@id/base_state_layout</item>
         <!--empty-->
-        <item name="msv_emptyImg">@drawable/img_page_no_data</item>
-        <item name="msv_emptyView">@layout/app_base_layout_empty</item>
-        <item name="msv_emptyText">@string/page_error_no_data</item>
+        <item name="msl_emptyImg">@drawable/img_page_no_data</item>
+        <item name="msl_emptyView">@layout/app_base_layout_empty</item>
+        <item name="msl_emptyText">@string/page_error_no_data</item>
         <!--error-->
-        <item name="msv_errorImg">@drawable/img_page_error</item>
-        <item name="msv_errorView">@layout/app_base_layout_error</item>
-        <item name="msv_errorText">@string/page_error_load_fail_tips</item>
-        <item name="msv_errorAction">@string/page_error_retry_action_tips</item>
+        <item name="msl_errorImg">@drawable/img_page_error</item>
+        <item name="msl_errorView">@layout/app_base_layout_error</item>
+        <item name="msl_errorText">@string/page_error_load_fail_tips</item>
+        <item name="msl_errorAction">@string/page_error_retry_action_tips</item>
         <!--net error-->
-        <item name="msv_net_errorImg">@drawable/img_page_net_error</item>
-        <item name="msv_net_errorView">@layout/app_base_layout_no_network</item>
-        <item name="msv_net_errorText">@string/page_error_no_network</item>
-        <item name="msv_net_errorAction">@string/page_error_retry_action_tips</item>
+        <item name="msl_net_errorImg">@drawable/img_page_net_error</item>
+        <item name="msl_net_errorView">@layout/app_base_layout_no_network</item>
+        <item name="msl_net_errorText">@string/page_error_no_network</item>
+        <item name="msl_net_errorAction">@string/page_error_retry_action_tips</item>
         <!--server error-->
-        <item name="msv_server_errorImg">@drawable/img_page_error</item>
-        <item name="msv_server_errorView">@layout/app_base_layout_server_error</item>
-        <item name="msv_server_errorText">@string/page_error_server_error</item>
-        <item name="msv_server_errorAction">@string/page_error_retry_action_tips</item>
+        <item name="msl_server_errorImg">@drawable/img_page_error</item>
+        <item name="msl_server_errorView">@layout/app_base_layout_server_error</item>
+        <item name="msl_server_errorText">@string/page_error_server_error</item>
+        <item name="msl_server_errorAction">@string/page_error_retry_action_tips</item>
         <!--loading/request-->
-        <item name="msv_loadingView">@layout/app_base_layout_loading</item>
-        <item name="msv_requestingView">@layout/app_base_layout_loading</item>
+        <item name="msl_loadingView">@layout/app_base_layout_loading</item>
+        <item name="msl_requestingView">@layout/app_base_layout_loading</item>
     </style>
 
     <!--下拉刷新通用颜色-->

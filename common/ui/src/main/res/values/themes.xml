@@ -151,15 +151,8 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <!-- 全屏的 Dialog 效果-->
-    <style name="AppTheme.Dialog.FullScreen" parent="android:Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
-        <item name="android:statusBarColor">@color/color_status_bar</item>
-        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
-        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
-    </style>
-
     <!-- 全屏的 Dialog 效果：不能继承已有的  dialog theme。-->
-    <style name="AppTheme.Dialog.FullScreenWithSystemBar" parent="">
+    <style name="AppTheme.Dialog.FullScreen" parent="">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowFrame">@null</item>
@@ -167,9 +160,12 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowIsFloating">false</item>
-
+        <!--system ui-->
         <item name="android:statusBarColor">@color/color_status_bar</item>
-        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:navigationBarColor">@color/page_bg_color</item>
+        <item name="android:windowBackground">@color/page_bg_color</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <!--Anim-->

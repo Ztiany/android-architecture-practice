@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.base.fragment.widget.SimpleMultiStateView
+<com.android.base.fragment.widget.SimpleMultiStateLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/AppStyle.SimpleMultiStateView"
-    app:msv_emptyAction="@string/page_error_retry_action_tips"
-    app:msv_viewState="loading"
-    tools:msv_viewState="content">
+    style="@style/AppStyle.SimpleMultiStateLayout"
+    app:msl_emptyAction="@string/page_error_retry_action_tips"
+    app:msl_viewState="loading"
+    tools:msl_viewState="content">
 
     <com.android.base.fragment.widget.ScrollChildSwipeRefreshLayout
         style="@style/Widget.App.SwipeRefreshLayout"
@@ -23,4 +23,4 @@
 
     </com.android.base.fragment.widget.ScrollChildSwipeRefreshLayout>
 
-</com.android.base.fragment.widget.SimpleMultiStateView>
+</com.android.base.fragment.widget.SimpleMultiStateLayout>

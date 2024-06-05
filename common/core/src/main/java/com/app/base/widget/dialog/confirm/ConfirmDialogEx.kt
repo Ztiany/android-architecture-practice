@@ -89,9 +89,8 @@ class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     var iconId = NO_ID
 }
 
-fun Fragment.showConfirmDialog(builder: ConfirmDialogBuilder.() -> Unit): ConfirmDialogInterface? {
-    val context = this.context ?: return null
-    return showConfirmDialog(context, builder)
+fun Fragment.showConfirmDialog(builder: ConfirmDialogBuilder.() -> Unit): ConfirmDialogInterface {
+    return showConfirmDialog(requireContext(), builder)
 }
 
 fun Activity.showConfirmDialog(builder: ConfirmDialogBuilder.() -> Unit): ConfirmDialogInterface {

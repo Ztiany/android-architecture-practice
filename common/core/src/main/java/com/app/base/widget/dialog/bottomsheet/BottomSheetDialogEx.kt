@@ -60,21 +60,22 @@ class BottomSheetDialogBuilder(val context: Context) {
     var autoDismiss: Boolean = true
 
     ///////////////////////////////////////////////////////////////////////////
-    // Others
+    // Behavior
     ///////////////////////////////////////////////////////////////////////////
     var cancelable: Boolean = true
+    var skipCollapsed: Boolean = false
+    var expandedDirectly: Boolean = false
 }
 
-fun Fragment.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> Unit): Dialog? {
-    val context = this.context ?: return null
-    return showBottomSheetListDialog(context, builder)
+fun Fragment.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> Unit): BottomSheetDialog {
+    return showBottomSheetListDialog(requireContext(), builder)
 }
 
-fun Activity.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> Unit): Dialog {
+fun Activity.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> Unit): BottomSheetDialog {
     return showBottomSheetListDialog(this, builder)
 }
 
-fun showBottomSheetListDialog(context: Context, builder: BottomSheetDialogBuilder.() -> Unit): Dialog {
+fun showBottomSheetListDialog(context: Context, builder: BottomSheetDialogBuilder.() -> Unit): BottomSheetDialog {
     val bottomSheetDialogBuilder = BottomSheetDialogBuilder(context)
     bottomSheetDialogBuilder.builder()
     val bottomSheetDialog = BottomSheetDialog(bottomSheetDialogBuilder)

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.webkit.URLUtil
 import androidx.fragment.app.Fragment
 import com.android.base.fragment.tool.doFragmentTransaction
+import com.android.base.utils.android.activityArgument
+import com.android.base.utils.android.activityArgumentNullable
 import com.android.base.utils.android.argument
 import com.android.base.utils.android.argumentNullable
 import com.app.base.R
@@ -22,17 +24,17 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class BrowserActivity : AppBaseActivity() {
 
-    private val fragmentClass by argumentNullable<String>(FRAGMENT_KEY)
+    private val fragmentClass by activityArgumentNullable<String>(FRAGMENT_KEY)
 
-    private val bundle: Bundle? by argumentNullable<Bundle>(ARGUMENTS_KEY)
+    private val bundle: Bundle? by activityArgumentNullable<Bundle>(ARGUMENTS_KEY)
 
-    private val customJsCallInterceptor by argumentNullable<String>(JS_CALL_INTERCEPTOR_CLASS_KEY)
+    private val customJsCallInterceptor by activityArgumentNullable<String>(JS_CALL_INTERCEPTOR_CLASS_KEY)
 
-    private val showHeader by argument(SHOW_HEADER_KEY, true)
+    private val showHeader by activityArgument(SHOW_HEADER_KEY, true)
 
-    private val targetUrl by argument<String>(URL_KEY)
+    private val targetUrl by activityArgument<String>(URL_KEY)
 
-    private val cacheEnable by argument(CACHE_ENABLE, false)
+    private val cacheEnable by activityArgument(CACHE_ENABLE, false)
 
     @Inject lateinit var appSettings: AppSettings
 

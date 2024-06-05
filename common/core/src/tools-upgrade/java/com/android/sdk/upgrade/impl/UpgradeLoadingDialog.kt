@@ -13,7 +13,7 @@ import com.app.base.ui.R as UI_R
 internal class UpgradeLoadingDialog(
     context: Context,
     forceUpgrade: Boolean,
-) : Dialog(context, UI_R.style.AppTheme_Dialog_FullScreenWithSystemBar) {
+) : Dialog(context, UI_R.style.AppTheme_Dialog_FullScreen) {
 
     private var layout = DialogUpgradeLoadingBinding.inflate(LayoutInflater.from(context))
 

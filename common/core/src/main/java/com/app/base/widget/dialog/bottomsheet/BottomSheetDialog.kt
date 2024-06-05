@@ -11,9 +11,11 @@ import com.android.base.adapter.recycler.segment.BaseRecyclerAdapter
 import com.android.base.utils.android.views.beGone
 import com.android.base.utils.android.views.beVisible
 import com.android.base.utils.android.views.beVisibleOrInvisible
+import com.android.base.utils.android.views.onGlobalLayoutOnce
 import com.app.base.databinding.DialogBottomSheetBinding
 import com.app.base.databinding.DialogBottomSheetItemBinding
 import com.app.base.widget.dialog.showCompat
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlin.math.roundToInt
 
 /**
@@ -30,11 +32,19 @@ class BottomSheetDialog(
         setupList()
         setupTitle()
         setupBottomAction()
+        setBehavior()
+    }
 
+    private fun setBehavior() {
         setCancelable(builder.cancelable)
         with(behavior) {
             maxWidth = adjustMaxWidthForLandScape()
-            skipCollapsed = true
+            skipCollapsed = builder.skipCollapsed
+        }
+        if (builder.expandedDirectly) {
+            window?.decorView?.onGlobalLayoutOnce {
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED)
+            }
         }
     }
 

@@ -6,8 +6,9 @@
 - OnBackPressedDispatcher
 - Banner by ViewPager2
 - StatusInsetsViewForAPI19
-- MultiStateView 添加 OnStateViewCreatedListener
+- MultiStateLayout 添加 OnStateViewCreatedListener
 - Dialog API 2.0（DSL）
+- 移除 QMUI，拷贝 `com.qmuiteam.qmui.kotlin` 包下的代码
 
 ## 网络层
 

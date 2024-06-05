@@ -44,9 +44,8 @@ class ListDialogBuilder(context: Context) : BaseDialogBuilder(context) {
     var maxWidthPercent = 0.75F
 }
 
-fun Fragment.showListDialog(builder: ListDialogBuilder.() -> Unit): ListDialogInterface? {
-    val context = this.context ?: return null
-    return showListDialog(context, builder)
+fun Fragment.showListDialog(builder: ListDialogBuilder.() -> Unit): ListDialogInterface {
+    return showListDialog(requireContext(), builder)
 }
 
 fun Activity.showListDialog(builder: ListDialogBuilder.() -> Unit): ListDialogInterface {

@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.App.SwipeRefreshLayout">
 
-    <com.android.base.fragment.widget.SimpleMultiStateView style="@style/AppStyle.SimpleMultiStateView">
+    <com.android.base.fragment.widget.SimpleMultiStateLayout style="@style/AppStyle.SimpleMultiStateLayout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </com.android.base.fragment.widget.SimpleMultiStateView>
+    </com.android.base.fragment.widget.SimpleMultiStateLayout>
 
 </com.android.base.fragment.widget.ScrollChildSwipeRefreshLayout>
 
