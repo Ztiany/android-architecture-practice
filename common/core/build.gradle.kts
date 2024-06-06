@@ -93,11 +93,7 @@ dependencies {
     api(libs.ztiany.simplebus)
     api(libs.ztiany.storage)
     api(libs.guolin.permissionx)
-
-    implementation("id.zelory:compressor:3.0.1")
-
-    // bugly
-    implementation("com.tencent.bugly:crashreport:3.4.4")
+    implementation(libs.zelory.compressor)
 
     // debug
     if (BuildConfig.Env.OPEN_DEBUG) {

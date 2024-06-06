@@ -11,7 +11,7 @@
     android:orientation="vertical"
     tools:ignore="HardcodedText,MissingDefaultResource">
 
-    <com.app.base.widget.AppTitleLayout
+    <com.app.base.widget.view.AppTitleLayout
         style="@style/Widget.App.TitleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

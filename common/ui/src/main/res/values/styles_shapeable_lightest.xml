@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ====================================================================================-->
-    <!--  亮色按钮，使用说明参考 styles_shapeable_deepest.xml   -->
-    <!-- ====================================================================================-->
+    <!-- =====================================================
+    亮色（圆角）控件，使用说明参考 styles_shapeable_common.xml
+    ===================================================== -->
 
     <style name="Widget.App.ShapeableView.Selector.LightestRectangular" parent="">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rectangular</item>
@@ -45,6 +45,58 @@
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
         <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+    </style>
+
+    <!-- =====================================================
+    亮色按钮
+    ===================================================== -->
+
+    <style name="Widget.App.Button.FullLine.ShapeableView.Lightest">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rectangular</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="android:textColor">?app_color_deepest</item>
+    </style>
+
+    <style name="Widget.App.Button.Long.ShapeableView.LightestRounded10">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="android:textColor">?app_color_deepest</item>
+    </style>
+
+    <style name="Widget.App.Button.Medium.ShapeableView.LightestRounded10">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="android:textColor">?app_color_deepest</item>
+    </style>
+
+    <style name="Widget.App.Button.Short.ShapeableView.LightestRounded10">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="android:textColor">?app_color_deepest</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.ShapeableView.LightestRounded10">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="android:textColor">?app_color_deepest</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.ShapeableView.LightestRounded5">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded5</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="android:textColor">?app_color_deepest</item>
     </style>
 
 </resources>

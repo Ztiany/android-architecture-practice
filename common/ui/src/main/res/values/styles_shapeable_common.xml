@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    说明：
+     （1）以下 Style，仅适用于  com.android.base.ui.shape. 包下的 View，当然也可以参考该包下的相关类的代码来扩展其他 View 以支持下面定义的 Style。
+     （2）com.android.base.ui.shape 下的 View 是基于 MDC 中的 MaterialShapeDrawable 进行封装的。MaterialShapeDrawable 不支持渐变背景，如果需要渐变，
+                可以所以使用 styles_drawable_primary_gradient_btn.xml 中定义的 style。
+
+       正如官方文章所示：For widget backgrounds, the class that implements this functionality is MaterialShapeDrawable. All MDC widgets use this drawable as
+       their background by default and you can also consider using it for custom views. It handles shape theming, backported shadow rendering, dark theme
+       elevation overlays and more.
+
+        As a result, we advise against using android:background with custom XML drawables on MDC widgets as this will override the MaterialShapeDrawable.
+
+        You may notice that the default styles for most MDC widgets specify:
+
+            <item name="android:background">@null</item>
+
+        to specifically avoid this. Rather, prefer using shapeAppearance / shapeAppearanceOverlay and backgroundTint attributes to adjust background shape and color.
+
+        However, there are exceptions:
+
+            【before 1.2.0-alpha06】
+            1. MaterialButton ignored android:background until release 1.2.0-alpha06 of MDC-Android. If you require this functionality while using earlier versions of the
+                library, we advise explicitly using AppCompatButton in your layout(s).
+            【after 1.2.0-alpha06】
+            2. MaterialShapeDrawable does not support gradients. If your brand requires this, using android:background with a GradientDrawable is your best bet.
+            3. If you’re using MDC-Android 1.2.0-alpha-06 (or later) then you can rely on MaterialButton respecting android:background. Keep in mind that you may
+            need to clear the backgroundTint (which is set to colorPrimary in the Widget.MaterialComponents.Button default style):
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/my_custom_background"
+                        android:backgroundTint="@null" />
+
+            具体可以参考 <https://material.io/blog/migrate-android-material-components>
+    -->
+
+    <!-- =====================================================
+    通用样式
+    ===================================================== -->
+
+    <style name="ShapeAppearance.App.TopRounded10" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.TopRounded20" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.BottomRounded10" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.BottomRounded20" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
+        <item name="cornerSizeBottomRight">20dp</item>
+    </style>
+
+    <!-- =====================================================
+    ShapeableView 按钮基础样式
+    ===================================================== -->
+
+    <style name="Widget.App.Button.FullLine.ShapeableView" parent="Widget.App.Button.FullLine" />
+
+    <style name="Widget.App.Button.Long.ShapeableView" parent="Widget.App.Button.Long" />
+
+    <style name="Widget.App.Button.Medium.ShapeableView" parent="Widget.App.Button.Medium" />
+
+    <style name="Widget.App.Button.Short.ShapeableView" parent="Widget.App.Button.Short" />
+
+    <style name="Widget.App.Button.Wrap.ShapeableView" parent="Widget.App.Button.Wrap" />
+
+</resources>

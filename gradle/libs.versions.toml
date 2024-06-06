@@ -287,6 +287,9 @@ jakewharton-timber = "com.jakewharton.timber:timber:4.7.1"
 # https://github.com/jOOQ/jOOR
 jooq-joor = "org.jooq:joor-java-6:0.9.7"
 
+# https://github.com/zetbaitsu/Compressor
+zelory-compressor = "id.zelory:compressor:3.0.1"
+
 # ======================================================
 # ui libraries
 # ======================================================

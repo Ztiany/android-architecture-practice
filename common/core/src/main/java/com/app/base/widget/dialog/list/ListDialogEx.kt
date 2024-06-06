@@ -10,7 +10,7 @@ import com.app.base.ui.R
 import com.app.base.widget.dialog.BaseDialogBuilder
 import com.google.android.material.color.MaterialColors
 
-class ListDialogBuilder(context: Context) : BaseDialogBuilder(context) {
+class ListDialogBuilder internal constructor(context: Context) : BaseDialogBuilder(context) {
 
     /** 标题id */
     @StringRes

@@ -11,7 +11,7 @@ import com.app.base.ui.R
 import com.app.base.widget.dialog.BaseDialogBuilder
 import com.google.android.material.color.MaterialColors
 
-class ConfirmDialogBuilder(context: Context) : BaseDialogBuilder(context) {
+class ConfirmDialogBuilder internal constructor(context: Context) : BaseDialogBuilder(context) {
 
     ///////////////////////////////////////////////////////////////////////////
     // title

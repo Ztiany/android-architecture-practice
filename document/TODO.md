@@ -2,13 +2,25 @@
 
 ## UI 层
 
-- Paging3
-- OnBackPressedDispatcher
-- Banner by ViewPager2
-- StatusInsetsViewForAPI19
-- MultiStateLayout 添加 OnStateViewCreatedListener
-- Dialog API 2.0（DSL）
-- 移除 QMUI，拷贝 `com.qmuiteam.qmui.kotlin` 包下的代码
+- [x] Paging3
+- [ ] StatusHeightView 优化 + 扩展 API
+- [ ] 实现 doSafeFragmentOperation
+- [ ] RetainedStateHandlerBuilder【multi-state】
+- [ ] Hook LifecycleBoundObserver，支持配置 shouldBeActive。参考 LiveBus
+- [ ] handleListLoading 加上 if loading more then return.
+- [ ] 优化 epoxy list【load more item】
+- [ ] 优化 segment list【load more item】
+- [ ] OnBackPressedDispatcher
+- [ ] Banner by ViewPager2
+- [ ] StatusInsetsViewForAPI19
+- [ ] MultiStateLayout 添加 OnStateViewCreatedListener
+- [ ] Dialog API 2.0（DSL）
+- [ ] 移除 QMUI，拷贝 `com.qmuiteam.qmui.kotlin` 包下的代码
+- [ ] 拆出 Gallery
+- [ ] 拆出 WebView
+- [ ] 拆出 upgrade
+- [ ] 拆出 debug
+- [ ] 实现 sample 模块
 
 ## 网络层
 

@@ -12,7 +12,7 @@ import com.app.base.ui.R
 import com.app.base.widget.dialog.BaseDialogBuilder
 import com.google.android.material.color.MaterialColors
 
-class BottomSheetDialogBuilder(val context: Context) {
+class BottomSheetDialogBuilder internal constructor(val context: Context) {
 
     /** default is [com.app.base.ui.R.string.cancel] */
     @StringRes
@@ -67,15 +67,22 @@ class BottomSheetDialogBuilder(val context: Context) {
     var expandedDirectly: Boolean = false
 }
 
-fun Fragment.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> Unit): BottomSheetDialog {
+fun Fragment.showBottomSheetListDialog(
+    builder: BottomSheetDialogBuilder.() -> Unit,
+): com.google.android.material.bottomsheet.BottomSheetDialog {
     return showBottomSheetListDialog(requireContext(), builder)
 }
 
-fun Activity.showBottomSheetListDialog(builder: BottomSheetDialogBuilder.() -> Unit): BottomSheetDialog {
+fun Activity.showBottomSheetListDialog(
+    builder: BottomSheetDialogBuilder.() -> Unit,
+): com.google.android.material.bottomsheet.BottomSheetDialog {
     return showBottomSheetListDialog(this, builder)
 }
 
-fun showBottomSheetListDialog(context: Context, builder: BottomSheetDialogBuilder.() -> Unit): BottomSheetDialog {
+fun showBottomSheetListDialog(
+    context: Context,
+    builder: BottomSheetDialogBuilder.() -> Unit,
+): com.google.android.material.bottomsheet.BottomSheetDialog {
     val bottomSheetDialogBuilder = BottomSheetDialogBuilder(context)
     bottomSheetDialogBuilder.builder()
     val bottomSheetDialog = BottomSheetDialog(bottomSheetDialogBuilder)

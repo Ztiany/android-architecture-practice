@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =====================================================
+    主色调 RadioButton
+    ===================================================== -->
+
+    <style name="Widget.App.DView.Solid.PrimarySelectedRounded6" parent="">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded6</item>
+    </style>
+
+    <style name="Widget.App.DView.Solid.PrimaryNormalRounded6" parent="">
+        <item name="cgd_shape_solid">?app_color_lightest</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_stroke_width">@dimen/common_divider_width</item>
+        <item name="cgd_stroke_color">?app_color_main</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded6</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.RadioButton.PrimaryRounded6" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Solid.PrimaryNormalRounded6</item>
+        <item name="csd_selector_state_selected">@style/Widget.App.DView.Solid.PrimarySelectedRounded6</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded6</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_selected">?app_color_lightest</item>
+    </style>
+
+</resources>

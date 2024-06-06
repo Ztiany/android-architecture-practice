@@ -23,7 +23,7 @@ import com.android.base.fragment.base.BaseUIFragment;
 import com.android.base.fragment.tool.Fragments;
 import com.android.base.utils.android.views.WebViewUtils;
 import com.app.base.databinding.AppBaseWebFragmentBinding;
-import com.app.base.widget.AppTitleLayout;
+import com.app.base.widget.view.AppTitleLayout;
 import com.blankj.utilcode.util.NetworkUtils;
 
 import org.jetbrains.annotations.NotNull;

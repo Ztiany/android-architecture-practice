@@ -1,4 +1,4 @@
-package com.app.base.widget;
+package com.app.base.widget.view;
 
 
 import static com.android.base.utils.android.views.ViewEx.getRealContext;

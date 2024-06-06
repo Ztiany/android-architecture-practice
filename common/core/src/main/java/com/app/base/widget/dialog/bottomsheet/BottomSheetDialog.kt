@@ -21,7 +21,7 @@ import kotlin.math.roundToInt
 /**
  *@author Ztiany
  */
-class BottomSheetDialog(
+internal class BottomSheetDialog(
     private val builder: BottomSheetDialogBuilder,
 ) : com.google.android.material.bottomsheet.BottomSheetDialog(builder.context) {
 

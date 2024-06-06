@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =====================================================
+    说明：以下 Style，仅适用于 com.android.base.ui.drawable 包下的 View，
+    当然也可以参考该包下的相关类的代码对其他 View 进行扩展以支
+    持下面定义的 Style。
+    ===================================================== -->
+
+    <!-- =====================================================
+    基础样式
+    ===================================================== -->
+
+    <style name="CornerAppearance.Rounded6" parent="">
+        <item name="corner_style_all">6dp</item>
+    </style>
+
+    <!-- =====================================================
+    按钮 Size
+    ===================================================== -->
+
+    <style name="Widget.App.Button.FullLine.DView" parent="Widget.App.Button.FullLine" />
+
+    <style name="Widget.App.Button.Long.DView" parent="Widget.App.Button.Long" />
+
+    <style name="Widget.App.Button.Medium.DView" parent="Widget.App.Button.Medium" />
+
+    <style name="Widget.App.Button.Short.DView" parent="Widget.App.Button.Short" />
+
+    <style name="Widget.App.Button.Wrap.DView" parent="Widget.App.Button.Wrap" />
+
+</resources>

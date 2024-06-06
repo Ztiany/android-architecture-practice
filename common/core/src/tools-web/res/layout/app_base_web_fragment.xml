@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.app.base.widget.AppTitleLayout
+    <com.app.base.widget.view.AppTitleLayout
         android:id="@+id/atlWebRulesTitle"
         style="@style/Widget.App.TitleLayout"
         android:layout_width="match_parent"

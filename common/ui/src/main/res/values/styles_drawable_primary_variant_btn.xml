@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ====================================================================================-->
-    <!--  次主色按钮，使用说明参考 styles_drawable_primary_gradient.xml   -->
-    <!-- ====================================================================================-->
+    <!-- =====================================================
+    说明：以下 Style，仅适用于 com.android.base.ui.drawable 包下的 View，
+    当然也可以参考该包下的相关类的代码对其他 View 进行扩展以支
+    持下面定义的 Style。
+    ===================================================== -->
+
+    <!-- =====================================================
+    次色调描边按钮
+    ===================================================== -->
+
     <!--internal-->
     <style name="StrokeStyle.App.PrimaryVariant" parent="">
         <item name="stroke_style_color">?app_color_text_variant1_stroke</item>
@@ -16,17 +23,17 @@
         <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
     </style>
 
-    <style name="Widget.App.DView.Shape.PrimaryVariantRounded10" parent="">
-        <item name="cgd_shape">rectangle</item>
-        <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
-        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
-        <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
-    </style>
-
     <style name="Widget.App.DView.Shape.PrimaryVariantRounded5" parent="">
         <item name="cgd_shape">rectangle</item>
         <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
         <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded5</item>
+        <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryVariantRounded10" parent="">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
         <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
     </style>
 
@@ -36,17 +43,17 @@
         <item name="cgd_shape">rectangle</item>
     </style>
 
-    <style name="Widget.App.DView.Shape.PrimaryVariantPressedRounded10" parent="">
-        <item name="cgd_shape_solid">?app_color_main</item>
-        <item name="cgd_shape">rectangle</item>
-        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
-        <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
-    </style>
-
     <style name="Widget.App.DView.Shape.PrimaryVariantPressedRounded5" parent="">
         <item name="cgd_shape_solid">?app_color_main</item>
         <item name="cgd_shape">rectangle</item>
         <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded5</item>
+        <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryVariantPressedRounded10" parent="">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
         <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
     </style>
 
@@ -72,6 +79,7 @@
     </style>
 
     <!--public-->
+
     <style name="Widget.App.Button.FullLine.DView.PrimaryVariant">
         <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariant</item>
         <item name="dtv_text_color_normal">?app_color_text_variant1</item>
@@ -84,28 +92,24 @@
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
-    <!--中等长度按钮 Round-->
     <style name="Widget.App.Button.Medium.DView.PrimaryVariantRounded10">
         <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded10</item>
         <item name="dtv_text_color_normal">?app_color_text_variant1</item>
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
-    <!--短按钮 Round-->
     <style name="Widget.App.Button.Short.DView.PrimaryVariantRounded10">
         <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded10</item>
         <item name="dtv_text_color_normal">?app_color_text_variant1</item>
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
-    <!--自包含 Round-->
     <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded10">
         <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded10</item>
         <item name="dtv_text_color_normal">?app_color_text_variant1</item>
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
-    <!--自包含 Round-->
     <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded5">
         <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded5</item>
         <item name="dtv_text_color_normal">?app_color_text_variant1</item>

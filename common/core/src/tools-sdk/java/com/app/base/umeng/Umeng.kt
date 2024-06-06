@@ -1,4 +1,5 @@
 package com.app.base.umeng
 
-class Umeng {
+internal class Umeng {
+
 }
