@@ -2,7 +2,7 @@
 <resources>
 
     <!--状态布局-->
-    <style name="AppStyle.SimpleMultiStateLayout" parent="BaseArchStyle.SimpleMultiStateLayout">
+    <style name="Widget.App.SimpleMultiStateLayout" parent="Widget.BaseArch.SimpleMultiStateLayout">
         <!--fixed id-->
         <item name="android:id">@id/base_state_layout</item>
         <!--empty-->

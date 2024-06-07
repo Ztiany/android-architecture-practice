@@ -2,12 +2,10 @@
 
 ## UI 层
 
-- [x] Paging3
 - [ ] StatusHeightView 优化 + 扩展 API
 - [ ] 实现 doSafeFragmentOperation
 - [ ] RetainedStateHandlerBuilder【multi-state】
 - [ ] Hook LifecycleBoundObserver，支持配置 shouldBeActive。参考 LiveBus
-- [ ] handleListLoading 加上 if loading more then return.
 - [ ] 优化 epoxy list【load more item】
 - [ ] 优化 segment list【load more item】
 - [ ] OnBackPressedDispatcher
@@ -21,6 +19,7 @@
 - [ ] 拆出 upgrade
 - [ ] 拆出 debug
 - [ ] 实现 sample 模块
+- [ ] Common Core 中相关的代码抽离到 UI 模块中。
 
 ## 网络层
 

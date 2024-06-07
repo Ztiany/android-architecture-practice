@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/AppStyle.SimpleMultiStateLayout"
+    style="@style/Widget.App.SimpleMultiStateLayout"
     app:msl_emptyAction="@string/page_error_retry_action_tips"
     app:msl_viewState="loading"
     tools:msl_viewState="content">
