@@ -19,8 +19,8 @@
         <attr name="atl_disable_navigation" format="boolean" />
         <attr name="atl_navigation_icon_tint" format="color|reference" />
         <attr name="atl_menu_id" format="reference" />
-        <attr name="atl_show_cutting_line" format="boolean" />
-        <attr name="atl_show_cutting_line_bg" format="color|reference" />
+        <attr name="atl_show_divider" format="boolean" />
+        <attr name="atl_divider_color" format="color|reference" />
         <attr name="atl_fitsSystemWindowFor19" format="boolean" />
         <attr name="atl_fitsSystemWindowAfter19" format="boolean" />
         <attr name="atl_menu_color" format="color|reference" />

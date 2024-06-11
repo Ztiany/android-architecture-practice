@@ -18,7 +18,7 @@
         tools:ignore="PrivateResource,UnusedAttribute" />
 
     <View
-        android:id="@+id/widgetAppTitleCuttingLine"
+        android:id="@+id/widget_app_title_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_gravity="bottom"

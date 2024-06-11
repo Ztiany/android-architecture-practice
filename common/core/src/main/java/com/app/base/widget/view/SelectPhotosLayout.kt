@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.use
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.adapter.recycler.ViewBindingViewHolder
@@ -15,7 +16,6 @@ import com.android.base.ui.recyclerview.MarginDecoration
 import com.android.base.utils.android.views.beInvisible
 import com.android.base.utils.android.views.beVisible
 import com.android.base.utils.android.views.dip
-import com.android.base.utils.android.views.use
 import com.app.base.R
 import com.app.base.databinding.WidgetSelectPhotoItemPhotoBinding
 import kotlin.math.max

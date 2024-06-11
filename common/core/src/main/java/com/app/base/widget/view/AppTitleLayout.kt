@@ -1,282 +1,275 @@
-package com.app.base.widget.view;
+package com.app.base.widget.view
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.TypedArray
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.text.TextUtils
+import android.util.AttributeSet
+import android.util.TypedValue
+import android.view.Gravity
+import android.view.Menu
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
+import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.appcompat.widget.ActionMenuView
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.use
+import com.android.base.fragment.tool.exitFragment
+import com.android.base.ui.compat.MaterialToolbar
+import com.android.base.utils.android.compat.AndroidVersion
+import com.android.base.utils.android.compat.SystemBarCompat
+import com.android.base.utils.android.views.dip
+import com.android.base.utils.android.views.newMWLayoutParams
+import com.android.base.utils.android.views.realContext
+import com.android.base.utils.android.views.tintDrawable
+import com.android.base.utils.common.requireNonNull
+import com.app.base.R
+import com.google.android.material.internal.ToolbarUtils
+import timber.log.Timber
 
-import static com.android.base.utils.android.views.ViewEx.getRealContext;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.view.menu.ActionMenuItemView;
-import androidx.appcompat.widget.ActionMenuView;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
-import com.android.base.fragment.tool.Fragments;
-import com.android.base.ui.compat.MaterialToolbar;
-import com.android.base.utils.android.compat.AndroidVersion;
-import com.android.base.utils.android.compat.SystemBarCompat;
-import com.android.base.utils.android.views.SizeEx;
-import com.android.base.utils.android.views.TintKit;
-import com.android.base.utils.android.views.ViewLayoutParamsEx;
-import com.android.base.utils.common.Checker;
-import com.app.base.R;
-import com.google.android.material.internal.ToolbarUtils;
-
-import timber.log.Timber;
 
 /**
  * @author Ztiany
  */
-public class AppTitleLayout extends LinearLayout {
+class AppTitleLayout @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private MaterialToolbar mMaterialToolbar;
+    private lateinit var _toolbar: MaterialToolbar
 
-    private int mOriginalTopPadding;
+    private var mOriginalTopPadding = 0
 
-    private View.OnClickListener onNavigationOnClickListener;
+    private var onNavigationOnClickListener: OnClickListener? = null
 
-    private static final int INVALIDATE_ID = -1;
+    val menu: Menu
+        get() = toolbar.menu
 
-    public AppTitleLayout(@NonNull Context context) {
-        this(context, null);
-    }
+    val toolbar: MaterialToolbar
+        get() = _toolbar
 
-    public AppTitleLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public AppTitleLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AppTitleLayout);
-        fillAttributes(context, typedArray);
-        typedArray.recycle();
-    }
-
-    private void fillAttributes(@NonNull Context context, TypedArray typedArray) {
-        //get all attributes
-        String title = typedArray.getString(R.styleable.AppTitleLayout_atl_title);
-        int menuResId = typedArray.getResourceId(R.styleable.AppTitleLayout_atl_menu_id, INVALIDATE_ID);
-        boolean showCuttingLine = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_cutting_line, false);
-        int cuttingLineBg = typedArray.getColor(
-                R.styleable.AppTitleLayout_atl_show_cutting_line_bg,
-                ContextCompat.getColor(getContext(), com.app.base.ui.R.color.divider_color)
-        );
-        boolean disableNavigation = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_disable_navigation, false);
-        Drawable navigationIcon = typedArray.getDrawable(R.styleable.AppTitleLayout_atl_navigation_icon);
-        int iconTintColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_navigation_icon_tint, -1);
-        int titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.BLACK);
-        int menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.BLACK);
-        boolean fitStatusInsetFor19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fitsSystemWindowFor19, false);
-        boolean fitStatusInsetAfter19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fitsSystemWindowAfter19, false);
-        boolean titleCentered = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_title_centered, false);
-        if (isInEditMode()) {
-            mockTitleLayout(title, titleColor, titleCentered, disableNavigation, navigationIcon, iconTintColor);
-            fitStatusInset(fitStatusInsetFor19, fitStatusInsetAfter19);
-        } else {
-            //add layout
-            inflateLayout(context, fitStatusInsetFor19, fitStatusInsetAfter19);
-            //get resource
-            iniToolbar(title, titleCentered, showCuttingLine, titleColor, cuttingLineBg);
-            //icon
-            initNavigationIcon(disableNavigation, navigationIcon, iconTintColor);
-            //menu
-            initMenu(menuResId, menuColor);
+    init {
+        context.obtainStyledAttributes(attrs, R.styleable.AppTitleLayout).use {
+            fillAttributes(context, it)
         }
     }
 
-    private void mockTitleLayout(String title, int titleColor, boolean titleCentered, boolean disableNavigation, Drawable navigationIcon, int iconTintColor) {
-        TextView child = new TextView(getContext());
-        child.setTextSize(18);
-        child.setText(title);
-        child.setTextColor(titleColor);
-        ViewGroup.LayoutParams layoutParams = ViewLayoutParamsEx.newMWLayoutParams();
-        layoutParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
-        addView(child, layoutParams);
+    private fun fillAttributes(context: Context, typedArray: TypedArray) {
+        // get all attributes
+        val title = typedArray.getString(R.styleable.AppTitleLayout_atl_title) ?: ""
+        val menuResId = typedArray.getResourceId(R.styleable.AppTitleLayout_atl_menu_id, INVALIDATE_ID)
+        val showDivider = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_divider, false)
+        val cuttingLineBg = typedArray.getColor(
+            R.styleable.AppTitleLayout_atl_divider_color,
+            ContextCompat.getColor(getContext(), com.app.base.ui.R.color.divider_color)
+        )
+        val disableNavigation = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_disable_navigation, false)
+        val navigationIcon = typedArray.getDrawable(R.styleable.AppTitleLayout_atl_navigation_icon)
+        val iconTintColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_navigation_icon_tint, -1)
+        val titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.BLACK)
+        val menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.BLACK)
+        val fitStatusInsetFor19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fitsSystemWindowFor19, false)
+        val fitStatusInsetAfter19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fitsSystemWindowAfter19, false)
+        val titleCentered = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_title_centered, false)
+
+        // set attributes
+        mOriginalTopPadding = paddingTop
+        orientation = VERTICAL
+        if (isInEditMode) {
+            mockTitleLayout(title, titleColor, titleCentered, disableNavigation, navigationIcon, iconTintColor)
+            fitStatusInset(fitStatusInsetFor19, fitStatusInsetAfter19)
+        } else {
+            fitStatusInset(fitStatusInsetFor19, fitStatusInsetAfter19)
+            inflate(context, R.layout.widget_title_layout, this)
+            //get resource
+            iniToolbar(title, titleCentered, showDivider, titleColor, cuttingLineBg)
+            //icon
+            initNavigationIcon(disableNavigation, navigationIcon, iconTintColor)
+            //menu
+            initMenu(menuResId, menuColor)
+        }
+    }
+
+    private fun mockTitleLayout(
+        title: String,
+        titleColor: Int,
+        titleCentered: Boolean,
+        disableNavigation: Boolean,
+        navigationIcon: Drawable?,
+        iconTintColor: Int,
+    ) {
+        val child = TextView(context)
+        child.textSize = 18f
+        child.text = title
+        child.setTextColor(titleColor)
+        val layoutParams = newMWLayoutParams()
+        layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48f, resources.displayMetrics).toInt()
+        addView(child, layoutParams)
 
         if (titleCentered) {
-            child.setGravity(Gravity.CENTER);
+            child.gravity = Gravity.CENTER
         } else {
-            child.setPadding(SizeEx.dip(15), 0, 0, 0);
+            child.setPadding(dip(15), 0, 0, 0)
         }
         if (disableNavigation) {
-            return;
+            return
         }
         if (navigationIcon != null) {
             if (iconTintColor == -1) {
-                child.setCompoundDrawablesRelative(navigationIcon, null, null, null);
+                child.setCompoundDrawablesRelative(navigationIcon, null, null, null)
             } else {
-                child.setCompoundDrawablesRelative(TintKit.tintDrawable(navigationIcon.mutate(), iconTintColor), null, null, null);
+                child.setCompoundDrawablesRelative(tintDrawable(navigationIcon.mutate(), iconTintColor), null, null, null)
             }
         } else {
             if (iconTintColor == -1) {
-                child.setCompoundDrawablesRelativeWithIntrinsicBounds(com.app.base.ui.R.drawable.icon_back, 0, 0, 0);
+                child.setCompoundDrawablesRelativeWithIntrinsicBounds(com.app.base.ui.R.drawable.icon_back, 0, 0, 0)
             } else {
-                Drawable drawable = ContextCompat.getDrawable(getContext(), com.app.base.ui.R.drawable.icon_back);
-                Drawable tintedDrawable = TintKit.tintDrawable(Checker.requireNonNull(drawable).mutate(), iconTintColor);
-                child.setCompoundDrawablesRelative(tintedDrawable, null, null, null);
+                val drawable = ContextCompat.getDrawable(context, com.app.base.ui.R.drawable.icon_back)
+                val tintedDrawable = tintDrawable(requireNonNull(drawable).mutate(), iconTintColor)
+                child.setCompoundDrawablesRelative(tintedDrawable, null, null, null)
             }
         }
     }
 
-    private void inflateLayout(@NonNull Context context, boolean fitStatusInsetFor19, boolean fitStatusInsetAfter19) {
-        mOriginalTopPadding = getPaddingTop();
-        fitStatusInset(fitStatusInsetFor19, fitStatusInsetAfter19);
-        setOrientation(VERTICAL);
-        inflate(context, R.layout.widget_title_layout, this);
-    }
-
-    private void initMenu(int menuResId, int menuColor) {
+    private fun initMenu(menuResId: Int, menuColor: Int) {
         if (menuResId != INVALIDATE_ID) {
-            mMaterialToolbar.inflateMenu(menuResId);
-            setMenuColor(menuColor);
+            toolbar.inflateMenu(menuResId)
+            setMenuColor(menuColor)
         }
     }
 
-    private void initNavigationIcon(boolean disableNavigation, Drawable navigationIcon, int iconTintColor) {
+    private fun initNavigationIcon(disableNavigation: Boolean, navigationIcon: Drawable?, iconTintColor: Int) {
         if (disableNavigation) {
-            return;
+            return
         }
 
         if (navigationIcon != null) {
             if (iconTintColor == -1) {
-                mMaterialToolbar.setNavigationIcon(navigationIcon);
+                toolbar.navigationIcon = navigationIcon
             } else {
-                mMaterialToolbar.setNavigationIcon(TintKit.tintDrawable(navigationIcon.mutate(), iconTintColor));
+                toolbar.navigationIcon = tintDrawable(navigationIcon.mutate(), iconTintColor)
             }
         } else {
             if (iconTintColor == -1) {
-                mMaterialToolbar.setNavigationIcon(com.app.base.ui.R.drawable.icon_back);
+                toolbar.setNavigationIcon(com.app.base.ui.R.drawable.icon_back)
             } else {
-                mMaterialToolbar.setNavigationIcon(TintKit.tintDrawable(Checker.requireNonNull(ContextCompat.getDrawable(getContext(), com.app.base.ui.R.drawable.icon_back)).mutate(), iconTintColor));
+                toolbar.navigationIcon = tintDrawable(
+                    requireNonNull(
+                        ContextCompat.getDrawable(
+                            context,
+                            com.app.base.ui.R.drawable.icon_back
+                        )
+                    ).mutate(), iconTintColor
+                )
             }
         }
     }
 
-    private void iniToolbar(String title, boolean titleCentered, boolean showCuttingLime, int titleColor, int cuttingLineBg) {
-        mMaterialToolbar = findViewById(R.id.atl_toolbar);
-        View cuttingLineView = findViewById(R.id.widgetAppTitleCuttingLine);
-        cuttingLineView.setVisibility(showCuttingLime ? View.VISIBLE : View.GONE);
-        cuttingLineView.setBackgroundColor(cuttingLineBg);
-        //nav
-        mMaterialToolbar.setContentInsetStartWithNavigation(0);
-        mMaterialToolbar.setTitleCentered(titleCentered);
-        mMaterialToolbar.setNavigationOnClickListener(this::onNavigationOnClick);
-        if (getBackground() != null) {
-            mMaterialToolbar.setBackground(getBackground());
+    private fun iniToolbar(title: String, titleCentered: Boolean, showDivider: Boolean, titleColor: Int, cuttingLineBg: Int) {
+        _toolbar = findViewById(R.id.atl_toolbar)
+        // divider
+        val divider = findViewById<View>(R.id.widget_app_title_divider)
+        divider.visibility = if (showDivider) VISIBLE else GONE
+        divider.setBackgroundColor(cuttingLineBg)
+        // navigation
+        toolbar.setContentInsetStartWithNavigation(0)
+        toolbar.isTitleCentered = titleCentered
+        toolbar.setNavigationOnClickListener { v: View -> this.onNavigationOnClick(v) }
+        if (background != null) {
+            toolbar.background = background
         }
         //title
-        mMaterialToolbar.setTitle(title);
-        mMaterialToolbar.setTitleTextColor(titleColor);
+        toolbar.setTitle(title)
+        toolbar.setTitleTextColor(titleColor)
     }
 
-    public void fitStatusInset(boolean fitStatusInsetFor19, boolean fitStatusInsetAfter19) {
-        FragmentActivity realContext = getRealContext(this);
-        if (realContext == null) {
-            return;
-        }
+    private fun fitStatusInset(fitStatusInsetFor19: Boolean, fitStatusInsetAfter19: Boolean) {
+        val realContext = this.realContext ?: return
         //adjust for status bar
         if ((fitStatusInsetFor19 && AndroidVersion.at(19)) || (fitStatusInsetAfter19 && AndroidVersion.above(20))) {
             setPadding(
-                    getPaddingLeft(),
-                    mOriginalTopPadding + SystemBarCompat.getStatusBarHeightIgnoreVisibility(realContext),
-                    getPaddingRight(),
-                    getPaddingBottom()
-            );
+                paddingLeft,
+                mOriginalTopPadding + SystemBarCompat.getStatusBarHeightIgnoreVisibility(realContext),
+                paddingRight,
+                paddingBottom
+            )
         }
     }
 
-    public MaterialToolbar getToolbar() {
-        return mMaterialToolbar;
+    fun setNavigationIcon(@DrawableRes iconId: Int) {
+        toolbar.navigationIcon = ContextCompat.getDrawable(context, iconId)
     }
 
-    public void setTitle(String title) {
-        mMaterialToolbar.setTitle(title);
+    fun setTitle(title: String) {
+        toolbar.title = title
     }
 
-    public void setLogo(int resID) {
-        mMaterialToolbar.setLogo(resID);
+    fun setTitle(@StringRes titleId: Int) {
+        toolbar.title = context.getString(titleId)
     }
 
-    public void setTitle(int titleId) {
-        mMaterialToolbar.setTitle(getContext().getString(titleId));
+    fun setOnNavigationOnClickListener(onNavigationOnClickListener: OnClickListener?) {
+        this.onNavigationOnClickListener = onNavigationOnClickListener
     }
 
-    public Menu getMenu() {
-        return mMaterialToolbar.getMenu();
-    }
-
-    public void setOnNavigationOnClickListener(View.OnClickListener onNavigationOnClickListener) {
-        this.onNavigationOnClickListener = onNavigationOnClickListener;
-    }
-
-    private void onNavigationOnClick(View v) {
-        if (onNavigationOnClickListener != null) {
-            onNavigationOnClickListener.onClick(v);
-            return;
+    private fun onNavigationOnClick(v: View) {
+        onNavigationOnClickListener?.let {
+            it.onClick(v)
+            return
         }
-        FragmentActivity realContext = getRealContext(this);
+        val realContext = this.realContext
         if (realContext != null) {
-            Fragments.exitFragment(realContext, false);
+            realContext.exitFragment(false)
         } else {
-            Timber.w("perform onNavigationOnClick --> fragmentBack, but real context can not be found");
+            Timber.w("perform onNavigationOnClick --> fragmentBack, but real context can not be found")
         }
-    }
-
-    public void setMenuColor(@ColorInt int color) {
-        setMenuColor(color, "");
     }
 
     @SuppressLint("RestrictedApi")
-    public void setMenuColor(@ColorInt int color, String target) {
-        View view;
-        View innerView;
+    fun findMenuView(@IdRes menuId: Int): View? {
+        return ToolbarUtils.getActionMenuItemView(toolbar, menuId)
+    }
 
-        for (int i = 0; i < mMaterialToolbar.getChildCount(); i++) {
+    fun setMenuColor(@ColorInt color: Int) {
+        setMenuColor(color, "")
+    }
 
-            view = mMaterialToolbar.getChildAt(i);
+    @SuppressLint("RestrictedApi")
+    fun setMenuColor(@ColorInt color: Int, target: String) {
+        var view: View?
+        var innerView: View?
 
-            if (view instanceof ActionMenuView) {
-
-                for (int j = 0; j < ((ActionMenuView) view).getChildCount(); j++) {
-                    innerView = ((ActionMenuView) view).getChildAt(j);
-
+        for (i in 0 until toolbar.childCount) {
+            view = toolbar.getChildAt(i)
+            if (view is ActionMenuView) {
+                for (j in 0 until view.childCount) {
+                    innerView = view.getChildAt(j)
                     if (!TextUtils.isEmpty(target)) {
-                        if (innerView instanceof ActionMenuItemView && ((ActionMenuItemView) innerView).getText().equals(target)) {
-                            ((ActionMenuItemView) innerView).setTextColor(color);
-                            break;
+                        if ((innerView is ActionMenuItemView) && innerView.text == target) {
+                            innerView.setTextColor(color)
+                            break
                         }
                     } else {
-                        if (innerView instanceof ActionMenuItemView) {
-                            ((ActionMenuItemView) innerView).setTextColor(color);
+                        if (innerView is ActionMenuItemView) {
+                            innerView.setTextColor(color)
                         }
                     }
                 }
-
-                break;
+                break
             }
         }
     }
 
-    @SuppressLint("RestrictedApi")
-    @Nullable
-    public View findMenuView(@IdRes int menuId) {
-        return ToolbarUtils.getActionMenuItemView(getToolbar(), menuId);
+    companion object {
+        private const val INVALIDATE_ID = -1
     }
 
 }
