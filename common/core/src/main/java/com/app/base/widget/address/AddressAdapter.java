@@ -9,10 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.android.base.adapter.recycler.segment.BaseRecyclerAdapter;
-import com.android.base.adapter.recycler.SimgpleViewHolder;
+import com.android.base.adapter.recycler.SimpleViewHolder;
 import com.app.base.R;
 
-class AddressAdapter extends BaseRecyclerAdapter<IName, SimgpleViewHolder> {
+class AddressAdapter extends BaseRecyclerAdapter<IName, SimpleViewHolder> {
 
     private View.OnClickListener mItemClickListener;
 
@@ -26,13 +26,13 @@ class AddressAdapter extends BaseRecyclerAdapter<IName, SimgpleViewHolder> {
 
     @NonNull
     @Override
-    public SimgpleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SimpleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_address_item_select, parent, false);
-        return new SimgpleViewHolder(view);
+        return new SimpleViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SimgpleViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull SimpleViewHolder viewHolder, int position) {
         TextView nameView = viewHolder.helper().getView(R.id.dialog_address_tv_province);
         IName item = getItem(position);
         if (item != null) {
