@@ -100,9 +100,6 @@ fun Project.configureKotlinCompiler(
 }
 
 fun Project.addBusinessModuleDependencies() = dependencies {
-    // local libs
-    add("implementation", fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
     // core business
     add("implementation", project(":common:core"))
 
