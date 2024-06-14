@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.FileUtils
 import com.android.base.utils.common.sizeOf
 import com.app.common.api.compression.CompressionSpec
 import com.app.common.api.compression.ImageCompressionService
-import com.app.base.app.DispatcherProvider
+import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppPrivateDirectories.PICTURE_FORMAT_JPEG
 import com.app.base.debug.ifOpenDebug

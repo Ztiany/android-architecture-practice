@@ -3,7 +3,7 @@ package me.ztiany.wan.main.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.android.sdk.net.ServiceContext
-import com.app.base.app.DispatcherProvider
+import com.app.common.api.dispatcher.DispatcherProvider
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

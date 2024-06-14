@@ -20,6 +20,7 @@
 - [ ] 拆出 debug
 - [ ] 实现 sample 模块
 - [ ] Common Core 中相关的代码抽离到 UI 模块中。
+- [ ] CallResult switchMap 添加到 Library 中。
 
 ## 网络层
 

@@ -1,6 +1,6 @@
 package com.app.base.injection
 
-import com.app.base.app.DispatcherProvider
+import com.app.common.api.dispatcher.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

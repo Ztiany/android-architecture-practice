@@ -3,7 +3,7 @@ package me.ztiany.wan.main
 import android.app.Application
 import android.content.res.Configuration
 import com.android.base.core.AppLifecycle
-import com.app.base.app.DispatcherProvider
+import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.base.injection.ApplicationScope
 import com.app.common.api.network.ApiServiceFactoryProvider
 import com.app.common.api.usermanager.UserManager

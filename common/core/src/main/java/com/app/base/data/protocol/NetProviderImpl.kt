@@ -8,7 +8,7 @@ import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
 import com.android.sdk.net.core.provider.PlatformInteractor
 import com.app.base.app.AndroidPlatform
-import com.app.base.app.ErrorHandler
+import com.app.common.api.errorhandler.ErrorHandler
 import com.app.base.config.AppSettings
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog

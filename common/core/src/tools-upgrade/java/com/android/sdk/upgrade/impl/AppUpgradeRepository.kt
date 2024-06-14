@@ -2,7 +2,7 @@ package com.android.sdk.upgrade.impl
 
 import com.android.sdk.net.coroutines.executeApiCall
 import com.app.base.app.AndroidPlatform
-import com.app.base.app.DispatcherProvider
+import com.app.common.api.dispatcher.DispatcherProvider
 import kotlinx.coroutines.withContext
 
 internal class AppUpgradeRepository(

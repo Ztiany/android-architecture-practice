@@ -2,7 +2,7 @@ package me.ztiany.wan.account.data
 
 import com.android.sdk.net.coroutines.executeApiCall
 import com.app.base.app.AndroidPlatform
-import com.app.base.app.DispatcherProvider
+import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.common.api.usermanager.User
 import com.app.common.api.usermanager.UserManager
 import kotlinx.coroutines.withContext

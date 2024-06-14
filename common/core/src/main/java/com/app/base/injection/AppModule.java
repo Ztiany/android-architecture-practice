@@ -6,8 +6,8 @@ import com.app.common.api.router.AppRouter;
 import com.app.common.api.router.AppNavigator;
 import com.app.common.api.appservice.AppService;
 import com.app.common.api.appservice.AppServiceManager;
-import com.app.base.app.DefaultDispatcherProvider;
-import com.app.base.app.DispatcherProvider;
+import com.app.base.component.dispatcher.DefaultDispatcherProvider;
+import com.app.common.api.dispatcher.DispatcherProvider;
 import com.app.base.component.router.AppRouterImpl;
 import com.app.base.component.router.AppRouterKey;
 import com.app.base.component.appservice.AppServiceKey;
@@ -47,9 +47,8 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
-    DispatcherProvider provideDispatcherProvider() {
-        return new DefaultDispatcherProvider();
+    DispatcherProvider provideDispatcherProvider(DefaultDispatcherProvider dispatcherProvider) {
+        return dispatcherProvider;
     }
 
     @Provides

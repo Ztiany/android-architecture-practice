@@ -1,43 +1,30 @@
-package com.app.base.app
+package com.app.base.component.errorhandler
 
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
+import com.app.base.app.CannotShowDialogOnIt
+import com.app.base.app.CannotShowExpiredDialogOnIt
+import com.app.common.api.errorhandler.ErrorHandler
 import com.app.base.data.protocol.ApiHelper
-import com.app.base.widget.dialog.confirm.ConfirmDialogInterface
 import com.app.base.widget.dialog.ToastKit
 import com.app.base.widget.dialog.base.onDismiss
+import com.app.base.widget.dialog.confirm.ConfirmDialogInterface
 import com.app.base.widget.dialog.confirm.showConfirmDialog
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
 import com.app.common.api.usermanager.isUserLogin
-import me.ztiany.wan.main.MainModuleNavigator
 import com.blankj.utilcode.util.ActivityUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
+import me.ztiany.wan.main.MainModuleNavigator
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * @author Ztiany
- */
-interface ErrorHandler {
-
-    /** 根据异常，生成一个合理的错误提示。 */
-    fun generateMessage(throwable: Throwable): CharSequence
-
-    /** 直接处理异常，比如根据 [generateMessage] 方法生成的消息弹出一个 toast。 */
-    fun handleError(throwable: Throwable)
-
-    /**处理全局异常，此方法仅由数据层调用，用于统一处理全局异常。 */
-    fun handleGlobalError(throwable: Throwable)
-
-}
 
 @Singleton
 internal class AppErrorHandler @Inject constructor(
@@ -45,10 +32,6 @@ internal class AppErrorHandler @Inject constructor(
     private val userManager: UserManager,
     @ApplicationContext private val context: Context
 ) : ErrorHandler {
-
-    init {
-        Log.d("ErrorHandler", "AppErrorHandler initialized.")
-    }
 
     private var showingDialog: WeakReference<ConfirmDialogInterface>? = null
 

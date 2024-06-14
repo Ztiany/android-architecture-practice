@@ -1,7 +1,7 @@
 package me.ztiany.wan.main
 
 import com.android.sdk.net.coroutines.executeApiCallNullable
-import com.app.base.app.DispatcherProvider
+import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.base.data.protocol.ApiHelper
 import com.app.base.data.protocol.ApiResult
 import com.app.common.api.network.ApiServiceFactoryProvider

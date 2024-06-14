@@ -1,10 +1,10 @@
 package com.app.base.injection;
 
 import com.app.common.api.usermanager.UserManager;
-import com.app.base.app.AppErrorHandler;
-import com.app.base.app.ErrorHandler;
+import com.app.base.component.errorhandler.AppErrorHandler;
+import com.app.common.api.errorhandler.ErrorHandler;
 import com.app.common.api.network.ApiServiceFactoryProvider;
-import com.app.base.app.ApiServiceFactoryProviderImpl;
+import com.app.base.component.apifactory.ApiServiceFactoryProviderImpl;
 import com.app.base.component.usermanager.UserManagerImpl;
 
 import dagger.Module;

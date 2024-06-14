@@ -1,6 +1,5 @@
-package com.app.base.app
+package com.app.base.component.apifactory
 
-import android.util.Log
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.service.ServiceFactory
 import com.android.sdk.net.extension.defaultServiceFactory
@@ -11,10 +10,6 @@ import javax.inject.Singleton
 
 @Singleton
 internal class ApiServiceFactoryProviderImpl @Inject constructor() : ApiServiceFactoryProvider {
-
-    init {
-        Log.d("ApiServiceFactoryProvider", "ApiServiceFactoryProviderImpl initialized.")
-    }
 
     override fun getDefault(): ServiceFactory {
         return NetContext.get().defaultServiceFactory()
