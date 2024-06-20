@@ -21,9 +21,7 @@ fun ViewModel.launch(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
     block: suspend CoroutineScope.() -> Unit,
-) {
-    viewModelScope.launch(context, start, block)
-}
+) = viewModelScope.launch(context, start, block)
 
 fun <T> ViewModel.apiCallStateIntoLiveData(
     state: MutableLiveData<StateD<T>>,

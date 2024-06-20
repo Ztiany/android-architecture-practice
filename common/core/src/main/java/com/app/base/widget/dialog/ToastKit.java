@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class ToastKit {
 
     public static void showMessage(Context context, @StringRes int msgId) {
-        showMessage(context, ResourceEx.getText(msgId));
+        showMessage(context, context.getText(msgId));
     }
 
     public static void showMessage(Context context, CharSequence message) {

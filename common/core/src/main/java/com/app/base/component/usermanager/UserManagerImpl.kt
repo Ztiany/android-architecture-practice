@@ -1,10 +1,11 @@
 package com.app.base.component.usermanager
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.android.sdk.cache.getEntity
 import com.app.base.data.storage.StorageManager
 import com.app.base.debug.ifOpenLog
-import com.app.base.utils.JsonUtils
+import com.app.base.utils.toJson
 import com.app.common.api.usermanager.User
 import com.app.common.api.usermanager.UserManager
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,6 +13,7 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@SuppressLint("LogNotTimber")
 @Singleton
 internal class UserManagerImpl @Inject constructor(storageManager: StorageManager) : UserManager {
 
@@ -21,6 +23,7 @@ internal class UserManagerImpl @Inject constructor(storageManager: StorageManage
     }
 
     init {
+        // 只在这里用 Log，因为 Timber 可能还没有初始化。
         Log.d("UserManager", "UserManagerImpl initialized.")
     }
 
@@ -33,7 +36,8 @@ internal class UserManagerImpl @Inject constructor(storageManager: StorageManage
     init {
         currentUser = userStorage.getEntity(APP_USER_KEY) ?: User.NOT_LOGIN
         ifOpenLog {
-            Log.d("UserManagerImpl", "current user: ${JsonUtils.toJson(currentUser)}")
+            // 只在这里用 Log，因为 Timber 可能还没有初始化。
+            Log.d("UserManagerImpl", "current user: ${currentUser.toJson()}")
         }
         observableUser = MutableStateFlow(currentUser)
     }
@@ -43,7 +47,7 @@ internal class UserManagerImpl @Inject constructor(storageManager: StorageManage
         userStorage.putEntity(APP_USER_KEY, currentUser)
         onUserUpdated()
         ifOpenLog {
-            Timber.w("new user: ${JsonUtils.toJson(currentUser)}")
+            Timber.w("new user: ${currentUser.toJson()}")
         }
     }
 

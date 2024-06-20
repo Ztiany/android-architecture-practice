@@ -8,12 +8,12 @@ import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
 import com.android.sdk.net.core.provider.PlatformInteractor
 import com.app.base.app.AndroidPlatform
-import com.app.common.api.errorhandler.ErrorHandler
 import com.app.base.config.AppSettings
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
 import com.app.base.debug.isOpenDebug
-import com.app.base.utils.JsonUtils
+import com.app.base.utils.deserializeJson
+import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.usermanager.UserManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -99,7 +99,7 @@ fun newPlatformInteractor(androidPlatform: AndroidPlatform): PlatformInteractor 
 internal fun newErrorBodyParser(errorHandler: ErrorHandler): ErrorBodyParser {
     return object : ErrorBodyParser {
         override fun parseErrorBody(errorBody: String, hostFlag: String): ApiErrorException? {
-            val errorResult = JsonUtils.fromClass(errorBody, ErrorResult::class.java)
+            val errorResult = errorBody.deserializeJson(ErrorResult::class.java)
             return if (errorResult == null) {
                 null
             } else {
