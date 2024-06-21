@@ -21,7 +21,7 @@ import androidx.annotation.Nullable;
 
 import com.android.base.fragment.base.BaseUIFragment;
 import com.android.base.fragment.tool.Fragments;
-import com.android.base.utils.android.views.WebViewUtils;
+import com.android.base.utils.android.views.WebViewEx;
 import com.app.base.databinding.AppBaseWebFragmentBinding;
 import com.app.base.widget.view.AppTitleLayout;
 import com.blankj.utilcode.util.NetworkUtils;
@@ -109,8 +109,8 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
     @Override
     public void onDestroy() {
+        WebViewEx.destroyAll(mWebView);
         super.onDestroy();
-        WebViewUtils.destroy(mWebView);
     }
 
     private void initArguments() {

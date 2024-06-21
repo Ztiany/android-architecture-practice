@@ -128,17 +128,25 @@ private fun newJsonArray(): JsonArray = JsonArrayImpl()
  *     }
  * ```
  */
-fun buildJson(build: JsonObject.() -> Unit) = run {
+fun buildPlainJson(builder: JsonObject.() -> Unit): String = run {
     newJsonObject().apply {
-        build()
-    }
+        builder()
+    }.toString()
 }
 
 /**
  * @see buildJson
  */
-fun buildJsonArray(build: JsonArray.() -> Unit) = run {
+fun buildPlainJsonArray(builder: JsonArray.() -> Unit): String = run {
     newJsonArray().apply {
-        build()
-    }
+        builder()
+    }.toString()
+}
+
+fun buildJson(builder: JsonObject.() -> Unit): JSONObject = run {
+    JSONObject(buildPlainJson(builder))
+}
+
+fun buildJsonArray(builder: JsonArray.() -> Unit): JSONArray = run {
+    JSONArray(buildPlainJsonArray(builder))
 }
