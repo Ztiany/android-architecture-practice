@@ -3,6 +3,8 @@
 ## UI 层
 
 - [x] RetainedStateHandlerBuilder【multi-state】
+- [ ] MediaSelector 适配安卓 14 【暂停】
+  [ ] Storage 接口支持监听
 - [ ] 优化 fragment 转场动画
 - [ ] State 升级（Atomic markHandled）
 - [ ] ViewHolder ViewBinding 自动创建
