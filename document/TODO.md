@@ -4,6 +4,7 @@
 
 - [x] RetainedStateHandlerBuilder【multi-state】
 - [ ] 优化 fragment 转场动画
+- [ ] State 升级（Atomic markHandled）
 - [ ] ViewHolder ViewBinding 自动创建
 - [ ] StatusHeightView + StatusInsetsView优化 + 扩展 API
 - [ ] 实现 doSafeFragmentOperation
