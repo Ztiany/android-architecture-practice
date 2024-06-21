@@ -2,6 +2,7 @@
 
 ## UI 层
 
+- [ ] 优化 fragment 转场动画
 - [ ] StatusHeightView 优化 + 扩展 API
 - [ ] StatusInsetsViewForAPI19
 - [ ] 实现 doSafeFragmentOperation
