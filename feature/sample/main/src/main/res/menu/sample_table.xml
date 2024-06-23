@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <item
+        android:id="@id/sample_table_pager"
+        android:icon="@drawable/sample_sel_tab_pager"
+        android:title="@string/sample_tab_pager" />
+
+    <item
+        android:id="@id/sample_table_component"
+        android:icon="@drawable/sample_sel_tab_component"
+        android:title="@string/sample_tab_component" />
+
+
+</menu>

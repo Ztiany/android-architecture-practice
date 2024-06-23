@@ -8,12 +8,13 @@ import com.android.base.fragment.base.handleLiveData
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.enableSpanClickable
 import com.android.base.utils.android.views.expandTouchArea
-import com.android.base.utils.android.views.onDebouncedClick
+import com.android.base.utils.android.views.onThrottledClickClick
 import com.android.base.utils.android.views.textValue
 import com.app.base.utils.newAppStyleClickSpan
 import com.app.base.widget.form.validateCellphone
 import com.app.base.widget.form.validateSmsCode
 import com.blankj.utilcode.util.SpanUtils
+import com.qmuiteam.qmui.kotlin.onClick
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.account.AccountInternalNavigator
 import me.ztiany.wan.account.R
@@ -40,6 +41,9 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
     }
 
     private fun setUpAgreement() {
+        vb.accountTvAgreement.onClick {
+
+        }
         vb.accountTvAgreement.enableSpanClickable()
         vb.accountTvAgreement.text = SpanUtils()
             .append("新用户登录即完成注册，且表示您已阅读并同意")
@@ -61,7 +65,7 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
             sendSmsCodeChecked()
         }
 
-        vb.accountBtnLogin.onDebouncedClick {
+        vb.accountBtnLogin.onThrottledClickClick {
             doLoginChecked()
         }
 

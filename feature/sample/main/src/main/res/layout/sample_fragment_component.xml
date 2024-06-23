@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
+
+    <com.app.base.widget.view.AppTitleLayout
+        android:id="@+id/title_layout"
+        style="@style/Widget.App.TitleLayout"
+        app:atl_disable_navigation="true"
+        app:atl_fitsSystemWindowAfter19="true"
+        app:atl_title="控件示例"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?app_color_main"
+                android:padding="15dp"
+                android:text="按钮"
+                android:textColor="?app_color_lightest"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <com.android.base.ui.drawable.DTextView
+                style="@style/Widget.App.Button.Long.DView.PrimaryGradientRounded10"
+                android:layout_marginTop="10dp"
+                android:text="一个主色调渐变色圆角按钮" />
+
+            <com.android.base.ui.drawable.DTextView
+                style="@style/Widget.App.Button.Long.DView.PrimaryVariantRounded10"
+                android:layout_marginTop="10dp"
+                android:text="一个次色调渐变色圆角按钮" />
+
+            <com.android.base.ui.drawable.DTextView
+                style="@style/Widget.App.Button.Long.DView.PrimaryVariantRounded10"
+                android:layout_marginTop="10dp"
+                android:enabled="false"
+                android:text="一个 Disable 次色调渐变色圆角按钮" />
+
+            <com.android.base.ui.shape.ShapeableTextView
+                style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
+                android:layout_marginTop="10dp"
+                android:text="一个深色圆角按钮" />
+
+            <com.android.base.ui.shape.ShapeableTextView
+                style="@style/Widget.App.Button.Long.ShapeableView.LightestRounded10"
+                android:layout_marginTop="10dp"
+                android:text="一个亮色圆角按钮" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="?app_color_main"
+                android:padding="15dp"
+                android:text="弹框"
+                android:textColor="?app_color_lightest"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <com.android.base.ui.shape.ShapeableTextView
+                android:id="@+id/sample_tv_dialog_confirm"
+                style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
+                android:layout_marginTop="10dp"
+                android:text="弹一个确认框" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

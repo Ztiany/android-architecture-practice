@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.presentation.feed
+package me.ztiany.wan.sample.presentation.epoxy
 
 import android.content.Context
 import android.net.Uri

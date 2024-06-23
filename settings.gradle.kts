@@ -122,6 +122,10 @@ include(":common:api")
 include(":common:ui")
 include(":common:core")
 
+// 账户业务模块
+include(":feature:sample:main")
+include(":feature:sample:app")
+
 // 主业务模块
 include(":feature:main:main")
 include(":feature:main:api")

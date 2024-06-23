@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,ExtraTranslation">
+
+    <string name="sample_tab_pager">页面</string>
+    <string name="sample_tab_component">控件</string>
+    <string name="sample_exit_tips">再点击一次退出 APP</string>
+
+</resources>

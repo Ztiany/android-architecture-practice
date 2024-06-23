@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================ Launch ============================ -->
+    <style name="Sample.AppTheme.Launch" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/sample_launch_bg</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <!-- ============================ Sample ============================ -->
+    <item name="sample_table_pager" type="id" />
+    <item name="sample_table_component" type="id" />
+
+    <!-- https://stackoverflow.com/questions/40172219/custom-textsize-of-bottomnavigationview-support-android -->
+    <style name="Sample.Table.TextAppearance.Selected" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Sample.Table.TextAppearance.Normal" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Sample.TabLayout.TextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>
