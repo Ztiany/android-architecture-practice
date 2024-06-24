@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.base.fragment.base.BaseUIFragment
-import com.android.base.utils.android.views.onThrottledClickClick
+import com.android.base.utils.android.views.onThrottledClick
 import com.app.base.utils.setStatusBarLightMode
 import com.app.base.widget.dialog.confirm.showConfirmDialog
 import me.ztiany.wan.main.MainScopeNavigator
@@ -21,7 +21,7 @@ class BoxFragment : BaseUIFragment<MainFragmentBoxBinding>() {
 
     override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) {
         super.onSetUpCreatedView(view, savedInstanceState)
-        vb.mainTvSign.onThrottledClickClick {
+        vb.mainTvSign.onThrottledClick {
             showConfirmDialog {
                 title = "温馨提示"
                 message = "功能开发中，敬请期待"

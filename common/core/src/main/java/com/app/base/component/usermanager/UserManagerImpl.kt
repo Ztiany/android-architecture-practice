@@ -35,10 +35,6 @@ internal class UserManagerImpl @Inject constructor(storageManager: StorageManage
 
     init {
         currentUser = userStorage.getEntity(APP_USER_KEY) ?: User.NOT_LOGIN
-        ifOpenLog {
-            // 只在这里用 Log，因为 Timber 可能还没有初始化。
-            Log.d("UserManagerImpl", "current user: ${currentUser.toJson()}")
-        }
         observableUser = MutableStateFlow(currentUser)
     }
 

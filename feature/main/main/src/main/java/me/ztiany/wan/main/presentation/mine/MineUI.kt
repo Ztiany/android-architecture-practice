@@ -39,7 +39,7 @@ internal class MineUIPresenter(
     }
 
     private fun setUpUserInfoLayout() {
-        vb.mainTvLogin.onThrottledClickClick {
+        vb.mainTvLogin.onThrottledClick {
             host.mainScopeNavigator.toLogin()
         }
     }
@@ -73,7 +73,7 @@ internal class MineUIPresenter(
                 .build()
         }
 
-        entranceView.onThrottledClickClick {
+        entranceView.onThrottledClick {
             processOnEntranceClicked(entrance.id)
         }
     }

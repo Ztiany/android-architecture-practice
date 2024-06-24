@@ -8,7 +8,7 @@ import com.android.base.fragment.base.handleLiveData
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.enableSpanClickable
 import com.android.base.utils.android.views.expandTouchArea
-import com.android.base.utils.android.views.onThrottledClickClick
+import com.android.base.utils.android.views.onThrottledClick
 import com.android.base.utils.android.views.textValue
 import com.app.base.utils.newAppStyleClickSpan
 import com.app.base.widget.form.validateCellphone
@@ -65,7 +65,7 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
             sendSmsCodeChecked()
         }
 
-        vb.accountBtnLogin.onThrottledClickClick {
+        vb.accountBtnLogin.onThrottledClick {
             doLoginChecked()
         }
 
