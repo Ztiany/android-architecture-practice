@@ -21,10 +21,10 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.appcompat.widget.ActionMenuView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.android.base.fragment.tool.exitFragment
 import com.android.base.ui.compat.MaterialToolbar
-import com.android.base.utils.android.compat.AndroidVersion
-import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.newMWLayoutParams
 import com.android.base.utils.android.views.realContext
@@ -76,8 +76,6 @@ class AppTitleLayout @JvmOverloads constructor(
         val iconTintColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_navigation_icon_tint, -1)
         val titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.BLACK)
         val menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.BLACK)
-        val fitStatusInsetFor19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fitsSystemWindowFor19, false)
-        val fitStatusInsetAfter19 = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_fitsSystemWindowAfter19, false)
         val titleCentered = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_title_centered, false)
 
         // set attributes
@@ -85,9 +83,9 @@ class AppTitleLayout @JvmOverloads constructor(
         orientation = VERTICAL
         if (isInEditMode) {
             mockTitleLayout(title, titleColor, titleCentered, disableNavigation, navigationIcon, iconTintColor)
-            fitStatusInset(fitStatusInsetFor19, fitStatusInsetAfter19)
+            fitStatusInset()
         } else {
-            fitStatusInset(fitStatusInsetFor19, fitStatusInsetAfter19)
+            fitStatusInset()
             inflate(context, R.layout.widget_title_layout, this)
             //get resource
             iniToolbar(title, titleCentered, showDivider, titleColor, cuttingLineBg)
@@ -191,16 +189,17 @@ class AppTitleLayout @JvmOverloads constructor(
         toolbar.setTitleTextColor(titleColor)
     }
 
-    private fun fitStatusInset(fitStatusInsetFor19: Boolean, fitStatusInsetAfter19: Boolean) {
-        val realContext = this.realContext ?: return
-        //adjust for status bar
-        if ((fitStatusInsetFor19 && AndroidVersion.at(19)) || (fitStatusInsetAfter19 && AndroidVersion.above(20))) {
+    private fun fitStatusInset() {
+        ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            Timber.d("AppTitleLayout(${(realContext)}) fitStatusInset is executed:  systemBars = $systemBars}")
             setPadding(
                 paddingLeft,
-                mOriginalTopPadding + SystemBarCompat.getStatusBarHeightIgnoreVisibility(realContext),
+                mOriginalTopPadding + systemBars.top,
                 paddingRight,
                 paddingBottom
             )
+            insets
         }
     }
 

@@ -168,7 +168,7 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
         mCustomLayout = getVb().webFlCustom;
 
         /*Title*/
-        mTitleLayout.setOnNavigationOnClickListener(v -> Fragments.exitFragment(this));
+        mTitleLayout.setOnNavigationOnClickListener(v -> Fragments.exit(this));
         setTitleVisible(!mTitleIsHidden);
         if (!TextUtils.isEmpty(customTitle)) {
             mTitleLayout.setTitle(customTitle);
