@@ -1,11 +1,10 @@
-package me.ztiany.wan.sample.presentation.pager
+package me.ztiany.wan.sample
 
 import android.os.Bundle
 import android.view.View
 import com.android.base.fragment.base.BaseUIFragment
-import com.android.base.utils.android.views.onThrottledClickClick
+import com.android.base.utils.android.views.onThrottledClick
 import dagger.hilt.android.AndroidEntryPoint
-import me.ztiany.wan.sample.SampleInternalNavigator
 import me.ztiany.wan.sample.databinding.SampleFragmentPagerBinding
 import javax.inject.Inject
 
@@ -15,19 +14,19 @@ class PagerFragment : BaseUIFragment<SampleFragmentPagerBinding>() {
     @Inject lateinit var internalNavigator: SampleInternalNavigator
 
     override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) = withVB {
-        sampleTvListSegment1.onThrottledClickClick {
+        sampleTvListSegment1.onThrottledClick {
             internalNavigator.showSegment1List()
         }
 
-        sampleTvListSegment2.onThrottledClickClick {
+        sampleTvListSegment2.onThrottledClick {
             showMessage("没有时间写！")
         }
 
-        sampleTvListEpoxy.onThrottledClickClick {
+        sampleTvListEpoxy.onThrottledClick {
             internalNavigator.showEpoxyList()
         }
 
-        sampleTvListPaging3.onThrottledClickClick {
+        sampleTvListPaging3.onThrottledClick {
             internalNavigator.showPaging3List()
         }
     }

@@ -9,7 +9,7 @@ import com.android.base.image.ImageLoaderFactory
 import com.android.base.image.Source
 import com.android.base.ui.banner.BannerViewPagerAdapter
 import com.android.base.utils.android.views.newMMLayoutParams
-import com.android.base.utils.android.views.onThrottledClickClick
+import com.android.base.utils.android.views.onThrottledClick
 
 internal class FeedBannerAdapter : BannerViewPagerAdapter() {
 
@@ -30,7 +30,7 @@ internal class FeedBannerAdapter : BannerViewPagerAdapter() {
 
     private fun bindViewItem(imageView: ImageView, uri: Uri, position: Int) {
         ImageLoaderFactory.getImageLoader().display(imageView, Source.create(uri))
-        imageView.onThrottledClickClick { callPagerClicked(position, imageView) }
+        imageView.onThrottledClick { callPagerClicked(position, imageView) }
     }
 
 }

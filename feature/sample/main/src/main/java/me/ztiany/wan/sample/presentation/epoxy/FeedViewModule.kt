@@ -1,7 +1,7 @@
 package me.ztiany.wan.sample.presentation.epoxy
 
 import androidx.lifecycle.ViewModel
-import com.android.base.fragment.list.ListStateHelper
+import com.android.base.fragment.list.SimpleListStateHelper
 import com.android.base.fragment.vm.startListJob
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ensureActive
@@ -18,7 +18,7 @@ class FeedViewModule @Inject constructor(
     private val articleVOMapper: ArticleVOMapper,
 ) : ViewModel() {
 
-    private val stateHelper = ListStateHelper<FeedItem>(
+    private val stateHelper = SimpleListStateHelper<FeedItem>(
         listSize = { list ->
             list.filter { it is ArticleVO && !it.isTop }.size
         }

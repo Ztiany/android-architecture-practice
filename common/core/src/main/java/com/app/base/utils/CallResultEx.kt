@@ -8,12 +8,12 @@ import com.android.base.foundation.state.setLoading
 import com.android.sdk.net.coroutines.CallResult
 import com.android.sdk.net.coroutines.onError
 import com.android.sdk.net.coroutines.onSuccess
+import com.app.common.api.errorhandler.ErrorHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 
-inline fun <T, R> CallResult<T>.switchMap(transform: (T) -> CallResult<R>): CallResult<R> {
-    return when (this) {
-        is CallResult.Success -> transform(data)
-        is CallResult.Error -> CallResult.Error(error)
+fun <T> CallResult<T>.noticeOnError(errorHandler: ErrorHandler) {
+    onError {
+        errorHandler.handleError(it)
     }
 }
 

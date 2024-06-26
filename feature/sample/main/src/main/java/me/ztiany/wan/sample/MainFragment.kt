@@ -9,11 +9,9 @@ import com.android.base.fragment.base.BaseUIFragment
 import com.android.base.fragment.tool.FragmentInfo
 import com.android.base.fragment.tool.TabManager
 import me.ztiany.wan.sample.databinding.SampleFragmentMainBinding
-import me.ztiany.wan.sample.presentation.component.ComponentFragment
-import me.ztiany.wan.sample.presentation.pager.PagerFragment
 
 /**
- *@author Ztiany
+ * @author Ztiany
  */
 class MainFragment : BaseUIFragment<SampleFragmentMainBinding>() {
 

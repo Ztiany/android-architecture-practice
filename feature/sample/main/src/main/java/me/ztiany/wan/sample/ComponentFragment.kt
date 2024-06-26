@@ -1,19 +1,19 @@
-package me.ztiany.wan.sample.presentation.component
+package me.ztiany.wan.sample
 
 import android.os.Bundle
 import android.view.View
 import com.android.base.fragment.base.BaseUIFragment
-import com.android.base.utils.android.views.onThrottledClickClick
+import com.android.base.utils.android.views.onThrottledClick
 import com.app.base.widget.dialog.confirm.showConfirmDialog
 import me.ztiany.wan.sample.databinding.SampleFragmentComponentBinding
 
 /**
- *@author Ztiany
+ * @author Ztiany
  */
 class ComponentFragment : BaseUIFragment<SampleFragmentComponentBinding>() {
 
     override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) = withVB {
-        sampleTvDialogConfirm.onThrottledClickClick {
+        sampleTvDialogConfirm.onThrottledClick {
             sampleConfirmDialog()
         }
     }

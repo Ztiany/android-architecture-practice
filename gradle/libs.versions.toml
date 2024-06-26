@@ -241,7 +241,7 @@ compose-accompanist-material3-themeadapter = { module = "com.google.accompanist:
 ztiany-loadmoreadapter = "io.github.ztiany:android-loadmore-adapter:1.0.10"
 ztiany-mediaselector = "io.github.ztiany:android-media-selector:1.1.0"
 ztiany-archdelegate = "io.github.ztiany:android-arch-delegate:1.0.5"
-ztiany-simplehttp = "io.github.ztiany:android-simple-http:1.2.0"
+ztiany-simplehttp = "com.github.Ztiany:android-simple-http:1.2.2"
 ztiany-simplebus = "io.github.ztiany:android-simple-bus:1.0.0"
 ztiany-uistate = "io.github.ztiany:android-ui-state:1.2.1"
 ztiany-storage = "io.github.ztiany:android-storage:1.0.2"
