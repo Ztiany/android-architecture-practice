@@ -144,7 +144,6 @@ object AppUpgradeChecker {
     private fun processOnDownloadingFileSuccessful(file: File?) {
         //start installing
         val apkFile = file ?: return
-        startInstall(apkFile)
         //dismiss download dialog
         upgradeInteractor.dismissDownloadingDialog()
         // if it is force upgrade, we show a no cancelable dialog to make user have to install the new apk.

@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import timber.log.Timber;
 
 
 /**
@@ -56,7 +57,7 @@ final class ApkDownloader {
                 return;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Timber.e(e, "connect to app server error");
             mApkDownloaderListener.onFail(new UpgradeException(UpgradeException.NETWORK_ERROR));
             return;
         }
@@ -113,7 +114,7 @@ final class ApkDownloader {
 
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            Timber.d(e, "download apk error");
             mApkDownloaderListener.onFail(new UpgradeException(UpgradeException.NETWORK_ERROR));
             return false;
         } finally {

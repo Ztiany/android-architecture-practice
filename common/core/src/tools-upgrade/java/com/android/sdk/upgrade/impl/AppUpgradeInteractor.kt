@@ -116,13 +116,10 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         onCancel: () -> Unit,
         onConfirm: () -> Unit,
     ) {
-        if (!forceUpgrade) {
-            return
-        }
         showConfirmDialog(context) {
             messageResId = R.string.upgrade_do_install
             cancelable = false
-            negativeText = null
+            negativeText = forceUpgrade.yes { null } otherwise { context.getString(UI_R.string.cancel) }
             negativeListener = {
                 it.dismiss()
                 onCancel()
