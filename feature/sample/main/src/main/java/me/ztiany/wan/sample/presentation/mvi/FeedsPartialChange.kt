@@ -2,6 +2,7 @@ package me.ztiany.wan.sample.presentation.mvi
 
 import com.android.base.fragment.list.PagingListState
 import me.ztiany.wan.sample.presentation.epoxy.ArticleVO
+import me.ztiany.wan.sample.presentation.mvi.Init.Success
 
 sealed interface FeedsPartialChange {
     fun reduce(oldState: PagingListState<ArticleVO>): PagingListState<ArticleVO>
@@ -20,6 +21,10 @@ sealed class Init : FeedsPartialChange {
     data class Success(val list: List<ArticleVO>) : Init()
 
     data class Fail(val error: Throwable) : Init()
+
+    companion object {
+        fun success(list: List<ArticleVO>): Init = Success(list)
+    }
 }
 
 sealed class More : FeedsPartialChange {
@@ -35,6 +40,10 @@ sealed class More : FeedsPartialChange {
     data class Success(val list: List<ArticleVO>) : More()
 
     data class Fail(val error: Throwable) : More()
+
+    companion object {
+        fun success(list: List<ArticleVO>): More = Success(list)
+    }
 }
 
 sealed class Report : FeedsPartialChange {
@@ -47,5 +56,9 @@ sealed class Report : FeedsPartialChange {
     class Success(val id: Int) : Report()
 
     data class Fail(val error: Throwable) : Report()
+
+    companion object {
+        fun success(id: Int): Report = Success(id)
+    }
 
 }

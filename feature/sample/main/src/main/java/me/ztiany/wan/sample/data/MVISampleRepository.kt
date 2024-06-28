@@ -5,10 +5,14 @@ import com.android.sdk.net.ServiceContext
 import com.app.base.data.storage.StorageManager
 import com.app.common.api.dispatcher.DispatcherProvider
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flattenMerge
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.transformWhile
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
@@ -20,7 +24,7 @@ class MVISampleRepository @Inject constructor(
     private val storageManager: StorageManager
 ) {
 
-    val localArticleFlow = flow {
+    private val localArticleFlow = flow {
         delay(1000)
         emit(
             LoadedData(
@@ -30,13 +34,23 @@ class MVISampleRepository @Inject constructor(
         )
     }
 
-    fun firstArticlePage(pageStart: Int, pageSize: Int) =
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun firstArticlePage(pageStart: Int, pageSize: Int) = flowOf(
+        localArticleFlow,
+        loadFirstArticlePage(pageStart, pageSize)
+    )
+        .flattenMerge()
+        .transformWhile {
+            Timber.d("Init.toPartialChangeFlow fromRemote=${it.fromRemote}")
+            emit(it.data)
+            !it.fromRemote // return true to continue, false to stop.
+        }
+
+    private fun loadFirstArticlePage(pageStart: Int, pageSize: Int) =
         suspend {
             Timber.d("loadHomeArticles pageNo=$pageStart pageSize=$pageSize")
             delay(3000)
-            homeApiContext.executeApiCall {
-                loadHomeArticles(pageStart, pageSize)
-            }
+            homeApiContext.executeApiCall { loadHomeArticles(pageStart, pageSize) }
         }
             .asFlow()
             .map { pager ->
@@ -48,7 +62,7 @@ class MVISampleRepository @Inject constructor(
                 }
             }
 
-    suspend fun loadHomeArticles(pageNo: Int, pageSize: Int): List<Article> {
+    suspend fun loadMoreArticles(pageNo: Int, pageSize: Int): List<Article> {
         Timber.d("loadHomeArticles pageNo=$pageNo pageSize=$pageSize")
         return withContext(dispatcherProvider.io()) {
             homeApiContext.executeApiCall {
