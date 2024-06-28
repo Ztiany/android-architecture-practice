@@ -3,6 +3,7 @@ package me.ztiany.wan.sample.data
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.android.sdk.net.ServiceContext
+import com.app.base.utils.IntKeyPagingSource
 import com.app.common.api.dispatcher.DispatcherProvider
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.delay

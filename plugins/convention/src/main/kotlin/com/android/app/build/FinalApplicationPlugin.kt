@@ -27,11 +27,7 @@ class FinalApplicationPlugin : Plugin<Project> {
     private fun ApplicationExtension.configureAndroidApplication(project: Project) {
         defaultConfig {
             applicationId = BuildConfig.APPLICATION_ID
-
             targetSdk = BuildConfig.TARGET_SDK_VERSION
-
-            versionCode = BuildConfig.VERSION_CODE
-            versionName = BuildConfig.VERSION_NAME
         }
 
         packaging {

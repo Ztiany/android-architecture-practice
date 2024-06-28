@@ -1,6 +1,7 @@
-package me.ztiany.wan.splash
+package me.ztiany.wan.sample
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.app.base.app.AppBaseActivity
@@ -8,7 +9,6 @@ import com.app.base.app.CustomizeSystemBar
 import com.app.base.utils.setNavigatorBarColorLightest
 import com.app.common.api.router.AppRouter
 import dagger.hilt.android.AndroidEntryPoint
-import me.ztiany.wan.sample.SampleActivity
 import javax.inject.Inject
 
 /**
@@ -36,9 +36,17 @@ class SampleSplashActivity : AppBaseActivity(), CustomizeSystemBar {
             finish()
         } else {
             startActivity(Intent(this, SampleActivity::class.java))
-            overridePendingTransition(0, 0)
-            finish()
+            finishSelf()
         }
+    }
+
+    private fun finishSelf() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, 0)
+        } else {
+            overridePendingTransition(0, 0)
+        }
+        finish()
     }
 
 }

@@ -4,6 +4,10 @@ plugins {
 
 android {
     namespace = "me.ztiany.wan.app"
+    defaultConfig {
+        versionCode = project.findProperty("version_code").toString().toInt()
+        versionName = project.findProperty("version_name").toString()
+    }
 }
 
 dependencies {

@@ -11,11 +11,11 @@ android {
     namespace = "com.app.base"
 
     defaultConfig {
-        buildConfigField("boolean", "openDebug", "${BuildConfig.Env.OPEN_DEBUG}")
-        buildConfigField("boolean", "openLog", "${BuildConfig.Env.OPEN_LOG}")
-        buildConfigField("boolean", "showDebugTools", "${BuildConfig.Env.SHOW_DEBUG_TOOLS}")
-        buildConfigField("boolean", "trustAllHttpsCertification", "${BuildConfig.Env.HTTPS_TRUST_ALL}")
-        buildConfigField("String", "specifiedHost", "\"${BuildConfig.Env.HOST_ENV}\"")
+        buildConfigField("boolean", "openDebug", "${project.findProperty("open_debug")}")
+        buildConfigField("boolean", "openLog", "${project.findProperty("open_log")}")
+        buildConfigField("boolean", "showDebugTools", "${project.findProperty("show_debug_tools")}")
+        buildConfigField("boolean", "trustAllHttpsCertification", "${project.findProperty("https_trust_all")}")
+        buildConfigField("String", "specifiedHost", "\"${project.findProperty("host_env")}\"")
     }
 
     //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
@@ -69,6 +69,7 @@ dependencies {
     api(libs.androidx.exifinterface)
     api(libs.androidx.percentlayout)
     api(libs.google.ui.flexbox)
+    compileOnly(libs.androidx.paging.runtime)
 
     // hilt
     api(libs.google.hilt)
@@ -96,7 +97,7 @@ dependencies {
     implementation(libs.zelory.compressor)
 
     // debug
-    if (BuildConfig.Env.OPEN_DEBUG) {
+    if (project.findProperty("open_debug").toString().toBoolean()) {
         // stetho
         implementation(libs.facebook.stetho)
         implementation(libs.facebook.stetho.okhttp3)

@@ -18,13 +18,13 @@ class MainFragment : BaseUIFragment<SampleFragmentMainBinding>() {
     private lateinit var tabManager: MainTabManager
 
     @SuppressLint("BinaryOperationInTimber")
-    override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) {
+    override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) = withVB {
         //tab manager
-        tabManager = MainTabManager(requireContext(), childFragmentManager, R.id.flMainContainer)
+        tabManager = MainTabManager(requireContext(), childFragmentManager, R.id.sample_fl_container)
         tabManager.setup(savedInstanceState)
         //bottomBar
-        vb.mainBottomBar.itemIconTintList = null
-        vb.mainBottomBar.setOnNavigationItemSelectedListener {
+        sampleBottomBar.itemIconTintList = null
+        sampleBottomBar.setOnNavigationItemSelectedListener {
             tabManager.selectTabById(it.itemId)
             true
         }
@@ -57,8 +57,8 @@ private class MainTabManager(
 
     private class MainTabs : Tabs() {
         init {
-            add(FragmentInfo(PagerFragment::class.java, pageId = R.id.sample_table_pager))
-            add(FragmentInfo(ComponentFragment::class.java, pageId = R.id.sample_table_component))
+            add(FragmentInfo(PagerArchitectureFragment::class.java, pageId = R.id.sample_table_pager))
+            add(FragmentInfo(UIComponentFragment::class.java, pageId = R.id.sample_table_component))
         }
     }
 

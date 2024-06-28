@@ -28,11 +28,7 @@ class ModularizationApplicationPlugin : Plugin<Project> {
     private fun ApplicationExtension.configureAndroidApplication(project: Project) {
         defaultConfig {
             applicationId = "${BuildConfig.APPLICATION_ID}.${getName().lowercase()}"
-
             targetSdk = BuildConfig.TARGET_SDK_VERSION
-
-            versionCode = BuildConfig.VERSION_CODE
-            versionName = BuildConfig.VERSION_NAME
         }
 
         packaging {

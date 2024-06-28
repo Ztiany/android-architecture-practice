@@ -9,7 +9,7 @@ import me.ztiany.wan.sample.databinding.SampleFragmentPagerBinding
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PagerFragment : BaseUIFragment<SampleFragmentPagerBinding>() {
+class PagerArchitectureFragment : BaseUIFragment<SampleFragmentPagerBinding>() {
 
     @Inject lateinit var internalNavigator: SampleInternalNavigator
 

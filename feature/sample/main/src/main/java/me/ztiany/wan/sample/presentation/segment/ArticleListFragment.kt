@@ -53,8 +53,6 @@ class ArticleListFragment : BaseListFragment<ArticleVO, SampleFragmentFeedBindin
     }
 
     override fun onRefresh() {
-        // 处理 loading
-        handleListLoading()
         // 开始刷新
         startLoad(paging.size, paging.start)
     }
@@ -64,9 +62,13 @@ class ArticleListFragment : BaseListFragment<ArticleVO, SampleFragmentFeedBindin
     }
 
     private fun startLoad(size: Int, page: Int) = lifecycleScope.launch {
+        // 处理 loading
+        handleListLoading()
         try {
             // 加载到的数据交给 handleListData 处理
-            handleListData(articleViewModel.loadArticleList(page, size))
+            handleListData(articleViewModel.loadArticleList(page, size), hasMore = {
+                it.isNotEmpty()
+            })
         } catch (error: Throwable) {
             ensureActive()
             // 发生错误，交给 handleListError 处理

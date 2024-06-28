@@ -1,15 +1,11 @@
-package me.ztiany.wan.sample.data
+package com.app.base.utils
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.android.sdk.net.ServiceContext
-import kotlinx.coroutines.delay
 import timber.log.Timber
 
-/**
- * PagingSource 通用封装类。
- */
-internal class IntKeyPagingSource<S, SC : ServiceContext<S>, V : Any>(
+class IntKeyPagingSource<S, SC : ServiceContext<S>, V : Any>(
     private val pageStart: Int,
     private val serviceContext: SC,
     private val load: suspend (SC, Int, Int) -> List<V>,
@@ -28,9 +24,6 @@ internal class IntKeyPagingSource<S, SC : ServiceContext<S>, V : Any>(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, V> {
         val page = params.key ?: pageStart
-
-        // 默认网络请求延迟 2s
-        delay(2000)
 
         return try {
             val data = load(serviceContext, page, params.loadSize)

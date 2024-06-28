@@ -10,7 +10,7 @@ import me.ztiany.wan.sample.databinding.SampleFragmentComponentBinding
 /**
  * @author Ztiany
  */
-class ComponentFragment : BaseUIFragment<SampleFragmentComponentBinding>() {
+class UIComponentFragment : BaseUIFragment<SampleFragmentComponentBinding>() {
 
     override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) = withVB {
         sampleTvDialogConfirm.onThrottledClick {
