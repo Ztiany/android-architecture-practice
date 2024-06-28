@@ -1,4 +1,4 @@
-package me.ztiany.wan.sample.presentation.segment
+package me.ztiany.wan.sample.presentation.segment1
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -19,11 +19,15 @@ class PagerArchitectureFragment : BaseUIFragment<SampleFragmentPagerBinding>() {
         }
 
         sampleTvListSegment2.onThrottledClick {
-            showMessage("没有时间写！")
+            showMessage("TODO")
         }
 
         sampleTvListEpoxy.onThrottledClick {
             internalNavigator.showEpoxyList()
+        }
+
+        sampleTvListEpoxyMvi.onThrottledClick {
+            internalNavigator.showEpoxyMVIList()
         }
 
         sampleTvListPaging3.onThrottledClick {

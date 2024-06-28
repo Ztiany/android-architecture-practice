@@ -15,13 +15,12 @@ class MVIListController : ListEpoxyController<ArticleVO>() {
     private fun bindArticle(articleVO: ArticleVO) {
         articleItemView {
             id(articleVO.id)
-            author("ztiany")
-            updateTime("2021-10-10")
-            title("每日一问：Android 12 中的新特性")
-            category("Android")
-            collected(false)
+            author(articleVO.author)
+            updateTime(articleVO.updateTime)
+            title(articleVO.title)
+            category(articleVO.category)
+            collected(articleVO.isCollected)
         }
-
     }
 
 }

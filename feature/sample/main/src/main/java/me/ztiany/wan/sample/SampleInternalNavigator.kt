@@ -6,8 +6,9 @@ import com.android.base.fragment.tool.commit
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
 import me.ztiany.wan.sample.presentation.epoxy.FeedFragment
+import me.ztiany.wan.sample.presentation.mvi.MVIListFragment
 import me.ztiany.wan.sample.presentation.paging3.SquareFragment
-import me.ztiany.wan.sample.presentation.segment.ArticleListFragment
+import me.ztiany.wan.sample.presentation.segment1.SegmentedArticleList1Fragment
 import javax.inject.Inject
 
 @ActivityScoped
@@ -23,6 +24,12 @@ class SampleInternalNavigator @Inject constructor(
         }
     }
 
+    fun showEpoxyMVIList() {
+        activity.supportFragmentManager.commit {
+            addToStack(fragment = MVIListFragment())
+        }
+    }
+
     fun showPaging3List() {
         activity.supportFragmentManager.commit {
             addToStack(fragment = SquareFragment())
@@ -31,7 +38,7 @@ class SampleInternalNavigator @Inject constructor(
 
     fun showSegment1List() {
         activity.supportFragmentManager.commit {
-            addToStack(fragment = ArticleListFragment())
+            addToStack(fragment = SegmentedArticleList1Fragment())
         }
     }
 

@@ -7,14 +7,14 @@ import androidx.paging.map
 import com.android.base.fragment.ui.Paging
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
-import me.ztiany.wan.sample.data.SampleRepository
-import me.ztiany.wan.sample.presentation.epoxy.ArticleVOMapper
+import me.ztiany.wan.sample.data.Paging3SampleRepository
+import me.ztiany.wan.sample.presentation.epoxy.ArticleMapper
 import javax.inject.Inject
 
 @HiltViewModel
 class SquareViewModel @Inject constructor(
-    repository: SampleRepository,
-    articleVOMapper: ArticleVOMapper,
+    repository: Paging3SampleRepository,
+    articleMapper: ArticleMapper,
 ) : ViewModel() {
 
     val squareFlow = repository.loadSquareArticles(
@@ -22,7 +22,7 @@ class SquareViewModel @Inject constructor(
         Paging.defaultPagingSize
     ).cachedIn(viewModelScope)
         .map {
-            it.map(articleVOMapper::mapArticle)
+            it.map(articleMapper::mapArticle)
         }
 
 }

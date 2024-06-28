@@ -10,32 +10,23 @@ import com.android.base.fragment.list.handleListStateWithViewLifecycle
 import com.android.base.fragment.ui.ListLayoutHost
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.qmuiteam.qmui.kotlin.dip
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import me.ztiany.wan.sample.databinding.SampleFragmentFeedBinding
 import me.ztiany.wan.sample.presentation.epoxy.ArticleVO
+import timber.log.Timber
 
+@AndroidEntryPoint
 class MVIListFragment : BaseEpoxyListFragment<ArticleVO, SampleFragmentFeedBinding>() {
 
     private val listController by lazy { MVIListController() }
 
     private val viewModel by viewModels<MVIViewModel>()
 
-    private val loadMoreFlow = MutableSharedFlow<ArticleIntent.More>()
-
-    private val reportFlow = MutableSharedFlow<ArticleIntent.Report>()
-
-    private val intents by lazy {
-        merge(
-            flowOf(ArticleIntent.Init(1)),
-            loadMoreFlow,
-            reportFlow
-        )
-    }
+    private val intents = MutableSharedFlow<ArticleIntent>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +46,7 @@ class MVIListFragment : BaseEpoxyListFragment<ArticleVO, SampleFragmentFeedBindi
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
         subscribeViewModel()
+        autoRefresh()
     }
 
     private fun subscribeViewModel() {
@@ -62,12 +54,25 @@ class MVIListFragment : BaseEpoxyListFragment<ArticleVO, SampleFragmentFeedBindi
     }
 
     override fun onRefresh() {
-        //viewModel.refresh()
+        lifecycleScope.launch {
+            intents.emit(
+                ArticleIntent.Init(
+                    viewModel.articleState.value.paging.start,
+                    viewModel.articleState.value.paging.size
+                )
+            )
+        }
     }
 
     override fun onLoadMore() {
+        Timber.d("onLoadMore")
         lifecycleScope.launch {
-            loadMoreFlow.tryEmit(ArticleIntent.More(20))
+            intents.emit(
+                ArticleIntent.More(
+                    viewModel.articleState.value.paging.next,
+                    viewModel.articleState.value.paging.size
+                )
+            )
         }
     }
 

@@ -30,25 +30,31 @@
                 android:id="@+id/sample_tv_list_segment_1"
                 style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
                 android:layout_marginTop="10dp"
-                android:text="使用分段式实现一个列表页（方式 1）" />
+                android:text="A ListPage(Segmented Way 1)" />
 
             <com.android.base.ui.shape.ShapeableTextView
                 android:id="@+id/sample_tv_list_segment_2"
                 style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
                 android:layout_marginTop="10dp"
-                android:text="使用分段式实现一个列表页（方式2）" />
+                android:text="A ListPage(Segmented Way 2)" />
 
             <com.android.base.ui.shape.ShapeableTextView
                 android:id="@+id/sample_tv_list_epoxy"
                 style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
                 android:layout_marginTop="10dp"
-                android:text="使用 epoxy 实现一个列表页" />
+                android:text="A ListPage(By Epoxy)" />
+
+            <com.android.base.ui.shape.ShapeableTextView
+                android:id="@+id/sample_tv_list_epoxy_mvi"
+                style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
+                android:layout_marginTop="10dp"
+                android:text="A ListPage(By Epoxy and MVI)" />
 
             <com.android.base.ui.shape.ShapeableTextView
                 android:id="@+id/sample_tv_list_paging3"
                 style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
                 android:layout_marginTop="10dp"
-                android:text="使用 paging3 实现一个列表页" />
+                android:text="A ListPage(By Paging3)" />
 
         </LinearLayout>
 

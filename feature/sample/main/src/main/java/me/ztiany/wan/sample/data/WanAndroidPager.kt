@@ -1,6 +1,6 @@
 package me.ztiany.wan.sample.data
 
-data class Pager<T>(
+data class WanAndroidPager<T>(
     val datas: List<T> = emptyList(),
     val pageCount: Int = 0,
     val total: Int = 0,

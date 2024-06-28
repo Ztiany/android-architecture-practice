@@ -9,7 +9,8 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ActivityRetainedComponent;
-import me.ztiany.wan.sample.data.SampleApi;
+import dagger.hilt.android.scopes.ActivityRetainedScoped;
+import me.ztiany.wan.sample.data.WanAndroidApi;
 
 /**
  * @author Ztiany
@@ -18,9 +19,10 @@ import me.ztiany.wan.sample.data.SampleApi;
 @InstallIn(ActivityRetainedComponent.class)
 public class SampleInternalModule {
 
+    @ActivityRetainedScoped
     @Provides
-    static ServiceContext<SampleApi> provideSampleApi(ApiServiceFactoryProvider apiServiceFactoryProvider) {
-        return apiServiceFactoryProvider.get(SAMPLE_HOST_FLAG).createServiceContext(SampleApi.class);
+    static ServiceContext<WanAndroidApi> provideWanAndroidApi(ApiServiceFactoryProvider apiServiceFactoryProvider) {
+        return apiServiceFactoryProvider.get(SAMPLE_HOST_FLAG).createServiceContext(WanAndroidApi.class);
     }
 
 }
