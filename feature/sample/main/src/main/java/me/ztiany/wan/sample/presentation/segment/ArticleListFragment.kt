@@ -3,19 +3,18 @@ package me.ztiany.wan.sample.presentation.segment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.fragment.list.handleListData
 import com.android.base.fragment.list.handleListError
 import com.android.base.fragment.list.handleListLoading
 import com.android.base.fragment.list.segment.BaseListFragment
+import com.android.base.fragment.list.segment.startListJob
 import com.android.base.fragment.ui.ListLayoutHost
 import com.android.base.fragment.ui.toListDataHost
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.android.base.utils.android.views.dip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ensureActive
-import kotlinx.coroutines.launch
 import me.ztiany.wan.sample.databinding.SampleFragmentFeedBinding
 import me.ztiany.wan.sample.presentation.epoxy.ArticleVO
 import timber.log.Timber
@@ -61,7 +60,7 @@ class ArticleListFragment : BaseListFragment<ArticleVO, SampleFragmentFeedBindin
         startLoad(paging.size, paging.next)
     }
 
-    private fun startLoad(size: Int, page: Int) = lifecycleScope.launch {
+    private fun startLoad(size: Int, page: Int) = startListJob {
         // 处理 loading
         handleListLoading()
         try {
