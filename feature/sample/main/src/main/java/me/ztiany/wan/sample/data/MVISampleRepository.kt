@@ -25,7 +25,6 @@ class MVISampleRepository @Inject constructor(
 ) {
 
     private val localArticleFlow = flow {
-        delay(1000)
         emit(
             LoadedData(
                 storageManager.stable().getEntity<List<Article>>(ARTICLE_CACHE_KEY) ?: emptyList(),
@@ -46,21 +45,20 @@ class MVISampleRepository @Inject constructor(
             !it.fromRemote // return true to continue, false to stop.
         }
 
-    private fun loadFirstArticlePage(pageStart: Int, pageSize: Int) =
-        suspend {
-            Timber.d("loadHomeArticles pageNo=$pageStart pageSize=$pageSize")
-            delay(3000)
-            homeApiContext.executeApiCall { loadHomeArticles(pageStart, pageSize) }
-        }
-            .asFlow()
-            .map { pager ->
-                if (pager.datas.isNotEmpty()) {
-                    storageManager.stable().putEntity(ARTICLE_CACHE_KEY, pager.datas)
-                    LoadedData(pager.datas, true /* 网络请求成功时，中断流 */)
-                } else {
-                    LoadedData(emptyList(), false /* 没有数据，则用空数据替代 */)
-                }
+    private fun loadFirstArticlePage(pageStart: Int, pageSize: Int) = suspend {
+        Timber.d("loadHomeArticles pageNo=$pageStart pageSize=$pageSize")
+        delay(1000)
+        homeApiContext.executeApiCall { loadHomeArticles(pageStart, pageSize) }
+    }
+        .asFlow()
+        .map { pager ->
+            if (pager.datas.isNotEmpty()) {
+                storageManager.stable().putEntity(ARTICLE_CACHE_KEY, pager.datas)
+                LoadedData(pager.datas, true /* 网络请求成功时，中断流 */)
+            } else {
+                LoadedData(emptyList(), false /* 没有数据，则用空数据替代 */)
             }
+        }
 
     suspend fun loadMoreArticles(pageNo: Int, pageSize: Int): List<Article> {
         Timber.d("loadHomeArticles pageNo=$pageNo pageSize=$pageSize")

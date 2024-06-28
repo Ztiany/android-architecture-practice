@@ -25,6 +25,7 @@ import kotlinx.coroutines.launch
 import me.ztiany.wan.sample.data.MVISampleRepository
 import me.ztiany.wan.sample.presentation.epoxy.ArticleMapper
 import me.ztiany.wan.sample.presentation.epoxy.ArticleVO
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,21 +34,20 @@ class MVIViewModel @Inject constructor(
     private val articleMapper: ArticleMapper,
 ) : ViewModel() {
 
-    private val intent = MutableSharedFlow<ArticleIntent>()
+    private val intent = MutableSharedFlow<ArticleIntent>(1)
 
     private val eventChannel = Channel<ArticleEvent>()
     val eventFlow = eventChannel.receiveAsFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val articleState =
-        intent
-            .flatMapConcat { toPartialChangeFlow(it) }
-            .sendEvent()
-            .scan(PagingListState<ArticleVO>(isRefreshing = true)) { oldState, partialChange ->
-                partialChange.reduce(oldState)
-            }
-            .flowOn(Dispatchers.IO)
-            .stateIn(viewModelScope, SharingStarted.Eagerly, PagingListState(isRefreshing = true))
+    val articleState = intent
+        .flatMapConcat { toPartialChangeFlow(it) }
+        .sendEvent()
+        .scan(PagingListState<ArticleVO>(isRefreshing = true)) { oldState, partialChange ->
+            partialChange.reduce(oldState)
+        }
+        .flowOn(Dispatchers.IO)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, PagingListState(isRefreshing = true))
 
     private val paging: Paging
         get() = articleState.value.paging
@@ -57,24 +57,29 @@ class MVIViewModel @Inject constructor(
     }
 
     fun send(intent: ArticleIntent) {
-        viewModelScope.launch { this@MVIViewModel.intent.emit(intent) }
+        viewModelScope.launch {
+            this@MVIViewModel.intent.emit(intent)
+        }
     }
 
-    private fun toPartialChangeFlow(intent: ArticleIntent) = when (intent) {
-        is ArticleIntent.Init -> repository.firstArticlePage(paging.start, paging.size)
-            .map { Init.success(articleMapper.mapArticles(it)) }
-            .onStart { emit(Init.Loading) }
-            .catch { emit(Init.Fail(it)) }
+    private fun toPartialChangeFlow(intent: ArticleIntent): Flow<FeedsPartialChange> {
+        Timber.d("toPartialChangeFlow: $intent")
+        return when (intent) {
+            is ArticleIntent.Init -> repository.firstArticlePage(paging.start, paging.size)
+                .map { Init.success(articleMapper.mapArticles(it)) }
+                .onStart { emit(Init.Loading) }
+                .catch { emit(Init.Fail(it)) }
 
-        is ArticleIntent.More -> flow {
-            emit(articleMapper.mapArticles(repository.loadMoreArticles(paging.next, paging.size)))
+            is ArticleIntent.More -> flow {
+                emit(articleMapper.mapArticles(repository.loadMoreArticles(paging.next, paging.size)))
+            }
+                .map { More.success(it) }
+                .onStart { emit(More.Loading) }
+                .catch { emit(More.Fail(it)) }
+
+            is ArticleIntent.Report -> repository.reportArticle(intent.id)
+                .map { Report.success(it) }
         }
-            .map { More.success(it) }
-            .onStart { emit(More.Loading) }
-            .catch { emit(More.Fail(it)) }
-
-        is ArticleIntent.Report -> repository.reportArticle(intent.id)
-            .map { Report.success(it) }
     }
 
     private fun Flow<FeedsPartialChange>.sendEvent(): Flow<FeedsPartialChange> =
