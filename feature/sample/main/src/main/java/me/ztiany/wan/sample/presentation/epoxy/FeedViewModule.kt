@@ -1,6 +1,7 @@
 package me.ztiany.wan.sample.presentation.epoxy
 
 import androidx.lifecycle.ViewModel
+import com.android.base.fragment.list.HasMoreCheckMode
 import com.android.base.fragment.list.SimpleListStateHelper
 import com.android.base.fragment.vm.startListJob
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,11 +19,7 @@ class FeedViewModule @Inject constructor(
     private val articleVOMapper: ArticleVOMapper,
 ) : ViewModel() {
 
-    private val stateHelper = SimpleListStateHelper<FeedItem>(
-        listSize = { list ->
-            list.filter { it is ArticleVO && !it.isTop }.size
-        }
-    )
+    private val stateHelper = SimpleListStateHelper<FeedItem>(checkMode = HasMoreCheckMode.BY_LOADED_SIZE)
 
     val articles = stateHelper.state.asStateFlow()
 
@@ -41,7 +38,7 @@ class FeedViewModule @Inject constructor(
                 addAll(articleVOMapper.mapArticles(topArticles))
                 addAll(articleVOMapper.mapArticles(articles))
             }.apply {
-                stateHelper.replaceListAndUpdate(this, stateHelper.paging.hasMore(articles.size))
+                stateHelper.replaceListAndUpdate(this, articles.isNotEmpty())
             }
         } catch (e: Exception) {
             // check <https://stackoverflow.com/questions/76259793/is-it-necceary-to-rethrow-the-cancellationexception-in-kotlin> for more details.

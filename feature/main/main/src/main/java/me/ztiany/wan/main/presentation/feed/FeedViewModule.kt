@@ -18,11 +18,7 @@ class FeedViewModule @Inject constructor(
     private val articleVOMapper: ArticleVOMapper,
 ) : ViewModel() {
 
-    private val stateHelper = SimpleListStateHelper<FeedItem>(
-        listSize = { list ->
-            list.filter { it is ArticleVO && !it.isTop }.size
-        }
-    )
+    private val stateHelper = SimpleListStateHelper<FeedItem>()
 
     val articles = stateHelper.state.asStateFlow()
 
