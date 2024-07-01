@@ -1,7 +1,8 @@
 package me.ztiany.wan.sample.presentation.epoxy
 
 import androidx.lifecycle.ViewModel
-import com.android.base.fragment.list.HasMoreCheckMode
+import com.android.base.fragment.list.AutoPagingListStateHelper
+import com.android.base.fragment.list.SimpleListState
 import com.android.base.fragment.list.SimpleListStateHelper
 import com.android.base.fragment.vm.startListJob
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,7 @@ class FeedViewModule @Inject constructor(
     private val articleMapper: ArticleMapper,
 ) : ViewModel() {
 
-    private val stateHelper = SimpleListStateHelper<FeedItem>(checkMode = HasMoreCheckMode.BY_LOADED_SIZE)
+    private val stateHelper = SimpleListStateHelper<FeedItem>()
 
     val articles = stateHelper.state.asStateFlow()
 
@@ -53,7 +54,7 @@ class FeedViewModule @Inject constructor(
         try {
             val articles = homeRepository.loadHomeArticles(stateHelper.paging.next, stateHelper.paging.size)
             articleMapper.mapArticles(articles).apply {
-                stateHelper.appendListAndUpdate(this)
+                stateHelper.appendListAndUpdate(this, this.isNotEmpty())
             }
         } catch (e: Exception) {
             ensureActive()

@@ -5,8 +5,9 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.fragment.list.paging3.BasePagingFragment
-import com.android.base.fragment.list.paging3.handlePagingDataWithViewLifecycle
+import com.android.base.fragment.list.paging3.handlePagingData
 import com.android.base.fragment.list.paging3.withDefaultLoadStateFooter
+import com.android.base.fragment.tool.runRepeatedlyOnViewLifecycle
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.android.base.utils.common.unsafeLazy
 import com.qmuiteam.qmui.kotlin.dip
@@ -39,8 +40,8 @@ class SquareFragment : BasePagingFragment<MainFragmentFeedBinding>() {
         squareAdapter.refresh()
     }
 
-    private fun subscribeViewModel() {
-        handlePagingDataWithViewLifecycle(
+    private fun subscribeViewModel() = runRepeatedlyOnViewLifecycle {
+        pagingLayoutController.handlePagingData(
             adapter = squareAdapter,
             data = viewModel.squareFlow
         )

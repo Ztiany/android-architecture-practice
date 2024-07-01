@@ -5,7 +5,8 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.fragment.list.epoxy.BaseEpoxyListFragment
-import com.android.base.fragment.list.handleListStateWithViewLifecycle
+import com.android.base.fragment.list.handleListState
+import com.android.base.fragment.tool.runRepeatedlyOnViewLifecycle
 import com.android.base.fragment.ui.ListLayoutHost
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.qmuiteam.qmui.kotlin.dip
@@ -37,8 +38,8 @@ class FeedFragment : BaseEpoxyListFragment<FeedItem, MainFragmentFeedBinding>() 
         subscribeViewModel()
     }
 
-    private fun subscribeViewModel() {
-        handleListStateWithViewLifecycle(data = viewModel.articles)
+    private fun subscribeViewModel() = runRepeatedlyOnViewLifecycle {
+        listLayoutController.handleListState(viewModel.articles)
     }
 
     override fun onRefresh() {

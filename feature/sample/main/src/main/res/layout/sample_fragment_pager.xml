@@ -27,6 +27,12 @@
             android:orientation="vertical">
 
             <com.android.base.ui.shape.ShapeableTextView
+                android:id="@+id/sample_tv_state"
+                style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
+                android:layout_marginTop="10dp"
+                android:text="A StatePage" />
+
+            <com.android.base.ui.shape.ShapeableTextView
                 android:id="@+id/sample_tv_list_segment_1"
                 style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
                 android:layout_marginTop="10dp"

@@ -2,7 +2,7 @@ package me.ztiany.wan.sample.presentation.mvi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.base.fragment.list.PagingListState
+import com.android.base.fragment.list.AutoPagingListState
 import com.android.base.fragment.ui.Paging
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -43,13 +43,13 @@ class MVIViewModel @Inject constructor(
     val articleState = intent
         .flatMapConcat { toPartialChangeFlow(it) }
         .sendEvent()
-        .scan(PagingListState<ArticleVO>(isRefreshing = true)) { oldState, partialChange ->
+        .scan(AutoPagingListState<ArticleVO>(isRefreshing = true)) { oldState, partialChange ->
             partialChange.reduce(oldState)
         }
         .flowOn(Dispatchers.IO)
-        .stateIn(viewModelScope, SharingStarted.Eagerly, PagingListState(isRefreshing = true))
+        .stateIn(viewModelScope, SharingStarted.Eagerly, AutoPagingListState(isRefreshing = true))
 
-    private val paging: Paging
+    private val paging: Paging<Int>
         get() = articleState.value.paging
 
     init {

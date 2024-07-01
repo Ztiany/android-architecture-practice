@@ -14,6 +14,10 @@ class PagerArchitectureFragment : BaseUIFragment<SampleFragmentPagerBinding>() {
     @Inject lateinit var internalNavigator: SampleInternalNavigator
 
     override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) = withVB {
+        sampleTvState.onThrottledClick {
+            internalNavigator.showStatePage()
+        }
+
         sampleTvListSegment1.onThrottledClick {
             internalNavigator.showSegment1List()
         }

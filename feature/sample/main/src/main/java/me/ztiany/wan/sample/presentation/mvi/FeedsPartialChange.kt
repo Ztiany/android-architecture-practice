@@ -1,16 +1,15 @@
 package me.ztiany.wan.sample.presentation.mvi
 
-import com.android.base.fragment.list.PagingListState
+import com.android.base.fragment.list.AutoPagingListState
 import me.ztiany.wan.sample.presentation.epoxy.ArticleVO
-import me.ztiany.wan.sample.presentation.mvi.Init.Success
 
 sealed interface FeedsPartialChange {
-    fun reduce(oldState: PagingListState<ArticleVO>): PagingListState<ArticleVO>
+    fun reduce(oldState: AutoPagingListState<ArticleVO>): AutoPagingListState<ArticleVO>
 }
 
 sealed class Init : FeedsPartialChange {
 
-    override fun reduce(oldState: PagingListState<ArticleVO>): PagingListState<ArticleVO> = when (this) {
+    override fun reduce(oldState: AutoPagingListState<ArticleVO>): AutoPagingListState<ArticleVO> = when (this) {
         Loading -> oldState.toRefreshing()
         is Success -> oldState.replaceList(list, list.isNotEmpty())
         is Fail -> oldState.toRefreshError(error)
@@ -29,7 +28,7 @@ sealed class Init : FeedsPartialChange {
 
 sealed class More : FeedsPartialChange {
 
-    override fun reduce(oldState: PagingListState<ArticleVO>): PagingListState<ArticleVO> = when (this) {
+    override fun reduce(oldState: AutoPagingListState<ArticleVO>): AutoPagingListState<ArticleVO> = when (this) {
         Loading -> oldState.toLoadingMore()
         is Success -> oldState.appendList(list, list.isNotEmpty())
         is Fail -> oldState.toLoadMoreError(error)
@@ -48,7 +47,7 @@ sealed class More : FeedsPartialChange {
 
 sealed class Report : FeedsPartialChange {
 
-    override fun reduce(oldState: PagingListState<ArticleVO>): PagingListState<ArticleVO> = when (this) {
+    override fun reduce(oldState: AutoPagingListState<ArticleVO>): AutoPagingListState<ArticleVO> = when (this) {
         is Success -> oldState.copy(data = oldState.data.filterNot { it.id == id })
         is Fail -> oldState
     }

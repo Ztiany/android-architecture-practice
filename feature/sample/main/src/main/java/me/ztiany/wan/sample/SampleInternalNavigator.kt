@@ -9,11 +9,12 @@ import me.ztiany.wan.sample.presentation.epoxy.FeedFragment
 import me.ztiany.wan.sample.presentation.mvi.MVIListFragment
 import me.ztiany.wan.sample.presentation.paging3.SquareFragment
 import me.ztiany.wan.sample.presentation.segment1.SegmentedArticleList1Fragment
+import me.ztiany.wan.sample.presentation.state.SimpleStateFragment
 import javax.inject.Inject
 
 @ActivityScoped
 class SampleInternalNavigator @Inject constructor(
-    @ActivityContext context: Context
+    @ActivityContext context: Context,
 ) {
 
     private val activity = context as AppCompatActivity
@@ -39,6 +40,12 @@ class SampleInternalNavigator @Inject constructor(
     fun showSegment1List() {
         activity.supportFragmentManager.commit {
             addToStack(fragment = SegmentedArticleList1Fragment())
+        }
+    }
+
+    fun showStatePage() {
+        activity.supportFragmentManager.commit {
+            addToStack(fragment = SimpleStateFragment())
         }
     }
 

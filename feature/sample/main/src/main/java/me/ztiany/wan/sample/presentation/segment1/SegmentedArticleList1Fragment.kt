@@ -2,41 +2,36 @@ package me.ztiany.wan.sample.presentation.segment1
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.fragment.list.handleListData
 import com.android.base.fragment.list.handleListError
 import com.android.base.fragment.list.handleListStartLoadMore
 import com.android.base.fragment.list.handleListStartRefresh
-import com.android.base.fragment.list.segment.BaseListFragment
+import com.android.base.fragment.list.segment.CommonBaseListFragment
 import com.android.base.fragment.list.segment.startListJob
-import com.android.base.fragment.ui.ListLayoutHost
-import com.android.base.fragment.ui.toListDataHost
+import com.android.base.fragment.ui.SegmentedListLayoutHost
+import com.android.base.fragment.ui.toSegmentedListDataHost
 import com.android.base.ui.recyclerview.MarginDecoration
 import com.android.base.utils.android.views.dip
+import com.android.base.utils.common.unsafeLazy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ensureActive
 import me.ztiany.wan.sample.data.SampleRepository
 import me.ztiany.wan.sample.databinding.SampleFragmentFeedBinding
 import me.ztiany.wan.sample.presentation.epoxy.ArticleMapper
 import me.ztiany.wan.sample.presentation.epoxy.ArticleVO
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SegmentedArticleList1Fragment : BaseListFragment<ArticleVO, SampleFragmentFeedBinding>() {
+class SegmentedArticleList1Fragment : CommonBaseListFragment<ArticleVO, SampleFragmentFeedBinding>() {
 
     @Inject internal lateinit var repository: SampleRepository
 
     @Inject internal lateinit var articleMapper: ArticleMapper
 
-    private val articleAdapter by lazy {
-        ArticleListAdapter(this) { deleteItem(it) }
-    }
+    private val articleAdapter by unsafeLazy { ArticleListAdapter(this) { deleteItem(it) } }
 
-    private val articleViewModel by viewModels<ArticleViewModel>()
-
-    override fun provideListImplementation(view: View, savedInstanceState: Bundle?): ListLayoutHost<ArticleVO> {
+    override fun provideListImplementation(view: View, savedInstanceState: Bundle?): SegmentedListLayoutHost<ArticleVO, Int> {
         with(vb.mainRvArticles) {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(MarginDecoration(vertical = dip(10)))
@@ -45,25 +40,24 @@ class SegmentedArticleList1Fragment : BaseListFragment<ArticleVO, SampleFragment
             // 如果不需要开启加载更多：
             //adapter = articleAdapter
         }
-        return setUpList(articleAdapter.toListDataHost())
+        return setUpCommonList(articleAdapter.toSegmentedListDataHost())
     }
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
-        autoRefresh()
+        listLayoutController.autoRefresh()
     }
 
     private fun deleteItem(article: ArticleVO) {
-        Timber.d("list size = ${articleAdapter.getDataSize()}")
         articleAdapter.remove(article)
     }
 
     override fun onRefresh() {
-        handleListStartRefresh()
+        listLayoutController.handleListStartRefresh()
         startLoad(paging.size, paging.start)
     }
 
     override fun onLoadMore() {
-        handleListStartLoadMore()
+        listLayoutController.handleListStartLoadMore()
         startLoad(paging.size, paging.next)
     }
 
@@ -72,11 +66,11 @@ class SegmentedArticleList1Fragment : BaseListFragment<ArticleVO, SampleFragment
             // 加载数据
             val articles = articleMapper.mapArticles(repository.loadHomeArticles(page, size))
             // 将加载到的数据交给 handleListData 处理
-            handleListData(articles, hasMore = { it.isNotEmpty() })
+            listLayoutController.handleListData(articles, hasMore = { it.isNotEmpty() })
         } catch (error: Throwable) {
             ensureActive()
             // 发生错误，交给 handleListError 处理
-            handleListError(error)
+            listLayoutController.handleListError(error)
         }
     }
 
