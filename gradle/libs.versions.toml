@@ -239,7 +239,7 @@ compose-accompanist-material3-themeadapter = { module = "com.google.accompanist:
 # functional libraries
 # ======================================================
 ztiany-loadmoreadapter = "io.github.ztiany:android-loadmore-adapter:1.0.10"
-ztiany-mediaselector = "io.github.ztiany:android-media-selector:1.1.0"
+ztiany-mediaselector = "io.github.ztiany:android-media-selector:1.1.1"
 ztiany-archdelegate = "io.github.ztiany:android-arch-delegate:1.0.5"
 ztiany-simplehttp = "com.github.Ztiany:android-simple-http:1.2.2"
 ztiany-simplebus = "io.github.ztiany:android-simple-bus:1.0.0"
@@ -257,7 +257,7 @@ guolin-permissionx = "com.guolindev.permissionx:permissionx:1.7.1"
 
 # https://github.com/square/okhttp
 square-okhttp = "com.squareup.okhttp3:okhttp:4.12.0"
-square-okhttp-logging = "com.squareup.okhttp3:logging-interceptor:4.8.1"
+square-okhttp-logging = "com.squareup.okhttp3:logging-interceptor:4.12.0"
 
 # https://github.com/square/okio
 square-okio = "com.squareup.okio:okio:3.7.0"
@@ -297,8 +297,8 @@ zelory-compressor = "id.zelory:compressor:3.0.1"
 qmuiteam-qmui = "com.qmuiteam:qmui:2.1.0"
 
 # https://github.com/airbnb/epoxy
-airbnb-epoxy = "com.airbnb.android:epoxy:5.1.1"
-airbnb-epoxy-apt = "com.airbnb.android:epoxy-processor:5.1.1"
+airbnb-epoxy-core = "com.airbnb.android:epoxy:5.1.4"
+airbnb-epoxy-processor = "com.airbnb.android:epoxy-processor:5.1.4"
 
 # https://github.com/yshrsmz/KeyboardVisibilityEvent
 yslibrary-keyboardvisibilityevent = "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3"
@@ -314,9 +314,6 @@ kyleduo-switchbutton = "com.kyleduo.switchbutton:library:2.1.0"
 
 # https://github.com/Ztiany/android-drawable-view
 ztiany-drawableView = "io.github.ztiany:android-drawable-view:1.2.2"
-
-# https://github.com/getActivity/ToastUtils
-getactivity-toastutils = "com.github.getActivity:ToastUtils:11.0"
 
 # ======================================================
 # test
