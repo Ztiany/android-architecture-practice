@@ -8,6 +8,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:main:api"))
+    implementation(project(":feature:home:api"))
     implementation(project(":feature:account:api"))
 }

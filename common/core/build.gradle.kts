@@ -62,7 +62,7 @@ dependencies {
     // 性能监控
     implementation(project(":apm:core"))
     // 依赖的业务 API
-    implementation(project(":feature:main:api"))
+    implementation(project(":feature:home:api"))
 
     // androidx
     api(libs.androidx.ktx)

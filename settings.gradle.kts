@@ -117,19 +117,19 @@ class DependencySubstitutionPlugin : Plugin<Settings> {
 // 性能监控部分
 include(":apm:core")
 
+// 功能演示模块（不参入 app 打包）
+include(":feature:sample:main")
+include(":feature:sample:app")
+
 // 业务基础架构
 include(":common:api")
 include(":common:ui")
 include(":common:core")
 
-// 账户业务模块
-include(":feature:sample:main")
-include(":feature:sample:app")
-
 // 主业务模块
-include(":feature:main:main")
-include(":feature:main:api")
-include(":feature:main:app")
+include(":feature:home:main")
+include(":feature:home:api")
+include(":feature:home:app")
 
 // 账户业务模块
 include(":feature:account:main")

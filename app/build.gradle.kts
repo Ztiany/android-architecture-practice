@@ -13,7 +13,7 @@ android {
 dependencies {
     // modules
     implementation(project(":common:core"))
-    implementation(project(":feature:main:main"))
+    implementation(project(":feature:home:main"))
     implementation(project(":feature:account:main"))
 
     // hilt
