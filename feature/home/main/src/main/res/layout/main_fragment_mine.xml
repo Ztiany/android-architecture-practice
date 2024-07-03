@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true">
+
+    <FrameLayout
+        android:id="@+id/main_fl_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:foreground="@drawable/img_avatar_stroke"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/img_default_avatar"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle" />
+
+    </FrameLayout>
+
+    <com.android.base.ui.drawable.DTextView
+        android:id="@+id/main_tv_login"
+        style="@style/Widget.App.Button.Wrap.DView.PrimaryGradientRounded10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="6dp"
+        android:text="立即登录"
+        app:layout_constraintLeft_toRightOf="@+id/main_fl_avatar"
+        app:layout_constraintTop_toTopOf="@+id/main_fl_avatar" />
+
+    <TextView
+        android:id="@+id/main_tv_login_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:includeFontPadding="false"
+        android:text="登录开启安卓学习之旅"
+        android:textColor="?app_color_text_level2"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_fl_avatar"
+        app:layout_constraintLeft_toRightOf="@+id/main_fl_avatar" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/main_group_login_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="main_tv_login,main_tv_login_desc" />
+
+    <TextView
+        android:id="@+id/main_tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        tools:text="130***902"
+        android:textColor="?app_color_deepest"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/main_fl_avatar"
+        app:layout_constraintLeft_toRightOf="@id/main_fl_avatar"
+        app:layout_constraintTop_toTopOf="@id/main_fl_avatar" />
+
+    <com.android.base.ui.shape.ShapeableLinearLayout
+        android:id="@+id/main_ll_entrances"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/main_fl_avatar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

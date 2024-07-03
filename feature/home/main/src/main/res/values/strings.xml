@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation,ExtraTranslation">
+
+    <string name="main_tab_home">首页</string>
+    <string name="main_tab_box">百宝箱</string>
+    <string name="main_tab_mine">我的</string>
+    <string name="main_exit_tips">再点击一次退出 APP</string>
+    <string name="main_open_box">打开</string>
+    <string name="main_share_article">分享文章</string>
+    <string name="main_settings">功能设置</string>
+    <string name="main_feedback">使用反馈</string>
+
+</resources>

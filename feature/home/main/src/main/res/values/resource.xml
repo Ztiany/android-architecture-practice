@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============================ Launch ============================ -->
+    <style name="MainAppTheme.Launch" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/main_launch_bg</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <!-- ============================ Main ============================ -->
+    <item name="main_table_feed" type="id" />
+    <item name="main_table_box" type="id" />
+    <item name="main_table_mine" type="id" />
+
+    <item name="main_entrance_recharge_record" type="id" />
+    <item name="main_entrance_settings" type="id" />
+    <item name="main_entrance_feedback" type="id" />
+
+    <!-- https://stackoverflow.com/questions/40172219/custom-textsize-of-bottomnavigationview-support-android -->
+    <style name="MainTableTextAppearanceSelected" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="MainTableTextAppearanceNormal" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Main_StyleCodeDrawable_Shape_PopularBg">
+        <item name="cdv_drawable_type">gradient</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_gradient_start_color">#FF4178</item>
+        <item name="cgd_gradient_end_color">#FB7E4D</item>
+        <item name="cgd_corner_top_left">10dp</item>
+        <item name="cgd_corner_bottom_right">10dp</item>
+    </style>
+
+    <style name="Main.TabLayout.TextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>
