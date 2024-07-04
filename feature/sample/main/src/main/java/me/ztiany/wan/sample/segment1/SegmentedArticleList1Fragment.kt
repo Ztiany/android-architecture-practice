@@ -40,7 +40,7 @@ class SegmentedArticleList1Fragment : CommonBaseListFragment<ArticleVO, SampleFr
             // 如果不需要开启加载更多：
             //adapter = articleAdapter
         }
-        return setUpCommonList(articleAdapter.toSegmentedListDataHost())
+        return setUpList(articleAdapter.toSegmentedListDataHost())
     }
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
