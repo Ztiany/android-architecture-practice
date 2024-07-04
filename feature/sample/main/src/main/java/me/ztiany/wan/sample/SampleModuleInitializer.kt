@@ -11,6 +11,10 @@ import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.network.ApiServiceFactoryProvider
 import com.app.common.api.usermanager.UserManager
 import kotlinx.coroutines.CoroutineScope
+import me.ztiany.wan.sample.common.net.SAMPLE_HOST_FLAG
+import me.ztiany.wan.sample.common.net.newApiHandler
+import me.ztiany.wan.sample.common.net.newErrorBodyParser
+import me.ztiany.wan.sample.common.net.newHttpConfig
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton

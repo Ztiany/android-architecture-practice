@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.base.fragment.tool.commit
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
-import me.ztiany.wan.sample.presentation.epoxy.FeedFragment
-import me.ztiany.wan.sample.presentation.mvi.MVIListFragment
-import me.ztiany.wan.sample.presentation.paging3.SquareFragment
-import me.ztiany.wan.sample.presentation.segment1.SegmentedArticleList1Fragment
-import me.ztiany.wan.sample.presentation.state.SimpleStateFragment
+import me.ztiany.wan.sample.epoxy.FeedFragment
+import me.ztiany.wan.sample.mvi.presentation.MVIListFragment
+import me.ztiany.wan.sample.paging3.presentation.SquareFragment
+import me.ztiany.wan.sample.segment1.SegmentedArticleList1Fragment
+import me.ztiany.wan.sample.state.SimpleStateFragment
 import javax.inject.Inject
 
 @ActivityScoped
