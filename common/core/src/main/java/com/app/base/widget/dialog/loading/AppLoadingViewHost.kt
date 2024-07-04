@@ -2,13 +2,10 @@ package com.app.base.widget.dialog.loading
 
 import android.app.Dialog
 import android.content.Context
-import android.text.TextUtils
 import androidx.annotation.StringRes
 import com.android.base.fragment.ui.LoadingViewHost
-import com.android.base.fragment.ui.Message
 import com.app.base.ui.R
 import com.app.base.widget.dialog.ToastKit
-import timber.log.Timber
 
 internal class AppLoadingViewHost(private val context: Context) : LoadingViewHost {
 
@@ -16,7 +13,7 @@ internal class AppLoadingViewHost(private val context: Context) : LoadingViewHos
 
     override fun showLoadingDialog(message: CharSequence, cancelable: Boolean): Dialog {
         val dialog = initLoadingDialog()
-        if (TextUtils.isEmpty(message)) {
+        if (message.isEmpty()) {
             dialog.setMessage(R.string.dialog_loading)
         } else {
             dialog.setMessage(message)
@@ -73,13 +70,6 @@ internal class AppLoadingViewHost(private val context: Context) : LoadingViewHos
 
     override fun isLoadingDialogShowing(): Boolean {
         return loadingDialog?.isShowing == true
-    }
-
-    /*
-     TODO: implement this method.
-     */
-    override fun showMessage(message: Message) {
-        Timber.d("showMessage(Message %s) is not implemented.", message)
     }
 
 }

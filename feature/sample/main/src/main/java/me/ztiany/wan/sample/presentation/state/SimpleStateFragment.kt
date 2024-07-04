@@ -30,10 +30,12 @@ class SimpleStateFragment : BaseStateFragment<SampleFragmentFeedBinding>() {
         }
     }
 
-    override fun onViewPrepared(view: View, savedInstanceState: Bundle?) = runRepeatedlyOnViewLifecycle {
-        stateLayoutController.handleFlowDataState(viewModel.articles) {
-            onResult { list ->
-                articleAdapter.replaceAll(list)
+    override fun onViewPrepared(view: View, savedInstanceState: Bundle?) = invokeOnEnterTransitionEnd {
+        runRepeatedlyOnViewLifecycle {
+            stateLayoutController.handleFlowDataState(viewModel.articles) {
+                onResult { list ->
+                    articleAdapter.replaceAll(list)
+                }
             }
         }
     }

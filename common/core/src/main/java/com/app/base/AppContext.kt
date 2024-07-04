@@ -8,6 +8,7 @@ import com.android.base.core.AppLifecycle
 import com.android.base.core.BaseAppContext
 import com.android.base.core.ErrorClassifier
 import com.android.base.core.ErrorConvert
+import com.android.base.fragment.anim.HorizontalTransitions
 import com.android.base.fragment.fragmentModule
 import com.android.base.utils.BaseUtils
 import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
@@ -21,7 +22,6 @@ import com.app.apm.APM
 import com.app.base.app.AndroidPlatform
 import com.app.base.app.ComponentProcessor
 import com.app.common.api.errorhandler.ErrorHandler
-import com.app.base.app.FragmentScaleAnimator
 import com.app.base.config.AppSettings
 import com.app.base.data.protocol.newApiHandler
 import com.app.base.data.protocol.newErrorBodyParser
@@ -114,7 +114,7 @@ abstract class AppContext : BaseAppContext() {
                 //默认的 Fragment 容器 id
                 defaultFragmentContainerId = R.id.common_container_id
                 //默认的 Fragment 转场动画
-                defaultFragmentAnimator = FragmentScaleAnimator()
+                defaultFragmentTransitions = HorizontalTransitions()
                 //默认的通用的 LoadingDialog 和 Toast 实现
                 loadingViewHostFactory = { AppLoadingViewHost(it) }
             }

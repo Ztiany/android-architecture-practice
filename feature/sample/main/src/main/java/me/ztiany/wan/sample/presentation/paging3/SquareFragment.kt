@@ -31,9 +31,8 @@ class SquareFragment : BasePagingFragment<SampleFragmentFeedBinding>() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        subscribeViewModel()
+    override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
+        invokeOnEnterTransitionEnd { subscribeViewModel() }
     }
 
     override fun onRefresh() {

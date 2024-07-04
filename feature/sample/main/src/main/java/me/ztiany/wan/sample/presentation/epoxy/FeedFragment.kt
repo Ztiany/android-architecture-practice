@@ -31,7 +31,7 @@ class FeedFragment : BaseEpoxyListFragment<FeedItem, SampleFragmentFeedBinding>(
 
     override fun onViewPrepared(view: View, savedInstanceState: Bundle?) {
         super.onViewPrepared(view, savedInstanceState)
-        subscribeViewModel()
+        invokeOnEnterTransitionEnd { subscribeViewModel() }
     }
 
     private fun subscribeViewModel() = runRepeatedlyOnViewLifecycle {
