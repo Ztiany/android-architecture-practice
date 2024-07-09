@@ -28,7 +28,6 @@ class MVISampleRepository @Inject constructor(
 ) {
 
     private val localArticleFlow = flow {
-        delay(2000)
         emit(
             LoadedData(
                 storageManager.stable().getEntity<List<Article>>(ARTICLE_CACHE_KEY) ?: emptyList(),
@@ -55,7 +54,6 @@ class MVISampleRepository @Inject constructor(
 
     private fun loadFirstArticlePage(pageStart: Int, pageSize: Int) = suspend {
         Timber.d("loadHomeArticles pageNo=$pageStart pageSize=$pageSize")
-        delay(4000)
         homeApiContext.executeApiCall { loadHomeArticles(pageStart, pageSize) }
     }
         .asFlow()
