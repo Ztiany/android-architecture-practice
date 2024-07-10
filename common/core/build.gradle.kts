@@ -91,7 +91,7 @@ dependencies {
 
     // utils
     api(libs.jooq.joor)
-    api(libs.ztiany.simplebus)
+    api(libs.ztiany.livedataex)
     api(libs.ztiany.storage)
     api(libs.guolin.permissionx)
     implementation(libs.zelory.compressor)

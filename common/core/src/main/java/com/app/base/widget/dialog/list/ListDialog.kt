@@ -157,9 +157,6 @@ internal class ListDialog(
                 buttonView.isChecked = true
             }
 
-        override fun provideViewBinding(parent: ViewGroup, inflater: LayoutInflater) =
-            DialogListItemBinding.inflate(inflater, parent, false)
-
         override fun onBindItem(
             viewHolder: ViewBindingViewHolder<DialogListItemBinding>,
             item: CharSequence,

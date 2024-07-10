@@ -18,10 +18,6 @@ class ArticleListAdapter(
         onItemClicked(item)
     }
 
-    override fun provideViewBinding(parent: ViewGroup, inflater: LayoutInflater): SampleItemArticleBinding {
-        return SampleItemArticleBinding.inflate(inflater, parent, false)
-    }
-
     override fun onBindItem(viewHolder: ViewBindingViewHolder<SampleItemArticleBinding>, item: ArticleVO) = with(viewHolder) {
         vb.mainTvAuthor.text = item.author
         vb.mainTvTitle.text = item.title
