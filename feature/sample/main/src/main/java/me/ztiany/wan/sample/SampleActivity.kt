@@ -50,9 +50,9 @@ class SampleActivity : AppBaseActivity() {
         }
     }
 
-    override fun superOnBackPressed() {
+    override fun handleOnBackPressed() {
         if (!mainFragment.isVisible) {
-            super.superOnBackPressed()
+            super.handleOnBackPressed()
             return
         }
         if (clickToExit) {

@@ -44,7 +44,6 @@ final class AppMessageHandler implements MessageHandler {
     @Override
     public void onNotificationMessageArrived(@NotNull PushMessage pushMessage) {
         Timber.d("onNotificationMessageArrived() called with: pushMessage = [" + pushMessage + "]");
-        PushEventCenter.INSTANCE.processDirectMessage(pushMessage);
     }
 
     void setEnable(boolean enable) {
@@ -61,7 +60,7 @@ final class AppMessageHandler implements MessageHandler {
      * 透传，分发事件。
      */
     private void processDirectMessage(PushMessage pushMessage) {
-        PushEventCenter.INSTANCE.processDirectMessage(pushMessage);
+
     }
 
 }
