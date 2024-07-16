@@ -13,7 +13,7 @@ import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.utils.setNavigatorBarColorLightest
-import com.app.base.widget.dialog.ToastKit
+import com.app.base.widget.dialog.toast.ToastKit
 import com.app.common.api.usermanager.UserManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay

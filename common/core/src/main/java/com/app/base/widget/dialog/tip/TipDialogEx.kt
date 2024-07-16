@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.app.base.widget.dialog.BaseDialogBuilder
+import com.app.base.widget.dialog.common.BaseDialogBuilder
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.common
 
 import android.content.Context
 import android.content.res.ColorStateList

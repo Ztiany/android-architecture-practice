@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.android.base.fragment.ui.LoadingViewHost
 import com.app.base.ui.R
-import com.app.base.widget.dialog.ToastKit
+import com.app.base.widget.dialog.toast.ToastKit
 
 internal class AppLoadingViewHost(private val context: Context) : LoadingViewHost {
 

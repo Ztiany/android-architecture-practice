@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDialog
 import com.app.base.databinding.DialogLoadingBinding
-import com.app.base.widget.dialog.showCompat
+import com.app.base.widget.dialog.common.showCompat
 
 /**
  * @author Ztiany

@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import com.android.base.utils.android.views.getString
 import com.android.base.utils.android.views.textValue
-import com.app.base.widget.dialog.ToastKit
+import com.app.base.widget.dialog.toast.ToastKit
 import com.google.android.material.textfield.TextInputLayout
 
 /** 验证手机号的输入 */

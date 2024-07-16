@@ -14,7 +14,7 @@ import com.android.base.utils.android.views.beVisibleOrInvisible
 import com.android.base.utils.android.views.onGlobalLayoutOnce
 import com.app.base.databinding.DialogBottomSheetBinding
 import com.app.base.databinding.DialogBottomSheetItemBinding
-import com.app.base.widget.dialog.showCompat
+import com.app.base.widget.dialog.common.showCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlin.math.roundToInt
 
