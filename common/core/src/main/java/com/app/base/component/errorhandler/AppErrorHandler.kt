@@ -11,7 +11,7 @@ import com.app.base.app.CannotShowDialogOnIt
 import com.app.base.app.CannotShowExpiredDialogOnIt
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.base.data.protocol.ApiHelper
-import com.app.base.widget.dialog.ToastKit
+import com.app.base.widget.dialog.toast.ToastKit
 import com.app.base.widget.dialog.base.onDismiss
 import com.app.base.widget.dialog.confirm.ConfirmDialogInterface
 import com.app.base.widget.dialog.confirm.showConfirmDialog

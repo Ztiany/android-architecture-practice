@@ -26,7 +26,7 @@
         tools:text="我是标题"
         tools:visibility="visible" />
 
-    <com.app.base.widget.dialog.DialogBottomLayout
+    <com.app.base.widget.dialog.common.DialogBottomLayout
         android:id="@+id/dblDialogBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

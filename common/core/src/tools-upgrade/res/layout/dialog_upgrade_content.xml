@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@id/upgrade_tv_version"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <com.app.base.widget.dialog.DialogBottomLayout
+    <com.app.base.widget.dialog.common.DialogBottomLayout
         android:id="@+id/upgrade_bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

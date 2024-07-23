@@ -148,7 +148,7 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
     }
 
     @Override
-    protected boolean handleBackPress() {
+    protected boolean handleBackPressed() {
         boolean canGoBack = mWebView.canGoBack();
         Timber.d("canGoBack = %b", canGoBack);
         if (isVisible() && canGoBack) {

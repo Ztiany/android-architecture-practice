@@ -7,7 +7,7 @@ import com.android.base.utils.android.views.beVisible
 import com.android.base.utils.android.views.clearComponentDrawable
 import com.android.base.utils.android.views.setLeftDrawable
 import com.app.base.databinding.DialogConfirmLayoutBinding
-import com.app.base.widget.dialog.BaseDialogBuilder.Companion.NO_ID
+import com.app.base.widget.dialog.common.BaseDialogBuilder.Companion.NO_ID
 import com.app.base.widget.dialog.base.AppBaseDialog
 
 /**

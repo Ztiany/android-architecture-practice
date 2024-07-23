@@ -1,6 +1,6 @@
 @file:JvmName("DialogEx")
 
-package com.app.base.widget.dialog
+package com.app.base.widget.dialog.common
 
 import android.app.Dialog
 import android.content.Context

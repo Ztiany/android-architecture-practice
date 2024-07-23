@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import com.android.base.fragment.tool.doFragmentTransaction
 import com.android.base.utils.android.activityArgument
 import com.android.base.utils.android.activityArgumentNullable
-import com.android.base.utils.android.argument
-import com.android.base.utils.android.argumentNullable
 import com.app.base.R
 import com.app.base.app.AppBaseActivity
-import com.app.base.common.web.BrowserStarter.*
+import com.app.base.common.web.BrowserStarter.ARGUMENTS_KEY
+import com.app.base.common.web.BrowserStarter.CACHE_ENABLE
+import com.app.base.common.web.BrowserStarter.FRAGMENT_KEY
+import com.app.base.common.web.BrowserStarter.JS_CALL_INTERCEPTOR_CLASS_KEY
+import com.app.base.common.web.BrowserStarter.SHOW_HEADER_KEY
+import com.app.base.common.web.BrowserStarter.URL_KEY
 import com.app.base.config.AppSettings
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -37,6 +40,10 @@ class BrowserActivity : AppBaseActivity() {
     private val cacheEnable by activityArgument(CACHE_ENABLE, false)
 
     @Inject lateinit var appSettings: AppSettings
+
+    override fun initialize(savedInstanceState: Bundle?) {
+        enableTraditionalBackPressHandling()
+    }
 
     override fun provideLayout() = R.layout.app_base_web_activity
 

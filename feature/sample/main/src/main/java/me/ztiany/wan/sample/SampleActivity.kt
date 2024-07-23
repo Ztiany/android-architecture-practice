@@ -9,7 +9,7 @@ import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.utils.setNavigatorBarColorLightest
-import com.app.base.widget.dialog.ToastKit
+import com.app.base.widget.dialog.toast.ToastKit
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -50,9 +50,9 @@ class SampleActivity : AppBaseActivity() {
         }
     }
 
-    override fun superOnBackPressed() {
+    override fun handleOnBackPressed() {
         if (!mainFragment.isVisible) {
-            super.superOnBackPressed()
+            super.handleOnBackPressed()
             return
         }
         if (clickToExit) {

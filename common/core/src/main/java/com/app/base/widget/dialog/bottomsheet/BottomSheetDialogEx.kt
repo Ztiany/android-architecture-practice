@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.utils.android.views.getString
 import com.app.base.ui.R
-import com.app.base.widget.dialog.BaseDialogBuilder
+import com.app.base.widget.dialog.common.BaseDialogBuilder
 import com.google.android.material.color.MaterialColors
 
 class BottomSheetDialogBuilder internal constructor(val context: Context) {
