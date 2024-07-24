@@ -12,7 +12,7 @@ import com.app.base.config.AppSettings
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
 import com.app.base.debug.isOpenDebug
-import com.app.base.utils.deserializeJson
+import com.app.base.utils.json.deserializeJson
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.usermanager.UserManager
 import okhttp3.OkHttpClient

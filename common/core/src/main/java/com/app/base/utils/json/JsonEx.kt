@@ -1,4 +1,4 @@
-package com.app.base.utils
+package com.app.base.utils.json
 
 import com.android.sdk.net.core.json.GsonUtils
 import com.google.gson.Gson

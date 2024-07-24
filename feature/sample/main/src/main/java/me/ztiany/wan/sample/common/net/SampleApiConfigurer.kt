@@ -8,7 +8,7 @@ import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
 import com.app.base.data.protocol.ApiResult
 import com.app.base.debug.ifOpenLog
-import com.app.base.utils.deserializeJson
+import com.app.base.utils.json.deserializeJson
 import com.app.common.api.errorhandler.ErrorHandler
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
