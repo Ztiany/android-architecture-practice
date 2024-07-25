@@ -40,14 +40,10 @@ fun Array<String>.toJson(): String {
     return jsonObject.toString()
 }
 
-fun Any?.toJson(): String {
+fun Any.toJson(): String {
     if (this is String) {
         return this
     }
-    if (this == null) {
-        return ""
-    }
-
     try {
         return gson.toJson(this)
     } catch (e: Exception) {
