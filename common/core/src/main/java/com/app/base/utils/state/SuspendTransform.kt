@@ -13,7 +13,7 @@ fun <T> (suspend () -> T).transformToStateFlowCaught(): Flow<StateD<T>> {
         try {
             emit(StateD.success(invoke()))
         } catch (e: Exception) {
-            Timber.e(e, "transformToStateFlow")
+            Timber.e(e, "transformToStateFlowCaught")
             if (currentCoroutineContext().isActive) {
                 emit(StateD.error(e))
             }
