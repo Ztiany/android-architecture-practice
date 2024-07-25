@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
 import timber.log.Timber
 
-fun <T> (suspend () -> T).transformSuspendCallToStateFlow(): Flow<StateD<T>> {
+fun <T> (suspend () -> T).transformToStateFlowCaught(): Flow<StateD<T>> {
     return flow {
         emit(StateD.loading())
         try {
@@ -18,5 +18,12 @@ fun <T> (suspend () -> T).transformSuspendCallToStateFlow(): Flow<StateD<T>> {
                 emit(StateD.error(e))
             }
         }
+    }
+}
+
+fun <T> (suspend () -> T).transformToStateFlowUnCaught(): Flow<StateD<T>> {
+    return flow {
+        emit(StateD.loading())
+        emit(StateD.success(invoke()))
     }
 }
