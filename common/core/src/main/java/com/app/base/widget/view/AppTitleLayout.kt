@@ -25,9 +25,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.base.fragment.tool.exitFragment
 import com.android.base.ui.compat.MaterialToolbar
+import com.android.base.utils.android.views.activityContext
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.newMWLayoutParams
-import com.android.base.utils.android.views.realContext
 import com.android.base.utils.android.views.tintDrawable
 import com.android.base.utils.common.requireNonNull
 import com.app.base.R
@@ -192,7 +192,7 @@ class AppTitleLayout @JvmOverloads constructor(
     private fun fitStatusInset() {
         ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            Timber.d("AppTitleLayout(${(realContext)}) fitStatusInset is executed:  systemBars = $systemBars}")
+            Timber.d("AppTitleLayout(${(activityContext)}) fitStatusInset is executed:  systemBars = $systemBars}")
             setPadding(
                 paddingLeft,
                 mOriginalTopPadding + systemBars.top,
@@ -224,7 +224,7 @@ class AppTitleLayout @JvmOverloads constructor(
             it.onClick(v)
             return
         }
-        val realContext = this.realContext
+        val realContext = this.activityContext
         if (realContext != null) {
             realContext.exitFragment(false)
         } else {

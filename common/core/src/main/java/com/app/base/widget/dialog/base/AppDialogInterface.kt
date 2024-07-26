@@ -32,7 +32,7 @@ fun AppDialogInterface.setCanceledOnTouchOutside(cancelable: Boolean): AppDialog
     return this
 }
 
-val AppDialogInterface.realContext: FragmentActivity?
+val AppDialogInterface.activityContext: FragmentActivity?
     get() {
         var context = dialog.context
         while (context is android.content.ContextWrapper) {

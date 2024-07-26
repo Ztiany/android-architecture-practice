@@ -8,7 +8,7 @@ import android.view.WindowManager
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import com.android.base.utils.android.compat.AndroidVersion
-import com.android.base.utils.android.views.realContext
+import com.android.base.utils.android.views.activityContext
 import com.app.base.ui.R
 import com.google.android.material.color.MaterialColors
 
@@ -66,7 +66,7 @@ fun Dialog.showCompat(superShow: () -> Unit) {
 
     superShow()
 
-    realContext?.let {
+    activityContext?.let {
         window?.let { safeWindow ->
             safeWindow.decorView.systemUiVisibility = it.window.decorView.systemUiVisibility
             if (AndroidVersion.atLeast(28)) {
