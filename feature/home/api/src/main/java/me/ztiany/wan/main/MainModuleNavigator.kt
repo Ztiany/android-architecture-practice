@@ -1,9 +1,9 @@
 package me.ztiany.wan.main
 
 import android.content.Context
-import com.app.common.api.router.AppNavigator
+import com.app.common.api.router.Navigator
 
-interface MainModuleNavigator : AppNavigator {
+interface MainModuleNavigator : Navigator {
 
     fun openMain(context: Context)
 

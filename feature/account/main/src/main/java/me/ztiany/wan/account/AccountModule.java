@@ -1,7 +1,7 @@
 package me.ztiany.wan.account;
 
-import com.app.common.api.router.AppNavigator;
-import com.app.base.component.router.AppRouterKey;
+import com.app.common.api.router.Navigator;
+import com.app.base.component.router.NavigatorKey;
 
 import javax.inject.Singleton;
 
@@ -22,8 +22,8 @@ public class AccountModule {
     @Provides
     @Singleton
     @IntoMap
-    @AppRouterKey(AccountModuleNavigator.class)
-    public AppNavigator provideAccountModuleNavigator() {
+    @NavigatorKey(AccountModuleNavigator.class)
+    public Navigator provideAccountModuleNavigator() {
         return new AccountModuleNavigatorImpl();
     }
 

@@ -1,8 +1,8 @@
 package me.ztiany.wan.main.home;
 
 import com.android.base.core.AppLifecycle;
-import com.app.base.component.router.AppRouterKey;
-import com.app.common.api.router.AppNavigator;
+import com.app.base.component.router.NavigatorKey;
+import com.app.common.api.router.Navigator;
 
 import javax.inject.Singleton;
 
@@ -12,9 +12,7 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
-import me.ztiany.wan.main.home.MainModuleInitializer;
 import me.ztiany.wan.main.MainModuleNavigator;
-import me.ztiany.wan.main.home.MainModuleNavigatorImpl;
 
 /**
  * @author Ztiany
@@ -32,8 +30,8 @@ public class MainSingletonModule {
     @Provides
     @Singleton
     @IntoMap
-    @AppRouterKey(MainModuleNavigator.class)
-    public AppNavigator provideMainModuleNavigator() {
+    @NavigatorKey(MainModuleNavigator.class)
+    public Navigator provideMainModuleNavigator() {
         return new MainModuleNavigatorImpl();
     }
 
