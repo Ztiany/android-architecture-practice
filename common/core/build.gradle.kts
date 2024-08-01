@@ -95,7 +95,6 @@ dependencies {
     api(libs.ztiany.livedataex)
     api(libs.ztiany.storage)
     api(libs.guolin.permissionx)
-    implementation(libs.zelory.compressor)
 
     // debug
     if (project.findProperty("open_debug").toString().toBoolean()) {
