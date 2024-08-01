@@ -21,6 +21,9 @@ internal class ProcessorManager(
 
     private val processorChain = object : ProcessorChain {
 
+        override val scene: String
+            get() = currentScene
+
         override fun onCanceled() {
             resultListener.onCanceled()
         }
@@ -47,15 +50,15 @@ internal class ProcessorManager(
 
     override fun onSaveInstanceState(outState: Bundle) {
         Timber.d("onSaveInstanceState: processorProgress = $processorProgress")
-        outState.putInt(PROGRESS_KEY, processorProgress)
         outState.putString(CURRENT_SCENE_KEY, currentScene)
+        outState.putInt(PROGRESS_KEY, processorProgress)
         processors.forEach { it.onSaveInstanceState(outState) }
     }
 
     override fun onRestoreInstanceState(outState: Bundle?) {
         outState?.let {
-            processorProgress = it.getInt(PROGRESS_KEY)
             currentScene = it.getString(CURRENT_SCENE_KEY, "")
+            processorProgress = it.getInt(PROGRESS_KEY)
         }
         Timber.d("onRestoreInstanceState: processorProgress = $processorProgress")
         processors.forEach { it.onRestoreInstanceState(outState) }
