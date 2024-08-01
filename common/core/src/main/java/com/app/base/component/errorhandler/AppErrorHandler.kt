@@ -7,14 +7,14 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
-import com.app.base.app.CannotShowDialogOnIt
-import com.app.base.app.CannotShowExpiredDialogOnIt
-import com.app.common.api.errorhandler.ErrorHandler
-import com.app.base.data.protocol.ApiHelper
-import com.app.base.widget.dialog.toast.ToastKit
+import com.app.common.api.protocol.CannotShowDialogOnIt
+import com.app.common.api.protocol.CannotShowExpiredDialogOnIt
+import com.app.base.data.protocol.isGlobalApiError
 import com.app.base.widget.dialog.base.onDismiss
 import com.app.base.widget.dialog.confirm.ConfirmDialogInterface
 import com.app.base.widget.dialog.confirm.showConfirmDialog
+import com.app.base.widget.dialog.toast.ToastKit
+import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
 import com.app.common.api.usermanager.isUserLogin
@@ -25,12 +25,11 @@ import java.lang.ref.WeakReference
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @Singleton
 internal class AppErrorHandler @Inject constructor(
     private val appRouter: AppRouter,
     private val userManager: UserManager,
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
 ) : ErrorHandler {
 
     private var showingDialog: WeakReference<ConfirmDialogInterface>? = null
@@ -42,21 +41,17 @@ internal class AppErrorHandler @Inject constructor(
     }
 
     override fun handleError(throwable: Throwable) {
-        if (!isTokenExpired(throwable)) {
+        if (!throwable.isGlobalApiError()) {
             ToastKit.showMessage(context, generateMessage(throwable))
         }
     }
 
     override fun handleGlobalError(throwable: Throwable) {
         handler.post {
-            if (isTokenExpired(throwable) && userManager.isUserLogin()) {
-                showReLoginDialog(throwable as ApiErrorException)
+            if (throwable.isGlobalApiError() && userManager.isUserLogin()) {
+                showReLoginDialog(throwable)
             }
         }
-    }
-
-    private fun isTokenExpired(throwable: Throwable): Boolean {
-        return ApiHelper.isAuthenticationExpired(throwable)
     }
 
     private fun showReLoginDialog(apiErrorException: ApiErrorException): Boolean {
@@ -108,11 +103,7 @@ internal class AppErrorHandler @Inject constructor(
     }
 
     private fun createMessageByErrorType(apiErrorException: ApiErrorException): CharSequence {
-        return when (apiErrorException.code) {
-            ApiHelper.SSO -> "您的账号已在其他设备登录"
-            ApiHelper.TOKEN_EXPIRED, ApiHelper.TOKEN_INVALIDATE -> "您的登录已过期，请重新登录"
-            else -> "您的登录已过期，请重新登录"
-        }
+        return "您的登录已过期，请重新登录"
     }
 
 }

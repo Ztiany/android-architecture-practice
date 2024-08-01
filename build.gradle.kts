@@ -38,7 +38,9 @@ allprojects {
             libs.google.ui.material,
             // kotlin
             libs.kotlin.stdlib,
-            libs.kotlinx.coroutines
+            libs.kotlinx.coroutines,
+            // gson
+            libs.google.gson
         )
     }
 }

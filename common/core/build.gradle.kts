@@ -1,5 +1,3 @@
-import com.android.app.build.BuildConfig
-
 plugins {
     alias(libs.plugins.app.common.library)
     alias(libs.plugins.jetbrains.kotlin.kapt)
@@ -55,10 +53,14 @@ dependencies {
     api(libs.base.arch.fragment)
     // 通用工具
     api(libs.base.arch.utils)
-    // SDK API 规范
-    api(project(":common:ui"))
     // SDK UI 规范
+    api(project(":common:ui"))
+    // SDK API 规范
     api(project(":common:api"))
+    // HTTP API 规范
+    api(project(":common:http"))
+    // 公共组件
+    api(project(":component:selector"))
     // 性能监控
     implementation(project(":apm:core"))
     // 依赖的业务 API
@@ -86,7 +88,6 @@ dependencies {
     kapt(libs.bumptech.glide.ksp)
 
     // ui
-    api(libs.ztiany.mediaselector)
     api(libs.yslibrary.keyboardvisibilityevent)
 
     // utils

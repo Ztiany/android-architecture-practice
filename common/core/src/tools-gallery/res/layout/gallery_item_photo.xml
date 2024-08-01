@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <uk.co.senab.photoview.PhotoView
+    <!--<uk.co.senab.photoview.PhotoView
         android:id="@+id/galleryIvThumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +21,6 @@
     <uk.co.senab.photoview.PhotoView
         android:id="@+id/galleryIv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" />-->
 
 </FrameLayout>

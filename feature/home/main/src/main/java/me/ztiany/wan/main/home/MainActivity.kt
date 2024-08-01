@@ -14,6 +14,7 @@ import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.utils.setNavigatorBarColorLightest
 import com.app.base.widget.dialog.toast.ToastKit
+import com.app.common.api.protocol.TheMainPage
 import com.app.common.api.usermanager.UserManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -28,7 +29,7 @@ import javax.inject.Inject
  *@author Ztiany
  */
 @AndroidEntryPoint
-class MainActivity : AppBaseActivity() {
+class MainActivity : AppBaseActivity(), TheMainPage {
 
     private var clickToExit = false
 

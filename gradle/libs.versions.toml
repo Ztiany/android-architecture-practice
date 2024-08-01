@@ -9,14 +9,14 @@ compose = '1.4.3'
 accompanist = "0.30.1"
 desugar = "2.0.4"
 arch = "2.2.0"
-appcompat = "1.6.1"
-activity = "1.7.1"
-fragment = "1.5.7"
-lifecycle = "2.6.1"
-ktx = "1.10.1"
-room = "2.5.1"
-paging = "3.3.0"
-persistence = "2.3.1"
+appcompat = "1.7.0"
+activity = "1.9.1"
+fragment = "1.8.2"
+lifecycle = "2.8.4"
+ktx = "1.13.1"
+room = "2.6.1"
+paging = "3.3.1"
+persistence = "2.4.0"
 recyclerview = "1.3.2"
 recyclerview_selection = "1.1.0"
 constraintlayout = "2.1.4"
@@ -27,17 +27,17 @@ viewpager2 = "1.1.0"
 async_layout = "1.0.0"
 dynamicanimation = "1.0.0"
 swiperefresh = "1.2.0-alpha01"
-transition = "1.4.1"
-navigation = '2.5.3'
+transition = "1.5.1"
+navigation = '2.7.7'
 hilt = '2.48'
-annotations = "1.6.0"
-exifinterface = "1.3.6"
+annotations = "1.8.1"
+exifinterface = "1.3.7"
 biometric = "1.1.0"
 documentfile = "1.0.1"
 startup = "1.1.1"
-concurrent = "1.1.0"
-datastore = "1.0.0"
-retrofit = "2.9.0"
+concurrent = "1.2.0"
+datastore = "1.1.1"
+retrofit = "2.11.0"
 
 
 [libraries]
@@ -152,7 +152,7 @@ google-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", ver
 google-desugar-jdklibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
 # ui component
 # material https://github.com/material-components/material-components-android
-google-ui-material = "com.google.android.material:material:1.9.0"
+google-ui-material = "com.google.android.material:material:1.12.0"
 # flexbox https://github.com/google/flexbox-layout/
 google-ui-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
 
@@ -167,7 +167,7 @@ kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref =
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 # Metadata: https://github.com/JetBrains/kotlin/tree/master/libraries/kotlinx-metadata/jvm
-kotlinx-metadata = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0"
+kotlinx-metadata = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.9.0"
 
 # ======================================================
 # compose
@@ -239,7 +239,6 @@ compose-accompanist-material3-themeadapter = { module = "com.google.accompanist:
 # functional libraries
 # ======================================================
 ztiany-loadmoreadapter = "io.github.ztiany:android-loadmore-adapter:1.0.10"
-ztiany-mediaselector = "io.github.ztiany:android-media-selector:1.1.1"
 ztiany-archdelegate = "io.github.ztiany:android-arch-delegate:1.0.5"
 ztiany-simplehttp = "com.github.Ztiany:android-simple-http:1.2.2"
 ztiany-livedataex = "com.github.Ztiany:android-livedata-ex:1.0.3"
@@ -253,7 +252,7 @@ ztiany-rxjava2kit = "io.github.ztiany:android-rxjava2-kit:1.0.3"
 google-auto-service = "com.google.auto.service:auto-service:1.0"
 
 # https://github.com/guolindev/PermissionX
-guolin-permissionx = "com.guolindev.permissionx:permissionx:1.7.1"
+guolin-permissionx = "com.guolindev.permissionx:permissionx:1.8.0"
 
 # https://github.com/square/okhttp
 square-okhttp = "com.squareup.okhttp3:okhttp:4.12.0"
@@ -269,7 +268,7 @@ square-retrofit-calladapter-rxjava = { module = "com.squareup.retrofit2:adapter-
 square-retrofit-calladapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "retrofit" }
 
 # https://github.com/google/gson/blob/master/UserGuide.md#TOC-Overview
-google-gson = "com.google.code.gson:gson:2.10.1"
+google-gson = "com.google.code.gson:gson:2.11.0"
 
 # Choose one of the following: glide or coil. don't use them together.
 # https://github.com/bumptech/glide
@@ -289,6 +288,11 @@ jooq-joor = "org.jooq:joor-java-6:0.9.7"
 
 # https://github.com/zetbaitsu/Compressor
 zelory-compressor = "id.zelory:compressor:3.0.1"
+
+# https://github.com/LuckSiege/PictureSelector
+lucksiege-pictureselector = "io.github.lucksiege:pictureselector:v3.11.2"
+lucksiege-compress = "io.github.lucksiege:compress:v3.11.2"
+lucksiege-ucrop = "io.github.lucksiege:ucrop:v3.11.2"
 
 # ======================================================
 # ui libraries
@@ -325,7 +329,7 @@ test-junit = { module = "junit:junit", version.ref = "junit" }
 # debug libraries
 # ======================================================
 # https://github.com/square/leakcanary
-squareup-leakcanary-debug = "com.squareup.leakcanary:leakcanary-android:2.1"
+squareup-leakcanary-debug = "com.squareup.leakcanary:leakcanary-android:2.8"
 
 # http://facebook.github.io/stetho
 facebook-stetho = "com.facebook.stetho:stetho:1.5.1"

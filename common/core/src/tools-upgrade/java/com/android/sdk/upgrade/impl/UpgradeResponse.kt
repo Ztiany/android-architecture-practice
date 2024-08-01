@@ -1,6 +1,6 @@
 package com.android.sdk.upgrade.impl
 
-import com.app.common.api.protocol.FLAG_POSITIVE
+import com.app.base.data.protocol.ApiFlag
 
 data class UpgradeResponse(
     val appId: Int = 0,
@@ -14,8 +14,8 @@ data class UpgradeResponse(
     val url: String = "",
     val versionDescription: String = "",
     val versionNumber: String = "",
-    val versionType: Int = 0
+    val versionType: Int = 0,
 )
 
 val UpgradeResponse.isForce: Boolean
-    get() = updateStatus == FLAG_POSITIVE
+    get() = updateStatus == ApiFlag.API_FLAG_POSITIVE

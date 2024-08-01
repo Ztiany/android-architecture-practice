@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.app.base.app.AppBaseActivity
-import com.app.base.app.CustomizeSystemBar
+import com.app.common.api.protocol.CustomizeSystemBar
 import com.app.base.utils.setNavigatorBarColorLightest
 import com.app.common.api.router.AppRouter
 import me.ztiany.wan.main.home.MainActivity

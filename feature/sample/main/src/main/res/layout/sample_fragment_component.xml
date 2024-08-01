@@ -31,6 +31,23 @@
                 android:layout_height="wrap_content"
                 android:background="?app_color_main"
                 android:padding="15dp"
+                android:text="媒体选择器"
+                android:textColor="?app_color_lightest"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <com.android.base.ui.drawable.DTextView
+                android:id="@+id/sample_tv_open_media_selector"
+                style="@style/Widget.App.Button.Long.DView.PrimaryGradientRounded10"
+                android:layout_marginTop="10dp"
+                android:text="打开媒体选择器" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="?app_color_main"
+                android:padding="15dp"
                 android:text="按钮"
                 android:textColor="?app_color_lightest"
                 android:textSize="30sp"

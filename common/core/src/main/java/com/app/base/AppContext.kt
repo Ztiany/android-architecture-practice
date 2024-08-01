@@ -11,7 +11,6 @@ import com.android.base.core.ErrorConvert
 import com.android.base.fragment.anim.HorizontalTransitions
 import com.android.base.fragment.fragmentModule
 import com.android.base.utils.BaseUtils
-import com.android.sdk.mediaselector.common.MediaSelectorConfiguration
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ServerErrorException
 import com.android.sdk.net.extension.init
@@ -122,7 +121,6 @@ abstract class AppContext : BaseAppContext() {
     }
 
     private fun configLibraries() {
-        MediaSelectorConfiguration.forceUseLegacyApi(true)
         AppUpgradeChecker.installInteractor(appUpgradeInteractor.get())
     }
 

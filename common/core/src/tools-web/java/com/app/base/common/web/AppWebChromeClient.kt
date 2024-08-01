@@ -3,10 +3,11 @@ package com.app.base.common.web
 import android.Manifest
 import android.annotation.SuppressLint
 import android.net.Uri
-import android.webkit.*
-import com.android.sdk.mediaselector.common.ResultListener
-import com.android.sdk.mediaselector.system.SystemMediaSelector
-import com.android.sdk.mediaselector.system.newSystemMediaSelector
+import android.webkit.JsPromptResult
+import android.webkit.JsResult
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import com.permissionx.guolindev.PermissionX
 import timber.log.Timber
 
@@ -20,29 +21,29 @@ private val possibleTypes = listOf(
  * @author Ztiany
  */
 internal class AppWebChromeClient(
-    private val host: BaseWebFragment
+    private val host: BaseWebFragment,
 ) : WebChromeClient() {
 
     private var appWebChromeClientCallback: AppWebChromeClientCallback? = null
 
     private var uriValuesCallback: ValueCallback<Array<Uri>>? = null
 
-    private val systemMediaSelector: SystemMediaSelector
+    /* private val systemMediaSelector: SystemMediaSelector
 
-    init {
-        systemMediaSelector = newSystemMediaSelector(host, object : ResultListener {
-            override fun onTakeSuccess(result: List<Uri>) {
-                if (result.isEmpty()) {
-                    returnEmptyFile()
-                } else {
-                    returnFile(result)
-                }
-            }
+     init {
+         systemMediaSelector = newSystemMediaSelector(host, object : ResultListener {
+             override fun onTakeSuccess(result: List<Uri>) {
+                 if (result.isEmpty()) {
+                     returnEmptyFile()
+                 } else {
+                     returnFile(result)
+                 }
+             }
 
-            override fun onCancel() = returnEmptyFile()
-            override fun onTakeFail() = returnEmptyFile()
-        })
-    }
+             override fun onCancel() = returnEmptyFile()
+             override fun onTakeFail() = returnEmptyFile()
+         })
+     }*/
 
     fun setAppWebChromeClientCallback(appWebChromeClientCallback: AppWebChromeClientCallback?) {
         this.appWebChromeClientCallback = appWebChromeClientCallback
@@ -108,7 +109,7 @@ internal class AppWebChromeClient(
         if (!acceptType.isNullOrEmpty() && possibleTypes.any { acceptType.contains(it) }) {
             takeImages()
         } else {
-            systemMediaSelector.takeFileFromSystem().mimeType(acceptType).start()
+            //systemMediaSelector.takeFileFromSystem().mimeType(acceptType).start()
         }
     }
 
@@ -117,7 +118,7 @@ internal class AppWebChromeClient(
             PermissionX.init(host).permissions(Manifest.permission.CAMERA)
                 .request { allGranted, _, _ ->
                     if (allGranted) {
-                        systemMediaSelector.takePhotoByCamera().crop().start()
+                        //systemMediaSelector.takePhotoByCamera().crop().start()
                     } else {
                         returnEmptyFile()
                     }
@@ -126,7 +127,7 @@ internal class AppWebChromeClient(
             PermissionX.init(host).permissions(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .request { allGranted, _, _ ->
                     if (allGranted) {
-                        systemMediaSelector.takePhotoFromSystem().crop().start()
+                        // systemMediaSelector.takePhotoFromSystem().crop().start()
                     } else {
                         returnEmptyFile()
                     }

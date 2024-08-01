@@ -5,7 +5,7 @@ import com.android.base.fragment.tool.doFragmentTransaction
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNull
 import com.app.base.app.AppBaseActivity
-import com.app.base.app.CannotShowExpiredDialogOnIt
+import com.app.common.api.protocol.CannotShowExpiredDialogOnIt
 import me.ztiany.wan.account.presentation.sms.SmsLoginFragment
 import com.google.android.material.color.MaterialColors
 import dagger.hilt.android.AndroidEntryPoint

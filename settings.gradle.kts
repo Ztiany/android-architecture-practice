@@ -122,9 +122,14 @@ include(":feature:sample:main")
 include(":feature:sample:app")
 
 // 业务基础架构
-include(":common:api")
 include(":common:ui")
+include(":common:api")
+include(":common:http")
 include(":common:core")
+
+// 业务基础组件
+include(":component:selector") // 选择器（多媒体以及文件选择）
+include(":component:uitask") // ui 任务管理器（用于管理全局 ui 任务）
 
 // 主业务模块
 include(":feature:home:main")

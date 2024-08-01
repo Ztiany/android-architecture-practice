@@ -10,9 +10,9 @@ import com.android.base.delegate.activity.ActivityDelegateOwner
 import com.android.base.delegate.fragment.FragmentDelegateOwner
 import com.android.base.utils.android.SoftKeyboardUtils
 import com.android.base.utils.android.adaption.ActivityLifecycleCallbacksAdapter
-import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ignoreCrash
 import com.app.base.utils.setStatusBarLightMode
+import com.app.common.api.protocol.CustomizeSystemBar
 
 /**
  *@author Ztiany

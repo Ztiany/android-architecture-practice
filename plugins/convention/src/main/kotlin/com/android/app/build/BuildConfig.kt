@@ -4,7 +4,7 @@ object BuildConfig {
     const val APPLICATION_ID = "me.ztiany.android"
 
     const val MIN_SDK_VERSION = 23
-    const val TARGET_SDK_VERSION = 30
+    const val TARGET_SDK_VERSION = 34
     const val COMPILE_SDK_VERSION = 34
 
     object Signing {
