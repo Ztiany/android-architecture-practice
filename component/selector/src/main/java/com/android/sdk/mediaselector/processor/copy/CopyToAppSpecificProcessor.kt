@@ -22,12 +22,11 @@ import java.io.IOException
  * Copy the media items in the process to a app-specific directory if it is represented by a content URI.
  */
 internal class CopyToAppSpecificProcessor(
-    private val lifecycleOwner: LifecycleOwner,
     private val host: ActFragWrapper,
 ) : BaseProcessor() {
 
     override fun start(params: List<MediaItem>) {
-        lifecycleOwner.lifecycle.coroutineScope.launch {
+        host.lifecycleOwner.lifecycle.coroutineScope.launch {
             val copiedItems = mutableListOf<MediaItem>()
 
             for (item: MediaItem in params) {

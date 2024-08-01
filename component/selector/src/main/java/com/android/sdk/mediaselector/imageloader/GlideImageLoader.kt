@@ -2,31 +2,25 @@ package com.android.sdk.mediaselector.imageloader
 
 import android.content.Context
 import android.widget.ImageView
-import com.bumptech.glide.Glide
+import com.android.base.image.DisplayConfig
+import com.android.base.image.ImageLoaderFactory
 
 internal class GlideImageLoader : ImageLoader {
 
     override fun loadImage(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context)
-            .load(url)
-            .centerCrop()
-            .into(imageView)
+        ImageLoaderFactory.getImageLoader().display(imageView, url)
     }
 
     override fun loadImage(context: Context, imageView: ImageView, url: String, maxWidth: Int, maxHeight: Int) {
-        Glide.with(context)
-            .load(url)
-            .override(maxWidth, maxHeight)
-            .centerCrop()
-            .into(imageView)
+        ImageLoaderFactory.getImageLoader().display(imageView, url, DisplayConfig.create().setSize(maxWidth, maxHeight))
     }
 
     override fun pauseRequests(context: Context) {
-        Glide.with(context).pauseRequests()
+        ImageLoaderFactory.getImageLoader().pause(context)
     }
 
     override fun resumeRequests(context: Context) {
-        Glide.with(context).resumeRequests()
+        ImageLoaderFactory.getImageLoader().resume(context)
     }
 
 }

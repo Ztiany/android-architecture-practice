@@ -65,11 +65,6 @@ internal class GetContentPicker(
 
             processorChain.onResult(result.toList().map {
                 val realPath = it.getAbsolutePath(host.context)
-                host.context.contentResolver.takePersistableUriPermission(
-                    it,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                )
-
                 MediaItem(
                     id = it.toString(),
                     source = Source.Selector,

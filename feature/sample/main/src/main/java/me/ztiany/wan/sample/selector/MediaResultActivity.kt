@@ -11,9 +11,10 @@ import androidx.exifinterface.media.ExifInterface
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.android.base.image.ImageLoaderFactory
+import com.android.base.image.Source
 import com.android.sdk.mediaselector.MediaItem
 import com.android.sdk.mediaselector.utils.setRequireOriginal
-import com.bumptech.glide.Glide
 import me.ztiany.wan.sample.R
 import timber.log.Timber
 import java.io.File
@@ -25,11 +26,10 @@ class MediaResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.sample_activity_meida_result)
 
+        setContentView(R.layout.sample_activity_meida_result)
         val list = intent.getParcelableArrayListExtra(KEY) ?: emptyList<MediaItem>()
 
-        Timber.d("list: $list")
 
         val rv = findViewById<RecyclerView>(R.id.rv_result)
         PagerSnapHelper().attachToRecyclerView(rv)
@@ -47,7 +47,7 @@ class MediaResultActivity : AppCompatActivity() {
 
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
                 holder.itemView.tag = list[position]
-                Glide.with(holder.itemView).load(list[position].uri).into(holder.itemView as ImageView)
+                ImageLoaderFactory.getImageLoader().display(holder.itemView as ImageView, Source.create(list[position].uri))
             }
 
             override fun getItemCount(): Int {

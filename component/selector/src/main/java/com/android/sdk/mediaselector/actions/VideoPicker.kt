@@ -16,18 +16,30 @@ class VideoPicker() : Action {
     internal var builtInSelector: MediaSelectorImpl? = null
 
     private var count: Int = 1
-    private var type = ""
+    private var mineType = ""
+    private var useSAF = false
+    private var takePersistentUriPermission = false
 
     fun count(count: Int): VideoPicker {
         this.count = count
         return this
     }
 
-    fun restrictTypeTo(type: String): VideoPicker {
-        if (!type.startsWith("video/")) {
+    fun restrictTypeTo(mineType: String): VideoPicker {
+        if (!mineType.startsWith("video/")) {
             throw IllegalArgumentException("Type must be a video mime type")
         }
-        this.type = type
+        this.mineType = mineType
+        return this
+    }
+
+    fun useSAF(useSAF: Boolean): VideoPicker {
+        this.useSAF = useSAF
+        return this
+    }
+
+    fun takePersistentUriPermission(takePersistentUriPermission: Boolean): VideoPicker {
+        this.takePersistentUriPermission = takePersistentUriPermission
         return this
     }
 
@@ -37,25 +49,29 @@ class VideoPicker() : Action {
 
     override fun assembleProcessors(host: ActFragWrapper): List<Processor> {
         return buildList {
-            if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable(host.context)) {
-                val visualType = if (type.isEmpty()) {
+            if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable(host.context) && !useSAF && !takePersistentUriPermission) {
+                val visualType = if (mineType.isEmpty()) {
                     ActivityResultContracts.PickVisualMedia.VideoOnly
-                } else ActivityResultContracts.PickVisualMedia.SingleMimeType(type)
+                } else ActivityResultContracts.PickVisualMedia.SingleMimeType(mineType)
                 add(VisualMediaPicker(host, visualType, count))
             } else {
-                add(SAFPicker(host, listOf(type.takeIf { it.isNotEmpty() } ?: MineType.VIDEO.value), count > 1))
+                add(SAFPicker(host, listOf(mineType.takeIf { it.isNotEmpty() } ?: MineType.VIDEO.value), takePersistentUriPermission, count > 1))
             }
         }
     }
 
     constructor(parcel: Parcel) : this() {
         count = parcel.readInt()
-        type = parcel.readString() ?: ""
+        mineType = parcel.readString() ?: ""
+        useSAF = parcel.readByte() != 0.toByte()
+        takePersistentUriPermission = parcel.readByte() != 0.toByte()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(count)
-        parcel.writeString(type)
+        parcel.writeString(mineType)
+        parcel.writeByte(if (useSAF) 1 else 0)
+        parcel.writeByte(if (takePersistentUriPermission) 1 else 0)
     }
 
     override fun describeContents(): Int {

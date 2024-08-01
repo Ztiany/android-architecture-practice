@@ -20,27 +20,15 @@ import com.android.sdk.mediaselector.processor.Processor
 import com.android.sdk.mediaselector.processor.ProcessorManager
 import timber.log.Timber
 
-internal class MediaSelectorImpl : MediaSelector, ComponentStateHandler {
+internal class MediaSelectorImpl(
+    private val actFragWrapper: ActFragWrapper,
+    private val postProcessors: List<Processor>,
+    resultListener: ResultListener
+) : MediaSelector, ComponentStateHandler {
 
     private var currentAction: Action? = null
 
-    private val processorManager: ProcessorManager
-
-    private val actFragWrapper: ActFragWrapper
-
-    private val postProcessors: List<Processor>
-
-    constructor(activity: FragmentActivity, postProcessors: List<Processor>, resultListener: ResultListener) {
-        this.postProcessors = postProcessors
-        actFragWrapper = ActFragWrapper.create(activity)
-        processorManager = ProcessorManager(activity, resultListener)
-    }
-
-    constructor(fragment: Fragment, postProcessors: List<Processor>, resultListener: ResultListener) {
-        this.postProcessors = postProcessors
-        actFragWrapper = ActFragWrapper.create(fragment)
-        processorManager = ProcessorManager(fragment, resultListener)
-    }
+    private val processorManager: ProcessorManager = ProcessorManager(actFragWrapper.lifecycleOwner, resultListener)
 
     override fun onSaveInstanceState(outState: Bundle) {
         Timber.d("onSaveInstanceState: currentAction = $currentAction")

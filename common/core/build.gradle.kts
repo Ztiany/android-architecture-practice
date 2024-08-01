@@ -85,6 +85,7 @@ dependencies {
     api(libs.square.retrofit)
     implementation(libs.square.retrofit.converter.gson)
     api(libs.ztiany.imageloader)
+    implementation(libs.bumptech.glide)
     kapt(libs.bumptech.glide.ksp)
 
     // ui

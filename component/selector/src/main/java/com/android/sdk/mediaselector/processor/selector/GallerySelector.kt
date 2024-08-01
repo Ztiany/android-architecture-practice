@@ -9,6 +9,9 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import timber.log.Timber
 
+/**
+ * Maybe we will need this in the future.
+ */
 internal class GalleryPicker(
     private val host: ActFragWrapper,
     private val config: GalleryPickerConfig,

@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache
 import timber.log.Timber
 
 @GlideModule
-class CustomGlideModule : ProgressGlideModule() {
+internal class CustomGlideModule : ProgressGlideModule() {
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         val dirCacheSize = 1024 * 1024 * 500
@@ -26,7 +26,6 @@ class CustomGlideModule : ProgressGlideModule() {
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         super.registerComponents(context, glide, registry)
-        //内存策略
         glide.setMemoryCategory(MemoryCategory.NORMAL)
     }
 

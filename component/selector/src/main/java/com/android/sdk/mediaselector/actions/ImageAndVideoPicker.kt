@@ -22,6 +22,9 @@ class ImageAndVideoPicker() : Action {
 
     private var cropOptions: CropOptions? = null
 
+    private var useSAF = false
+    private var takePersistentUriPermission = false
+
     fun count(count: Int): ImageAndVideoPicker {
         this.count = count
         return this
@@ -38,10 +41,10 @@ class ImageAndVideoPicker() : Action {
 
     override fun assembleProcessors(host: ActFragWrapper): List<Processor> {
         return buildList {
-            if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable(host.context)) {
+            if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable(host.context) && !useSAF && !takePersistentUriPermission) {
                 add(VisualMediaPicker(host, ActivityResultContracts.PickVisualMedia.ImageAndVideo, count))
             } else {
-                add(SAFPicker(host, listOf(MineType.IMAGE.value, MineType.VIDEO.value), count > 1))
+                add(SAFPicker(host, listOf(MineType.IMAGE.value, MineType.VIDEO.value), takePersistentUriPermission, count > 1))
             }
             cropOptions?.let { add(CropProcessor(host, it)) }
         }
@@ -50,11 +53,15 @@ class ImageAndVideoPicker() : Action {
     constructor(parcel: Parcel) : this() {
         count = parcel.readInt()
         cropOptions = ParcelCompat.readParcelable(parcel, CropOptions::class.java.classLoader, CropOptions::class.java)
+        useSAF = parcel.readByte() != 0.toByte()
+        takePersistentUriPermission = parcel.readByte() != 0.toByte()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(count)
         parcel.writeParcelable(cropOptions, flags)
+        useSAF = parcel.readByte() != 0.toByte()
+        takePersistentUriPermission = parcel.readByte() != 0.toByte()
     }
 
     override fun describeContents(): Int {

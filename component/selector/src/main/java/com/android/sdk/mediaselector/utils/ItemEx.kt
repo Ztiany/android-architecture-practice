@@ -3,7 +3,26 @@ package com.android.sdk.mediaselector.utils
 import android.content.Context
 import com.android.sdk.mediaselector.MediaItem
 import com.luck.picture.lib.config.PictureMimeType
+import timber.log.Timber
 
+private val cropSupported = listOf(
+    MineType.JPEG.value,
+    MineType.JPG.value,
+    MineType.PNG.value,
+    MineType.WEBP.value,
+)
+
+private val imageCompressionSupported = listOf(
+    MineType.IMAGE.value,
+    MineType.JPEG.value,
+    MineType.JPG.value,
+    MineType.PNG.value,
+    MineType.WEBP.value,
+)
+
+/**
+ * Get the postfix of the file. Not include the dot.
+ */
 internal fun MediaItem.getPostfix(context: Context): String? {
     if (path.isNotEmpty()) {
         return path.substringAfterLast('.').lowercase()
@@ -12,15 +31,14 @@ internal fun MediaItem.getPostfix(context: Context): String? {
 }
 
 internal fun MediaItem.supportImageCompression(): Boolean {
-    return PictureMimeType.isUrlHasImage(uri.toString()) || PictureMimeType.isUrlHasImage(path)
+    return (
+            imageCompressionSupported.contains(mineType)
+                    || PictureMimeType.isUrlHasImage(uri.toString())
+                    || PictureMimeType.isUrlHasImage(path)
+            ).apply {
+            Timber.d("${this@supportImageCompression} supportImageCompression: $this")
+        }
 }
-
-private val cropSupported = listOf(
-    MineType.JPEG.value,
-    MineType.JPG.value,
-    MineType.PNG.value,
-    MineType.WEBP.value,
-)
 
 internal fun MediaItem.supportedCropping(context: Context): Boolean {
     // should read the file content to determine the file type, instead of relying on the file extension?

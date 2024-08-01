@@ -29,6 +29,7 @@ import timber.log.Timber
 internal class SAFPicker(
     private val host: ActFragWrapper,
     private val types: List<String>,
+    private val takePersistentUriPermission: Boolean,
     private val multiple: Boolean,
 ) : BaseProcessor() {
 
@@ -47,7 +48,7 @@ internal class SAFPicker(
             if (types.size == 1) {
                 type = types.first()
             } else {
-                type =  MineType.ALL.value
+                type = MineType.ALL.value
                 putExtra(Intent.EXTRA_MIME_TYPES, types.toTypedArray())
             }
         }
@@ -77,12 +78,13 @@ internal class SAFPicker(
             processorChain.onCanceled()
         } else {
             val type = if (types.size == 1) types.first() else MineType.ALL.value
+
             processorChain.onResult(result.toList().map {
                 val realPath = it.getAbsolutePath(host.context)
-                host.context.contentResolver.takePersistableUriPermission(
-                    it,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                )
+
+                if (takePersistentUriPermission) {
+                    host.context.contentResolver.takePersistableUriPermission(it, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
 
                 MediaItem(
                     id = it.toString(),

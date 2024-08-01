@@ -39,8 +39,10 @@ allprojects {
             // kotlin
             libs.kotlin.stdlib,
             libs.kotlinx.coroutines,
-            // gson
-            libs.google.gson
+            // third-party
+            libs.google.gson,
+            libs.bumptech.glide,
+            libs.bumptech.glide.ksp,
         )
     }
 }

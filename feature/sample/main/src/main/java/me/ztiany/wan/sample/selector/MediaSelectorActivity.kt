@@ -8,33 +8,20 @@ import android.widget.TextView
 import com.android.base.delegate.simpl.DelegateActivity
 import com.android.sdk.mediaselector.MediaItem
 import com.android.sdk.mediaselector.SelectorConfigurer
-import com.android.sdk.mediaselector.imageCompressor
-import com.android.sdk.mediaselector.newMediaSelector
+import com.android.sdk.mediaselector.buildMediaSelector
 import me.ztiany.wan.sample.R
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 class MediaSelectorActivity : DelegateActivity() {
 
-    private val mediaSelector = newMediaSelector(/*imageCompressor()*/) { _, result ->
-        result.forEach {
-            Timber.e("item :$it")
-        }
-
-        if (takingByMediaStore) {
-            selectedItems = result
-            takingByMediaStore = false
-        }
-
-        if (takingFile) {
-            takingFile = false
-            showFiles(result)
-        } else {
-            showMedias(result)
-        }
+    private val mediaSelector = buildMediaSelector {
+        withProcessor(imageCompressor())
+        onResults { handleSelectedItems(it) }
     }
 
     private var takingFile = false
+
     private var takingByMediaStore = false
 
     private lateinit var fileTextView: TextView
@@ -43,7 +30,6 @@ class MediaSelectorActivity : DelegateActivity() {
 
     override fun initialize(savedInstanceState: Bundle?) {
         Timber.plant(DebugTree())
-
         SelectorConfigurer.setUp {
             setCropPrimaryColorAttr(androidx.appcompat.R.attr.colorAccent)
         }
@@ -53,6 +39,24 @@ class MediaSelectorActivity : DelegateActivity() {
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         fileTextView = findViewById(R.id.selected_files)
+    }
+
+    private fun handleSelectedItems(results: List<MediaItem>) {
+        results.forEach {
+            Timber.e("item :$it")
+        }
+
+        if (takingByMediaStore) {
+            selectedItems = results
+            takingByMediaStore = false
+        }
+
+        if (takingFile) {
+            takingFile = false
+            showFiles(results)
+        } else {
+            showMedias(results)
+        }
     }
 
     private fun showMedias(results: List<MediaItem>) {

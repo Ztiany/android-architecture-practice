@@ -15,6 +15,8 @@ class FilePicker() : Action {
 
     private var multiple = false
 
+    private var takePersistentUriPermission = false
+
     private var types = listOf(MineType.ALL.value)
 
     fun multiple(): FilePicker {
@@ -33,17 +35,19 @@ class FilePicker() : Action {
 
     override fun assembleProcessors(host: ActFragWrapper): List<Processor> {
         return buildList {
-            add(SAFPicker(host, types, multiple))
+            add(SAFPicker(host, types, takePersistentUriPermission, multiple))
         }
     }
 
     constructor(parcel: Parcel) : this() {
         multiple = parcel.readByte() != 0.toByte()
+        takePersistentUriPermission = parcel.readByte() != 0.toByte()
         types = parcel.createStringArrayList() ?: emptyList()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeByte(if (multiple) 1 else 0)
+        parcel.writeByte(if (takePersistentUriPermission) 1 else 0)
         parcel.writeStringList(types)
     }
 

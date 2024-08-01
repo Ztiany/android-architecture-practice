@@ -7,22 +7,25 @@ import com.android.sdk.mediaselector.ActFragWrapper
 import com.android.sdk.mediaselector.MediaItem
 import com.android.sdk.mediaselector.processor.BaseProcessor
 import com.android.sdk.mediaselector.utils.createInternalPath
+import com.android.sdk.mediaselector.utils.getPostfix
 import com.android.sdk.mediaselector.utils.supportImageCompression
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import top.zibin.luban.Luban
 import top.zibin.luban.OnNewCompressListener
 import java.io.File
+import java.io.FileOutputStream
 
 internal class ImageCompressionProcessor(
-    private val lifecycleOwner: LifecycleOwner,
     private val host: ActFragWrapper,
     private val config: CompressionConfig,
 ) : BaseProcessor() {
 
     override fun start(params: List<MediaItem>) {
-        lifecycleOwner.lifecycle.coroutineScope.launch {
+        host.lifecycleOwner.lifecycle.coroutineScope.launch {
             startCompression(params)
         }
     }
@@ -45,15 +48,26 @@ internal class ImageCompressionProcessor(
         processorChain.onResult(result)
     }
 
-    private suspend fun doCompression(item: MediaItem) = suspendCancellableCoroutine {
-        Luban.with(host.context)
-            .load(item.uri)
-            .ignoreBy(config.ignoreBy)
-            .setRenameListener { filePath: String ->
-                val indexOf = filePath.lastIndexOf(".")
-                val postfix = if (indexOf != -1) filePath.substring(indexOf) else ".jpeg"
-                host.context.createInternalPath(postfix)
+    private suspend fun doCompression(item: MediaItem): File {
+        // Luban can't compress the image from the content provider directly.
+        val path = item.path.takeIf { it.isNotEmpty() } ?: withContext(Dispatchers.IO) {
+            val postfix = item.getPostfix(host.context) ?: "jpeg"
+            val target = host.context.createInternalPath(".${postfix}")
+            val out = FileOutputStream(target)
+            host.context.contentResolver.openInputStream(item.uri)?.use { inputStream ->
+                inputStream.copyTo(out)
             }
+            runCatching { out.close() }
+            target
+        }
+
+        return compress(path)
+    }
+
+    private suspend fun compress(path: String) = suspendCancellableCoroutine {
+        Luban.with(host.context)
+            .load(path)
+            .ignoreBy(config.ignoreBy)
             .setCompressListener(object : OnNewCompressListener {
                 override fun onStart() {}
                 override fun onSuccess(source: String, compressFile: File) {
@@ -62,8 +76,9 @@ internal class ImageCompressionProcessor(
                 }
 
                 override fun onError(source: String, e: Throwable?) {
-                    Timber.e(e, "image compression for $source failed.")
-                    it.resumeWith(Result.failure(e ?: Exception("image compression failed.")))
+                    val exception = e ?: Exception("image compression failed.")
+                    Timber.e(exception, "image compression for $source failed.")
+                    it.resumeWith(Result.failure(exception))
                 }
             })
             .launch()

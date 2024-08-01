@@ -65,5 +65,5 @@ internal fun Uri.getAbsolutePath(context: Context): String? {
 // need duration, size, width and height
 internal fun MediaItem.tryFillPickedMediaInfo(context: Context): MediaItem {
     val fileAttribute = uri.getAttribute(context) ?: return this
-    return this.copy(size = fileAttribute.size)
+    return this.copy(size = fileAttribute.size, rawSize = fileAttribute.size)
 }
