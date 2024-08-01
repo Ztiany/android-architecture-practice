@@ -2,11 +2,11 @@ package com.android.sdk.mediaselector.actions
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.android.sdk.mediaselector.ActFragWrapper
 import com.android.sdk.mediaselector.Action
 import com.android.sdk.mediaselector.MediaSelectorImpl
 import com.android.sdk.mediaselector.processor.Processor
 import com.android.sdk.mediaselector.processor.picker.SAFPicker
-import com.android.sdk.mediaselector.ActFragWrapper
 import com.android.sdk.mediaselector.utils.MineType
 
 class FilePicker() : Action {
@@ -27,8 +27,8 @@ class FilePicker() : Action {
         return this
     }
 
-    fun start() {
-        builtInSelector?.start(this)
+    override fun start(scene: String) {
+        builtInSelector?.start(this, scene)
     }
 
     override fun assembleProcessors(host: ActFragWrapper): List<Processor> {

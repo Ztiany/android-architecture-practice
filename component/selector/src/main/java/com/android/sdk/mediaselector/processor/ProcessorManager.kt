@@ -10,10 +10,12 @@ import timber.log.Timber
 
 internal class ProcessorManager(
     private val lifecycleOwner: LifecycleOwner,
-    private val resultListener: ResultListener
+    private val resultListener: ResultListener,
 ) : ComponentStateHandler {
 
     private val processors = mutableListOf<Processor>()
+
+    private var currentScene: String = ""
 
     private var processorProgress = 0
 
@@ -46,18 +48,21 @@ internal class ProcessorManager(
     override fun onSaveInstanceState(outState: Bundle) {
         Timber.d("onSaveInstanceState: processorProgress = $processorProgress")
         outState.putInt(PROGRESS_KEY, processorProgress)
+        outState.putString(CURRENT_SCENE_KEY, currentScene)
         processors.forEach { it.onSaveInstanceState(outState) }
     }
 
     override fun onRestoreInstanceState(outState: Bundle?) {
         outState?.let {
             processorProgress = it.getInt(PROGRESS_KEY)
+            currentScene = it.getString(CURRENT_SCENE_KEY, "")
         }
         Timber.d("onRestoreInstanceState: processorProgress = $processorProgress")
         processors.forEach { it.onRestoreInstanceState(outState) }
     }
 
-    fun start() {
+    fun start(scene: String) {
+        currentScene = scene
         processorProgress = 0
         Timber.d("start: processorProgress = 0")
         continueProcedure(emptyList())
@@ -75,10 +80,12 @@ internal class ProcessorManager(
     }
 
     private fun onAllProcessorCompleted(result: List<MediaItem>) {
-        resultListener.onResult(result)
+        resultListener.onResult(currentScene, result)
     }
 
     companion object {
+        private const val CURRENT_SCENE_KEY = "current_scene_key"
+
         private const val PROGRESS_KEY = "processor_progress_key"
     }
 

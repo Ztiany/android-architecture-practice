@@ -2,7 +2,6 @@ package com.android.sdk.mediaselector
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.core.os.BundleCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -29,14 +28,16 @@ internal class MediaSelectorImpl : MediaSelector, ComponentStateHandler {
 
     private val actFragWrapper: ActFragWrapper
 
-    private val postProcessors = mutableListOf<Processor>()
+    private val postProcessors: List<Processor>
 
-    constructor(activity: FragmentActivity, resultListener: ResultListener) {
+    constructor(activity: FragmentActivity, postProcessors: List<Processor>, resultListener: ResultListener) {
+        this.postProcessors = postProcessors
         actFragWrapper = ActFragWrapper.create(activity)
         processorManager = ProcessorManager(activity, resultListener)
     }
 
-    constructor(fragment: Fragment, resultListener: ResultListener) {
+    constructor(fragment: Fragment, postProcessors: List<Processor>, resultListener: ResultListener) {
+        this.postProcessors = postProcessors
         actFragWrapper = ActFragWrapper.create(fragment)
         processorManager = ProcessorManager(fragment, resultListener)
     }
@@ -67,10 +68,10 @@ internal class MediaSelectorImpl : MediaSelector, ComponentStateHandler {
         processorManager.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun start(action: Action) {
+    fun start(action: Action, scene: String) {
         currentAction = action
         processorManager.install(assembleAllProcessors(action))
-        processorManager.start()
+        processorManager.start(scene)
     }
 
     private fun assembleAllProcessors(action: Action) = action.assembleProcessors(actFragWrapper) + postProcessors
@@ -128,12 +129,6 @@ internal class MediaSelectorImpl : MediaSelector, ComponentStateHandler {
             it.builtInSelector = this
         }
     }
-
-    override fun withPostProcessor(vararg processors: Processor): MediaSelector {
-        postProcessors.addAll(processors)
-        return this
-    }
-
 
     override fun selectImage(): SelectImageAction {
         return SelectImageAction().also {

@@ -46,6 +46,4 @@ interface MediaSelector : ComponentStateHandler {
      */
     fun selectVideo(): SelectVideoAction
 
-    fun withPostProcessor(vararg processors: Processor): MediaSelector
-
 }

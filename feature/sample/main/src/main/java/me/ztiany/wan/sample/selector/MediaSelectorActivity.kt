@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.android.base.delegate.simpl.DelegateActivity
 import com.android.sdk.mediaselector.MediaItem
 import com.android.sdk.mediaselector.SelectorConfigurer
+import com.android.sdk.mediaselector.imageCompressor
 import com.android.sdk.mediaselector.newMediaSelector
 import me.ztiany.wan.sample.R
 import timber.log.Timber
@@ -15,7 +16,7 @@ import timber.log.Timber.DebugTree
 
 class MediaSelectorActivity : DelegateActivity() {
 
-    private val mediaSelector = newMediaSelector { result ->
+    private val mediaSelector = newMediaSelector(/*imageCompressor()*/) { _, result ->
         result.forEach {
             Timber.e("item :$it")
         }

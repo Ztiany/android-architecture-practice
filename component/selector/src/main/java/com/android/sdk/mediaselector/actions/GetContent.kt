@@ -27,8 +27,8 @@ class GetContent() : Action {
         return this
     }
 
-    fun start() {
-        builtInSelector?.start(this)
+    override fun start(scene: String) {
+        builtInSelector?.start(this, scene)
     }
 
     override fun assembleProcessors(host: ActFragWrapper): List<Processor> {

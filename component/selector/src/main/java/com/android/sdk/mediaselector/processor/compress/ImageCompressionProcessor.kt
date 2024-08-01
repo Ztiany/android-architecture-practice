@@ -51,7 +51,7 @@ internal class ImageCompressionProcessor(
             .ignoreBy(config.ignoreBy)
             .setRenameListener { filePath: String ->
                 val indexOf = filePath.lastIndexOf(".")
-                val postfix = if (indexOf != -1) filePath.substring(indexOf) else ".jpg"
+                val postfix = if (indexOf != -1) filePath.substring(indexOf) else ".jpeg"
                 host.context.createInternalPath(postfix)
             }
             .setCompressListener(object : OnNewCompressListener {
@@ -61,9 +61,9 @@ internal class ImageCompressionProcessor(
                     it.resumeWith(Result.success(compressFile))
                 }
 
-                override fun onError(source: String, e: Throwable) {
+                override fun onError(source: String, e: Throwable?) {
                     Timber.e(e, "image compression for $source failed.")
-                    it.resumeWith(Result.failure(e))
+                    it.resumeWith(Result.failure(e ?: Exception("image compression failed.")))
                 }
             })
             .launch()

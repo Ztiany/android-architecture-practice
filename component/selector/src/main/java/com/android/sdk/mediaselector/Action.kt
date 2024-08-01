@@ -7,4 +7,6 @@ interface Action : Parcelable {
 
     fun assembleProcessors(host: ActFragWrapper): List<Processor>
 
+    fun start(scene: String = "default")
+
 }

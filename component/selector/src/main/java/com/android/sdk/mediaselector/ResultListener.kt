@@ -4,12 +4,12 @@ interface ResultListener {
 
     fun onCanceled() {}
 
-    fun onResult(result: List<MediaItem>) {
+    fun onResult(scene: String, result: List<MediaItem>) {
         if (result.size == 1) {
-            onSingleResult(result.first())
+            onSingleResult(scene, result.first())
         }
     }
 
-    fun onSingleResult(result: MediaItem) {}
+    fun onSingleResult(scene: String, result: MediaItem) {}
 
 }
