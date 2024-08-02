@@ -122,7 +122,8 @@ include(":feature:sample:main")
 include(":feature:sample:app")
 
 // 业务基础架构
-include(":common:ui")
+include(":common:ui-theme")
+include(":common:ui-dialog")
 include(":common:api")
 include(":common:http")
 include(":common:core")

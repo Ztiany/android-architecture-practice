@@ -54,7 +54,8 @@ dependencies {
     // 通用工具
     api(libs.base.arch.utils)
     // SDK UI 规范
-    api(project(":common:ui"))
+    api(project(":common:ui-theme"))
+    api(project(":common:ui-dialog"))
     // SDK API 规范
     api(project(":common:api"))
     // HTTP API 规范
