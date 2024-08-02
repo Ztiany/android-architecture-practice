@@ -64,67 +64,67 @@ internal class MediaSelectorImpl(
 
     private fun assembleAllProcessors(action: Action) = action.assembleProcessors(actFragWrapper) + postProcessors
 
-    override fun captureImage(): ImageCapturer {
+    override fun imageCapturer(): ImageCapturer {
         return ImageCapturer().also {
             it.builtInSelector = this
         }
     }
 
-    override fun captureVideo(): VideoCapturer {
+    override fun videoCapturer(): VideoCapturer {
         return VideoCapturer().also {
             it.builtInSelector = this
         }
     }
 
-    override fun getContent(): GetContent {
+    override fun contentGetter(): GetContent {
         return GetContent().also {
             it.builtInSelector = this
         }
     }
 
-    override fun getImageContent(): GetImageContent {
+    override fun imageContentGetter(): GetImageContent {
         return GetImageContent().also {
             it.builtInSelector = this
         }
     }
 
-    override fun getVideoContent(): GetVideoContent {
+    override fun videoContentGetter(): GetVideoContent {
         return GetVideoContent().also {
             it.builtInSelector = this
         }
     }
 
-    override fun pickImage(): ImagePicker {
+    override fun systemImagePicker(): ImagePicker {
         return ImagePicker().also {
             it.builtInSelector = this
         }
     }
 
-    override fun pickVideo(): VideoPicker {
+    override fun systemVideoPicker(): VideoPicker {
         return VideoPicker().also {
             it.builtInSelector = this
         }
     }
 
-    override fun pickImageAndVideo(): ImageAndVideoPicker {
+    override fun systemMediaPicker(): ImageAndVideoPicker {
         return ImageAndVideoPicker().also {
             it.builtInSelector = this
         }
     }
 
-    override fun pickFile(): FilePicker {
+    override fun systemFilePicker(): FilePicker {
         return FilePicker().also {
             it.builtInSelector = this
         }
     }
 
-    override fun selectImage(): SelectImageAction {
+    override fun imageSelector(): SelectImageAction {
         return SelectImageAction().also {
             it.builtInSelector = this
         }
     }
 
-    override fun selectVideo(): SelectVideoAction {
+    override fun videoSelector(): SelectVideoAction {
         return SelectVideoAction().also {
             it.builtInSelector = this
         }

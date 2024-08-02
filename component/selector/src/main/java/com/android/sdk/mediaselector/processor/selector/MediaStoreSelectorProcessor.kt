@@ -42,6 +42,7 @@ internal class MediaStoreSelectorProcessor(
     }
 
     private fun start() {
+        //TODO: how do we restore the state of the PictureSelector after the Activity/Fragment is recreated or the process is killed for memory?
         if (host.activity != null) {
             PictureSelector.create(host.activity)
         } else {

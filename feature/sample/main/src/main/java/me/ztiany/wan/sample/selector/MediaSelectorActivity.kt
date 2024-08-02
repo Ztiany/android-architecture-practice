@@ -16,7 +16,7 @@ import timber.log.Timber.DebugTree
 class MediaSelectorActivity : DelegateActivity() {
 
     private val mediaSelector = buildMediaSelector {
-        withProcessor(imageCompressor())
+        withPostProcessor(compressImage())
         onResults { handleSelectedItems(it) }
     }
 
@@ -77,47 +77,47 @@ class MediaSelectorActivity : DelegateActivity() {
     // Photos by Intent or SAF
     ///////////////////////////////////////////////////////////////////////////
     fun captureOnePhoto(view: View) {
-        mediaSelector.captureImage().start()
+        mediaSelector.imageCapturer().start()
     }
 
     fun captureOneVideo(view: View) {
-        mediaSelector.captureVideo().start()
+        mediaSelector.videoCapturer().start()
     }
 
     fun captureOnePhotoAndCrop(view: View) {
-        mediaSelector.captureImage().crop().start()
+        mediaSelector.imageCapturer().crop().start()
     }
 
     fun selectOnePhoto(view: View) {
-        mediaSelector.pickImage().start()
+        mediaSelector.systemImagePicker().start()
     }
 
     fun selectOnePhotoAndCrop(view: View) {
-        mediaSelector.pickImage().crop().start()
+        mediaSelector.systemImagePicker().crop().start()
     }
 
     fun selectPhotos(view: View) {
-        mediaSelector.pickImage().count(4).start()
+        mediaSelector.systemImagePicker().count(4).start()
     }
 
     fun selectPhotosAndCrop(view: View) {
-        mediaSelector.pickImage().count(4).crop().start()
+        mediaSelector.systemImagePicker().count(4).crop().start()
     }
 
     fun selectVideos(view: View) {
-        mediaSelector.pickVideo().count(4).start()
+        mediaSelector.systemVideoPicker().count(4).start()
     }
 
     fun selectPhotoAndVideo(view: View) {
-        mediaSelector.pickImageAndVideo().count(4).crop().start()
+        mediaSelector.systemMediaPicker().count(4).crop().start()
     }
 
     fun selectPhotosByGetContent(view: View) {
-        mediaSelector.getImageContent().multiple().crop().start()
+        mediaSelector.imageContentGetter().multiple().crop().start()
     }
 
     fun selectVideosByGetContent(view: View) {
-        mediaSelector.getVideoContent().multiple().start()
+        mediaSelector.videoContentGetter().multiple().start()
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -125,41 +125,41 @@ class MediaSelectorActivity : DelegateActivity() {
     ///////////////////////////////////////////////////////////////////////////
     fun selectFile(view: View) {
         takingFile = true
-        mediaSelector.pickFile().start()
+        mediaSelector.systemFilePicker().start()
     }
 
     fun selectFiles(view: View) {
         takingFile = true
-        mediaSelector.pickFile().multiple().start()
+        mediaSelector.systemFilePicker().multiple().start()
     }
 
     fun selectFilesByGetContent(view: View) {
         takingFile = true
-        mediaSelector.getContent().multiple().start()
+        mediaSelector.contentGetter().multiple().start()
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // MediaStore
     ///////////////////////////////////////////////////////////////////////////
     fun selectOnePhotoByMediaStore(view: View) {
-        mediaSelector.selectImage().start()
+        mediaSelector.imageSelector().start()
     }
 
     fun selectOnePhotoWithCameraByMediaStore(view: View) {
-        mediaSelector.selectImage().enableCamera().start()
+        mediaSelector.imageSelector().enableCamera().start()
     }
 
     fun selectOnePhotoWithCameraAndCropByMediaStore(view: View) {
-        mediaSelector.selectImage().enableCamera().crop().includeGif().start()
+        mediaSelector.imageSelector().enableCamera().crop().includeGif().start()
     }
 
     fun selectMultiPhotoByMediaStore(view: View) {
         takingByMediaStore = true
-        mediaSelector.selectImage().count(9).includeGif().selectedData(selectedItems.map { it.id }).start()
+        mediaSelector.imageSelector().count(9).includeGif().selectedData(selectedItems.map { it.id }).start()
     }
 
     fun selectOneVideoByMediaStore(view: View) {
-        mediaSelector.selectVideo().start()
+        mediaSelector.videoSelector().start()
     }
 
 }

@@ -2,7 +2,6 @@ package com.android.sdk.mediaselector.processor.copy
 
 import android.content.Context
 import android.net.Uri
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.coroutineScope
 import com.android.sdk.mediaselector.ActFragWrapper
 import com.android.sdk.mediaselector.MediaItem
@@ -23,6 +22,7 @@ import java.io.IOException
  */
 internal class CopyToAppSpecificProcessor(
     private val host: ActFragWrapper,
+    private val config: CopyConfig,
 ) : BaseProcessor() {
 
     override fun start(params: List<MediaItem>) {
@@ -31,6 +31,11 @@ internal class CopyToAppSpecificProcessor(
 
             for (item: MediaItem in params) {
                 if (item.uri.isFile()) {
+                    copiedItems.add(item)
+                    continue
+                }
+
+                if (config.imageOnly && item.mineType.startsWith("image")) {
                     copiedItems.add(item)
                     continue
                 }

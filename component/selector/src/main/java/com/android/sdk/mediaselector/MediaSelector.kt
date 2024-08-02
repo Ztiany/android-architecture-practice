@@ -11,7 +11,6 @@ import com.android.sdk.mediaselector.actions.VideoCapturer
 import com.android.sdk.mediaselector.actions.VideoPicker
 import com.android.sdk.mediaselector.actions.SelectImageAction
 import com.android.sdk.mediaselector.actions.SelectVideoAction
-import com.android.sdk.mediaselector.processor.Processor
 
 interface MediaSelector : ComponentStateHandler {
 
@@ -21,7 +20,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.TakePicture]
      * @see [androidx.activity.result.contract.ActivityResultContracts.CaptureVideo]
      */
-    fun captureImage(): ImageCapturer
+    fun imageCapturer(): ImageCapturer
 
     /**
      * Capture a video through the system camera.
@@ -29,7 +28,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.TakePicture]
      * @see [androidx.activity.result.contract.ActivityResultContracts.CaptureVideo]
      */
-    fun captureVideo(): VideoCapturer
+    fun videoCapturer(): VideoCapturer
 
     /**
      * Get videos through the system selector. The Intent.ACTION_GET_CONTENT is used.
@@ -39,7 +38,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.GetContent]
      * @see [androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents]
      */
-    fun getContent(): GetContent
+    fun contentGetter(): GetContent
 
     /**
      * Get videos through the system selector. The Intent.ACTION_GET_CONTENT is used.
@@ -49,7 +48,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.GetContent]
      * @see [androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents]
      */
-    fun getImageContent(): GetImageContent
+    fun imageContentGetter(): GetImageContent
 
     /**
      * Get videos through the system selector. The Intent.ACTION_GET_CONTENT is used.
@@ -59,7 +58,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.GetContent]
      * @see [androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents]
      */
-    fun getVideoContent(): GetVideoContent
+    fun videoContentGetter(): GetVideoContent
 
     /**
      * Get photos through the PhotoPicker or SAF. default is PhotoPicker.
@@ -76,7 +75,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia]
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickMultipleVisualMedia]
      */
-    fun pickImage(): ImagePicker
+    fun systemImagePicker(): ImagePicker
 
     /**
      * Get photos through the PhotoPicker or SAF. default is PhotoPicker.
@@ -93,7 +92,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia]
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickMultipleVisualMedia]
      */
-    fun pickVideo(): VideoPicker
+    fun systemVideoPicker(): VideoPicker
 
     /**
      * Get photos through the PhotoPicker or SAF. default is PhotoPicker.
@@ -110,7 +109,7 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia]
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickMultipleVisualMedia]
      */
-    fun pickImageAndVideo(): ImageAndVideoPicker
+    fun systemMediaPicker(): ImageAndVideoPicker
 
     /**
      * Get files through the SAF.
@@ -126,16 +125,16 @@ interface MediaSelector : ComponentStateHandler {
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia]
      * @see [androidx.activity.result.contract.ActivityResultContracts.PickMultipleVisualMedia]
      */
-    fun pickFile(): FilePicker
+    fun systemFilePicker(): FilePicker
 
     /**
      * Get photos by MediaStore API. refers to [Access media files from shared storage](https://developer.android.com/training/data-storage/shared/media) for more details.
      */
-    fun selectImage(): SelectImageAction
+    fun imageSelector(): SelectImageAction
 
     /**
      * Get videos by MediaStore API. refers to [Access media files from shared storage](https://developer.android.com/training/data-storage/shared/media) for more details.
      */
-    fun selectVideo(): SelectVideoAction
+    fun videoSelector(): SelectVideoAction
 
 }

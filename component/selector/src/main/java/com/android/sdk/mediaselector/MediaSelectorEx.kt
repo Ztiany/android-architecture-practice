@@ -7,11 +7,12 @@ import com.android.base.delegate.fragment.FragmentDelegateOwner
 import com.android.sdk.mediaselector.processor.Processor
 import com.android.sdk.mediaselector.processor.compress.CompressionConfig
 import com.android.sdk.mediaselector.processor.compress.ImageCompressionProcessor
+import com.android.sdk.mediaselector.processor.copy.CopyConfig
 import com.android.sdk.mediaselector.processor.copy.CopyToAppSpecificProcessor
 
 typealias ResultHandlerWithScene = (scene: String, results: List<MediaItem>) -> Unit
-typealias ResultHandler = (results: List<MediaItem>) -> Unit
 
+typealias ResultHandler = (results: List<MediaItem>) -> Unit
 
 /**
  * If your fragment has implemented [FragmentDelegateOwner], you don't need to call methods in [ComponentStateHandler].
@@ -39,7 +40,7 @@ class MediaSelectorBuilder internal constructor(private val actFragWrapper: ActF
 
     private var resultHandler: ResultHandlerWithScene? = null
 
-    fun withProcessor(vararg processor: Processor) {
+    fun withPostProcessor(vararg processor: Processor) {
         postProcessors.addAll(processor)
     }
 
@@ -84,14 +85,14 @@ class MediaSelectorBuilder internal constructor(private val actFragWrapper: ActF
     /**
      * 拷贝文件到应用私有目录。
      */
-    fun appSpecificFileTransfer(): Processor {
-        return CopyToAppSpecificProcessor(actFragWrapper)
+    fun copyToAppSpecificFolder(copyConfig: CopyConfig = CopyConfig()): Processor {
+        return CopyToAppSpecificProcessor(actFragWrapper, copyConfig)
     }
 
     /**
      * 对图片进行压缩处理。
      */
-    fun imageCompressor(config: CompressionConfig = CompressionConfig()): Processor {
+    fun compressImage(config: CompressionConfig = CompressionConfig()): Processor {
         return ImageCompressionProcessor(actFragWrapper, config)
     }
 
