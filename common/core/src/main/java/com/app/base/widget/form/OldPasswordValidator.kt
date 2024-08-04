@@ -1,7 +1,6 @@
 package com.app.base.widget.form
 
 import android.view.View
-import com.app.base.ui.R as UI_R
 
 /** 验证旧密码。*/
 internal class OldPasswordValidator(view: View) : TextValidator(view) {
@@ -12,11 +11,11 @@ internal class OldPasswordValidator(view: View) : TextValidator(view) {
     }
 
     public override fun emptyTips(): Int {
-        return UI_R.string.please_enter_old_password
+        return com.app.base.ui.theme.R.string.please_enter_old_password
     }
 
     public override fun noMatchTips(reason: Int): Int {
-        return UI_R.string.please_enter_old_password
+        return com.app.base.ui.theme.R.string.please_enter_old_password
     }
 
 }

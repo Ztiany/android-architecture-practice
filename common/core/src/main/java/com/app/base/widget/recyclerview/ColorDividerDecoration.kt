@@ -8,7 +8,6 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
-import com.app.base.ui.R as UI_R
 
 /**
  * Only work for vertical orientation.
@@ -30,7 +29,7 @@ class ColorDividerDecoration(context: Context) : RecyclerView.ItemDecoration() {
     private var bottomMargin: Int = 0
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = MaterialColors.getColor(context, UI_R.attr.app_color_divider, "app_color_divider not provided.")
+        color = MaterialColors.getColor(context, com.app.base.ui.theme.R.attr.app_color_divider, "app_color_divider not provided.")
     }
 
     private var drawLeft = false

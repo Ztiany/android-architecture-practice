@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.app.base.ui"
+    namespace = "com.app.base.ui.theme"
 }
 
 dependencies {

@@ -20,7 +20,6 @@ import me.ztiany.wan.account.AccountInternalNavigator
 import me.ztiany.wan.account.R
 import me.ztiany.wan.account.databinding.AccountFragmentSmsBinding
 import javax.inject.Inject
-import com.app.base.ui.R as UI_R
 
 @AndroidEntryPoint
 class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
@@ -103,13 +102,13 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
         handleLiveData(viewModel.smsCodeState) {
             onSuccess {
                 vb.accountTvCounter.startCounter()
-                showMessage(UI_R.string.validate_code_send_success)
+                showMessage(com.app.base.ui.theme.R.string.validate_code_send_success)
             }
         }
 
         handleLiveData(viewModel.loginState) {
             onSuccess {
-                showMessage(UI_R.string.login_success)
+                showMessage(com.app.base.ui.theme.R.string.login_success)
                 vb.accountTvCounter.clearWhenDetach()
                 navigator.exitAndToHomePage()
             }

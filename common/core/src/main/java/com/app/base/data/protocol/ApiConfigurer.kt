@@ -21,7 +21,6 @@ import retrofit2.Retrofit
 import timber.log.Timber
 import java.net.Proxy
 import java.util.concurrent.TimeUnit
-import com.app.base.ui.R as UI_R
 
 internal fun newHttpConfig(
     userManager: UserManager,
@@ -103,33 +102,33 @@ internal fun newErrorMessage(): ErrorMessage {
     return object : ErrorMessage {
         override fun netErrorMessage(exception: Throwable): CharSequence {
             if (NetworkUtils.isConnected()) {
-                return getString(UI_R.string.error_service_error)
+                return getString(com.app.base.ui.theme.R.string.error_service_error)
             }
-            return getString(UI_R.string.error_net_error)
+            return getString(com.app.base.ui.theme.R.string.error_net_error)
         }
 
         override fun serverDataErrorMessage(exception: Throwable): CharSequence {
-            return getString(UI_R.string.error_service_data_error)
+            return getString(com.app.base.ui.theme.R.string.error_service_data_error)
         }
 
         override fun serverReturningNullEntityErrorMessage(exception: Throwable?): CharSequence {
-            return getString(UI_R.string.error_service_no_data_error)
+            return getString(com.app.base.ui.theme.R.string.error_service_no_data_error)
         }
 
         override fun serverInternalErrorMessage(exception: Throwable): CharSequence {
-            return getString(UI_R.string.error_service_error)
+            return getString(com.app.base.ui.theme.R.string.error_service_error)
         }
 
         override fun clientRequestErrorMessage(exception: Throwable): CharSequence {
-            return getString(UI_R.string.error_request_error)
+            return getString(com.app.base.ui.theme.R.string.error_request_error)
         }
 
         override fun apiErrorMessage(exception: ApiErrorException): CharSequence {
-            return getString(UI_R.string.error_api_code_mask_tips, exception.code)
+            return getString(com.app.base.ui.theme.R.string.error_api_code_mask_tips, exception.code)
         }
 
         override fun unknownErrorMessage(exception: Throwable): CharSequence {
-            return getString(UI_R.string.error_unknown) + "：${exception.message}"
+            return getString(com.app.base.ui.theme.R.string.error_unknown) + "：${exception.message}"
         }
     }
 }

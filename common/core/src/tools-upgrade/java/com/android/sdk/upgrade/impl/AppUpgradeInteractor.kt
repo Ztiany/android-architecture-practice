@@ -30,7 +30,6 @@ import timber.log.Timber
 import java.io.File
 import java.lang.ref.WeakReference
 import javax.inject.Inject
-import com.app.base.ui.R as UI_R
 
 
 /**
@@ -119,12 +118,12 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         showConfirmDialog(context) {
             messageResId = R.string.upgrade_do_install
             cancelable = false
-            negativeText = forceUpgrade.yes { null } otherwise { context.getString(UI_R.string.cancel) }
+            negativeText = forceUpgrade.yes { null } otherwise { context.getString(com.app.base.ui.theme.R.string.cancel) }
             negativeListener = {
                 it.dismiss()
                 onCancel()
             }
-            positiveResId = UI_R.string.confirm
+            positiveResId = com.app.base.ui.theme.R.string.confirm
             positiveListener = { onConfirm() }
             autoDismiss = false
         }
@@ -140,7 +139,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
                 context.getString(R.string.upgrade_download_failed_retry)
             }
             cancelable = false
-            negativeText = forceUpgrade.yes { null } otherwise { context.getString(UI_R.string.cancel) }
+            negativeText = forceUpgrade.yes { null } otherwise { context.getString(com.app.base.ui.theme.R.string.cancel) }
             negativeListener = { onCancel() }
             positiveListener = { onConfirm() }
         }
@@ -179,7 +178,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
                 PermissionX.init(it as FragmentActivity).permissions(Manifest.permission.REQUEST_INSTALL_PACKAGES)
                     .onExplainRequestReason { scope, deniedList ->
                         val message = it.getString(R.string.upgrade_permission)
-                        scope.showRequestReasonDialog(deniedList, message, it.getString(UI_R.string.allow), it.getString(UI_R.string.deny))
+                        scope.showRequestReasonDialog(deniedList, message, it.getString(com.app.base.ui.theme.R.string.allow), it.getString(com.app.base.ui.theme.R.string.deny))
                     }.request { allGranted, _, _ ->
                         Timber.d("installApk allGranted = $allGranted")
                         if (allGranted) {

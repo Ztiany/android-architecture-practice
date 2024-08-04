@@ -3,14 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.app.base.ui.dialog"
+    namespace = "com.app.base.ui.widget"
 }
 
 dependencies {
     // androidx
     implementation (libs.androidx.annotations)
-    implementation (libs.google.ui.material)
-
+    
     // kotlin
     api (libs.kotlin.stdlib)
     api (libs.kotlin.reflect)

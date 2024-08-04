@@ -271,10 +271,10 @@ public class BaseWebFragment extends BaseUIFragment<AppBaseWebFragmentBinding> {
 
         if (!NetworkUtils.isConnected()) {
             mErrorLayout.<ImageView>findViewById(com.android.base.fragment.R.id.base_retry_icon).setImageResource(com.android.base.fragment.R.drawable.base_img_no_network);
-            mErrorLayout.<TextView>findViewById(com.android.base.fragment.R.id.base_retry_tv).setText(com.app.base.ui.R.string.error_net_error);
+            mErrorLayout.<TextView>findViewById(com.android.base.fragment.R.id.base_retry_tv).setText(com.app.base.ui.theme.R.string.error_net_error);
         } else {
             mErrorLayout.<ImageView>findViewById(com.android.base.fragment.R.id.base_retry_icon).setImageResource(com.android.base.fragment.R.drawable.base_img_error);
-            mErrorLayout.<TextView>findViewById(com.android.base.fragment.R.id.base_retry_tv).setText(com.app.base.ui.R.string.error_service_error);
+            mErrorLayout.<TextView>findViewById(com.android.base.fragment.R.id.base_retry_tv).setText(com.app.base.ui.theme.R.string.error_service_error);
         }
 
         boolean titleIsHidden = mTitleIsHidden;

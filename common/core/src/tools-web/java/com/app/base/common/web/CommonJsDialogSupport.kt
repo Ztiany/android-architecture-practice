@@ -3,7 +3,6 @@ package com.app.base.common.web
 import android.webkit.JsResult
 import com.app.base.widget.dialog.confirm.showConfirmDialog
 import com.app.base.widget.dialog.list.showListDialog
-import com.app.base.ui.R as UI_R
 
 internal fun onJsAlert(fragment: BaseWebFragment, message: String, result: JsResult) = with(fragment) {
     showConfirmDialog {
@@ -31,7 +30,7 @@ internal fun onJsConfirm(fragment: BaseWebFragment, message: String, result: JsR
 
 internal fun showTakeMediaDialog(fragment: BaseWebFragment, onTakePhoto: Runnable, onSelectPhoto: Runnable, onCancel: Runnable) = with(fragment) {
     showListDialog {
-        items = arrayOf(getString(UI_R.string.camera), getString(UI_R.string.album))
+        items = arrayOf(getString(com.app.base.ui.theme.R.string.camera), getString(com.app.base.ui.theme.R.string.album))
         cancelable = false
         positiveListener = { which, _ ->
             if (which == 0) {

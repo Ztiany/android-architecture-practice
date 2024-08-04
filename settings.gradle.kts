@@ -123,6 +123,7 @@ include(":feature:sample:app")
 
 // 业务基础架构
 include(":common:ui-theme")
+include(":common:ui-widget")
 include(":common:ui-dialog")
 include(":common:api")
 include(":common:http")

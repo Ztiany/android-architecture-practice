@@ -6,7 +6,7 @@ import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.app.base.ui.R
+import com.app.base.ui.theme.R
 import com.app.base.widget.dialog.common.BaseDialogBuilder
 import com.google.android.material.color.MaterialColors
 

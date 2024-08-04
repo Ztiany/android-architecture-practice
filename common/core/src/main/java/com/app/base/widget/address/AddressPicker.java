@@ -55,7 +55,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, com.app.base.ui.R.style.AppTheme_Dialog_Common_Floating);
+        setStyle(DialogFragment.STYLE_NO_TITLE, com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Floating);
         mAddressInquirers = new AddressInquirers(requireContext());
         mAddressInquirers.setAddressQueryCallback(this);
         mAddressAdapter = new AddressAdapter(getContext());
@@ -108,7 +108,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
 
     private void addTab() {
         TabLayout.Tab tab = mTabLayout.newTab();
-        tab.setText(com.app.base.ui.R.string.please_select);
+        tab.setText(com.app.base.ui.theme.R.string.please_select);
         mTabLayout.addTab(tab);
         tab.setTag(mCurrentSource);
         tab.select();
@@ -150,7 +150,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
             for (int i = FIX_ADDRESS_ITEM_COUNT - 1; i >= index; i--) {
                 mAddressItems[i] = null;
             }
-            tab.setText(com.app.base.ui.R.string.please_select);
+            tab.setText(com.app.base.ui.theme.R.string.please_select);
             showNext(false);
         }
     };
@@ -199,7 +199,7 @@ public class AddressPicker extends DialogFragment implements AddressInquirers.Ad
 
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            dialogWindow.setWindowAnimations(com.app.base.ui.R.style.AppAnimation_BottomIn);
+            dialogWindow.setWindowAnimations(com.app.base.ui.theme.R.style.AppAnimation_BottomIn);
             dialogWindow.setAttributes(lp);
         }
 

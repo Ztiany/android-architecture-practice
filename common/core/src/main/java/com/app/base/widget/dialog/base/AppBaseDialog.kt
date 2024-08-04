@@ -6,13 +6,12 @@ import android.view.View
 import androidx.appcompat.app.AppCompatDialog
 import com.app.base.widget.dialog.common.showCompat
 import com.blankj.utilcode.util.ScreenUtils
-import com.app.base.ui.R as UI_R
 
 open class AppBaseDialog(
     context: Context,
     private val fixWidth: Boolean = true,
     private val limitHeight: Boolean = false,
-    style: Int = UI_R.style.AppTheme_Dialog_Common_Transparent_Floating,
+    style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating,
 ) : AppCompatDialog(context, style), AppDialogInterface {
 
     private lateinit var onLayoutChangeListener: View.OnLayoutChangeListener
@@ -23,7 +22,7 @@ open class AppBaseDialog(
 
     private fun setCommonWindowAttributes() {
         window?.run {
-            attributes.windowAnimations = UI_R.style.AppAnimation_DialogFadeIn
+            attributes.windowAnimations = com.app.base.ui.theme.R.style.AppAnimation_DialogFadeIn
         }
     }
 

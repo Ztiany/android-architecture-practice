@@ -28,7 +28,6 @@ import com.app.base.app.AppBaseActivity
 import com.app.base.databinding.GalleryActivityBinding
 import kotlinx.parcelize.Parcelize
 import kotlin.properties.Delegates
-import com.app.base.ui.R as UI_R
 
 /**
  * @author Ztiany
@@ -208,8 +207,8 @@ class GalleryActivity : AppBaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (galleryInfo.deletable) {
-            menu.add(UI_R.string.delete)
-                .setIcon(UI_R.drawable.icon_delete)
+            menu.add(com.app.base.ui.theme.R.string.delete)
+                .setIcon(com.app.base.ui.theme.R.drawable.icon_delete)
                 .alwaysShow()
                 .onMenuItemClick {
                     deleteCurrentImage()
@@ -301,7 +300,7 @@ class GalleryActivity : AppBaseActivity() {
             }
 
             scale -> this.finishWithAnimation(0, 0)
-            else -> this.finishWithAnimation(0, UI_R.anim.gallery_scale_out)
+            else -> this.finishWithAnimation(0, com.app.base.ui.theme.R.anim.gallery_scale_out)
         }
     }
 

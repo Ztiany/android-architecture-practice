@@ -8,20 +8,20 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.base.utils.android.views.getString
-import com.app.base.ui.R
+import com.app.base.ui.theme.R
 import com.app.base.widget.dialog.common.BaseDialogBuilder
 import com.google.android.material.color.MaterialColors
 
 class BottomSheetDialogBuilder internal constructor(val context: Context) {
 
-    /** default is [com.app.base.ui.R.string.cancel] */
+    /** default is [com.app.base.ui.theme.R.string.cancel] */
     @StringRes
     var actionResId = BaseDialogBuilder.NO_ID
         set(value) {
             actionText = context.getText(value)
         }
 
-    /** default is the text defined by [com.app.base.ui.R.string.cancel]，if set it empty than the action view will be hidden . */
+    /** default is the text defined by [com.app.base.ui.theme.R.string.cancel]，if set it empty than the action view will be hidden . */
     var actionText: CharSequence = getString(R.string.cancel)
 
     /**  default is 14SP */

@@ -7,7 +7,7 @@ import android.view.Gravity
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.app.base.ui.R
+import com.app.base.ui.theme.R
 import com.app.base.widget.dialog.common.BaseDialogBuilder
 import com.google.android.material.color.MaterialColors
 

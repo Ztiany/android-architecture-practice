@@ -69,7 +69,7 @@ class AppTitleLayout @JvmOverloads constructor(
         val showDivider = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_divider, false)
         val cuttingLineBg = typedArray.getColor(
             R.styleable.AppTitleLayout_atl_divider_color,
-            ContextCompat.getColor(getContext(), com.app.base.ui.R.color.divider_color)
+            ContextCompat.getColor(getContext(), com.app.base.ui.theme.R.color.divider_color)
         )
         val disableNavigation = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_disable_navigation, false)
         val navigationIcon = typedArray.getDrawable(R.styleable.AppTitleLayout_atl_navigation_icon)
@@ -128,9 +128,9 @@ class AppTitleLayout @JvmOverloads constructor(
             }
         } else {
             if (iconTintColor == -1) {
-                child.setCompoundDrawablesRelativeWithIntrinsicBounds(com.app.base.ui.R.drawable.icon_back, 0, 0, 0)
+                child.setCompoundDrawablesRelativeWithIntrinsicBounds(com.app.base.ui.theme.R.drawable.icon_back, 0, 0, 0)
             } else {
-                val drawable = ContextCompat.getDrawable(context, com.app.base.ui.R.drawable.icon_back)
+                val drawable = ContextCompat.getDrawable(context, com.app.base.ui.theme.R.drawable.icon_back)
                 val tintedDrawable = tintDrawable(requireNonNull(drawable).mutate(), iconTintColor)
                 child.setCompoundDrawablesRelative(tintedDrawable, null, null, null)
             }
@@ -157,13 +157,13 @@ class AppTitleLayout @JvmOverloads constructor(
             }
         } else {
             if (iconTintColor == -1) {
-                toolbar.setNavigationIcon(com.app.base.ui.R.drawable.icon_back)
+                toolbar.setNavigationIcon(com.app.base.ui.theme.R.drawable.icon_back)
             } else {
                 toolbar.navigationIcon = tintDrawable(
                     requireNonNull(
                         ContextCompat.getDrawable(
                             context,
-                            com.app.base.ui.R.drawable.icon_back
+                            com.app.base.ui.theme.R.drawable.icon_back
                         )
                     ).mutate(), iconTintColor
                 )

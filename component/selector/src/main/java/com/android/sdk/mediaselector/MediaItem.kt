@@ -24,6 +24,13 @@ data class MediaItem(
     val height: Int = 0,
     val size: Long = 0,
     val path: String = "",
+
+    /** attachment string */
+    val attachment: String = "",
+    /** attachment what */
+    val attachmentWhat: Int = 0,
+    /** attachment data */
+    val attachmentData: Parcelable? = null,
 ) : Parcelable
 
 enum class Source {

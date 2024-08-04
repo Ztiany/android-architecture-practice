@@ -14,7 +14,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.android.views.textValue
 import com.android.base.utils.common.isLengthIn
-import com.app.base.ui.R
+import com.app.base.ui.theme.R
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily

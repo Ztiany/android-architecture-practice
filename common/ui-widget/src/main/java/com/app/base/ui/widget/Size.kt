@@ -1,6 +1,6 @@
 @file:JvmName("Sizes")
 
-package com.app.base.ui
+package com.app.base.ui.widget
 
 import android.content.Context
 import android.util.TypedValue

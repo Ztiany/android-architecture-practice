@@ -12,12 +12,12 @@ import com.app.base.widget.dialog.common.showCompat
 /**
  * @author Ztiany
  */
-internal class TipDialog(context: Context) : AppCompatDialog(context, com.app.base.ui.R.style.AppTheme_Dialog_Tips) {
+internal class TipDialog(context: Context) : AppCompatDialog(context, com.app.base.ui.theme.R.style.AppTheme_Dialog_Tips) {
 
     private val vb = DialogTipsBinding.inflate(LayoutInflater.from(context))
 
     init {
-        window?.attributes?.windowAnimations = com.app.base.ui.R.style.AppAnimation_FadeIn
+        window?.attributes?.windowAnimations = com.app.base.ui.theme.R.style.AppAnimation_FadeIn
         setContentView(vb.root)
     }
 
@@ -36,13 +36,13 @@ internal class TipDialog(context: Context) : AppCompatDialog(context, com.app.ba
     fun setTipsType(@TipType type: Int) {
         when (type) {
             TipDialogBuilder.TYPE_SUCCESS -> {
-                vb.dialogTipsTvMessage.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.R.drawable.icon_tips_success, 0, 0)
-                vb.dialogTipsTvMessage.setTextColor(ContextCompat.getColor(context, com.app.base.ui.R.color.white))
+                vb.dialogTipsTvMessage.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.theme.R.drawable.icon_tips_success, 0, 0)
+                vb.dialogTipsTvMessage.setTextColor(ContextCompat.getColor(context, com.app.base.ui.theme.R.color.white))
             }
 
             TipDialogBuilder.TYPE_FAILURE, TipDialogBuilder.TYPE_WARNING -> {
-                vb.dialogTipsTvMessage.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.R.drawable.icon_tips_failed, 0, 0)
-                vb.dialogTipsTvMessage.setTextColor(ContextCompat.getColor(context, com.app.base.ui.R.color.text_stress))
+                vb.dialogTipsTvMessage.setCompoundDrawablesWithIntrinsicBounds(0, com.app.base.ui.theme.R.drawable.icon_tips_failed, 0, 0)
+                vb.dialogTipsTvMessage.setTextColor(ContextCompat.getColor(context, com.app.base.ui.theme.R.color.text_stress))
             }
         }
     }

@@ -19,7 +19,6 @@ import com.android.base.utils.android.views.dip
 import com.app.base.R
 import com.app.base.databinding.WidgetSelectPhotoItemPhotoBinding
 import kotlin.math.max
-import com.app.base.ui.R as UI_R
 
 /**
  * @author Ztiany
@@ -172,7 +171,7 @@ private class AddImageAdapter(
         val item = dataList[position]
 
         if (item == ADD) {
-            viewHolder.vb.widgetSelectingIvPhoto.setImageResource(UI_R.drawable.img_add_photo)
+            viewHolder.vb.widgetSelectingIvPhoto.setImageResource(com.app.base.ui.theme.R.drawable.img_add_photo)
             viewHolder.vb.widgetSelectingIvPhoto.setOnClickListener(_onAddImageListener)
             viewHolder.vb.widgetSelectingIvDelete.beInvisible()
         } else {

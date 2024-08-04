@@ -9,7 +9,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import com.android.base.utils.android.compat.AndroidVersion
 import com.android.base.utils.android.views.activityContext
-import com.app.base.ui.R
+import com.app.base.ui.theme.R
 import com.google.android.material.color.MaterialColors
 
 open class BaseDialogBuilder(val context: Context) {

@@ -1,7 +1,7 @@
 package com.app.base.widget.dialog.loading
 
 import android.content.Context
-import com.app.base.ui.R
+import com.app.base.ui.theme.R
 import com.app.base.widget.dialog.loading.LoadingDialog
 import com.app.base.widget.dialog.loading.LoadingDialogInterface
 

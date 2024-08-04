@@ -34,7 +34,7 @@ final class NotificationHelper {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentTitle(AppUtils.getAppName())
                 .setContentText("正在下载新版本")
-                .setSmallIcon(com.app.base.ui.R.drawable.img_logo/*replace the real icon*/);
+                .setSmallIcon(com.app.base.ui.theme.R.drawable.img_logo/*replace the real icon*/);
     }
 
     void cancelNotification() {
