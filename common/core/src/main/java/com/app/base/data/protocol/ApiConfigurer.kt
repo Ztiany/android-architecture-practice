@@ -7,7 +7,7 @@ import com.android.sdk.net.core.provider.ErrorBodyParser
 import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
 import com.android.sdk.net.core.provider.PlatformInteractor
-import com.app.base.app.AndroidPlatform
+import com.app.base.app.Platform
 import com.app.base.config.AppSettings
 import com.app.base.debug.DebugTools
 import com.app.base.debug.ifOpenLog
@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit
 internal fun newHttpConfig(
     userManager: UserManager,
     appSettings: AppSettings,
-    androidPlatform: AndroidPlatform,
+    platform: Platform,
     errorHandler: ErrorHandler,
 ): HttpConfig {
 
@@ -82,10 +82,10 @@ internal fun newHttpConfig(
 
 }
 
-fun newPlatformInteractor(androidPlatform: AndroidPlatform): PlatformInteractor {
+fun newPlatformInteractor(platform: Platform): PlatformInteractor {
     return object : PlatformInteractor {
         override fun isConnected(): Boolean {
-            return androidPlatform.isConnected()
+            return platform.isConnected()
         }
     }
 }

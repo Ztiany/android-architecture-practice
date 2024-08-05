@@ -18,7 +18,7 @@ import com.android.sdk.net.extension.setDefaultHostConfig
 import com.android.sdk.upgrade.AppUpgradeChecker
 import com.android.sdk.upgrade.impl.AppUpgradeInteractor
 import com.app.apm.APM
-import com.app.base.app.AndroidPlatform
+import com.app.base.app.Platform
 import com.app.base.app.ComponentProcessor
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.base.config.AppSettings
@@ -52,7 +52,7 @@ abstract class AppContext : BaseAppContext() {
 
     @Inject internal lateinit var appUpgradeInteractor: Lazy<AppUpgradeInteractor>
 
-    @Inject internal lateinit var androidPlatform: Lazy<AndroidPlatform>
+    @Inject internal lateinit var platform: Lazy<Platform>
 
     @Inject internal lateinit var moduleInitializers: Set<@JvmSuppressWildcards AppLifecycle>
 
@@ -75,9 +75,9 @@ abstract class AppContext : BaseAppContext() {
     private fun configNetworkApi() {
         NetContext.get().init(this) {
             errorMessage(newErrorMessage())
-            platformInteractor(newPlatformInteractor(androidPlatform.get()))
+            platformInteractor(newPlatformInteractor(platform.get()))
         }.setDefaultHostConfig {
-            httpConfig(newHttpConfig(userManager.get(), appSettings.get(), androidPlatform.get(), errorHandler.get()))
+            httpConfig(newHttpConfig(userManager.get(), appSettings.get(), platform.get(), errorHandler.get()))
             errorBodyHandler(newErrorBodyParser(errorHandler.get()))
             aipHandler(newApiHandler(errorHandler.get()))
             exceptionFactory { _, _ -> null }

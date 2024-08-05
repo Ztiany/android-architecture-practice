@@ -14,7 +14,7 @@ import javax.inject.Singleton
  *@author Ztiany
  */
 @Singleton
-class AndroidPlatform @Inject internal constructor(
+class Platform @Inject internal constructor(
     @ApplicationContext private val context: Context
 ) {
 

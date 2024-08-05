@@ -1,7 +1,7 @@
 package me.ztiany.wan.account.data
 
 import com.android.sdk.net.coroutines.executeApiCall
-import com.app.base.app.AndroidPlatform
+import com.app.base.app.Platform
 import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.common.api.usermanager.User
 import com.app.common.api.usermanager.UserManager
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class AccountRepository @Inject constructor(
     private val accountApi: AccountApi,
     private val userManager: UserManager,
-    private val androidPlatform: AndroidPlatform,
+    private val platform: Platform,
     private val dispatcherProvider: DispatcherProvider
 ) : AccountDataSource {
 
@@ -20,9 +20,9 @@ class AccountRepository @Inject constructor(
             phoneNumber = phone,
             code = smsCode,
             type = CodeRequest.TYPE_LOGIN,
-            devicesId = androidPlatform.getDeviceId(),
-            diskName = androidPlatform.getDeviceName(),
-            versionNumber = androidPlatform.getAppVersionNumber()
+            devicesId = platform.getDeviceId(),
+            diskName = platform.getDeviceName(),
+            versionNumber = platform.getAppVersionNumber()
         )
         val loginResponse = withContext(dispatcherProvider.io()) {
             executeApiCall { accountApi.codeLogin(loginRequest) }

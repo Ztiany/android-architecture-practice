@@ -26,7 +26,7 @@ data class MediaItem(
     val path: String = "",
 
     /** attachment string */
-    val attachment: String = "",
+    val attachmentMsg: String = "",
     /** attachment what */
     val attachmentWhat: Int = 0,
     /** attachment data */

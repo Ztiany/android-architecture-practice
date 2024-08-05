@@ -14,7 +14,7 @@ import com.android.sdk.upgrade.UpgradeException
 import com.android.sdk.upgrade.UpgradeInfo
 import com.android.sdk.upgrade.UpgradeInteractor
 import com.app.base.R
-import com.app.base.app.AndroidPlatform
+import com.app.base.app.Platform
 import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.base.config.AppPrivateDirectories
 import com.app.base.config.AppSettings
@@ -41,7 +41,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
 
     @Inject lateinit var dispatcherProvider: DispatcherProvider
 
-    @Inject lateinit var androidPlatform: AndroidPlatform
+    @Inject lateinit var platform: Platform
 
     @Inject lateinit var appSettings: AppSettings
 
@@ -56,7 +56,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         AppUpgradeRepository(
             apiServiceFactoryProvider.getDefault().createDefault(),
             dispatcherProvider,
-            androidPlatform
+            platform
         )
     }
 
@@ -70,7 +70,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
     private fun buildUpgradeInfo(response: UpgradeResponse): UpgradeInfo {
         return UpgradeInfo(
             isForce = response.isForce,
-            isNewVersion = response.packageName == androidPlatform.getPackageName() && response.versionNumber > androidPlatform.getAppVersionName(),
+            isNewVersion = response.packageName == platform.getPackageName() && response.versionNumber > platform.getAppVersionName(),
             versionName = response.versionNumber,
             downloadUrl = response.url,
             description = response.versionDescription,
