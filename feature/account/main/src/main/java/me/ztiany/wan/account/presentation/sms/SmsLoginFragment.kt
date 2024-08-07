@@ -11,8 +11,8 @@ import com.android.base.utils.android.views.expandTouchArea
 import com.android.base.utils.android.views.onThrottledClick
 import com.android.base.utils.android.views.textValue
 import com.app.base.utils.newAppStyleClickSpan
-import com.app.base.widget.form.validateCellphone
-import com.app.base.widget.form.validateSmsCode
+import com.app.base.utils.form.validateCellphone
+import com.app.base.utils.form.validateSmsCode
 import com.blankj.utilcode.util.SpanUtils
 import com.qmuiteam.qmui.kotlin.onClick
 import dagger.hilt.android.AndroidEntryPoint

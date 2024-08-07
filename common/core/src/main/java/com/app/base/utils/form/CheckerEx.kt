@@ -1,4 +1,4 @@
-package com.app.base.widget.form
+package com.app.base.utils.form
 
 import com.android.base.utils.common.isChinaPhoneNumber
 import com.android.base.utils.common.isLengthIn
