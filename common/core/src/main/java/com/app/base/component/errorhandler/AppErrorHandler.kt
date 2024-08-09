@@ -3,18 +3,16 @@ package com.app.base.component.errorhandler
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
+import androidx.activity.ComponentActivity
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
+import com.app.base.data.protocol.isGlobalApiError
+import com.app.base.ui.dialog.alertDialog
+import com.app.base.ui.dialog.dsl.alert.AlertDialogInterface
+import com.app.base.dialog.toast.ToastKit
+import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.protocol.CannotShowDialogOnIt
 import com.app.common.api.protocol.CannotShowExpiredDialogOnIt
-import com.app.base.data.protocol.isGlobalApiError
-import com.app.base.widget.dialog.base.onDismiss
-import com.app.base.widget.dialog.confirm.ConfirmDialogInterface
-import com.app.base.widget.dialog.confirm.showConfirmDialog
-import com.app.base.widget.dialog.toast.ToastKit
-import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
 import com.app.common.api.usermanager.isUserLogin
@@ -32,7 +30,7 @@ internal class AppErrorHandler @Inject constructor(
     @ApplicationContext private val context: Context,
 ) : ErrorHandler {
 
-    private var showingDialog: WeakReference<ConfirmDialogInterface>? = null
+    private var expiredAlertDialog: WeakReference<AlertDialogInterface>? = null
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -54,52 +52,37 @@ internal class AppErrorHandler @Inject constructor(
         }
     }
 
-    private fun showReLoginDialog(apiErrorException: ApiErrorException): Boolean {
-        val currentActivity = ActivityUtils.getTopActivity() ?: return false
+    private fun showReLoginDialog(apiErrorException: ApiErrorException) {
+        val currentActivity = ActivityUtils.getTopActivity() as? ComponentActivity ?: return
 
         if (currentActivity is CannotShowDialogOnIt) {
-            return false
+            return
         }
 
         if (currentActivity is CannotShowExpiredDialogOnIt) {
-            return false
+            return
         }
 
-        val dialog = showingDialog?.get()
+        expiredAlertDialog?.get()?.dismiss()
 
-        if (dialog != null) {
-            return true
-        }
-
-        val confirmDialog = currentActivity.showConfirmDialog {
-            message = createMessageByErrorType(apiErrorException)
-            disableNegative()
-            cancelable = false
-            positiveListener = {
-                showingDialog = null
+        val confirmDialog = currentActivity.alertDialog {
+            message(createMessageByErrorType(apiErrorException))
+            positiveButton("确认") {
+                expiredAlertDialog = null
                 //handle login expired
                 ActivityUtils.getTopActivity()?.let {
                     appRouter.getNavigator(MainModuleNavigator::class.java)?.exitAndLogin(it)
                 }
             }
-        }.also {
-            it.onDismiss {
-                showingDialog = null
-            }
-        }
-
-        showingDialog = WeakReference(confirmDialog)
-
-        /*activity maybe finish by programming*/
-        if (currentActivity is LifecycleOwner) {
-            currentActivity.lifecycle.addObserver(object : DefaultLifecycleObserver {
-                override fun onDestroy(owner: LifecycleOwner) {
-                    showingDialog?.get()?.dismiss()
-                    showingDialog = null
+            behavior {
+                cancelable(false)
+                onDismiss {
+                    expiredAlertDialog = null
                 }
-            })
-        }
-        return true
+            }
+        }.show()
+
+        expiredAlertDialog = WeakReference(confirmDialog)
     }
 
     private fun createMessageByErrorType(apiErrorException: ApiErrorException): CharSequence {

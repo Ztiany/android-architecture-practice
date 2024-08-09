@@ -9,62 +9,51 @@ android {
     namespace = "com.app.base"
 
     defaultConfig {
-        buildConfigField("boolean", "openDebug", "${project.findProperty("open_debug")}")
-        buildConfigField("boolean", "openLog", "${project.findProperty("open_log")}")
-        buildConfigField("boolean", "showDebugTools", "${project.findProperty("show_debug_tools")}")
-        buildConfigField("boolean", "trustAllHttpsCertification", "${project.findProperty("https_trust_all")}")
-        buildConfigField("String", "specifiedHost", "\"${project.findProperty("host_env")}\"")
+        buildConfigField("String", "appHostFlag", "\"${project.findProperty("host_env")}\"")
+        buildConfigField("boolean", "skipHttpCerVerifying", "${project.findProperty("skip_http_certificate_verifying")}")
     }
 
-    //如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
     buildFeatures {
+        // If you don't want to generate the binding class of a layout, you can add tools:viewBindingIgnore="true" attribute to the root view.
         viewBinding = true
         buildConfig = true
     }
 
-    sourceSets {
-        getByName("main") {
-            java.srcDir("src/common/java")
-            res.srcDir("src/common/res")
-
-            java.srcDir("src/tools-web/java")
-            res.srcDir("src/tools-web/res")
-
-            java.srcDir("src/tools-gallery/java")
-            res.srcDir("src/tools-gallery/res")
-
-            java.srcDir("src/tools-upgrade/java")
-            res.srcDir("src/tools-upgrade/res")
-
-            java.srcDir("src/tools-debug/java")
-            res.srcDir("src/tools-debug/res")
-
-            java.srcDir("src/tools-sdk/java")
+    if (project.findProperty("show_debug_tools").toString().toBoolean()) {
+        sourceSets {
+            getByName("main") {
+                java.srcDir("src/debug/java")
+                res.srcDir("src/debug/res")
+            }
         }
     }
 }
 
 dependencies {
-    // 测试
+    // testing
     testImplementation(libs.test.junit)
 
-    // 通用架构
+    // foundation
     api(libs.base.arch.core)
     api(libs.base.arch.fragment)
-    // 通用工具
     api(libs.base.arch.utils)
-    // SDK UI 规范
+
+    // performance monitor and debug
+    api(project(":apm"))
+
+    // app ui theme, dialog and widget and base business api implementation
     api(project(":common:ui-theme"))
     api(project(":common:ui-dialog"))
-    // SDK API 规范
+    api(project(":common:ui-widget"))
     api(project(":common:api"))
-    // HTTP API 规范
     api(project(":common:http"))
-    // 公共组件
+
+    // media selector
     api(project(":component:selector"))
-    // 性能监控
-    implementation(project(":apm:core"))
-    // 依赖的业务 API
+    // upgrade component
+    implementation(project(":component:upgrade"))
+
+    // dependencies of specific feature api
     implementation(project(":feature:home:api"))
 
     // androidx
@@ -75,35 +64,21 @@ dependencies {
     compileOnly(libs.androidx.paging.runtime)
 
     // hilt
-    api(libs.google.hilt)
+    implementation(libs.google.hilt)
     ksp(libs.google.hilt.compiler)
 
     // network
     implementation(libs.square.okhttp)
-    implementation(libs.square.okhttp.logging)
-    api(libs.ztiany.simplehttp)
+    implementation(libs.square.retrofit.converter.gson)
+    implementation(libs.bumptech.glide)
     api(libs.google.gson)
     api(libs.square.retrofit)
-    implementation(libs.square.retrofit.converter.gson)
+    api(libs.ztiany.simplehttp)
     api(libs.ztiany.imageloader)
-    implementation(libs.bumptech.glide)
     kapt(libs.bumptech.glide.ksp)
-
-    // ui
-    api(libs.yslibrary.keyboardvisibilityevent)
-
     // utils
     api(libs.jooq.joor)
     api(libs.ztiany.livedataex)
     api(libs.ztiany.storage)
     api(libs.guolin.permissionx)
-
-    // debug
-    if (project.findProperty("open_debug").toString().toBoolean()) {
-        // stetho
-        implementation(libs.facebook.stetho)
-        implementation(libs.facebook.stetho.okhttp3)
-        // leakcanary
-        implementation(libs.squareup.leakcanary.debug)
-    }
 }

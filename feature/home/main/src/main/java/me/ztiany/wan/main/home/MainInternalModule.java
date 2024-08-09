@@ -1,7 +1,7 @@
 package me.ztiany.wan.main.home;
 
 import com.android.sdk.net.ServiceContext;
-import com.app.common.api.network.ApiServiceFactoryProvider;
+import com.app.common.api.network.ServiceFactoryProvider;
 
 import me.ztiany.wan.main.home.feed.data.FeedApi;
 
@@ -18,8 +18,8 @@ import dagger.hilt.android.components.ActivityRetainedComponent;
 public class MainInternalModule {
 
     @Provides
-    static ServiceContext<FeedApi> provideFeedApi(ApiServiceFactoryProvider apiServiceFactoryProvider) {
-        return apiServiceFactoryProvider.getDefault().createServiceContext(FeedApi.class);
+    static ServiceContext<FeedApi> provideFeedApi(ServiceFactoryProvider serviceFactoryProvider) {
+        return serviceFactoryProvider.getDefault().createServiceContext(FeedApi.class);
     }
 
 }

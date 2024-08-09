@@ -14,11 +14,15 @@ class CustomGlideModule : ProgressGlideModule() {
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         val dirCacheSize = 1024 * 1024 * 500
         builder.setDiskCache(
-            ExternalPreferredCacheDiskCacheFactory(context, AppPrivateDirectories.IMAGE_CACHE_DIR, dirCacheSize.toLong())
+            ExternalPreferredCacheDiskCacheFactory(context, IMAGE_CACHE_DIR, dirCacheSize.toLong())
         )
         val maxMemory = Runtime.getRuntime().maxMemory() / 8
         Timber.d("FtGlideModule image cache size:%d", maxMemory)
         builder.setMemoryCache(LruResourceCache(maxMemory.toInt().toLong()))
+    }
+
+    companion object {
+        private const val IMAGE_CACHE_DIR = "app_images_cache"
     }
 
 }

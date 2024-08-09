@@ -16,19 +16,18 @@ import com.android.sdk.net.core.exception.ServerErrorException
 import com.android.sdk.net.extension.init
 import com.android.sdk.net.extension.setDefaultHostConfig
 import com.android.sdk.upgrade.AppUpgradeChecker
-import com.android.sdk.upgrade.impl.AppUpgradeInteractor
 import com.app.apm.APM
-import com.app.base.app.Platform
 import com.app.base.app.ComponentProcessor
-import com.app.common.api.errorhandler.ErrorHandler
+import com.app.base.app.Platform
 import com.app.base.config.AppSettings
 import com.app.base.data.protocol.newApiHandler
 import com.app.base.data.protocol.newErrorBodyParser
 import com.app.base.data.protocol.newErrorMessage
 import com.app.base.data.protocol.newHttpConfig
 import com.app.base.data.protocol.newPlatformInteractor
-import com.app.base.debug.DebugTools
-import com.app.base.widget.dialog.loading.AppLoadingViewHost
+import com.app.base.dialog.loading.AppLoadingViewHost
+import com.app.base.upgrade.AppUpgradeInteractor
+import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
 import dagger.Lazy
@@ -59,14 +58,13 @@ abstract class AppContext : BaseAppContext() {
     override fun onCreate() {
         application = this
         super.onCreate()
+
         BaseUtils.init(this)
-        DebugTools.init(this)
         APM.init(this).start()
         appSettings.get().init()
         configNetworkApi()
         configFoundation()
         configLibraries()
-        configThirdSDK()
         moduleInitializers.forEach {
             it.onCreate(this)
         }
@@ -122,13 +120,6 @@ abstract class AppContext : BaseAppContext() {
 
     private fun configLibraries() {
         AppUpgradeChecker.installInteractor(appUpgradeInteractor.get())
-    }
-
-    private fun configThirdSDK() {
-        //WeChatManager.initWeChatSDK(this, "", "")
-        //Umeng.init(this)
-        //Bugly.init(this)
-        //PushManager.getInstance().init(this)
     }
 
     override fun onLowMemory() {

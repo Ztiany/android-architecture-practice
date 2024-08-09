@@ -8,7 +8,7 @@ import com.android.sdk.net.extension.addHostConfig
 import com.app.base.injection.ApplicationScope
 import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.common.api.errorhandler.ErrorHandler
-import com.app.common.api.network.ApiServiceFactoryProvider
+import com.app.common.api.network.ServiceFactoryProvider
 import com.app.common.api.usermanager.UserManager
 import kotlinx.coroutines.CoroutineScope
 import me.ztiany.wan.sample.common.net.SAMPLE_HOST_FLAG
@@ -21,7 +21,7 @@ import javax.inject.Singleton
 
 @Singleton
 internal class SampleModuleInitializer @Inject constructor(
-    private val serviceFactoryProvider: ApiServiceFactoryProvider,
+    private val serviceFactoryProvider: ServiceFactoryProvider,
     private val userManager: UserManager,
     private val errorHandler: ErrorHandler,
     private val dispatcherProvider: DispatcherProvider,

@@ -1,6 +1,6 @@
 package me.ztiany.wan.account.injection;
 
-import com.app.common.api.network.ApiServiceFactoryProvider;
+import com.app.common.api.network.ServiceFactoryProvider;
 import me.ztiany.wan.account.data.AccountApi;
 import me.ztiany.wan.account.data.AccountDataSource;
 import me.ztiany.wan.account.data.AccountRepository;
@@ -16,8 +16,8 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped;
 public class AccountInjectionModule {
 
     @Provides
-    static AccountApi provideAccountApi(ApiServiceFactoryProvider apiServiceFactoryProvider) {
-        return apiServiceFactoryProvider.getDefault().createDefault(AccountApi.class);
+    static AccountApi provideAccountApi(ServiceFactoryProvider serviceFactoryProvider) {
+        return serviceFactoryProvider.getDefault().createDefault(AccountApi.class);
     }
 
     @Provides

@@ -1,39 +1,54 @@
 package com.app.base.ui.dialog.dsl
 
-import android.app.Activity
-import android.graphics.Color
-import com.google.android.material.color.MaterialColors
+import android.content.Context
+import android.widget.TextView
+import androidx.annotation.ColorInt
+import com.google.android.material.appbar.MaterialToolbar
 
-open class Text internal constructor(private val activity: Activity, val text: CharSequence) {
+@DialogContextDslMarker
+open class Text(
+    protected val context: Context,
+    private val _text: CharSequence,
+) : TextStyle(context) {
 
-    internal var textColor: Int = Color.BLACK
+    fun toTextDescription(): TextDescription {
+        val styleDescription = toTextStyleDescription()
+        return TextDescription(
+            text = _text,
+            textColor = styleDescription.textColor,
+            textSize = styleDescription.textSize,
+            textGravity = styleDescription.textGravity,
+            clickableSpan = styleDescription.clickableSpan,
+            isBold = styleDescription.isBold,
+        )
+    }
 
+}
+
+class TextDescription(
+    val text: CharSequence,
+    @ColorInt val textColor: Int,
+    val textGravity: Int,
+    val clickableSpan: Boolean,
     /** unit: sp */
-    internal var textSize: Float = 16F
+    val textSize: Float,
+    val isBold: Boolean,
+)
 
-    internal var textGravity: Int = android.view.Gravity.CENTER
-
-    internal var clickableSpan: Boolean = false
-
-    fun color(color: Int) {
-        textColor = color
+fun TextDescription.applyTo(textView: TextView) {
+    textView.setTextColor(textColor)
+    textView.textSize = textSize
+    textView.gravity = textGravity
+    if (clickableSpan) {
+        textView.movementMethod = android.text.method.LinkMovementMethod.getInstance()
     }
-
-    fun attrColor(attr: Int) {
-        textColor = MaterialColors.getColor(activity, attr, "textColor not found in your theme!")
+    if (isBold) {
+        textView.paint.isFakeBoldText = true
     }
+    textView.text = text
+}
 
-    fun gravity(gravity: Int) {
-        textGravity = gravity
-    }
-
-    /** unit: sp */
-    fun size(size: Float) {
-        textSize = size
-    }
-
-    fun asClickableSpan() {
-        clickableSpan = true
-    }
-
+fun TextDescription.applyTo(toolbar: MaterialToolbar) {
+    toolbar.setTitle(text.toString())
+    toolbar.setTitleTextColor(textColor)
 }

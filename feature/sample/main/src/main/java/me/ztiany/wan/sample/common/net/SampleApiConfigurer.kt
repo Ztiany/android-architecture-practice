@@ -6,12 +6,12 @@ import com.android.sdk.net.core.provider.ApiHandler
 import com.android.sdk.net.core.provider.ErrorBodyParser
 import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
+import com.app.apm.APM
 import com.app.base.data.protocol.ApiResult
-import com.app.base.debug.ifOpenLog
 import com.app.base.utils.json.deserializeJson
 import com.app.common.api.errorhandler.ErrorHandler
+import com.blankj.utilcode.util.NetworkUtils
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -22,39 +22,21 @@ internal fun newHttpConfig(): HttpConfig {
 
     return object : HttpConfig {
 
-        private val CONNECTION_TIME_OUT = 30
-        private val IO_TIME_OUT = 30
-
         override fun baseUrl() = "https://www.wanandroid.com/"
 
-        override fun configRetrofit(
-            okHttpClient: OkHttpClient,
-            builder: Retrofit.Builder,
-        ): Boolean {
-            return false
-        }
+        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder) = false
 
         override fun configHttp(builder: OkHttpClient.Builder) {
-            //常规配置
-            builder
-                .connectTimeout(CONNECTION_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                .readTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                .writeTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
+            builder.connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
                 .apply {
-                    configApiLogIfNeed()
+                    APM.installOkHttpLogging(this) { message -> Timber.w("OkHttp: $message") }
                 }
         }
 
-        private fun OkHttpClient.Builder.configApiLogIfNeed() {
-            ifOpenLog {
-                val httpLoggingInterceptor =
-                    HttpLoggingInterceptor { message -> Timber.w("OkHttp: $message") }
-                httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-                addInterceptor(httpLoggingInterceptor)
-            }
-        }
-
     }
+
 }
 
 internal fun newErrorBodyParser(errorHandler: ErrorHandler): ErrorBodyParser {
@@ -75,6 +57,9 @@ internal fun newErrorBodyParser(errorHandler: ErrorHandler): ErrorBodyParser {
 internal fun newErrorMessage(): ErrorMessage {
     return object : ErrorMessage {
         override fun netErrorMessage(exception: Throwable): CharSequence {
+            if (NetworkUtils.isConnected()) {
+                return getString(com.app.base.ui.theme.R.string.error_service_error)
+            }
             return getString(com.app.base.ui.theme.R.string.error_net_error)
         }
 

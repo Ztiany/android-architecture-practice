@@ -16,8 +16,6 @@ import com.app.common.api.protocol.CustomizeSystemBar
 
 /**
  *@author Ztiany
- *      Email: ztiany3@gmail.com
- *      Date : 2019-11-27 10:48
  */
 class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
 

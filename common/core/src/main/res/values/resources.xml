@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- container id: such as FragmentContainerLayout -->
+    <item name="common_container_id" type="id" />
+
+    <declare-styleable name="DialogBottomLayout">
+        <attr name="dbl_style" format="enum">
+            <enum name="full" value="1" />
+            <enum name="partition" value="2" />
+        </attr>
+    </declare-styleable>
+
+</resources>

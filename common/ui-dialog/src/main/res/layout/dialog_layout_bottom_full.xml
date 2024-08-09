@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_tv_negative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:visibility="visible"
+            tools:text="Cancel" />
+
+        <View
+            android:id="@+id/dialog_view_left_divider"
+            android:layout_width="@dimen/common_divider_width"
+            android:layout_height="match_parent"
+            android:background="?app_color_divider" />
+
+        <TextView
+            android:id="@+id/dialog_tv_neutral"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            tools:text="Neutral" />
+
+        <View
+            android:id="@+id/dialog_view_right_divider"
+            android:layout_width="@dimen/common_divider_width"
+            android:layout_height="match_parent"
+            android:background="?app_color_divider" />
+
+        <TextView
+            android:id="@+id/dialog_tv_positive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            tools:text="Confirm" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dialog_view_bottom_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_divider_width"
+        android:background="?app_color_divider" />
+
+</merge>

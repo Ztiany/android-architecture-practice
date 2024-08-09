@@ -37,6 +37,13 @@
         <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
     </style>
 
+    <style name="Widget.App.DView.Shape.PrimaryVariantRounded25" parent="">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded25</item>
+        <item name="cgd_shape_solid">?app_color_text_variant1_bg</item>
+    </style>
+
     <style name="Widget.App.DView.Shape.PrimaryVariantPressed" parent="">
         <item name="cgd_shape_solid">?app_color_main</item>
         <item name="cgd_shape_stroke_style">@style/StrokeStyle.App.PrimaryVariant</item>
@@ -78,6 +85,13 @@
         <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded10</item>
     </style>
 
+    <style name="Widget.App.DView.Selector.PrimaryGradientVariantRounded25" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Shape.PrimaryVariantRounded25</item>
+        <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryVariantPressedRounded10</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded10</item>
+    </style>
+
     <!--public-->
 
     <style name="Widget.App.Button.FullLine.DView.PrimaryVariant">
@@ -104,14 +118,20 @@
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
+    <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded5">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded5</item>
+        <item name="dtv_text_color_normal">?app_color_text_variant1</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
     <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded10">
         <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded10</item>
         <item name="dtv_text_color_normal">?app_color_text_variant1</item>
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 
-    <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded5">
-        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded5</item>
+    <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded25">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientVariantRounded25</item>
         <item name="dtv_text_color_normal">?app_color_text_variant1</item>
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>

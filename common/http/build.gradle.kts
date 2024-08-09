@@ -3,21 +3,19 @@ plugins {
 }
 
 android {
-    namespace = "com.app.base.component.merchant"
+    namespace = "com.app.base.data.protocol"
 }
 
 dependencies {
+    // androidx
     implementation(libs.androidx.annotations)
-
     // kotlin
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
-
     // log
     implementation(libs.jakewharton.timber)
-
     // core function
-    api(libs.ztiany.simplehttp)
-    api(libs.google.gson)
-    api(libs.square.retrofit)
+    implementation(libs.ztiany.simplehttp)
+    implementation(libs.google.gson)
+    implementation(libs.square.retrofit)
 }

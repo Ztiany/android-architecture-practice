@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextItemLayout">
+        <attr name="til_title" format="string|reference" />
+        <attr name="til_title_color" format="color|reference" />
+        <attr name="til_subtitle" format="string|reference" />
+        <attr name="til_subtitle_color" format="color|reference" />
+        <attr name="til_title_in_middle" format="boolean" />
+        <attr name="til_show_arrow" format="boolean" />
+        <attr name="til_show_bottom_line" format="boolean" />
+        <attr name="til_bottom_line_align_title" format="boolean" />
+        <attr name="til_bottom_line_height" format="dimension|reference" />
+        <attr name="til_bottom_line_color" format="color|reference" />
+    </declare-styleable>
+
+</resources>

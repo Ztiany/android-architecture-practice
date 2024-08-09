@@ -14,9 +14,7 @@ import javax.inject.Singleton
  *@author Ztiany
  */
 @Singleton
-class Platform @Inject internal constructor(
-    @ApplicationContext private val context: Context
-) {
+class Platform @Inject internal constructor(@ApplicationContext private val context: Context) {
 
     fun isConnected() = NetworkUtils.isConnected()
 
@@ -34,7 +32,6 @@ class Platform @Inject internal constructor(
 
     fun getPackageName(): String = AppUtils.getAppPackageName()
 
-    /** 获取设备名 */
     fun getDeviceName(): String = Build.MODEL
 
     fun getAppChannel(): String {

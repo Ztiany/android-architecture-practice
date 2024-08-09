@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import timber.log.Timber;
 
-public class AndroidDeviceId {
+class AndroidDeviceId {
 
     private static String sFakeDeviceId = "";
 

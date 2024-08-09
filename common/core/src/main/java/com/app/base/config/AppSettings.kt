@@ -33,14 +33,16 @@ class AppSettings @Inject internal constructor(
         if (initialized.compareAndSet(false, true)) {
             //如果规定了，选择某一个环境，则优先选择该环境
             initEnvironment()
-            if (!"Auto".contentEquals(BuildConfig.specifiedHost)) {
-                Timber.d("BuildConfig.specifiedHost =>%s", BuildConfig.specifiedHost);
-                selectSpecified(BuildConfig.specifiedHost);
+            if (!"Auto".contentEquals(BuildConfig.appHostFlag)) {
+                Timber.d("BuildConfig.appHostFlag =>%s", BuildConfig.appHostFlag);
+                EnvironmentContext.allCategory().forEach { (category, _) ->
+                    EnvironmentContext.select(category, BuildConfig.appHostFlag)
+                }
             }
         }
     }
 
-    val storage by lazy {
+    internal val storage by lazy {
         storageManager.newStorage("AppSettings")
     }
 
@@ -50,28 +52,19 @@ class AppSettings @Inject internal constructor(
     val defaultPageSize
         get() = 20
 
-    val transitionAnimationPhotos
-        get() = "transition_animation_photos"
-
     val minimumDialogShowTime
         get() = 500L
 
     val appFileProviderAuthorities: String
         get() = BaseUtils.getAppContext().packageName + ".file.provider"
 
-    val isReleaseEnv: Boolean
-        get() = BuildConfig.specifiedHost == "Pro"
+    val isReleaseEnv: Boolean = BuildConfig.appHostFlag == "Pro"
 
     var agreeWithUserProtocol: Boolean
         set(value) {
             storage.putBoolean("agreeWithUserProtocol", value)
         }
         get() = storage.getBoolean("agreeWithUserProtocol", false)
-
-    private fun selectSpecified(specifiedHost: String) {
-        EnvironmentContext.select(API_HOST, specifiedHost)
-        EnvironmentContext.select(H5_HOST, specifiedHost)
-    }
 
     private fun getBaseApiURL(): String {
         return EnvironmentContext.selected(API_HOST).value
@@ -82,8 +75,8 @@ class AppSettings @Inject internal constructor(
     }
 
     companion object {
-        internal const val API_HOST = "接口环境"
-        internal const val H5_HOST = "H5 环境"
+        internal const val API_HOST = "API-Address"
+        internal const val H5_HOST = "H5-Address"
     }
 
     private fun initEnvironment() {

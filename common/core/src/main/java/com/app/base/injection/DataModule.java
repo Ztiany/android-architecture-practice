@@ -3,8 +3,8 @@ package com.app.base.injection;
 import com.app.common.api.usermanager.UserManager;
 import com.app.base.component.errorhandler.AppErrorHandler;
 import com.app.common.api.errorhandler.ErrorHandler;
-import com.app.common.api.network.ApiServiceFactoryProvider;
-import com.app.base.component.apifactory.ApiServiceFactoryProviderImpl;
+import com.app.common.api.network.ServiceFactoryProvider;
+import com.app.base.component.apifactory.ServiceFactoryProviderImpl;
 import com.app.base.component.usermanager.UserManagerImpl;
 
 import dagger.Module;
@@ -26,7 +26,7 @@ public class DataModule {
     }
 
     @Provides
-    public ApiServiceFactoryProvider provideServiceFactory(ApiServiceFactoryProviderImpl serviceProvider) {
+    public ServiceFactoryProvider provideServiceFactory(ServiceFactoryProviderImpl serviceProvider) {
         return serviceProvider;
     }
 

@@ -101,7 +101,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/account_tv_sms" />
 
-    <com.app.base.widget.view.CounterButton
+    <com.app.base.ui.widget.counter.CounterButton
         android:id="@+id/account_tv_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,7 +114,6 @@
         app:ccb_counter_tag="app_sms_login"
         app:ccb_text="@string/obtain_validate_code"
         app:ccb_text_hint_format="%sS"
-        app:ccb_text_normal_color="?app_color_text_stress"
         app:layout_constraintBottom_toBottomOf="@id/account_et_sms"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/account_et_sms" />

@@ -1,7 +1,6 @@
 package me.ztiany.wan.main.home.feed.data
 
 import com.app.base.data.protocol.ApiResult
-import com.app.common.api.network.Pager
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

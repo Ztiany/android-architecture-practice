@@ -7,16 +7,14 @@ import com.android.sdk.net.core.provider.ErrorBodyParser
 import com.android.sdk.net.core.provider.ErrorMessage
 import com.android.sdk.net.core.provider.HttpConfig
 import com.android.sdk.net.core.provider.PlatformInteractor
+import com.app.apm.APM
+import com.app.base.BuildConfig
 import com.app.base.app.Platform
 import com.app.base.config.AppSettings
-import com.app.base.debug.DebugTools
-import com.app.base.debug.ifOpenLog
-import com.app.base.debug.isOpenDebug
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.usermanager.UserManager
 import com.blankj.utilcode.util.NetworkUtils
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import timber.log.Timber
 import java.net.Proxy
@@ -31,52 +29,31 @@ internal fun newHttpConfig(
 
     return object : HttpConfig {
 
-        private val CONNECTION_TIME_OUT = 30
-        private val IO_TIME_OUT = 30
-
         override fun baseUrl() = appSettings.baseApiUrl()
 
-        override fun configRetrofit(
-            okHttpClient: OkHttpClient,
-            builder: Retrofit.Builder,
-        ): Boolean {
-            return false
-        }
+        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder) = false
 
-        override fun configHttp(builder: OkHttpClient.Builder) {
-            //常规配置
-            builder.connectTimeout(CONNECTION_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                .readTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
-                .writeTimeout(IO_TIME_OUT.toLong(), TimeUnit.SECONDS)
-            //Api 签名协议
-            // configApiProtocol(userManager, androidPlatform, appSettings, builder)
-            //调试配置
-            configDebugIfNeeded(builder)
-        }
-
-        private fun configDebugIfNeeded(builder: OkHttpClient.Builder) {
-            //打印日志
-            ifOpenLog {
-                val httpLoggingInterceptor = HttpLoggingInterceptor { message -> Timber.tag("===OkHttp===").i(message) }
-                httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-                builder.addInterceptor(httpLoggingInterceptor)
+        override fun configHttp(builder: OkHttpClient.Builder) = with(builder) {
+            connectTimeout(10, TimeUnit.SECONDS)
+            readTimeout(10, TimeUnit.SECONDS)
+            writeTimeout(10, TimeUnit.SECONDS)
+            // HTTPS
+            if (BuildConfig.skipHttpCerVerifying) {
+                //builder.trustAllCertification()
             }
-
-            //Stetho 调试
-            if (isOpenDebug()) {
-                DebugTools.installStethoHttp(builder)
+            // API 签名协议前处理
+            //apiProtocol.configApiProtocolBeforeLog(this)
+            // 打印日志
+            //APM.installOkHttpLogging(this) { message -> logApiInfo(message) }
+            // API 签名协议后处理
+            //apiProtocol.configApiProtocolAfterLog(this)
+            // API 调试配置
+            if (APM.debugMode) {
+                APM.installStethoHttp(builder)
             } else {
-                //禁用代理
                 builder.proxy(Proxy.NO_PROXY)
             }
-
-            builder.authenticator { _, _ -> //下面的 newApiHandler 中已经处理，这里不需要再处理了。
-                //errorHandler.handleGlobalError(ApiHelper.buildAuthenticationExpiredException())
-                null
-            }
-
-            //HTTPS
-            //trustAllCertificationChecked(builder)
+            Unit
         }
     }
 

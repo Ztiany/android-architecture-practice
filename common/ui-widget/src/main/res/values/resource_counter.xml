@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CounterButton">
+        <attr name="ccb_count" format="integer" />
+        <attr name="ccb_counter_tag" format="string" />
+        <attr name="ccb_text" format="string|reference" />
+        <attr name="ccb_text_hint_format" format="string|reference" />
+    </declare-styleable>
+
+</resources>

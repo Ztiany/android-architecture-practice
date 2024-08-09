@@ -4,15 +4,25 @@ plugins {
 
 android {
     namespace = "com.app.base.ui.widget"
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+    // theme
+    implementation(project(":common:ui-theme"))
+    // foundation
+    implementation(libs.base.arch.utils)
+    implementation(libs.base.arch.adapter)
+    implementation(libs.base.arch.fragment)
     // androidx
-    implementation (libs.androidx.annotations)
-    
+    implementation(libs.androidx.annotations)
+    implementation(libs.google.ui.material)
     // kotlin
-    api (libs.kotlin.stdlib)
-    api (libs.kotlin.reflect)
-    api (libs.kotlinx.coroutines)
-    api (libs.kotlinx.coroutines.android)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlinx.coroutines)
+    implementation(libs.kotlinx.coroutines.android)
 }

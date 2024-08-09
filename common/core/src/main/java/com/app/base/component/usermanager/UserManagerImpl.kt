@@ -3,8 +3,9 @@ package com.app.base.component.usermanager
 import android.annotation.SuppressLint
 import android.util.Log
 import com.android.sdk.cache.getEntity
+import com.app.apm.APM
+import com.app.apm.doIfLogEnabled
 import com.app.base.data.storage.StorageManager
-import com.app.base.debug.ifOpenLog
 import com.app.base.utils.json.toJson
 import com.app.common.api.usermanager.User
 import com.app.common.api.usermanager.UserManager
@@ -42,7 +43,7 @@ internal class UserManagerImpl @Inject constructor(storageManager: StorageManage
         currentUser = user
         userStorage.putEntity(APP_USER_KEY, currentUser)
         onUserUpdated()
-        ifOpenLog {
+        APM.doIfLogEnabled {
             Timber.w("new user: ${currentUser.toJson()}")
         }
     }

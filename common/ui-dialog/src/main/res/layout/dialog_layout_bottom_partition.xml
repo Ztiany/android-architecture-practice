@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp">
+
+        <com.android.base.ui.drawable.DTextView
+            android:id="@+id/dialog_tv_negative"
+            style="@style/Widget.App.Button.Medium.DView.PrimaryVariantRounded10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="0dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            tools:text="@string/cancel" />
+
+        <View
+            android:id="@+id/dialog_view_left_divider"
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+        <com.android.base.ui.drawable.DTextView
+            android:id="@+id/dialog_tv_neutral"
+            style="@style/Widget.App.Button.Medium.DView.PrimaryVariantRounded10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="0dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            tools:text="@string/confirm" />
+
+        <View
+            android:id="@+id/dialog_view_right_divider"
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+        <com.android.base.ui.drawable.DTextView
+            android:id="@+id/dialog_tv_positive"
+            style="@style/Widget.App.Button.Medium.DView.PrimaryGradientRounded10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="0dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            tools:text="@string/confirm" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dialog_view_bottom_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_divider_width"
+        android:background="?app_color_divider"
+        android:visibility="invisible" />
+
+</merge>

@@ -1,6 +1,6 @@
 package com.app.base.utils.file;
 
-import static com.app.base.config.AppPrivateDirectories.createTempFileName;
+import static com.app.base.utils.file.AppPrivateDirectories.createTempFileName;
 
 import android.os.Environment;
 

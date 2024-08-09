@@ -4,7 +4,7 @@ import com.android.sdk.net.coroutines.executeApiCallNullable
 import com.app.base.data.protocol.ApiResult
 import com.app.base.data.protocol.isApiAuthenticationExpired
 import com.app.common.api.dispatcher.DispatcherProvider
-import com.app.common.api.network.ApiServiceFactoryProvider
+import com.app.common.api.network.ServiceFactoryProvider
 import com.app.common.api.usermanager.User
 import com.app.common.api.usermanager.UserManager
 import com.app.common.api.usermanager.isLogin
@@ -23,7 +23,7 @@ private const val VERIFY_INTERVAL = 5 * 1000L
 
 internal class TokenVerifier(
     private val userManager: UserManager,
-    private val serviceFactoryProvider: ApiServiceFactoryProvider,
+    private val serviceFactoryProvider: ServiceFactoryProvider,
     private val scope: CoroutineScope,
     private val dispatcherProvider: DispatcherProvider,
 ) {

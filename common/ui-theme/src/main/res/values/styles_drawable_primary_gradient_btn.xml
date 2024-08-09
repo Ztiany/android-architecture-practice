@@ -35,6 +35,12 @@
         <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
     </style>
 
+    <style name="Widget.App.DView.Gradient.PrimaryNormalRounded25" parent="">
+        <item name="cgd_shape_gradient_style">@style/GradientAppearance.App.Primary</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded25</item>
+    </style>
+
     <style name="Widget.App.DView.Shape.PrimaryPressed" parent="">
         <item name="cgd_shape_solid">?app_color_main</item>
         <item name="cgd_shape">rectangle</item>
@@ -50,6 +56,12 @@
         <item name="cgd_shape_solid">?app_color_main</item>
         <item name="cgd_shape">rectangle</item>
         <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryPressedRounded25" parent="">
+        <item name="cgd_shape_solid">?app_color_main</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded25</item>
     </style>
 
     <style name="Widget.App.DView.Shape.PrimaryDisabled" parent="">
@@ -75,6 +87,12 @@
         <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
     </style>
 
+    <style name="Widget.App.DView.Shape.PrimaryDisabledRounded25" parent="">
+        <item name="cgd_shape_solid">#CCCCCC</item>
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded25</item>
+    </style>
+
     <style name="Widget.App.DView.Selector.PrimaryGradient" parent="">
         <item name="cdv_drawable_type">selector</item>
         <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.PrimaryNormal</item>
@@ -94,6 +112,13 @@
         <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.PrimaryNormalRounded10</item>
         <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressedRounded10</item>
         <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.PrimaryGradientRounded25" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Gradient.PrimaryNormalRounded25</item>
+        <item name="csd_selector_state_pressed">@style/Widget.App.DView.Shape.PrimaryPressedRounded25</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded25</item>
     </style>
 
     <!--public-->
@@ -137,6 +162,12 @@
     <style name="Widget.App.Button.Wrap.DView.PrimaryGradientRounded10">
         <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded10</item>
         <item name="dtv_text_color_normal">?attr/app_color_deepest</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level2</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.DView.PrimaryGradientRounded25">
+        <item name="cdv_selector_appearance">@style/Widget.App.DView.Selector.PrimaryGradientRounded25</item>
+        <item name="dtv_text_color_normal">?attr/app_color_lightest</item>
         <item name="dtv_text_color_disabled">?app_color_text_level2</item>
     </style>
 

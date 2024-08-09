@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DialogBottomView">
+        <attr name="dbv_style" format="enum">
+            <enum name="full" value="1" />
+            <enum name="partitioned" value="2" />
+        </attr>
+    </declare-styleable>
+
+</resources>

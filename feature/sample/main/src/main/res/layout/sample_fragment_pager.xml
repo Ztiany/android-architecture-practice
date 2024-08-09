@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:ignore="HardcodedText">
 
-    <com.app.base.widget.view.AppTitleLayout
+    <com.app.base.ui.widget.titlebar.AppTitleLayout
         android:id="@+id/title_layout"
         style="@style/Widget.App.TitleLayout"
         app:atl_disable_navigation="true"

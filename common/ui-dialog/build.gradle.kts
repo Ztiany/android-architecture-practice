@@ -4,16 +4,24 @@ plugins {
 
 android {
     namespace = "com.app.base.ui.dialog"
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+    // foundation
+    implementation(libs.base.arch.utils)
+    implementation(libs.base.arch.adapter)
     // androidx
-    implementation (libs.androidx.annotations)
-    implementation (libs.google.ui.material)
-
+    implementation(libs.androidx.annotations)
+    implementation(libs.google.ui.material)
     // kotlin
-    api (libs.kotlin.stdlib)
-    api (libs.kotlin.reflect)
-    api (libs.kotlinx.coroutines)
-    api (libs.kotlinx.coroutines.android)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlinx.coroutines)
+    implementation(libs.kotlinx.coroutines.android)
+    // theme
+    implementation(project(":common:ui-theme"))
 }

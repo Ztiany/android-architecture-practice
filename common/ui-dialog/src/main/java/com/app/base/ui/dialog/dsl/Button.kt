@@ -1,22 +1,29 @@
 package com.app.base.ui.dialog.dsl
 
-import android.app.Activity
-import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
 
-typealias OnButtonClickListener = Condition.(dialog: Dialog) -> Unit
+typealias OnClickListener = DialogInterface.(condition: Condition) -> Unit
 
-interface Condition {
+@DialogContextDslMarker
+class Button(
+    context: Context,
+    text: CharSequence,
+) : Text(context, text) {
 
-    fun isConditionMet(key: String): Boolean
+    private var _onClickListener: OnClickListener? = null
 
-}
+    fun onClick(listener: OnClickListener?) {
+        _onClickListener = listener
+    }
 
-class Button(activity: Activity, text: CharSequence) : Text(activity, text) {
-
-    internal var onClickListener: OnButtonClickListener? = null
-
-    fun onClick(listener: OnButtonClickListener) {
-        onClickListener = listener
+    fun toButtonDescription(): ButtonDescription {
+        return ButtonDescription(super.toTextDescription(), _onClickListener)
     }
 
 }
+
+class ButtonDescription(
+    val textDescription: TextDescription,
+    val onClickListener: OnClickListener?,
+)

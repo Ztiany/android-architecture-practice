@@ -11,12 +11,10 @@ android {
 }
 
 dependencies {
-    // modules
     implementation(project(":common:core"))
     implementation(project(":feature:home:main"))
     implementation(project(":feature:account:main"))
 
-    // hilt
-    api(libs.google.hilt)
+    implementation(libs.google.hilt)
     ksp(libs.google.hilt.compiler)
 }

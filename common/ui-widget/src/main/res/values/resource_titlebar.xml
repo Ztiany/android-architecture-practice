@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AppTitleLayout">
+        <attr name="atl_title" format="string|reference" />
+        <attr name="atl_title_color" format="color|reference" />
+        <attr name="atl_title_centered" format="boolean" />
+        <attr name="atl_navigation_icon" format="reference" />
+        <attr name="atl_disable_navigation" format="boolean" />
+        <attr name="atl_navigation_icon_tint" format="color|reference" />
+        <attr name="atl_menu_id" format="reference" />
+        <attr name="atl_show_divider" format="boolean" />
+        <attr name="atl_divider_color" format="color|reference" />
+        <attr name="atl_menu_color" format="color|reference" />
+    </declare-styleable>
+
+    <style name="Widget.App.TitleLayout" parent="">
+        <item name="android:elevation">0.5dp</item>
+        <item name="atl_navigation_icon_tint">?app_color_deepest</item>
+        <item name="atl_title_color">?app_color_text_level1</item>
+        <item name="atl_title_centered">true</item>
+        <item name="android:background">?app_color_lightest</item>
+        <item name="atl_navigation_icon">@drawable/icon_back</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

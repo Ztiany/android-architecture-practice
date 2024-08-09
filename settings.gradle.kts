@@ -115,7 +115,7 @@ class DependencySubstitutionPlugin : Plugin<Settings> {
 }
 
 // 性能监控部分
-include(":apm:core")
+include(":apm")
 
 // 功能演示模块（不参入 app 打包）
 include(":feature:sample:main")
@@ -130,6 +130,7 @@ include(":common:http")
 include(":common:core")
 
 // 业务基础组件
+include(":component:upgrade") // APP 升级更新
 include(":component:selector") // 选择器（多媒体以及文件选择）
 include(":component:uitask") // ui 任务管理器（用于管理全局 ui 任务）
 

@@ -291,6 +291,9 @@ lucksiege-pictureselector = "io.github.lucksiege:pictureselector:v3.11.2"
 lucksiege-compress = "io.github.lucksiege:compress:v3.11.2"
 lucksiege-ucrop = "io.github.lucksiege:ucrop:v3.11.2"
 
+# https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=1.0.0#sdk
+tencent-bugly = "com.tencent.bugly:crashreport:latest.release"
+
 # ======================================================
 # ui libraries
 # ======================================================

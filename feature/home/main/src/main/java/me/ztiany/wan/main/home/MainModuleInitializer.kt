@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import com.android.base.core.AppLifecycle
 import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.base.injection.ApplicationScope
-import com.app.common.api.network.ApiServiceFactoryProvider
+import com.app.common.api.network.ServiceFactoryProvider
 import com.app.common.api.usermanager.UserManager
 import com.blankj.utilcode.util.ProcessUtils
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Singleton
 internal class MainModuleInitializer @Inject constructor(
-    private val serviceFactoryProvider: ApiServiceFactoryProvider,
+    private val serviceFactoryProvider: ServiceFactoryProvider,
     private val userManager: UserManager,
     @ApplicationScope private val scope: CoroutineScope,
     private val dispatcherProvider: DispatcherProvider,

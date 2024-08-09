@@ -6,9 +6,9 @@ import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ifNull
 import com.android.base.utils.common.otherwise
 
-object EnvironmentContext {
+internal object EnvironmentContext {
 
-    private val spCache = SpCache(BaseUtils.getAppContext(), BaseUtils.getAppContext().packageName, false)
+    private val spCache = SpCache(BaseUtils.getAppContext(), "app-host-storage")
 
     private val envMap = LinkedHashMap<String, MutableList<Environment>>()
 
@@ -36,8 +36,8 @@ object EnvironmentContext {
             list.find {
                 url == it.value
             }.ifNull {
-                val environment = list.getOrNull(0)  ?: throw NullPointerException("No env values provided.")
-                spCache.putString(category,environment.value)
+                val environment = list.getOrNull(0) ?: throw NullPointerException("No env values provided.")
+                spCache.putString(category, environment.value)
             }
         }
     }
@@ -69,8 +69,8 @@ object EnvironmentContext {
 
 }
 
-interface EnvironmentAdder {
+internal interface EnvironmentAdder {
     fun add(category: String, env: Environment)
 }
 
-class Environment(val name: String, val tag: String, val value: String)
+internal class Environment(val name: String, val tag: String, val value: String)

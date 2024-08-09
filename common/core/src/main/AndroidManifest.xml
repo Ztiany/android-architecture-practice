@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- ================================================== permission  start================================================== -->
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <!-- ================================================== application  start================================================== -->
+
     <application>
 
-        <!-- ================================================   Config ================================================ -->
-        <!--应用间共享文件-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.file.provider"
@@ -31,28 +23,13 @@
                 android:resource="@xml/file_path" />
         </provider>
 
-        <!--大图浏览-->
-        <activity
-            android:name=".common.gallery.GalleryActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.Transparent" />
-
-        <!--内置浏览器-->
-        <activity
-            android:name=".common.web.BrowserActivity"
-            android:screenOrientation="portrait" />
-
-        <!--应用内更新-->
-        <service android:name="com.android.sdk.upgrade.UpgradeService" />
-
-        <!--调试工具-->
         <activity
             android:name="com.app.base.debug.DebugActivity"
             android:exported="false"
             android:label="调试工具">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="com.sys.app.intent.Debug" />
+                <action android:name="com.app.base.action.Debug" />
             </intent-filter>
         </activity>
 

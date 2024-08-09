@@ -3,7 +3,7 @@ package me.ztiany.wan.sample;
 import static me.ztiany.wan.sample.common.net.SampleApiConfigurerKt.SAMPLE_HOST_FLAG;
 
 import com.android.sdk.net.ServiceContext;
-import com.app.common.api.network.ApiServiceFactoryProvider;
+import com.app.common.api.network.ServiceFactoryProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,8 +21,8 @@ public class SampleInternalModule {
 
     @ActivityRetainedScoped
     @Provides
-    static ServiceContext<WanAndroidApi> provideWanAndroidApi(ApiServiceFactoryProvider apiServiceFactoryProvider) {
-        return apiServiceFactoryProvider.get(SAMPLE_HOST_FLAG).createServiceContext(WanAndroidApi.class);
+    static ServiceContext<WanAndroidApi> provideWanAndroidApi(ServiceFactoryProvider serviceFactoryProvider) {
+        return serviceFactoryProvider.get(SAMPLE_HOST_FLAG).createServiceContext(WanAndroidApi.class);
     }
 
 }

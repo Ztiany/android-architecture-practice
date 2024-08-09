@@ -61,6 +61,7 @@
     <string name="settings">设置</string>
     <string name="allow">允许</string>
     <string name="deny">拒绝</string>
+    <string name="check_all">全选</string>
 
     <!-- ====================================mask==================================== -->
     <string name="currency_symbol">¥</string><!--全局唯一货币符号-->
