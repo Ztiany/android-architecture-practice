@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.widget.PopupWindow
 import android.widget.PopupWindow.OnDismissListener
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.utils.android.activityContext
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.common.unsafeLazy
+import com.app.base.ui.dialog.AppPopupWindow
 import com.app.base.ui.dialog.databinding.PopupLayoutOptionBinding
 import com.app.base.ui.dialog.dsl.Direction
 import com.app.base.ui.dialog.dsl.PopupDimDescription
@@ -35,7 +35,7 @@ internal class OptionPopupWindow(
     private val context: Context,
     lifecycleOwner: LifecycleOwner,
     private val description: OptionPopupWindowDescription,
-) : PopupWindow(context), OptionPopupWindowInterface {
+) : AppPopupWindow<OptionPopupWindowInterface>(context), OptionPopupWindowInterface {
 
     private val vb = PopupLayoutOptionBinding.inflate(LayoutInflater.from(context))
 
@@ -54,6 +54,9 @@ internal class OptionPopupWindow(
 
     private var originalBackground: Drawable? = null
     private var originalNavigationColor: Int? = null
+
+    override val controller: OptionPopupWindowInterface
+        get() = this
 
     init {
         contentView = vb.root

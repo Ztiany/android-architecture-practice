@@ -109,7 +109,7 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
         handleLiveData(viewModel.loginState) {
             onSuccess {
                 showMessage(com.app.base.ui.theme.R.string.login_success)
-                vb.accountTvCounter.clearWhenDetach()
+                vb.accountTvCounter.clearCounterStateWhenDetach()
                 navigator.exitAndToHomePage()
             }
         }

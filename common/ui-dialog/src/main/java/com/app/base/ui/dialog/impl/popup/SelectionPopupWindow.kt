@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import android.widget.PopupWindow
 import android.widget.PopupWindow.OnDismissListener
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -22,6 +21,7 @@ import com.android.base.utils.common.findWithIndex
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
 import com.android.base.utils.common.unsafeLazy
+import com.app.base.ui.dialog.AppPopupWindow
 import com.app.base.ui.dialog.databinding.PopupLayoutListBinding
 import com.app.base.ui.dialog.dsl.PopupDimDescription
 import com.app.base.ui.dialog.dsl.Selection
@@ -29,6 +29,7 @@ import com.app.base.ui.dialog.dsl.applyTo
 import com.app.base.ui.dialog.dsl.popup.MultiSelectionPopupWindowDescription
 import com.app.base.ui.dialog.dsl.popup.MultiSelectionPopupWindowInterface
 import com.app.base.ui.dialog.dsl.popup.SelectionPopupWindowDescription
+import com.app.base.ui.dialog.dsl.popup.SelectionPopupWindowInterface
 import com.app.base.ui.dialog.dsl.popup.SingleSelectionPopupWindowDescription
 import com.app.base.ui.dialog.dsl.popup.SingleSelectionPopupWindowInterface
 import com.app.base.ui.dialog.dsl.popup.listCustomized
@@ -40,7 +41,7 @@ internal class SelectionPopupWindow(
     private val context: Context,
     lifecycleOwner: LifecycleOwner,
     private val description: SelectionPopupWindowDescription,
-) : PopupWindow(context), SingleSelectionPopupWindowInterface, MultiSelectionPopupWindowInterface {
+) : AppPopupWindow<SelectionPopupWindowInterface>(context), SingleSelectionPopupWindowInterface, MultiSelectionPopupWindowInterface {
 
     private val vb = PopupLayoutListBinding.inflate(LayoutInflater.from(context))
 
@@ -72,6 +73,9 @@ internal class SelectionPopupWindow(
         }
     }
 
+    override val controller: SelectionPopupWindowInterface
+        get() = this
+
     private inline fun SelectionPopupWindowDescription.discriminate(
         single: SingleSelectionPopupWindowDescription.() -> Unit,
         multi: MultiSelectionPopupWindowDescription.() -> Unit,
@@ -100,23 +104,6 @@ internal class SelectionPopupWindow(
                 dismiss()
             }
         })
-
-        description.discriminate(
-            single = {
-                list?.items?.findWithIndex { it.selected }?.let {
-                    if (it.second != null) {
-                        selectedSelection = it.first to it.second!!
-                    }
-                }
-            },
-            multi = {
-                vb.dialogBtnBottomRight.setText(com.app.base.ui.theme.R.string.check_all)
-                rightTitleActionTextStyle.applyTo(vb.dialogBtnBottomRight)
-                vb.dialogBtnBottomRight.onThrottledClick {
-                    checkAllSelections()
-                }
-            }
-        )
     }
 
     private fun setUpBottomButton() = with(vb) {
@@ -171,6 +158,23 @@ internal class SelectionPopupWindow(
                 customizeList?.let {
                     it.invoke(this@SelectionPopupWindow, vb.dialogRvList)
                     return
+                }
+            }
+        )
+
+        discriminate(
+            single = {
+                list?.items?.findWithIndex { it.selected }?.let {
+                    if (it.second != null) {
+                        selectedSelection = it.first to it.second!!
+                    }
+                }
+            },
+            multi = {
+                vb.dialogBtnBottomRight.setText(com.app.base.ui.theme.R.string.check_all)
+                rightTitleActionTextStyle.applyTo(vb.dialogBtnBottomRight)
+                vb.dialogBtnBottomRight.onThrottledClick {
+                    checkAllSelections()
                 }
             }
         )

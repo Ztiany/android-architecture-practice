@@ -74,25 +74,6 @@ internal class SectionBottomSheetDialog(
                 dismiss()
             }
         })
-
-        description.discriminate(
-            single = {
-                list?.items?.findWithIndex { it.selected }?.let {
-                    if (it.second != null) {
-                        selectedSelection = it.first to it.second!!
-                    }
-                }
-            },
-            multi = {
-                vb.dialogBtnBottomRight.setText(com.app.base.ui.theme.R.string.check_all)
-                rightTitleActionTextStyle.applyTo(vb.dialogBtnBottomRight)
-                vb.dialogBtnBottomRight.onThrottledClick {
-                    checkAllSelections()
-                }
-            }
-        )
-
-        updateConfirmBtnState()
     }
 
     private fun setUpBottomButton() = with(vb) {
@@ -154,6 +135,23 @@ internal class SectionBottomSheetDialog(
             }
         )
 
+        description.discriminate(
+            single = {
+                list?.items?.findWithIndex { it.selected }?.let {
+                    if (it.second != null) {
+                        selectedSelection = it.first to it.second!!
+                    }
+                }
+            },
+            multi = {
+                vb.dialogBtnBottomRight.setText(com.app.base.ui.theme.R.string.check_all)
+                rightTitleActionTextStyle.applyTo(vb.dialogBtnBottomRight)
+                vb.dialogBtnBottomRight.onThrottledClick {
+                    checkAllSelections()
+                }
+            }
+        )
+
         val listDescription = list ?: return
         with(vb.dialogRvList) {
             setHorizontalPadding(context.resources.getDimensionPixelSize(com.app.base.ui.theme.R.dimen.common_page_edge))
@@ -166,6 +164,8 @@ internal class SectionBottomSheetDialog(
             })
             adapter = selectionAdapter
         }
+
+        updateConfirmBtnState()
     }
 
     private fun handleOnItemSelected(position: Int, selection: Selection) {
