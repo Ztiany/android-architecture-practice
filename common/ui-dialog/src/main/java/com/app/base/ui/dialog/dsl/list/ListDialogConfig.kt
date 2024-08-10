@@ -1,18 +1,21 @@
 package com.app.base.ui.dialog.dsl.list
 
+import android.content.Context
+import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.app.base.ui.dialog.dsl.Button
 import com.app.base.ui.dialog.dsl.DialogBehavior
 import com.app.base.ui.dialog.dsl.DialogConfig
 import com.app.base.ui.dialog.dsl.DialogContextDslMarker
-import com.app.base.ui.dialog.dsl.DisplayList
+import com.app.base.ui.dialog.dsl.DialogWindowSize
 import com.app.base.ui.dialog.dsl.DisplayItem
+import com.app.base.ui.dialog.dsl.DisplayList
 import com.app.base.ui.dialog.dsl.OnClickListener
 import com.app.base.ui.dialog.dsl.OnItemClickListener
 import com.app.base.ui.dialog.dsl.Text
-import com.app.base.ui.dialog.dsl.DialogWindowSize
 
 @DialogContextDslMarker
 interface ListDialogConfig : DialogConfig<DialogBehavior, ListDialogDescription> {
@@ -52,4 +55,43 @@ fun ListDialogConfig.textItems(
     onItemClickListener: OnItemClickListener? = null,
 ) {
     buildItems(list, { DisplayItem(id = it, title = it, "") }, onItemClickListener)
+}
+
+fun ListDialogConfig.textItems(
+    vararg texts: String,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(texts.toList(), onItemClickListener)
+}
+
+context(Context)
+fun ListDialogConfig.resItems(
+    @StringRes vararg textResArr: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(textResArr.map { getString(it) }, onItemClickListener)
+}
+
+context(Context)
+fun ListDialogConfig.arrResItems(
+    @ArrayRes textArrRes: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(resources.getTextArray(textArrRes).map { it.toString() }, onItemClickListener)
+}
+
+context(Fragment)
+fun ListDialogConfig.resItems(
+    @StringRes vararg textResArr: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(textResArr.map { getString(it) }, onItemClickListener)
+}
+
+context(Fragment)
+fun ListDialogConfig.arrResItems(
+    @ArrayRes textArrRes: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(resources.getTextArray(textArrRes).map { it.toString() }, onItemClickListener)
 }

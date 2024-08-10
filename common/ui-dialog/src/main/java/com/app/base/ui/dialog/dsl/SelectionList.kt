@@ -1,9 +1,10 @@
 package com.app.base.ui.dialog.dsl
 
 import android.content.Context
-import android.content.DialogInterface
+import androidx.annotation.ArrayRes
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.annotation.StringRes
 import com.app.base.ui.dialog.defaultSelectionListItemSubtitleStyle
 import com.app.base.ui.dialog.defaultSelectionListItemTitleStyle
 import com.google.android.material.color.MaterialColors
@@ -21,7 +22,7 @@ typealias OnMultiItemSelectedListener = (selected: List<Selection>) -> Unit
 
 @DialogContextDslMarker
 class SelectionList(
-    private val context: Context,
+    internal val context: Context,
     private var _items: List<Selection> = emptyList(),
     private var _titleStyle: TextStyle,
     private var _subtitleStyle: TextStyle,
@@ -93,6 +94,18 @@ fun SelectionList.textSelections(list: List<String>) {
 
 fun <T> SelectionList.buildSelections(list: List<T>, map: (T) -> Selection) {
     selections(list.map(map))
+}
+
+fun SelectionList.textSelections(vararg texts: String) {
+    textSelections(texts.toList())
+}
+
+fun SelectionList.resSelections(@StringRes vararg textResArr: Int) {
+    textSelections(textResArr.map { context.getString(it) })
+}
+
+fun SelectionList.arrResSelections(@ArrayRes textArrRes: Int) {
+    textSelections(context.resources.getTextArray(textArrRes).map { it.toString() })
 }
 
 class SelectionListDescription(

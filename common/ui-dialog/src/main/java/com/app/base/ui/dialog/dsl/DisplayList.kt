@@ -2,8 +2,10 @@ package com.app.base.ui.dialog.dsl
 
 import android.content.Context
 import android.content.DialogInterface
+import androidx.annotation.ArrayRes
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.annotation.StringRes
 import com.app.base.ui.dialog.defaultDisplayListItemSubtitleStyle
 import com.app.base.ui.dialog.defaultDisplayListItemTitleStyle
 import com.google.android.material.color.MaterialColors
@@ -18,7 +20,7 @@ typealias OnItemClickListener = DialogInterface.(position: Int, item: DisplayIte
 
 @DialogContextDslMarker
 class DisplayList(
-    private val context: Context,
+    internal val context: Context,
     private var _items: List<DisplayItem> = emptyList(),
     private var _itemClickListener: OnItemClickListener? = null,
     private var _titleStyle: TextStyle,
@@ -100,6 +102,18 @@ fun <T> DisplayList.buildItems(
 
 fun DisplayList.textItems(list: List<String>) {
     buildItems(list) { DisplayItem(id = it, title = it, "") }
+}
+
+fun DisplayList.textItems(vararg texts: String) {
+    textItems(texts.toList())
+}
+
+fun DisplayList.resItems(@StringRes vararg textResArr: Int) {
+    textItems(textResArr.map { context.getString(it) })
+}
+
+fun DisplayList.arrResItems(@ArrayRes textArrRes: Int) {
+    textItems(context.resources.getTextArray(textArrRes).map { it.toString() })
 }
 
 class DisplayListDescription(

@@ -21,7 +21,6 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import me.ztiany.wan.sample.epoxy.ArticleMapper
 import me.ztiany.wan.sample.epoxy.ArticleVO
 import me.ztiany.wan.sample.mvi.data.MVISampleRepository
@@ -34,13 +33,13 @@ class MVIViewModel @Inject constructor(
     private val articleMapper: ArticleMapper,
 ) : ViewModel() {
 
-    private val intent = MutableSharedFlow<ArticleIntent>(1)
+    private val intentFlow = MutableSharedFlow<ArticleIntent>(1)
 
-    private val eventChannel = Channel<ArticleEvent>()
-    val eventFlow = eventChannel.receiveAsFlow()
+    private val eventChannel = Channel<ArticleEvent>(Channel.UNLIMITED)
+    val articleEvents = eventChannel.receiveAsFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val articleState = intent
+    val articleState = intentFlow
         .flatMapConcat { toPartialChangeFlow(it) }
         .sendEvent()
         .scan(AutoPagingListState<ArticleVO>(isRefreshing = true)) { oldState, partialChange ->
@@ -55,14 +54,8 @@ class MVIViewModel @Inject constructor(
     private val paging: Paging<Int>
         get() = articleState.value.paging
 
-    init {
-        send(ArticleIntent.Init)
-    }
-
-    fun send(intent: ArticleIntent) {
-        viewModelScope.launch {
-            this@MVIViewModel.intent.emit(intent)
-        }
+   suspend fun send(intent: ArticleIntent) {
+       intentFlow.emit(intent)
     }
 
     private fun toPartialChangeFlow(intent: ArticleIntent): Flow<FeedsPartialChange> {
@@ -80,8 +73,7 @@ class MVIViewModel @Inject constructor(
                 .onStart { emit(More.Loading) }
                 .catch { emit(More.Fail(it)) }
 
-            is ArticleIntent.Report -> repository.reportArticle(intent.id)
-                .map { Report.success(it) }
+            is ArticleIntent.Report -> repository.reportArticle(intent.id).map { Report.success(it) }
         }
     }
 
@@ -94,5 +86,10 @@ class MVIViewModel @Inject constructor(
             }
             eventChannel.send(event)
         }
+
+    override fun onCleared() {
+        super.onCleared()
+        eventChannel.close()
+    }
 
 }

@@ -1,10 +1,12 @@
 package com.app.base.ui.dialog.dsl.bottomsheet
 
+import android.content.Context
+import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.app.base.ui.dialog.dsl.Button
-import com.app.base.ui.dialog.dsl.DialogConfig
 import com.app.base.ui.dialog.dsl.DialogContextDslMarker
 import com.app.base.ui.dialog.dsl.DisplayItem
 import com.app.base.ui.dialog.dsl.DisplayList
@@ -46,4 +48,43 @@ fun ListBottomSheetDialogConfig.textItems(
     onItemClickListener: OnItemClickListener? = null,
 ) {
     buildItems(list, { DisplayItem(id = it, title = it, "") }, onItemClickListener)
+}
+
+fun ListBottomSheetDialogConfig.textItems(
+    vararg texts: String,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(texts.toList(), onItemClickListener)
+}
+
+context(Context)
+fun ListBottomSheetDialogConfig.resItems(
+    @StringRes vararg textResArr: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(textResArr.map { getString(it) }, onItemClickListener)
+}
+
+context(Context)
+fun ListBottomSheetDialogConfig.arrResItems(
+    @ArrayRes textArrRes: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(resources.getTextArray(textArrRes).map { it.toString() }, onItemClickListener)
+}
+
+context(Fragment)
+fun ListBottomSheetDialogConfig.resItems(
+    @StringRes vararg textResArr: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(textResArr.map { getString(it) }, onItemClickListener)
+}
+
+context(Fragment)
+fun ListBottomSheetDialogConfig.arrResItems(
+    @ArrayRes textArrRes: Int,
+    onItemClickListener: OnItemClickListener? = null,
+) {
+    textItems(resources.getTextArray(textArrRes).map { it.toString() }, onItemClickListener)
 }

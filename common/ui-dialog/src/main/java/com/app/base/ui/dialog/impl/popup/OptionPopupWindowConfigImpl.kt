@@ -33,8 +33,8 @@ class OptionPopupWindowConfigImpl(private val context: Context) : OptionPopupWin
 
     override fun options(list: List<CharSequence>, onOptionSelectedListener: OnOptionSelectedListener) {
         displayList = context.defaultOptionList().apply {
-            items(list)
-            onItemClick(onOptionSelectedListener)
+            options(list)
+            onOptionClick(onOptionSelectedListener)
         }
     }
 
