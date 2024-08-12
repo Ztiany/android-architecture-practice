@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.app.base.ui.widget.titlebar.AppTitleLayout
+    <com.app.base.ui.widget.titlebar.AppTitleBar
         android:id="@+id/main_title"
         style="@style/Widget.App.TitleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?app_color_lightest"
-        app:atl_disable_navigation="true"
-        app:atl_title="@string/main_tab_box"
+        app:atb_disable_navigation="true"
+        app:atb_title="@string/main_tab_box"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

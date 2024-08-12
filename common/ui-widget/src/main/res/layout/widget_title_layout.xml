@@ -9,7 +9,7 @@
 
     <com.android.base.ui.compat.MaterialToolbar
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/atl_toolbar"
+        android:id="@+id/atb_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"

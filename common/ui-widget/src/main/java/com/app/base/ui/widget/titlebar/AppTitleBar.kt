@@ -38,7 +38,7 @@ import timber.log.Timber
 /**
  * @author Ztiany
  */
-class AppTitleLayout @JvmOverloads constructor(
+class AppTitleBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -57,26 +57,26 @@ class AppTitleLayout @JvmOverloads constructor(
         get() = _toolbar
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.AppTitleLayout).use {
+        context.obtainStyledAttributes(attrs, R.styleable.AppTitleBar).use {
             fillAttributes(context, it)
         }
     }
 
     private fun fillAttributes(context: Context, typedArray: TypedArray) {
         // get all attributes
-        val title = typedArray.getString(R.styleable.AppTitleLayout_atl_title) ?: ""
-        val menuResId = typedArray.getResourceId(R.styleable.AppTitleLayout_atl_menu_id, INVALIDATE_ID)
-        val showDivider = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_show_divider, false)
+        val title = typedArray.getString(R.styleable.AppTitleBar_atb_title) ?: ""
+        val menuResId = typedArray.getResourceId(R.styleable.AppTitleBar_atb_menu_id, INVALIDATE_ID)
+        val showDivider = typedArray.getBoolean(R.styleable.AppTitleBar_atb_show_divider, false)
         val cuttingLineBg = typedArray.getColor(
-            R.styleable.AppTitleLayout_atl_divider_color,
+            R.styleable.AppTitleBar_atb_divider_color,
             ContextCompat.getColor(getContext(), com.app.base.ui.theme.R.color.divider_color)
         )
-        val disableNavigation = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_disable_navigation, false)
-        val navigationIcon = typedArray.getDrawable(R.styleable.AppTitleLayout_atl_navigation_icon)
-        val iconTintColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_navigation_icon_tint, -1)
-        val titleColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_title_color, Color.BLACK)
-        val menuColor = typedArray.getColor(R.styleable.AppTitleLayout_atl_menu_color, Color.BLACK)
-        val titleCentered = typedArray.getBoolean(R.styleable.AppTitleLayout_atl_title_centered, false)
+        val disableNavigation = typedArray.getBoolean(R.styleable.AppTitleBar_atb_disable_navigation, false)
+        val navigationIcon = typedArray.getDrawable(R.styleable.AppTitleBar_atb_navigation_icon)
+        val iconTintColor = typedArray.getColor(R.styleable.AppTitleBar_atb_navigation_icon_tint, -1)
+        val titleColor = typedArray.getColor(R.styleable.AppTitleBar_atb_title_color, Color.BLACK)
+        val menuColor = typedArray.getColor(R.styleable.AppTitleBar_atb_menu_color, Color.BLACK)
+        val titleCentered = typedArray.getBoolean(R.styleable.AppTitleBar_atb_title_centered, false)
 
         // set attributes
         mOriginalTopPadding = paddingTop
@@ -172,7 +172,7 @@ class AppTitleLayout @JvmOverloads constructor(
     }
 
     private fun iniToolbar(title: String, titleCentered: Boolean, showDivider: Boolean, titleColor: Int, cuttingLineBg: Int) {
-        _toolbar = findViewById(R.id.atl_toolbar)
+        _toolbar = findViewById(R.id.atb_toolbar)
         // divider
         val divider = findViewById<View>(R.id.widget_app_title_divider)
         divider.visibility = if (showDivider) VISIBLE else GONE
@@ -192,7 +192,7 @@ class AppTitleLayout @JvmOverloads constructor(
     private fun fitStatusInset() {
         ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            Timber.d("AppTitleLayout(${(activityContext)}) fitStatusInset is executed:  systemBars = $systemBars}")
+            Timber.d("AppTitleBar(${(activityContext)}) fitStatusInset is executed:  systemBars = $systemBars}")
             setPadding(
                 paddingLeft,
                 mOriginalTopPadding + systemBars.top,
