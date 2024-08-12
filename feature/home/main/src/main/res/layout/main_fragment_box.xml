@@ -8,7 +8,7 @@
 
     <com.app.base.ui.widget.titlebar.AppTitleBar
         android:id="@+id/main_title"
-        style="@style/Widget.App.TitleLayout"
+        style="@style/Widget.App.TitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?app_color_lightest"

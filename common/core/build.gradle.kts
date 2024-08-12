@@ -19,12 +19,10 @@ android {
         buildConfig = true
     }
 
-    if (project.findProperty("show_debug_tools").toString().toBoolean()) {
-        sourceSets {
-            getByName("main") {
-                java.srcDir("src/debug/java")
-                res.srcDir("src/debug/res")
-            }
+    sourceSets {
+        getByName("main") {
+            java.srcDir("src/debug/java")
+            res.srcDir("src/debug/res")
         }
     }
 }

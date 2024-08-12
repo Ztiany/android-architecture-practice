@@ -9,7 +9,7 @@
 
     <com.app.base.ui.widget.titlebar.AppTitleBar
         android:id="@+id/title_layout"
-        style="@style/Widget.App.TitleLayout"
+        style="@style/Widget.App.TitleBar"
         app:atb_disable_navigation="true"
         app:atb_title="页面示例"
         app:layout_constraintTop_toTopOf="parent"

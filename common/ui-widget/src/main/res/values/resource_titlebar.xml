@@ -14,7 +14,7 @@
         <attr name="atb_menu_color" format="color|reference" />
     </declare-styleable>
 
-    <style name="Widget.App.TitleLayout" parent="">
+    <style name="Widget.App.TitleBar" parent="">
         <item name="android:elevation">0.5dp</item>
         <item name="atb_navigation_icon_tint">?app_color_deepest</item>
         <item name="atb_title_color">?app_color_text_level1</item>

@@ -81,14 +81,11 @@ object APM {
     // api
     ///////////////////////////////////////////////////////////////////////////
 
-    val debugToolEnabled: Boolean
-        get() = BuildConfig.showDebugTools
-
     val logEnabled: Boolean
         get() = BuildConfig.openLog
 
     val debugMode: Boolean
-        get() = BuildConfig.openDebug
+        get() = BuildConfig.openDebugMode
 
     fun installStethoHttp(builder: OkHttpClient.Builder) {
         doIfDebugMode {

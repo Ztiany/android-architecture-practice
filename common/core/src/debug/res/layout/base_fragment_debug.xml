@@ -12,7 +12,7 @@
     tools:ignore="HardcodedText,MissingDefaultResource">
 
     <com.app.base.ui.widget.titlebar.AppTitleBar
-        style="@style/Widget.App.TitleLayout"
+        style="@style/Widget.App.TitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:atb_title="调试工具" />
