@@ -1,9 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO：重新规范 style 和 theme 命名。-->
-
-    <style name="AppRootTheme" parent="Theme.Material3.Light.NoActionBar" tools:override="true" />
-
     <!--
     Base application theme.
 
@@ -47,34 +43,21 @@
 
                 Overall, "colorSurface" defines the background color of surfaces in Material Design. It provides a consistent backdrop for UI components and helps ensure legibility and visual hierarchy within the interface.
     -->
-    <style name="AppTheme" parent="QMUI">
-        <!--main color-->
+    <!-- TODO：重新规范 style 和 theme 命名。-->
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- material colors -->
         <item name="colorPrimary">@color/color_main</item>
         <item name="colorPrimaryVariant">@color/color_main_variant</item>
         <item name="colorControlActivated">@color/color_main</item>
-
-        <!--system ui-->
+        <!-- system ui colors -->
         <item name="android:statusBarColor">@color/color_status_bar</item>
         <item name="android:navigationBarColor">@color/page_bg_color</item>
         <item name="android:windowBackground">@color/page_bg_color</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-
-        <!--text style-->
+        <!-- system widget colors  -->
         <item name="android:textAllCaps">false</item>
 
-        <!-- custom toolbar attributes -->
-        <!-- 设置显示在 toolbar 上菜单文字的颜色 -->
-        <item name="actionMenuTextColor">@android:color/holo_red_dark</item>
-        <!-- 设置 toolbar 弹出菜单的字体大小和溢出菜单文字大小-->
-        <item name="android:textSize">14sp</item>
-
-        <!--qmui-->
-        <item name="qmui_alpha_pressed">0.5</item>
-        <item name="qmui_alpha_disabled">0.5</item>
-        <item name="qmui_general_shadow_elevation">14dp</item>
-        <item name="qmui_general_shadow_alpha">0.25</item>
-
-        <!--custom colors-->
+        <!-- app colors -->
         <item name="app_color_main">@color/color_main</item>
         <item name="app_color_main_variant">@color/color_main_variant</item>
         <item name="app_color_divider">@color/divider_color</item>

@@ -8,8 +8,8 @@ import com.android.base.fragment.state.BaseStateFragment
 import com.android.base.fragment.state.handleFlowDataState
 import com.android.base.fragment.tool.runRepeatedlyOnViewLifecycle
 import com.android.base.ui.recyclerview.MarginDecoration
+import com.android.base.utils.android.views.dip
 import com.android.base.utils.common.unsafeLazy
-import com.qmuiteam.qmui.kotlin.dip
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.sample.databinding.SampleFragmentFeedBinding
 import me.ztiany.wan.sample.epoxy.ArticleVO

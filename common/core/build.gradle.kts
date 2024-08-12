@@ -81,4 +81,6 @@ dependencies {
     api(libs.ztiany.livedataex)
     api(libs.ztiany.storage)
     api(libs.guolin.permissionx)
+    // log
+    api(libs.jakewharton.timber)
 }

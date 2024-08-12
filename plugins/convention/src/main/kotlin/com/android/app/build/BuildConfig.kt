@@ -1,11 +1,14 @@
 package com.android.app.build
 
+import org.gradle.api.JavaVersion
+
 object BuildConfig {
     const val APPLICATION_ID = "me.ztiany.android"
 
     const val MIN_SDK_VERSION = 23
     const val TARGET_SDK_VERSION = 34
     const val COMPILE_SDK_VERSION = 34
+    val JAVA_VERSION = JavaVersion.VERSION_17
 
     object Signing {
         const val RELEASE_KEY_ALIAS = "hm"

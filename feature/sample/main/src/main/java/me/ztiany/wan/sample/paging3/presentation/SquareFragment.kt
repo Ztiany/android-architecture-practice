@@ -9,8 +9,8 @@ import com.android.base.fragment.list.paging3.handlePagingData
 import com.android.base.fragment.list.paging3.withDefaultLoadStateFooter
 import com.android.base.fragment.tool.runRepeatedlyOnViewLifecycle
 import com.android.base.ui.recyclerview.MarginDecoration
+import com.android.base.utils.android.views.dip
 import com.android.base.utils.common.unsafeLazy
-import com.qmuiteam.qmui.kotlin.dip
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.sample.databinding.SampleFragmentFeedBinding
 

@@ -8,24 +8,22 @@ android {
 }
 
 dependencies {
+    // androidx
     implementation(libs.androidx.annotations)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-
+    // kotlin
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.coroutines.android)
-
-    implementation(libs.jakewharton.timber)
-
+    // extension
     compileOnly(libs.google.gson)
     compileOnly(libs.ztiany.imageloader)
     compileOnly(libs.guolin.permissionx)
     compileOnly(libs.ztiany.archdelegate)
-
     /*
     Options:
         - [Matisse](https://github.com/leavesCZY/Matisse) (JetpackCompose)
@@ -36,4 +34,6 @@ dependencies {
     implementation(libs.lucksiege.pictureselector)
     implementation(libs.lucksiege.compress)
     implementation(libs.lucksiege.ucrop)
+    // log
+    implementation(libs.jakewharton.timber)
 }

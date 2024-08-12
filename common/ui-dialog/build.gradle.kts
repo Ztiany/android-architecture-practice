@@ -24,4 +24,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     // theme
     implementation(project(":common:ui-theme"))
+    // log
+    implementation(libs.jakewharton.timber)
 }

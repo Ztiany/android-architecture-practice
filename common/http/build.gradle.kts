@@ -12,10 +12,10 @@ dependencies {
     // kotlin
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
-    // log
-    implementation(libs.jakewharton.timber)
     // core function
     implementation(libs.ztiany.simplehttp)
     implementation(libs.google.gson)
     implementation(libs.square.retrofit)
+    // log
+    implementation(libs.jakewharton.timber)
 }

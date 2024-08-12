@@ -1,7 +1,6 @@
 package com.android.app.build
 
 import com.android.build.api.dsl.CommonExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -62,8 +61,8 @@ fun CommonExtension<*, *, *, *, *, *>.configureAndroidModuleCommonOptions(
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = BuildConfig.JAVA_VERSION
+        targetCompatibility = BuildConfig.JAVA_VERSION
     }
 
     // 如果不想生成某个布局的绑定类，可以在根视图添加 tools:viewBindingIgnore="true" 属性。
@@ -82,13 +81,13 @@ fun CommonExtension<*, *, *, *, *, *>.configureAndroidModuleCommonOptions(
 
 fun Project.configureCommonKotlinCompiler() {
     configureKotlinCompiler(
-        JavaVersion.VERSION_11.toString(),
+        BuildConfig.JAVA_VERSION.toString(),
         listOf("-Xcontext-receivers")
     )
 }
 
 fun Project.configureKotlinCompiler(
-    jvmTarget: String = JavaVersion.VERSION_11.toString(),
+    jvmTarget: String = BuildConfig.JAVA_VERSION.toString(),
     freeCompilerArgs: List<String>,
 ) {
     tasks.withType<KotlinCompile>().configureEach {

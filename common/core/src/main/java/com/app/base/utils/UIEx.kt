@@ -8,6 +8,7 @@ import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.EditText
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -18,7 +19,6 @@ import com.app.base.ui.theme.R
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import java.lang.ref.WeakReference
 
 /**
@@ -102,9 +102,6 @@ fun EditText.enableTargetViewIfNotEmpty(target: View, length: Int) {
     }
 }
 
-var supportStatusBarLightMode: Boolean = false
-    private set
-
 fun Activity.setNavigatorBarColorLightest() {
     SystemBarCompat.setNavigationBarColor(
         this,
@@ -120,14 +117,12 @@ fun Activity.setNavigatorBarColorSameWithWindow() {
 }
 
 /** 设置状态栏黑色字体图标，返回 true 表示设置成功 */
-fun Activity.setStatusBarLightMode(): Boolean {
-    return QMUIStatusBarHelper.setStatusBarLightMode(this).apply {
-        supportStatusBarLightMode = this
-    }
+fun Activity.setStatusBarLightMode() {
+    WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
 }
 
 /** 设置状态栏白色字体图标，返回 true 表示设置成功 */
 @Suppress("UNUSED")
-fun Activity.setStatusBarDarkMode(): Boolean {
-    return QMUIStatusBarHelper.setStatusBarDarkMode(this)
+fun Activity.setStatusBarDarkMode() {
+    WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
 }

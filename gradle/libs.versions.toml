@@ -297,8 +297,6 @@ tencent-bugly = "com.tencent.bugly:crashreport:latest.release"
 # ======================================================
 # ui libraries
 # ======================================================
-# qmui：https://qmuiteam.com/
-qmuiteam-qmui = "com.qmuiteam:qmui:2.1.0"
 
 # https://github.com/airbnb/epoxy
 airbnb-epoxy-core = "com.airbnb.android:epoxy:5.1.4"

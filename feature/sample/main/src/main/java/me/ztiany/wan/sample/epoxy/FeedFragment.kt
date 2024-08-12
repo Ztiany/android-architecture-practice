@@ -9,7 +9,7 @@ import com.android.base.fragment.list.handleListState
 import com.android.base.fragment.tool.runRepeatedlyOnViewLifecycle
 import com.android.base.fragment.ui.ListLayoutHost
 import com.android.base.ui.recyclerview.MarginDecoration
-import com.qmuiteam.qmui.kotlin.dip
+import com.android.base.utils.android.views.dip
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.sample.databinding.SampleFragmentFeedBinding
 

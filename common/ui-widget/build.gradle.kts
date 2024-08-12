@@ -25,4 +25,6 @@ dependencies {
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.coroutines.android)
+    // log
+    implementation(libs.jakewharton.timber)
 }

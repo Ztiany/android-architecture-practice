@@ -9,9 +9,9 @@ android {
 dependencies {
     // androidx
     implementation (libs.androidx.annotations)
-
+    // log
+    implementation(libs.jakewharton.timber)
     // 通用 UI
     api (libs.base.arch.view)
-    api (libs.qmuiteam.qmui)
     api (libs.kyleduo.switchbutton)
 }

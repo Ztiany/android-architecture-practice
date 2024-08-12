@@ -9,21 +9,20 @@ android {
 }
 
 dependencies {
+    // foundation
+    implementation(libs.base.arch.utils)
+    // android x
     implementation(libs.androidx.annotations)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.ktx)
-    implementation(libs.base.arch.utils)
-
     // kotlin
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
-
-    // log
-    implementation(libs.jakewharton.timber)
-
     // di
     implementation(libs.google.hilt)
     ksp(libs.google.hilt.compiler)
+    // log
+    implementation(libs.jakewharton.timber)
 }

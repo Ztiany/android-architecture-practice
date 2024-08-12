@@ -14,7 +14,6 @@ import com.app.base.utils.newAppStyleClickSpan
 import com.app.base.utils.form.validateCellphone
 import com.app.base.utils.form.validateSmsCode
 import com.blankj.utilcode.util.SpanUtils
-import com.qmuiteam.qmui.kotlin.onClick
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.account.AccountInternalNavigator
 import me.ztiany.wan.account.R
@@ -40,7 +39,7 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
     }
 
     private fun setUpAgreement() {
-        vb.accountTvAgreement.onClick {
+        vb.accountTvAgreement.onThrottledClick {
 
         }
         vb.accountTvAgreement.enableSpanClickable()
