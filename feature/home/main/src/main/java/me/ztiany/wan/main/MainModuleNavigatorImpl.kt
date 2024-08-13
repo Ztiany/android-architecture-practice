@@ -1,8 +1,7 @@
-package me.ztiany.wan.main.home
+package me.ztiany.wan.main
 
 import android.content.Context
 import android.content.Intent
-import me.ztiany.wan.main.MainModuleNavigator
 
 internal const val PAGE_KEY = "page_key"
 

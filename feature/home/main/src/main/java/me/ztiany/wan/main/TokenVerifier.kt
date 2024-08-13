@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.home
+package me.ztiany.wan.main
 
 import com.android.sdk.net.coroutines.executeApiCallNullable
 import com.app.base.data.protocol.ApiResult

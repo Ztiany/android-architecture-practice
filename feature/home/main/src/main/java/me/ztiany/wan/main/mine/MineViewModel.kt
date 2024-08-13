@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.home.mine
+package me.ztiany.wan.main.mine
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

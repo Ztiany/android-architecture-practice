@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.app.common.library)
     alias(libs.plugins.jetbrains.kotlin.kapt)
@@ -11,6 +13,11 @@ android {
     defaultConfig {
         buildConfigField("String", "appHostFlag", "\"${project.findProperty("host_env")}\"")
         buildConfigField("boolean", "skipHttpCerVerifying", "${project.findProperty("skip_http_certificate_verifying")}")
+
+        val apiKeyJoke = Properties().apply {
+            load(project.rootProject.file("local.properties").inputStream())
+        }.getProperty("api.key.joke")
+        buildConfigField("String", "apiKeyJoke", "\"${apiKeyJoke}\"")
     }
 
     buildFeatures {

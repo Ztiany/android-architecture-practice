@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.home
+package me.ztiany.wan.main
 
 import android.content.Intent
 import android.graphics.Color
@@ -19,7 +19,6 @@ import com.app.common.api.usermanager.UserManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import me.ztiany.wan.main.R
 import javax.inject.Inject
 
 
@@ -35,7 +34,7 @@ class MainActivity : AppBaseActivity(), TheMainPage {
 
     private lateinit var mainFragment: MainFragment
 
-    @Inject internal lateinit var mainScopeNavigator: MainScopeNavigator
+    @Inject internal lateinit var mainScopeNavigator: MainInternalNavigator
 
     @Inject lateinit var userManager: UserManager
 

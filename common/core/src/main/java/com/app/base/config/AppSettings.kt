@@ -55,7 +55,7 @@ class AppSettings @Inject internal constructor(
     val minimumDialogShowTime
         get() = 500L
 
-    val appFileProviderAuthorities: String
+    val fileProviderAuthorities: String
         get() = BaseUtils.getAppContext().packageName + ".file.provider"
 
     val isReleaseEnv: Boolean = BuildConfig.appHostFlag == "Pro"
@@ -81,8 +81,8 @@ class AppSettings @Inject internal constructor(
 
     private fun initEnvironment() {
         EnvironmentContext.startEdit {
-            add(API_HOST, Environment("生产", "Pro", "https://www.wanandroid.com/"))
-            add(H5_HOST, Environment("生产", "Pro", "https://www.wanandroid.com/"))
+            add(API_HOST, EnvironmentItem("生产", "Pro", "http://tools.cretinzp.com/jokes/"))
+            add(H5_HOST, EnvironmentItem("生产", "Pro", "http://tools.cretinzp.com/jokes/"))
         }
     }
 

@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.home
+package me.ztiany.wan.main
 
 import android.app.Application
 import android.content.res.Configuration

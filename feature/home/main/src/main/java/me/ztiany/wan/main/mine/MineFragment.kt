@@ -1,11 +1,10 @@
-package me.ztiany.wan.main.home.mine
+package me.ztiany.wan.main.mine
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.base.fragment.base.BaseUIFragment
 import com.app.base.utils.setStatusBarLightMode
-import me.ztiany.wan.main.home.MainScopeNavigator
+import me.ztiany.wan.main.MainInternalNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import me.ztiany.wan.main.databinding.MainFragmentMineBinding
 import javax.inject.Inject
@@ -18,7 +17,7 @@ class MineFragment : BaseUIFragment<MainFragmentMineBinding>() {
 
     private val viewModel: MineViewModel by viewModels()
 
-    @Inject internal lateinit var mainScopeNavigator: MainScopeNavigator
+    @Inject internal lateinit var mainScopeNavigator: MainInternalNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -11,20 +11,13 @@ import com.android.base.core.ErrorConvert
 import com.android.base.fragment.anim.HorizontalTransitions
 import com.android.base.fragment.fragmentModule
 import com.android.base.utils.BaseUtils
-import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ServerErrorException
-import com.android.sdk.net.extension.init
-import com.android.sdk.net.extension.setDefaultHostConfig
 import com.android.sdk.upgrade.AppUpgradeChecker
 import com.app.apm.APM
 import com.app.base.app.ComponentProcessor
 import com.app.base.app.Platform
 import com.app.base.config.AppSettings
-import com.app.base.data.protocol.newApiHandler
-import com.app.base.data.protocol.newErrorBodyParser
-import com.app.base.data.protocol.newErrorMessage
-import com.app.base.data.protocol.newHttpConfig
-import com.app.base.data.protocol.newPlatformInteractor
+import com.app.base.data.protocol.ApiProtocol
 import com.app.base.dialog.loading.AppLoadingViewHost
 import com.app.base.upgrade.AppUpgradeInteractor
 import com.app.common.api.errorhandler.ErrorHandler
@@ -53,39 +46,29 @@ abstract class AppContext : BaseAppContext() {
 
     @Inject internal lateinit var platform: Lazy<Platform>
 
+    @Inject internal lateinit var apiProtocol: Lazy<ApiProtocol>
+
     @Inject internal lateinit var moduleInitializers: Set<@JvmSuppressWildcards AppLifecycle>
 
     override fun onCreate() {
         application = this
         super.onCreate()
-
-        BaseUtils.init(this)
-        APM.init(this).start()
-        appSettings.get().init()
-        configNetworkApi()
         configFoundation()
-        configLibraries()
+
         moduleInitializers.forEach {
             it.onCreate(this)
         }
     }
 
-    private fun configNetworkApi() {
-        NetContext.get().init(this) {
-            errorMessage(newErrorMessage())
-            platformInteractor(newPlatformInteractor(platform.get()))
-        }.setDefaultHostConfig {
-            httpConfig(newHttpConfig(userManager.get(), appSettings.get(), platform.get(), errorHandler.get()))
-            errorBodyHandler(newErrorBodyParser(errorHandler.get()))
-            aipHandler(newApiHandler(errorHandler.get()))
-            exceptionFactory { _, _ -> null }
-        }
-    }
-
     private fun configFoundation() {
-        //安装 Activity/Fragment 注入器
+        BaseUtils.init(this)
+        APM.init(this).start()
+        appSettings.get().init()
+        apiProtocol.get().initHttpConfig()
+
         registerActivityLifecycleCallbacks(ComponentProcessor())
-        //lib-base 配置
+
+        // lib base config
         with(AndroidSword) {
             //错误消息转换器
             errorConvert = object : ErrorConvert {
@@ -116,9 +99,7 @@ abstract class AppContext : BaseAppContext() {
                 loadingViewHostFactory = { AppLoadingViewHost(it) }
             }
         }
-    }
 
-    private fun configLibraries() {
         AppUpgradeChecker.installInteractor(appUpgradeInteractor.get())
     }
 

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.layoutInflater
 import com.android.base.utils.android.views.setPaddings
-import com.app.base.config.Environment
+import com.app.base.config.EnvironmentItem
 import com.app.base.config.EnvironmentContext
 import com.app.base.databinding.BaseDebugEnvironmentItemBinding
 
@@ -23,10 +23,10 @@ internal class EnvironmentItemLayout @JvmOverloads constructor(
         setPaddings(dip(10))
     }
 
-    private lateinit var list: List<Environment>
+    private lateinit var list: List<EnvironmentItem>
     private lateinit var categoryName: String
 
-    fun bindEnvironmentList(categoryName: String, list: List<Environment>) {
+    fun bindEnvironmentList(categoryName: String, list: List<EnvironmentItem>) {
         this.categoryName = categoryName
         this.list = list
         viewBinding.baseTvDebugHostName.text = categoryName
@@ -39,7 +39,7 @@ internal class EnvironmentItemLayout @JvmOverloads constructor(
     }
 
     @SuppressLint("SetTextI18n")
-    private fun showSelectedValue(selected: Environment) {
+    private fun showSelectedValue(selected: EnvironmentItem) {
         viewBinding.baseTvDebugHostValue.text = "${selected.name}：${selected.value}"
     }
 

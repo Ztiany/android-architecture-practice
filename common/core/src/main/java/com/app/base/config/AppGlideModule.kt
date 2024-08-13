@@ -9,7 +9,7 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache
 import timber.log.Timber
 
 @GlideModule
-class CustomGlideModule : ProgressGlideModule() {
+class AppGlideModule : ProgressGlideModule() {
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         val dirCacheSize = 1024 * 1024 * 500

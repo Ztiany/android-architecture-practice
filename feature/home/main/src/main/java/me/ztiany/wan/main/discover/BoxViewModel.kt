@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.home.box
+package me.ztiany.wan.main.discover
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

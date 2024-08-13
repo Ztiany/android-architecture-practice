@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.home
+package me.ztiany.wan.main
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,11 +8,10 @@ import androidx.fragment.app.FragmentManager
 import com.android.base.fragment.base.BaseUIFragment
 import com.android.base.fragment.tool.FragmentInfo
 import com.android.base.fragment.tool.TabManager
-import me.ztiany.wan.main.R
 import me.ztiany.wan.main.databinding.MainFragmentMainBinding
-import me.ztiany.wan.main.home.box.BoxFragment
-import me.ztiany.wan.main.home.feed.presentation.FeedFragment
-import me.ztiany.wan.main.home.mine.MineFragment
+import me.ztiany.wan.main.discover.BoxFragment
+import me.ztiany.wan.main.home.presentation.FeedFragment
+import me.ztiany.wan.main.mine.MineFragment
 import timber.log.Timber
 
 /**

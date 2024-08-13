@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.home;
+package me.ztiany.wan.main;
 
 import com.android.base.core.AppLifecycle;
 import com.app.base.component.router.NavigatorKey;
@@ -12,7 +12,6 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
-import me.ztiany.wan.main.MainModuleNavigator;
 
 /**
  * @author Ztiany

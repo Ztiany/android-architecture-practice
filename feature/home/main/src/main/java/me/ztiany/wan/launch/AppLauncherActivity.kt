@@ -1,4 +1,4 @@
-package me.ztiany.wan.main.launch
+package me.ztiany.wan.launch
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import com.app.base.app.AppBaseActivity
 import com.app.common.api.protocol.CustomizeSystemBar
 import com.app.base.utils.setNavigatorBarColorLightest
 import com.app.common.api.router.AppRouter
-import me.ztiany.wan.main.home.MainActivity
+import me.ztiany.wan.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -17,7 +17,7 @@ import javax.inject.Inject
  *@author Ztiany
  */
 @AndroidEntryPoint
-class AppLaunchActivity : AppBaseActivity(), CustomizeSystemBar {
+class AppLauncherActivity : AppBaseActivity(), CustomizeSystemBar {
 
     @Inject lateinit var appRouter: AppRouter
 
