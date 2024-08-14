@@ -101,10 +101,10 @@ fun EditText.enableTargetViewIfNotEmpty(target: View, length: Int) {
     }
 }
 
-fun Activity.setNavigatorBarColorLightest() {
-    SystemBarCompat.setNavigationBarColor(
+fun Activity.setStatusBarColorSameWithWindow() {
+    SystemBarCompat.setStatusBarColor(
         this,
-        MaterialColors.getColor(this, R.attr.app_color_lightest, "app_color_lightest not provided.")
+        MaterialColors.getColor(this, android.R.attr.windowBackground, "windowBackground not provided.")
     )
 }
 
