@@ -122,7 +122,6 @@ fun Activity.setStatusBarLightMode() {
 }
 
 /** 设置状态栏白色字体图标，返回 true 表示设置成功 */
-@Suppress("UNUSED")
 fun Activity.setStatusBarDarkMode() {
     WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
 }

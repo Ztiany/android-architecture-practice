@@ -327,7 +327,7 @@ test-junit = { module = "junit:junit", version.ref = "junit" }
 # debug libraries
 # ======================================================
 # https://github.com/square/leakcanary
-squareup-leakcanary-debug = "com.squareup.leakcanary:leakcanary-android:2.8"
+squareup-leakcanary-debug = "com.squareup.leakcanary:leakcanary-android:2.14"
 
 # http://facebook.github.io/stetho
 facebook-stetho = "com.facebook.stetho:stetho:1.5.1"
