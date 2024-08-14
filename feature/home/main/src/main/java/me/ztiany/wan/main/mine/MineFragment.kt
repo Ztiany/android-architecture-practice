@@ -3,9 +3,8 @@ package me.ztiany.wan.main.mine
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.android.base.fragment.base.BaseUIFragment
-import com.app.base.utils.setStatusBarLightMode
-import me.ztiany.wan.main.MainInternalNavigator
 import dagger.hilt.android.AndroidEntryPoint
+import me.ztiany.wan.main.MainInternalNavigator
 import me.ztiany.wan.main.databinding.MainFragmentMineBinding
 import javax.inject.Inject
 
@@ -24,14 +23,8 @@ class MineFragment : BaseUIFragment<MainFragmentMineBinding>() {
         subscribeViewModel()
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        requireActivity().setStatusBarLightMode()
-    }
-
     private fun subscribeViewModel() {
-        viewModel.userState.observe(this){
+        viewModel.userState.observe(this) {
 
         }
     }

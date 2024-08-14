@@ -1,18 +1,15 @@
 package me.ztiany.wan.main
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.android.base.fragment.tool.clearBackStack
 import com.android.base.fragment.tool.doFragmentTransaction
 import com.android.base.fragment.tool.findFragmentByTag
-import com.android.base.utils.android.compat.SystemBarCompat
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
-import com.app.base.utils.setNavigatorBarColorLightest
 import com.app.base.dialog.toast.ToastKit
 import com.app.common.api.protocol.TheMainPage
 import com.app.common.api.usermanager.UserManager
@@ -37,13 +34,6 @@ class MainActivity : AppBaseActivity(), TheMainPage {
     @Inject internal lateinit var mainScopeNavigator: MainInternalNavigator
 
     @Inject lateinit var userManager: UserManager
-
-    override fun initialize(savedInstanceState: Bundle?) {
-        super.initialize(savedInstanceState)
-        SystemBarCompat.setExtendsToSystemBar(this, true)
-        SystemBarCompat.setStatusBarColor(this, Color.TRANSPARENT)
-        setNavigatorBarColorLightest()
-    }
 
     override fun provideLayout() = R.layout.main_activity
 

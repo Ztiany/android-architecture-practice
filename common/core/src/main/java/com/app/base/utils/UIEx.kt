@@ -8,7 +8,6 @@ import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.EditText
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -114,14 +113,4 @@ fun Activity.setNavigatorBarColorSameWithWindow() {
         this,
         MaterialColors.getColor(this, android.R.attr.windowBackground, "windowBackground not provided.")
     )
-}
-
-/** 设置状态栏黑色字体图标，返回 true 表示设置成功 */
-fun Activity.setStatusBarLightMode() {
-    WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
-}
-
-/** 设置状态栏白色字体图标，返回 true 表示设置成功 */
-fun Activity.setStatusBarDarkMode() {
-    WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
 }

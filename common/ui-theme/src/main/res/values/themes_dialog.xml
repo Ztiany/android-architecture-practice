@@ -12,18 +12,11 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
-
-        <item name="android:statusBarColor">@color/color_status_bar</item>
-        <item name="android:navigationBarColor">@color/page_bg_color</item>
-        <item name="android:windowBackground">@color/page_bg_color</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.Dialog.Common.Transparent">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.Dialog.Common.Floating">

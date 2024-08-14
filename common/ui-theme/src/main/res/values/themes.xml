@@ -51,7 +51,6 @@
         <item name="colorControlActivated">@color/color_main</item>
         <!-- system ui colors -->
         <item name="android:statusBarColor">@color/color_status_bar</item>
-        <item name="android:navigationBarColor">@color/page_bg_color</item>
         <item name="android:windowBackground">@color/page_bg_color</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <!-- system widget colors  -->
