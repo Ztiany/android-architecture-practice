@@ -3,20 +3,19 @@ package me.ztiany.wan.sample
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import com.android.base.utils.android.compat.setLayoutExtendsToSystemBars
 import com.app.base.app.AppBaseActivity
-import com.app.common.api.router.AppRouter
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
  * 应用启动页
  *
  * @author Ztiany
  */
-@AndroidEntryPoint
 class SampleSplashActivity : AppBaseActivity() {
 
-    @Inject lateinit var appRouter: AppRouter
+    override fun initialize(savedInstanceState: Bundle?) {
+        setLayoutExtendsToSystemBars()
+    }
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         //https://medium.com/@elye.project/three-important-yet-unbeknown-android-app-launcher-behaviors-part-2-139a4d88157

@@ -2,6 +2,7 @@ package me.ztiany.wan.launch
 
 import android.content.Intent
 import android.os.Bundle
+import com.android.base.utils.android.compat.setLayoutExtendsToSystemBars
 import com.app.base.app.AppBaseActivity
 import com.app.common.api.router.AppRouter
 import com.app.common.api.router.withNavigator
@@ -18,6 +19,10 @@ import javax.inject.Inject
 class AppLauncherActivity : AppBaseActivity() {
 
     @Inject lateinit var appRouter: AppRouter
+
+    override fun initialize(savedInstanceState: Bundle?) {
+        setLayoutExtendsToSystemBars()
+    }
 
     override fun setUpLayout(savedInstanceState: Bundle?) {
         //https://medium.com/@elye.project/three-important-yet-unbeknown-android-app-launcher-behaviors-part-2-139a4d88157

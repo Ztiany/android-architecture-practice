@@ -2,13 +2,16 @@
 <resources>
 
     <!-- ============================ 颜色实现  ============================ -->
-
+    <!--
+        请不要直接引用这些颜色，而是通过主题引用，以便在主题中统一管理颜色。
+    -->
     <!--品牌色-->
     <color name="color_main">#7AFFB5</color>
     <!--次级品牌色-->
     <color name="color_main_variant">#64D3E6</color>
-    <!--状态栏-->
+    <!--状态栏与导航栏-->
     <color name="color_status_bar">@color/white</color>
+    <color name="color_navigation_bar">@color/page_bg_color</color>
     <!--窗口背景-->
     <color name="page_bg_color">#F3F6FB</color>
     <!--分割线-->

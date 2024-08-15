@@ -20,32 +20,6 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
 import java.lang.ref.WeakReference
 
-/**
- *@author Ztiany
- */
-fun ShapeableImageView.setRoundCornerSize(size: Float) {
-    shapeAppearanceModel = shapeAppearanceModel.toBuilder().setAllCorners(CornerFamily.ROUNDED, size).build()
-}
-
-fun ShapeableImageView.setTopRoundCornerSize(size: Float) {
-    shapeAppearanceModel = shapeAppearanceModel.toBuilder()
-        .setTopLeftCorner(CornerFamily.ROUNDED, size)
-        .setTopRightCorner(CornerFamily.ROUNDED, size)
-        .setBottomLeftCorner(CornerFamily.ROUNDED, 0F)
-        .setBottomRightCorner(CornerFamily.ROUNDED, 0F)
-        .build()
-}
-
-fun ShapeableImageView.setBottomRoundCornerSize(size: Float) {
-    shapeAppearanceModel = shapeAppearanceModel.toBuilder()
-        .setTopLeftCorner(CornerFamily.ROUNDED, 0F)
-        .setTopRightCorner(CornerFamily.ROUNDED, 0F)
-        .setBottomLeftCorner(CornerFamily.ROUNDED, size)
-        .setBottomRightCorner(CornerFamily.ROUNDED, size)
-        .build()
-}
-
-
 fun newAppStyleClickSpan(lifecycleOwner: LifecycleOwner, context: Context, onClick: () -> Unit): ClickableSpan {
 
     val listenerReference = WeakReference(onClick)
@@ -101,6 +75,27 @@ fun EditText.enableTargetViewIfNotEmpty(target: View, length: Int) {
     }
 }
 
+fun Activity.setNavigationBarColorLightest() {
+    SystemBarCompat.setNavigationBarColor(
+        this,
+        MaterialColors.getColor(this, R.attr.app_color_lightest, "app_color_lightest not provided.")
+    )
+}
+
+fun Activity.setNavigationBarColorSameWithWindow() {
+    SystemBarCompat.setNavigationBarColor(
+        this,
+        MaterialColors.getColor(this, android.R.attr.windowBackground, "windowBackground not provided.")
+    )
+}
+
+fun Activity.setStatusBarColorLightest() {
+    SystemBarCompat.setStatusBarColor(
+        this,
+        MaterialColors.getColor(this, R.attr.app_color_lightest, "app_color_lightest not provided.")
+    )
+}
+
 fun Activity.setStatusBarColorSameWithWindow() {
     SystemBarCompat.setStatusBarColor(
         this,
@@ -108,9 +103,3 @@ fun Activity.setStatusBarColorSameWithWindow() {
     )
 }
 
-fun Activity.setNavigatorBarColorSameWithWindow() {
-    SystemBarCompat.setNavigationBarColor(
-        this,
-        MaterialColors.getColor(this, android.R.attr.windowBackground, "windowBackground not provided.")
-    )
-}

@@ -10,7 +10,7 @@ import com.android.base.delegate.activity.ActivityDelegateOwner
 import com.android.base.delegate.fragment.FragmentDelegateOwner
 import com.android.base.utils.android.SoftKeyboardUtils
 import com.android.base.utils.android.adaption.ActivityLifecycleCallbacksAdapter
-import com.android.base.utils.android.compat.setExtendsToSystemBars
+import com.android.base.utils.android.compat.setNavigationBarLightMode
 import com.android.base.utils.android.compat.setStatusBarLightMode
 import com.android.base.utils.common.ignoreCrash
 import com.app.common.api.protocol.CustomizeSystemBar
@@ -38,9 +38,8 @@ class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
         if (activity is CustomizeSystemBar) {
             return
         }
-        //(activity as? ComponentActivity)?.enableEdgeToEdge()
-        activity.setExtendsToSystemBars()
         activity.setStatusBarLightMode()
+        activity.setNavigationBarLightMode()
     }
 
     private fun injectFragmentLifecycle(activity: FragmentActivity) {

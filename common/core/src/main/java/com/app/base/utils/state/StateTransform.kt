@@ -11,7 +11,6 @@ import com.android.base.foundation.state.setLoading
 import com.android.sdk.net.coroutines.CallResult
 import com.android.sdk.net.coroutines.onError
 import com.android.sdk.net.coroutines.onSuccess
-import com.app.common.api.errorhandler.ErrorHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableSharedFlow
