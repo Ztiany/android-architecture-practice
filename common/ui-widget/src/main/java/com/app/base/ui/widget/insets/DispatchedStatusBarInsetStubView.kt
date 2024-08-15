@@ -15,8 +15,10 @@ class DispatchedStatusBarInsetStubView @JvmOverloads constructor(
     init {
         ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            statusBarInsetHeight = systemBars.top
-            requestLayout()
+            if (statusBarInsetHeight != systemBars.top) {
+                statusBarInsetHeight = systemBars.top
+                requestLayout()
+            }
             insets
         }
     }
