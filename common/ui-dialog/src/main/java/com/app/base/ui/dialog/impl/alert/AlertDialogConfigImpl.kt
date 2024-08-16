@@ -12,9 +12,9 @@ import com.app.base.ui.dialog.defaultWindowSize
 import com.app.base.ui.dialog.dsl.Button
 import com.app.base.ui.dialog.dsl.CheckBox
 import com.app.base.ui.dialog.dsl.DialogBehavior
+import com.app.base.ui.dialog.dsl.DialogWindowSize
 import com.app.base.ui.dialog.dsl.OnClickListener
 import com.app.base.ui.dialog.dsl.Text
-import com.app.base.ui.dialog.dsl.DialogWindowSize
 import com.app.base.ui.dialog.dsl.alert.AlertDialogConfig
 import com.app.base.ui.dialog.dsl.alert.AlertDialogDescription
 import com.app.base.ui.dialog.dsl.alert.AlertDialogInterface
@@ -31,7 +31,7 @@ internal class AlertDialogConfigImpl(private val context: Context) : AlertDialog
 
     private var checkBox: CheckBox? = null
 
-    private var positiveButton: Button = context.defaultAlertPositiveButton()
+    private var positiveButton: Button? = null
 
     private var negativeButton: Button? = null
 
@@ -114,7 +114,7 @@ internal class AlertDialogConfigImpl(private val context: Context) : AlertDialog
             title = title?.toTextDescription(),
             message = message?.toTextDescription(),
             checkBox = checkBox?.toCheckBoxDescription(),
-            positiveButton = positiveButton.toButtonDescription(),
+            positiveButton = positiveButton?.toButtonDescription(),
             neutralButton = neutralButton?.toButtonDescription(),
             negativeButton = negativeButton?.toButtonDescription(),
             behavior = behavior.toDialogBehaviorDescription(),

@@ -8,13 +8,13 @@ import com.android.base.utils.android.views.beGone
 import com.android.base.utils.android.views.onThrottledClick
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
+import com.app.base.ui.dialog.AppBaseDialog
 import com.app.base.ui.dialog.databinding.DialogLayoutAlertBinding
 import com.app.base.ui.dialog.dsl.Condition
 import com.app.base.ui.dialog.dsl.alert.AlertDialogDescription
 import com.app.base.ui.dialog.dsl.alert.AlertDialogInterface
 import com.app.base.ui.dialog.dsl.applyTo
 import com.app.base.ui.dialog.dsl.applyToDialog
-import com.app.base.ui.dialog.AppBaseDialog
 import com.app.base.ui.dialog.impl.DialogInterfaceWrapper
 
 
@@ -64,12 +64,30 @@ class AppAlertDialog(
             applyTo(dialogCbOption)
         } otherwise { dialogCbOption.beGone() }
 
-        with(description.positiveButton) {
-            textDescription.applyTo(dialogBottom.tvPositive)
-            dialogBottom.tvPositive.onThrottledClick {
-                onClickListener?.invoke(dialogInterfaceWrapper, condition)
-                dismissChecked()
+        setUpBottomButtons()
+
+        with(description.behavior) {
+            applyToDialog(this@AppAlertDialog)
+            setOnDismissListener {
+                onDismissListener?.invoke(dialogInterfaceWrapper.canceledByUser)
             }
+        }
+    }
+
+    private fun DialogLayoutAlertBinding.setUpBottomButtons() {
+        if (description.positiveButton == null && description.negativeButton == null && description.neutralButton == null) {
+            dialogBottom.beGone()
+            return
+        }
+
+        with(description.positiveButton) {
+            ifNonNull {
+                textDescription.applyTo(dialogBottom.tvPositive)
+                dialogBottom.tvPositive.onThrottledClick {
+                    onClickListener?.invoke(dialogInterfaceWrapper, condition)
+                    dismissChecked()
+                }
+            } otherwise { dialogBottom.hidePositiveButton() }
         }
 
         with(description.negativeButton) {
@@ -90,13 +108,6 @@ class AppAlertDialog(
                     dismissChecked()
                 }
             } otherwise { dialogBottom.hideNeutralButton() }
-        }
-
-        with(description.behavior) {
-            applyToDialog(this@AppAlertDialog)
-            setOnDismissListener {
-                onDismissListener?.invoke(dialogInterfaceWrapper.canceledByUser)
-            }
         }
     }
 

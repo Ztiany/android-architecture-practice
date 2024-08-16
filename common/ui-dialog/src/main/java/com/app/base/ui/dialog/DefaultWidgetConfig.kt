@@ -108,7 +108,7 @@ internal fun Context.defaultAlertMessage(message: CharSequence = ""): Text {
     }
 }
 
-internal fun Context.defaultAlertPositiveButton(text: CharSequence = getText(com.app.base.ui.theme.R.string.confirm)): Button {
+internal fun Context.defaultAlertPositiveButton(text: CharSequence): Button {
     return Button(this, text).apply {
         textSize(14F)
         textColorAttr(com.app.base.ui.theme.R.attr.app_color_main)
