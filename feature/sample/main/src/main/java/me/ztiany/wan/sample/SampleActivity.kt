@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.android.base.fragment.tool.doFragmentTransaction
 import com.android.base.fragment.tool.findFragmentByTag
 import com.android.base.utils.android.compat.doBeforeSDK
-import com.android.base.utils.android.compat.doInSDKRange
+import com.android.base.utils.android.compat.doFromSDK
 import com.android.base.utils.android.compat.setLayoutExtendsToSystemBars
 import com.android.base.utils.android.compat.setNavigationBarColor
 import com.android.base.utils.android.compat.setNavigationBarLightMode
@@ -31,18 +31,15 @@ class SampleActivity : AppBaseActivity(), CustomizeSystemBar {
     private lateinit var mainFragment: MainFragment
 
     override fun initialize(savedInstanceState: Bundle?) {
-        setStatusBarLightMode()
         setLayoutExtendsToSystemBars()
-        doInSDKRange(26, 28) {
+        setStatusBarLightMode()
+        doFromSDK(26) {
+            // Take effect as of API 26.
             setNavigationBarLightMode()
         }
         doBeforeSDK(26) {
-            setNavigationBarColor(
-                getStyledColor(
-                    com.app.base.ui.theme.R.attr.app_color_deepest_opacity50,
-                    "app_color_deepest_opacity50 not found in the theme."
-                )
-            )
+            // Take effect as of API 21.
+            setNavigationBarColor(getStyledColor(com.app.base.ui.theme.R.attr.app_color_deepest_opacity20, "app_color_deepest_opacity50"))
         }
     }
 

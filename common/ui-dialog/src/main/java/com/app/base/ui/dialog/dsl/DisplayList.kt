@@ -38,7 +38,7 @@ class DisplayList(
         _items = items
     }
 
-    fun onItemClick(itemClickListener: OnItemClickListener) {
+    fun onItemClicked(itemClickListener: OnItemClickListener) {
         _itemClickListener = itemClickListener
     }
 

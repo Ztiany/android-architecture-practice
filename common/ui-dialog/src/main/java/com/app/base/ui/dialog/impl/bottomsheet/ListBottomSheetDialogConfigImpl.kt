@@ -64,7 +64,7 @@ internal class ListBottomSheetDialogConfigImpl(private val context: Context) : L
     override fun items(list: List<DisplayItem>, onItemClickListener: OnItemClickListener?) {
         displayList = context.defaultDisplayList().apply {
             items(list)
-            onItemClickListener?.let { onItemClick(it) }
+            onItemClickListener?.let { onItemClicked(it) }
         }
     }
 

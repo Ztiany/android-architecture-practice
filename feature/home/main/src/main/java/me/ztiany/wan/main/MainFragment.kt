@@ -22,13 +22,14 @@ class MainFragment : BaseUIFragment<MainFragmentMainBinding>() {
     private lateinit var tabManager: MainTabManager
 
     @SuppressLint("BinaryOperationInTimber")
-    override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) {
+    override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) = withVB {
         //tab manager
         tabManager = MainTabManager(requireContext(), childFragmentManager, R.id.flMainContainer)
         tabManager.setup(savedInstanceState)
         //bottomBar
-        vb.mainBottomBar.itemIconTintList = null
-        vb.mainBottomBar.setOnNavigationItemSelectedListener {
+        mainBottomBar.itemIconTintList = null
+        mainBottomBar.clipToOutline = true
+        mainBottomBar.setOnItemSelectedListener {
             tabManager.selectTabById(it.itemId)
             true
         }

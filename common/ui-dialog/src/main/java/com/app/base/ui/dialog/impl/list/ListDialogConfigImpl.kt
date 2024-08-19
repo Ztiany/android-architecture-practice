@@ -63,7 +63,7 @@ internal class ListDialogConfigImpl(private val context: Context) : ListDialogCo
     override fun items(list: List<DisplayItem>, onItemClickListener: OnItemClickListener?) {
         displayList = context.defaultDisplayList().apply {
             items(list)
-            onItemClickListener?.let { onItemClick(it) }
+            onItemClickListener?.let { onItemClicked(it) }
         }
     }
 

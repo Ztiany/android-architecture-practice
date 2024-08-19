@@ -5,7 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.base.ui.dialog.dsl.Button
 import com.app.base.ui.dialog.dsl.DialogContextDslMarker
-import com.app.base.ui.dialog.dsl.OnMultiItemSelectedListener
+import com.app.base.ui.dialog.dsl.OnMultiSelectionSelectedListener
 
 @DialogContextDslMarker
 interface MultiSelectionBottomSheetDialogConfig : SelectionBottomSheetDialogConfig<MultiSectionBottomSheetDialogDescription> {
@@ -16,8 +16,8 @@ interface MultiSelectionBottomSheetDialogConfig : SelectionBottomSheetDialogConf
 
     fun customizeList(config: MultiSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)
 
-    fun positiveButton(text: CharSequence, config: Button.() -> Unit = {}, onSelected: OnMultiItemSelectedListener)
+    fun positiveButton(text: CharSequence, config: Button.() -> Unit = {}, onSelected: OnMultiSelectionSelectedListener)
 
-    fun positiveButton(@StringRes textRes: Int, config: Button.() -> Unit = {}, onSelected: OnMultiItemSelectedListener)
+    fun positiveButton(@StringRes textRes: Int, config: Button.() -> Unit = {}, onSelected: OnMultiSelectionSelectedListener)
 
 }

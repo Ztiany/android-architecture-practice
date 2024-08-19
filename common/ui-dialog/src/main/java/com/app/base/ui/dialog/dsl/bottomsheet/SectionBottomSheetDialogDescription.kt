@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.base.ui.dialog.dsl.BottomSheetWindowSizeDescription
 import com.app.base.ui.dialog.dsl.ButtonDescription
 import com.app.base.ui.dialog.dsl.DialogDescription
-import com.app.base.ui.dialog.dsl.OnMultiItemSelectedListener
-import com.app.base.ui.dialog.dsl.OnSingleItemSelectedListener
+import com.app.base.ui.dialog.dsl.OnMultiSelectionSelectedListener
+import com.app.base.ui.dialog.dsl.OnSingleSelectionSelectedListener
 import com.app.base.ui.dialog.dsl.SelectionListDescription
 import com.app.base.ui.dialog.dsl.TextDescription
 import com.app.base.ui.dialog.dsl.TextStyleDescription
@@ -28,7 +28,7 @@ class SingleSectionBottomSheetDialogDescription(
     val listTopAreaConfig: (SingleSelectionBottomSheetDialogInterface.(ConstraintLayout) -> Unit)?,
     val listBottomAreaConfig: (SingleSelectionBottomSheetDialogInterface.(ConstraintLayout) -> Unit)?,
     val customizeList: (SingleSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)?,
-    val onSingleItemSelectedListener: OnSingleItemSelectedListener? = null,
+    val onSingleItemSelectedListener: OnSingleSelectionSelectedListener? = null,
 ) : SectionBottomSheetDialogDescription(
     size,
     title,
@@ -47,7 +47,7 @@ class MultiSectionBottomSheetDialogDescription(
     val listBottomAreaConfig: (MultiSelectionBottomSheetDialogInterface.(ConstraintLayout) -> Unit)?,
     val customizeList: (MultiSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)?,
     val rightTitleActionTextStyle: TextStyleDescription,
-    val onMultiItemSelectedListener: OnMultiItemSelectedListener? = null,
+    val onMultiItemSelectedListener: OnMultiSelectionSelectedListener? = null,
 ) : SectionBottomSheetDialogDescription(
     size,
     title,

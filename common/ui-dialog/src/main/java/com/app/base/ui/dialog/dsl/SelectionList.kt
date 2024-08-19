@@ -1,6 +1,7 @@
 package com.app.base.ui.dialog.dsl
 
 import android.content.Context
+import android.content.DialogInterface
 import androidx.annotation.ArrayRes
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -16,9 +17,11 @@ data class Selection(
     val selected: Boolean = false,
 )
 
-typealias OnSingleItemSelectedListener = (position: Int, item: Selection) -> Unit
+typealias OnSingleSelectionSelectedListener = (position: Int, item: Selection) -> Unit
 
-typealias OnMultiItemSelectedListener = (selected: List<Selection>) -> Unit
+typealias OnMultiSelectionSelectedListener = (selected: List<Selection>) -> Unit
+
+typealias OnSelectionClickedListener = DialogInterface.(position: Int, item: Selection) -> Unit
 
 @DialogContextDslMarker
 class SelectionList(
@@ -35,8 +38,14 @@ class SelectionList(
     private var _dividerInsetStart = 0
     private var _dividerInsetEnd = 0
 
+    private var _onSelectionClickListener: OnSelectionClickedListener? = null
+
     fun selections(items: List<Selection>) {
         _items = items
+    }
+
+    fun onSelectionClicked(onSelectionClickListener: OnSelectionClickedListener) {
+        _onSelectionClickListener = onSelectionClickListener
     }
 
     fun divider(
@@ -77,6 +86,7 @@ class SelectionList(
     fun toSelectionListDescription(): SelectionListDescription {
         return SelectionListDescription(
             items = _items,
+            onSelectionClickListener = _onSelectionClickListener,
             titleStyle = _titleStyle.toTextStyleDescription(),
             subtitleStyle = _subtitleStyle.toTextStyleDescription(),
             dividerColor = _dividerColor,
@@ -110,6 +120,7 @@ fun SelectionList.arrResSelections(@ArrayRes textArrRes: Int) {
 
 class SelectionListDescription(
     val items: List<Selection>,
+    val onSelectionClickListener: OnSelectionClickedListener?,
     val titleStyle: TextStyleDescription,
     val subtitleStyle: TextStyleDescription,
     val dividerColor: Int,

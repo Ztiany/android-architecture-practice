@@ -196,6 +196,8 @@ internal class SelectionPopupWindow(
     }
 
     private fun handleOnItemSelected(position: Int, selection: Selection) {
+        description.list?.onSelectionClickListener?.invoke(dialogInterfaceWrapper, position, selection)
+
         description.discriminate(
             multi = {
                 selectionAdapter.replace(selection, selection.copy(selected = !selection.selected))

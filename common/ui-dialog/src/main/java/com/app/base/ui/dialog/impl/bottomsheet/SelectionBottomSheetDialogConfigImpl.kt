@@ -10,8 +10,8 @@ import com.app.base.ui.dialog.defaultDialogTitle
 import com.app.base.ui.dialog.defaultSelectionList
 import com.app.base.ui.dialog.dsl.BottomSheetWindowSize
 import com.app.base.ui.dialog.dsl.Button
-import com.app.base.ui.dialog.dsl.OnMultiItemSelectedListener
-import com.app.base.ui.dialog.dsl.OnSingleItemSelectedListener
+import com.app.base.ui.dialog.dsl.OnMultiSelectionSelectedListener
+import com.app.base.ui.dialog.dsl.OnSingleSelectionSelectedListener
 import com.app.base.ui.dialog.dsl.Selection
 import com.app.base.ui.dialog.dsl.SelectionList
 import com.app.base.ui.dialog.dsl.Text
@@ -72,7 +72,7 @@ internal class SingleSelectionBottomSheetDialogConfigImpl(
     private val context: Context,
 ) : SelectionBottomSheetDialogConfigImpl<SingleSectionBottomSheetDialogDescription>(context), SingleSelectionBottomSheetDialogConfig {
 
-    private var _onSingleItemSelectedListener: OnSingleItemSelectedListener? = null
+    private var _onSingleItemSelectedListener: OnSingleSelectionSelectedListener? = null
 
     private var listTopAreaConfig: (SingleSelectionBottomSheetDialogInterface.(ConstraintLayout) -> Unit)? = null
 
@@ -80,14 +80,14 @@ internal class SingleSelectionBottomSheetDialogConfigImpl(
 
     private var customizeList: (SingleSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)? = null
 
-    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnSingleItemSelectedListener) {
+    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnSingleSelectionSelectedListener) {
         _onSingleItemSelectedListener = onSelected
         bottomButton = context.defaultBottomSheetRightButton(text).apply {
             config(this)
         }
     }
 
-    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnSingleItemSelectedListener) {
+    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnSingleSelectionSelectedListener) {
         positiveButton(context.getString(textRes), config, onSelected)
     }
 
@@ -123,7 +123,7 @@ internal class MultiSelectionBottomSheetDialogConfigImpl(
     private val context: Context,
 ) : SelectionBottomSheetDialogConfigImpl<MultiSectionBottomSheetDialogDescription>(context), MultiSelectionBottomSheetDialogConfig {
 
-    private var _onMultiItemSelectedListener: OnMultiItemSelectedListener? = null
+    private var _onMultiItemSelectedListener: OnMultiSelectionSelectedListener? = null
 
     private var _rightActionTextStyle: TextStyle = context.defaultBottomSheetTitleActionTextStyle()
 
@@ -133,14 +133,14 @@ internal class MultiSelectionBottomSheetDialogConfigImpl(
 
     private var customizeList: (MultiSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)? = null
 
-    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnMultiItemSelectedListener) {
+    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnMultiSelectionSelectedListener) {
         _onMultiItemSelectedListener = onSelected
         bottomButton = context.defaultBottomSheetRightButton(text).apply {
             config(this)
         }
     }
 
-    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnMultiItemSelectedListener) {
+    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnMultiSelectionSelectedListener) {
         positiveButton(context.getString(textRes), config, onSelected)
     }
 

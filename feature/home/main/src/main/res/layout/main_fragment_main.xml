@@ -17,12 +17,13 @@
         android:id="@+id/mainBottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/main_shape_navigation_view_bg"
+        android:background="?app_color_lightest"
         android:fitsSystemWindows="true"
         app:itemIconSize="22dp"
         app:itemTextAppearanceActive="@style/MainTableTextAppearanceSelected"
         app:itemTextAppearanceInactive="@style/MainTableTextAppearanceNormal"
         app:itemTextColor="@color/main_color_tab_text"
-        app:menu="@menu/main_table" />
+        app:menu="@menu/main_table"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.TopRounded20" />
 
 </LinearLayout>

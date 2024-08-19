@@ -24,7 +24,8 @@ class MainFragment : BaseUIFragment<SampleFragmentMainBinding>() {
         tabManager.setup(savedInstanceState)
         //bottomBar
         sampleBottomBar.itemIconTintList = null
-        sampleBottomBar.setOnNavigationItemSelectedListener {
+        sampleBottomBar.clipToOutline = true
+        sampleBottomBar.setOnItemSelectedListener {
             tabManager.selectTabById(it.itemId)
             true
         }

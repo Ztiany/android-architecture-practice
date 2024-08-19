@@ -9,8 +9,8 @@ import com.app.base.ui.dialog.defaultDialogTitle
 import com.app.base.ui.dialog.defaultSelectionList
 import com.app.base.ui.dialog.defaultSelectionPopupWindowSize
 import com.app.base.ui.dialog.dsl.Button
-import com.app.base.ui.dialog.dsl.OnMultiItemSelectedListener
-import com.app.base.ui.dialog.dsl.OnSingleItemSelectedListener
+import com.app.base.ui.dialog.dsl.OnMultiSelectionSelectedListener
+import com.app.base.ui.dialog.dsl.OnSingleSelectionSelectedListener
 import com.app.base.ui.dialog.dsl.PopupDim
 import com.app.base.ui.dialog.dsl.PopupWindowBehavior
 import com.app.base.ui.dialog.dsl.PopupWindowSize
@@ -79,7 +79,7 @@ internal class SingleSelectionPopupWindowConfigImpl(
     private val context: Context,
 ) : SelectionPopupWindowConfigImpl<SingleSelectionPopupWindowDescription>(context), SingleSelectionPopupWindowConfig {
 
-    private var _onSingleItemSelectedListener: OnSingleItemSelectedListener? = null
+    private var _onSingleItemSelectedListener: OnSingleSelectionSelectedListener? = null
 
     private var listTopAreaConfig: (SingleSelectionPopupWindowInterface.(ConstraintLayout) -> Unit)? = null
 
@@ -87,14 +87,14 @@ internal class SingleSelectionPopupWindowConfigImpl(
 
     private var customizeList: (SingleSelectionPopupWindowInterface.(RecyclerView) -> Unit)? = null
 
-    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnSingleItemSelectedListener) {
+    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnSingleSelectionSelectedListener) {
         _onSingleItemSelectedListener = onSelected
         bottomButton = context.defaultBottomSheetRightButton(text).apply {
             config(this)
         }
     }
 
-    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnSingleItemSelectedListener) {
+    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnSingleSelectionSelectedListener) {
         positiveButton(context.getString(textRes), config, onSelected)
     }
 
@@ -131,7 +131,7 @@ internal class MultiSelectionPopupConfigImpl(
     private val context: Context,
 ) : SelectionPopupWindowConfigImpl<MultiSelectionPopupWindowDescription>(context), MultiSelectionPopupWindowConfig {
 
-    private var _onMultiItemSelectedListener: OnMultiItemSelectedListener? = null
+    private var _onMultiItemSelectedListener: OnMultiSelectionSelectedListener? = null
 
     private var _rightActionTextStyle: TextStyle = context.defaultBottomSheetTitleActionTextStyle()
 
@@ -141,14 +141,14 @@ internal class MultiSelectionPopupConfigImpl(
 
     private var customizeList: (MultiSelectionPopupWindowInterface.(RecyclerView) -> Unit)? = null
 
-    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnMultiItemSelectedListener) {
+    override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnMultiSelectionSelectedListener) {
         _onMultiItemSelectedListener = onSelected
         bottomButton = context.defaultBottomSheetRightButton(text).apply {
             config(this)
         }
     }
 
-    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnMultiItemSelectedListener) {
+    override fun positiveButton(textRes: Int, config: Button.() -> Unit, onSelected: OnMultiSelectionSelectedListener) {
         positiveButton(context.getString(textRes), config, onSelected)
     }
 

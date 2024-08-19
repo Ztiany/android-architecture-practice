@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.base.ui.dialog.dsl.Button
-import com.app.base.ui.dialog.dsl.OnSingleItemSelectedListener
+import com.app.base.ui.dialog.dsl.OnSingleSelectionSelectedListener
 
 interface SingleSelectionBottomSheetDialogConfig : SelectionBottomSheetDialogConfig<SingleSectionBottomSheetDialogDescription> {
 
@@ -14,9 +14,8 @@ interface SingleSelectionBottomSheetDialogConfig : SelectionBottomSheetDialogCon
 
     fun customizeList(config: SingleSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)
 
-    fun positiveButton(text: CharSequence, config: Button.() -> Unit = {}, onSelected: OnSingleItemSelectedListener)
+    fun positiveButton(text: CharSequence, config: Button.() -> Unit = {}, onSelected: OnSingleSelectionSelectedListener)
 
-    fun positiveButton(@StringRes textRes: Int, config: Button.() -> Unit = {}, onSelected: OnSingleItemSelectedListener)
+    fun positiveButton(@StringRes textRes: Int, config: Button.() -> Unit = {}, onSelected: OnSingleSelectionSelectedListener)
 
 }
-
