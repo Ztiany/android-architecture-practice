@@ -17,6 +17,8 @@ import com.android.base.utils.common.unsafeLazy
 import com.app.base.ui.dialog.AppPopupWindow
 import com.app.base.ui.dialog.databinding.PopupLayoutOptionBinding
 import com.app.base.ui.dialog.dsl.Direction
+import com.app.base.ui.dialog.dsl.IndicatorDescription
+import com.app.base.ui.dialog.dsl.Option
 import com.app.base.ui.dialog.dsl.PopupDimDescription
 import com.app.base.ui.dialog.dsl.applyTo
 import com.app.base.ui.dialog.dsl.popup.OptionPopupWindowDescription
@@ -52,11 +54,11 @@ internal class OptionPopupWindow(
         DialogInterfaceWrapper(this)
     }
 
-    private var originalBackground: Drawable? = null
-    private var originalNavigationColor: Int? = null
-
     override val controller: OptionPopupWindowInterface
         get() = this
+
+    private var originalBackground: Drawable? = null
+    private var originalNavigationColor: Int? = null
 
     init {
         contentView = vb.root
@@ -104,7 +106,7 @@ internal class OptionPopupWindow(
                 context,
                 optionList.itemStyle,
                 optionList.items
-            ) { position: Int, item: CharSequence ->
+            ) { position: Int, item: Option ->
                 optionList.onOptionSelectedListener(dialogInterfaceWrapper, position, item)
                 dismissChecked()
             }
@@ -123,30 +125,32 @@ internal class OptionPopupWindow(
         val shapeAppearanceModel = ShapeAppearanceModel.builder().apply {
             setAllCorners(RoundedCornerTreatment())
             setAllCornerSizes(cornerSize)
-            applyIndicatorStyle(cornerSize)
+            description.indicator?.let {
+                applyIndicatorStyle(cornerSize, it)
+            }
         }.build()
 
         background = MaterialShapeDrawable(shapeAppearanceModel).apply {
-            setTint(MaterialColors.getColor(context, com.app.base.ui.theme.R.attr.app_color_lightest, "app_color_lightest not provided."))
+            setTint(MaterialColors.getColor(context, com.app.base.ui.R.attr.app_color_lightest, "app_color_lightest not provided."))
         }
     }
 
-    private fun ShapeAppearanceModel.Builder.applyIndicatorStyle(cornerSize: Float) {
-        when (description.indicator.direction) {
+    private fun ShapeAppearanceModel.Builder.applyIndicatorStyle(cornerSize: Float, indicator: IndicatorDescription) {
+        when (indicator.direction) {
             Direction.TOP -> {
-                setTopEdge(buildEdgeTreatment(cornerSize, false))
+                setTopEdge(buildEdgeTreatment(cornerSize, indicator, false))
             }
 
             Direction.BOTTOM -> {
-                setBottomEdge(buildEdgeTreatment(cornerSize, true))
+                setBottomEdge(buildEdgeTreatment(cornerSize, indicator, true))
             }
 
             Direction.LEFT -> {
-                setLeftEdge(buildEdgeTreatment(cornerSize, false))
+                setLeftEdge(buildEdgeTreatment(cornerSize, indicator, false))
             }
 
             Direction.RIGHT -> {
-                setRightEdge(buildEdgeTreatment(cornerSize, false))
+                setRightEdge(buildEdgeTreatment(cornerSize, indicator, false))
             }
         }
     }
@@ -154,21 +158,21 @@ internal class OptionPopupWindow(
     /**
      * @see TriangleEdgeTreatment
      */
-    private fun buildEdgeTreatment(cornerSize: Float, reverse: Boolean) = object : EdgeTreatment() {
+    private fun buildEdgeTreatment(cornerSize: Float, indicator: IndicatorDescription, reverse: Boolean) = object : EdgeTreatment() {
 
         private val triangleSize = dip(10F)
 
         private val other = TriangleEdgeTreatment(triangleSize, false)
 
         override fun getEdgePath(length: Float, center: Float, interpolation: Float, shapePath: ShapePath) {
-            val offsetFromStart = if (reverse) description.indicator.offsetFromEnd else description.indicator.offsetFromStart
-            val offsetFromEnd = if (reverse) description.indicator.offsetFromStart else description.indicator.offsetFromEnd
+            val offsetFromStart = if (reverse) indicator.offsetFromEnd else indicator.offsetFromStart
+            val offsetFromEnd = if (reverse) indicator.offsetFromStart else indicator.offsetFromEnd
 
             Timber.d("getEdgePath() called with: length = $length, center = $center, interpolation = $interpolation, shapePath = $shapePath")
 
-            val fixedCenter = if (offsetFromStart != -1 && offsetFromEnd == -1) {
+            val fixedCenter = if (offsetFromStart != -1F && offsetFromEnd == -1F) {
                 offsetFromStart + triangleSize / 2F + cornerSize
-            } else if (offsetFromStart == -1 && offsetFromEnd != -1) {
+            } else if (offsetFromStart == -1F && offsetFromEnd != -1F) {
                 center + center - offsetFromEnd - triangleSize / 2F - cornerSize
             } else {
                 center

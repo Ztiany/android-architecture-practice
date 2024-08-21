@@ -51,7 +51,7 @@ class MainActivity : AppBaseActivity(), TheMainPage, CustomizeSystemBar {
         }
         doBeforeSDK(26) {
             // Take effect as of API 21.
-            setNavigationBarColor(getStyledColor(com.app.base.ui.theme.R.attr.app_color_deepest_opacity20, "app_color_deepest_opacity50"))
+            setNavigationBarColor(getStyledColor(com.app.base.ui.theme.R.attr.app_color_deepest_opacity20, "app_color_deepest_opacity20"))
         }
     }
 

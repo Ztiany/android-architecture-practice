@@ -206,7 +206,9 @@ internal fun Context.defaultSelectionListItemSubtitleStyle(): TextStyle {
 // Option Popup Window Widget
 ///////////////////////////////////////////////////////////////////////////
 
-internal fun Context.defaultOptionItemStyle(): TextStyle = defaultSelectionListItemTitleStyle()
+internal fun Context.defaultOptionItemStyle(): TextStyle = defaultSelectionListItemTitleStyle().apply {
+    gravity(Gravity.CENTER_VERTICAL)
+}
 
 internal fun Context.defaultOptionList(): OptionList {
     return OptionList(

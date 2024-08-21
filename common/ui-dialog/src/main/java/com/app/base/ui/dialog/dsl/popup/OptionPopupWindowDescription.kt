@@ -13,6 +13,6 @@ class OptionPopupWindowDescription(
     val size: PopupWindowSizeDescription,
     val optionList: OptionListDescription?,
     val popupDim: PopupDimDescription?,
-    val indicator: IndicatorDescription,
+    val indicator: IndicatorDescription?,
     val customizeList: (RecyclerView.() -> Unit)?,
 ) : PopupWindowDescription

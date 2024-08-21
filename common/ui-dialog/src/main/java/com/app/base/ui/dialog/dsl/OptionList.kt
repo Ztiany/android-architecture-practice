@@ -3,23 +3,26 @@ package com.app.base.ui.dialog.dsl
 import android.content.Context
 import android.content.DialogInterface
 import androidx.annotation.ArrayRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-typealias OnOptionSelectedListener = DialogInterface.(Int, CharSequence) -> Unit
+typealias OnOptionSelectedListener = DialogInterface.(Int, Option) -> Unit
+
+data class Option(val title: CharSequence, @DrawableRes val icon: Int = 0)
 
 class OptionList(
     internal val context: Context,
-    private var _items: List<CharSequence> = emptyList(),
+    private var _items: List<Option> = emptyList(),
     private var _itemStyle: TextStyle,
 ) {
 
     private var _onOptionSelectedListener: OnOptionSelectedListener? = null
 
-    fun options(items: List<CharSequence>) {
+    fun options(items: List<Option>) {
         _items = items
     }
 
-    fun onOptionClick(onOptionSelectedListener: OnOptionSelectedListener?) {
+    fun onOptionSelected(onOptionSelectedListener: OnOptionSelectedListener?) {
         _onOptionSelectedListener = onOptionSelectedListener
     }
 
@@ -37,20 +40,28 @@ class OptionList(
 
 }
 
-fun OptionList.options(vararg texts: CharSequence) {
-    options(texts.toList())
+fun OptionList.options(vararg options: Option) {
+    options(options.toList())
+}
+
+fun OptionList.textOptions(items: List<CharSequence>) {
+    options(items.map { Option(it) })
+}
+
+fun OptionList.textOptions(vararg texts: CharSequence) {
+    textOptions(texts.toList())
 }
 
 fun OptionList.resOptions(@StringRes vararg textResArr: Int) {
-    options(textResArr.map { context.getText(it) })
+    textOptions(textResArr.map { context.getText(it) })
 }
 
 fun OptionList.arrResOptions(@ArrayRes textArrRes: Int) {
-    options(context.resources.getTextArray(textArrRes).toList())
+    textOptions(context.resources.getTextArray(textArrRes).toList())
 }
 
 class OptionListDescription(
-    val items: List<CharSequence>,
+    val items: List<Option>,
     val onOptionSelectedListener: OnOptionSelectedListener,
     val itemStyle: TextStyleDescription,
 )

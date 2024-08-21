@@ -6,6 +6,7 @@ import com.app.base.ui.dialog.defaultOptionList
 import com.app.base.ui.dialog.defaultOptionPopupWindowSize
 import com.app.base.ui.dialog.dsl.Indicator
 import com.app.base.ui.dialog.dsl.OnOptionSelectedListener
+import com.app.base.ui.dialog.dsl.Option
 import com.app.base.ui.dialog.dsl.OptionList
 import com.app.base.ui.dialog.dsl.PopupDim
 import com.app.base.ui.dialog.dsl.PopupWindowBehavior
@@ -25,16 +26,16 @@ class OptionPopupWindowConfigImpl(private val context: Context) : OptionPopupWin
 
     private var popupDim: PopupDim = PopupDim(context)
 
-    private var indicator: Indicator = Indicator()
+    private var indicator: Indicator? = null
 
     override fun list(config: OptionList.() -> Unit) {
         displayList = context.defaultOptionList().apply(config)
     }
 
-    override fun options(list: List<CharSequence>, onOptionSelectedListener: OnOptionSelectedListener) {
+    override fun options(list: List<Option>, onOptionSelectedListener: OnOptionSelectedListener) {
         displayList = context.defaultOptionList().apply {
             options(list)
-            onOptionClick(onOptionSelectedListener)
+            onOptionSelected(onOptionSelectedListener)
         }
     }
 
@@ -65,7 +66,7 @@ class OptionPopupWindowConfigImpl(private val context: Context) : OptionPopupWin
             optionList = displayList?.toOptionListDescription(),
             customizeList = customizeList,
             popupDim = popupDim.toPopupDimDescription(),
-            indicator = indicator.toPopupIndicatorDescription()
+            indicator = indicator?.toPopupIndicatorDescription()
         )
     }
 
