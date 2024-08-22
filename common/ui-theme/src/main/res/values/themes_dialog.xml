@@ -27,6 +27,14 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
+    <!-- https://stackoverflow.com/questions/5622202/how-to-resize-alertdialog-on-the-keyboard-display -->
+    <style name="AppTheme.Dialog.Common.Transparent.Floating.Input">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
     <style name="AppTheme.Dialog.Tips" parent="AppTheme.Dialog.Common.Transparent.Floating">
         <item name="android:backgroundDimEnabled">false</item>
     </style>

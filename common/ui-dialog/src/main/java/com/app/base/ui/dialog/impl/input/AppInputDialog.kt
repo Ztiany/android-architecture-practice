@@ -1,39 +1,40 @@
-package com.app.base.ui.dialog.impl.alert
+package com.app.base.ui.dialog.impl.input
 
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.android.base.utils.android.SoftKeyboardUtils
 import com.android.base.utils.android.views.beGone
 import com.android.base.utils.android.views.onThrottledClick
+import com.android.base.utils.android.views.textWatcher
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
 import com.app.base.ui.dialog.AppBaseDialog
-import com.app.base.ui.dialog.databinding.DialogLayoutAlertBinding
+import com.app.base.ui.dialog.databinding.DialogLayoutInputBinding
 import com.app.base.ui.dialog.dsl.Condition
-import com.app.base.ui.dialog.dsl.alert.AlertDialogDescription
-import com.app.base.ui.dialog.dsl.alert.AlertDialogInterface
 import com.app.base.ui.dialog.dsl.applyTo
 import com.app.base.ui.dialog.dsl.applyToDialog
 import com.app.base.ui.dialog.dsl.getConditionId
+import com.app.base.ui.dialog.dsl.input.InputDialogDescription
+import com.app.base.ui.dialog.dsl.input.InputDialogInterface
 import com.app.base.ui.dialog.impl.DialogInterfaceWrapper
 
-
-class AppAlertDialog(
+class AppInputDialog(
     context: Context,
     lifecycleOwner: LifecycleOwner,
-    private val description: AlertDialogDescription,
-    style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating,
-) : AppBaseDialog(context, description.size, style = style), AlertDialogInterface {
+    private val description: InputDialogDescription,
+    style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating_Input,
+) : AppBaseDialog(context, description.size, false, style), InputDialogInterface {
 
-    private val vb = DialogLayoutAlertBinding.inflate(LayoutInflater.from(context))
+    private val vb = DialogLayoutInputBinding.inflate(LayoutInflater.from(context))
 
     private val condition = object : Condition {
-        override fun isConditionMeet(id: Int): Boolean {
-            if (vb.dialogCbOption.getConditionId() == id) {
-                return vb.dialogCbOption.isChecked
+        override fun getFieldValue(id: Int): CharSequence {
+            if (vb.dialogEtField.getConditionId() == id) {
+                return vb.dialogEtField.text.toString()
             }
-            return false
+            return super.getFieldValue(id)
         }
     }
 
@@ -57,32 +58,38 @@ class AppAlertDialog(
             applyTo(dialogTvTitle)
         } otherwise { dialogTvTitle.beGone() }
 
-        description.messageConfig.ifNonNull {
-            dialogClMessageContainer.removeAllViews()
-            invoke(this@AppAlertDialog, dialogClMessageContainer)
-        } otherwise {
-            description.message?.applyTo(dialogTvMessage)
+        if (description.behavior.forceInput) {
+            dialogEtField.textWatcher {
+                afterTextChanged {
+                    vb.dialogBottom.tvPositive.isEnabled = !it.isNullOrEmpty()
+                }
+            }
         }
+        description.filed?.applyTo(dialogEtField)
 
-        description.checkBox.ifNonNull {
-            applyTo(dialogCbOption)
-        } otherwise { dialogCbOption.beGone() }
-
+        setUpFieldDecor()
         setUpBottomButtons()
 
-        with(description.behavior) {
-            applyToDialog(this@AppAlertDialog)
+        with(description.behavior.dialogBehavior) {
+            applyToDialog(this@AppInputDialog)
             setOnDismissListener {
                 onDismissListener?.invoke(dialogInterfaceWrapper.canceledByUser)
             }
         }
     }
 
-    private fun DialogLayoutAlertBinding.setUpBottomButtons() {
-        if (description.positiveButton == null && description.negativeButton == null && description.neutralButton == null) {
+    private fun setUpFieldDecor() = with(description) {
+        fieldTopAreaConfig?.invoke(this@AppInputDialog, (vb.dialogClFieldTopDecor))
+        fieldBottomAreaConfig?.invoke(this@AppInputDialog, (vb.dialogClFieldBottomDecor))
+    }
+
+    private fun DialogLayoutInputBinding.setUpBottomButtons() {
+        if (description.positiveButton == null && description.negativeButton == null) {
             dialogBottom.beGone()
             return
         }
+
+        dialogBottom.hideNeutralButton()
 
         with(description.positiveButton) {
             ifNonNull {
@@ -103,20 +110,10 @@ class AppAlertDialog(
                 }
             } otherwise { dialogBottom.hideNegativeButton() }
         }
-
-        with(description.neutralButton) {
-            ifNonNull {
-                textDescription.applyTo(dialogBottom.tvNeutral)
-                dialogBottom.tvNeutral.onThrottledClick {
-                    onClickListener?.invoke(dialogInterfaceWrapper, condition)
-                    dismissChecked()
-                }
-            } otherwise { dialogBottom.hideNeutralButton() }
-        }
     }
 
     private fun dismissChecked() {
-        if (isShowing && description.behavior.shouldAutoDismiss) {
+        if (isShowing && description.behavior.dialogBehavior.shouldAutoDismiss) {
             dialogInterfaceWrapper.dismiss()
         }
     }
@@ -125,8 +122,19 @@ class AppAlertDialog(
         vb.dialogTvTitle.text = title
     }
 
-    override fun updateMessage(message: CharSequence) {
-        vb.dialogTvMessage.text = message
+    override fun dismiss() {
+        SoftKeyboardUtils.hideSoftInput(vb.dialogEtField)
+        super.dismiss()
+    }
+
+    override fun show() {
+        super.show()
+        if (description.behavior.showSoftInputAfterShow) {
+            vb.root.postDelayed({
+                vb.dialogEtField.requestFocus()
+                SoftKeyboardUtils.showSoftInput(vb.dialogEtField)
+            }, 300)
+        }
     }
 
     override var isPositiveButtonEnable: Boolean

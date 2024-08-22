@@ -1,15 +1,20 @@
 package com.app.base.ui.dialog
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.text.InputType.TYPE_CLASS_TEXT
+import android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
 import android.view.Gravity
 import androidx.annotation.ColorInt
+import com.android.base.utils.android.views.dip
 import com.app.base.ui.dialog.dsl.BottomSheetWindowSize
 import com.app.base.ui.dialog.dsl.Button
 import com.app.base.ui.dialog.dsl.CheckBox
 import com.app.base.ui.dialog.dsl.DialogWindowSize
 import com.app.base.ui.dialog.dsl.DisplayList
 import com.app.base.ui.dialog.dsl.Divider
+import com.app.base.ui.dialog.dsl.Field
 import com.app.base.ui.dialog.dsl.OptionList
 import com.app.base.ui.dialog.dsl.PopupWindowSize
 import com.app.base.ui.dialog.dsl.SelectionList
@@ -109,9 +114,20 @@ internal fun Context.defaultAlertMessage(message: CharSequence = ""): Text {
 }
 
 internal fun Context.defaultAlertPositiveButton(text: CharSequence): Button {
+    val states = Array(2) { IntArray(1) }
+    states[0][0] = -android.R.attr.state_enabled
+    states[1][0] = 0
+
+    val colorStateList = ColorStateList(
+        states, intArrayOf(
+            MaterialColors.getColor(this, com.app.base.ui.theme.R.attr.app_color_disable, "app_color_disable is not found in your theme."),
+            MaterialColors.getColor(this, com.app.base.ui.theme.R.attr.app_color_main, "app_color_main is not found in your theme."),
+        )
+    )
+
     return Button(this, text).apply {
         textSize(14F)
-        textColorAttr(com.app.base.ui.theme.R.attr.app_color_main)
+        textColors(colorStateList)
         gravity(Gravity.CENTER)
     }
 }
@@ -129,6 +145,23 @@ internal fun Context.defaultAlertNegativeButton(text: CharSequence): Button {
         textSize(14F)
         textColorAttr(com.app.base.ui.theme.R.attr.app_color_text_level2)
         gravity(Gravity.CENTER)
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Input Dialog Widgets Style
+///////////////////////////////////////////////////////////////////////////
+
+internal fun Context.defaultInputFiled(): Field {
+    return Field(this, "").apply {
+        textSize(12F)
+        textColorAttr(com.app.base.ui.theme.R.attr.app_color_text_level1)
+        hintColorAttr(com.app.base.ui.theme.R.attr.app_color_text_level3)
+        gravity(Gravity.START)
+        backgroundColorAttr(android.R.attr.windowBackground)
+        cornerSize(dip(8F))
+        lines(1)
+        inputType(TYPE_CLASS_TEXT or TYPE_TEXT_FLAG_MULTI_LINE)
     }
 }
 

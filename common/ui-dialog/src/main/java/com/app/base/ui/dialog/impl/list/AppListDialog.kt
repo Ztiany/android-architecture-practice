@@ -11,6 +11,7 @@ import com.android.base.utils.android.views.onThrottledClick
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
 import com.android.base.utils.common.unsafeLazy
+import com.app.base.ui.dialog.AppBaseDialog
 import com.app.base.ui.dialog.databinding.DialogLayoutListBinding
 import com.app.base.ui.dialog.dsl.Condition
 import com.app.base.ui.dialog.dsl.DisplayItem
@@ -18,7 +19,6 @@ import com.app.base.ui.dialog.dsl.applyTo
 import com.app.base.ui.dialog.dsl.applyToDialog
 import com.app.base.ui.dialog.dsl.list.ListDialogDescription
 import com.app.base.ui.dialog.dsl.list.ListDialogInterface
-import com.app.base.ui.dialog.AppBaseDialog
 import com.app.base.ui.dialog.impl.DialogInterfaceWrapper
 import com.app.base.ui.dialog.impl.bottomsheet.ListDialogAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -28,15 +28,11 @@ internal class AppListDialog(
     lifecycleOwner: LifecycleOwner,
     private val description: ListDialogDescription,
     style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating,
-) : AppBaseDialog(context, description.size, style), ListDialogInterface {
+) : AppBaseDialog(context, description.size, style = style), ListDialogInterface {
 
     private val vb = DialogLayoutListBinding.inflate(LayoutInflater.from(context))
 
-    private val condition by unsafeLazy {
-        object : Condition {
-            override fun isConditionMeet(id: Int) = false
-        }
-    }
+    private val condition by unsafeLazy { object : Condition {} }
 
     private val dialogInterfaceWrapper by unsafeLazy {
         DialogInterfaceWrapper(this)

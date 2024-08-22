@@ -131,7 +131,7 @@ internal class OptionPopupWindow(
         }.build()
 
         background = MaterialShapeDrawable(shapeAppearanceModel).apply {
-            setTint(MaterialColors.getColor(context, com.app.base.ui.R.attr.app_color_lightest, "app_color_lightest not provided."))
+            setTint(MaterialColors.getColor(context, com.app.base.ui.theme.R.attr.app_color_lightest, "app_color_lightest not provided."))
         }
     }
 

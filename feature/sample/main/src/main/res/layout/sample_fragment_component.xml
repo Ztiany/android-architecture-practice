@@ -91,10 +91,16 @@
                 android:textStyle="bold" />
 
             <com.android.base.ui.shape.ShapeableTextView
-                android:id="@+id/sample_tv_dialog_confirm"
+                android:id="@+id/sample_tv_dialog_alert"
                 style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
                 android:layout_marginTop="10dp"
-                android:text="弹一个确认框" />
+                android:text="弹一个 AlertDialog" />
+
+            <com.android.base.ui.shape.ShapeableTextView
+                android:id="@+id/sample_tv_dialog_input"
+                style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
+                android:layout_marginTop="10dp"
+                android:text="弹一个 InputDialog" />
 
         </LinearLayout>
 

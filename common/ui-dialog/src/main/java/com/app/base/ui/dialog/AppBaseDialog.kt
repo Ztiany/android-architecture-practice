@@ -11,6 +11,7 @@ import com.app.base.ui.dialog.dsl.DialogWindowSizeDescription
 open class AppBaseDialog(
     context: Context,
     private val windowSize: DialogWindowSizeDescription = defaultWindowSize().toDialogWindowSizeDescription(),
+    private val compatMode: Boolean = true,
     style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating,
 ) : AppCompatDialog(context, style) {
 
@@ -38,6 +39,13 @@ open class AppBaseDialog(
                 }
             }
             window?.decorView?.addOnLayoutChangeListener(onLayoutChangeListener)
+        }
+
+        if (!compatMode) {
+            adjustWidth()
+            super.show()
+            adjustWidth()
+            return
         }
 
         showCompat {

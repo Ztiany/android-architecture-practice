@@ -1,6 +1,7 @@
 package com.app.base.ui.dialog.dsl
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.text.method.LinkMovementMethod
 import android.widget.TextView
@@ -12,7 +13,7 @@ import com.google.android.material.color.MaterialColors
 @DialogContextDslMarker
 open class TextStyle(private val context: Context) {
 
-    private var _textColor: Int = Color.BLACK
+    private var _textColor = ColorStateList.valueOf(Color.BLACK)
 
     private var _textSize: Float = 14F
 
@@ -23,11 +24,15 @@ open class TextStyle(private val context: Context) {
     private var _isBold: Boolean = false
 
     fun textColor(@ColorInt textColor: Int) {
-        _textColor = textColor
+        _textColor = ColorStateList.valueOf(textColor)
     }
 
     fun textColorAttr(@AttrRes textColorAttr: Int) {
-        _textColor = MaterialColors.getColor(context, textColorAttr, "textColorAttr is not found in your theme.")
+        textColor(MaterialColors.getColor(context, textColorAttr, "textColorAttr is not found in your theme."))
+    }
+
+    fun textColors(textColors: ColorStateList) {
+        _textColor = textColors
     }
 
     fun gravity(@GravityInt gravity: Int) {
@@ -60,7 +65,7 @@ open class TextStyle(private val context: Context) {
 }
 
 class TextStyleDescription(
-    val textColor: Int,
+    val textColor: ColorStateList,
     val textSize: Float,
     val textGravity: Int,
     val clickableSpan: Boolean,

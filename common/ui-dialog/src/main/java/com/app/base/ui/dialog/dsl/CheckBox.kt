@@ -10,7 +10,7 @@ class CheckBox(
     private val isChecked: Boolean,
 ) : Text(context, text) {
 
-    private var _id = Condition.DEFAULT
+    private var _id = Condition.CHECKBOX
 
     fun id(id: Int) {
         _id = id
@@ -31,4 +31,5 @@ class CheckBoxDescription(
 fun CheckBoxDescription.applyTo(checkBox: CheckBox) {
     textDescription.applyTo(checkBox as android.widget.TextView)
     checkBox.isChecked = isChecked
+    checkBox.setConditionId(id)
 }

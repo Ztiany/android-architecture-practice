@@ -31,11 +31,7 @@ internal class ListBottomSheetDialog(
 
     private val vb = DialogLayoutBottomsheetListBinding.inflate(LayoutInflater.from(context))
 
-    private val condition by unsafeLazy {
-        object : Condition {
-            override fun isConditionMeet(id: Int) = false
-        }
-    }
+    private val condition by unsafeLazy { object : Condition {} }
 
     private val dialogInterfaceWrapper by unsafeLazy {
         DialogInterfaceWrapper(this)
