@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.app.base.ui.widget.insets.InsetsCompatConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:iclDirection="top"
+    app:iclTopInsetColor="?app_color_lightest"
+    app:iclType="systemBars">
 
     <com.app.base.ui.widget.titlebar.AppTitleBar
         android:id="@+id/main_title"
         style="@style/Widget.App.TitleBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?app_color_lightest"
-        app:atb_disable_navigation="true"
-        app:atb_title="@string/main_tab_box"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@null"
+        app:title="@string/main_tab_box"
+        tools:ignore="MissingConstraints" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.app.base.ui.widget.insets.InsetsCompatConstraintLayout>

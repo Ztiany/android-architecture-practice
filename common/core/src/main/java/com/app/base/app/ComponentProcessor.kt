@@ -38,7 +38,11 @@ class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
         if (activity is CustomizeSystemBar) {
             return
         }
+        // the StatusBar‘s background color is lightest_color(which is white in the day theme).
+        // StatusBar's day/night mode takes effect as of API 21.
         activity.setStatusBarLightMode()
+        // the NavigationBar‘s background color is the same as window background color.
+        // NavigationBar's day/night mode takes effect as of API 26.
         activity.setNavigationBarLightMode()
     }
 

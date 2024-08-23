@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog.Builder
 import com.android.base.fragment.base.BaseUIFragment
 import com.android.base.fragment.tool.doFragmentTransaction
 import com.app.base.data.storage.StorageManager
-import com.app.base.databinding.BaseFragmentDebugBinding
+import com.app.base.databinding.BaseFragmentDebugMainBinding
 import com.app.common.api.usermanager.UserManager
 import com.permissionx.guolindev.PermissionX
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +18,7 @@ import org.joor.Reflect
 import javax.inject.Inject
 
 @AndroidEntryPoint
-internal class DebugFragment : BaseUIFragment<BaseFragmentDebugBinding>() {
+internal class DebugFragment : BaseUIFragment<BaseFragmentDebugMainBinding>() {
 
     @Inject lateinit var userManager: UserManager
 

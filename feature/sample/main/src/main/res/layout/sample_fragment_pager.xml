@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.app.base.ui.widget.insets.InsetsCompatConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:iclDirection="top"
+    app:iclTopInsetColor="?app_color_lightest"
+    app:iclType="systemBars"
     tools:ignore="HardcodedText">
 
     <com.app.base.ui.widget.titlebar.AppTitleBar
         android:id="@+id/title_layout"
         style="@style/Widget.App.TitleBar"
-        app:atb_disable_navigation="true"
-        app:atb_title="页面示例"
         app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@null"
+        app:title="页面示例"
         tools:ignore="MissingConstraints" />
 
     <ScrollView
@@ -66,4 +69,4 @@
 
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.app.base.ui.widget.insets.InsetsCompatConstraintLayout>
