@@ -25,9 +25,8 @@ class DispatchedStatusBarInsetStubView @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(
-            widthMeasureSpec, MeasureSpec.makeMeasureSpec(
-                statusBarInsetHeight, MeasureSpec.EXACTLY
-            )
+            widthMeasureSpec,
+            MeasureSpec.makeMeasureSpec(statusBarInsetHeight, MeasureSpec.EXACTLY)
         )
     }
 

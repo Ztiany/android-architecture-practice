@@ -15,7 +15,7 @@
         style="@style/Widget.App.TitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:atb_title="调试工具" />
+        app:title="调试工具" />
 
     <ScrollView
         android:layout_width="match_parent"

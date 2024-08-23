@@ -7,32 +7,46 @@
             <flag name="bottom" value="0x02" />
             <flag name="left" value="0x04" />
             <flag name="right" value="0x08" />
-            <flag name="start" value="0x10" />
-            <flag name="end" value="0x20" />
         </attr>
         <attr name="iclType">
-            <flag name="status_bar" value="0x01" />
-            <flag name="navigation_bar" value="0x02" />
-            <flag name="caption_bar" value="0x04" />
+            <flag name="statusBar" value="0x01" />
+            <flag name="navigationBar" value="0x02" />
+            <flag name="captionBar" value="0x04" />
             <flag name="gesture" value="0x08" />
             <flag name="cutout" value="0x10" />
-            <flag name="system_bars" value="0x07" />
+            <flag name="systemBars" value="0x07" />
         </attr>
+        <attr name="iclLeftInsetColor" format="color|reference" />
+        <attr name="iclTopInsetColor" format="color|reference" />
+        <attr name="iclRightInsetColor" format="color|reference" />
+        <attr name="iclBottomInsetColor" format="color|reference" />
     </declare-styleable>
 
     <declare-styleable name="InsetsCompatFrameLayout">
         <attr name="iclDirection" />
         <attr name="iclType" />
+        <attr name="iclLeftInsetColor" />
+        <attr name="iclTopInsetColor" />
+        <attr name="iclRightInsetColor" />
+        <attr name="iclBottomInsetColor" />
     </declare-styleable>
 
     <declare-styleable name="InsetsCompatLinearLayout">
         <attr name="iclDirection" />
         <attr name="iclType" />
+        <attr name="iclLeftInsetColor" />
+        <attr name="iclTopInsetColor" />
+        <attr name="iclRightInsetColor" />
+        <attr name="iclBottomInsetColor" />
     </declare-styleable>
 
     <declare-styleable name="InsetsCompatConstraintLayout">
         <attr name="iclDirection" />
         <attr name="iclType" />
+        <attr name="iclLeftInsetColor" />
+        <attr name="iclTopInsetColor" />
+        <attr name="iclRightInsetColor" />
+        <attr name="iclBottomInsetColor" />
     </declare-styleable>
 
 </resources>
