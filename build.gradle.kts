@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.app.modularization.library) apply false
     alias(libs.plugins.app.modularization.api) apply false
     alias(libs.plugins.app.common.library) apply false
+    alias(libs.plugins.app.feature.compose) apply false
     alias(libs.plugins.app.final.application) apply false
 
     alias(libs.plugins.vanniktech.maven.publisher) apply false

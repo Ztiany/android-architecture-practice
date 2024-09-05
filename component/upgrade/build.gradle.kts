@@ -12,7 +12,7 @@ dependencies {
     // androidx
     implementation(libs.androidx.annotations)
     implementation(libs.androidx.ktx)
-    implementation (libs.androidx.lifecycle.livedata.core)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
     // kotlin
     implementation(libs.kotlin.stdlib)
     // library

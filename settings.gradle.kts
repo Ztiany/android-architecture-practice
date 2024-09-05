@@ -128,6 +128,7 @@ include(":common:ui-dialog")
 include(":common:api")
 include(":common:http")
 include(":common:core")
+include(":common:ui-compose")
 
 // 业务基础组件
 include(":component:upgrade") // APP 升级更新

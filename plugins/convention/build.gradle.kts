@@ -51,6 +51,11 @@ gradlePlugin {
             id = "com.app.common.library"
             implementationClass = "com.android.app.build.CommonLibraryPlugin"
         }
+        // compose feature
+        register("ComposeFeaturePlugin") {
+            id = "com.app.feature.compose"
+            implementationClass = "com.android.app.build.ComposeFeaturePlugin"
+        }
         // final app plugin
         register("FinalApplicationPlugin") {
             id = "com.app.final.application"

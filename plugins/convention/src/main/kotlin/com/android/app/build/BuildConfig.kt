@@ -25,4 +25,9 @@ object BuildConfig {
         const val GOOGLE_HILT = "dagger.hilt.android.plugin"
     }
 
+    object Compose {
+        // Compose to Kotlin Compatibility Map: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+        const val KOTLIN_COMPILER_EXTENSION_VERSION = "1.5.14"
+    }
+    
 }
