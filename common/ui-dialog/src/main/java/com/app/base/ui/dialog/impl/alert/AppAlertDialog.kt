@@ -1,6 +1,7 @@
 package com.app.base.ui.dialog.impl.alert
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -21,12 +22,15 @@ import com.app.base.ui.dialog.impl.DialogInterfaceWrapper
 
 class AppAlertDialog(
     context: Context,
-    lifecycleOwner: LifecycleOwner,
+    private val lifecycleOwner: LifecycleOwner,
     private val description: AlertDialogDescription,
     style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating,
 ) : AppBaseDialog(context, description.size, style = style), AlertDialogInterface {
 
-    private val vb = DialogLayoutAlertBinding.inflate(LayoutInflater.from(context))
+    private val vb by lazy {
+        // It is necessary to use the context of the dialog, otherwise the theme will not be applied!
+        DialogLayoutAlertBinding.inflate(LayoutInflater.from(getContext()))
+    }
 
     private val condition = object : Condition {
         override fun isConditionMeet(id: Int): Boolean {
@@ -41,7 +45,8 @@ class AppAlertDialog(
         DialogInterfaceWrapper(this)
     }
 
-    init {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(vb.root)
         applyBuilder()
 

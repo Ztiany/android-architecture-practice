@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.android.base.ui.drawable.DTextView
+        android:id="@+id/sample_tv_view_arch"
+        style="@style/Widget.App.Button.Long.DView.PrimaryGradientRounded10"
+        android:layout_marginTop="10dp"
+        android:text="基于 View" />
+
+    <com.android.base.ui.drawable.DTextView
+        android:id="@+id/sample_tv_compose_arch"
+        style="@style/Widget.App.Button.Long.DView.PrimaryGradientRounded10"
+        android:layout_marginTop="10dp"
+        android:text="基于 Compose" />
+
+</LinearLayout>

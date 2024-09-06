@@ -30,11 +30,14 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 
 internal class SectionBottomSheetDialog(
     context: Context,
-    lifecycleOwner: LifecycleOwner,
+    private val lifecycleOwner: LifecycleOwner,
     private val description: SectionBottomSheetDialogDescription,
 ) : AppBottomSheetDialog(context, description.size), SingleSelectionBottomSheetDialogInterface, MultiSelectionBottomSheetDialogInterface {
 
-    private val vb = DialogLayoutBottomsheetListBinding.inflate(LayoutInflater.from(context))
+    private val vb by lazy {
+        // It is necessary to use the context of the dialog, otherwise the theme will not be applied!
+        DialogLayoutBottomsheetListBinding.inflate(LayoutInflater.from(getContext()))
+    }
 
     private val dialogInterfaceWrapper by unsafeLazy { DialogInterfaceWrapper(this) }
 

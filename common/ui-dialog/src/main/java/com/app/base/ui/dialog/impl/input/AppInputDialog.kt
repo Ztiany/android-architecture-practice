@@ -1,6 +1,7 @@
 package com.app.base.ui.dialog.impl.input
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -20,14 +21,21 @@ import com.app.base.ui.dialog.dsl.input.InputDialogDescription
 import com.app.base.ui.dialog.dsl.input.InputDialogInterface
 import com.app.base.ui.dialog.impl.DialogInterfaceWrapper
 
+/**
+ *  As explained in the [how-to-resize-alertdialog-on-the-keyboard-display](https://stackoverflow.com/questions/5622202/how-to-resize-alertdialog-on-the-keyboard-display),
+ *  here we pass false for the parameter `compatMode` in the constructor of the super class [AppBaseDialog].
+ */
 class AppInputDialog(
     context: Context,
-    lifecycleOwner: LifecycleOwner,
+    private val lifecycleOwner: LifecycleOwner,
     private val description: InputDialogDescription,
     style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating_Input,
 ) : AppBaseDialog(context, description.size, false, style), InputDialogInterface {
 
-    private val vb = DialogLayoutInputBinding.inflate(LayoutInflater.from(context))
+    private val vb by lazy {
+        // It is necessary to use the context of the dialog, otherwise the theme will not be applied!
+        DialogLayoutInputBinding.inflate(LayoutInflater.from(getContext()))
+    }
 
     private val condition = object : Condition {
         override fun getFieldValue(id: Int): CharSequence {
@@ -42,7 +50,8 @@ class AppInputDialog(
         DialogInterfaceWrapper(this)
     }
 
-    init {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(vb.root)
         applyBuilder()
 

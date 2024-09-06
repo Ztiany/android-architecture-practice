@@ -24,7 +24,7 @@ internal class DebugFragment : BaseUIFragment<BaseFragmentDebugMainBinding>() {
 
     @Inject lateinit var storageManager: StorageManager
 
-    override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) {
+    override fun onSetupCreatedView(view: View, savedInstanceState: Bundle?) {
         initToolViews()
         requestNecessaryPermission()
     }

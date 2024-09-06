@@ -25,8 +25,8 @@ internal class EnvironmentConfigFragment : BaseUIFragment<BaseDebugEnvironmentBi
         }
     }
 
-    override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) {
-        super.onSetUpCreatedView(view, savedInstanceState)
+    override fun onSetupCreatedView(view: View, savedInstanceState: Bundle?) {
+        super.onSetupCreatedView(view, savedInstanceState)
 
         vb.baseToolbarDebug.beVisibleOrGone(arguments?.getBoolean(SHOW_TITLE, false) ?: false)
 

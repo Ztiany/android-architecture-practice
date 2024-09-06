@@ -1,6 +1,7 @@
 package com.app.base.ui.dialog.impl.bottomsheet
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -25,11 +26,14 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 
 internal class ListBottomSheetDialog(
     context: Context,
-    lifecycleOwner: LifecycleOwner,
+    private val lifecycleOwner: LifecycleOwner,
     private val description: ListBottomSheetDialogDescription,
 ) : AppBottomSheetDialog(context, description.size), ListBottomSheetDialogInterface {
 
-    private val vb = DialogLayoutBottomsheetListBinding.inflate(LayoutInflater.from(context))
+    private val vb by lazy {
+        // It is necessary to use the context of the dialog, otherwise the theme will not be applied!
+        DialogLayoutBottomsheetListBinding.inflate(LayoutInflater.from(getContext()))
+    }
 
     private val condition by unsafeLazy { object : Condition {} }
 
@@ -48,7 +52,8 @@ internal class ListBottomSheetDialog(
         }
     }
 
-    init {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(vb.root)
 
         setupTitle()

@@ -1,6 +1,7 @@
 package com.app.base.ui.dialog.impl.list
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -25,12 +26,15 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 
 internal class AppListDialog(
     context: Context,
-    lifecycleOwner: LifecycleOwner,
+    private val lifecycleOwner: LifecycleOwner,
     private val description: ListDialogDescription,
     style: Int = com.app.base.ui.theme.R.style.AppTheme_Dialog_Common_Transparent_Floating,
 ) : AppBaseDialog(context, description.size, style = style), ListDialogInterface {
 
-    private val vb = DialogLayoutListBinding.inflate(LayoutInflater.from(context))
+    private val vb by lazy {
+        // It is necessary to use the context of the dialog, otherwise the theme will not be applied!
+        DialogLayoutListBinding.inflate(LayoutInflater.from(getContext()))
+    }
 
     private val condition by unsafeLazy { object : Condition {} }
 
@@ -49,7 +53,8 @@ internal class AppListDialog(
         }
     }
 
-    init {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(vb.root)
 
         setupTitle()

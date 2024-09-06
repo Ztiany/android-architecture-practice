@@ -32,8 +32,8 @@ class SmsLoginFragment : BaseUIFragment<AccountFragmentSmsBinding>() {
         subscribeViewModel()
     }
 
-    override fun onSetUpCreatedView(view: View, savedInstanceState: Bundle?) {
-        super.onSetUpCreatedView(view, savedInstanceState)
+    override fun onSetupCreatedView(view: View, savedInstanceState: Bundle?) {
+        super.onSetupCreatedView(view, savedInstanceState)
         setUpListeners()
         setUpAgreement()
     }

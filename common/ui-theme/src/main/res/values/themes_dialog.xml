@@ -11,7 +11,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
