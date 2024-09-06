@@ -121,6 +121,7 @@ internal class CropProcessor(
         }
 
         // 开始裁减
+        Timber.d("toUCrop: item = ${item}, targetUri = $targetUri")
         if (host.fragment != null) {
             UCrop.of<Uri>(item.uri, targetUri)
                 .withOptions(crop)

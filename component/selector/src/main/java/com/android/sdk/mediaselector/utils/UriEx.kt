@@ -3,6 +3,7 @@ package com.android.sdk.mediaselector.utils
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.text.TextUtils
 import androidx.core.net.toFile
 import com.android.sdk.mediaselector.MediaItem
 import com.luck.picture.lib.utils.PictureFileUtils
@@ -66,4 +67,11 @@ internal fun Uri.getAbsolutePath(context: Context): String? {
 internal fun MediaItem.tryFillPickedMediaInfo(context: Context): MediaItem {
     val fileAttribute = uri.getAttribute(context) ?: return this
     return this.copy(size = fileAttribute.size, rawSize = fileAttribute.size)
+}
+
+internal fun String.isFileUri(): Boolean {
+    if (TextUtils.isEmpty(this)) {
+        return false
+    }
+    return startsWith("file://")
 }

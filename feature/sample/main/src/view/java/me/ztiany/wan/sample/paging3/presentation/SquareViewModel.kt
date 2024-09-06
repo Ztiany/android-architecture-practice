@@ -20,9 +20,8 @@ class SquareViewModel @Inject constructor(
     val squareFlow = repository.loadSquareArticles(
         Paging.defaultPagingStart,
         Paging.defaultPagingSize
-    ).cachedIn(viewModelScope)
-        .map {
-            it.map(articleMapper::mapArticle)
-        }
+    ).map {
+        it.map(articleMapper::mapArticle)
+    }.cachedIn(viewModelScope)
 
 }

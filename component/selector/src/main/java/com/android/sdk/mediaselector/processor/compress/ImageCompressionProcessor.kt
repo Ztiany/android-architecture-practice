@@ -1,12 +1,14 @@
 package com.android.sdk.mediaselector.processor.compress
 
 import android.net.Uri
+import androidx.core.net.toFile
 import androidx.lifecycle.coroutineScope
 import com.android.sdk.mediaselector.ActFragWrapper
 import com.android.sdk.mediaselector.MediaItem
 import com.android.sdk.mediaselector.processor.BaseProcessor
 import com.android.sdk.mediaselector.utils.createInternalPath
 import com.android.sdk.mediaselector.utils.getPostfix
+import com.android.sdk.mediaselector.utils.isFileUri
 import com.android.sdk.mediaselector.utils.supportImageCompression
 import com.luck.picture.lib.config.PictureMimeType
 import kotlinx.coroutines.Dispatchers
@@ -50,10 +52,11 @@ internal class ImageCompressionProcessor(
 
     private suspend fun doCompression(item: MediaItem): File {
         // Luban can't compress the image from the content provider directly.
-        val path = item.path.takeIf { !PictureMimeType.isContent(it) } ?: withContext(Dispatchers.IO) {
-        val postfix = item.getPostfix(host.context) ?: "jpeg"
+        val path = item.uri.toString().takeIf { !PictureMimeType.isContent(it) } ?: withContext(Dispatchers.IO) {
+            val postfix = item.getPostfix(host.context) ?: "jpeg"
             val target = host.context.createInternalPath(".${postfix}")
             val out = FileOutputStream(target)
+            Timber.d("copying ${item.uri} to $target for compression.")
             host.context.contentResolver.openInputStream(item.uri)?.use { inputStream ->
                 inputStream.copyTo(out)
             }
@@ -61,7 +64,13 @@ internal class ImageCompressionProcessor(
             target
         }
 
-        return compress(path)
+        Timber.d("start real compressing $path")
+
+        return if (path.isFileUri()) {
+            compress(Uri.parse(path).toFile().absolutePath)
+        } else {
+            compress(path)
+        }
     }
 
     private suspend fun compress(path: String) = suspendCancellableCoroutine {

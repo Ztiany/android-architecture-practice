@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
  *@author Ztiany
  */
 @AndroidEntryPoint
-class SampleActivity : AppBaseActivity(), CustomizeSystemBar {
+class ViewArchSampleActivity : AppBaseActivity(), CustomizeSystemBar {
 
     private var clickToExit = false
 

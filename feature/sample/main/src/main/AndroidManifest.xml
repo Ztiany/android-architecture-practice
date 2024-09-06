@@ -5,7 +5,7 @@
     <application>
 
         <activity
-            android:name=".SampleSplashActivity"
+            android:name="com.app.sample.main.SampleSplashActivity"
             android:exported="true"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Sample.AppTheme.Launch"
@@ -19,10 +19,20 @@
         </activity>
 
         <activity
-            android:name=".SampleActivity"
+            android:name="com.app.sample.main.SampleMainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ViewArchSampleActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:exported="true"
             android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.app.sample.compose.ComposeSampleActivity"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity

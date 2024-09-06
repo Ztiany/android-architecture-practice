@@ -1,4 +1,4 @@
-package me.ztiany.wan.sample
+package com.app.sample.main
 
 import android.content.Intent
 import android.os.Build
@@ -7,8 +7,6 @@ import com.android.base.utils.android.compat.setLayoutExtendsToSystemBars
 import com.app.base.app.AppBaseActivity
 
 /**
- * 应用启动页
- *
  * @author Ztiany
  */
 class SampleSplashActivity : AppBaseActivity() {
@@ -25,7 +23,7 @@ class SampleSplashActivity : AppBaseActivity() {
             return
         }
 
-        startActivity(Intent(this, SampleActivity::class.java))
+        startActivity(Intent(this, SampleMainActivity::class.java))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, 0)
         } else {
