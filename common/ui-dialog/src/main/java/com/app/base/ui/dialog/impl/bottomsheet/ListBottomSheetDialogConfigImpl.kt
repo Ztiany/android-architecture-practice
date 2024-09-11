@@ -3,7 +3,7 @@ package com.app.base.ui.dialog.impl.bottomsheet
 import android.content.Context
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.app.base.ui.dialog.defaultBottomSheetRightButton
+import com.app.base.ui.dialog.defaultBottomSheetPositiveButton
 import com.app.base.ui.dialog.defaultBottomSheetWindowSize
 import com.app.base.ui.dialog.defaultDialogTitle
 import com.app.base.ui.dialog.defaultDisplayList
@@ -73,7 +73,7 @@ internal class ListBottomSheetDialogConfigImpl(private val context: Context) : L
     }
 
     override fun bottomButton(text: CharSequence, config: Button.() -> Unit, onClickListener: OnClickListener?) {
-        bottomButton = context.defaultBottomSheetRightButton(text).apply {
+        bottomButton = context.defaultBottomSheetPositiveButton(text).apply {
             onClick(onClickListener)
             config(this)
         }

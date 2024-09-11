@@ -8,8 +8,8 @@ class DialogWindowSize(
     private var _maxHeight: (context: Context) -> Int,
 ) {
 
-    fun width(maxWidth: (context: Context) -> Int) {
-        _width = maxWidth
+    fun width(width: (context: Context) -> Int) {
+        _width = width
     }
 
     fun maxHeight(maxHeight: (context: Context) -> Int) {

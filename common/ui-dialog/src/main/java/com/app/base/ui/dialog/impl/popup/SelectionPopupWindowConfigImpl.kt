@@ -3,7 +3,7 @@ package com.app.base.ui.dialog.impl.popup
 import android.content.Context
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.app.base.ui.dialog.defaultBottomSheetRightButton
+import com.app.base.ui.dialog.defaultBottomSheetPositiveButton
 import com.app.base.ui.dialog.defaultBottomSheetTitleActionTextStyle
 import com.app.base.ui.dialog.defaultDialogTitle
 import com.app.base.ui.dialog.defaultSelectionList
@@ -89,7 +89,7 @@ internal class SingleSelectionPopupWindowConfigImpl(
 
     override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnSingleSelectionSelectedListener) {
         _onSingleItemSelectedListener = onSelected
-        bottomButton = context.defaultBottomSheetRightButton(text).apply {
+        bottomButton = context.defaultBottomSheetPositiveButton(text).apply {
             config(this)
         }
     }
@@ -143,7 +143,7 @@ internal class MultiSelectionPopupConfigImpl(
 
     override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnMultiSelectionSelectedListener) {
         _onMultiItemSelectedListener = onSelected
-        bottomButton = context.defaultBottomSheetRightButton(text).apply {
+        bottomButton = context.defaultBottomSheetPositiveButton(text).apply {
             config(this)
         }
     }

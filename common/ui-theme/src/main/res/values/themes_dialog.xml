@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme.Dialog.Common" parent="Theme.AppCompat.Dialog">
+    <style name="AppTheme.Dialog.Common" parent="Theme.Material3.Light.Dialog">
+        <!-- system attributes -->
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.4</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- androidx attributes -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="AppTheme.Dialog.Common.Transparent">
@@ -41,12 +43,11 @@
 
     <!-- 全屏的 Dialog 效果：不能继承已有的  dialog theme。-->
     <style name="AppTheme.Dialog.FullScreen" parent="">
+        <!-- system attributes -->
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
         <item name="android:windowIsFloating">false</item>
         <!--system ui-->
         <item name="android:statusBarColor">@color/color_status_bar</item>
@@ -54,6 +55,9 @@
         <item name="android:windowBackground">@color/page_bg_color</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
+        <!-- androidx attributes -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
 </resources>

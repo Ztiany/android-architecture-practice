@@ -10,7 +10,7 @@ import com.app.base.ui.dialog.dsl.SelectionList
 import com.app.base.ui.dialog.dsl.Text
 
 @DialogContextDslMarker
-interface SelectionBottomSheetDialogConfig<Description : SectionBottomSheetDialogDescription> :
+interface SelectionBottomSheetDialogConfig<Description : SelectionBottomSheetDialogDescription> :
     BottomSheetDialogConfig<BottomSheetDialogBehavior, Description> {
 
     fun title(text: CharSequence, config: Text.() -> Unit = {})

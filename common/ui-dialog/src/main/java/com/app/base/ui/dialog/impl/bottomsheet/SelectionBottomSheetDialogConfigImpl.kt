@@ -3,7 +3,7 @@ package com.app.base.ui.dialog.impl.bottomsheet
 import android.content.Context
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.app.base.ui.dialog.defaultBottomSheetRightButton
+import com.app.base.ui.dialog.defaultBottomSheetPositiveButton
 import com.app.base.ui.dialog.defaultBottomSheetTitleActionTextStyle
 import com.app.base.ui.dialog.defaultBottomSheetWindowSize
 import com.app.base.ui.dialog.defaultDialogTitle
@@ -17,16 +17,16 @@ import com.app.base.ui.dialog.dsl.SelectionList
 import com.app.base.ui.dialog.dsl.Text
 import com.app.base.ui.dialog.dsl.TextStyle
 import com.app.base.ui.dialog.dsl.bottomsheet.BottomSheetDialogBehavior
-import com.app.base.ui.dialog.dsl.bottomsheet.MultiSectionBottomSheetDialogDescription
+import com.app.base.ui.dialog.dsl.bottomsheet.MultiSelectionBottomSheetDialogDescription
 import com.app.base.ui.dialog.dsl.bottomsheet.MultiSelectionBottomSheetDialogConfig
 import com.app.base.ui.dialog.dsl.bottomsheet.MultiSelectionBottomSheetDialogInterface
-import com.app.base.ui.dialog.dsl.bottomsheet.SectionBottomSheetDialogDescription
+import com.app.base.ui.dialog.dsl.bottomsheet.SelectionBottomSheetDialogDescription
 import com.app.base.ui.dialog.dsl.bottomsheet.SelectionBottomSheetDialogConfig
-import com.app.base.ui.dialog.dsl.bottomsheet.SingleSectionBottomSheetDialogDescription
+import com.app.base.ui.dialog.dsl.bottomsheet.SingleSelectionBottomSheetDialogDescription
 import com.app.base.ui.dialog.dsl.bottomsheet.SingleSelectionBottomSheetDialogConfig
 import com.app.base.ui.dialog.dsl.bottomsheet.SingleSelectionBottomSheetDialogInterface
 
-internal abstract class SelectionBottomSheetDialogConfigImpl<Description : SectionBottomSheetDialogDescription>(
+internal abstract class SelectionBottomSheetDialogConfigImpl<Description : SelectionBottomSheetDialogDescription>(
     private val context: Context,
 ) : SelectionBottomSheetDialogConfig<Description> {
 
@@ -70,7 +70,7 @@ internal abstract class SelectionBottomSheetDialogConfigImpl<Description : Secti
 
 internal class SingleSelectionBottomSheetDialogConfigImpl(
     private val context: Context,
-) : SelectionBottomSheetDialogConfigImpl<SingleSectionBottomSheetDialogDescription>(context), SingleSelectionBottomSheetDialogConfig {
+) : SelectionBottomSheetDialogConfigImpl<SingleSelectionBottomSheetDialogDescription>(context), SingleSelectionBottomSheetDialogConfig {
 
     private var _onSingleItemSelectedListener: OnSingleSelectionSelectedListener? = null
 
@@ -82,7 +82,7 @@ internal class SingleSelectionBottomSheetDialogConfigImpl(
 
     override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnSingleSelectionSelectedListener) {
         _onSingleItemSelectedListener = onSelected
-        bottomButton = context.defaultBottomSheetRightButton(text).apply {
+        bottomButton = context.defaultBottomSheetPositiveButton(text).apply {
             config(this)
         }
     }
@@ -103,8 +103,8 @@ internal class SingleSelectionBottomSheetDialogConfigImpl(
         customizeList = config
     }
 
-    override fun toDescription(): SingleSectionBottomSheetDialogDescription {
-        return SingleSectionBottomSheetDialogDescription(
+    override fun toDescription(): SingleSelectionBottomSheetDialogDescription {
+        return SingleSelectionBottomSheetDialogDescription(
             size = size.toBottomSheetWindowSizeDescription(),
             title = title?.toTextDescription(),
             listTopAreaConfig = listTopAreaConfig,
@@ -121,7 +121,7 @@ internal class SingleSelectionBottomSheetDialogConfigImpl(
 
 internal class MultiSelectionBottomSheetDialogConfigImpl(
     private val context: Context,
-) : SelectionBottomSheetDialogConfigImpl<MultiSectionBottomSheetDialogDescription>(context), MultiSelectionBottomSheetDialogConfig {
+) : SelectionBottomSheetDialogConfigImpl<MultiSelectionBottomSheetDialogDescription>(context), MultiSelectionBottomSheetDialogConfig {
 
     private var _onMultiItemSelectedListener: OnMultiSelectionSelectedListener? = null
 
@@ -135,7 +135,7 @@ internal class MultiSelectionBottomSheetDialogConfigImpl(
 
     override fun positiveButton(text: CharSequence, config: Button.() -> Unit, onSelected: OnMultiSelectionSelectedListener) {
         _onMultiItemSelectedListener = onSelected
-        bottomButton = context.defaultBottomSheetRightButton(text).apply {
+        bottomButton = context.defaultBottomSheetPositiveButton(text).apply {
             config(this)
         }
     }
@@ -156,8 +156,8 @@ internal class MultiSelectionBottomSheetDialogConfigImpl(
         customizeList = config
     }
 
-    override fun toDescription(): SectionBottomSheetDialogDescription {
-        return MultiSectionBottomSheetDialogDescription(
+    override fun toDescription(): SelectionBottomSheetDialogDescription {
+        return MultiSelectionBottomSheetDialogDescription(
             size = size.toBottomSheetWindowSizeDescription(),
             title = title?.toTextDescription(),
             listTopAreaConfig = listTopAreaConfig,

@@ -11,7 +11,7 @@ import com.app.base.ui.dialog.dsl.SelectionListDescription
 import com.app.base.ui.dialog.dsl.TextDescription
 import com.app.base.ui.dialog.dsl.TextStyleDescription
 
-sealed class SectionBottomSheetDialogDescription(
+sealed class SelectionBottomSheetDialogDescription(
     val size: BottomSheetWindowSizeDescription,
     val title: TextDescription?,
     val list: SelectionListDescription?,
@@ -19,7 +19,7 @@ sealed class SectionBottomSheetDialogDescription(
     val positiveButton: ButtonDescription?,
 ) : DialogDescription
 
-class SingleSectionBottomSheetDialogDescription(
+class SingleSelectionBottomSheetDialogDescription(
     size: BottomSheetWindowSizeDescription,
     title: TextDescription?,
     list: SelectionListDescription?,
@@ -29,7 +29,7 @@ class SingleSectionBottomSheetDialogDescription(
     val listBottomAreaConfig: (SingleSelectionBottomSheetDialogInterface.(ConstraintLayout) -> Unit)?,
     val customizeList: (SingleSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)?,
     val onSingleItemSelectedListener: OnSingleSelectionSelectedListener? = null,
-) : SectionBottomSheetDialogDescription(
+) : SelectionBottomSheetDialogDescription(
     size,
     title,
     list,
@@ -37,7 +37,7 @@ class SingleSectionBottomSheetDialogDescription(
     positiveButton,
 )
 
-class MultiSectionBottomSheetDialogDescription(
+class MultiSelectionBottomSheetDialogDescription(
     size: BottomSheetWindowSizeDescription,
     title: TextDescription?,
     list: SelectionListDescription?,
@@ -48,7 +48,7 @@ class MultiSectionBottomSheetDialogDescription(
     val customizeList: (MultiSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)?,
     val rightTitleActionTextStyle: TextStyleDescription,
     val onMultiItemSelectedListener: OnMultiSelectionSelectedListener? = null,
-) : SectionBottomSheetDialogDescription(
+) : SelectionBottomSheetDialogDescription(
     size,
     title,
     list,
@@ -56,9 +56,9 @@ class MultiSectionBottomSheetDialogDescription(
     positiveButton,
 )
 
-fun SectionBottomSheetDialogDescription.listCustomized(): Boolean {
+fun SelectionBottomSheetDialogDescription.listCustomized(): Boolean {
     return when (this) {
-        is SingleSectionBottomSheetDialogDescription -> this.customizeList != null
-        is MultiSectionBottomSheetDialogDescription -> this.customizeList != null
+        is SingleSelectionBottomSheetDialogDescription -> this.customizeList != null
+        is MultiSelectionBottomSheetDialogDescription -> this.customizeList != null
     }
 }

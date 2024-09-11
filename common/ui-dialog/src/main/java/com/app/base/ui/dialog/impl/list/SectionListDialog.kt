@@ -1,7 +1,8 @@
-package com.app.base.ui.dialog.impl.bottomsheet
+package com.app.base.ui.dialog.impl.list
 
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -9,35 +10,42 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.base.ui.recyclerview.DividerItemDecoration
 import com.android.base.utils.android.views.beGone
+import com.android.base.utils.android.views.dip
 import com.android.base.utils.android.views.onThrottledClick
 import com.android.base.utils.android.views.setHorizontalPadding
 import com.android.base.utils.common.findWithIndex
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
 import com.android.base.utils.common.unsafeLazy
+import com.app.base.ui.dialog.AppBaseDialog
 import com.app.base.ui.dialog.databinding.DialogLayoutBottomsheetListBinding
+import com.app.base.ui.dialog.dsl.Condition
+import com.app.base.ui.dialog.dsl.OnClickListener
 import com.app.base.ui.dialog.dsl.Selection
 import com.app.base.ui.dialog.dsl.applyTo
-import com.app.base.ui.dialog.dsl.bottomsheet.MultiSelectionBottomSheetDialogDescription
-import com.app.base.ui.dialog.dsl.bottomsheet.MultiSelectionBottomSheetDialogInterface
-import com.app.base.ui.dialog.dsl.bottomsheet.SelectionBottomSheetDialogDescription
-import com.app.base.ui.dialog.dsl.bottomsheet.SingleSelectionBottomSheetDialogDescription
-import com.app.base.ui.dialog.dsl.bottomsheet.SingleSelectionBottomSheetDialogInterface
-import com.app.base.ui.dialog.dsl.bottomsheet.applyToDialog
-import com.app.base.ui.dialog.dsl.bottomsheet.listCustomized
+import com.app.base.ui.dialog.dsl.applyToDialog
+import com.app.base.ui.dialog.dsl.list.MultiSelectionListDialogDescription
+import com.app.base.ui.dialog.dsl.list.MultiSelectionListDialogInterface
+import com.app.base.ui.dialog.dsl.list.SelectionListDialogDescription
+import com.app.base.ui.dialog.dsl.list.SingleSelectionListDialogDescription
+import com.app.base.ui.dialog.dsl.list.SingleSelectionListDialogInterface
+import com.app.base.ui.dialog.dsl.list.listCustomized
 import com.app.base.ui.dialog.impl.DialogInterfaceWrapper
+import com.app.base.ui.dialog.impl.bottomsheet.SectionDialogAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
 
-internal class SectionBottomSheetDialog(
+internal class SectionListDialog(
     context: Context,
     private val lifecycleOwner: LifecycleOwner,
-    private val description: SelectionBottomSheetDialogDescription,
-) : AppBottomSheetDialog(context, description.size), SingleSelectionBottomSheetDialogInterface, MultiSelectionBottomSheetDialogInterface {
+    private val description: SelectionListDialogDescription,
+) : AppBaseDialog(context, description.size), SingleSelectionListDialogInterface, MultiSelectionListDialogInterface {
 
     private val vb by lazy {
         // It is necessary to use the context of the dialog, otherwise the theme will not be applied!
         DialogLayoutBottomsheetListBinding.inflate(LayoutInflater.from(getContext()))
     }
+
+    private val condition by unsafeLazy { object : Condition {} }
 
     private val dialogInterfaceWrapper by unsafeLazy { DialogInterfaceWrapper(this) }
 
@@ -52,19 +60,39 @@ internal class SectionBottomSheetDialog(
 
     private var onCheckAllSelectionsListener: (() -> Unit)? = null
     private var onPositiveButtonClickedListener: (DialogInterface.() -> Unit)? = null
+    private var onNegativeButtonClickedListener: (DialogInterface.() -> Unit)? = null
 
-    private inline fun SelectionBottomSheetDialogDescription.discriminate(
-        single: SingleSelectionBottomSheetDialogDescription.() -> Unit,
-        multi: MultiSelectionBottomSheetDialogDescription.() -> Unit,
+    private inline fun SelectionListDialogDescription.discriminate(
+        single: SingleSelectionListDialogDescription.() -> Unit,
+        multi: MultiSelectionListDialogDescription.() -> Unit,
     ) {
         when (this) {
-            is SingleSelectionBottomSheetDialogDescription -> single()
-            is MultiSelectionBottomSheetDialogDescription -> multi()
+            is SingleSelectionListDialogDescription -> single()
+            is MultiSelectionListDialogDescription -> multi()
         }
     }
 
-    init {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        vb.dialogLlBottomsheetRoot.getShapeDrawable().setCornerSize(dip(10F))
         setContentView(vb.root)
+
+        description.discriminate(
+            single = {
+                list?.items?.findWithIndex { it.selected }?.let {
+                    if (it.second != null) {
+                        selectedSelection = it.first to it.second!!
+                    }
+                }
+            },
+            multi = {
+                vb.dialogBtnBottomRight.setText(com.app.base.ui.theme.R.string.check_all)
+                rightTitleActionTextStyle.applyTo(vb.dialogBtnBottomRight)
+                vb.dialogBtnBottomRight.onThrottledClick {
+                    checkAllSelections()
+                }
+            }
+        )
 
         setupTitle()
         setupList()
@@ -80,29 +108,44 @@ internal class SectionBottomSheetDialog(
     }
 
     private fun setUpBottomButton() = with(vb) {
-        description.positiveButton.ifNonNull {
+        if (description.negativeButton == null && description.positiveButton == null) {
+            dialogLlBottomButtons.beGone()
+        }
+
+        description.negativeButton.ifNonNull {
+            textDescription.applyTo(dialogBtnBottomLeft)
+            dialogBtnBottomLeft.onThrottledClick {
+                handleOnNegativeButtonClicked(this.onClickListener)
+            }
+        } otherwise {
             dialogSpaceLeft.beGone()
             dialogBtnBottomLeft.beGone()
+        }
+
+        description.positiveButton.ifNonNull {
             textDescription.applyTo(dialogBtnBottomRight)
             dialogBtnBottomRight.onThrottledClick {
                 handleOnPositiveButtonClicked()
             }
-        } otherwise { dialogLlBottomButtons.beGone() }
+        } otherwise {
+            dialogSpaceRight.beGone()
+            dialogBtnBottomRight.beGone()
+        }
     }
 
     private fun setUpListDecor() = description.discriminate(
         single = {
-            listTopAreaConfig?.invoke(this@SectionBottomSheetDialog, (vb.dialogStubListTopDecorator.inflate() as ConstraintLayout))
-            listBottomAreaConfig?.invoke(this@SectionBottomSheetDialog, (vb.dialogStubListBottomDecorator.inflate() as ConstraintLayout))
+            listTopAreaConfig?.invoke(this@SectionListDialog, (vb.dialogStubListTopDecorator.inflate() as ConstraintLayout))
+            listBottomAreaConfig?.invoke(this@SectionListDialog, (vb.dialogStubListBottomDecorator.inflate() as ConstraintLayout))
         },
         multi = {
-            listTopAreaConfig?.invoke(this@SectionBottomSheetDialog, (vb.dialogStubListTopDecorator.inflate() as ConstraintLayout))
-            listBottomAreaConfig?.invoke(this@SectionBottomSheetDialog, (vb.dialogStubListBottomDecorator.inflate() as ConstraintLayout))
+            listTopAreaConfig?.invoke(this@SectionListDialog, (vb.dialogStubListTopDecorator.inflate() as ConstraintLayout))
+            listBottomAreaConfig?.invoke(this@SectionListDialog, (vb.dialogStubListBottomDecorator.inflate() as ConstraintLayout))
         }
     )
 
     private fun setBehavior() = with(description.behavior) {
-        applyToDialog(this@SectionBottomSheetDialog)
+        applyToDialog(this@SectionListDialog)
         setOnDismissListener {
             onDismissListener?.invoke(dialogInterfaceWrapper.canceledByUser)
         }
@@ -126,31 +169,14 @@ internal class SectionBottomSheetDialog(
         discriminate(
             single = {
                 customizeList?.let {
-                    it.invoke(this@SectionBottomSheetDialog, vb.dialogRvList)
+                    it.invoke(this@SectionListDialog, vb.dialogRvList)
                     return
                 }
             },
             multi = {
                 customizeList?.let {
-                    it.invoke(this@SectionBottomSheetDialog, vb.dialogRvList)
+                    it.invoke(this@SectionListDialog, vb.dialogRvList)
                     return
-                }
-            }
-        )
-
-        description.discriminate(
-            single = {
-                list?.items?.findWithIndex { it.selected }?.let {
-                    if (it.second != null) {
-                        selectedSelection = it.first to it.second!!
-                    }
-                }
-            },
-            multi = {
-                vb.dialogBtnBottomRight.setText(com.app.base.ui.theme.R.string.check_all)
-                rightTitleActionTextStyle.applyTo(vb.dialogBtnBottomRight)
-                vb.dialogBtnBottomRight.onThrottledClick {
-                    checkAllSelections()
                 }
             }
         )
@@ -224,6 +250,16 @@ internal class SectionBottomSheetDialog(
         dismissChecked()
     }
 
+    private fun handleOnNegativeButtonClicked(onClickListener: OnClickListener?) {
+        onNegativeButtonClickedListener?.invoke(dialogInterfaceWrapper)
+        if (description.listCustomized()) {
+            return
+        }
+
+        onClickListener?.invoke(dialogInterfaceWrapper, condition)
+        dismissChecked()
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Interface Implementation
     ///////////////////////////////////////////////////////////////////////////
@@ -256,6 +292,10 @@ internal class SectionBottomSheetDialog(
 
     override fun setOnPositiveButtonClickedListener(listener: DialogInterface.() -> Unit) {
         onPositiveButtonClickedListener = listener
+    }
+
+    override fun setOnNegativeButtonClickedListener(listener: DialogInterface.() -> Unit) {
+        onNegativeButtonClickedListener = listener
     }
 
 }

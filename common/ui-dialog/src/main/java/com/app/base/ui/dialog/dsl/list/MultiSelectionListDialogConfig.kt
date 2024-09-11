@@ -1,4 +1,4 @@
-package com.app.base.ui.dialog.dsl.bottomsheet
+package com.app.base.ui.dialog.dsl.list
 
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -8,13 +8,13 @@ import com.app.base.ui.dialog.dsl.DialogContextDslMarker
 import com.app.base.ui.dialog.dsl.OnMultiSelectionSelectedListener
 
 @DialogContextDslMarker
-interface MultiSelectionBottomSheetDialogConfig : SelectionBottomSheetDialogConfig<MultiSelectionBottomSheetDialogDescription> {
+interface MultiSelectionListDialogConfig : SelectionListDialogConfig<MultiSelectionListDialogDescription> {
 
-    fun decorateListTop(config: MultiSelectionBottomSheetDialogInterface.(ConstraintLayout) -> Unit)
+    fun decorateListTop(config: MultiSelectionListDialogInterface.(ConstraintLayout) -> Unit)
 
-    fun decorateListBottom(config: MultiSelectionBottomSheetDialogInterface.(ConstraintLayout) -> Unit)
+    fun decorateListBottom(config: MultiSelectionListDialogInterface.(ConstraintLayout) -> Unit)
 
-    fun customizeList(config: MultiSelectionBottomSheetDialogInterface.(RecyclerView) -> Unit)
+    fun customizeList(config: MultiSelectionListDialogInterface.(RecyclerView) -> Unit)
 
     fun positiveButton(text: CharSequence, config: Button.() -> Unit = {}, onSelected: OnMultiSelectionSelectedListener)
 
