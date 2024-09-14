@@ -47,6 +47,6 @@ open class DialogBehaviorDescription(
 )
 
 fun DialogBehaviorDescription.applyToDialog(dialog: Dialog) {
-    dialog.setCancelable(isCancelable)
     dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
+    dialog.setCancelable(isCancelable)
 }
