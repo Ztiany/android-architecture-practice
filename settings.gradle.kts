@@ -118,8 +118,8 @@ class DependencySubstitutionPlugin : Plugin<Settings> {
 include(":apm")
 
 // 功能演示模块（不参入 app 打包）
-include(":feature:sample:main")
-include(":feature:sample:app")
+include(":sample:main")
+include(":sample:app")
 
 // 业务基础架构
 include(":common:ui-theme")

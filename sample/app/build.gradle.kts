@@ -12,5 +12,5 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:sample:main"))
+    implementation(project(":sample:main"))
 }
