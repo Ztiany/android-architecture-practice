@@ -156,7 +156,7 @@ internal class MultiSelectionBottomSheetDialogConfigImpl(
         customizeList = config
     }
 
-    override fun toDescription(): SelectionBottomSheetDialogDescription {
+    override fun toDescription(): MultiSelectionBottomSheetDialogDescription {
         return MultiSelectionBottomSheetDialogDescription(
             size = size.toBottomSheetWindowSizeDescription(),
             title = title?.toTextDescription(),

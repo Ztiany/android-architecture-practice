@@ -13,7 +13,7 @@ interface DialogConfig<Behavior : DialogBehavior, Description : DialogDescriptio
     @IncrementalConfig
     fun behavior(config: Behavior.() -> Unit)
 
-    fun toDescription(): DialogDescription
+    fun toDescription(): Description
 
 }
 

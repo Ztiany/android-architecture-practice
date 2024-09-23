@@ -2,6 +2,7 @@ package com.app.base.ui.dialog.dsl
 
 import android.content.Context
 import android.widget.TextView
+import androidx.annotation.StringRes
 import com.google.android.material.appbar.MaterialToolbar
 
 @DialogContextDslMarker
@@ -9,6 +10,14 @@ open class Text(
     protected val context: Context,
     protected var _text: CharSequence,
 ) : TextStyle(context) {
+
+    fun text(text: CharSequence) {
+        _text = text
+    }
+
+    fun text(@StringRes textRes: Int) {
+        _text = context.getText(textRes)
+    }
 
     fun toTextDescription(): TextDescription {
         return TextDescription(

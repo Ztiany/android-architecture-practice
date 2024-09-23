@@ -173,7 +173,7 @@ internal class MultiSelectionListDialogConfigImpl(
         customizeList = config
     }
 
-    override fun toDescription(): SelectionListDialogDescription {
+    override fun toDescription(): MultiSelectionListDialogDescription {
         return MultiSelectionListDialogDescription(
             size = size.toDialogWindowSizeDescription(),
             title = title?.toTextDescription(),

@@ -40,14 +40,6 @@ class Field(
         _id = id
     }
 
-    fun text(text: CharSequence) {
-        _text = text
-    }
-
-    fun text(@StringRes textRes: Int) {
-        _text = context.getText(textRes)
-    }
-
     fun hint(hint: CharSequence) {
         _hint = hint
     }
