@@ -13,6 +13,7 @@ import com.android.base.utils.android.adaption.ActivityLifecycleCallbacksAdapter
 import com.android.base.utils.android.compat.setNavigationBarLightMode
 import com.android.base.utils.android.compat.setStatusBarLightMode
 import com.android.base.utils.common.ignoreCrash
+import com.app.base.ui.widget.insets.adjustSystemBarColorInNormalMode
 import com.app.common.api.protocol.CustomizeSystemBar
 
 /**
@@ -38,12 +39,7 @@ class ComponentProcessor : ActivityLifecycleCallbacksAdapter {
         if (activity is CustomizeSystemBar) {
             return
         }
-        // the StatusBar‘s background color is lightest_color(which is white in the day theme).
-        // StatusBar's day/night mode takes effect as of API 21.
-        activity.setStatusBarLightMode()
-        // the NavigationBar‘s background color is the same as window background color.
-        // NavigationBar's day/night mode takes effect as of API 26.
-        activity.setNavigationBarLightMode()
+        activity.adjustSystemBarColorInNormalMode()
     }
 
     private fun injectFragmentLifecycle(activity: FragmentActivity) {

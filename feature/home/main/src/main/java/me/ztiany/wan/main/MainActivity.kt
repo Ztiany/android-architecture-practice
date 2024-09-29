@@ -6,18 +6,12 @@ import androidx.lifecycle.lifecycleScope
 import com.android.base.fragment.tool.clearBackStack
 import com.android.base.fragment.tool.doFragmentTransaction
 import com.android.base.fragment.tool.findFragmentByTag
-import com.android.base.utils.android.compat.doBeforeSDK
-import com.android.base.utils.android.compat.doFromSDK
-import com.android.base.utils.android.compat.setLayoutExtendsToSystemBars
-import com.android.base.utils.android.compat.setNavigationBarColor
-import com.android.base.utils.android.compat.setNavigationBarLightMode
-import com.android.base.utils.android.compat.setStatusBarLightMode
-import com.android.base.utils.android.views.getStyledColor
 import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.ignoreCrash
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.dialog.toast.ToastKit
+import com.app.base.ui.widget.insets.enableEdgeToEdgeCompatible
 import com.app.common.api.protocol.CustomizeSystemBar
 import com.app.common.api.protocol.TheMainPage
 import com.app.common.api.usermanager.UserManager
@@ -43,16 +37,7 @@ class MainActivity : AppBaseActivity(), TheMainPage, CustomizeSystemBar {
     @Inject lateinit var userManager: UserManager
 
     override fun initialize(savedInstanceState: Bundle?) {
-        setLayoutExtendsToSystemBars()
-        setStatusBarLightMode()
-        doFromSDK(26) {
-            // Take effect as of API 26.
-            setNavigationBarLightMode()
-        }
-        doBeforeSDK(26) {
-            // Take effect as of API 21.
-            setNavigationBarColor(getStyledColor(com.app.base.ui.theme.R.attr.app_color_deepest_opacity20, "app_color_deepest_opacity20"))
-        }
+        enableEdgeToEdgeCompatible()
     }
 
     override fun provideLayout() = R.layout.main_activity

@@ -14,6 +14,7 @@ import com.android.base.utils.common.ifNonNull
 import com.android.base.utils.common.otherwise
 import com.app.base.app.AppBaseActivity
 import com.app.base.dialog.toast.ToastKit
+import com.app.base.ui.widget.insets.enableEdgeToEdgeCompatible
 import com.app.common.api.protocol.CustomizeSystemBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,16 +32,7 @@ class ViewArchSampleActivity : AppBaseActivity(), CustomizeSystemBar {
     private lateinit var mainFragment: MainFragment
 
     override fun initialize(savedInstanceState: Bundle?) {
-        setLayoutExtendsToSystemBars()
-        setStatusBarLightMode()
-        doFromSDK(26) {
-            // Take effect as of API 26.
-            setNavigationBarLightMode()
-        }
-        doBeforeSDK(26) {
-            // Take effect as of API 21.
-            setNavigationBarColor(getStyledColor(com.app.base.ui.theme.R.attr.app_color_deepest_opacity20, "app_color_deepest_opacity20"))
-        }
+        enableEdgeToEdgeCompatible()
     }
 
     override fun provideLayout() = R.layout.sample_activity
