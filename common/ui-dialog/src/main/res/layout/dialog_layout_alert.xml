@@ -48,7 +48,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/common_page_edge_big"
         android:layout_marginBottom="10dp"
-        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/dialog_cb_option"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
