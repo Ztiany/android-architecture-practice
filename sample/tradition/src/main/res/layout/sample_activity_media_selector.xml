@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/act_frag_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:ignore="UsingOnClickInXml,HardcodedText,SmallSp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?app_color_main_variant_bright"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Photos By Intents or SAF"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="captureOnePhoto"
+            android:text="capture a photo"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="captureOnePhotoAndCrop"
+            android:text="capture a photo and crop"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="captureOneVideo"
+            android:text="capture a video"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectOnePhoto"
+            android:text="select a photo"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectOnePhotoAndCrop"
+            android:text="select a photo and crop"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectPhotos"
+            android:text="select multi photo"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectPhotosAndCrop"
+            android:text="select multi photo and crop"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectVideos"
+            android:text="select multi videos"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectPhotoAndVideo"
+            android:text="select multi photo and video and crop"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectPhotosByGetContent"
+            android:text="select photos and  by GetContent"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectVideosByGetContent"
+            android:text="select videos and  by GetContent"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?app_color_main_variant_bright"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Files By Intents or SAF"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectFile"
+            android:text="select a file"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectFiles"
+            android:text="select multi files"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectFilesByGetContent"
+            android:text="select multi files by GetContent"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/selected_files"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#F0F0F0"
+            android:padding="5dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?app_color_main_variant_bright"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="By MediaStore"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectOnePhotoByMediaStore"
+            android:text="select a photo"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectOnePhotoWithCameraByMediaStore"
+            android:text="select a photo with camera"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectOnePhotoWithCameraAndCropByMediaStore"
+            android:text="select a photo with camera and crop(including gif)"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectMultiPhotoByMediaStore"
+            android:text="select multi photos(include gif)"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="selectOneVideoByMediaStore"
+            android:text="select a video"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.base.fragment.widget.SimpleMultiStateLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.App.SimpleMultiStateLayout"
+    app:msl_emptyAction="@string/page_error_retry_action_tips"
+    app:msl_viewState="loading"
+    tools:msl_viewState="content">
+
+    <com.android.base.fragment.widget.ScrollChildSwipeRefreshLayout
+        style="@style/Widget.App.SwipeRefreshLayout"
+        app:srl_target_id="@id/main_rv_articles">
+
+        <com.android.base.ui.recyclerview.ShapeableRecyclerView
+            android:id="@+id/main_rv_articles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/common_page_edge"
+            android:layout_marginBottom="10dp"
+            app:msd_backgroundColor_normal="?app_color_lightest"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded10" />
+
+    </com.android.base.fragment.widget.ScrollChildSwipeRefreshLayout>
+
+</com.android.base.fragment.widget.SimpleMultiStateLayout>
