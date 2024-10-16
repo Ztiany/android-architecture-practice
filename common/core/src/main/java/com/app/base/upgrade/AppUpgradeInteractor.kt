@@ -81,7 +81,7 @@ internal class AppUpgradeInteractor @Inject constructor() : UpgradeInteractor {
         return OkHttpClient.Builder().build()
     }
 
-    override fun upPrepared() {
+    override fun uiPrepared() {
 
     }
 

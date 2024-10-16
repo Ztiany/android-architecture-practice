@@ -62,6 +62,6 @@ interface UpgradeInteractor {
 
     fun createHttpClient(): OkHttpClient
 
-    fun upPrepared()
+    fun uiPrepared()
 
 }

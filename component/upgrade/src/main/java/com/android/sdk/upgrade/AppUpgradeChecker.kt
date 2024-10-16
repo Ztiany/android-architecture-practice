@@ -221,7 +221,7 @@ object AppUpgradeChecker {
     }
 
     fun uiPrepared() {
-        upgradeInteractor.upPrepared()
+        upgradeInteractor.uiPrepared()
     }
 
 }
