@@ -54,7 +54,7 @@ class TextItemLayout @JvmOverloads constructor(
         val visibleBottomLine = typedArray.getBoolean(R.styleable.TextItemLayout_til_show_bottom_line, false)
         if (visibleBottomLine) {
             viewBinding.widgetTextItemLine.beVisible()
-            val bottomLineColor = typedArray.getColor(R.styleable.TextItemLayout_til_bottom_line_color, getColorCompat(com.app.base.ui.theme.R.color.divider_color))
+            val bottomLineColor = typedArray.getColor(R.styleable.TextItemLayout_til_bottom_line_color, getColorCompat(com.app.base.ui.theme.R.color.color_divider))
             viewBinding.widgetTextItemLine.setBackgroundColor(bottomLineColor)
             val bottomLineAlignTitle = typedArray.getBoolean(R.styleable.TextItemLayout_til_bottom_line_align_title, false)
             val bottomLineHeight = typedArray.getDimension(R.styleable.TextItemLayout_til_bottom_line_height, 1F)

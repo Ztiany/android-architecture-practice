@@ -51,8 +51,8 @@
         <item name="android:windowIsFloating">false</item>
         <!--system ui-->
         <item name="android:statusBarColor">@color/color_status_bar</item>
-        <item name="android:navigationBarColor">@color/page_bg_color</item>
-        <item name="android:windowBackground">@color/page_bg_color</item>
+        <item name="android:navigationBarColor">@color/color_background</item>
+        <item name="android:windowBackground">@color/color_background</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- androidx attributes -->

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =====================================================
+    说明：以下 Style，仅适用于 com.android.base.ui.drawable 包下的 View，
+    当然也可以参考该包下的相关类的代码对其他 View 进行扩展以支
+    持下面定义的 Style。
+    ===================================================== -->
+
+    <!-- =====================================================
+    主色调描边按钮
+    ===================================================== -->
+
+    <!--public primary stroke-->
+
+    <style name="Widget.App.DView.StrokeStyle.PrimaryStroke" parent="">
+        <item name="stroke_style_color">?app_color_main</item>
+        <item name="stroke_style_width">1dp</item>
+    </style>
+
+    <!--internal shape-->
+
+    <style name="Widget.App.DView.Shape.PrimaryStrokeRectangle" parent="">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/Widget.App.DView.StrokeStyle.PrimaryStroke</item>
+        <item name="cgd_shape_solid">?app_color_lightest</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryStrokeRounded5" parent="">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/Widget.App.DView.StrokeStyle.PrimaryStroke</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded5</item>
+        <item name="cgd_shape_solid">?app_color_lightest</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryStrokeRounded10" parent="">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/Widget.App.DView.StrokeStyle.PrimaryStroke</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded10</item>
+        <item name="cgd_shape_solid">?app_color_lightest</item>
+    </style>
+
+    <style name="Widget.App.DView.Shape.PrimaryStrokeRounded25" parent="">
+        <item name="cgd_shape">rectangle</item>
+        <item name="cgd_shape_stroke_style">@style/Widget.App.DView.StrokeStyle.PrimaryStroke</item>
+        <item name="cgd_shape_corner_style">@style/CornerAppearance.Rounded25</item>
+        <item name="cgd_shape_solid">?app_color_lightest</item>
+    </style>
+
+    <!--internal selector-->
+
+    <style name="Widget.App.DView.Selector.PrimaryStrokeRectangle" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Shape.PrimaryStrokeRectangle</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabled</item>
+    </style>
+
+    <style name="Widget.App.DView.Ripple.PrimaryStrokeRectangle" parent="">
+        <item name="cdv_drawable_type">ripple</item>
+        <item name="crd_ripple_color">?app_color_ripple_deep</item>
+        <item name="crd_ripple_content_drawable">@style/Widget.App.DView.Selector.PrimaryStrokeRectangle</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.PrimaryStrokeRounded5" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Shape.PrimaryStrokeRounded5</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded5</item>
+    </style>
+
+    <style name="Widget.App.DView.Ripple.PrimaryStrokeRounded5" parent="">
+        <item name="cdv_drawable_type">ripple</item>
+        <item name="crd_ripple_color">?app_color_ripple_deep</item>
+        <item name="crd_ripple_content_drawable">@style/Widget.App.DView.Selector.PrimaryStrokeRounded5</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.PrimaryStrokeRounded10" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Shape.PrimaryStrokeRounded10</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Ripple.PrimaryStrokeRounded10" parent="">
+        <item name="cdv_drawable_type">ripple</item>
+        <item name="crd_ripple_color">?app_color_ripple_deep</item>
+        <item name="crd_ripple_content_drawable">@style/Widget.App.DView.Selector.PrimaryStrokeRounded10</item>
+    </style>
+
+    <style name="Widget.App.DView.Selector.PrimaryStrokeRounded25" parent="">
+        <item name="cdv_drawable_type">selector</item>
+        <item name="csd_selector_state_normal">@style/Widget.App.DView.Shape.PrimaryStrokeRounded25</item>
+        <item name="csd_selector_state_disabled">@style/Widget.App.DView.Shape.PrimaryDisabledRounded25</item>
+    </style>
+
+    <style name="Widget.App.DView.Ripple.PrimaryStrokeRounded25" parent="">
+        <item name="cdv_drawable_type">ripple</item>
+        <item name="crd_ripple_color">?app_color_ripple_deep</item>
+        <item name="crd_ripple_content_drawable">@style/Widget.App.DView.Selector.PrimaryStrokeRounded25</item>
+    </style>
+
+    <!--public-->
+
+    <style name="Widget.App.Button.FullLine.DView.PrimaryVariant">
+        <item name="cdv_ripple_appearance">@style/Widget.App.DView.Ripple.PrimaryStrokeRectangle</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.Long.DView.PrimaryVariantRounded10">
+        <item name="cdv_ripple_appearance">@style/Widget.App.DView.Ripple.PrimaryStrokeRounded10</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.Medium.DView.PrimaryVariantRounded10">
+        <item name="cdv_ripple_appearance">@style/Widget.App.DView.Ripple.PrimaryStrokeRounded10</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.Short.DView.PrimaryVariantRounded10">
+        <item name="cdv_ripple_appearance">@style/Widget.App.DView.Ripple.PrimaryStrokeRounded10</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded25">
+        <item name="cdv_ripple_appearance">@style/Widget.App.DView.Ripple.PrimaryStrokeRounded25</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded10">
+        <item name="cdv_ripple_appearance">@style/Widget.App.DView.Ripple.PrimaryStrokeRounded10</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.Wrap.DView.PrimaryVariantRounded5">
+        <item name="cdv_ripple_appearance">@style/Widget.App.DView.Ripple.PrimaryStrokeRounded5</item>
+        <item name="dtv_text_color_normal">?app_color_main</item>
+        <item name="dtv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+</resources>

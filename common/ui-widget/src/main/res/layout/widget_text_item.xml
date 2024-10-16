@@ -51,7 +51,7 @@
         android:id="@+id/widgetTextItemLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_divider_width"
-        android:background="@color/divider_color"
+        android:background="@color/color_divider"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </merge>

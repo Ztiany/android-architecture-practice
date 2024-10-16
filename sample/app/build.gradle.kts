@@ -6,8 +6,8 @@ android {
     namespace = "me.ztiany.wan.sample.app"
     resourcePrefix = "sample_"
     defaultConfig {
-        versionCode = project.findProperty("version_code").toString().toInt()
-        versionName = project.findProperty("version_name").toString()
+        versionCode = project.findProperty("app.version.code").toString().toInt()
+        versionName = project.findProperty("app.version.name").toString()
     }
 }
 

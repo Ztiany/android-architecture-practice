@@ -42,6 +42,12 @@
     通用样式
     ===================================================== -->
 
+    <style name="ShapeAppearance.App.TopRounded5" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">5dp</item>
+        <item name="cornerSizeTopRight">5dp</item>
+    </style>
+
     <style name="ShapeAppearance.App.TopRounded10" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">10dp</item>
@@ -60,11 +66,17 @@
         <item name="cornerSizeBottomRight">10dp</item>
     </style>
 
+    <style name="ShapeAppearance.App.BottomRounded4" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
     <style name="ShapeAppearance.App.BottomRounded20" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeBottomLeft">20dp</item>
         <item name="cornerSizeBottomRight">20dp</item>
     </style>
+
 
     <!-- =====================================================
     ShapeableView 按钮基础样式

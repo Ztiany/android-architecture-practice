@@ -10,8 +10,8 @@ android {
     }
 
     defaultConfig {
-        buildConfigField("boolean", "openLog", "${project.findProperty("open_log")}")
-        buildConfigField("boolean", "openDebugMode", "${project.findProperty("open_debug")}")
+        buildConfigField("boolean", "openLog", "${project.findProperty("app.debug.log")}")
+        buildConfigField("boolean", "openDebugMode", "${project.findProperty("app.debug.tool")}")
     }
 }
 
@@ -33,7 +33,7 @@ dependencies {
     implementation(libs.square.okhttp.logging)
     implementation(libs.tencent.bugly)
     // library for debug
-    if (project.findProperty("open_debug").toString().toBoolean()) {
+    if (project.findProperty("app.debug.tool").toString().toBoolean()) {
         // stetho
         implementation(libs.facebook.stetho)
         implementation(libs.facebook.stetho.okhttp3)

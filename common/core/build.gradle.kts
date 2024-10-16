@@ -11,8 +11,8 @@ android {
     namespace = "com.app.base"
 
     defaultConfig {
-        buildConfigField("String", "appHostFlag", "\"${project.findProperty("host_env")}\"")
-        buildConfigField("boolean", "skipHttpCerVerifying", "${project.findProperty("skip_http_certificate_verifying")}")
+        buildConfigField("String", "appHostFlag", "\"${project.findProperty("app.network.http.host")}\"")
+        buildConfigField("boolean", "skipHttpCerVerifying", "${project.findProperty("app.network.security.https.ca.skip")}")
 
         val apiKeyJoke = Properties().apply {
             load(project.rootProject.file("local.properties").inputStream())

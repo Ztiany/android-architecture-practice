@@ -8,42 +8,42 @@
     <style name="Widget.App.ShapeableView.Selector.LightestRectangular" parent="">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rectangular</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 
     <style name="Widget.App.ShapeableView.Selector.LightestRounded10" parent="">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 
     <style name="Widget.App.ShapeableView.Selector.LightestTopRounded10" parent="">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.TopRounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 
     <style name="Widget.App.ShapeableView.Selector.LightestTopRounded20" parent="">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.TopRounded20</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 
     <style name="Widget.App.ShapeableView.Selector.LightestBottomRounded10" parent="">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.BottomRounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 
     <style name="Widget.App.ShapeableView.Selector.LightestBottomRounded20" parent="">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.BottomRounded20</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
     </style>
 
@@ -54,49 +54,73 @@
     <style name="Widget.App.Button.FullLine.ShapeableView.Lightest">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rectangular</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
-        <item name="android:textColor">?app_color_deepest</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.FullLine.ShapeableView.LightestRound8">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded8</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Long.ShapeableView.LightestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
-        <item name="android:textColor">?app_color_deepest</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
+    </style>
+
+    <style name="Widget.App.Button.Long.ShapeableView.LightestRounded25">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded25</item>
+        <item name="msd_backgroundColor_disabled">?app_color_disable</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
+        <item name="msd_backgroundColor_normal">?app_color_lightest</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Medium.ShapeableView.LightestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
-        <item name="android:textColor">?app_color_deepest</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Short.ShapeableView.LightestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
-        <item name="android:textColor">?app_color_deepest</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Wrap.ShapeableView.LightestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
-        <item name="android:textColor">?app_color_deepest</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Wrap.ShapeableView.LightestRounded5">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded5</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_deep</item>
         <item name="msd_backgroundColor_normal">?app_color_lightest</item>
-        <item name="android:textColor">?app_color_deepest</item>
+        <item name="stv_text_color_normal">?app_color_deepest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
 </resources>

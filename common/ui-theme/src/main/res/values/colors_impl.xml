@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 请不要直接引用这些颜色，而是通过主题引用，以便在主题中统一管理颜色。-->
 
-    <!-- ============================ 颜色实现  ============================ -->
-    <!--
-        请不要直接引用这些颜色，而是通过主题引用，以便在主题中统一管理颜色。
-    -->
-    <!--品牌色-->
-    <color name="color_main">#7AFFB5</color>
-    <!--次级品牌色-->
-    <color name="color_main_variant">#64D3E6</color>
-    <!--状态栏与导航栏-->
+    <!-- 主色调 -->
+    <color name="color_main">#F26527</color>
+    <color name="color_main_variant_bright">#FC8C5A</color>
+    <color name="color_main_variant_deep">#F84802</color>
+
+    <color name="color_background">#F3F3F3</color>
+    <color name="color_surface">#F5F5F5</color>
     <color name="color_status_bar">@color/white</color>
-    <color name="color_navigation_bar">@color/page_bg_color</color>
-    <!--窗口背景-->
-    <color name="page_bg_color">#F3F6FB</color>
-    <!--分割线-->
-    <color name="divider_color">#E0E0E0</color>
+    <color name="color_navigation_bar">@color/color_background</color>
 
-    <!--color for text-->
+    <color name="color_divider">#E0E0E0</color>
+    <color name="color_disable">#CCCCCC</color>
+
     <color name="text_level1">#333333</color>
     <color name="text_level2">#666666</color>
     <color name="text_level3">#999999</color>
     <color name="text_level4">#A4A4A4</color>
     <color name="text_level5">#CCCCCC</color>
     <color name="text_stress">#F44766</color>
-    <color name="text_link">#90B5F7</color>
-    <color name="text_variant1">#00D6E9</color>
-    <color name="text_variant1_bg">#EAFFF4</color>
-    <color name="text_variant1_stroke">@color/color_main_variant</color>
-    <color name="text_variant2">@color/color_main_variant</color>
-    <color name="text_variant2_bg">#EAFFF4</color>
-    <color name="text_variant2_stroke">@color/text_variant2_bg</color>
-
+    <color name="text_link">#5993F2</color>
 </resources>

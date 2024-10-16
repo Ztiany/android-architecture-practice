@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="black">#000000</color>
     <color name="opacity10_black">#1A000000</color>
     <color name="opacity20_black">#33000000</color>
     <color name="opacity25_black">#40000000</color>
@@ -13,13 +11,20 @@
     <color name="opacity75_black">#BF000000</color>
     <color name="opacity80_black">#CC000000</color>
     <color name="opacity90_black">#E6000000</color>
+    <color name="opacity100_black">@color/black</color>
+    <color name="black">#000000</color>
 
-    <color name="white">#FFFFFF</color>
     <color name="opacity10_white">#1AFFFFFF</color>
     <color name="opacity20_white">#33FFFFFF</color>
+    <color name="opacity25_white">#40FFFFFF</color>
+    <color name="opacity30_white">#4DFFFFFF</color>
+    <color name="opacity40_white">#66FFFFFF</color>
     <color name="opacity50_white">#80FFFFFF</color>
     <color name="opacity60_white">#99FFFFFF</color>
+    <color name="opacity70_white">#B3FFFFFF</color>
+    <color name="opacity75_white">#BFFFFFFF</color>
     <color name="opacity80_white">#CCFFFFFF</color>
     <color name="opacity90_white">#E6FFFFFF</color>
-
+    <color name="opacity100_white">@color/white</color>
+    <color name="white">#FFFFFF</color>
 </resources>

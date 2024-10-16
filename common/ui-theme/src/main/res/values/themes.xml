@@ -7,38 +7,31 @@
     for more details.
     -->
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
-        <!-- material colors -->
+        <!-- material color -->
         <item name="colorPrimary">@color/color_main</item>
-        <item name="colorPrimaryVariant">@color/color_main_variant</item>
+        <item name="colorPrimaryVariant">@color/color_main_variant_bright</item>
         <item name="colorControlActivated">@color/color_main</item>
+        <item name="colorSurface">@color/color_surface</item>
 
-        <!-- system ui colors -->
+        <!-- android system ui -->
         <item name="android:statusBarColor">@color/color_status_bar</item>
         <item name="android:navigationBarColor">@color/color_navigation_bar</item>
-        <item name="android:windowBackground">@color/page_bg_color</item>
+        <item name="android:windowBackground">@color/color_background</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 
         <!-- android widget attributes  -->
         <item name="android:textAllCaps">false</item>
+        <item name="android:listDivider">@drawable/shape_list_divider</item>
 
-        <!-- app colors -->
+        <!-- app custom colors -->
         <item name="app_color_main">@color/color_main</item>
-        <item name="app_color_main_variant">@color/color_main_variant</item>
-        <item name="app_color_divider">@color/divider_color</item>
-        <item name="app_color_disable">#CCCCCC</item>
+        <item name="app_color_main_variant_bright">@color/color_main_variant_bright</item>
+        <item name="app_color_main_variant_deep">@color/color_main_variant_deep</item>
 
-        <item name="app_color_deepest">@color/black</item>
-        <item name="app_color_deepest_opacity10">@color/opacity10_black</item>
-        <item name="app_color_deepest_opacity20">@color/opacity20_black</item>
-        <item name="app_color_deepest_opacity50">@color/opacity50_black</item>
-        <item name="app_color_deepest_opacity80">@color/opacity80_black</item>
-        <item name="app_color_deepest_opacity90">@color/opacity90_black</item>
-        <item name="app_color_lightest">@color/white</item>
-        <item name="app_color_lightest_opacity10">@color/opacity10_white</item>
-        <item name="app_color_lightest_opacity20">@color/opacity20_white</item>
-        <item name="app_color_lightest_opacity50">@color/opacity50_white</item>
-        <item name="app_color_lightest_opacity80">@color/opacity80_white</item>
-        <item name="app_color_lightest_opacity90">@color/opacity90_black</item>
+        <item name="app_color_divider">@color/color_divider</item>
+        <item name="app_color_disable">@color/color_disable</item>
+        <item name="app_color_ripple_deep">@color/opacity10_black</item>
+        <item name="app_color_ripple_light">@color/opacity20_white</item>
 
         <item name="app_color_text_level1">@color/text_level1</item>
         <item name="app_color_text_level2">@color/text_level2</item>
@@ -47,12 +40,30 @@
         <item name="app_color_text_level5">@color/text_level5</item>
         <item name="app_color_text_stress">@color/text_stress</item>
         <item name="app_color_text_link">@color/text_link</item>
-        <item name="app_color_text_variant1">@color/text_variant1</item>
-        <item name="app_color_text_variant1_bg">@color/text_variant1_bg</item>
-        <item name="app_color_text_variant1_stroke">@color/text_variant1_stroke</item>
-        <item name="app_color_text_variant2">@color/text_variant2</item>
-        <item name="app_color_text_variant2_bg">@color/text_variant2_bg</item>
-        <item name="app_color_text_variant2_stroke">@color/text_variant2_stroke</item>
+
+        <item name="app_color_deepest">@color/black</item>
+        <item name="app_color_deepest_opacity10">@color/opacity10_black</item>
+        <item name="app_color_deepest_opacity20">@color/opacity20_black</item>
+        <item name="app_color_deepest_opacity25">@color/opacity25_black</item>
+        <item name="app_color_deepest_opacity30">@color/opacity30_black</item>
+        <item name="app_color_deepest_opacity40">@color/opacity40_black</item>
+        <item name="app_color_deepest_opacity50">@color/opacity50_black</item>
+        <item name="app_color_deepest_opacity60">@color/opacity60_black</item>
+        <item name="app_color_deepest_opacity70">@color/opacity70_black</item>
+        <item name="app_color_deepest_opacity80">@color/opacity80_black</item>
+        <item name="app_color_deepest_opacity90">@color/opacity90_black</item>
+
+        <item name="app_color_lightest">@color/white</item>
+        <item name="app_color_lightest_opacity10">@color/opacity10_white</item>
+        <item name="app_color_lightest_opacity20">@color/opacity20_white</item>
+        <item name="app_color_lightest_opacity25">@color/opacity25_white</item>
+        <item name="app_color_lightest_opacity30">@color/opacity30_white</item>
+        <item name="app_color_lightest_opacity40">@color/opacity40_white</item>
+        <item name="app_color_lightest_opacity50">@color/opacity50_white</item>
+        <item name="app_color_lightest_opacity60">@color/opacity60_white</item>
+        <item name="app_color_lightest_opacity70">@color/opacity70_white</item>
+        <item name="app_color_lightest_opacity80">@color/opacity80_white</item>
+        <item name="app_color_lightest_opacity90">@color/opacity90_black</item>
     </style>
 
     <style name="AppTheme.Transparent">

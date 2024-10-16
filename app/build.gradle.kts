@@ -5,8 +5,8 @@ plugins {
 android {
     namespace = "me.ztiany.wan.app"
     defaultConfig {
-        versionCode = project.findProperty("version_code").toString().toInt()
-        versionName = project.findProperty("version_name").toString()
+        versionCode = project.findProperty("app.version.code").toString().toInt()
+        versionName = project.findProperty("app.version.name").toString()
     }
 }
 

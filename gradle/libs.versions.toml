@@ -295,7 +295,7 @@ jaredrummler-htmldsl = "com.jaredrummler:html-dsl:1.0.0"
 kyleduo-switchbutton = "com.kyleduo.switchbutton:library:2.1.0"
 
 # https://github.com/Ztiany/android-drawable-view
-ztiany-drawableView = "com.github.Ztiany:android-drawable-view:1.2.3"
+ztiany-drawableView = "com.github.Ztiany:android-drawable-view:1.2.6"
 
 # ======================================================
 # test

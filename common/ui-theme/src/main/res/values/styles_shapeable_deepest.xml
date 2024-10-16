@@ -8,49 +8,55 @@
     <style name="Widget.App.Button.FullLine.ShapeableView.Deepest">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rectangular</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_deepest_opacity80</item>
+        <item name="msd_ripple_color">?app_color_ripple_light</item>
         <item name="msd_backgroundColor_normal">?app_color_deepest</item>
-        <item name="android:textColor">?app_color_lightest</item>
+        <item name="stv_text_color_normal">?app_color_lightest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Long.ShapeableView.DeepestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_deepest_opacity80</item>
+        <item name="msd_ripple_color">?app_color_ripple_light</item>
         <item name="msd_backgroundColor_normal">?app_color_deepest</item>
-        <item name="android:textColor">?app_color_lightest</item>
+        <item name="stv_text_color_normal">?app_color_lightest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Medium.ShapeableView.DeepestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_light</item>
         <item name="msd_backgroundColor_normal">?app_color_deepest</item>
-        <item name="android:textColor">?app_color_lightest</item>
+        <item name="stv_text_color_normal">?app_color_lightest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Short.ShapeableView.DeepestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_light</item>
         <item name="msd_backgroundColor_normal">?app_color_deepest</item>
-        <item name="android:textColor">?app_color_lightest</item>
+        <item name="stv_text_color_normal">?app_color_lightest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Wrap.ShapeableView.DeepestRounded10">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded10</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_light</item>
         <item name="msd_backgroundColor_normal">?app_color_deepest</item>
-        <item name="android:textColor">?app_color_lightest</item>
+        <item name="stv_text_color_normal">?app_color_lightest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
     <style name="Widget.App.Button.Wrap.ShapeableView.DeepestRounded5">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Rounded5</item>
         <item name="msd_backgroundColor_disabled">?app_color_disable</item>
-        <item name="msd_backgroundColor_pressed">?app_color_lightest_opacity50</item>
+        <item name="msd_ripple_color">?app_color_ripple_light</item>
         <item name="msd_backgroundColor_normal">?app_color_deepest</item>
-        <item name="android:textColor">?app_color_lightest</item>
+        <item name="stv_text_color_normal">?app_color_lightest</item>
+        <item name="stv_text_color_disabled">?app_color_text_level4</item>
     </style>
 
 </resources>

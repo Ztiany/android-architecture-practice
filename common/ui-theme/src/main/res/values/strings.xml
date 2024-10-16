@@ -90,6 +90,9 @@
     <string name="page_loading">正在努力加载数据…</string>
     <string name="page_error_no_network">网络未连接</string>
     <string name="page_error_server_error">@string/error_service_error</string>
+    <string name="page_error_and_refresh">加载失败了，请下拉刷新重试哦</string>
+    <string name="paging_item_load_more_fail">加载失败，点击重试</string>
+    <string name="paging_item_no_more">没有更多了</string>
 
     <!-- ====================================表单校验提示==================================== -->
     <!--账号-->
