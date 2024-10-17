@@ -8,7 +8,7 @@ import com.app.common.api.usermanager.UserManager
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class AccountRepository @Inject constructor(
+internal class AccountRepository @Inject constructor(
     private val accountApi: AccountApi,
     private val userManager: UserManager,
     private val platform: Platform,

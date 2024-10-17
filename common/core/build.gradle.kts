@@ -59,7 +59,7 @@ dependencies {
     implementation(project(":component:upgrade"))
 
     // dependencies of specific feature api
-    implementation(project(":feature:home:api"))
+    implementation(project(":feature:account:api"))
 
     // androidx
     api(libs.androidx.ktx)

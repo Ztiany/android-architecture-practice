@@ -2,7 +2,6 @@ package com.app.common.api.router
 
 /**
  * @author Ztiany
- * Date : 2017-11-04 13:44
  */
 interface AppRouter {
 

@@ -13,5 +13,4 @@
         android:icon="@drawable/sample_sel_tab_component"
         android:title="@string/sample_tab_component" />
 
-
 </menu>

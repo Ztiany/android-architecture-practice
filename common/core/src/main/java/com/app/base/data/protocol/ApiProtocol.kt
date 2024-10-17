@@ -4,19 +4,21 @@ import android.content.Context
 import com.android.base.utils.android.views.getString
 import com.android.sdk.net.NetContext
 import com.android.sdk.net.core.exception.ApiErrorException
-import com.android.sdk.net.core.provider.ApiHandler
+import com.android.sdk.net.core.exception.ServerErrorException
 import com.android.sdk.net.core.provider.ErrorBodyParser
-import com.android.sdk.net.core.provider.ErrorMessage
+import com.android.sdk.net.core.provider.ErrorListener
+import com.android.sdk.net.core.provider.ErrorMessageConverter
 import com.android.sdk.net.core.provider.HttpConfig
 import com.android.sdk.net.core.provider.PlatformInteractor
 import com.android.sdk.net.extension.init
 import com.android.sdk.net.extension.setDefaultHostConfig
 import com.app.apm.APM
+import com.app.apm.reportException
 import com.app.base.BuildConfig
 import com.app.base.app.Platform
 import com.app.base.config.AppSettings
 import com.app.base.injection.ApplicationScope
-import com.app.base.ui.theme.R
+import com.app.base.utils.json.deserializeJson
 import com.app.common.api.apiinterceptor.ApiInterceptor
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.usermanager.UserManager
@@ -42,26 +44,14 @@ internal class ApiProtocol @Inject constructor(
 
     fun initHttpConfig() {
         NetContext.get().init(context) {
-            errorMessage(newErrorMessage())
+            errorMessageConverter(newErrorMessageConverter())
             platformInteractor(newPlatformInteractor(platform))
         }.setDefaultHostConfig {
             httpConfig(newHttpConfig())
-            aipHandler(newApiHandler())
-            errorBodyHandler(newErrorBodyParser())
-            exceptionFactory { _, _ -> null }
+            errorBodyParser(newErrorBodyParser(errorHandler))
+            errorListener(newErrorListener(errorHandler))
+            apiErrorFactory { _, _ -> null }
         }
-    }
-
-    private fun newErrorBodyParser() = object : ErrorBodyParser {
-        override fun parseErrorBody(errorBody: String, hostFlag: String): ApiErrorException? {
-            return null
-        }
-    }
-
-    private fun newApiHandler(): ApiHandler = ApiHandler { result, hostFlag ->
-        Timber.d("ApiHandler result: $result")
-        //登录状态已过期，请重新登录、账号在其他设备登陆
-        errorHandler.handleGlobalError(ApiErrorException(result.code, result.message, hostFlag))
     }
 
     private fun newHttpConfig() = object : HttpConfig {
@@ -79,11 +69,7 @@ internal class ApiProtocol @Inject constructor(
                 builder.trustAllCertification()
             }
             // API 签名协议
-            builder.addInterceptor(ProtocolInterceptor(
-                userManager,
-                platform,
-                apiInterceptor
-            ))
+            builder.addInterceptor(ProtocolInterceptor(userManager, platform, apiInterceptor))
             // 打印日志
             APM.installOkHttpLogging(this) { message -> logApiInfo(message) }
             APM.installStethoHttp(builder)
@@ -94,43 +80,82 @@ internal class ApiProtocol @Inject constructor(
         }
     }
 
-    private fun newPlatformInteractor(platform: Platform) = object : PlatformInteractor {
-        override fun isConnected(): Boolean {
-            return platform.isConnected()
+
+    private fun newPlatformInteractor(platform: Platform): PlatformInteractor {
+        return object : PlatformInteractor {
+            override fun isConnected(): Boolean {
+                return platform.isConnected()
+            }
         }
     }
 
-    private fun newErrorMessage() = object : ErrorMessage {
-
-        override fun netErrorMessage(exception: Throwable): CharSequence {
-            if (NetworkUtils.isConnected()) {
-                return getString(R.string.error_service_error)
+    private fun newErrorBodyParser(errorHandler: ErrorHandler): ErrorBodyParser {
+        return object : ErrorBodyParser {
+            override fun parseErrorBody(errorBody: String, hostFlag: String): ApiErrorException? {
+                val errorResult = errorBody.deserializeJson(ApiResult::class.java)
+                return if (errorResult == null) {
+                    null
+                } else {
+                    val exception = ApiErrorException(errorResult.code, errorResult.message, hostFlag)
+                    errorHandler.handleGlobalError(exception)
+                    exception
+                }
             }
-            return getString(R.string.error_net_error)
+        }
+    }
+
+    private fun newErrorMessageConverter(): ErrorMessageConverter {
+        return object : ErrorMessageConverter {
+            override fun netErrorMessage(throwable: Throwable): CharSequence {
+                if (NetworkUtils.isConnected()) {
+                    return getString(com.app.base.ui.theme.R.string.error_service_error)
+                }
+                return getString(com.app.base.ui.theme.R.string.error_net_error)
+            }
+
+            override fun serverDataParseErrorMessage(throwable: Throwable): CharSequence {
+                return getString(com.app.base.ui.theme.R.string.error_service_data_error)
+            }
+
+            override fun nullEntityErrorMessage(throwable: Throwable): CharSequence {
+                return getString(com.app.base.ui.theme.R.string.error_service_no_data_error)
+            }
+
+            override fun serverInternalErrorMessage(throwable: Throwable): CharSequence {
+                return getString(com.app.base.ui.theme.R.string.error_service_error)
+            }
+
+            override fun clientRequestErrorMessage(throwable: Throwable): CharSequence {
+                return getString(com.app.base.ui.theme.R.string.error_request_error)
+            }
+
+            override fun apiErrorMessage(exception: ApiErrorException): CharSequence {
+                return getString(com.app.base.ui.theme.R.string.error_api_code_mask_tips, ResponseCode.name(exception.code))
+            }
+
+            override fun unknownErrorMessage(throwable: Throwable): CharSequence {
+                return getString(com.app.base.ui.theme.R.string.error_unknown) + "：${throwable.message}"
+            }
+        }
+    }
+
+    private fun newErrorListener(errorHandler: ErrorHandler) = object : ErrorListener {
+        override fun onApiErrorException(exception: ApiErrorException, hostFlag: String) {
+            APM.reportException(exception)
+            Timber.w("ApiHandler exception: $exception, hostFlag = $hostFlag")
+            errorHandler.handleGlobalError(exception)
         }
 
-        override fun serverDataErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_service_data_error)
+        override fun onServerDataEmptyError(exception: ServerErrorException, hostFlag: String) {
+            APM.reportException(exception)
+            Timber.w("onServerDataEmptyError exception: $exception, hostFlag = $hostFlag")
+            errorHandler.handleGlobalError(exception)
         }
 
-        override fun serverReturningNullEntityErrorMessage(exception: Throwable?): CharSequence {
-            return getString(R.string.error_service_no_data_error)
-        }
-
-        override fun serverInternalErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_service_error)
-        }
-
-        override fun clientRequestErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_request_error)
-        }
-
-        override fun apiErrorMessage(exception: ApiErrorException): CharSequence {
-            return getString(R.string.error_api_code_mask_tips, exception.code)
-        }
-
-        override fun unknownErrorMessage(exception: Throwable): CharSequence {
-            return getString(R.string.error_unknown) + "：${exception.message}"
+        override fun onServerDataParseError(exception: ServerErrorException, hostFlag: String) {
+            APM.reportException(exception)
+            Timber.w("onServerDataParseError exception: $exception, hostFlag = $hostFlag}")
+            errorHandler.handleGlobalError(exception)
         }
     }
 

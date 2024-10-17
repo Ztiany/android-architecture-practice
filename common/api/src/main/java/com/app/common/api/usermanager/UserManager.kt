@@ -4,8 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 /**
  * @author Ztiany
- * Email: ztiany3@gmail.com
- * Date : 2018-11-01 17:38
  */
 interface UserManager {
 

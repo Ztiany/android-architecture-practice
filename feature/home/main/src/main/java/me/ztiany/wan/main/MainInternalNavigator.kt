@@ -21,7 +21,7 @@ internal class MainInternalNavigator @Inject constructor(
     private val host = context as MainActivity
 
     fun toLogin() {
-        appRouter.getNavigator(AccountModuleNavigator::class.java)?.openAccount(host)
+        appRouter.getNavigator(AccountModuleNavigator::class.java)?.openLoginPage(host)
     }
 
 }

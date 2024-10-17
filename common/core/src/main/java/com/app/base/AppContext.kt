@@ -6,8 +6,8 @@ import android.content.res.Configuration
 import com.android.base.core.AndroidSword
 import com.android.base.core.AppLifecycle
 import com.android.base.core.BaseAppContext
-import com.android.base.core.ErrorClassifier
-import com.android.base.core.ErrorConvert
+import com.android.base.core.RequestErrorClassifier
+import com.android.base.core.RequestErrorHandler
 import com.android.base.fragment.anim.HorizontalTransitions
 import com.android.base.fragment.fragmentModule
 import com.android.base.utils.BaseUtils
@@ -70,14 +70,14 @@ abstract class AppContext : BaseAppContext() {
 
         // lib base config
         with(AndroidSword) {
-            //错误消息转换器
-            errorConvert = object : ErrorConvert {
-                override fun convert(throwable: Throwable): CharSequence {
-                    return errorHandler.get().generateMessage(throwable)
+            // 错误消息转换器
+            requestErrorHandler = object : RequestErrorHandler {
+                override fun handle(throwable: Throwable) {
+                    errorHandler.get().handleError(throwable)
                 }
             }
             //错误分类器
-            errorClassifier = object : ErrorClassifier {
+            requestErrorClassifier = object : RequestErrorClassifier {
                 override fun isNetworkError(throwable: Throwable) = throwable is NetworkErrorException || throwable is IOException
                 override fun isServerError(throwable: Throwable) =
                     throwable is ServerErrorException || throwable is HttpException && throwable.code() >= 500/*http internal error*/

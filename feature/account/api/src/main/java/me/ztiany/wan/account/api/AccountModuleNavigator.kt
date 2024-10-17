@@ -5,6 +5,6 @@ import com.app.common.api.router.Navigator
 
 interface AccountModuleNavigator : Navigator {
 
-    fun openAccount(context: Context)
+    fun openLoginPage(context: Context, clearStack: Boolean = false)
 
 }

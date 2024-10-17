@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true">
 
     <FrameLayout
-        android:id="@+id/main_fl_avatar"
+        android:id="@+id/fl_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -26,7 +26,7 @@
     </FrameLayout>
 
     <com.android.base.ui.drawable.DTextView
-        android:id="@+id/main_tv_login"
+        android:id="@+id/tv_login"
         style="@style/Widget.App.Button.Wrap.DView.PrimaryGradientRounded10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,11 +35,11 @@
         android:paddingHorizontal="15dp"
         android:paddingVertical="6dp"
         android:text="立即登录"
-        app:layout_constraintLeft_toRightOf="@+id/main_fl_avatar"
-        app:layout_constraintTop_toTopOf="@+id/main_fl_avatar" />
+        app:layout_constraintLeft_toRightOf="@+id/fl_avatar"
+        app:layout_constraintTop_toTopOf="@+id/fl_avatar" />
 
     <TextView
-        android:id="@+id/main_tv_login_desc"
+        android:id="@+id/tv_login_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -47,37 +47,37 @@
         android:text="登录开启安卓学习之旅"
         android:textColor="?app_color_text_level2"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/main_fl_avatar"
-        app:layout_constraintLeft_toRightOf="@+id/main_fl_avatar" />
+        app:layout_constraintBottom_toBottomOf="@+id/fl_avatar"
+        app:layout_constraintLeft_toRightOf="@+id/fl_avatar" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/main_group_login_out"
+        android:id="@+id/group_login_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        app:constraint_referenced_ids="main_tv_login,main_tv_login_desc" />
+        app:constraint_referenced_ids="tv_login,tv_login_desc" />
 
     <TextView
-        android:id="@+id/main_tv_username"
+        android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:textColor="?app_color_deepest"
         android:textSize="16sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/main_fl_avatar"
-        app:layout_constraintLeft_toRightOf="@id/main_fl_avatar"
-        app:layout_constraintTop_toTopOf="@id/main_fl_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/fl_avatar"
+        app:layout_constraintLeft_toRightOf="@id/fl_avatar"
+        app:layout_constraintTop_toTopOf="@id/fl_avatar"
         tools:text="130***902" />
 
     <com.android.base.ui.shape.ShapeableLinearLayout
-        android:id="@+id/main_ll_entrances"
+        android:id="@+id/ll_entrances"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/main_fl_avatar" />
+        app:layout_constraintTop_toBottomOf="@id/fl_avatar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

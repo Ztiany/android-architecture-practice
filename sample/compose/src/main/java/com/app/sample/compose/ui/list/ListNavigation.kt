@@ -15,7 +15,7 @@ fun NavGraphBuilder.listScreen(navController: NavHostController) {
 
 fun NavGraphBuilder.flexibleListScreen(navController: NavHostController) {
     composable(FLEXIBLE_LIST_ROUTE) {
-        Paging3Screen()
+        FlexiblePaging3Screen()
     }
 }
 

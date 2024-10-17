@@ -5,9 +5,8 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 
-interface AccountApi {
+internal interface AccountApi {
 
-    /* 返回  {"code":200,"success":true,"data":{},"msg":"验证码发送成功"}  */
     @POST("user/sms/code/send/sendSms/new")
     suspend fun sendLoginCode(@Body codeRequest: CodeRequest): ApiResult<Unit>
 

@@ -17,13 +17,9 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <!-- https://stackoverflow.com/questions/40172219/custom-textsize-of-bottomnavigationview-support-android -->
     <style name="Sample.Table.TextAppearance.Normal" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">10sp</item>
-    </style>
-
-    <style name="Sample.TabLayout.TextAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

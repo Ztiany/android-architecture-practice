@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.app.base.ui.widget.insets.InsetsCompatConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:iclDirection="top"
+    app:iclTopInsetColor="?app_color_lightest"
+    app:iclType="systemBars"
     tools:ignore="HardcodedText">
 
     <com.app.base.ui.widget.titlebar.AppTitleBar
@@ -109,13 +112,19 @@
                 android:textStyle="bold" />
 
             <com.android.base.ui.shape.ShapeableTextView
-                android:id="@+id/sample_tv_dialog_confirm"
+                android:id="@+id/sample_tv_dialog_alert"
                 style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
                 android:layout_marginTop="10dp"
                 android:text="弹一个 AlertDialog" />
+
+            <com.android.base.ui.shape.ShapeableTextView
+                android:id="@+id/sample_tv_dialog_input"
+                style="@style/Widget.App.Button.Long.ShapeableView.DeepestRounded10"
+                android:layout_marginTop="10dp"
+                android:text="弹一个 InputDialog" />
 
         </LinearLayout>
 
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.app.base.ui.widget.insets.InsetsCompatConstraintLayout>

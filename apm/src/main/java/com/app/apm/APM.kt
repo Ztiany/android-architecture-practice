@@ -87,6 +87,9 @@ object APM {
     val debugMode: Boolean
         get() = BuildConfig.openDebugMode
 
+    val showDebugTool: Boolean
+        get() = BuildConfig.showDebugTool
+
     fun installStethoHttp(builder: OkHttpClient.Builder) {
         doIfDebugMode {
             val interceptor = Reflect.on("com.facebook.stetho.okhttp3.StethoInterceptor").create().get<Interceptor>()

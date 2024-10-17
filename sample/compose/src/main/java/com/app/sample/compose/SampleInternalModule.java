@@ -4,7 +4,7 @@ package com.app.sample.compose;
 import static com.app.sample.compose.net.SampleApiConfigurerKt.SAMPLE_HOST_FLAG;
 
 import com.android.sdk.net.ServiceContext;
-import com.app.common.api.network.ApiServiceFactoryProvider;
+import com.app.common.api.network.ServiceFactoryProvider;
 import com.app.sample.compose.data.WanAndroidApi;
 
 import dagger.Module;
@@ -22,7 +22,7 @@ public class SampleInternalModule {
 
     @ActivityRetainedScoped
     @Provides
-    static ServiceContext<WanAndroidApi> provideWanAndroidApi(ApiServiceFactoryProvider apiServiceFactoryProvider) {
+    static ServiceContext<WanAndroidApi> provideWanAndroidApi(ServiceFactoryProvider apiServiceFactoryProvider) {
         return apiServiceFactoryProvider.get(SAMPLE_HOST_FLAG).createServiceContext(WanAndroidApi.class);
     }
 

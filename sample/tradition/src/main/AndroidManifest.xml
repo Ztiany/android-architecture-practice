@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".SampleAppContext"
+        android:name="com.app.sample.view.SampleAppContext"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="演示应用-View"
@@ -14,32 +14,33 @@
         tools:replace="android:theme,android:label,android:allowBackup">
 
         <activity
-            android:name=".SampleSplashActivity"
+            android:name="com.app.sample.view.SampleLauncherActivity"
             android:exported="true"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Sample.AppTheme.Launch"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
             <intent-filter>
+                <action android:name="com.android.app.base.AppLauncherActivity" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.app.sample.view.SampleMainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"
+            android:exported="true"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".selector.MediaSelectorActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:name="com.app.sample.view.selector.MediaSelectorActivity"
+            android:exported="false" />
 
         <activity
-            android:name=".selector.MediaResultActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:name="com.app.sample.view.selector.MediaResultActivity"
+            android:exported="false" />
 
     </application>
 

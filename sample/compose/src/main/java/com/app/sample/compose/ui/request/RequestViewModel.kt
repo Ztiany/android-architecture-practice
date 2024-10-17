@@ -3,7 +3,7 @@ package com.app.sample.compose.ui.request
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.base.foundation.state.State
-import com.app.base.utils.statex.transformToStateFlow
+import com.app.base.utils.state.transformToStateFlow
 import com.app.sample.compose.data.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

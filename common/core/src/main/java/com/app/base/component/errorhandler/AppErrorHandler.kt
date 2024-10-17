@@ -5,32 +5,33 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.ComponentActivity
 import com.android.sdk.net.NetContext
-import com.android.sdk.net.core.exception.ApiErrorException
+import com.app.base.data.protocol.isApiAuthenticationExpired
 import com.app.base.data.protocol.isGlobalApiError
+import com.app.base.dialog.toast.ToastKit
 import com.app.base.ui.dialog.alertDialog
 import com.app.base.ui.dialog.dsl.alert.AlertDialogInterface
-import com.app.base.dialog.toast.ToastKit
+import com.app.base.ui.dialog.dsl.noCancelable
+import com.app.base.ui.dialog.dsl.onDismiss
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.protocol.CannotShowDialogOnIt
 import com.app.common.api.protocol.CannotShowExpiredDialogOnIt
 import com.app.common.api.router.AppRouter
 import com.app.common.api.usermanager.UserManager
-import com.app.common.api.usermanager.isUserLogin
 import com.blankj.utilcode.util.ActivityUtils
+import dagger.Lazy
 import dagger.hilt.android.qualifiers.ApplicationContext
-import me.ztiany.wan.main.MainModuleNavigator
-import java.lang.ref.WeakReference
+import me.ztiany.wan.account.api.AccountModuleNavigator
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 internal class AppErrorHandler @Inject constructor(
     private val appRouter: AppRouter,
-    private val userManager: UserManager,
+    private val userManager: Lazy<UserManager>,
     @ApplicationContext private val context: Context,
 ) : ErrorHandler {
 
-    private var expiredAlertDialog: WeakReference<AlertDialogInterface>? = null
+    private var alertDialogInterface: AlertDialogInterface? = null
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -39,54 +40,63 @@ internal class AppErrorHandler @Inject constructor(
     }
 
     override fun handleError(throwable: Throwable) {
-        if (!throwable.isGlobalApiError()) {
-            ToastKit.showMessage(context, generateMessage(throwable))
+        handler.post {
+            if (!throwable.isGlobalApiError()) {
+                ToastKit.showMessage(context, generateMessage(throwable))
+            } else {
+                handleGlobalError(throwable)
+            }
         }
     }
 
     override fun handleGlobalError(throwable: Throwable) {
+        if (!throwable.isGlobalApiError()) {
+            return
+        }
         handler.post {
-            if (throwable.isGlobalApiError() && userManager.isUserLogin()) {
-                showReLoginDialog(throwable)
+            (ActivityUtils.getTopActivity() as? ComponentActivity)?.run {
+                val message = throwable.takeIf {
+                    it.isApiAuthenticationExpired()
+                }?.message.takeIf {
+                    !it.isNullOrEmpty()
+                } ?: getString(com.app.base.ui.theme.R.string.error_service_error)
+                showUserStateLostDialog(message)
             }
         }
     }
 
-    private fun showReLoginDialog(apiErrorException: ApiErrorException) {
-        val currentActivity = ActivityUtils.getTopActivity() as? ComponentActivity ?: return
-
-        if (currentActivity is CannotShowDialogOnIt) {
+    private fun ComponentActivity.showUserStateLostDialog(errorMessage: String) {
+        if (this is CannotShowDialogOnIt) {
             return
         }
 
-        if (currentActivity is CannotShowExpiredDialogOnIt) {
+        if (this is CannotShowExpiredDialogOnIt) {
+            // Cannot show dialog on it, then maybe show a toast is useful for user to know the error.
+            ToastKit.showMessage(context, errorMessage)
             return
         }
 
-        expiredAlertDialog?.get()?.dismiss()
+        if (alertDialogInterface != null) {
+            return
+        }
 
-        val confirmDialog = currentActivity.alertDialog {
-            message(createMessageByErrorType(apiErrorException))
-            positiveButton("确认") {
-                expiredAlertDialog = null
-                //handle login expired
-                ActivityUtils.getTopActivity()?.let {
-                    appRouter.getNavigator(MainModuleNavigator::class.java)?.exitAndLogin(it)
-                }
+        alertDialog {
+            message(errorMessage)
+            positiveButton(com.app.base.ui.theme.R.string.confirm) {
+                alertDialogInterface = null
+                userManager.get().logout()
+                appRouter.getNavigator(AccountModuleNavigator::class.java)?.openLoginPage(
+                    context = this@showUserStateLostDialog,
+                    clearStack = true
+                )
             }
-            behavior {
-                cancelable(false)
-                onDismiss {
-                    expiredAlertDialog = null
-                }
+            noCancelable()
+            onDismiss {
+                alertDialogInterface = null
             }
-        }.show()
-
-        expiredAlertDialog = WeakReference(confirmDialog)
-    }
-
-    private fun createMessageByErrorType(apiErrorException: ApiErrorException): CharSequence {
-        return "您的登录已过期，请重新登录"
+        }.apply {
+            alertDialogInterface = show()
+        }
     }
 
 }

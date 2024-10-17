@@ -17,7 +17,7 @@
         app:zvp_enable_looper="true"
         app:zvp_pager_number_id="@id/main_banner_indicator">
 
-        <me.ztiany.wan.sample.epoxy.BannerPagerIndicatorView
+        <com.app.sample.view.epoxy.BannerPagerIndicatorView
             android:id="@+id/main_banner_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

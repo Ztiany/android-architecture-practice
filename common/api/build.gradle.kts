@@ -7,6 +7,8 @@ android {
 }
 
 dependencies {
+    // base
+    implementation(project(":common:http"))
     // androidx
     implementation(libs.androidx.annotations)
     // kotlin

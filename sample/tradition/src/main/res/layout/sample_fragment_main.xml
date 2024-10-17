@@ -19,14 +19,11 @@
         android:layout_height="wrap_content"
         android:background="?app_color_lightest"
         android:fitsSystemWindows="true"
-        app:compatShadowEnabled="true"
-        app:itemBackground="?selectableItemBackground"
         app:itemIconSize="22dp"
         app:itemTextAppearanceActive="@style/Sample.Table.TextAppearance.Selected"
         app:itemTextAppearanceInactive="@style/Sample.Table.TextAppearance.Normal"
         app:itemTextColor="@color/sample_color_tab_text"
-        app:labelVisibilityMode="labeled"
         app:menu="@menu/sample_table"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.TopRounded10" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.TopRounded20" />
 
 </LinearLayout>

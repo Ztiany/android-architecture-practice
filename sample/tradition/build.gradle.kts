@@ -6,14 +6,14 @@ plugins {
 }
 
 android {
+    namespace = "com.app.sample.view"
+    resourcePrefix = "sample_"
+
     defaultConfig {
         applicationId = "${BuildConfig.APPLICATION_ID}.${project.name.lowercase()}"
         versionCode = project.findProperty("app.version.code").toString().toInt()
         versionName = project.findProperty("app.version.name").toString()
     }
-
-    namespace = "me.ztiany.wan.sample"
-    resourcePrefix = "sample_"
 }
 
 dependencies {

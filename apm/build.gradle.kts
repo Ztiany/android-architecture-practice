@@ -12,6 +12,7 @@ android {
     defaultConfig {
         buildConfigField("boolean", "openLog", "${project.findProperty("app.debug.log")}")
         buildConfigField("boolean", "openDebugMode", "${project.findProperty("app.debug.tool")}")
+        buildConfigField("boolean", "showDebugTool", "${project.findProperty("app.debug.tool")}")
     }
 }
 

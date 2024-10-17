@@ -2,7 +2,7 @@ package me.ztiany.wan.account.data
 
 import com.app.common.api.usermanager.User
 
-interface AccountDataSource {
+internal interface AccountDataSource {
 
     suspend fun smsLogin(phone: String, smsCode: String): User
 

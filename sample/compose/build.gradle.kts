@@ -12,7 +12,7 @@ android {
         versionCode = project.findProperty("app.version.code").toString().toInt()
         versionName = project.findProperty("app.version.name").toString()
     }
-    namespace = "me.ztiany.wan.main.app"
+    namespace = "com.app.sample.compose"
     resourcePrefix = "sample_"
 }
 

@@ -6,7 +6,7 @@ import com.android.base.utils.common.ifNull
 import com.app.base.app.AppBaseActivity
 import com.app.common.api.protocol.CannotShowExpiredDialogOnIt
 import dagger.hilt.android.AndroidEntryPoint
-import me.ztiany.wan.account.presentation.sms.SmsLoginFragment
+import me.ztiany.wan.account.presentation.login.SmsLoginFragment
 
 /**
  *@author Ztiany

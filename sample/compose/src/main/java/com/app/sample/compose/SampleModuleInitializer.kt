@@ -8,7 +8,7 @@ import com.android.sdk.net.extension.addHostConfig
 import com.app.base.injection.ApplicationScope
 import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.common.api.errorhandler.ErrorHandler
-import com.app.common.api.network.ApiServiceFactoryProvider
+import com.app.common.api.network.ServiceFactoryProvider
 import com.app.common.api.usermanager.UserManager
 import com.app.sample.compose.net.SAMPLE_HOST_FLAG
 import com.app.sample.compose.net.newErrorBodyParser
@@ -24,7 +24,7 @@ internal class SampleModuleInitializer @Inject constructor(
     private val userManager: UserManager,
     private val errorHandler: ErrorHandler,
     private val dispatcherProvider: DispatcherProvider,
-    private val serviceFactoryProvider: ApiServiceFactoryProvider,
+    private val serviceFactoryProvider: ServiceFactoryProvider,
     @ApplicationScope private val scope: CoroutineScope,
 ) : AppLifecycle {
 
