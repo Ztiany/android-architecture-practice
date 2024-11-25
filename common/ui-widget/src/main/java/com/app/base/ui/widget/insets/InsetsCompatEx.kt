@@ -53,7 +53,7 @@ private fun Activity.adjustSystemBarColorInEdge2EdgeMode(navigationBarColor: Int
             }
         }
     }
-    // Case 3: NavigationBar introduced the day/night mode as of API 26. Just use it.
+    // Case 2: NavigationBar introduced the day/night mode as of API 26. Just use it.
     doInSDKRange(26, 28) {
         setNavigationBarLightMode()
     }
