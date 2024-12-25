@@ -284,6 +284,9 @@ airbnb-epoxy-processor = "com.airbnb.android:epoxy-processor:5.1.4"
 
 # https://github.com/yshrsmz/KeyboardVisibilityEvent
 yslibrary-keyboardvisibilityevent = "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3"
+# https://github.com/boybeak/skb-global
+# https://mp.weixin.qq.com/s/HuWgJpRuUKe8IW5IEoyOIA
+boybeak-skbglobal = "com.github.boybeak:skb-global:0.2.0"
 
 # https://github.com/B3nedikt/ViewPump
 b3nedikt-viewpump = "dev.b3nedikt.viewpump:viewpump:4.0.7"
