@@ -3,30 +3,31 @@ package com.app.base.data.protocol
 import android.content.Context
 import com.android.base.utils.android.views.getString
 import com.android.sdk.net.NetContext
+import com.android.sdk.net.core.config.ErrorListener
+import com.android.sdk.net.core.config.ErrorMessageConverter
+import com.android.sdk.net.core.config.HttpConfig
+import com.android.sdk.net.core.config.PlatformInteractor
 import com.android.sdk.net.core.exception.ApiErrorException
 import com.android.sdk.net.core.exception.ServerErrorException
-import com.android.sdk.net.core.provider.ErrorBodyParser
-import com.android.sdk.net.core.provider.ErrorListener
-import com.android.sdk.net.core.provider.ErrorMessageConverter
-import com.android.sdk.net.core.provider.HttpConfig
-import com.android.sdk.net.core.provider.PlatformInteractor
+import com.android.sdk.net.extension.configDefaultHost
 import com.android.sdk.net.extension.init
-import com.android.sdk.net.extension.setDefaultHostConfig
 import com.app.apm.APM
-import com.app.apm.reportException
 import com.app.base.BuildConfig
 import com.app.base.app.Platform
 import com.app.base.config.AppSettings
 import com.app.base.injection.ApplicationScope
-import com.app.base.utils.json.deserializeJson
 import com.app.common.api.apiinterceptor.ApiInterceptor
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.usermanager.UserManager
 import com.blankj.utilcode.util.NetworkUtils
+import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
+import retrofit2.HttpException
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
+import java.io.IOException
 import java.net.Proxy
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -46,19 +47,18 @@ internal class ApiProtocol @Inject constructor(
         NetContext.get().init(context) {
             errorMessageConverter(newErrorMessageConverter())
             platformInteractor(newPlatformInteractor(platform))
-        }.setDefaultHostConfig {
+        }.configDefaultHost {
             httpConfig(newHttpConfig())
-            errorBodyParser(newErrorBodyParser(errorHandler))
             errorListener(newErrorListener(errorHandler))
-            apiErrorFactory { _, _ -> null }
         }
     }
 
     private fun newHttpConfig() = object : HttpConfig {
 
-        override fun baseUrl() = appSettings.baseApiUrl()
-
-        override fun configRetrofit(okHttpClient: OkHttpClient, builder: Retrofit.Builder) = false
+        override fun configRetrofit( builder: Retrofit.Builder) {
+            builder.baseUrl(appSettings.baseApiUrl())
+                .addConverterFactory(GsonConverterFactory.create(Gson()))
+        }
 
         override fun configHttp(builder: OkHttpClient.Builder) = with(builder) {
             connectTimeout(10, TimeUnit.SECONDS)
@@ -89,73 +89,54 @@ internal class ApiProtocol @Inject constructor(
         }
     }
 
-    private fun newErrorBodyParser(errorHandler: ErrorHandler): ErrorBodyParser {
-        return object : ErrorBodyParser {
-            override fun parseErrorBody(errorBody: String, hostFlag: String): ApiErrorException? {
-                val errorResult = errorBody.deserializeJson(ApiResult::class.java)
-                return if (errorResult == null) {
-                    null
-                } else {
-                    val exception = ApiErrorException(errorResult.code, errorResult.message, hostFlag)
-                    errorHandler.handleGlobalError(exception)
-                    exception
-                }
-            }
-        }
-    }
 
     private fun newErrorMessageConverter(): ErrorMessageConverter {
         return object : ErrorMessageConverter {
-            override fun netErrorMessage(throwable: Throwable): CharSequence {
+            override fun convertWhenNetError(throwable: IOException): CharSequence {
                 if (NetworkUtils.isConnected()) {
                     return getString(com.app.base.ui.theme.R.string.error_service_error)
                 }
                 return getString(com.app.base.ui.theme.R.string.error_net_error)
             }
 
-            override fun serverDataParseErrorMessage(throwable: Throwable): CharSequence {
+            override fun convertWhenParsingDataFailed(throwable: ServerErrorException): CharSequence {
                 return getString(com.app.base.ui.theme.R.string.error_service_data_error)
             }
 
-            override fun nullEntityErrorMessage(throwable: Throwable): CharSequence {
+            override fun convertWhenNoDataReturned(throwable: ServerErrorException): CharSequence {
                 return getString(com.app.base.ui.theme.R.string.error_service_no_data_error)
             }
 
-            override fun serverInternalErrorMessage(throwable: Throwable): CharSequence {
+            override fun convertWhenServerInternalError(throwable: HttpException): CharSequence {
                 return getString(com.app.base.ui.theme.R.string.error_service_error)
             }
 
-            override fun clientRequestErrorMessage(throwable: Throwable): CharSequence {
+            override fun convertWhenClientRequestFailed(throwable: HttpException): CharSequence {
                 return getString(com.app.base.ui.theme.R.string.error_request_error)
             }
 
-            override fun apiErrorMessage(exception: ApiErrorException): CharSequence {
+            override fun convertWhenApiException(exception: ApiErrorException): CharSequence {
                 return getString(com.app.base.ui.theme.R.string.error_api_code_mask_tips, ResponseCode.name(exception.code))
             }
 
-            override fun unknownErrorMessage(throwable: Throwable): CharSequence {
+            override fun convertWhenUnknownError(throwable: Throwable): CharSequence {
                 return getString(com.app.base.ui.theme.R.string.error_unknown) + "：${throwable.message}"
             }
         }
     }
 
     private fun newErrorListener(errorHandler: ErrorHandler) = object : ErrorListener {
-        override fun onApiErrorException(exception: ApiErrorException, hostFlag: String) {
-            APM.reportException(exception)
-            Timber.w("ApiHandler exception: $exception, hostFlag = $hostFlag")
-            errorHandler.handleGlobalError(exception)
+        override fun onApiException(apiErrorException: ApiErrorException, hostFlag: String) {
+            Timber.w("ApiHandler exception: $apiErrorException, hostFlag = $hostFlag")
+            errorHandler.handleGlobalError(apiErrorException)
         }
 
-        override fun onServerDataEmptyError(exception: ServerErrorException, hostFlag: String) {
-            APM.reportException(exception)
-            Timber.w("onServerDataEmptyError exception: $exception, hostFlag = $hostFlag")
-            errorHandler.handleGlobalError(exception)
-        }
-
-        override fun onServerDataParseError(exception: ServerErrorException, hostFlag: String) {
-            APM.reportException(exception)
+        override fun onParsingDataFailed(exception: ServerErrorException, hostFlag: String) {
             Timber.w("onServerDataParseError exception: $exception, hostFlag = $hostFlag}")
-            errorHandler.handleGlobalError(exception)
+        }
+
+        override fun onDataNotReturned(exception: ServerErrorException, hostFlag: String) {
+            Timber.w("onServerDataEmptyError exception: $exception, hostFlag = $hostFlag")
         }
     }
 

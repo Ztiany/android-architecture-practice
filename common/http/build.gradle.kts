@@ -13,7 +13,7 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
     // core function
-    implementation(libs.ztiany.simplehttp)
+    implementation(libs.ztiany.simplehttp.core)
     implementation(libs.google.gson)
     implementation(libs.square.retrofit)
     // log

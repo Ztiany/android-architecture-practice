@@ -17,5 +17,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.coroutines.android)
     // net
-    implementation(libs.ztiany.simplehttp)
+    implementation(libs.ztiany.simplehttp.core)
 }

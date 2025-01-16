@@ -36,7 +36,7 @@ internal class AppErrorHandler @Inject constructor(
     private val handler = Handler(Looper.getMainLooper())
 
     override fun generateMessage(throwable: Throwable): CharSequence {
-        return NetContext.get().errorMessageFactory.createMessage(throwable)
+        return NetContext.get().errorMessageFactory.convert(throwable)
     }
 
     override fun handleError(throwable: Throwable) {

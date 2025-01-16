@@ -10,11 +10,10 @@ import com.app.common.api.dispatcher.DispatcherProvider
 import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.network.ServiceFactoryProvider
 import com.app.common.api.usermanager.UserManager
-import kotlinx.coroutines.CoroutineScope
 import com.app.sample.view.common.net.SAMPLE_HOST_FLAG
-import com.app.sample.view.common.net.newErrorBodyParser
 import com.app.sample.view.common.net.newErrorListener
 import com.app.sample.view.common.net.newHttpConfig
+import kotlinx.coroutines.CoroutineScope
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -33,9 +32,7 @@ internal class SampleModuleInitializer @Inject constructor(
         // 添加 Sample 的网络配置
         NetContext.get().addHostConfig(SAMPLE_HOST_FLAG) {
             httpConfig(newHttpConfig())
-            errorBodyParser(newErrorBodyParser(errorHandler))
             errorListener(newErrorListener(errorHandler))
-            apiErrorFactory { _, _ -> null }
         }
     }
 

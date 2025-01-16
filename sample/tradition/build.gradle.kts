@@ -19,5 +19,6 @@ android {
 dependencies {
     implementation(libs.androidx.paging.runtime)
     implementation(libs.square.okhttp.logging)
+    implementation(libs.square.retrofit.converter.gson)
     ksp(libs.airbnb.epoxy.processor)
 }

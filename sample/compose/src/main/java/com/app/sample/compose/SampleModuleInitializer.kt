@@ -11,7 +11,6 @@ import com.app.common.api.errorhandler.ErrorHandler
 import com.app.common.api.network.ServiceFactoryProvider
 import com.app.common.api.usermanager.UserManager
 import com.app.sample.compose.net.SAMPLE_HOST_FLAG
-import com.app.sample.compose.net.newErrorBodyParser
 import com.app.sample.compose.net.newErrorListener
 import com.app.sample.compose.net.newHttpConfig
 import kotlinx.coroutines.CoroutineScope
@@ -33,9 +32,7 @@ internal class SampleModuleInitializer @Inject constructor(
         // 添加 Sample 的网络配置
         NetContext.get().addHostConfig(SAMPLE_HOST_FLAG) {
             httpConfig(newHttpConfig())
-            errorBodyParser(newErrorBodyParser(errorHandler))
             errorListener(newErrorListener(errorHandler))
-            apiErrorFactory { _, _ -> null }
         }
     }
 

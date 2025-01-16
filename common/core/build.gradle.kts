@@ -78,7 +78,8 @@ dependencies {
     implementation(libs.bumptech.glide)
     api(libs.google.gson)
     api(libs.square.retrofit)
-    api(libs.ztiany.simplehttp)
+    api(libs.ztiany.simplehttp.core)
+    api(libs.ztiany.simplehttp.gson)
     api(libs.ztiany.imageloader)
     kapt(libs.bumptech.glide.ksp)
     // utils

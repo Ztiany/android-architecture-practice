@@ -1,6 +1,6 @@
 package com.app.base.utils.json
 
-import com.android.sdk.net.core.json.GsonUtils
+import com.android.sdk.net.gson.GsonFactory
 import com.google.gson.Gson
 import com.google.gson.JsonParseException
 import com.google.gson.JsonParser
@@ -10,7 +10,7 @@ import org.json.JSONObject
 import timber.log.Timber
 import java.lang.reflect.Type
 
-private val gson: Gson = GsonUtils.gson()
+private val gson: Gson = GsonFactory.newGson()
 
 fun Map<String, *>.toJson(): String {
     val jsonObject = JSONObject()

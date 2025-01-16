@@ -20,4 +20,5 @@ dependencies {
     implementation(project(":common:ui-compose"))
     project.addComposeModuleDependencies()
     implementation(libs.compose.paging.android)
+    implementation(libs.square.retrofit.converter.gson)
 }
