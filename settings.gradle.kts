@@ -25,7 +25,6 @@ dependencyResolutionManagement {
         maven { url = uri("https://maven.aliyun.com/repository/apache-snapshots") }
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
     }
 }
 
