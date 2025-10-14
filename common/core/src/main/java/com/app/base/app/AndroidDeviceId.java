@@ -23,6 +23,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import timber.log.Timber;
 
+/**
+ * @see <a href="https://developer.android.com/identity/user-data-ids">Android User Data IDs</a>.
+ */
 class AndroidDeviceId {
 
     private static String sFakeDeviceId = "";
