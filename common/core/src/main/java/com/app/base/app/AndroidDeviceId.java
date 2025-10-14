@@ -131,9 +131,10 @@ class AndroidDeviceId {
 
         if (!file.exists()) {
             try {
-                file.createNewFile();
+                boolean created = file.createNewFile();
+                Timber.d("createNewFile: %s, %s", file.getAbsolutePath(), created);
             } catch (IOException e) {
-                e.printStackTrace();
+                Timber.e(e, "createNewFile failed");
                 return;
             }
         }
@@ -148,6 +149,7 @@ class AndroidDeviceId {
         }
     }
 
+    /* TODO：兼容 scope storage. */
     private static File getGuidFile(Context context) {
         boolean hasStoragePermission;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -155,9 +157,11 @@ class AndroidDeviceId {
         } else if (Build.VERSION.SDK_INT >= 30) {
             hasStoragePermission = false;
         } else {
-            hasStoragePermission = context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+            hasStoragePermission =
+                    context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
         }
         if (hasStoragePermission && Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            // Environment.getExternalStorageDirectory() 返回的是 /storage/emulated/0/，其实 SD 卡的根目录。
             return new File(Environment.getExternalStorageDirectory(), "Android/" + DEVICE_ID_FILE);
         }
         return null;
@@ -196,25 +200,25 @@ class AndroidDeviceId {
         String id = getDeviceUUID().replace("-", "");
 
         //追加 IMEI
-        if (imei != null && imei.length() > 0) {
+        if (imei != null && !imei.isEmpty()) {
             sbDeviceId.append(imei);
             sbDeviceId.append("|");
         }
 
         //追加 ANDROID ID
-        if (androidID != null && androidID.length() > 0) {
+        if (androidID != null && !androidID.isEmpty()) {
             sbDeviceId.append(androidID);
             sbDeviceId.append("|");
         }
 
         //追加 SERIAL
-        if (serial != null && serial.length() > 0) {
+        if (serial != null && !serial.isEmpty()) {
             sbDeviceId.append(serial);
             sbDeviceId.append("|");
         }
 
         //追加硬件 UUID
-        if (id != null && id.length() > 0) {
+        if (!id.isEmpty()) {
             sbDeviceId.append(id);
         }
 
@@ -223,12 +227,12 @@ class AndroidDeviceId {
             try {
                 byte[] hash = getHashByString(sbDeviceId.toString());
                 String sha1 = bytesToHex(hash);
-                if (sha1 != null && sha1.length() > 0) {
+                if (!sha1.isEmpty()) {
                     //返回最终的 DeviceId
                     return sha1;
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Timber.e(ex, "makeFakeId failed");
             }
 
         }
@@ -277,7 +281,7 @@ class AndroidDeviceId {
     }
 
     /**
-     * 用硬件信息拼接一个唯一标识：获得硬件 uuid（根据硬件相关属性，生成 uuid），改操作无需权限。
+     * 用硬件信息拼接一个唯一标识：获得硬件 uuid（根据硬件相关属性，生成 uuid），该操作无需权限。
      */
     private static String getDeviceUUID() {
         String serial = getSerial();
@@ -293,18 +297,22 @@ class AndroidDeviceId {
                 Build.PRODUCT +
                 serial;
 
-        Timber.d("BOARD = %s, BRAND = %s,  DEVICE = %s, HARDWARE = %s, MANUFACTURER = %s, ID = %s, MODEL = %s, PRODUCT = %s, Serial = %s", Build.BOARD, Build.BRAND, Build.DEVICE, Build.HARDWARE, Build.MANUFACTURER, Build.ID, Build.MODEL, Build.PRODUCT, serial);
+        Timber.d("BOARD = %s, BRAND = %s,  DEVICE = %s, HARDWARE = %s, MANUFACTURER = %s, ID = %s, MODEL = %s, PRODUCT = %s, Serial = %s",
+                Build.BOARD, Build.BRAND, Build.DEVICE, Build.HARDWARE, Build.MANUFACTURER, Build.ID,
+                Build.MODEL, Build.PRODUCT, serial);
 
         return new UUID(dev.hashCode(), serial.hashCode()).toString();
     }
 
     /**
-     * ANDROID_ID 是设备的系统首次启动时随机生成的一串字符，由 16 个 16 进制数（64 位）组成，理论上可以保证唯一性的。ANDROID_ID 的获取门槛是最低的，不需要任何权限。
+     * ANDROID_ID 是设备的系统首次启动时随机生成的一串字符，由 16 个 16 进制数（64 位）组成，理论上可以保证唯一性的。
+     * ANDROID_ID 的获取门槛是最低的，不需要任何权限。
      * <p>
      * 存在的问题：
      *     <ol>
      *         <li>无法保证稳定性，root、刷机或恢复出厂设置都会导致设备的 ANDROID_ID 发生改变。</li>
-     *         <li>某些厂商定制系统的 Bug 会导致不同的设备可能会产生相同的 ANDROID_ID，而且某些设备获取到的 ANDROID_ID 为 null。</li>
+     *         <li>某些厂商定制系统的 Bug 会导致不同的设备可能会产生相同的 ANDROID_ID，而且某些设备获取到的
+     *         ANDROID_ID 为 null。</li>
      *     </ol>
      * </p>
      */
@@ -329,17 +337,23 @@ class AndroidDeviceId {
      * <p>
      *     <ol>
      *         <li>在 Android 8.0以下版本，可以通过 android.os.Build.SERIAL 获取到设备序列号</li>
-     *         <li>在 Android 8.0 及以上版本被废弃了，通过 Build.SERIAL 在 Android 8.0 及以上设备获取到设备的序列号始终为 “unknown”，取而代之的是使用 android.os.Build.getSerial() 方法。</li>
+     *         <li>在 Android 8.0 及以上版本被废弃了，通过 Build.SERIAL 在 Android 8.0 及以上设备获取到设备的
+     *         序列号始终为 “unknown”，取而代之的是使用 android.os.Build.getSerial() 方法。</li>
      *     </ol>
-     *     Build.getSerial() 方法在 Android 6.0 及以上版本是需要动态申请 READ_PHONE_STATE 权限的，并且该方法在 Android 10 上同样无法获取到设备序列号。具体情况如下：
+     *     Build.getSerial() 方法在 Android 6.0 及以上版本是需要动态申请 READ_PHONE_STATE 权限的，并且该方法在
+     *     Android 10 上同样无法获取到设备序列号。具体情况如下：
      *     <ol>
      *         <li>Android 8.0 以下：无需申请权限，可以通过 Build.SERIAL 获取到设备序列号</li>
-     *         <li>Android 8.0-Android 10：需要申请 READ_PHONE_STATE 权限，可以通过 Build.getSerial() 获取到设备序列号，如果没有权限直接获取，会抛出 java.lang.SecurityException异常</li>
+     *         <li>Android 8.0-Android 10：需要申请 READ_PHONE_STATE 权限，可以通过 Build.getSerial() 获取
+     *         到设备序列号，如果没有权限直接获取，会抛出 java.lang.SecurityException异常</li>
      *         <li>
      *             Android 10 及以上：分为以下两种情况：
      *             <ol>
-     *                 <li>targetSdkVersion < 29：没有申请权限的情况，调用 Build.getSerial() 方法时抛出 java.lang.SecurityException 异常；申请了权限，通过 Build.getSerial() 方法获取到的设备序列号为 “unknown”</li>
-     *                 <li>targetSdkVersion >= 29：无论是否申请了权限，调用 Build.getSerial() 方法时都会直接抛出 java.lang.SecurityException 异常</li>
+     *                 <li>targetSdkVersion < 29：没有申请权限的情况，调用 Build.getSerial() 方法时抛出
+     *                 java.lang.SecurityException 异常；申请了权限，通过 Build.getSerial() 方法获取到的设备
+     *                 序列号为 “unknown”</li>
+     *                 <li>targetSdkVersion >= 29：无论是否申请了权限，调用 Build.getSerial() 方法时都会直接
+     *                 抛出 java.lang.SecurityException 异常</li>
      *             </ol>
      *         </li>
      *     </ol>
@@ -360,24 +374,32 @@ class AndroidDeviceId {
     }
 
     /**
-     * IMEI(International Mobile Equipment Identity) 是国际移动设备识别码的缩写，由 15-17 位数字组成，与手机是一一对应的关系，该码是全球唯一的，并且永远不会改变。
+     * IMEI(International Mobile Equipment Identity) 是国际移动设备识别码的缩写，由 15-17 位数字组成，与手机是
+     * 一一对应的关系，该码是全球唯一的，并且永远不会改变。
      * <p>
      * 获取方法：
      *     <ol>
-     *         <li>在Android 8.0（API Level 26）以下，可以通过 TelephonyManager 的 getDeviceId() 方法获取到设备的 IMEI 码（其实这个说法不准确，该方法是会根据手机设备的制式（GSM 或 CDMA）返回相应的设备码（IMEI、MEID 和 ESN））</li>
+     *         <li>在Android 8.0（API Level 26）以下，可以通过 TelephonyManager 的 getDeviceId() 方法获取
+     *         到设备的 IMEI 码（其实这个说法不准确，该方法是会根据手机设备的制式（GSM 或 CDMA）返回相应的设备码（IMEI
+     *         、MEID 和 ESN））</li>
      *         <li>getDeviceId()  方法在 Android 8.0 及之后的版本已经被废弃了，取而代之的是 getImei() 方法。</li>
      *         <li>无论是 getDeviceId() 方法还是 getImei() 方法都可以传入一个参数 slotIndex。</li>
      *     </ol>
      *     限制：
      *     <ol>
      *         <li>Android 6.0 以下：无需申请权限，可以通过 getDeviceId() 方法获取到 IMEI 码。</li>
-     *         <li>Android 6.0-Android 8.0：需要申请 READ_PHONE_STATE 权限，可以通过 getDeviceId() 方法获取到 IMEI 码，如果没有权限直接获取，会抛出 java.lang.SecurityException 异常</li>
-     *         <li>Android 8.0-Android 10：需要申请 READ_PHONE_STATE 权限，可以通过 getImei() 方法获取到 IMEI 码，如果没有权限直接获取，会抛出 java.lang.SecurityException 异常</li>
+     *         <li>Android 6.0-Android 8.0：需要申请 READ_PHONE_STATE 权限，可以通过 getDeviceId() 方法获取
+     *         到 IMEI 码，如果没有权限直接获取，会抛出 java.lang.SecurityException 异常</li>
+     *         <li>Android 8.0-Android 10：需要申请 READ_PHONE_STATE 权限，可以通过 getImei() 方法获取到 IMEI
+     *         码，如果没有权限直接获取，会抛出 java.lang.SecurityException 异常</li>
      *         <li>
      *             Android 10 及以上：分为以下两种情况：
      *             <ol>
-     *                 <li>targetSdkVersion < 29：没有申请权限的情况，通过 getImei() 方法获取 IMEI 码时抛出 java.lang.SecurityException 异常；申请了权限，通过 getImei() 方法获取到 IMEI 码为 null</li>
-     *                 <li>targetSdkVersion >= 29：无论是否申请了权限，通过 getImei() 方法获取 IMEI 码时都会直接抛出 java.lang.SecurityException 异常</li>
+     *                 <li>targetSdkVersion < 29：没有申请权限的情况，通过 getImei() 方法获取 IMEI 码时抛出
+     *                 java.lang.SecurityException 异常；申请了权限，通过 getImei() 方法获取到 IMEI 码为 null
+     *                 </li>
+     *                 <li>targetSdkVersion >= 29：无论是否申请了权限，通过 getImei() 方法获取 IMEI 码时都会
+     *                 直接抛出 java.lang.SecurityException 异常</li>
      *             </ol>
      *         </li>
      *     </ol>
@@ -385,11 +407,11 @@ class AndroidDeviceId {
      */
     private static String getIMEI(Context context) {
         try {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                return tm.getImei();
+                return telephonyManager.getImei();
             } else {
-                return tm.getDeviceId();
+                return telephonyManager.getDeviceId();
             }
         } catch (Exception ignored) {
             Timber.e("getIMEI failed.");
