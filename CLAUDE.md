@@ -2,6 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Context
+
+This is an **internationalized** project with comprehensive English documentation. The codebase demonstrates enterprise-grade Android architecture practices using Clean Architecture with modularization.
+
+**Documentation Language**: All documentation is in English for international accessibility.
+**Terminology**: Project uses standardized terminology defined in `document/glossary.md`.
+
 ## Build Commands
 
 ### Standard Build
@@ -40,6 +47,16 @@ If build fails, try:
 ```
 
 **Important**: If build fails after pulling changes, set `forceSubstitution = true` in `settings.gradle.kts` (line 45).
+
+## Terminology and Communication
+
+This project uses standardized terminology to ensure clear communication:
+- **StateD**: Generic state wrapper (Loading/Error/Success)
+- **ServiceContext**: Retrofit wrapper with error handling
+- **StorageManager**: Data persistence abstraction
+- **API-First Design**: Features expose interfaces before implementations
+
+For complete terminology reference, see `document/glossary.md`. This glossary defines architectural terms, project-specific concepts, module structure, technical concepts, and acronyms used throughout the project.
 
 ## Architecture Overview
 
@@ -110,7 +127,7 @@ The entire project uses Hilt for DI:
 - Inter-module: Features depend on APIs through interfaces
 - Global DI container manages object lifecycles
 
-See `document/架构说明.md` for detailed networking and storage usage examples.
+See `README.md` and `document/glossary.md` for detailed explanations of architecture patterns and terminology.
 
 ## Key Technical Patterns
 
@@ -275,7 +292,7 @@ showConfirmDialog {
 
 ## Coding Standards
 
-From `document/编码规范.md`:
+From `document/coding-standards.md`:
 
 1. **Format code** before committing
 2. **Minimize visibility**: private → internal → public
@@ -285,6 +302,13 @@ From `document/编码规范.md`:
    - Use xxhdpi for icons
    - Module-private resources in the module, common resources in common modules
 5. **All resources** (including Styles) must use the module's resource prefix
+
+**Additional Guidelines**:
+- Naming conventions: PascalCase for classes, camelCase for functions/variables
+- Follow Android Studio settings for auto-import and line length
+- Use conventional commit messages: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`
+
+See `document/coding-standards.md` for complete Android Studio configuration and development guidelines.
 
 ## Testing
 
@@ -304,9 +328,26 @@ The project includes debug tools:
 
 ## Important Files
 
+### Configuration Files
 - `settings.gradle.kts`: Module declarations and dependency substitution
 - `settings.project.json`: Module substitution configuration
 - `gradle/libs.versions.toml`: Centralized dependency versions
 - `build.gradle.kts`: Root build configuration with forced dependency versions
-- `document/架构说明.md`: Detailed architecture documentation (Chinese)
-- `document/编码规范.md`: Coding standards (Chinese)
+
+### Documentation Files
+- `README.md`: Comprehensive project overview with architecture, quick start, and usage guides
+- `document/coding-standards.md`: English coding standards and Android Studio configuration
+- `document/glossary.md`: Project terminology and definitions for consistent communication
+- `CLAUDE.md`: This file - provides context for AI assistants working on this project
+
+### Reference Implementations
+- `sample/tradition`: View-based implementation examples
+- `sample/compose`: Compose-based implementation examples
+
+## Project Resources
+
+For detailed information on:
+- **Architecture and patterns**: See README.md sections on Architecture Overview and Core Capabilities
+- **Coding conventions**: See document/coding-standards.md
+- **Terminology**: See document/glossary.md
+- **Quick reference**: This CLAUDE.md file provides a condensed overview for AI assistants
